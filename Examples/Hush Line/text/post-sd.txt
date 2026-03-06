@@ -1,0 +1,11 @@
+People often ask whose Hush Line competitors are. The short answer is that we don’t see whistleblowing that way.
+
+There are already tools for different parts of the disclosure process. Signal Messenger provides secure two-way communication. SecureDrop and GLOBALEAKS enable document submission. Hush Line focuses on the accessibility and usability of the initial point of contact.
+
+Our goal is to make it easier for whistleblowers to reach verified journalists, attorneys, and other trusted recipients without downloading a new app or creating an account. We are not trying to replace the tools for handling files or for long-term secure communication.
+
+That philosophy shaped a new addition to the Whistleblower Support Directory: SecureDrop instances!
+
+Someone risking their career to disclose information should have options about where and how that information is shared. The directory already includes verified Hush Line users and attorneys sourced from state bar records and other credible databases. Now it also includes SecureDrop listings for cases where file submission is the right path.
+
+Live on Hush Line: https://tips.hushline.app.
