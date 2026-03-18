@@ -1,0 +1,12 @@
+I really enjoyed working on CalyxOS when contributing with The Calyx Institute, but the death knell for de-Googled operating systems has always been distribution.
+
+It wasn't and isn't crazy complicated to install a de-Googled OS on a compatible phone, but that's still a higher bar than literally 99.6% of smartphone users were willing to do in the name of privacy and security.
+
+The leader in the space has been GrapheneOS, but even being Snowden's favorite OS couldn't make it break out of that 1% barrier, especially when competing with trillion-dollar organizations like Apple and Google. Then, Google updated their Android policy to make it a lot harder for small teams to keep their operating systems compatible with Pixel hardware.
+
+In a surprise announcement (at least to me), Motorola Mobility (a Lenovo Company) announced yesterday that they'll partner with Graphene to bring their OS to the consumer market!
+
+This is a crazy significant win for everyone in Motorola's markets. Assuming it all plays out in good-faith, this is akin to the impact of when WhatsApp integrated the Signal Messenger protocol.
+
+https://lnkd.in/gZGX8vGF
+https://lnkd.in/gzPVkKhf
