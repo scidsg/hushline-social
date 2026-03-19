@@ -32,6 +32,7 @@ function defaultLinkedInVersion() {
 function parseArgs(argv) {
   const args = {
     date: todayString(),
+    dateRoot: path.join(REPO_ROOT, "previous-posts"),
     dryRun: false,
     force: false,
     plan: null,
@@ -50,6 +51,9 @@ function parseArgs(argv) {
       index += 1;
     } else if (value === "--plan") {
       args.plan = path.resolve(REPO_ROOT, argv[index + 1]);
+      index += 1;
+    } else if (value === "--date-root") {
+      args.dateRoot = path.resolve(REPO_ROOT, argv[index + 1]);
       index += 1;
     } else if (value === "--weeks-root") {
       args.weeksRoot = path.resolve(REPO_ROOT, argv[index + 1]);
@@ -83,6 +87,10 @@ function printHelp() {
       "  node scripts/publish-daily-linkedin.js --week 2026-W12 --date 2026-03-18",
       "  node scripts/publish-daily-linkedin.js --dry-run",
       "",
+      "Behavior:",
+      "  - Publishes from previous-posts/YYYY-MM-DD when a daily archive exists",
+      "  - Falls back to plans/YYYY-Www/plan.json plus weeks/YYYY-Www assets when needed",
+      "",
       "Environment:",
       "  LINKEDIN_ACCESS_TOKEN    OAuth access token with LinkedIn posting permissions",
       "  LINKEDIN_AUTHOR_URN      urn:li:person:... or urn:li:organization:...",
@@ -104,12 +112,64 @@ function getPlanPath(args) {
   return args.plan || path.join(REPO_ROOT, "plans", args.week, "plan.json");
 }
 
+function getDailyPostDir(args) {
+  return path.join(args.dateRoot, args.date);
+}
+
 function getPostOutputDir(plan, post, weeksRoot) {
   return path.join(weeksRoot, plan.week, post.slot);
 }
 
 function getPublicationStatePath(plan, post, weeksRoot) {
   return path.join(getPostOutputDir(plan, post, weeksRoot), "linkedin-publication.json");
+}
+
+function resolveArchivedDailyPost(args) {
+  const outputDir = getDailyPostDir(args);
+  const postPath = path.join(outputDir, "post.json");
+  const imagePath = path.join(outputDir, "social-card@2x.png");
+  const publicationPath = path.join(outputDir, "linkedin-publication.json");
+
+  if (!fs.existsSync(postPath)) {
+    return null;
+  }
+
+  return {
+    imagePath,
+    outputDir,
+    post: readJson(postPath),
+    publicationPath,
+    summaryLabel: args.date,
+    type: "daily-archive",
+  };
+}
+
+function resolveWeeklyPost(args) {
+  const planPath = getPlanPath(args);
+
+  if (!fs.existsSync(planPath)) {
+    throw new Error(`Weekly plan not found: ${planPath}`);
+  }
+
+  const plan = readJson(planPath);
+  if (!plan.week) {
+    throw new Error(`Plan is not a weekly plan: ${planPath}`);
+  }
+
+  const post = plan.posts.find((entry) => entry.planned_date === args.date);
+  if (!post) {
+    return null;
+  }
+
+  return {
+    imagePath: path.join(getPostOutputDir(plan, post, args.weeksRoot), "social-card@2x.png"),
+    outputDir: getPostOutputDir(plan, post, args.weeksRoot),
+    plan,
+    post,
+    publicationPath: getPublicationStatePath(plan, post, args.weeksRoot),
+    summaryLabel: plan.week,
+    type: "weekly-plan",
+  };
 }
 
 async function linkedinRequest({ method, pathOrUrl, token, version, body, headers = {} }) {
@@ -225,26 +285,19 @@ async function createLinkedInPost({ authorUrn, commentary, imageUrn, altText, to
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
-  const planPath = getPlanPath(args);
+  const resolved = resolveArchivedDailyPost(args) || resolveWeeklyPost(args);
 
-  if (!fs.existsSync(planPath)) {
-    throw new Error(`Weekly plan not found: ${planPath}`);
-  }
-
-  const plan = readJson(planPath);
-  if (!plan.week) {
-    throw new Error(`Plan is not a weekly plan: ${planPath}`);
-  }
-
-  const post = plan.posts.find((entry) => entry.planned_date === args.date);
-  if (!post) {
-    process.stdout.write(`No LinkedIn post scheduled for ${args.date} in ${plan.week}.\n`);
+  if (!resolved) {
+    process.stdout.write(`No LinkedIn post content found for ${args.date}.\n`);
     return;
   }
-
-  const outputDir = getPostOutputDir(plan, post, args.weeksRoot);
-  const imagePath = path.join(outputDir, "social-card@2x.png");
-  const publicationPath = getPublicationStatePath(plan, post, args.weeksRoot);
+  const {
+    imagePath,
+    post,
+    publicationPath,
+    summaryLabel,
+    type,
+  } = resolved;
 
   if (!fs.existsSync(imagePath)) {
     throw new Error(`Rendered image not found for ${post.slot}: ${imagePath}`);
@@ -262,7 +315,8 @@ async function main() {
     process.stdout.write(
       [
         `Dry run: LinkedIn publication prepared for ${args.date}`,
-        `- week: ${plan.week}`,
+        `- source: ${type}`,
+        `- container: ${summaryLabel}`,
         `- slot: ${post.slot}`,
         `- image: ${path.relative(REPO_ROOT, imagePath)}`,
         `- commentary length: ${post.social.linkedin.length}`,
@@ -306,13 +360,15 @@ async function main() {
     posted_at: new Date().toISOString(),
     slot: post.slot,
     status: created.status,
-    week: plan.week,
+    source: type,
+    week: resolved.plan ? resolved.plan.week : null,
   });
 
   process.stdout.write(
     [
       `Published LinkedIn post for ${post.slot}`,
-      `- week: ${plan.week}`,
+      `- source: ${type}`,
+      `- container: ${summaryLabel}`,
       `- planned date: ${post.planned_date}`,
       `- post id: ${created.postId || "unknown"}`,
       `- publication record: ${path.relative(REPO_ROOT, publicationPath)}`,

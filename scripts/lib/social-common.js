@@ -5,16 +5,17 @@ const path = require("path");
 const { execFileSync } = require("child_process");
 
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const SCREENSHOTS_ROOT = path.resolve(
-  REPO_ROOT,
-  "..",
-  "hushline-screenshots",
-  "releases",
-  "latest",
+const SCREENSHOTS_REPO_ROOT = path.resolve(
+  process.env.HUSHLINE_SCREENSHOTS_REPO_DIR || path.join(REPO_ROOT, "..", "hushline-screenshots"),
 );
+const SCREENSHOTS_ROOT = path.join(SCREENSHOTS_REPO_ROOT, "releases", "latest");
 const SCREENSHOT_MANIFEST = path.join(SCREENSHOTS_ROOT, "manifest.json");
-const HUSHLINE_ROOT = path.resolve(REPO_ROOT, "..", "hushline");
-const HUSHLINE_DOCS_ROOT = path.resolve(REPO_ROOT, "..", "hushline-docs");
+const HUSHLINE_ROOT = path.resolve(process.env.HUSHLINE_ROOT || path.join(REPO_ROOT, "..", "hushline"));
+const HUSHLINE_DOCS_ROOT = path.resolve(process.env.HUSHLINE_DOCS_ROOT || HUSHLINE_ROOT);
+const HUSHLINE_DOCS_DIRS = [...new Set([
+  path.join(HUSHLINE_ROOT, "docs"),
+  path.join(HUSHLINE_DOCS_ROOT, "docs"),
+])];
 const LOCAL_LOGO = path.join(REPO_ROOT, "assets", "logo-tips.png");
 
 const LIMITS = {
@@ -23,10 +24,16 @@ const LIMITS = {
   bluesky: 300,
 };
 
+const USER_APPLICATIONS = process.env.HOME
+  ? path.join(process.env.HOME, "Applications")
+  : null;
+
 const CHROME_CANDIDATES = [
   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
   "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser",
-];
+  USER_APPLICATIONS && path.join(USER_APPLICATIONS, "Google Chrome.app", "Contents", "MacOS", "Google Chrome"),
+  USER_APPLICATIONS && path.join(USER_APPLICATIONS, "Brave Browser.app", "Contents", "MacOS", "Brave Browser"),
+].filter(Boolean);
 
 const STOPWORDS = new Set([
   "about",
@@ -118,7 +125,7 @@ function findChrome() {
   const executable = CHROME_CANDIDATES.find((candidate) => fs.existsSync(candidate));
 
   if (!executable) {
-    throw new Error("No Chrome-compatible browser was found in /Applications.");
+    throw new Error("No Chrome-compatible browser was found in /Applications or ~/Applications.");
   }
 
   return executable;
@@ -255,6 +262,7 @@ function execJson(command, args, options = {}) {
 
 module.exports = {
   CHROME_CANDIDATES,
+  HUSHLINE_DOCS_DIRS,
   HUSHLINE_DOCS_ROOT,
   HUSHLINE_ROOT,
   LIMITS,

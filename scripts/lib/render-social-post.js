@@ -96,11 +96,6 @@ function renderHtml(templatePath, post, screenshotFilename, logoFilename) {
   let html = fs.readFileSync(templatePath, "utf8");
 
   html = html.replace(
-    /^\s*<link rel="preconnect"[\s\S]*?display=swap" rel="stylesheet">\n/m,
-    "",
-  );
-
-  html = html.replace(
     /<h1 class="headline">[\s\S]*?<\/h1>/,
     `<h1 class="headline">${escapeHtml(post.headline).replace(/\n/g, "<br />")}</h1>`,
   );

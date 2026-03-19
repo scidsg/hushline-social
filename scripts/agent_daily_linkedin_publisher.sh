@@ -36,7 +36,8 @@ Usage:
   ./scripts/agent_daily_linkedin_publisher.sh --dry-run
 
 Behavior:
-  - Loads the weekly plan from plans/YYYY-Www/plan.json
+  - Loads the archived daily post from previous-posts/YYYY-MM-DD when present
+  - Falls back to the weekly plan from plans/YYYY-Www/plan.json when needed
   - Finds the post scheduled for today or the supplied date
   - Publishes it to LinkedIn
   - Writes a local publication record to avoid duplicate posting
