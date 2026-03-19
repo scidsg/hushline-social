@@ -1,0 +1,12 @@
+Examples/.DS_Store
+Examples/Other Examples/.DS_Store
+examples/Hush Line/.DS_Store
+.DS_Store
+node_modules/
+logs/
+.tmp/
+.env.launchd
+plans/
+months/
+weeks/
+examples/week */

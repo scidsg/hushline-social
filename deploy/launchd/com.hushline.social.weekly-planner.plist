@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.hushline.social.weekly-planner</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>__REPO_DIR__/scripts/run_weekly_planner_launchd.sh</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>__REPO_DIR__</string>
+
+  <key>RunAtLoad</key>
+  <false/>
+
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Weekday</key>
+    <integer>1</integer>
+    <key>Hour</key>
+    <integer>7</integer>
+    <key>Minute</key>
+    <integer>0</integer>
+  </dict>
+
+  <key>StandardOutPath</key>
+  <string>__REPO_DIR__/logs/weekly-planner.stdout.log</string>
+
+  <key>StandardErrorPath</key>
+  <string>__REPO_DIR__/logs/weekly-planner.stderr.log</string>
+</dict>
+</plist>
