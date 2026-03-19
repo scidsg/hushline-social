@@ -28,4 +28,4 @@ if [[ -f "$ENV_FILE" ]]; then
 fi
 
 cd "$REPO_DIR"
-exec ./scripts/agent_weekly_social_planner.sh "$@"
+exec ./scripts/agent_daily_social_planner.sh "$@"

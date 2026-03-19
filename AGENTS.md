@@ -6,13 +6,13 @@ This repo is a dynamic social post agent for Hush Line.
 
 The job is not to produce a static yearly batch with hard-coded copy. The job is to:
 
-- build a fresh weekly social plan
-- create 5 posts per week
-- map those posts to Monday through Friday
+- build a fresh daily social post
+- create one post per day
 - choose screenshots from the latest available capture set
 - generate end-user-facing social copy
 - generate one separate alt text block per image
 - render final social assets from approved templates
+- archive rendered daily assets under `previous-posts/YYYY-MM-DD`
 - support daily automatic publishing, with LinkedIn as the first target platform
 
 ## Core Planning Rules
@@ -20,9 +20,9 @@ The job is not to produce a static yearly batch with hard-coded copy. The job is
 - The planner must be dynamic.
 - Do not hard-code feature themes, post copy, or a fixed yearly manifest.
 - Use current local Hush Line context to decide what to feature.
-- Prioritize recently shipped work based on local PR history and current docs.
+- Prioritize recently shipped work based on closed-completed local PR history and current docs.
 - Favor features that align with Hush Line’s documented user base.
-- Keep content fresh week to week. Avoid repeating the same concept across adjacent plans.
+- Keep content fresh day to day. Avoid repeating the same concept across adjacent archived posts.
 
 ## Source Inputs
 
@@ -43,8 +43,8 @@ Do not treat old archived screenshot releases as the primary source when plannin
 - Avoid empty-state UIs.
 - Avoid screenshots that do not clearly showcase Hush Line.
 - Avoid duplicate concepts, even if one version is mobile and another is desktop.
-- Balance mobile and desktop usage across a weekly plan.
-- Include some dark mode, but keep it a minority share. Target about 20%.
+- Balance mobile and desktop usage across recent archived posts.
+- Include some dark mode, but keep it a minority share across recent archived posts.
 - If a screenshot is admin-specific, the copy must clearly say that it is for admins or teams running Hush Line.
 
 ## Audience Context Rules
@@ -113,21 +113,22 @@ Respect current per-network limits:
 
 ## Planning Model
 
-This is a weekly planner, not a static annual planner.
+This is a daily planner, not a static annual planner.
 
 Expected behavior:
 
-- prepare weekly context
+- prepare daily context
 - call Codex through the shell runner pattern
-- have Codex choose 5 posts for the requested week from current context
+- have Codex choose one post for the requested date from current context
 - validate the plan
-- render from the validated plan
+- render from the validated plan into `previous-posts/YYYY-MM-DD`
+- archive that day's folder back to this repository for audit access
 
-Weekly plan shape:
+Daily plan shape:
 
-- one plan per ISO week
-- five posts per plan
-- one post each for Monday, Tuesday, Wednesday, Thursday, and Friday
+- one plan per calendar date
+- one post per plan
+- one folder per date under `previous-posts/YYYY-MM-DD`
 
 ## Operational Rule
 
@@ -140,15 +141,16 @@ Before planning:
 
 ## Publishing Model
 
-Publishing is daily, planning is weekly.
+Publishing is daily, planning is daily.
 
-- the weekly planner creates the full Monday through Friday set
-- the daily publisher selects the post whose `planned_date` is today
+- the daily planner creates that day's single post folder under `previous-posts/YYYY-MM-DD`
+- the daily publisher selects the archived post whose date is today
 - LinkedIn is the first production publishing target
 - do not double-post; persist local publication state
 - launchd is the intended scheduler on the server
 - launchd should call the wrapper script, not a raw `node` command
 - secrets should come from `.env.launchd` or an explicitly configured env file on the server
+- archive pushes should use signed commits and push only the daily folder contents needed for audit
 
 ## Upstream Screenshot Workflow Notes
 
@@ -172,10 +174,10 @@ When planning in this repo, verify that:
 
 - selected screenshots come from `latest`
 - admin-only screenshots are rare and clearly labeled in copy
-- mobile/desktop balance is reasonable
-- dark mode stays near the target share
+- mobile/desktop balance is reasonable across recent archived posts
+- dark mode stays a minority share across recent archived posts
 - alt text is separate from social copy
-- 5 posts exist for the week
-- planned dates cover Monday through Friday
-- no repeated concept appears in the same week
-- the daily publisher can identify today’s LinkedIn post cleanly
+- one post exists for the date being generated
+- the planned date matches the archive folder date
+- no repeated concept appears across adjacent archived posts
+- the daily publisher can identify today’s LinkedIn post cleanly from `previous-posts/YYYY-MM-DD`

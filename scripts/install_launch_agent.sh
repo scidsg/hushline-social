@@ -41,6 +41,7 @@ Logs:
 
 Next steps:
 - create $REPO_DIR/.env.launchd with LINKEDIN_ACCESS_TOKEN and LINKEDIN_AUTHOR_URN
+- ensure git push auth and commit signing work for previous-posts archive pushes
 - test with: launchctl kickstart -k gui/$(id -u)/com.hushline.social.linkedin.daily
 - test with: launchctl kickstart -k gui/$(id -u)/com.hushline.social.weekly-planner
 EOF
