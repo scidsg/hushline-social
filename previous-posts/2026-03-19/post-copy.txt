@@ -1,0 +1,23 @@
+Slot: thursday
+Planned date: 2026-03-19
+Template: mobile
+Screenshot: /Users/scidsg/hushline-screenshots/releases/latest/newman/auth-newman-onboarding-encryption-mobile-light-fold.png
+Content key: auth-newman-onboarding-encryption
+Headline: Add your encryption key during setup
+Subtext: Add a public PGP key during onboarding so your tip line is ready for encrypted submissions before you share it.
+
+Image alt text
+Social graphic using a mobile Hush Line onboarding screen. The image shows the encryption step, where a new account holder is asked to add a public PGP key with options for Proton Mail lookup or manual key paste.
+
+Social post copy
+
+LinkedIn (275/3000)
+If you are setting up Hush Line for a newsroom, law office, school, or other trusted inbox, the encryption step is one of the most important parts of onboarding.
+
+Add your public PGP key before you share your tip line so sources can send encrypted submissions from the start.
+
+Mastodon (229/500)
+Setting up Hush Line? Add your public PGP key during onboarding so your tip line is ready for encrypted submissions before you share it. It is a simple setup step that helps new accounts move from signup to a usable secure inbox.
+
+Bluesky (195/300)
+Setting up Hush Line? Add your public PGP key during onboarding so your tip line is ready for encrypted submissions before you share it. A small setup step that makes the inbox usable right away.
