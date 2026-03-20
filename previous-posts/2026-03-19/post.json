@@ -5,13 +5,13 @@
   "content_key": "auth-newman-onboarding-encryption",
   "headline": "Add your encryption key during setup",
   "subtext": "Add a public PGP key during onboarding so your tip line is ready for encrypted submissions before you share it.",
-  "image_alt_text": "Social graphic using a mobile Hush Line onboarding screen. The image shows the encryption step, where a new account holder is asked to add a public PGP key with options for Proton Mail lookup or manual key paste.",
+  "image_alt_text": "Social graphic using a mobile Hush Line onboarding screen. The final image shows the encryption step, where a new account holder is asked to add a public PGP key with options for Proton Mail lookup or manual key paste.",
   "social": {
     "bluesky": "Setting up Hush Line? Add your public PGP key during onboarding so your tip line is ready for encrypted submissions before you share it. A small setup step that makes the inbox usable right away.",
     "linkedin": "If you are setting up Hush Line for a newsroom, law office, school, or other trusted inbox, the encryption step is one of the most important parts of onboarding.\n\nAdd your public PGP key before you share your tip line so sources can send encrypted submissions from the start.",
     "mastodon": "Setting up Hush Line? Add your public PGP key during onboarding so your tip line is ready for encrypted submissions before you share it. It is a simple setup step that helps new accounts move from signup to a usable secure inbox."
   },
-  "rationale": "Chosen because the onboarding encryption screen directly reflects the recent auth and onboarding modernization work in PR #1743 and maps to a core documented recipient need: adding a PGP key so sources can submit encrypted tips. It is an above-the-fold light-mode mobile screen, avoids empty states, does not duplicate any archived concept, and helps keep dark-mode use in the minority.",
+  "rationale": "Chosen from the latest screenshot release because the onboarding encryption screen clearly shows recent shipped onboarding work from PR #1743 and maps to a core documented recipient need: adding a public PGP key so sources can submit encrypted tips. It is an above-the-fold light-mode mobile screen, avoids empty states, does not duplicate any archived concept here, and keeps dark mode in the minority for this run.",
   "source_pr_numbers": [
     1743
   ],

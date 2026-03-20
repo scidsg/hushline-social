@@ -10,8 +10,8 @@ Mastodon 500
 Bluesky 300
 
 Target dark-mode share for this run: 0.2
-Screenshot release from local latest folder: v0.5.132
-Screenshots captured at: 2026-03-18T03:19:28.027Z
+Screenshot release from local latest folder: v0.6.0
+Screenshots captured at: 2026-03-19T18:22:22.263Z
 
 Recently merged Hush Line PRs:
 #1765 | 2026-03-19T17:56:37Z | Fix guest screenshot
