@@ -5,13 +5,13 @@
   "content_key": "auth-newman-onboarding-encryption",
   "headline": "Add your encryption key during setup",
   "subtext": "Add a public PGP key during onboarding so your tip line is ready for encrypted submissions before you share it.",
-  "image_alt_text": "Social graphic using a mobile Hush Line onboarding screen. The final image shows the encryption step, where a new account holder is asked to add a public PGP key with options for Proton Mail lookup or manual key paste.",
+  "image_alt_text": "Social graphic with a mobile Hush Line onboarding screen on a light background. The image centers step 2 of setup, where a new account holder adds a public PGP key using Proton Mail search or manual paste before continuing.",
   "social": {
-    "bluesky": "Setting up Hush Line? Add your public PGP key during onboarding so your tip line is ready for encrypted submissions before you share it. A small setup step that makes the inbox usable right away.",
-    "linkedin": "If you are setting up Hush Line for a newsroom, law office, school, or other trusted inbox, the encryption step is one of the most important parts of onboarding.\n\nAdd your public PGP key before you share your tip line so sources can send encrypted submissions from the start.",
-    "mastodon": "Setting up Hush Line? Add your public PGP key during onboarding so your tip line is ready for encrypted submissions before you share it. It is a simple setup step that helps new accounts move from signup to a usable secure inbox."
+    "bluesky": "Setting up Hush Line? Add your public PGP key during onboarding before you share your tip line. It makes encrypted submissions available from the start, so sources can use the secure path right away.",
+    "linkedin": "If you are setting up Hush Line for a newsroom, law office, school, or other trusted inbox, add your public PGP key before you share your tip line.\n\nThis step in onboarding makes encrypted submissions available from the start, so sources do not reach a profile that cannot receive secure tips yet.",
+    "mastodon": "Setting up Hush Line? Add your public PGP key during onboarding before you share your tip line. That makes encrypted submissions available from the start, so sources do not reach a profile that is not ready for secure tips yet."
   },
-  "rationale": "Chosen from the latest screenshot release because the onboarding encryption screen clearly shows recent shipped onboarding work from PR #1743 and maps to a core documented recipient need: adding a public PGP key so sources can submit encrypted tips. It is an above-the-fold light-mode mobile screen, avoids empty states, does not duplicate any archived concept here, and keeps dark mode in the minority for this run.",
+  "rationale": "Chosen from the latest screenshot release v0.6.0 captured on 2026-03-19 because it clearly shows recent shipped onboarding work from PR #1743 and a core documented recipient need: adding a public PGP key so sources can send encrypted disclosures. It is an above-the-fold light-mode mobile screen, avoids empty states, uses the latest release, and does not repeat any archived concept.",
   "source_pr_numbers": [
     1743
   ],
