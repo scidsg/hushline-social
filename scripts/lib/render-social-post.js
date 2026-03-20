@@ -227,10 +227,13 @@ async function renderPost(post, outputDir) {
 }
 
 async function renderPlan(plan, options = {}) {
-  const periodKey = plan.week || plan.month;
+  if (!plan.month) {
+    throw new Error("renderPlan currently supports monthly plans only.");
+  }
+
   const periodRoot =
     options.periodRoot ||
-    path.join(REPO_ROOT, plan.week ? "weeks" : "months", periodKey);
+    path.join(REPO_ROOT, "months", plan.month);
   const outputs = [];
 
   for (const post of plan.posts) {

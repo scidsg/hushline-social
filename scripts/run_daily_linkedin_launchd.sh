@@ -31,4 +31,4 @@ if [[ -f "$ENV_FILE" ]]; then
 fi
 
 cd "$REPO_DIR"
-exec ./scripts/agent_daily_linkedin_publisher.sh "$@"
+./scripts/agent_daily_linkedin_publisher.sh "$@"

@@ -158,18 +158,14 @@ function parseArgs(argv) {
 function printHelp() {
   process.stdout.write(
     [
-      "Usage:",
-      "  node scripts/plan-week.js --week 2026-W12",
-      "  node scripts/plan-week.js --week 2026-W12 --candidate-count 12",
-      "  node scripts/plan-week.js --week 2026-W12 --dry-run",
+      "Internal shared planning context module.",
+      "Use the day or month planning entrypoints instead of calling this file directly.",
       "",
       "Behavior:",
       "  - Reads recent merged PRs from the local Hush Line repo and GitHub CLI",
       "  - Reads current audience context from Hush Line docs",
       "  - Builds a candidate screenshot inventory from hushline-screenshots/releases/latest",
-      "  - Writes planning context and a Codex prompt to plans/YYYY-Www",
-      "  - Builds 5 weekday posts for the requested week",
-      "  - The shell runner uses Codex CLI to create plans/YYYY-Www/plan.json from that context",
+      "  - Builds a reusable planning context for downstream daily or monthly planners",
       "",
     ].join("\n"),
   );
@@ -763,7 +759,7 @@ function buildPromptPayload(context) {
     .map((doc) => `${doc.file}\n${doc.excerpt}`)
     .join("\n\n");
   const history = context.recent_history.length === 0
-    ? "No prior weekly plans were found."
+    ? "No prior plan history was found."
     : context.recent_history
         .map((plan) => {
           const posts = plan.posts
@@ -775,7 +771,7 @@ function buildPromptPayload(context) {
 
   return {
     system: [
-      "You are planning a weekly set of five social posts for Hush Line.",
+      "You are planning a set of weekday social posts for Hush Line.",
       "Choose screenshots that reflect recent product work and documented user needs.",
       "Write in plain language. No marketing-speak, no hype, no filler.",
       "Social copy must be end-user-facing. Do not confuse post copy with alt text.",
@@ -1125,7 +1121,4 @@ async function planWeek(args) {
 
 module.exports = {
   buildPlanningContext,
-  parseArgs,
-  planWeek,
-  validatePlan,
 };

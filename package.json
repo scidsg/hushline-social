@@ -2,13 +2,11 @@
   "scripts": {
     "plan:day:agent": "./scripts/agent_daily_social_planner.sh",
     "plan:day": "node scripts/plan-day.js",
-    "plan:week:agent": "./scripts/agent_weekly_social_planner.sh",
-    "plan:week": "node scripts/plan-week.js",
     "publish:linkedin:daily": "./scripts/agent_daily_linkedin_publisher.sh",
     "install:launch-agent": "./scripts/install_launch_agent.sh",
     "render:plan": "node scripts/generate-social-post.js",
     "validate:day": "node scripts/validate-day-plan.js",
-    "validate:plan": "node scripts/validate-week-plan.js"
+    "validate:plan": "node scripts/validate-day-plan.js"
   },
   "dependencies": {
     "puppeteer-core": "^24.39.1"

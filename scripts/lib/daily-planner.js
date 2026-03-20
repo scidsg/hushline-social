@@ -3,7 +3,7 @@
 const fs = require("fs");
 const path = require("path");
 const { renderPost } = require("./render-social-post");
-const { buildPlanningContext } = require("./weekly-planner");
+const { buildPlanningContext } = require("./planning-context");
 const {
   HUSHLINE_ROOT,
   LIMITS,
@@ -175,28 +175,28 @@ function readHushlineAgentExcerpt() {
 function buildDailyContext(args) {
   const parsedDate = new Date(`${args.date}T12:00:00`);
   const week = formatIsoWeek(parsedDate);
-  const weeklyContext = buildPlanningContext({
+  const planningContext = buildPlanningContext({
     candidateCount: args.candidateCount,
     darkRatio: args.darkRatio,
     week,
   });
   const archiveHistory = loadArchiveHistory(args.date);
   const filteredCandidates = filterCandidatesForArchiveHistory(
-    weeklyContext.candidate_screenshots,
+    planningContext.candidate_screenshots,
     archiveHistory,
   );
 
   return {
-    audience_docs: weeklyContext.audience_docs,
+    audience_docs: planningContext.audience_docs,
     candidate_screenshots: filteredCandidates,
     daily_posts_root: path.relative(REPO_ROOT, DAILY_POSTS_ROOT),
     date: args.date,
     dark_ratio: args.darkRatio,
     hushline_agent_context: readHushlineAgentExcerpt(),
     recent_archive_history: archiveHistory,
-    recent_pull_requests: weeklyContext.recent_pull_requests,
-    screenshot_captured_at: weeklyContext.screenshot_captured_at,
-    screenshot_release: weeklyContext.screenshot_release,
+    recent_pull_requests: planningContext.recent_pull_requests,
+    screenshot_captured_at: planningContext.screenshot_captured_at,
+    screenshot_release: planningContext.screenshot_release,
     slot: {
       planned_date: args.date,
       slot: getWeekdayLabel(args.date),
