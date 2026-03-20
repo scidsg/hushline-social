@@ -165,6 +165,8 @@ Current default launchd schedule in this repo:
 
 Keep the publisher scheduled after the planner with enough buffer for rendering, archive writes, and local state updates.
 
+By default, the daily planner wrapper performs `git pull --ff-only` before planning. If tracked repo changes are already present locally, the planner should fail rather than pulling over a dirty checkout. Set `HUSHLINE_SOCIAL_GIT_PULL=0` only when intentionally skipping that update step.
+
 ## Publication State Rules
 
 - `previous-posts/YYYY-MM-DD/linkedin-publication.json` is the local duplicate-post guard for LinkedIn
