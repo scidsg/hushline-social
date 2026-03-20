@@ -152,6 +152,50 @@ Publishing is daily, planning is daily.
 - secrets should come from `.env.launchd` or an explicitly configured env file on the server
 - archive pushes should use signed commits and push only the daily folder contents needed for audit
 
+Current default launchd schedule in this repo:
+
+- `com.hushline.social.daily-planner`
+  - `06:00` local time
+- `com.hushline.social.linkedin.daily`
+  - `06:10` local time
+
+Keep the publisher scheduled after the planner with enough buffer for rendering, archive writes, and local state updates.
+
+## Publication State Rules
+
+- `previous-posts/YYYY-MM-DD/linkedin-publication.json` is the local duplicate-post guard for LinkedIn
+- after a real live LinkedIn post, do not delete or rewrite `linkedin-publication.json` unless you explicitly intend to republish that date
+- if the archived post folder for a date is rebuilt after a live publish, preserve or restore `linkedin-publication.json` before the publisher runs again
+- if the local publication state is gone, the publisher may treat that date as unpublished and create a duplicate LinkedIn post
+
+## Manual Runbook
+
+Use the launchd wrappers for manual runs so env loading and lock handling match production:
+
+```sh
+cd /Users/scidsg/hushline-social
+./scripts/run_daily_planner_launchd.sh
+./scripts/run_daily_linkedin_launchd.sh
+```
+
+For a specific date:
+
+```sh
+cd /Users/scidsg/hushline-social
+./scripts/run_daily_planner_launchd.sh --date YYYY-MM-DD
+./scripts/run_daily_linkedin_launchd.sh --date YYYY-MM-DD
+```
+
+Do not use the bare publisher script for routine live runs when `.env.launchd` or launchd-style locking matters.
+
+## Launchd Troubleshooting
+
+- if a scheduled time changes, reinstall the agents with `./scripts/install_launch_agent.sh`
+- if you need to stop scheduled runs temporarily, disable and boot out both launch agents rather than editing code paths
+- if a wrapper exits with an "already running" message, check for a stale lock directory under `.tmp/`
+- if the daily archive folder is missing, the publisher should not post until the planner recreates that date's archive
+- if the planner archive was deleted after a live post, restore `linkedin-publication.json` before allowing the publisher to run again
+
 ## Upstream Screenshot Workflow Notes
 
 If screenshot capture behavior itself is wrong, fix it in:
