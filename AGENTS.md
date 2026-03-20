@@ -96,6 +96,9 @@ Rules:
 - no filler
 - no duplicate copy pasted across all three networks
 - same core message, adapted natively per network
+- posts must end with a relevant call-to-action for the post, for example:
+  - Sign up at https://hushline.app/.
+  - Learn more at https://hushline.app/.
 
 ## Character Limits
 
@@ -118,6 +121,7 @@ This is a daily planner, not a static annual planner.
 Expected behavior:
 
 - prepare daily context
+  - check the `previous-posts` folder to avoid duplicate post content 
 - call Codex through the shell runner pattern
 - have Codex choose one post for the requested date from current context
 - validate the plan
