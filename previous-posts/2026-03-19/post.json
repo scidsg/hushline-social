@@ -1,37 +1,31 @@
 {
   "slot": "thursday",
   "planned_date": "2026-03-19",
-  "screenshot_file": "guest/guest-directory-verified-desktop-light-fold.png",
-  "content_key": "guest-directory-verified",
-  "headline": "Verified profiles help sources find the right tip line",
-  "subtext": "The public directory makes verified accounts easier to spot before someone starts an anonymous submission.",
-  "image_alt_text": "Social post image with the headline 'Verified profiles help sources find the right tip line' and subtext about spotting verified accounts before starting an anonymous submission, paired with a light-theme desktop view of Hush Line's public directory showing verified recipient listings.",
+  "screenshot_file": "newman/auth-newman-onboarding-encryption-mobile-light-fold.png",
+  "content_key": "auth-newman-onboarding-encryption",
+  "headline": "Add your encryption key before you share your tip line",
+  "subtext": "The guided setup walks you through adding a public PGP key so sources can send messages that only you can read.",
+  "image_alt_text": "Social graphic built around a mobile Hush Line onboarding screen. The screen shows step 2 of 4, titled \"Now, let's set up encryption,\" with options to search for a Proton Mail key or add a public PGP key manually.",
   "social": {
-    "bluesky": "Before sending a tip, people need to know they found the right recipient. Hush Line's public directory makes verified accounts easier to spot.",
-    "linkedin": "Before someone sends an anonymous tip, they need to know they reached the right person. Hush Line's public directory makes verified accounts easier to spot, so sources can choose a recipient with more confidence before they submit.",
-    "mastodon": "If you are deciding where to send a tip, trust comes first. Hush Line's public directory makes verified accounts easier to spot so you can check who you're contacting before you share anything."
+    "bluesky": "Setting up Hush Line? Add your public PGP key during onboarding before you share your tip line. The updated setup flow keeps encryption in the main path, so sources can send messages that only you can read.",
+    "linkedin": "Before you share a Hush Line profile, add your public PGP key. The guided setup now puts encryption in the main path, with Proton lookup or manual key entry in the same flow. That helps journalists, lawyers, educators, organizers, and other trusted recipients reach a usable tip line without skipping the step that lets sources send messages only they can read.",
+    "mastodon": "If you're setting up Hush Line for reporting, legal work, education, or community use, don't skip encryption. The onboarding flow now walks you through adding your public PGP key, so sources can send messages that only you can read."
   },
-  "rationale": "This uses the freshest guest-facing screenshot work from the latest release and highlights a core Hush Line need from the docs: helping sources verify that they are contacting the right journalist, lawyer, or other trusted recipient before starting an anonymous disclosure.",
+  "rationale": "This screen reflects the recent auth and onboarding form modernization in PR #1743 and shows a core recipient task clearly above the fold. The docs make encryption a prerequisite for a usable tip line: recipients need a public PGP key before sources can submit messages that only the recipient can read.",
   "source_pr_numbers": [
-    1765,
-    1763
+    1743
   ],
-  "audience_scope": "public",
-  "concept_key": "directory-verified",
-  "copy_brief": "Write for sources and public users evaluating or using Hush Line.",
+  "audience_scope": "recipient-shared",
+  "concept_key": "onboarding-encryption",
+  "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
   "matched_pull_requests": [
     {
-      "merged_at": "2026-03-19T17:56:37Z",
-      "number": 1765,
-      "title": "Fix guest screenshot"
-    },
-    {
-      "merged_at": "2026-03-19T08:02:44Z",
-      "number": 1763,
-      "title": "Fix guest profile screenshot manifest reset logic"
+      "merged_at": "2026-03-18T02:26:06Z",
+      "number": 1743,
+      "title": "#1733 Phase 6: modernize auth and onboarding core form flows"
     }
   ],
   "theme": "light",
-  "title": "Directory - Verified",
-  "viewport": "desktop"
+  "title": "Onboarding - Step 2 Encryption (newman)",
+  "viewport": "mobile"
 }

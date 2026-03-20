@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Verified profiles help sources find the right tip line</title>
+  <title>Add your encryption key before you share your tip line</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
@@ -29,7 +29,7 @@
       font-weight: 700;
       font-style: normal;
       margin: 0 0 28px 0;
-      font-size: 4rem;
+      font-size: 3.5rem;
       line-height: 1;
       color: #7b22c9;
     }
@@ -119,16 +119,20 @@
     .right {
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: center;
     }
 
-    .desktop-panel {
+    .phone-panel {
+      width: 360px;
+      height: 640px;
       display: flex;
       align-items: center;
+      justify-content: center;
+      padding: 18px 14px;
     }
 
-    .desktop-panel img {
-      width: 768px;
+    .phone-panel img {
+      width: 100%;
       height: auto;
       display: block;
       border-radius: 22px;
@@ -161,15 +165,15 @@
 
     <div class="layout">
       <section class="left">
-        <h1 class="headline">Verified profiles help sources find the right tip line</h1>
+        <h1 class="headline">Add your encryption key before you share your tip line</h1>
         <p class="subtext">
-          The public directory makes verified accounts easier to spot before someone starts an anonymous submission.
+          The guided setup walks you through adding a public PGP key so sources can send messages that only you can read.
         </p>
       </section>
 
       <section class="right">
-        <div class="desktop-panel">
-          <img src="./guest-directory-verified-desktop-light-fold.png" alt="Social post image with the headline &#39;Verified profiles help sources find the right tip line&#39; and subtext about spotting verified accounts before starting an anonymous submission, paired with a light-theme desktop view of Hush Line&#39;s public directory showing verified recipient listings." />
+        <div class="phone-panel">
+          <img src="./auth-newman-onboarding-encryption-mobile-light-fold.png" alt="Social graphic built around a mobile Hush Line onboarding screen. The screen shows step 2 of 4, titled &quot;Now, let&#39;s set up encryption,&quot; with options to search for a Proton Mail key or add a public PGP key manually." />
         </div>
       </section>
     </div>
