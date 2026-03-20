@@ -1,9 +1,11 @@
 {
   "scripts": {
+    "check:launchd": "./scripts/check_launchd_prereqs.sh",
     "plan:day:agent": "./scripts/agent_daily_social_planner.sh",
     "plan:day": "node scripts/plan-day.js",
     "publish:linkedin:daily": "./scripts/agent_daily_linkedin_publisher.sh",
     "install:launch-agent": "./scripts/install_launch_agent.sh",
+    "install:launch-daemon": "sudo ./scripts/install_launch_agent.sh --scope daemon",
     "render:plan": "node scripts/generate-social-post.js",
     "validate:day": "node scripts/validate-day-plan.js",
     "validate:plan": "node scripts/validate-day-plan.js"

@@ -14,6 +14,36 @@ cleanup() {
   rmdir "$LOCK_DIR" >/dev/null 2>&1 || true
 }
 
+effective_date() {
+  local previous=""
+  local arg=""
+
+  for arg in "$@"; do
+    if [[ "$previous" == "--date" ]]; then
+      printf '%s\n' "$arg"
+      return
+    fi
+    previous="$arg"
+  done
+
+  date +%Y-%m-%d
+}
+
+weekday_number() {
+  date -j -f "%Y-%m-%d" "$1" "+%u"
+}
+
+skip_if_weekend() {
+  local target_date=""
+  local weekday=""
+  target_date="$(effective_date "$@")"
+  weekday="$(weekday_number "$target_date")"
+  if [[ "$weekday" == "6" || "$weekday" == "7" ]]; then
+    echo "Skipping daily social planner for weekend date $target_date."
+    exit 0
+  fi
+}
+
 update_repo() {
   if [[ "$AUTO_GIT_PULL" != "1" ]]; then
     echo "Automatic git pull skipped."
@@ -63,6 +93,8 @@ if [[ -f "$ENV_FILE" ]]; then
   . "$ENV_FILE"
   set +a
 fi
+
+skip_if_weekend "$@"
 
 update_repo
 

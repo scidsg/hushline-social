@@ -81,6 +81,19 @@ EOF
   done
 }
 
+weekday_number() {
+  date -j -f "%Y-%m-%d" "$1" "+%u"
+}
+
+skip_if_weekend() {
+  local weekday=""
+  weekday="$(weekday_number "$DATE")"
+  if [[ "$weekday" == "6" || "$weekday" == "7" ]]; then
+    echo "Skipping daily social planner for weekend date $DATE."
+    exit 0
+  fi
+}
+
 build_context() {
   local -a cmd=(node scripts/plan-day.js --date "$DATE")
   [[ -n "$CANDIDATE_COUNT" ]] && cmd+=(--candidate-count "$CANDIDATE_COUNT")
@@ -272,6 +285,7 @@ remote_manifest_matches_local() {
 
 main() {
   parse_args "$@"
+  skip_if_weekend
 
   require_cmd codex
   require_cmd node

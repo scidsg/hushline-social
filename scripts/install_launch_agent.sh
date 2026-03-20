@@ -3,7 +3,20 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
-TARGET_DIR="${HOME}/Library/LaunchAgents"
+SCOPE="gui"
+ENV_FILE="$REPO_DIR/.env.launchd"
+APP_USER="${SUDO_USER:-${USER}}"
+APP_UID="$(id -u "$APP_USER")"
+APP_GROUP="$(id -gn "$APP_USER")"
+APP_HOME="$(dscl . -read "/Users/$APP_USER" NFSHomeDirectory 2>/dev/null | awk '{print $2}')"
+GUI_TARGET_DIR=""
+SYSTEM_TARGET_DIR="/Library/LaunchDaemons"
+
+if [[ -z "$APP_HOME" ]]; then
+  APP_HOME="$HOME"
+fi
+
+GUI_TARGET_DIR="$APP_HOME/Library/LaunchAgents"
 
 require_cmd() {
   if ! command -v "$1" >/dev/null 2>&1; then
@@ -12,30 +25,184 @@ require_cmd() {
   fi
 }
 
+parse_args() {
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --scope)
+        SCOPE="$2"
+        shift 2
+        ;;
+      --env-file)
+        ENV_FILE="$2"
+        shift 2
+        ;;
+      --help|-h)
+        cat <<'EOF'
+Usage:
+  ./scripts/install_launch_agent.sh
+  ./scripts/install_launch_agent.sh --scope gui
+  sudo ./scripts/install_launch_agent.sh --scope daemon
+
+Scopes:
+  gui     Installs LaunchAgents into ~/Library/LaunchAgents. Works for desktop sessions,
+          but jobs can be missed when the user is logged out.
+  daemon  Installs LaunchDaemons into /Library/LaunchDaemons as the target user. Use this
+          on servers where jobs must keep running without a logged-in GUI session.
+EOF
+        exit 0
+        ;;
+      *)
+        echo "Unknown argument: $1" >&2
+        exit 1
+        ;;
+    esac
+  done
+
+  case "$SCOPE" in
+    gui|daemon) ;;
+    *)
+      echo "--scope must be one of: gui, daemon" >&2
+      exit 1
+      ;;
+  esac
+}
+
+escape_sed_replacement() {
+  printf '%s' "$1" | sed 's/[&|]/\\&/g'
+}
+
+render_plist() {
+  local template_path="$1"
+  local target_path="$2"
+  local repo_dir_escaped=""
+  local home_dir_escaped=""
+  local env_file_escaped=""
+  local user_name_escaped=""
+  local group_name_escaped=""
+
+  repo_dir_escaped="$(escape_sed_replacement "$REPO_DIR")"
+  home_dir_escaped="$(escape_sed_replacement "$APP_HOME")"
+  env_file_escaped="$(escape_sed_replacement "$ENV_FILE")"
+  user_name_escaped="$(escape_sed_replacement "$APP_USER")"
+  group_name_escaped="$(escape_sed_replacement "$APP_GROUP")"
+
+  sed \
+    -e "s|__REPO_DIR__|$repo_dir_escaped|g" \
+    -e "s|__HOME_DIR__|$home_dir_escaped|g" \
+    -e "s|__ENV_FILE__|$env_file_escaped|g" \
+    -e "s|__USER_NAME__|$user_name_escaped|g" \
+    -e "s|__GROUP_NAME__|$group_name_escaped|g" \
+    "$template_path" > "$target_path"
+
+  plutil -lint "$target_path" >/dev/null
+}
+
+install_gui_unit() {
+  local template_path="$1"
+  local target_plist="$2"
+  local label="$3"
+
+  render_plist "$template_path" "$target_plist"
+  launchctl bootout "gui/$APP_UID" "$target_plist" >/dev/null 2>&1 || true
+  launchctl bootstrap "gui/$APP_UID" "$target_plist"
+  launchctl enable "gui/$APP_UID/$label"
+}
+
+install_daemon_unit() {
+  local template_path="$1"
+  local target_plist="$2"
+  local label="$3"
+
+  render_plist "$template_path" "$target_plist"
+  launchctl bootout system "$target_plist" >/dev/null 2>&1 || true
+  launchctl bootstrap system "$target_plist"
+  launchctl enable "system/$label"
+}
+
+uninstall_gui_unit() {
+  local target_plist="$1"
+  local label="$2"
+
+  launchctl bootout "gui/$APP_UID" "$target_plist" >/dev/null 2>&1 || true
+  launchctl disable "gui/$APP_UID/$label" >/dev/null 2>&1 || true
+  rm -f "$target_plist"
+}
+
+uninstall_daemon_unit() {
+  local target_plist="$1"
+  local label="$2"
+
+  if [[ ! -e "$target_plist" ]]; then
+    return
+  fi
+
+  launchctl bootout system "$target_plist" >/dev/null 2>&1 || true
+  launchctl disable "system/$label" >/dev/null 2>&1 || true
+  rm -f "$target_plist"
+}
+
 main() {
+  parse_args "$@"
   require_cmd launchctl
   require_cmd sed
+  require_cmd plutil
 
-  mkdir -p "$TARGET_DIR"
   mkdir -p "$REPO_DIR/logs"
+  mkdir -p "$REPO_DIR/.tmp"
+
+  "$REPO_DIR/scripts/check_launchd_prereqs.sh" --scope "$SCOPE" --env-file "$ENV_FILE"
 
   uninstall_legacy_agent \
-    "$TARGET_DIR/com.hushline.social.weekly-planner.plist" \
+    "$GUI_TARGET_DIR/com.hushline.social.weekly-planner.plist" \
     "com.hushline.social.weekly-planner"
 
-  install_agent \
-    "$REPO_DIR/deploy/launchd/com.hushline.social.daily-planner.plist" \
-    "$TARGET_DIR/com.hushline.social.daily-planner.plist" \
-    "com.hushline.social.daily-planner"
-  install_agent \
-    "$REPO_DIR/deploy/launchd/com.hushline.social.linkedin.daily.plist" \
-    "$TARGET_DIR/com.hushline.social.linkedin.daily.plist" \
-    "com.hushline.social.linkedin.daily"
+  case "$SCOPE" in
+    gui)
+      mkdir -p "$GUI_TARGET_DIR"
+      install_gui_unit \
+        "$REPO_DIR/deploy/launchd/com.hushline.social.daily-planner.plist" \
+        "$GUI_TARGET_DIR/com.hushline.social.daily-planner.plist" \
+        "com.hushline.social.daily-planner"
+      install_gui_unit \
+        "$REPO_DIR/deploy/launchd/com.hushline.social.linkedin.daily.plist" \
+        "$GUI_TARGET_DIR/com.hushline.social.linkedin.daily.plist" \
+        "com.hushline.social.linkedin.daily"
+      if [[ $EUID -eq 0 ]]; then
+        uninstall_daemon_unit \
+          "$SYSTEM_TARGET_DIR/com.hushline.social.daily-planner.plist" \
+          "com.hushline.social.daily-planner"
+        uninstall_daemon_unit \
+          "$SYSTEM_TARGET_DIR/com.hushline.social.linkedin.daily.plist" \
+          "com.hushline.social.linkedin.daily"
+      fi
+      ;;
+    daemon)
+      if [[ $EUID -ne 0 ]]; then
+        echo "Daemon installs require sudo because they write to $SYSTEM_TARGET_DIR." >&2
+        exit 1
+      fi
+      mkdir -p "$SYSTEM_TARGET_DIR"
+      install_daemon_unit \
+        "$REPO_DIR/deploy/launchd/com.hushline.social.daily-planner.daemon.plist" \
+        "$SYSTEM_TARGET_DIR/com.hushline.social.daily-planner.plist" \
+        "com.hushline.social.daily-planner"
+      install_daemon_unit \
+        "$REPO_DIR/deploy/launchd/com.hushline.social.linkedin.daily.daemon.plist" \
+        "$SYSTEM_TARGET_DIR/com.hushline.social.linkedin.daily.plist" \
+        "com.hushline.social.linkedin.daily"
+      uninstall_gui_unit \
+        "$GUI_TARGET_DIR/com.hushline.social.daily-planner.plist" \
+        "com.hushline.social.daily-planner"
+      uninstall_gui_unit \
+        "$GUI_TARGET_DIR/com.hushline.social.linkedin.daily.plist" \
+        "com.hushline.social.linkedin.daily"
+      ;;
+  esac
 
   cat <<EOF
-Installed launch agents:
-- $TARGET_DIR/com.hushline.social.daily-planner.plist
-- $TARGET_DIR/com.hushline.social.linkedin.daily.plist
+Installed launchd jobs ($SCOPE):
+- ${SCOPE/daemon/system}/com.hushline.social.daily-planner
+- ${SCOPE/daemon/system}/com.hushline.social.linkedin.daily
 
 Logs:
 - $REPO_DIR/logs/daily-planner.stdout.log
@@ -44,22 +211,22 @@ Logs:
 - $REPO_DIR/logs/linkedin-daily.stderr.log
 
 Next steps:
-- create $REPO_DIR/.env.launchd with LINKEDIN_ACCESS_TOKEN and LINKEDIN_AUTHOR_URN
-- ensure git push auth and commit signing work for previous-posts archive pushes
-- test with: launchctl kickstart -k gui/$(id -u)/com.hushline.social.daily-planner
-- test with: launchctl kickstart -k gui/$(id -u)/com.hushline.social.linkedin.daily
+- env file: $ENV_FILE
+- GUI scope is login-session scoped. Use daemon scope on servers that must keep running while logged out.
 EOF
-}
 
-install_agent() {
-  local template_path="$1"
-  local target_plist="$2"
-  local label="$3"
-
-  sed "s#__REPO_DIR__#$REPO_DIR#g" "$template_path" > "$target_plist"
-  launchctl bootout "gui/$(id -u)" "$target_plist" >/dev/null 2>&1 || true
-  launchctl bootstrap "gui/$(id -u)" "$target_plist"
-  launchctl enable "gui/$(id -u)/$label"
+  if [[ "$SCOPE" == "gui" ]]; then
+    cat <<EOF
+- test with: launchctl kickstart -k gui/$APP_UID/com.hushline.social.daily-planner
+- test with: launchctl kickstart -k gui/$APP_UID/com.hushline.social.linkedin.daily
+EOF
+  else
+    cat <<EOF
+- required daemon env vars: OPENAI_API_KEY, HUSHLINE_SOCIAL_GITHUB_TOKEN, HUSHLINE_SOCIAL_GIT_SIGNING_KEY_PUB, LINKEDIN_ACCESS_TOKEN, LINKEDIN_AUTHOR_URN
+- test with: sudo launchctl kickstart -k system/com.hushline.social.daily-planner
+- test with: sudo launchctl kickstart -k system/com.hushline.social.linkedin.daily
+EOF
+  fi
 }
 
 uninstall_legacy_agent() {
@@ -70,8 +237,8 @@ uninstall_legacy_agent() {
     return
   fi
 
-  launchctl bootout "gui/$(id -u)" "$legacy_plist" >/dev/null 2>&1 || true
-  launchctl disable "gui/$(id -u)/$label" >/dev/null 2>&1 || true
+  launchctl bootout "gui/$APP_UID" "$legacy_plist" >/dev/null 2>&1 || true
+  launchctl disable "gui/$APP_UID/$label" >/dev/null 2>&1 || true
   rm -f "$legacy_plist"
 }
 

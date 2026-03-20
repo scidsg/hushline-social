@@ -46,8 +46,33 @@ EOF
   done
 }
 
+effective_date() {
+  if [[ -n "$DATE_OVERRIDE" ]]; then
+    printf '%s\n' "$DATE_OVERRIDE"
+    return
+  fi
+
+  date +%Y-%m-%d
+}
+
+weekday_number() {
+  date -j -f "%Y-%m-%d" "$1" "+%u"
+}
+
+skip_if_weekend() {
+  local publish_date=""
+  local weekday=""
+  publish_date="$(effective_date)"
+  weekday="$(weekday_number "$publish_date")"
+  if [[ "$weekday" == "6" || "$weekday" == "7" ]]; then
+    echo "Skipping daily LinkedIn publisher for weekend date $publish_date."
+    exit 0
+  fi
+}
+
 main() {
   parse_args "$@"
+  skip_if_weekend
 
   local -a cmd=(node scripts/publish-daily-linkedin.js)
   [[ -n "$DATE_OVERRIDE" ]] && cmd+=(--date "$DATE_OVERRIDE")

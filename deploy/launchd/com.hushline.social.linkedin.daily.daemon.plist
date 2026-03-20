@@ -3,15 +3,21 @@
 <plist version="1.0">
 <dict>
   <key>Label</key>
-  <string>com.hushline.social.daily-planner</string>
+  <string>com.hushline.social.linkedin.daily</string>
 
   <key>ProgramArguments</key>
   <array>
-    <string>__REPO_DIR__/scripts/run_daily_planner_launchd.sh</string>
+    <string>__REPO_DIR__/scripts/run_daily_linkedin_launchd.sh</string>
   </array>
 
   <key>WorkingDirectory</key>
   <string>__REPO_DIR__</string>
+
+  <key>UserName</key>
+  <string>__USER_NAME__</string>
+
+  <key>GroupName</key>
+  <string>__GROUP_NAME__</string>
 
   <key>EnvironmentVariables</key>
   <dict>
@@ -20,10 +26,13 @@
     <key>HUSHLINE_SOCIAL_ENV_FILE</key>
     <string>__ENV_FILE__</string>
     <key>HUSHLINE_SOCIAL_LAUNCHD_SCOPE</key>
-    <string>gui</string>
+    <string>daemon</string>
     <key>PATH</key>
     <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
   </dict>
+
+  <key>ProcessType</key>
+  <string>Background</string>
 
   <key>RunAtLoad</key>
   <false/>
@@ -36,7 +45,7 @@
       <key>Hour</key>
       <integer>6</integer>
       <key>Minute</key>
-      <integer>0</integer>
+      <integer>10</integer>
     </dict>
     <dict>
       <key>Weekday</key>
@@ -44,7 +53,7 @@
       <key>Hour</key>
       <integer>6</integer>
       <key>Minute</key>
-      <integer>0</integer>
+      <integer>10</integer>
     </dict>
     <dict>
       <key>Weekday</key>
@@ -52,7 +61,7 @@
       <key>Hour</key>
       <integer>6</integer>
       <key>Minute</key>
-      <integer>0</integer>
+      <integer>10</integer>
     </dict>
     <dict>
       <key>Weekday</key>
@@ -60,7 +69,7 @@
       <key>Hour</key>
       <integer>6</integer>
       <key>Minute</key>
-      <integer>0</integer>
+      <integer>10</integer>
     </dict>
     <dict>
       <key>Weekday</key>
@@ -68,14 +77,14 @@
       <key>Hour</key>
       <integer>6</integer>
       <key>Minute</key>
-      <integer>0</integer>
+      <integer>10</integer>
     </dict>
   </array>
 
   <key>StandardOutPath</key>
-  <string>__REPO_DIR__/logs/daily-planner.stdout.log</string>
+  <string>__REPO_DIR__/logs/linkedin-daily.stdout.log</string>
 
   <key>StandardErrorPath</key>
-  <string>__REPO_DIR__/logs/daily-planner.stderr.log</string>
+  <string>__REPO_DIR__/logs/linkedin-daily.stderr.log</string>
 </dict>
 </plist>

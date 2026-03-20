@@ -159,11 +159,22 @@ Publishing is daily, planning is daily.
 Current default launchd schedule in this repo:
 
 - `com.hushline.social.daily-planner`
-  - `06:00` local time
+  - `06:00` local time, Monday through Friday
 - `com.hushline.social.linkedin.daily`
-  - `06:10` local time
+  - `06:10` local time, Monday through Friday
 
 Keep the publisher scheduled after the planner with enough buffer for rendering, archive writes, and local state updates.
+
+Weekend dates are excluded from the daily planner and daily LinkedIn publisher. If a weekend date is passed manually, the wrappers and publishers should exit cleanly without creating or posting that date.
+
+For always-on servers, do not rely on GUI-only LaunchAgents. Install the background jobs with:
+
+```sh
+cd /Users/scidsg/hushline-social
+sudo ./scripts/install_launch_agent.sh --scope daemon
+```
+
+GUI scope is still acceptable for local desktop testing, but it can miss scheduled runs when the user is logged out.
 
 By default, the daily planner wrapper performs `git pull --ff-only` before planning. By default it also discards dirty tracked changes with `git reset --hard HEAD` and removes untracked non-ignored files with `git clean -fd` before that pull. Set `HUSHLINE_SOCIAL_GIT_PULL=0` only when intentionally skipping the update step. Set `HUSHLINE_SOCIAL_GIT_CLEAN=0` if you want the planner to fail on a dirty checkout instead of resetting it.
 
@@ -194,9 +205,18 @@ cd /Users/scidsg/hushline-social
 
 Do not use the bare publisher script for routine live runs when `.env.launchd` or launchd-style locking matters.
 
+Daemon-mode `.env.launchd` files should include:
+
+- `OPENAI_API_KEY`
+- `HUSHLINE_SOCIAL_GITHUB_TOKEN`
+- `HUSHLINE_SOCIAL_GIT_SIGNING_KEY_PUB`
+- `LINKEDIN_ACCESS_TOKEN`
+- `LINKEDIN_AUTHOR_URN`
+
 ## Launchd Troubleshooting
 
 - if a scheduled time changes, reinstall the agents with `./scripts/install_launch_agent.sh`
+- if the host may be logged out at run time, reinstall with `sudo ./scripts/install_launch_agent.sh --scope daemon`
 - if you need to stop scheduled runs temporarily, disable and boot out both launch agents rather than editing code paths
 - if a wrapper exits with an "already running" message, check for a stale lock directory under `.tmp/`
 - if the daily archive folder is missing, the publisher should not post until the planner recreates that date's archive

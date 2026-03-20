@@ -6,6 +6,8 @@ const fs = require("fs");
 const path = require("path");
 const {
   REPO_ROOT,
+  getWeekdayLabel,
+  isWeekendDate,
   readJson,
   writeJson,
 } = require("./lib/social-common");
@@ -219,6 +221,12 @@ async function createLinkedInPost({ authorUrn, commentary, imageUrn, altText, to
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
+
+  if (isWeekendDate(args.date)) {
+    process.stdout.write(`Skipping LinkedIn publication for weekend date ${args.date} (${getWeekdayLabel(args.date)}).\n`);
+    return;
+  }
+
   const resolved = resolveArchivedDailyPost(args);
 
   if (!resolved) {

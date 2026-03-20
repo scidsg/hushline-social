@@ -7,6 +7,8 @@ DATE=""
 BRANCH="${HUSHLINE_SOCIAL_ARCHIVE_BRANCH:-main}"
 REMOTE="${HUSHLINE_SOCIAL_ARCHIVE_REMOTE:-origin}"
 DRY_RUN=0
+GITHUB_TOKEN="${HUSHLINE_SOCIAL_GITHUB_TOKEN:-}"
+SIGNING_KEY_PUB="${HUSHLINE_SOCIAL_GIT_SIGNING_KEY_PUB:-}"
 
 require_cmd() {
   if ! command -v "$1" >/dev/null 2>&1; then
@@ -66,6 +68,10 @@ main() {
   local archive_dir="$REPO_DIR/previous-posts/$DATE"
   local archive_rel="previous-posts/$DATE"
   local current_branch=""
+  local remote_url=""
+  local auth_header=""
+  local -a git_commit_cmd=(git)
+  local -a git_push_cmd=(git)
   if [[ ! -d "$archive_dir" ]]; then
     echo "Archive folder not found: $archive_dir" >&2
     exit 1
@@ -76,6 +82,37 @@ main() {
   if [[ "$current_branch" != "$BRANCH" ]]; then
     echo "Refusing to push: current branch is '$current_branch', expected '$BRANCH'." >&2
     exit 1
+  fi
+
+  remote_url="$(git remote get-url "$REMOTE")"
+
+  if [[ -n "$SIGNING_KEY_PUB" ]]; then
+    git_commit_cmd+=(
+      -c
+      "gpg.format=ssh"
+      -c
+      "user.signingkey=$SIGNING_KEY_PUB"
+      -c
+      "commit.gpgsign=true"
+    )
+  fi
+
+  if [[ -n "$GITHUB_TOKEN" ]]; then
+    case "$remote_url" in
+      https://github.com/*)
+        auth_header="$(printf 'x-access-token:%s' "$GITHUB_TOKEN" | base64 | tr -d '\n')"
+        git_push_cmd+=(
+          -c
+          "credential.helper="
+          -c
+          "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth_header"
+        )
+        ;;
+      *)
+        echo "HUSHLINE_SOCIAL_GITHUB_TOKEN is set, but $REMOTE uses a non-GitHub HTTPS remote: $remote_url" >&2
+        exit 1
+        ;;
+    esac
   fi
 
   git add -- "$archive_rel"
@@ -92,8 +129,8 @@ main() {
     exit 0
   fi
 
-  git commit -m "$commit_message" -- "$archive_rel"
-  git push -u --force-with-lease "$REMOTE" "HEAD:$BRANCH"
+  "${git_commit_cmd[@]}" commit -m "$commit_message" -- "$archive_rel"
+  "${git_push_cmd[@]}" push -u --force-with-lease "$REMOTE" "HEAD:$BRANCH"
 }
 
 main "$@"

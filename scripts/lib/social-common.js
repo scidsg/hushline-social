@@ -89,8 +89,27 @@ const STOPWORDS = new Set([
   "wtforms",
 ]);
 
+const WEEKDAY_LABELS = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
+
+function parseLocalDate(date) {
+  const parsed = new Date(`${date}T12:00:00`);
+  if (Number.isNaN(parsed.getTime())) {
+    throw new Error(`Invalid date: ${date}`);
+  }
+  return parsed;
+}
+
+function getWeekdayLabel(date) {
+  return WEEKDAY_LABELS[parseLocalDate(date).getDay()];
+}
+
+function isWeekendDate(date) {
+  const day = parseLocalDate(date).getDay();
+  return day === 0 || day === 6;
 }
 
 function writeJson(filePath, value) {
@@ -276,7 +295,10 @@ module.exports = {
   excerptText,
   execJson,
   findChrome,
+  getWeekdayLabel,
+  isWeekendDate,
   listFilesRecursive,
+  parseLocalDate,
   readJson,
   resolveScreenshotPath,
   sentenceCase,

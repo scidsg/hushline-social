@@ -9,6 +9,8 @@ const {
   LIMITS,
   REPO_ROOT,
   excerptText,
+  getWeekdayLabel,
+  isWeekendDate,
   readJson,
   writeJson,
 } = require("./social-common");
@@ -26,8 +28,6 @@ const ADMIN_COPY_PATTERNS = [
   /\bteam\b/i,
   /\bteams\b/i,
 ];
-
-const WEEKDAY_LABELS = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
 
 function todayString() {
   const now = new Date();
@@ -108,11 +108,6 @@ function printHelp() {
       "",
     ].join("\n"),
   );
-}
-
-function getWeekdayLabel(date) {
-  const parsed = new Date(`${date}T12:00:00`);
-  return WEEKDAY_LABELS[parsed.getDay()];
 }
 
 function loadArchiveHistory(currentDate) {
@@ -509,6 +504,10 @@ async function renderDailyPlan(plan) {
 }
 
 async function planDay(args) {
+  if (isWeekendDate(args.date)) {
+    throw new Error(`Weekend dates are excluded from the daily planner: ${args.date} (${getWeekdayLabel(args.date)}).`);
+  }
+
   const context = buildDailyContext(args);
   const artifacts = writeContextArtifacts(args.date, context);
 
