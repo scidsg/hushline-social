@@ -3,19 +3,19 @@ Planned date: 2026-03-20
 Template: desktop
 Screenshot: /Users/scidsg/hushline-screenshots/releases/latest/guest/guest-directory-verified-desktop-light-fold.png
 Content key: guest-directory-verified
-Headline: Let sources find a verified tip line before they send a message
-Subtext: The public directory makes verified accounts easier to scan, so people can check who they are contacting before they share sensitive information.
+Headline: Check verified tip lines before you reach out
+Subtext: The public directory helps sources compare verified profiles and choose a tip line that matches the person they need.
 
 Image alt text
-Social graphic built around a desktop Hush Line directory screen. The page is titled "Whistleblower Support Directory" with the Verified tab selected, a search field for verified users, a note explaining that verified account owners confirmed their identities with staff, and a profile card below showing Admin and Verified badges.
+Social graphic built around a desktop Hush Line directory screen on the Verified tab. The image shows a list of verified recipient profiles with search and filtering controls above the results.
 
 Social post copy
 
-LinkedIn (383/3000)
-Before someone sends a tip, they need to know they reached the right person. Hush Line’s public directory highlights verified accounts so sources can check identity signals and profile details first. That matters for journalists, lawyers, educators, organizers, employers, and other trusted recipients who need a safer way to receive disclosures. Learn more at https://hushline.app/.
+LinkedIn (343/3000)
+When you need to contact a journalist, lawyer, or other trusted recipient, the first question is whether you found the right person. Hush Line's public directory lets you browse verified profiles before you send anything, so you can check who runs the tip line and choose a better match for your situation. Learn more at https://hushline.app/.
 
-Mastodon (249/500)
-People should be able to check who they’re contacting before they send a sensitive message. Hush Line’s public directory highlights verified accounts so sources can review trust signals and profile details first. Learn more at https://hushline.app/.
+Mastodon (226/500)
+If you're deciding where to send a tip, Hush Line's public directory helps you start with verified profiles. You can compare recipients and check who runs the tip line before you reach out. Learn more at https://hushline.app/.
 
-Bluesky (247/300)
-Before a source sends a sensitive message, they should be able to confirm who they reached. Hush Line’s public directory highlights verified accounts so people can check trust signals and profile details first. Learn more at https://hushline.app/.
+Bluesky (186/300)
+Need to verify who you're contacting before you send a tip? Hush Line's public directory shows verified profiles so you can compare recipients first. Learn more at https://hushline.app/.

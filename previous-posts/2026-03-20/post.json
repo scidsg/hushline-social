@@ -3,15 +3,15 @@
   "planned_date": "2026-03-20",
   "screenshot_file": "guest/guest-directory-verified-desktop-light-fold.png",
   "content_key": "guest-directory-verified",
-  "headline": "Let sources find a verified tip line before they send a message",
-  "subtext": "The public directory makes verified accounts easier to scan, so people can check who they are contacting before they share sensitive information.",
-  "image_alt_text": "Social graphic built around a desktop Hush Line directory screen. The page is titled \"Whistleblower Support Directory\" with the Verified tab selected, a search field for verified users, a note explaining that verified account owners confirmed their identities with staff, and a profile card below showing Admin and Verified badges.",
+  "headline": "Check verified tip lines before you reach out",
+  "subtext": "The public directory helps sources compare verified profiles and choose a tip line that matches the person they need.",
+  "image_alt_text": "Social graphic built around a desktop Hush Line directory screen on the Verified tab. The image shows a list of verified recipient profiles with search and filtering controls above the results.",
   "social": {
-    "bluesky": "Before a source sends a sensitive message, they should be able to confirm who they reached. Hush Line’s public directory highlights verified accounts so people can check trust signals and profile details first. Learn more at https://hushline.app/.",
-    "linkedin": "Before someone sends a tip, they need to know they reached the right person. Hush Line’s public directory highlights verified accounts so sources can check identity signals and profile details first. That matters for journalists, lawyers, educators, organizers, employers, and other trusted recipients who need a safer way to receive disclosures. Learn more at https://hushline.app/.",
-    "mastodon": "People should be able to check who they’re contacting before they send a sensitive message. Hush Line’s public directory highlights verified accounts so sources can review trust signals and profile details first. Learn more at https://hushline.app/."
+    "bluesky": "Need to verify who you're contacting before you send a tip? Hush Line's public directory shows verified profiles so you can compare recipients first. Learn more at https://hushline.app/.",
+    "linkedin": "When you need to contact a journalist, lawyer, or other trusted recipient, the first question is whether you found the right person. Hush Line's public directory lets you browse verified profiles before you send anything, so you can check who runs the tip line and choose a better match for your situation. Learn more at https://hushline.app/.",
+    "mastodon": "If you're deciding where to send a tip, Hush Line's public directory helps you start with verified profiles. You can compare recipients and check who runs the tip line before you reach out. Learn more at https://hushline.app/."
   },
-  "rationale": "This is the strongest non-duplicative option for March 20. It avoids repeating yesterday’s onboarding theme, reflects the latest guest directory screenshot fixes in PRs #1765 and #1763, and speaks to a documented Hush Line need: helping sources verify recipient identity through public profile details and verified account signals before sending a disclosure.",
+  "rationale": "This choice uses the strongest public screenshot from the latest release and reflects the recent guest screenshot fixes in PRs #1765 and #1763. It also matches a core documented Hush Line need: sources should be able to verify they reached the right recipient through verified accounts and public profile details. Choosing a public directory screen also avoids repeating yesterday's onboarding theme.",
   "source_pr_numbers": [
     1765,
     1763
