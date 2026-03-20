@@ -226,25 +226,6 @@ async function renderPost(post, outputDir) {
   };
 }
 
-async function renderPlan(plan, options = {}) {
-  if (!plan.month) {
-    throw new Error("renderPlan currently supports monthly plans only.");
-  }
-
-  const periodRoot =
-    options.periodRoot ||
-    path.join(REPO_ROOT, "months", plan.month);
-  const outputs = [];
-
-  for (const post of plan.posts) {
-    const outputDir = path.join(periodRoot, post.slot);
-    outputs.push(await renderPost(post, outputDir));
-  }
-
-  return outputs;
-}
-
 module.exports = {
-  renderPlan,
   renderPost,
 };

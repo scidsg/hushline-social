@@ -88,102 +88,6 @@ const RECIPIENT_SHARED_ROUTE_PATTERNS = [
   /^\/settings\/advanced\b/i,
 ];
 
-const ADMIN_COPY_PATTERNS = [
-  /\badmin\b/i,
-  /\badmins\b/i,
-  /\badministrator\b/i,
-  /\badministrators\b/i,
-  /\boperator\b/i,
-  /\boperators\b/i,
-  /\bmoderation\b/i,
-  /\bmoderators\b/i,
-  /\bteam\b/i,
-  /\bteams\b/i,
-];
-
-const WEEKDAY_SLOT_ORDER = new Map([
-  ["monday", 0],
-  ["tuesday", 1],
-  ["wednesday", 2],
-  ["thursday", 3],
-  ["friday", 4],
-]);
-
-function parseArgs(argv) {
-  const args = {
-    candidateCount: 12,
-    darkRatio: 0.2,
-    dryRun: false,
-    week: defaultWeek(),
-    noRender: false,
-  };
-
-  for (let index = 0; index < argv.length; index += 1) {
-    const value = argv[index];
-
-    if (value === "--week") {
-      args.week = argv[index + 1];
-      index += 1;
-    } else if (value === "--candidate-count") {
-      args.candidateCount = Number(argv[index + 1]);
-      index += 1;
-    } else if (value === "--dark-ratio") {
-      args.darkRatio = Number(argv[index + 1]);
-      index += 1;
-    } else if (value === "--dry-run") {
-      args.dryRun = true;
-    } else if (value === "--no-render") {
-      args.noRender = true;
-    } else if (value === "--help" || value === "-h") {
-      printHelp();
-      process.exit(0);
-    }
-  }
-
-  if (!/^\d{4}-W\d{2}$/.test(args.week)) {
-    throw new Error("`--week` must use YYYY-Www format.");
-  }
-
-  if (!Number.isInteger(args.candidateCount) || args.candidateCount < 4 || args.candidateCount > 20) {
-    throw new Error("`--candidate-count` must be an integer from 4 to 20.");
-  }
-
-  if (Number.isNaN(args.darkRatio) || args.darkRatio < 0 || args.darkRatio > 1) {
-    throw new Error("`--dark-ratio` must be a number from 0 to 1.");
-  }
-
-  return args;
-}
-
-function printHelp() {
-  process.stdout.write(
-    [
-      "Internal shared planning context module.",
-      "Use the day or month planning entrypoints instead of calling this file directly.",
-      "",
-      "Behavior:",
-      "  - Reads recent merged PRs from the local Hush Line repo and GitHub CLI",
-      "  - Reads current audience context from Hush Line docs",
-      "  - Builds a candidate screenshot inventory from hushline-screenshots/releases/latest",
-      "  - Builds a reusable planning context for downstream daily or monthly planners",
-      "",
-    ].join("\n"),
-  );
-}
-
-function defaultWeek() {
-  return formatIsoWeek(new Date());
-}
-
-function formatIsoWeek(date) {
-  const cursor = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
-  const day = cursor.getUTCDay() || 7;
-  cursor.setUTCDate(cursor.getUTCDate() + 4 - day);
-  const yearStart = new Date(Date.UTC(cursor.getUTCFullYear(), 0, 1));
-  const weekNumber = Math.ceil((((cursor - yearStart) / 86400000) + 1) / 7);
-  return `${cursor.getUTCFullYear()}-W${String(weekNumber).padStart(2, "0")}`;
-}
-
 function parseIsoWeek(week) {
   const match = String(week).match(/^(\d{4})-W(\d{2})$/);
   if (!match) {
@@ -203,20 +107,6 @@ function getIsoWeekStart(week) {
   const monday = new Date(jan4);
   monday.setUTCDate(jan4.getUTCDate() - jan4Day + 1 + ((weekNumber - 1) * 7));
   return monday;
-}
-
-function buildWeekSlots(week) {
-  const monday = getIsoWeekStart(week);
-  const labels = ["monday", "tuesday", "wednesday", "thursday", "friday"];
-
-  return labels.map((label, index) => {
-    const date = new Date(monday);
-    date.setUTCDate(monday.getUTCDate() + index);
-    return {
-      planned_date: date.toISOString().slice(0, 10),
-      slot: label,
-    };
-  });
 }
 
 function loadScreenshotInventory() {
@@ -537,28 +427,36 @@ function evaluateScreenshotQuality(item) {
 }
 
 function loadRecentHistory(currentWeek) {
-  const plansRoot = path.join(REPO_ROOT, "plans");
-  if (!fs.existsSync(plansRoot)) {
+  const archiveRoot = path.join(REPO_ROOT, "previous-posts");
+  if (!fs.existsSync(archiveRoot)) {
     return [];
   }
 
+  const currentWeekStart = getIsoWeekStart(currentWeek).toISOString().slice(0, 10);
+
   return fs
-    .readdirSync(plansRoot, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory() && /^\d{4}-W\d{2}$/.test(entry.name) && entry.name < currentWeek)
-    .map((entry) => path.join(plansRoot, entry.name, "plan.json"))
-    .filter((filePath) => fs.existsSync(filePath))
-    .sort()
-    .slice(-6)
-    .map((filePath) => readJson(filePath))
-    .map((plan) => ({
-      week: plan.week || plan.month,
-      posts: plan.posts.map((post) => ({
-        concept_key: normalizeConceptKey(post.content_key),
+    .readdirSync(archiveRoot, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory() && /^\d{4}-\d{2}-\d{2}$/.test(entry.name) && entry.name < currentWeekStart)
+    .map((entry) => {
+      const postPath = path.join(archiveRoot, entry.name, "post.json");
+      if (!fs.existsSync(postPath)) {
+        return null;
+      }
+
+      const post = readJson(postPath);
+      return {
+        date: entry.name,
+        posts: [{
+          concept_key: post.concept_key || normalizeConceptKey(post.content_key),
         content_key: post.content_key,
         screenshot_file: post.screenshot_file,
         slot: post.slot,
-      })),
-    }));
+        }],
+      };
+    })
+    .filter(Boolean)
+    .sort((left, right) => left.date.localeCompare(right.date))
+    .slice(-30);
 }
 
 function chooseSessionScopedCandidates(scored) {
@@ -901,179 +799,12 @@ function buildResponseSchema(context) {
   };
 }
 
-function buildCodexPrompt(context, planPath) {
-  const prompt = buildPromptPayload(context);
-  const candidates = context.candidate_screenshots
-    .map((candidate, index) => {
-      return [
-        `Candidate ${index + 1}`,
-        `file: ${candidate.file}`,
-        `concept_key: ${candidate.concept_key}`,
-        `content_key: ${candidate.content_key}`,
-        `title: ${candidate.title}`,
-        `route: ${candidate.path}`,
-        `session: ${candidate.session}`,
-        `audience_scope: ${candidate.audience_scope}`,
-        `copy_brief: ${candidate.copy_brief}`,
-        `viewport: ${candidate.viewport}`,
-        `theme: ${candidate.theme}`,
-        `score: ${candidate.score}`,
-        `matched_prs: ${
-          candidate.matched_pull_requests.length === 0
-            ? "none"
-            : candidate.matched_pull_requests
-                .map((pr) => `${pr.number ? `#${pr.number}` : "local"} ${pr.title}`)
-                .join(" | ")
-        }`,
-        `absolute_path: ${candidate.absolute_path}`,
-      ].join("\n");
-    })
-    .join("\n\n");
-
-  return [
-    prompt.system,
-    "",
-    prompt.user,
-    "",
-    "Candidate screenshots:",
-    candidates,
-    "",
-    `Read planning context from: ${path.join("plans", context.week, "context.json")}`,
-    `Write the finished plan JSON to: ${planPath}`,
-    "",
-    "Output requirements:",
-    "- Write valid JSON only to the target file.",
-    "- Do not write markdown fences.",
-    "- Use exactly this JSON schema:",
-    JSON.stringify(buildResponseSchema(context), null, 2),
-    "",
-    "Execution requirements:",
-    "- Use only the provided candidate screenshots.",
-    "- Do not render images yourself.",
-    "- Do not duplicate content_key values within the week.",
-    "- Do not duplicate concept_key values within the week.",
-    "- Avoid screenshots that look like empty states.",
-    "- Avoid profile screenshots unless the trust/authenticity signals are visibly strong in the screenshot.",
-    "- If a chosen candidate has audience_scope `admin-only`, make that admin audience explicit in the copy.",
-    "- If multiple candidates represent the same route or concept, pick the clearest one and leave the others unused.",
-  ].join("\n");
-}
-
-function validatePlan(modelPlan, context) {
-  const slotMap = new Map(context.slots.map((slot) => [slot.slot, slot.planned_date]));
-  const candidateMap = new Map(
-    context.candidate_screenshots.map((candidate) => [candidate.file, candidate]),
-  );
-
-  if (modelPlan.week !== context.week) {
-    throw new Error(`Model returned week ${modelPlan.week}, expected ${context.week}.`);
-  }
-
-  if (!Array.isArray(modelPlan.posts) || modelPlan.posts.length !== context.slots.length) {
-    throw new Error("Model returned the wrong number of posts for the week.");
-  }
-
-  const usedContentKeys = new Set();
-  const usedConceptKeys = new Set();
-  const usedSlots = new Set();
-
-  const posts = modelPlan.posts.map((post) => {
-    if (!slotMap.has(post.slot)) {
-      throw new Error(`Model returned unknown slot: ${post.slot}`);
-    }
-
-    if (usedSlots.has(post.slot)) {
-      throw new Error(`Model repeated slot: ${post.slot}`);
-    }
-    usedSlots.add(post.slot);
-
-    const expectedDate = slotMap.get(post.slot);
-    if (post.planned_date !== expectedDate) {
-      throw new Error(`Slot ${post.slot} expected planned date ${expectedDate}, received ${post.planned_date}.`);
-    }
-
-    const candidate = candidateMap.get(post.screenshot_file);
-    if (!candidate) {
-      throw new Error(`Model selected screenshot outside shortlist: ${post.screenshot_file}`);
-    }
-
-    if (post.content_key !== candidate.content_key) {
-      throw new Error(
-        `Model content key mismatch for ${post.screenshot_file}: expected ${candidate.content_key}, received ${post.content_key}.`,
-      );
-    }
-
-    if (usedContentKeys.has(post.content_key)) {
-      throw new Error(`Model repeated content key ${post.content_key} within the week.`);
-    }
-    usedContentKeys.add(post.content_key);
-
-    if (usedConceptKeys.has(candidate.concept_key)) {
-      throw new Error(`Model repeated concept key ${candidate.concept_key} within the week.`);
-    }
-    usedConceptKeys.add(candidate.concept_key);
-
-    if (!post.social || typeof post.social !== "object") {
-      throw new Error(`Post ${post.slot} is missing a social copy object.`);
-    }
-
-    for (const network of Object.keys(LIMITS)) {
-      if (String(post.social[network] || "").length > LIMITS[network]) {
-        throw new Error(`${network} copy exceeds limit for ${post.slot}.`);
-      }
-    }
-
-    if (candidate.audience_scope === "admin-only") {
-      const combinedCopy = [
-        post.headline,
-        post.subtext,
-        post.social.linkedin,
-        post.social.mastodon,
-        post.social.bluesky,
-      ].join(" ");
-
-      if (!ADMIN_COPY_PATTERNS.some((pattern) => pattern.test(combinedCopy))) {
-        throw new Error(`Admin-only screenshot ${post.screenshot_file} needs copy that explicitly signals admin/team context.`);
-      }
-    }
-
-    return {
-      ...post,
-      audience_scope: candidate.audience_scope,
-      concept_key: candidate.concept_key,
-      copy_brief: candidate.copy_brief,
-      matched_pull_requests: candidate.matched_pull_requests,
-      screenshot_file: candidate.file,
-      social: {
-        linkedin: post.social.linkedin.trim(),
-        mastodon: post.social.mastodon.trim(),
-        bluesky: post.social.bluesky.trim(),
-      },
-      theme: candidate.theme,
-      title: candidate.title,
-      viewport: candidate.viewport,
-    };
-  });
-
-  return {
-    week: modelPlan.week,
-    posts: posts.sort((left, right) => {
-      return (
-        (WEEKDAY_SLOT_ORDER.get(left.slot) ?? 999) - (WEEKDAY_SLOT_ORDER.get(right.slot) ?? 999) ||
-        left.slot.localeCompare(right.slot)
-      );
-    }),
-    summary: modelPlan.summary,
-  };
-}
-
 function buildPlanningContext(args) {
-  const slots = buildWeekSlots(args.week);
   const shortlistData = buildCandidateShortlist({
     candidateCount: args.candidateCount,
     darkRatio: args.darkRatio,
     week: args.week,
-    requestedPosts: slots.length,
+    requestedPosts: 5,
   });
 
   return {
@@ -1085,37 +816,6 @@ function buildPlanningContext(args) {
     recent_pull_requests: shortlistData.recentPullRequests,
     screenshot_captured_at: shortlistData.screenshotCapturedAt,
     screenshot_release: shortlistData.screenshotRelease,
-    slots,
-  };
-}
-
-function writeContextArtifacts(week, context) {
-  const planRoot = path.join(REPO_ROOT, "plans", week);
-  fs.mkdirSync(planRoot, { recursive: true });
-  const contextPath = path.join(planRoot, "context.json");
-  const promptPath = path.join(planRoot, "prompt.txt");
-  const planPath = path.join(planRoot, "plan.json");
-  writeJson(contextPath, context);
-  fs.writeFileSync(promptPath, `${buildCodexPrompt(context, path.join("plans", week, "plan.json"))}\n`);
-  return {
-    contextPath,
-    planPath,
-    planRoot,
-    promptPath,
-  };
-}
-
-async function planWeek(args) {
-  const context = buildPlanningContext(args);
-  const artifacts = writeContextArtifacts(args.week, context);
-
-  return {
-    context,
-    contextPath: artifacts.contextPath,
-    dryRun: args.dryRun,
-    plan: null,
-    planPath: artifacts.planPath,
-    promptPath: artifacts.promptPath,
   };
 }
 

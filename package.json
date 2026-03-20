@@ -7,7 +7,6 @@
     "publish:linkedin:daily": "./scripts/agent_daily_linkedin_publisher.sh",
     "install:launch-agent": "./scripts/install_launch_agent.sh",
     "install:launch-daemon": "sudo ./scripts/install_launch_agent.sh --scope daemon",
-    "render:plan": "node scripts/generate-social-post.js",
     "test": "node --test",
     "validate:day": "node scripts/validate-day-plan.js",
     "validate:plan": "node scripts/validate-day-plan.js"
