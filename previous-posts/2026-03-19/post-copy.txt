@@ -1,23 +1,23 @@
 Slot: thursday
 Planned date: 2026-03-19
-Template: mobile
-Screenshot: /Users/scidsg/hushline-screenshots/releases/latest/newman/auth-newman-onboarding-encryption-mobile-light-fold.png
-Content key: auth-newman-onboarding-encryption
-Headline: Add your encryption key during setup
-Subtext: Add a public PGP key during onboarding so your tip line is ready for encrypted submissions before you share it.
+Template: desktop
+Screenshot: /Users/scidsg/hushline-screenshots/releases/latest/guest/guest-directory-verified-desktop-light-fold.png
+Content key: guest-directory-verified
+Headline: Check who you are contacting before you send a tip
+Subtext: The verified directory helps sources find a trusted recipient and confirm they reached the right person.
 
 Image alt text
-Social graphic with a mobile Hush Line onboarding screen on a light background. The image centers step 2 of setup, where a new account holder adds a public PGP key using Proton Mail search or manual paste before continuing.
+Social graphic showing a desktop view of Hush Line's Whistleblower Support Directory with the Verified tab open. A search bar appears above a note explaining that verified accounts have confirmed their identities with staff, and a public profile card is visible below.
 
 Social post copy
 
-LinkedIn (297/3000)
-If you are setting up Hush Line for a newsroom, law office, school, or other trusted inbox, add your public PGP key before you share your tip line.
+LinkedIn (295/3000)
+Before you send a tip, it helps to know who is on the other end.
 
-This step in onboarding makes encrypted submissions available from the start, so sources do not reach a profile that cannot receive secure tips yet.
+Hush Line's verified directory gives sources a clearer way to check public trust signals and find the right recipient. You can browse verified profiles first, then decide where to send your message. No sender account is required.
 
-Mastodon (227/500)
-Setting up Hush Line? Add your public PGP key during onboarding before you share your tip line. That makes encrypted submissions available from the start, so sources do not reach a profile that is not ready for secure tips yet.
+Mastodon (225/500)
+Before sending a tip, sources should be able to check who they are contacting. Hush Line's verified directory helps people review public trust signals, find the right recipient, and send a message without creating an account.
 
-Bluesky (199/300)
-Setting up Hush Line? Add your public PGP key during onboarding before you share your tip line. It makes encrypted submissions available from the start, so sources can use the secure path right away.
+Bluesky (201/300)
+Hush Line's verified directory helps sources check public trust signals before they send a tip. You can review verified profiles, find the right recipient, and send a message without making an account.

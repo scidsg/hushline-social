@@ -3,33 +3,39 @@
   "post": {
     "slot": "thursday",
     "planned_date": "2026-03-19",
-    "screenshot_file": "newman/auth-newman-onboarding-encryption-mobile-light-fold.png",
-    "content_key": "auth-newman-onboarding-encryption",
-    "headline": "Add your encryption key during setup",
-    "subtext": "Add a public PGP key during onboarding so your tip line is ready for encrypted submissions before you share it.",
-    "image_alt_text": "Social graphic with a mobile Hush Line onboarding screen on a light background. The image centers step 2 of setup, where a new account holder adds a public PGP key using Proton Mail search or manual paste before continuing.",
+    "screenshot_file": "guest/guest-directory-verified-desktop-light-fold.png",
+    "content_key": "guest-directory-verified",
+    "headline": "Check who you are contacting before you send a tip",
+    "subtext": "The verified directory helps sources find a trusted recipient and confirm they reached the right person.",
+    "image_alt_text": "Social graphic showing a desktop view of Hush Line's Whistleblower Support Directory with the Verified tab open. A search bar appears above a note explaining that verified accounts have confirmed their identities with staff, and a public profile card is visible below.",
     "social": {
-      "bluesky": "Setting up Hush Line? Add your public PGP key during onboarding before you share your tip line. It makes encrypted submissions available from the start, so sources can use the secure path right away.",
-      "linkedin": "If you are setting up Hush Line for a newsroom, law office, school, or other trusted inbox, add your public PGP key before you share your tip line.\n\nThis step in onboarding makes encrypted submissions available from the start, so sources do not reach a profile that cannot receive secure tips yet.",
-      "mastodon": "Setting up Hush Line? Add your public PGP key during onboarding before you share your tip line. That makes encrypted submissions available from the start, so sources do not reach a profile that is not ready for secure tips yet."
+      "bluesky": "Hush Line's verified directory helps sources check public trust signals before they send a tip. You can review verified profiles, find the right recipient, and send a message without making an account.",
+      "linkedin": "Before you send a tip, it helps to know who is on the other end.\n\nHush Line's verified directory gives sources a clearer way to check public trust signals and find the right recipient. You can browse verified profiles first, then decide where to send your message. No sender account is required.",
+      "mastodon": "Before sending a tip, sources should be able to check who they are contacting. Hush Line's verified directory helps people review public trust signals, find the right recipient, and send a message without creating an account."
     },
-    "rationale": "Chosen from the latest screenshot release v0.6.0 captured on 2026-03-19 because it clearly shows recent shipped onboarding work from PR #1743 and a core documented recipient need: adding a public PGP key so sources can send encrypted disclosures. It is an above-the-fold light-mode mobile screen, avoids empty states, uses the latest release, and does not repeat any archived concept.",
+    "rationale": "This screenshot reflects same-day shipped work in the guest screenshot flow and highlights a core Hush Line need: helping sources verify they reached the right recipient before sharing sensitive information. It is public-facing, above the fold, non-empty, light theme, and strong for LinkedIn because the message is immediately legible without admin context.",
     "source_pr_numbers": [
-      1743
+      1765,
+      1763
     ],
-    "audience_scope": "recipient-shared",
-    "concept_key": "onboarding-encryption",
-    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "audience_scope": "public",
+    "concept_key": "directory-verified",
+    "copy_brief": "Write for sources and public users evaluating or using Hush Line.",
     "matched_pull_requests": [
       {
-        "merged_at": "2026-03-18T02:26:06Z",
-        "number": 1743,
-        "title": "#1733 Phase 6: modernize auth and onboarding core form flows"
+        "merged_at": "2026-03-19T17:56:37Z",
+        "number": 1765,
+        "title": "Fix guest screenshot"
+      },
+      {
+        "merged_at": "2026-03-19T08:02:44Z",
+        "number": 1763,
+        "title": "Fix guest profile screenshot manifest reset logic"
       }
     ],
     "theme": "light",
-    "title": "Onboarding - Step 2 Encryption (newman)",
-    "viewport": "mobile"
+    "title": "Directory - Verified",
+    "viewport": "desktop"
   },
-  "summary": "Use the onboarding encryption screen to show that a new Hush Line account should add a public PGP key before sharing a tip line."
+  "summary": "Feature the verified public directory so sources can check trust signals before they send a tip."
 }

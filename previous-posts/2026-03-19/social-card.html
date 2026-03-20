@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Add your encryption key during setup</title>
+  <title>Check who you are contacting before you send a tip</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
@@ -115,20 +115,16 @@
     .right {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
     }
 
-    .phone-panel {
-      width: 360px;
-      height: 640px;
+    .desktop-panel {
       display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 18px 14px;
     }
 
-    .phone-panel img {
-      width: 100%;
+    .desktop-panel img {
+      width: 768px;
       height: auto;
       display: block;
       border-radius: 22px;
@@ -161,15 +157,15 @@
 
     <div class="layout">
       <section class="left">
-        <h1 class="headline">Add your encryption key during setup</h1>
+        <h1 class="headline">Check who you are contacting before you send a tip</h1>
         <p class="subtext">
-          Add a public PGP key during onboarding so your tip line is ready for encrypted submissions before you share it.
+          The verified directory helps sources find a trusted recipient and confirm they reached the right person.
         </p>
       </section>
 
       <section class="right">
-        <div class="phone-panel">
-          <img src="./auth-newman-onboarding-encryption-mobile-light-fold.png" alt="Social graphic with a mobile Hush Line onboarding screen on a light background. The image centers step 2 of setup, where a new account holder adds a public PGP key using Proton Mail search or manual paste before continuing." />
+        <div class="desktop-panel">
+          <img src="./guest-directory-verified-desktop-light-fold.png" alt="Social graphic showing a desktop view of Hush Line&#39;s Whistleblower Support Directory with the Verified tab open. A search bar appears above a note explaining that verified accounts have confirmed their identities with staff, and a public profile card is visible below." />
         </div>
       </section>
     </div>
