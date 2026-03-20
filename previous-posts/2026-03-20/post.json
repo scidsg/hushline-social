@@ -1,0 +1,37 @@
+{
+  "slot": "friday",
+  "planned_date": "2026-03-20",
+  "screenshot_file": "guest/guest-directory-verified-desktop-light-fold.png",
+  "content_key": "guest-directory-verified",
+  "headline": "Let sources find a verified tip line before they send a message",
+  "subtext": "The public directory makes verified accounts easier to scan, so people can check who they are contacting before they share sensitive information.",
+  "image_alt_text": "Social graphic built around a desktop Hush Line directory screen. The page is titled \"Whistleblower Support Directory\" with the Verified tab selected, a search field for verified users, a note explaining that verified account owners confirmed their identities with staff, and a profile card below showing Admin and Verified badges.",
+  "social": {
+    "bluesky": "Before a source sends a sensitive message, they should be able to confirm who they reached. Hush Line’s public directory highlights verified accounts so people can check trust signals and profile details first. Learn more at https://hushline.app/.",
+    "linkedin": "Before someone sends a tip, they need to know they reached the right person. Hush Line’s public directory highlights verified accounts so sources can check identity signals and profile details first. That matters for journalists, lawyers, educators, organizers, employers, and other trusted recipients who need a safer way to receive disclosures. Learn more at https://hushline.app/.",
+    "mastodon": "People should be able to check who they’re contacting before they send a sensitive message. Hush Line’s public directory highlights verified accounts so sources can review trust signals and profile details first. Learn more at https://hushline.app/."
+  },
+  "rationale": "This is the strongest non-duplicative option for March 20. It avoids repeating yesterday’s onboarding theme, reflects the latest guest directory screenshot fixes in PRs #1765 and #1763, and speaks to a documented Hush Line need: helping sources verify recipient identity through public profile details and verified account signals before sending a disclosure.",
+  "source_pr_numbers": [
+    1765,
+    1763
+  ],
+  "audience_scope": "public",
+  "concept_key": "directory-verified",
+  "copy_brief": "Write for sources and public users evaluating or using Hush Line.",
+  "matched_pull_requests": [
+    {
+      "merged_at": "2026-03-19T17:56:37Z",
+      "number": 1765,
+      "title": "Fix guest screenshot"
+    },
+    {
+      "merged_at": "2026-03-19T08:02:44Z",
+      "number": 1763,
+      "title": "Fix guest profile screenshot manifest reset logic"
+    }
+  ],
+  "theme": "light",
+  "title": "Directory - Verified",
+  "viewport": "desktop"
+}

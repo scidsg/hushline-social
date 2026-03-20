@@ -1,0 +1,342 @@
+You are planning one daily social post for Hush Line. Choose a single high-value feature that reflects recent shipped work and Hush Line's documented user needs. Write in plain language. No marketing-speak, no hype, no filler. Social copy must be end-user-facing. Do not confuse post copy with alt text. Avoid empty-state screens, duplicate content themes, and repeated scenes across mobile/desktop variants. If a screenshot is admin-only, the copy must explicitly say that it is for admins or teams running Hush Line. LinkedIn is the first automated publishing target, so LinkedIn copy should be especially ready for production use.
+
+Plan date: 2026-03-20
+Week context: 2026-W12
+Slot label: friday
+
+Character limits:
+LinkedIn 3000
+Mastodon 500
+Bluesky 300
+
+Target dark-mode share for this run: 0.2
+Screenshot release from local latest folder: v0.6.0
+Screenshots captured at: 2026-03-19T18:22:22.263Z
+
+Recently merged Hush Line PRs:
+#1765 | 2026-03-19T17:56:37Z | Fix guest screenshot
+#1763 | 2026-03-19T08:02:44Z | Fix guest profile screenshot manifest reset logic
+#1762 | 2026-03-19T06:14:15Z | #554 Python 3.13 migration
+#1761 | 2026-03-19T05:53:46Z | #1753 [Audit] Review lockfile and dependency audit changes only if Python 3.13 moves the graph
+#1760 | 2026-03-19T05:40:52Z | #1752 [Validation] Prove security-critical native dependencies on Python 3.13 Bookworm
+#1759 | 2026-03-19T05:22:31Z | #1751 [Typing] Update mypy target semantics to Python 3.13
+#1758 | 2026-03-19T05:12:53Z | #1750 [CI] Move host lint workflow to Python 3.13
+#1757 | 2026-03-19T04:59:55Z | #1749 [Implementation] Update Docker runtime images to Python 3.13
+#1756 | 2026-03-19T04:02:46Z | fix: resolve epic parent routing in daily runner
+#1755 | 2026-03-19T03:58:38Z | #1747 [Fix] Resolve Python 3.13 regressions discovered during migration spike
+#1754 | 2026-03-19T03:03:28Z | fix: route child issue PRs into epic branches
+#1746 | 2026-03-18T04:46:31Z | #1745 Close the remaining full-suite coverage gaps after the WTForms modernization rollout
+#1744 | 2026-03-18T02:45:52Z | #1734 Phase 7: modernize public tip submission form flow (/to/<username>)
+#1743 | 2026-03-18T02:26:06Z | #1733 Phase 6: modernize auth and onboarding core form flows
+#1742 | 2026-03-18T01:08:18Z | #1732 Phase 5: modernize profile and alias settings forms
+#1741 | 2026-03-18T00:00:47Z | #1727 Phase 0: establish Flask-WTF/WTForms modernization foundation
+#1740 | 2026-03-17T23:35:57Z | #1731 Phase 4: modernize admin multi-form settings routes
+#1739 | 2026-03-17T22:01:30Z | #1730 Phase 3: modernize security-aware settings forms
+#1738 | 2026-03-17T21:26:00Z | #1729 Phase 2: modernize simple single-form routes (/settings/replies, /email-headers)
+#1737 | 2026-03-17T21:01:36Z | #1728 Phase 1: modernize /settings/auth WTForms dispatch and rendering
+
+Audience and user-base context from docs:
+../hushline/docs/library/welcome/welcome-to-hush-line.md
+Welcome to Hush Line Source basis: the public Hush Line Library welcome section and the project overview in README.md. Hush Line is an open source whistleblower platform for secure, anonymous, one way disclosures. It is built for journalists, lawyers, educators, organizers, employers, and other trusted recipients who need a safer way to receive tips from their communities. What Hush Line is designed to protect Anonymous submissions without requiring a sender account End to end encrypted delivery when the receiver has a PGP key Trust building signals such as verified accounts and public profile details Safer access paths, including Tor support and privacy preserving defaults Common ways people use it Publish a public tip line for your newsroom, law office, classroom, campaign, or company Receive messages in a web inbox without turning the sender flow into a live chat Share a directory listing or direct profile link so sources can verify they reached the right person Run the hosted service or use a Personal Server Where to begin New hosted service users should start with Start Here. If you want the guided setup flow, open New User Onboarding. If you already have an account, jump to Prep Your Account and Secure Your Account.
+
+../hushline/README.md
+Hush Line Hush Line is an open source whistleblower platform for secure, anonymous, one way disclosures to journalists, lawyers, and other trusted recipients. Hosted service: <https://tips.hushline.app Start here: <https://hushline.app/library/docs/getting started/start here/ Why Hush Line Hush Line is built for safety critical reporting workflows where trust, anonymity, and usability all matter. The project design priorities are: Usability of the software Authenticity of the receiver Plausible deniability of the whistleblower Availability of the system Anonymity of the whistleblower Confidentiality and integrity of disclosures Core Capabilities | Area | What Hush Line Provides | | | | | Anonymous submissions | No submitter account required for sending disclosures | | Encryption | End to end encryption workflow with recipient PGP keys, plus server side fallback path | | Receiver trust | Verified account workflow and trusted directory UX | | Account security | Password authentication with optional TOTP 2FA | | Privacy access | Tor onion support and privacy preserving defaults | | Communication workflow | Message status management, one way replies, and optional email forwarding modes | | Org customization | Branding controls, onboarding guidance, and configurable profile fields | | Operational controls | Strong CI checks, migration compatibility testing, and workflow security validation | Quickstart (Local) 1) Clone and start Open <http://localhost:8080 .
+
+../hushline/docs/library/personal-server/the-hush-line-personal-server.md
+The Hush Line Personal Server Source: <https://hushline.app/library/docs/personal server/the hush line personal server/ The Hush Line Personal Server is the self hosted Hush Line appliance. It is designed for people who want the Hush Line workflow on hardware they control while still giving sources an anonymous, browser based submission path. How access works The Personal Server presents two addresses: a Tor onion address for private access through Tor Browser a local network HTTPS address for access from the network the device is connected to The in app server info page shows both addresses directly on the device. First run setup 1. Visit the device address. 2. Register the first account. 3. The first user created on a Personal Server becomes the admin. 4. Add your profile, encryption key, and notification settings. 5. Share the onion URL publicly so sources can reach you anonymously. Who it is for The product copy describes the Personal Server as a good fit for lawyers, journalists, educators, and business leaders who want a safer reporting channel for their communities. Related docs Specs Secure Your Account Share Your Tip Line
+
+../hushline/docs/PUBLIC-RECORD-PROVENANCE-ROADMAP.md
+Public Record Provenance Roadmap (U.S.) This artifact tracks the active U.S. implementation roadmap and the policy only EU scaffold used to open follow on country issues. Scope Build an authoritative, ever growing U.S. public record attorney dataset. Keep only listings with strict, per record official source URLs. Remove listings when the official record can no longer be verified. Current Baseline (March 10, 2026) Active strict listings: 58 States with strict listings: AK , AL , AR , AZ , CA , CO , CT , DE , GA , IA , ID , IL , IN , KS , MA , MD , ME , MI , MN , MO , MS , MT , NC , ND , NE , NH , NJ , NM , OH , RI , SC , SD , TN , TX , UT , WA Other U.S. rows were removed because they only pointed to generic directory pages (not the exact record URL). Strict Provenance Rules source url must point to the exact public record URL for that listing. source url must be on the expected official state authority domain. Generic source pages are rejected. Synthetic markers ( listing= query/fragment hacks) are rejected. Chambers/private rankings are rejected as authoritative sources. State Adapter Strategy Discovery/additions must come from explicit state adapters only. All 50 states now have explicit adapter entries in discovery code. Each adapter must: query the official state authority source resolve an exact per record URL emit normalized listing rows that pass strict validation Until a state specific extractor is implemented, that state's adapter remains a no op.
+
+../hushline/docs/library/getting-started/prep-your-account.md
+Prep Your Account Source: <https://hushline.app/library/docs/getting started/account setup/ Preparing your account means getting your profile, encryption, and message delivery settings into a state you are comfortable publishing. 1. Fill in your public profile At minimum, add: a recognizable display name an optional account category that matches the type of recipient you are a short bio any extra profile details you want sources to trust, such as a website or Signal handle If you opt into the public directory, this is the information whistleblowers will use to decide whether your tip line belongs to the right person. 2. Add encryption If tips will be delivered to an email address, PGP setup is the important step. Supported options: Proton Mail key lookup manual public key paste Without a PGP key, people can still see your profile, but they cannot submit tips through it. 3. Decide how messages should reach you Hush Line can notify you about new tips in the web inbox and, optionally, by email. In Settings you can: enable or disable email notifications include encrypted message content in those emails encrypt the entire email body for compatibility with clients such as Proton Mail or Thunderbird 4. Review your public form If you use custom message fields, decide which ones are: required or optional encrypted or unencrypted Unencrypted custom fields are visible to you and your hosting provider. Encrypted fields require your PGP workflow to read them. 5. Choose whether to appear in the directory Turning on directory visibility makes your tip line easier to find. If you want stronger trust signals, pair this with Account Verification. Continue Secure Your Account Share Your Tip Line
+
+../hushline/docs/library/getting-started/new-user-onboarding.md
+New User Onboarding Source: <https://hushline.app/library/docs/getting started/new user onboarding/ Hush Line includes a four step guided setup flow. You can skip it and finish later in Settings, but the guide is the fastest way to reach a usable tip line. Step 1: profile Add the basics a source needs to recognize you: display name short bio optional directory presence Use the same name people already associate with your work. Step 2: encryption Add a public PGP key so only you can read encrypted submissions. Two supported paths: Proton Mail key lookup manual public key paste If you are using Proton Mail, Hush Line can look up your public key for you. Step 3: notifications Choose where new tips should be sent. Hush Line works best when you add an email address for notifications. If you imported a Proton key in the previous step, using the same address makes email delivery easier to manage. Step 4: directory visibility Choose whether to appear in the public user directory. Directory listings help whistleblowers discover your tip line, and you can change this setting later. After onboarding Continue with Prep Your Account for the settings you may still want to tune. Continue with Secure Your Account before broad distribution.
+
+Additional Hush Line AGENTS guidance:
+AGENTS.md This file provides operating guidance for coding agents working in the Hush Line repository. We are a 501(c)(3) non profit based in the United States, and consider this software safety critical infrastructure protecting users’ operational, physical, and digital security. Principles Usability of the Software Authenticity of the Receiver Plausible Deniability of the Whistleblower Availability of the System Anonymity of the Whistleblower Confidentiality and Integrity of the Disclosures Core Users | Message Senders | Message Recipients | Administrators | | | | | | Whistleblowers | Journalists and Newsrooms | Platform Administrators | | Concerned citizens | Lawyers and Law Offices | | | Engaged citizens | Employers and Boards | | | Activists | Educators and Administrators | | | Students | Organizers and Activists | | | Bug bounty hunters | Software developers | | Geographic Location Global; default to privacy preserving choices across jurisdictions. Scope Applies to the entire repository unless a deeper AGENTS.md exists in a subdirectory. Project Priorities Preserve core whistleblower flow above all else. Prefer behavior preserving changes over refactors unless explicitly requested. Keep privacy/security guarantees intact when editing routes, models, or settings. Accessibility score must be 100. Performance score must be =95. Core Flows | Unauthenticated Users | Authenticated, All Users | Authenticated, Paid Users | Authenticated, Admin Users | | | | | | | Send a message | Send a message | Cancel subscription | Update directory intro text | | Register/login, 2FA challenge | E2EE defaults and behavior | Resubscribe to Super User tier | Change primary color | | Browse user directory | View messages in Inbox | Add/remove an Alias | Change app name | | Search Verified tab | Change message status | Add/remove custom profile fields | Upload new logo | | Search All tab | Delete a message | | Hide donation link | | E2EE defaults and behavior | Resend message to email (if enabled) | | Customize profile header | | | Upgrade to Super User | | Change homepage; Enable/disable User Guidance | | | Add PGP key via Proton Key Lookup | | Update Emergency Exit link | | | Add PGP key manually | | Update prompt heading/body | | | Add display name | | Add new prompt | | | Add bio | | Enable/disable new registrations | | | Add additional profile fields | | Enable/disable registration code gating | | | Opt in to user directory | | Make user account admin | | | Change username/password | | Verify a primary user account | | | Enable/disable 2FA | | Verify an alias user accou…
+
+Recent archived daily posts to avoid repeating:
+2026-03-19: auth-newman-onboarding-encryption (newman/auth-newman-onboarding-encryption-mobile-light-fold.png)
+
+Instructions:
+- Pick exactly one screenshot from the provided candidates only.
+- Prioritize recent shipped work that appears clearly in the screenshot.
+- Favor screenshots that matter to journalists, lawyers, whistleblowers, sources, and other trusted recipients.
+- Produce exactly one post for the requested date.
+- Avoid repeating a content theme or route that was used recently in archived daily posts.
+- Match the copy to the candidate audience scope. Public screens should read public-facing. Recipient-shared screens should read like recipient workflows. Admin-only screens must clearly say admin or team context.
+- Headline and subtext should be concise and straightforward.
+- Each network copy should say the same core thing in a native way, not copy-paste the same sentence three times.
+- The alt text should describe the final image asset, not just the raw UI screenshot.
+
+Return strict JSON matching the schema.
+
+Candidate screenshots:
+Candidate 1
+file: guest/guest-directory-verified-desktop-light-fold.png
+concept_key: directory-verified
+content_key: guest-directory-verified
+title: Directory - Verified
+route: /directory
+session: guest
+audience_scope: public
+copy_brief: Write for sources and public users evaluating or using Hush Line.
+viewport: desktop
+theme: light
+score: 62.5
+matched_prs: #1765 Fix guest screenshot | #1763 Fix guest profile screenshot manifest reset logic
+absolute_path: /Users/scidsg/hushline-screenshots/releases/latest/guest/guest-directory-verified-desktop-light-fold.png
+
+Candidate 2
+file: guest/guest-directory-attorney-adam-j-levitt-mobile-light-fold.png
+concept_key: directory-attorney-adam-j-levitt
+content_key: guest-directory-attorney-adam-j-levitt
+title: Directory - Attorney listing (Adam J. Levitt)
+route: /directory/public-records/public-record~adam-j-levitt
+session: guest
+audience_scope: public
+copy_brief: Write for sources and public users evaluating or using Hush Line.
+viewport: mobile
+theme: light
+score: 53.5
+matched_prs: #1765 Fix guest screenshot | #1763 Fix guest profile screenshot manifest reset logic
+absolute_path: /Users/scidsg/hushline-screenshots/releases/latest/guest/guest-directory-attorney-adam-j-levitt-mobile-light-fold.png
+
+Candidate 3
+file: guest/guest-directory-attorneys-applied-filters-desktop-light-fold.png
+concept_key: directory-attorneys-applied-filters
+content_key: guest-directory-attorneys-applied-filters
+title: Directory - Attorneys (applied filters)
+route: /directory?country=US&region=CA
+session: guest
+audience_scope: public
+copy_brief: Write for sources and public users evaluating or using Hush Line.
+viewport: desktop
+theme: light
+score: 48.5
+matched_prs: #1765 Fix guest screenshot | #1763 Fix guest profile screenshot manifest reset logic
+absolute_path: /Users/scidsg/hushline-screenshots/releases/latest/guest/guest-directory-attorneys-applied-filters-desktop-light-fold.png
+
+Candidate 4
+file: newman/auth-newman-onboarding-notifications-desktop-light-fold.png
+concept_key: onboarding-notifications
+content_key: auth-newman-onboarding-notifications
+title: Onboarding - Step 3 Notifications (newman)
+route: /onboarding?step=notifications
+session: newman
+audience_scope: recipient-shared
+copy_brief: Write for recipients and staff using Hush Line day to day, not for platform admins.
+viewport: desktop
+theme: light
+score: 28
+matched_prs: #1743 #1733 Phase 6: modernize auth and onboarding core form flows
+absolute_path: /Users/scidsg/hushline-screenshots/releases/latest/newman/auth-newman-onboarding-notifications-desktop-light-fold.png
+
+Candidate 5
+file: artvandelay/auth-artvandelay-tools-email-validation-status-valid-mobile-light-fold.png
+concept_key: tools-email-validation-status-valid
+content_key: auth-artvandelay-tools-email-validation-status-valid
+title: Tools - Email Validation status: appears valid (artvandelay)
+route: /email-headers
+session: artvandelay
+audience_scope: recipient-shared
+copy_brief: Write for recipients and staff using Hush Line day to day, not for platform admins.
+viewport: mobile
+theme: light
+score: 28
+matched_prs: #1760 #1752 [Validation] Prove security-critical native dependencies on Python 3.13 Bookworm | #1738 #1729 Phase 2: modernize simple single-form routes (/settings/replies, /email-headers)
+absolute_path: /Users/scidsg/hushline-screenshots/releases/latest/artvandelay/auth-artvandelay-tools-email-validation-status-valid-mobile-light-fold.png
+
+Candidate 6
+file: newman/auth-newman-onboarding-directory-desktop-light-fold.png
+concept_key: onboarding-directory
+content_key: auth-newman-onboarding-directory
+title: Onboarding - Step 4 Directory (newman)
+route: /onboarding?step=directory
+session: newman
+audience_scope: recipient-shared
+copy_brief: Write for recipients and staff using Hush Line day to day, not for platform admins.
+viewport: desktop
+theme: light
+score: 24
+matched_prs: #1743 #1733 Phase 6: modernize auth and onboarding core form flows
+absolute_path: /Users/scidsg/hushline-screenshots/releases/latest/newman/auth-newman-onboarding-directory-desktop-light-fold.png
+
+Candidate 7
+file: admin/auth-admin-settings-guidance-mobile-light-fold.png
+concept_key: settings-guidance
+content_key: auth-admin-settings-guidance
+title: Settings - User Guidance (admin)
+route: /settings/guidance
+session: admin
+audience_scope: admin-only
+copy_brief: Write for admins or teams running a Hush Line deployment. Make the admin audience explicit.
+viewport: mobile
+theme: light
+score: 15.5
+matched_prs: #1740 #1731 Phase 4: modernize admin multi-form settings routes
+absolute_path: /Users/scidsg/hushline-screenshots/releases/latest/admin/auth-admin-settings-guidance-mobile-light-fold.png
+
+Candidate 8
+file: artvandelay/auth-artvandelay-settings-replies-desktop-light-fold.png
+concept_key: settings-replies
+content_key: auth-artvandelay-settings-replies
+title: Settings - Message Statuses (artvandelay)
+route: /settings/replies
+session: artvandelay
+audience_scope: recipient-shared
+copy_brief: Write for recipients and staff using Hush Line day to day, not for platform admins.
+viewport: desktop
+theme: light
+score: 15.5
+matched_prs: #1738 #1729 Phase 2: modernize simple single-form routes (/settings/replies, /email-headers)
+absolute_path: /Users/scidsg/hushline-screenshots/releases/latest/artvandelay/auth-artvandelay-settings-replies-desktop-light-fold.png
+
+Candidate 9
+file: artvandelay/auth-artvandelay-settings-encryption-mobile-light-fold.png
+concept_key: settings-encryption
+content_key: auth-artvandelay-settings-encryption
+title: Settings - Encryption (artvandelay)
+route: /settings/encryption
+session: artvandelay
+audience_scope: recipient-shared
+copy_brief: Write for recipients and staff using Hush Line day to day, not for platform admins.
+viewport: mobile
+theme: light
+score: 15
+matched_prs: none
+absolute_path: /Users/scidsg/hushline-screenshots/releases/latest/artvandelay/auth-artvandelay-settings-encryption-mobile-light-fold.png
+
+Candidate 10
+file: artvandelay/auth-artvandelay-settings-notifications-desktop-dark-fold.png
+concept_key: settings-notifications
+content_key: auth-artvandelay-settings-notifications
+title: Settings - Notifications (artvandelay)
+route: /settings/notifications
+session: artvandelay
+audience_scope: recipient-shared
+copy_brief: Write for recipients and staff using Hush Line day to day, not for platform admins.
+viewport: desktop
+theme: dark
+score: 10.5
+matched_prs: none
+absolute_path: /Users/scidsg/hushline-screenshots/releases/latest/artvandelay/auth-artvandelay-settings-notifications-desktop-dark-fold.png
+
+Candidate 11
+file: artvandelay/auth-artvandelay-tools-vision-mobile-dark-fold.png
+concept_key: tools-vision
+content_key: auth-artvandelay-tools-vision
+title: Tools - Vision Assistant (artvandelay)
+route: /vision
+session: artvandelay
+audience_scope: recipient-shared
+copy_brief: Write for recipients and staff using Hush Line day to day, not for platform admins.
+viewport: mobile
+theme: dark
+score: 10
+matched_prs: none
+absolute_path: /Users/scidsg/hushline-screenshots/releases/latest/artvandelay/auth-artvandelay-tools-vision-mobile-dark-fold.png
+
+Read planning context from: previous-posts/2026-03-20/context.json
+Write the finished plan JSON to: previous-posts/2026-03-20/plan.json
+
+Output requirements:
+- Write valid JSON only to the target file.
+- Do not write markdown fences.
+- Use exactly this JSON schema:
+{
+  "additionalProperties": false,
+  "properties": {
+    "date": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "type": "string"
+    },
+    "post": {
+      "additionalProperties": false,
+      "properties": {
+        "content_key": {
+          "type": "string"
+        },
+        "headline": {
+          "type": "string"
+        },
+        "image_alt_text": {
+          "type": "string"
+        },
+        "planned_date": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "type": "string"
+        },
+        "rationale": {
+          "type": "string"
+        },
+        "screenshot_file": {
+          "type": "string"
+        },
+        "slot": {
+          "type": "string"
+        },
+        "social": {
+          "additionalProperties": false,
+          "properties": {
+            "bluesky": {
+              "type": "string"
+            },
+            "linkedin": {
+              "type": "string"
+            },
+            "mastodon": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "linkedin",
+            "mastodon",
+            "bluesky"
+          ],
+          "type": "object"
+        },
+        "source_pr_numbers": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "subtext": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "slot",
+        "planned_date",
+        "screenshot_file",
+        "content_key",
+        "headline",
+        "subtext",
+        "image_alt_text",
+        "social",
+        "rationale",
+        "source_pr_numbers"
+      ],
+      "type": "object"
+    },
+    "summary": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "date",
+    "summary",
+    "post"
+  ],
+  "type": "object"
+}
+
+Execution requirements:
+- Use only the provided candidate screenshots.
+- Choose the single highest-value post for the requested date.
+- Do not render images yourself.
+- Do not pick a candidate that duplicates a recent archived concept unless no stronger option exists.
+- If the chosen candidate has audience_scope `admin-only`, make that admin audience explicit in the copy.

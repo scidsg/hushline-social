@@ -1,0 +1,416 @@
+{
+  "audience_docs": [
+    {
+      "excerpt": "Welcome to Hush Line Source basis: the public Hush Line Library welcome section and the project overview in README.md. Hush Line is an open source whistleblower platform for secure, anonymous, one way disclosures. It is built for journalists, lawyers, educators, organizers, employers, and other trusted recipients who need a safer way to receive tips from their communities. What Hush Line is designed to protect Anonymous submissions without requiring a sender account End to end encrypted delivery when the receiver has a PGP key Trust building signals such as verified accounts and public profile details Safer access paths, including Tor support and privacy preserving defaults Common ways people use it Publish a public tip line for your newsroom, law office, classroom, campaign, or company Receive messages in a web inbox without turning the sender flow into a live chat Share a directory listing or direct profile link so sources can verify they reached the right person Run the hosted service or use a Personal Server Where to begin New hosted service users should start with Start Here. If you want the guided setup flow, open New User Onboarding. If you already have an account, jump to Prep Your Account and Secure Your Account.",
+      "file": "../hushline/docs/library/welcome/welcome-to-hush-line.md"
+    },
+    {
+      "excerpt": "Hush Line Hush Line is an open source whistleblower platform for secure, anonymous, one way disclosures to journalists, lawyers, and other trusted recipients. Hosted service: <https://tips.hushline.app Start here: <https://hushline.app/library/docs/getting started/start here/ Why Hush Line Hush Line is built for safety critical reporting workflows where trust, anonymity, and usability all matter. The project design priorities are: Usability of the software Authenticity of the receiver Plausible deniability of the whistleblower Availability of the system Anonymity of the whistleblower Confidentiality and integrity of disclosures Core Capabilities | Area | What Hush Line Provides | | | | | Anonymous submissions | No submitter account required for sending disclosures | | Encryption | End to end encryption workflow with recipient PGP keys, plus server side fallback path | | Receiver trust | Verified account workflow and trusted directory UX | | Account security | Password authentication with optional TOTP 2FA | | Privacy access | Tor onion support and privacy preserving defaults | | Communication workflow | Message status management, one way replies, and optional email forwarding modes | | Org customization | Branding controls, onboarding guidance, and configurable profile fields | | Operational controls | Strong CI checks, migration compatibility testing, and workflow security validation | Quickstart (Local) 1) Clone and start Open <http://localhost:8080 .",
+      "file": "../hushline/README.md"
+    },
+    {
+      "excerpt": "The Hush Line Personal Server Source: <https://hushline.app/library/docs/personal server/the hush line personal server/ The Hush Line Personal Server is the self hosted Hush Line appliance. It is designed for people who want the Hush Line workflow on hardware they control while still giving sources an anonymous, browser based submission path. How access works The Personal Server presents two addresses: a Tor onion address for private access through Tor Browser a local network HTTPS address for access from the network the device is connected to The in app server info page shows both addresses directly on the device. First run setup 1. Visit the device address. 2. Register the first account. 3. The first user created on a Personal Server becomes the admin. 4. Add your profile, encryption key, and notification settings. 5. Share the onion URL publicly so sources can reach you anonymously. Who it is for The product copy describes the Personal Server as a good fit for lawyers, journalists, educators, and business leaders who want a safer reporting channel for their communities. Related docs Specs Secure Your Account Share Your Tip Line",
+      "file": "../hushline/docs/library/personal-server/the-hush-line-personal-server.md"
+    },
+    {
+      "excerpt": "Public Record Provenance Roadmap (U.S.) This artifact tracks the active U.S. implementation roadmap and the policy only EU scaffold used to open follow on country issues. Scope Build an authoritative, ever growing U.S. public record attorney dataset. Keep only listings with strict, per record official source URLs. Remove listings when the official record can no longer be verified. Current Baseline (March 10, 2026) Active strict listings: 58 States with strict listings: AK , AL , AR , AZ , CA , CO , CT , DE , GA , IA , ID , IL , IN , KS , MA , MD , ME , MI , MN , MO , MS , MT , NC , ND , NE , NH , NJ , NM , OH , RI , SC , SD , TN , TX , UT , WA Other U.S. rows were removed because they only pointed to generic directory pages (not the exact record URL). Strict Provenance Rules source url must point to the exact public record URL for that listing. source url must be on the expected official state authority domain. Generic source pages are rejected. Synthetic markers ( listing= query/fragment hacks) are rejected. Chambers/private rankings are rejected as authoritative sources. State Adapter Strategy Discovery/additions must come from explicit state adapters only. All 50 states now have explicit adapter entries in discovery code. Each adapter must: query the official state authority source resolve an exact per record URL emit normalized listing rows that pass strict validation Until a state specific extractor is implemented, that state's adapter remains a no op.",
+      "file": "../hushline/docs/PUBLIC-RECORD-PROVENANCE-ROADMAP.md"
+    },
+    {
+      "excerpt": "Prep Your Account Source: <https://hushline.app/library/docs/getting started/account setup/ Preparing your account means getting your profile, encryption, and message delivery settings into a state you are comfortable publishing. 1. Fill in your public profile At minimum, add: a recognizable display name an optional account category that matches the type of recipient you are a short bio any extra profile details you want sources to trust, such as a website or Signal handle If you opt into the public directory, this is the information whistleblowers will use to decide whether your tip line belongs to the right person. 2. Add encryption If tips will be delivered to an email address, PGP setup is the important step. Supported options: Proton Mail key lookup manual public key paste Without a PGP key, people can still see your profile, but they cannot submit tips through it. 3. Decide how messages should reach you Hush Line can notify you about new tips in the web inbox and, optionally, by email. In Settings you can: enable or disable email notifications include encrypted message content in those emails encrypt the entire email body for compatibility with clients such as Proton Mail or Thunderbird 4. Review your public form If you use custom message fields, decide which ones are: required or optional encrypted or unencrypted Unencrypted custom fields are visible to you and your hosting provider. Encrypted fields require your PGP workflow to read them. 5. Choose whether to appear in the directory Turning on directory visibility makes your tip line easier to find. If you want stronger trust signals, pair this with Account Verification. Continue Secure Your Account Share Your Tip Line",
+      "file": "../hushline/docs/library/getting-started/prep-your-account.md"
+    },
+    {
+      "excerpt": "New User Onboarding Source: <https://hushline.app/library/docs/getting started/new user onboarding/ Hush Line includes a four step guided setup flow. You can skip it and finish later in Settings, but the guide is the fastest way to reach a usable tip line. Step 1: profile Add the basics a source needs to recognize you: display name short bio optional directory presence Use the same name people already associate with your work. Step 2: encryption Add a public PGP key so only you can read encrypted submissions. Two supported paths: Proton Mail key lookup manual public key paste If you are using Proton Mail, Hush Line can look up your public key for you. Step 3: notifications Choose where new tips should be sent. Hush Line works best when you add an email address for notifications. If you imported a Proton key in the previous step, using the same address makes email delivery easier to manage. Step 4: directory visibility Choose whether to appear in the public user directory. Directory listings help whistleblowers discover your tip line, and you can change this setting later. After onboarding Continue with Prep Your Account for the settings you may still want to tune. Continue with Secure Your Account before broad distribution.",
+      "file": "../hushline/docs/library/getting-started/new-user-onboarding.md"
+    }
+  ],
+  "candidate_screenshots": [
+    {
+      "absolute_path": "/Users/scidsg/hushline-screenshots/releases/latest/guest/guest-directory-verified-desktop-light-fold.png",
+      "audience_scope": "public",
+      "concept_key": "directory-verified",
+      "copy_brief": "Write for sources and public users evaluating or using Hush Line.",
+      "content_key": "guest-directory-verified",
+      "file": "guest/guest-directory-verified-desktop-light-fold.png",
+      "path": "/directory",
+      "session": "guest",
+      "theme": "light",
+      "title": "Directory - Verified",
+      "viewport": "desktop",
+      "exclusion_reason": null,
+      "matched_pull_requests": [
+        {
+          "merged_at": "2026-03-19T17:56:37Z",
+          "number": 1765,
+          "title": "Fix guest screenshot"
+        },
+        {
+          "merged_at": "2026-03-19T08:02:44Z",
+          "number": 1763,
+          "title": "Fix guest profile screenshot manifest reset logic"
+        }
+      ],
+      "score": 62.5
+    },
+    {
+      "absolute_path": "/Users/scidsg/hushline-screenshots/releases/latest/guest/guest-directory-attorney-adam-j-levitt-mobile-light-fold.png",
+      "audience_scope": "public",
+      "concept_key": "directory-attorney-adam-j-levitt",
+      "copy_brief": "Write for sources and public users evaluating or using Hush Line.",
+      "content_key": "guest-directory-attorney-adam-j-levitt",
+      "file": "guest/guest-directory-attorney-adam-j-levitt-mobile-light-fold.png",
+      "path": "/directory/public-records/public-record~adam-j-levitt",
+      "session": "guest",
+      "theme": "light",
+      "title": "Directory - Attorney listing (Adam J. Levitt)",
+      "viewport": "mobile",
+      "exclusion_reason": null,
+      "matched_pull_requests": [
+        {
+          "merged_at": "2026-03-19T17:56:37Z",
+          "number": 1765,
+          "title": "Fix guest screenshot"
+        },
+        {
+          "merged_at": "2026-03-19T08:02:44Z",
+          "number": 1763,
+          "title": "Fix guest profile screenshot manifest reset logic"
+        }
+      ],
+      "score": 53.5
+    },
+    {
+      "absolute_path": "/Users/scidsg/hushline-screenshots/releases/latest/guest/guest-directory-attorneys-applied-filters-desktop-light-fold.png",
+      "audience_scope": "public",
+      "concept_key": "directory-attorneys-applied-filters",
+      "copy_brief": "Write for sources and public users evaluating or using Hush Line.",
+      "content_key": "guest-directory-attorneys-applied-filters",
+      "file": "guest/guest-directory-attorneys-applied-filters-desktop-light-fold.png",
+      "path": "/directory?country=US&region=CA",
+      "session": "guest",
+      "theme": "light",
+      "title": "Directory - Attorneys (applied filters)",
+      "viewport": "desktop",
+      "exclusion_reason": null,
+      "matched_pull_requests": [
+        {
+          "merged_at": "2026-03-19T17:56:37Z",
+          "number": 1765,
+          "title": "Fix guest screenshot"
+        },
+        {
+          "merged_at": "2026-03-19T08:02:44Z",
+          "number": 1763,
+          "title": "Fix guest profile screenshot manifest reset logic"
+        }
+      ],
+      "score": 48.5
+    },
+    {
+      "absolute_path": "/Users/scidsg/hushline-screenshots/releases/latest/newman/auth-newman-onboarding-notifications-desktop-light-fold.png",
+      "audience_scope": "recipient-shared",
+      "concept_key": "onboarding-notifications",
+      "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+      "content_key": "auth-newman-onboarding-notifications",
+      "file": "newman/auth-newman-onboarding-notifications-desktop-light-fold.png",
+      "path": "/onboarding?step=notifications",
+      "session": "newman",
+      "theme": "light",
+      "title": "Onboarding - Step 3 Notifications (newman)",
+      "viewport": "desktop",
+      "exclusion_reason": null,
+      "matched_pull_requests": [
+        {
+          "merged_at": "2026-03-18T02:26:06Z",
+          "number": 1743,
+          "title": "#1733 Phase 6: modernize auth and onboarding core form flows"
+        }
+      ],
+      "score": 28
+    },
+    {
+      "absolute_path": "/Users/scidsg/hushline-screenshots/releases/latest/artvandelay/auth-artvandelay-tools-email-validation-status-valid-mobile-light-fold.png",
+      "audience_scope": "recipient-shared",
+      "concept_key": "tools-email-validation-status-valid",
+      "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+      "content_key": "auth-artvandelay-tools-email-validation-status-valid",
+      "file": "artvandelay/auth-artvandelay-tools-email-validation-status-valid-mobile-light-fold.png",
+      "path": "/email-headers",
+      "session": "artvandelay",
+      "theme": "light",
+      "title": "Tools - Email Validation status: appears valid (artvandelay)",
+      "viewport": "mobile",
+      "exclusion_reason": null,
+      "matched_pull_requests": [
+        {
+          "merged_at": "2026-03-19T05:40:52Z",
+          "number": 1760,
+          "title": "#1752 [Validation] Prove security-critical native dependencies on Python 3.13 Bookworm"
+        },
+        {
+          "merged_at": "2026-03-17T21:26:00Z",
+          "number": 1738,
+          "title": "#1729 Phase 2: modernize simple single-form routes (/settings/replies, /email-headers)"
+        }
+      ],
+      "score": 28
+    },
+    {
+      "absolute_path": "/Users/scidsg/hushline-screenshots/releases/latest/newman/auth-newman-onboarding-directory-desktop-light-fold.png",
+      "audience_scope": "recipient-shared",
+      "concept_key": "onboarding-directory",
+      "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+      "content_key": "auth-newman-onboarding-directory",
+      "file": "newman/auth-newman-onboarding-directory-desktop-light-fold.png",
+      "path": "/onboarding?step=directory",
+      "session": "newman",
+      "theme": "light",
+      "title": "Onboarding - Step 4 Directory (newman)",
+      "viewport": "desktop",
+      "exclusion_reason": null,
+      "matched_pull_requests": [
+        {
+          "merged_at": "2026-03-18T02:26:06Z",
+          "number": 1743,
+          "title": "#1733 Phase 6: modernize auth and onboarding core form flows"
+        }
+      ],
+      "score": 24
+    },
+    {
+      "absolute_path": "/Users/scidsg/hushline-screenshots/releases/latest/admin/auth-admin-settings-guidance-mobile-light-fold.png",
+      "audience_scope": "admin-only",
+      "concept_key": "settings-guidance",
+      "copy_brief": "Write for admins or teams running a Hush Line deployment. Make the admin audience explicit.",
+      "content_key": "auth-admin-settings-guidance",
+      "file": "admin/auth-admin-settings-guidance-mobile-light-fold.png",
+      "path": "/settings/guidance",
+      "session": "admin",
+      "theme": "light",
+      "title": "Settings - User Guidance (admin)",
+      "viewport": "mobile",
+      "exclusion_reason": null,
+      "matched_pull_requests": [
+        {
+          "merged_at": "2026-03-17T23:35:57Z",
+          "number": 1740,
+          "title": "#1731 Phase 4: modernize admin multi-form settings routes"
+        }
+      ],
+      "score": 15.5
+    },
+    {
+      "absolute_path": "/Users/scidsg/hushline-screenshots/releases/latest/artvandelay/auth-artvandelay-settings-replies-desktop-light-fold.png",
+      "audience_scope": "recipient-shared",
+      "concept_key": "settings-replies",
+      "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+      "content_key": "auth-artvandelay-settings-replies",
+      "file": "artvandelay/auth-artvandelay-settings-replies-desktop-light-fold.png",
+      "path": "/settings/replies",
+      "session": "artvandelay",
+      "theme": "light",
+      "title": "Settings - Message Statuses (artvandelay)",
+      "viewport": "desktop",
+      "exclusion_reason": null,
+      "matched_pull_requests": [
+        {
+          "merged_at": "2026-03-17T21:26:00Z",
+          "number": 1738,
+          "title": "#1729 Phase 2: modernize simple single-form routes (/settings/replies, /email-headers)"
+        }
+      ],
+      "score": 15.5
+    },
+    {
+      "absolute_path": "/Users/scidsg/hushline-screenshots/releases/latest/artvandelay/auth-artvandelay-settings-encryption-mobile-light-fold.png",
+      "audience_scope": "recipient-shared",
+      "concept_key": "settings-encryption",
+      "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+      "content_key": "auth-artvandelay-settings-encryption",
+      "file": "artvandelay/auth-artvandelay-settings-encryption-mobile-light-fold.png",
+      "path": "/settings/encryption",
+      "session": "artvandelay",
+      "theme": "light",
+      "title": "Settings - Encryption (artvandelay)",
+      "viewport": "mobile",
+      "exclusion_reason": null,
+      "matched_pull_requests": [],
+      "score": 15
+    },
+    {
+      "absolute_path": "/Users/scidsg/hushline-screenshots/releases/latest/artvandelay/auth-artvandelay-settings-notifications-desktop-dark-fold.png",
+      "audience_scope": "recipient-shared",
+      "concept_key": "settings-notifications",
+      "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+      "content_key": "auth-artvandelay-settings-notifications",
+      "file": "artvandelay/auth-artvandelay-settings-notifications-desktop-dark-fold.png",
+      "path": "/settings/notifications",
+      "session": "artvandelay",
+      "theme": "dark",
+      "title": "Settings - Notifications (artvandelay)",
+      "viewport": "desktop",
+      "exclusion_reason": null,
+      "matched_pull_requests": [],
+      "score": 10.5
+    },
+    {
+      "absolute_path": "/Users/scidsg/hushline-screenshots/releases/latest/artvandelay/auth-artvandelay-tools-vision-mobile-dark-fold.png",
+      "audience_scope": "recipient-shared",
+      "concept_key": "tools-vision",
+      "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+      "content_key": "auth-artvandelay-tools-vision",
+      "file": "artvandelay/auth-artvandelay-tools-vision-mobile-dark-fold.png",
+      "path": "/vision",
+      "session": "artvandelay",
+      "theme": "dark",
+      "title": "Tools - Vision Assistant (artvandelay)",
+      "viewport": "mobile",
+      "exclusion_reason": null,
+      "matched_pull_requests": [],
+      "score": 10
+    }
+  ],
+  "daily_posts_root": "previous-posts",
+  "date": "2026-03-20",
+  "dark_ratio": 0.2,
+  "hushline_agent_context": "AGENTS.md This file provides operating guidance for coding agents working in the Hush Line repository. We are a 501(c)(3) non profit based in the United States, and consider this software safety critical infrastructure protecting users’ operational, physical, and digital security. Principles Usability of the Software Authenticity of the Receiver Plausible Deniability of the Whistleblower Availability of the System Anonymity of the Whistleblower Confidentiality and Integrity of the Disclosures Core Users | Message Senders | Message Recipients | Administrators | | | | | | Whistleblowers | Journalists and Newsrooms | Platform Administrators | | Concerned citizens | Lawyers and Law Offices | | | Engaged citizens | Employers and Boards | | | Activists | Educators and Administrators | | | Students | Organizers and Activists | | | Bug bounty hunters | Software developers | | Geographic Location Global; default to privacy preserving choices across jurisdictions. Scope Applies to the entire repository unless a deeper AGENTS.md exists in a subdirectory. Project Priorities Preserve core whistleblower flow above all else. Prefer behavior preserving changes over refactors unless explicitly requested. Keep privacy/security guarantees intact when editing routes, models, or settings. Accessibility score must be 100. Performance score must be =95. Core Flows | Unauthenticated Users | Authenticated, All Users | Authenticated, Paid Users | Authenticated, Admin Users | | | | | | | Send a message | Send a message | Cancel subscription | Update directory intro text | | Register/login, 2FA challenge | E2EE defaults and behavior | Resubscribe to Super User tier | Change primary color | | Browse user directory | View messages in Inbox | Add/remove an Alias | Change app name | | Search Verified tab | Change message status | Add/remove custom profile fields | Upload new logo | | Search All tab | Delete a message | | Hide donation link | | E2EE defaults and behavior | Resend message to email (if enabled) | | Customize profile header | | | Upgrade to Super User | | Change homepage; Enable/disable User Guidance | | | Add PGP key via Proton Key Lookup | | Update Emergency Exit link | | | Add PGP key manually | | Update prompt heading/body | | | Add display name | | Add new prompt | | | Add bio | | Enable/disable new registrations | | | Add additional profile fields | | Enable/disable registration code gating | | | Opt in to user directory | | Make user account admin | | | Change username/password | | Verify a primary user account | | | Enable/disable 2FA | | Verify an alias user accou…",
+  "recent_archive_history": [
+    {
+      "concept_key": "onboarding-encryption",
+      "content_key": "auth-newman-onboarding-encryption",
+      "date": "2026-03-19",
+      "headline": "Add your encryption key before you share your tip line",
+      "screenshot_file": "newman/auth-newman-onboarding-encryption-mobile-light-fold.png"
+    }
+  ],
+  "recent_pull_requests": [
+    {
+      "mergedAt": "2026-03-19T17:56:37Z",
+      "number": 1765,
+      "title": "Fix guest screenshot",
+      "url": "https://github.com/scidsg/hushline/pull/1765"
+    },
+    {
+      "mergedAt": "2026-03-19T08:02:44Z",
+      "number": 1763,
+      "title": "Fix guest profile screenshot manifest reset logic",
+      "url": "https://github.com/scidsg/hushline/pull/1763"
+    },
+    {
+      "mergedAt": "2026-03-19T06:14:15Z",
+      "number": 1762,
+      "title": "#554 Python 3.13 migration",
+      "url": "https://github.com/scidsg/hushline/pull/1762"
+    },
+    {
+      "mergedAt": "2026-03-19T05:53:46Z",
+      "number": 1761,
+      "title": "#1753 [Audit] Review lockfile and dependency audit changes only if Python 3.13 moves the graph",
+      "url": "https://github.com/scidsg/hushline/pull/1761"
+    },
+    {
+      "mergedAt": "2026-03-19T05:40:52Z",
+      "number": 1760,
+      "title": "#1752 [Validation] Prove security-critical native dependencies on Python 3.13 Bookworm",
+      "url": "https://github.com/scidsg/hushline/pull/1760"
+    },
+    {
+      "mergedAt": "2026-03-19T05:22:31Z",
+      "number": 1759,
+      "title": "#1751 [Typing] Update mypy target semantics to Python 3.13",
+      "url": "https://github.com/scidsg/hushline/pull/1759"
+    },
+    {
+      "mergedAt": "2026-03-19T05:12:53Z",
+      "number": 1758,
+      "title": "#1750 [CI] Move host lint workflow to Python 3.13",
+      "url": "https://github.com/scidsg/hushline/pull/1758"
+    },
+    {
+      "mergedAt": "2026-03-19T04:59:55Z",
+      "number": 1757,
+      "title": "#1749 [Implementation] Update Docker runtime images to Python 3.13",
+      "url": "https://github.com/scidsg/hushline/pull/1757"
+    },
+    {
+      "mergedAt": "2026-03-19T04:02:46Z",
+      "number": 1756,
+      "title": "fix: resolve epic parent routing in daily runner",
+      "url": "https://github.com/scidsg/hushline/pull/1756"
+    },
+    {
+      "mergedAt": "2026-03-19T03:58:38Z",
+      "number": 1755,
+      "title": "#1747 [Fix] Resolve Python 3.13 regressions discovered during migration spike",
+      "url": "https://github.com/scidsg/hushline/pull/1755"
+    },
+    {
+      "mergedAt": "2026-03-19T03:03:28Z",
+      "number": 1754,
+      "title": "fix: route child issue PRs into epic branches",
+      "url": "https://github.com/scidsg/hushline/pull/1754"
+    },
+    {
+      "mergedAt": "2026-03-18T04:46:31Z",
+      "number": 1746,
+      "title": "#1745 Close the remaining full-suite coverage gaps after the WTForms modernization rollout",
+      "url": "https://github.com/scidsg/hushline/pull/1746"
+    },
+    {
+      "mergedAt": "2026-03-18T02:45:52Z",
+      "number": 1744,
+      "title": "#1734 Phase 7: modernize public tip submission form flow (/to/<username>)",
+      "url": "https://github.com/scidsg/hushline/pull/1744"
+    },
+    {
+      "mergedAt": "2026-03-18T02:26:06Z",
+      "number": 1743,
+      "title": "#1733 Phase 6: modernize auth and onboarding core form flows",
+      "url": "https://github.com/scidsg/hushline/pull/1743"
+    },
+    {
+      "mergedAt": "2026-03-18T01:08:18Z",
+      "number": 1742,
+      "title": "#1732 Phase 5: modernize profile and alias settings forms",
+      "url": "https://github.com/scidsg/hushline/pull/1742"
+    },
+    {
+      "mergedAt": "2026-03-18T00:00:47Z",
+      "number": 1741,
+      "title": "#1727 Phase 0: establish Flask-WTF/WTForms modernization foundation",
+      "url": "https://github.com/scidsg/hushline/pull/1741"
+    },
+    {
+      "mergedAt": "2026-03-17T23:35:57Z",
+      "number": 1740,
+      "title": "#1731 Phase 4: modernize admin multi-form settings routes",
+      "url": "https://github.com/scidsg/hushline/pull/1740"
+    },
+    {
+      "mergedAt": "2026-03-17T22:01:30Z",
+      "number": 1739,
+      "title": "#1730 Phase 3: modernize security-aware settings forms",
+      "url": "https://github.com/scidsg/hushline/pull/1739"
+    },
+    {
+      "mergedAt": "2026-03-17T21:26:00Z",
+      "number": 1738,
+      "title": "#1729 Phase 2: modernize simple single-form routes (/settings/replies, /email-headers)",
+      "url": "https://github.com/scidsg/hushline/pull/1738"
+    },
+    {
+      "mergedAt": "2026-03-17T21:01:36Z",
+      "number": 1737,
+      "title": "#1728 Phase 1: modernize /settings/auth WTForms dispatch and rendering",
+      "url": "https://github.com/scidsg/hushline/pull/1737"
+    }
+  ],
+  "screenshot_captured_at": "2026-03-19T18:22:22.263Z",
+  "screenshot_release": "v0.6.0",
+  "slot": {
+    "planned_date": "2026-03-20",
+    "slot": "friday"
+  },
+  "week": "2026-W12"
+}
