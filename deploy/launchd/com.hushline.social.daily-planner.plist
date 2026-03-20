@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
   <key>Label</key>
-  <string>com.hushline.social.weekly-planner</string>
+  <string>com.hushline.social.daily-planner</string>
 
   <key>ProgramArguments</key>
   <array>
-    <string>__REPO_DIR__/scripts/run_weekly_planner_launchd.sh</string>
+    <string>__REPO_DIR__/scripts/run_daily_planner_launchd.sh</string>
   </array>
 
   <key>WorkingDirectory</key>
@@ -25,9 +25,9 @@
   </dict>
 
   <key>StandardOutPath</key>
-  <string>__REPO_DIR__/logs/weekly-planner.stdout.log</string>
+  <string>__REPO_DIR__/logs/daily-planner.stdout.log</string>
 
   <key>StandardErrorPath</key>
-  <string>__REPO_DIR__/logs/weekly-planner.stderr.log</string>
+  <string>__REPO_DIR__/logs/daily-planner.stderr.log</string>
 </dict>
 </plist>

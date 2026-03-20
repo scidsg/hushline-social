@@ -10,15 +10,6 @@ const {
   writeJson,
 } = require("./lib/social-common");
 
-function formatIsoWeek(date) {
-  const cursor = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
-  const day = cursor.getUTCDay() || 7;
-  cursor.setUTCDate(cursor.getUTCDate() + 4 - day);
-  const yearStart = new Date(Date.UTC(cursor.getUTCFullYear(), 0, 1));
-  const weekNumber = Math.ceil((((cursor - yearStart) / 86400000) + 1) / 7);
-  return `${cursor.getUTCFullYear()}-W${String(weekNumber).padStart(2, "0")}`;
-}
-
 function todayString() {
   const now = new Date();
   return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
@@ -35,28 +26,16 @@ function parseArgs(argv) {
     dateRoot: path.join(REPO_ROOT, "previous-posts"),
     dryRun: false,
     force: false,
-    plan: null,
-    week: formatIsoWeek(new Date()),
-    weeksRoot: path.join(REPO_ROOT, "weeks"),
   };
 
   for (let index = 0; index < argv.length; index += 1) {
     const value = argv[index];
 
-    if (value === "--week") {
-      args.week = argv[index + 1];
-      index += 1;
-    } else if (value === "--date") {
+    if (value === "--date") {
       args.date = argv[index + 1];
-      index += 1;
-    } else if (value === "--plan") {
-      args.plan = path.resolve(REPO_ROOT, argv[index + 1]);
       index += 1;
     } else if (value === "--date-root") {
       args.dateRoot = path.resolve(REPO_ROOT, argv[index + 1]);
-      index += 1;
-    } else if (value === "--weeks-root") {
-      args.weeksRoot = path.resolve(REPO_ROOT, argv[index + 1]);
       index += 1;
     } else if (value === "--dry-run") {
       args.dryRun = true;
@@ -66,10 +45,6 @@ function parseArgs(argv) {
       printHelp();
       process.exit(0);
     }
-  }
-
-  if (!/^\d{4}-W\d{2}$/.test(args.week)) {
-    throw new Error("`--week` must use YYYY-Www format.");
   }
 
   if (!/^\d{4}-\d{2}-\d{2}$/.test(args.date)) {
@@ -84,12 +59,11 @@ function printHelp() {
     [
       "Usage:",
       "  node scripts/publish-daily-linkedin.js",
-      "  node scripts/publish-daily-linkedin.js --week 2026-W12 --date 2026-03-18",
+      "  node scripts/publish-daily-linkedin.js --date 2026-03-18",
       "  node scripts/publish-daily-linkedin.js --dry-run",
       "",
       "Behavior:",
-      "  - Publishes from previous-posts/YYYY-MM-DD when a daily archive exists",
-      "  - Falls back to plans/YYYY-Www/plan.json plus weeks/YYYY-Www assets when needed",
+      "  - Publishes from previous-posts/YYYY-MM-DD",
       "",
       "Environment:",
       "  LINKEDIN_ACCESS_TOKEN    OAuth access token with LinkedIn posting permissions",
@@ -108,20 +82,8 @@ function requireEnv(name) {
   return value;
 }
 
-function getPlanPath(args) {
-  return args.plan || path.join(REPO_ROOT, "plans", args.week, "plan.json");
-}
-
 function getDailyPostDir(args) {
   return path.join(args.dateRoot, args.date);
-}
-
-function getPostOutputDir(plan, post, weeksRoot) {
-  return path.join(weeksRoot, plan.week, post.slot);
-}
-
-function getPublicationStatePath(plan, post, weeksRoot) {
-  return path.join(getPostOutputDir(plan, post, weeksRoot), "linkedin-publication.json");
 }
 
 function resolveArchivedDailyPost(args) {
@@ -141,34 +103,6 @@ function resolveArchivedDailyPost(args) {
     publicationPath,
     summaryLabel: args.date,
     type: "daily-archive",
-  };
-}
-
-function resolveWeeklyPost(args) {
-  const planPath = getPlanPath(args);
-
-  if (!fs.existsSync(planPath)) {
-    throw new Error(`Weekly plan not found: ${planPath}`);
-  }
-
-  const plan = readJson(planPath);
-  if (!plan.week) {
-    throw new Error(`Plan is not a weekly plan: ${planPath}`);
-  }
-
-  const post = plan.posts.find((entry) => entry.planned_date === args.date);
-  if (!post) {
-    return null;
-  }
-
-  return {
-    imagePath: path.join(getPostOutputDir(plan, post, args.weeksRoot), "social-card@2x.png"),
-    outputDir: getPostOutputDir(plan, post, args.weeksRoot),
-    plan,
-    post,
-    publicationPath: getPublicationStatePath(plan, post, args.weeksRoot),
-    summaryLabel: plan.week,
-    type: "weekly-plan",
   };
 }
 
@@ -285,10 +219,10 @@ async function createLinkedInPost({ authorUrn, commentary, imageUrn, altText, to
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
-  const resolved = resolveArchivedDailyPost(args) || resolveWeeklyPost(args);
+  const resolved = resolveArchivedDailyPost(args);
 
   if (!resolved) {
-    process.stdout.write(`No LinkedIn post content found for ${args.date}.\n`);
+    process.stdout.write(`No archived daily LinkedIn post content found for ${args.date}.\n`);
     return;
   }
   const {
@@ -361,7 +295,7 @@ async function main() {
     slot: post.slot,
     status: created.status,
     source: type,
-    week: resolved.plan ? resolved.plan.week : null,
+    week: null,
   });
 
   process.stdout.write(

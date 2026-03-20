@@ -42,11 +42,11 @@ function printHelp() {
   process.stdout.write(
     [
       "Usage:",
-      "  node scripts/generate-social-post.js --plan plans/2026-W12/plan.json",
-      "  node scripts/generate-social-post.js --plan plans/2026-W12/plan.json --post-id monday",
+      "  node scripts/generate-social-post.js --plan plans/2026-03/plan.json",
+      "  node scripts/generate-social-post.js --plan plans/2026-03/plan.json --post-id week-1",
       "",
       "Behavior:",
-      "  - Renders posts from a generated weekly or monthly plan",
+      "  - Renders posts from a generated monthly plan",
       "  - Uses the existing mobile or desktop template based on the selected screenshot",
       "  - Writes PNG, HTML, TXT, and JSON output for each post",
       "",
@@ -57,8 +57,11 @@ function printHelp() {
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const plan = readJson(args.plan);
-  const periodKey = plan.week || plan.month;
-  const periodDir = plan.week ? "weeks" : "months";
+  if (!plan.month) {
+    throw new Error(`Expected a monthly plan at ${args.plan}.`);
+  }
+  const periodKey = plan.month;
+  const periodDir = "months";
 
   if (args.postId) {
     const post = plan.posts.find((entry) => entry.slot === args.postId);
