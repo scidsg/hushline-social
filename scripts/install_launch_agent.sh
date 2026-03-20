@@ -209,6 +209,7 @@ Logs:
 - $REPO_DIR/logs/daily-planner.stderr.log
 - $REPO_DIR/logs/linkedin-daily.stdout.log
 - $REPO_DIR/logs/linkedin-daily.stderr.log
+- $REPO_DIR/logs/social-daily.log
 
 Next steps:
 - env file: $ENV_FILE

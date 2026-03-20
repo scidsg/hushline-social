@@ -28,6 +28,7 @@ Weekend dates are intentionally skipped by both the launchd wrappers and the dir
 - screenshot source: `../hushline-screenshots/releases/latest`
 - daily archive root: `previous-posts`
 - launchd env file: `.env.launchd`
+- combined live log: `logs/social-daily.log`
 
 ## Manual Runs
 
@@ -45,6 +46,13 @@ For a specific weekday:
 cd /Users/scidsg/hushline-social
 ./scripts/run_daily_planner_launchd.sh --date YYYY-MM-DD
 ./scripts/run_daily_linkedin_launchd.sh --date YYYY-MM-DD
+```
+
+To monitor both launchd jobs from one terminal:
+
+```sh
+cd /Users/scidsg/hushline-social
+tail -n 50 -f logs/social-daily.log
 ```
 
 ## Launchd Install

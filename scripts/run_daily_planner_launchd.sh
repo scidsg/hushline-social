@@ -5,6 +5,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 LOCK_DIR="$REPO_DIR/.tmp/daily-planner.lock"
 ENV_FILE="${HUSHLINE_SOCIAL_ENV_FILE:-$REPO_DIR/.env.launchd}"
+COMBINED_LOG_FILE="${HUSHLINE_SOCIAL_COMBINED_LOG_FILE:-$REPO_DIR/logs/social-daily.log}"
 AUTO_GIT_PULL="${HUSHLINE_SOCIAL_GIT_PULL:-1}"
 AUTO_GIT_CLEAN="${HUSHLINE_SOCIAL_GIT_CLEAN:-1}"
 
@@ -12,6 +13,12 @@ export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:${PA
 
 cleanup() {
   rmdir "$LOCK_DIR" >/dev/null 2>&1 || true
+}
+
+setup_log_capture() {
+  mkdir -p "$(dirname "$COMBINED_LOG_FILE")"
+  exec > >(tee -a "$COMBINED_LOG_FILE")
+  exec 2> >(tee -a "$COMBINED_LOG_FILE" >&2)
 }
 
 effective_date() {
@@ -93,6 +100,9 @@ if [[ -f "$ENV_FILE" ]]; then
   . "$ENV_FILE"
   set +a
 fi
+
+setup_log_capture
+echo "[$(date '+%Y-%m-%d %H:%M:%S %Z')] Starting daily social planner wrapper."
 
 skip_if_weekend "$@"
 
