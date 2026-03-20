@@ -1,0 +1,83 @@
+name: Policy Smoke
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  policy:
+    runs-on: macos-latest
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Create fake Codex binary for prereq checks
+        run: |
+          mkdir -p .tmp/ci-bin
+          cat > .tmp/ci-bin/codex <<'EOF'
+          #!/usr/bin/env bash
+          exit 0
+          EOF
+          chmod +x .tmp/ci-bin/codex
+          echo "$PWD/.tmp/ci-bin" >> "$GITHUB_PATH"
+
+      - name: Verify weekday helpers
+        run: |
+          node -e 'const {isWeekendDate,getWeekdayLabel}=require("./scripts/lib/social-common"); for (const day of [["2026-03-20","friday",false],["2026-03-21","saturday",true],["2026-03-22","sunday",true]]) { const [date,label,isWeekend]=day; if (getWeekdayLabel(date)!==label || isWeekendDate(date)!==isWeekend) { throw new Error(`weekday helper mismatch for ${date}`); } }'
+
+      - name: Weekend planner wrapper skips cleanly
+        run: |
+          output="$(HUSHLINE_SOCIAL_GIT_PULL=0 ./scripts/run_daily_planner_launchd.sh --date 2026-03-21)"
+          printf '%s\n' "$output"
+          [[ "$output" == *"Skipping daily social planner for weekend date 2026-03-21."* ]]
+
+      - name: Weekend publisher wrapper skips cleanly
+        run: |
+          output="$(./scripts/run_daily_linkedin_launchd.sh --date 2026-03-21)"
+          printf '%s\n' "$output"
+          [[ "$output" == *"Skipping daily LinkedIn publisher for weekend date 2026-03-21."* ]]
+
+      - name: Direct planner rejects weekend dates
+        run: |
+          set +e
+          output="$(node scripts/plan-day.js --date 2026-03-21 2>&1)"
+          status=$?
+          set -e
+          printf '%s\n' "$output"
+          test "$status" -ne 0
+          [[ "$output" == *"Weekend dates are excluded from the daily planner"* ]]
+
+      - name: Direct publisher rejects weekend dates cleanly
+        run: |
+          output="$(node scripts/publish-daily-linkedin.js --date 2026-03-21 --dry-run)"
+          printf '%s\n' "$output"
+          [[ "$output" == *"Skipping LinkedIn publication for weekend date 2026-03-21 (saturday)."* ]]
+
+      - name: Daemon prereq check fails cleanly when env is incomplete
+        run: |
+          cat > .tmp/incomplete.env <<'EOF'
+          LINKEDIN_ACCESS_TOKEN=test-token
+          LINKEDIN_AUTHOR_URN=urn:li:organization:123
+          EOF
+          chmod 600 .tmp/incomplete.env
+          set +e
+          output="$(./scripts/check_launchd_prereqs.sh --scope daemon --env-file .tmp/incomplete.env 2>&1)"
+          status=$?
+          set -e
+          printf '%s\n' "$output"
+          test "$status" -ne 0
+          [[ "$output" == *"daemon mode requires OPENAI_API_KEY"* ]]
+          [[ "$output" == *"daemon mode requires HUSHLINE_SOCIAL_GITHUB_TOKEN"* ]]
+          [[ "$output" == *"daemon mode requires HUSHLINE_SOCIAL_GIT_SIGNING_KEY_PUB"* ]]

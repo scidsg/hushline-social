@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "check:docs-drift": "node scripts/check-docs-drift.js",
     "check:launchd": "./scripts/check_launchd_prereqs.sh",
     "plan:day:agent": "./scripts/agent_daily_social_planner.sh",
     "plan:day": "node scripts/plan-day.js",

@@ -1,0 +1,39 @@
+name: Docs Drift
+
+on:
+  pull_request:
+    paths:
+      - README.md
+      - AGENTS.md
+      - package.json
+      - scripts/check-docs-drift.js
+      - deploy/launchd/*.plist
+  push:
+    branches:
+      - main
+    paths:
+      - README.md
+      - AGENTS.md
+      - package.json
+      - scripts/check-docs-drift.js
+      - deploy/launchd/*.plist
+
+jobs:
+  docs-drift:
+    runs-on: macos-latest
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify docs and schedules stay in sync
+        run: npm run check:docs-drift
