@@ -165,7 +165,7 @@ Current default launchd schedule in this repo:
 
 Keep the publisher scheduled after the planner with enough buffer for rendering, archive writes, and local state updates.
 
-By default, the daily planner wrapper performs `git pull --ff-only` before planning. If tracked repo changes are already present locally, the planner should fail rather than pulling over a dirty checkout. Set `HUSHLINE_SOCIAL_GIT_PULL=0` only when intentionally skipping that update step.
+By default, the daily planner wrapper performs `git pull --ff-only` before planning. By default it also discards dirty tracked changes with `git reset --hard HEAD` and removes untracked non-ignored files with `git clean -fd` before that pull. Set `HUSHLINE_SOCIAL_GIT_PULL=0` only when intentionally skipping the update step. Set `HUSHLINE_SOCIAL_GIT_CLEAN=0` if you want the planner to fail on a dirty checkout instead of resetting it.
 
 ## Publication State Rules
 

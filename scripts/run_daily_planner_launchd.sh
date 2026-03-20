@@ -6,6 +6,7 @@ REPO_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 LOCK_DIR="$REPO_DIR/.tmp/daily-planner.lock"
 ENV_FILE="${HUSHLINE_SOCIAL_ENV_FILE:-$REPO_DIR/.env.launchd}"
 AUTO_GIT_PULL="${HUSHLINE_SOCIAL_GIT_PULL:-1}"
+AUTO_GIT_CLEAN="${HUSHLINE_SOCIAL_GIT_CLEAN:-1}"
 
 export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:${PATH:-}"
 
@@ -19,14 +20,26 @@ update_repo() {
     return
   fi
 
-  if ! git -C "$REPO_DIR" diff --quiet --ignore-submodules HEAD --; then
-    echo "Refusing to git pull with unstaged tracked changes in $REPO_DIR." >&2
-    exit 1
-  fi
+  if [[ "$AUTO_GIT_CLEAN" == "1" ]]; then
+    echo "Resetting tracked changes before daily planning."
+    git -C "$REPO_DIR" reset --hard HEAD
+    echo "Removing untracked files before daily planning."
+    git -C "$REPO_DIR" clean -fd
+  else
+    if ! git -C "$REPO_DIR" diff --quiet --ignore-submodules HEAD --; then
+      echo "Refusing to git pull with unstaged tracked changes in $REPO_DIR." >&2
+      exit 1
+    fi
 
-  if ! git -C "$REPO_DIR" diff --cached --quiet --ignore-submodules --; then
-    echo "Refusing to git pull with staged changes in $REPO_DIR." >&2
-    exit 1
+    if ! git -C "$REPO_DIR" diff --cached --quiet --ignore-submodules --; then
+      echo "Refusing to git pull with staged changes in $REPO_DIR." >&2
+      exit 1
+    fi
+
+    if [[ -n "$(git -C "$REPO_DIR" ls-files --others --exclude-standard)" ]]; then
+      echo "Refusing to git pull with untracked files in $REPO_DIR." >&2
+      exit 1
+    fi
   fi
 
   echo "Running git pull --ff-only before daily planning."
