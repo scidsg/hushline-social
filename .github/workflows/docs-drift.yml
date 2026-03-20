@@ -1,12 +1,14 @@
 name: Docs Drift
 
 on:
+  workflow_dispatch:
   pull_request:
     paths:
       - README.md
       - AGENTS.md
       - package.json
       - scripts/check-docs-drift.js
+      - .github/workflows/*.yml
       - deploy/launchd/*.plist
   push:
     branches:
@@ -16,6 +18,7 @@ on:
       - AGENTS.md
       - package.json
       - scripts/check-docs-drift.js
+      - .github/workflows/*.yml
       - deploy/launchd/*.plist
 
 jobs:
