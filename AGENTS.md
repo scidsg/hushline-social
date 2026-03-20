@@ -92,13 +92,38 @@ Rules:
 
 - social copy must be end-user-facing
 - alt text must be separate from social copy
+- do not include alt text inside post copy
 - no marketing-speak
 - no filler
-- no duplicate copy pasted across all three networks
-- same core message, adapted natively per network
-- posts must end with a relevant call-to-action for the post, for example:
-  - Sign up at https://hushline.app/.
-  - Learn more at https://hushline.app/.
+- avoid hype, superlatives, and vague claims
+- do not paste the exact same copy across all three networks
+- keep the same core message across platforms, but adapt phrasing natively for each network
+- match the copy to the screenshot and its audience context
+- if the screenshot is admin-only, explicitly say so in the copy
+- every post must end with a relevant CTA for that specific post, such as:
+  - `Sign up at https://hushline.app.`
+  - `Learn more at https://hushline.app.`
+
+Structure:
+
+- posts should be written in `2–3 short paragraphs`
+- separate paragraphs with a blank line
+- each paragraph should express one clear idea
+- paragraph 1 should open with a concrete, human, user-relevant point
+- paragraph 2 should explain the feature, workflow, or value shown in the screenshot
+- paragraph 3, if used, should be a short CTA or closing line
+- do not write wall-of-text captions
+- do not write in bullets, threads, or slogan fragments unless explicitly requested
+
+Example:
+
+```text
+Whistleblowers often face the hardest moment at the very beginning: where to go and who to trust.
+
+Hush Line now includes a directory of public-record law firms that support whistleblowers across jurisdictions. It helps people identify legitimate organizations before they disclose sensitive information.
+
+Learn more at https://hushline.app.
+```
 
 ## Character Limits
 
