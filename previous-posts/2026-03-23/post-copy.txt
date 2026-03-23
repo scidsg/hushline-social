@@ -1,0 +1,33 @@
+Slot: monday
+Planned date: 2026-03-23
+Template: mobile
+Screenshot: /Users/scidsg/hushline-screenshots/releases/latest/guest/guest-directory-attorneys-applied-filters-mobile-light-fold.png
+Content key: guest-directory-attorneys-applied-filters
+Headline: Filter attorney listings before you send anything sensitive
+Subtext: The public directory lets sources narrow attorney profiles by location so they can compare recipients before reaching out.
+
+Image alt text
+Social graphic built around a mobile Hush Line directory screen filtered to attorney listings in California. The image shows active location filters at the top and a scrollable list of public attorney profiles below.
+
+Social post copy
+
+LinkedIn (375/3000)
+If you're looking for a lawyer to contact through Hush Line, the hard part is often narrowing the field before you share anything sensitive.
+
+The public directory now gives that search a clearer path with attorney listings you can filter by location, so you can compare recipients in the place you need instead of scanning a generic list.
+
+Learn more at https://hushline.app.
+
+Mastodon (269/500)
+If you need legal help before you share sensitive information, starting with the right recipient matters.
+
+Hush Line's public directory lets you filter attorney listings by location, so you can narrow the list before you send a tip.
+
+Learn more at https://hushline.app.
+
+Bluesky (214/300)
+Need legal help before you send a tip?
+
+Hush Line's public directory lets you filter attorney listings by location, so you can narrow the list before sharing anything sensitive.
+
+Learn more at https://hushline.app.

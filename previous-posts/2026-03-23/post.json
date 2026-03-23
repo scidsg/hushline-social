@@ -1,0 +1,48 @@
+{
+  "slot": "monday",
+  "planned_date": "2026-03-23",
+  "screenshot_file": "guest/guest-directory-attorneys-applied-filters-mobile-light-fold.png",
+  "content_key": "guest-directory-attorneys-applied-filters",
+  "headline": "Filter attorney listings before you send anything sensitive",
+  "subtext": "The public directory lets sources narrow attorney profiles by location so they can compare recipients before reaching out.",
+  "image_alt_text": "Social graphic built around a mobile Hush Line directory screen filtered to attorney listings in California. The image shows active location filters at the top and a scrollable list of public attorney profiles below.",
+  "social": {
+    "bluesky": "Need legal help before you send a tip?\n\nHush Line's public directory lets you filter attorney listings by location, so you can narrow the list before sharing anything sensitive.\n\nLearn more at https://hushline.app.",
+    "linkedin": "If you're looking for a lawyer to contact through Hush Line, the hard part is often narrowing the field before you share anything sensitive.\n\nThe public directory now gives that search a clearer path with attorney listings you can filter by location, so you can compare recipients in the place you need instead of scanning a generic list.\n\nLearn more at https://hushline.app.",
+    "mastodon": "If you need legal help before you share sensitive information, starting with the right recipient matters.\n\nHush Line's public directory lets you filter attorney listings by location, so you can narrow the list before you send a tip.\n\nLearn more at https://hushline.app."
+  },
+  "rationale": "This screenshot uses the latest public release and turns recent directory work into a concrete source-facing workflow. PR #1771 improved attorney directory copy, PR #1788 strengthened directory trust and ordering, and PR #1765 fixed the guest screenshot path. Focusing on filtered attorney results also avoids repeating the previous verified-directory post while still matching a documented Hush Line user need: helping sources find a trustworthy lawyer or other recipient before they disclose.",
+  "source_pr_numbers": [
+    1771,
+    1788,
+    1765
+  ],
+  "audience_scope": "public",
+  "concept_key": "directory-attorneys-applied-filters",
+  "copy_brief": "Write for sources and public users evaluating or using Hush Line.",
+  "matched_pull_requests": [
+    {
+      "merged_at": "2026-03-22T21:51:47Z",
+      "number": 1788,
+      "title": "Warn on suspicious directory names and move them to the bottom"
+    },
+    {
+      "merged_at": "2026-03-22T20:31:18Z",
+      "number": 1787,
+      "title": "Seed a Korean dev directory account"
+    },
+    {
+      "merged_at": "2026-03-20T21:03:40Z",
+      "number": 1771,
+      "title": "Update directory tab copy for Attorneys, SecureDrop, and GlobaLeaks"
+    },
+    {
+      "merged_at": "2026-03-19T17:56:37Z",
+      "number": 1765,
+      "title": "Fix guest screenshot"
+    }
+  ],
+  "theme": "light",
+  "title": "Directory - Attorneys (applied filters)",
+  "viewport": "mobile"
+}
