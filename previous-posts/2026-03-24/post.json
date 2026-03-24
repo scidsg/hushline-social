@@ -1,0 +1,42 @@
+{
+  "slot": "tuesday",
+  "planned_date": "2026-03-24",
+  "screenshot_file": "newman/auth-newman-onboarding-directory-mobile-light-fold.png",
+  "content_key": "auth-newman-onboarding-directory",
+  "headline": "Choose whether sources can find your tip line",
+  "subtext": "The final onboarding step lets recipients join the public directory, so sources can verify they reached the right person before they send a message.",
+  "image_alt_text": "Social graphic built around a mobile Hush Line onboarding screen. The card shows step 4 of 4 with the heading \"Finally, join the Whistleblower Support Directory!\" and a toggle labeled \"Show on public directory,\" with Finish and Skip setup buttons below.",
+  "social": {
+    "bluesky": "Before you share your tip line, decide whether people should be able to find it in Hush Line's public directory.\n\nThe last onboarding step lets you turn that on right away, so sources can verify they reached the right person.\n\nSign up at https://hushline.app.",
+    "linkedin": "Before you share a Hush Line profile, decide whether people should be able to find it in the public directory.\n\nThe last onboarding step lets journalists, lawyers, educators, organizers, and other trusted recipients turn directory visibility on right away, so sources can verify they reached the right person before they send anything sensitive.\n\nLearn more at https://hushline.app.",
+    "mastodon": "Before you share your tip line, decide whether people should be able to find it in Hush Line's public directory.\n\nThe last onboarding step lets recipients turn directory visibility on right away, so sources can verify they reached the right person before they send anything sensitive.\n\nLearn more at https://hushline.app."
+  },
+  "rationale": "This choice avoids repeating yesterday's public directory browsing angle while still using the latest screenshot release and recent directory work from PRs #1788 and #1787. The screen shows a concrete recipient decision that matches Hush Line's docs: directory visibility and public profile details help sources find the right person and confirm they reached the right tip line before disclosing.",
+  "source_pr_numbers": [
+    1788,
+    1787
+  ],
+  "audience_scope": "recipient-shared",
+  "concept_key": "onboarding-directory",
+  "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+  "matched_pull_requests": [
+    {
+      "merged_at": "2026-03-24T06:01:41Z",
+      "number": 1797,
+      "title": "Add local contributor onboarding prompt"
+    },
+    {
+      "merged_at": "2026-03-22T21:51:47Z",
+      "number": 1788,
+      "title": "Warn on suspicious directory names and move them to the bottom"
+    },
+    {
+      "merged_at": "2026-03-22T20:31:18Z",
+      "number": 1787,
+      "title": "Seed a Korean dev directory account"
+    }
+  ],
+  "theme": "light",
+  "title": "Onboarding - Step 4 Directory (newman)",
+  "viewport": "mobile"
+}

@@ -1,0 +1,33 @@
+Slot: tuesday
+Planned date: 2026-03-24
+Template: mobile
+Screenshot: /Users/scidsg/hushline-screenshots/releases/latest/newman/auth-newman-onboarding-directory-mobile-light-fold.png
+Content key: auth-newman-onboarding-directory
+Headline: Choose whether sources can find your tip line
+Subtext: The final onboarding step lets recipients join the public directory, so sources can verify they reached the right person before they send a message.
+
+Image alt text
+Social graphic built around a mobile Hush Line onboarding screen. The card shows step 4 of 4 with the heading "Finally, join the Whistleblower Support Directory!" and a toggle labeled "Show on public directory," with Finish and Skip setup buttons below.
+
+Social post copy
+
+LinkedIn (382/3000)
+Before you share a Hush Line profile, decide whether people should be able to find it in the public directory.
+
+The last onboarding step lets journalists, lawyers, educators, organizers, and other trusted recipients turn directory visibility on right away, so sources can verify they reached the right person before they send anything sensitive.
+
+Learn more at https://hushline.app.
+
+Mastodon (321/500)
+Before you share your tip line, decide whether people should be able to find it in Hush Line's public directory.
+
+The last onboarding step lets recipients turn directory visibility on right away, so sources can verify they reached the right person before they send anything sensitive.
+
+Learn more at https://hushline.app.
+
+Bluesky (259/300)
+Before you share your tip line, decide whether people should be able to find it in Hush Line's public directory.
+
+The last onboarding step lets you turn that on right away, so sources can verify they reached the right person.
+
+Sign up at https://hushline.app.
