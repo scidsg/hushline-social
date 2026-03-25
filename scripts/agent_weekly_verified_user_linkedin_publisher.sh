@@ -10,6 +10,16 @@ FORCE=0
 WAIT_SECONDS="${HUSHLINE_SOCIAL_VERIFIED_USER_PUBLISH_WAIT_SECONDS:-600}"
 WAIT_INTERVAL_SECONDS="${HUSHLINE_SOCIAL_VERIFIED_USER_PUBLISH_WAIT_INTERVAL_SECONDS:-5}"
 
+require_positive_integer() {
+  local value="$1"
+  local name="$2"
+
+  if [[ ! "$value" =~ ^[0-9]+$ ]] || (( value <= 0 )); then
+    echo "$name must be a positive integer; got: $value" >&2
+    exit 1
+  fi
+}
+
 parse_args() {
   while [[ $# -gt 0 ]]; do
     case "$1" in
@@ -86,6 +96,8 @@ wait_for_archive() {
 
 main() {
   parse_args "$@"
+  require_positive_integer "$WAIT_SECONDS" "HUSHLINE_SOCIAL_VERIFIED_USER_PUBLISH_WAIT_SECONDS"
+  require_positive_integer "$WAIT_INTERVAL_SECONDS" "HUSHLINE_SOCIAL_VERIFIED_USER_PUBLISH_WAIT_INTERVAL_SECONDS"
   wait_for_archive
 
   local -a cmd=(node scripts/publish-daily-linkedin.js --date-root previous-verified-user-posts --allow-weekend)
