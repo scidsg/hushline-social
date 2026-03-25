@@ -3,13 +3,14 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
-ARCHIVE_PUSH_ENABLED="${HUSHLINE_SOCIAL_ARCHIVE_PUSH:-1}"
+ARCHIVE_PUSH_ENABLED="${HUSHLINE_SOCIAL_VERIFIED_USER_PUSH_ON_RENDER:-0}"
 
 DATE="$(date +%Y-%m-%d)"
 SOURCE=""
 BASE_URL=""
 NO_RENDER=0
 NO_PUSH=0
+FORCE_PUSH=0
 
 parse_args() {
   while [[ $# -gt 0 ]]; do
@@ -34,6 +35,10 @@ parse_args() {
         NO_PUSH=1
         shift
         ;;
+      --push-render-archive)
+        FORCE_PUSH=1
+        shift
+        ;;
       --help|-h)
         cat <<'EOF'
 Usage:
@@ -43,7 +48,8 @@ Behavior:
   - Builds one verified-user social card for the requested date
   - Reads a verified directory JSON file or URL
   - Renders the selected user's URL and QR code into previous-verified-user-posts/YYYY-MM-DD
-  - Optionally stages, commits, and pushes that weekly archive folder
+  - Keeps the weekly archive local by default
+  - Pushes the weekly archive only when --push-render-archive is passed or HUSHLINE_SOCIAL_VERIFIED_USER_PUSH_ON_RENDER=1
 EOF
         exit 0
         ;;
@@ -65,7 +71,12 @@ build_post() {
 }
 
 push_archive() {
-  if (( NO_PUSH == 1 )) || [[ "$ARCHIVE_PUSH_ENABLED" != "1" ]]; then
+  if (( NO_PUSH == 1 )); then
+    echo "Archive push skipped."
+    return
+  fi
+
+  if (( FORCE_PUSH == 0 )) && [[ "$ARCHIVE_PUSH_ENABLED" != "1" ]]; then
     echo "Archive push skipped."
     return
   fi

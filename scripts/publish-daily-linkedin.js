@@ -4,12 +4,12 @@
 
 const fs = require("fs");
 const path = require("path");
+const { execFileSync } = require("child_process");
 const {
   REPO_ROOT,
   getWeekdayLabel,
   isWeekendDate,
   readJson,
-  writeJson,
 } = require("./lib/social-common");
 
 function todayString() {
@@ -94,11 +94,51 @@ function getDailyPostDir(args) {
   return path.join(args.dateRoot, args.date);
 }
 
+function getRepoArchiveRootName(args) {
+  const resolvedDateRoot = path.resolve(args.dateRoot);
+
+  if (resolvedDateRoot === path.join(REPO_ROOT, "previous-posts")) {
+    return "previous-posts";
+  }
+
+  if (resolvedDateRoot === path.join(REPO_ROOT, "previous-verified-user-posts")) {
+    return "previous-verified-user-posts";
+  }
+
+  return null;
+}
+
+function remoteArchivePublished(args) {
+  const archiveRootName = getRepoArchiveRootName(args);
+
+  if (!archiveRootName) {
+    return { published: false };
+  }
+
+  const remote = process.env.HUSHLINE_SOCIAL_ARCHIVE_REMOTE || "origin";
+  const branch = process.env.HUSHLINE_SOCIAL_ARCHIVE_BRANCH || "main";
+  const archivePath = `${archiveRootName}/${args.date}/post.json`;
+  const remoteRef = `refs/remotes/${remote}/${branch}`;
+
+  try {
+    execFileSync("git", ["fetch", "--quiet", remote, `${branch}:${remoteRef}`], {
+      cwd: REPO_ROOT,
+      stdio: "ignore",
+    });
+    execFileSync("git", ["cat-file", "-e", `${remote}/${branch}:${archivePath}`], {
+      cwd: REPO_ROOT,
+      stdio: "ignore",
+    });
+    return { archiveRootName, branch, published: true, remote };
+  } catch {
+    return { archiveRootName, branch, published: false, remote };
+  }
+}
+
 function resolveArchivedDailyPost(args) {
   const outputDir = getDailyPostDir(args);
   const postPath = path.join(outputDir, "post.json");
   const imagePath = path.join(outputDir, "social-card@2x.png");
-  const publicationPath = path.join(outputDir, "linkedin-publication.json");
   const archiveRootName = path.basename(args.dateRoot);
 
   if (!fs.existsSync(postPath)) {
@@ -109,7 +149,6 @@ function resolveArchivedDailyPost(args) {
     imagePath,
     outputDir,
     post: readJson(postPath),
-    publicationPath,
     summaryLabel: args.date,
     type: archiveRootName === "previous-verified-user-posts" ? "verified-user-archive" : "daily-archive",
   };
@@ -243,19 +282,21 @@ async function main() {
   const {
     imagePath,
     post,
-    publicationPath,
     summaryLabel,
     type,
   } = resolved;
+  const remotePublished = remoteArchivePublished(args);
 
   if (!fs.existsSync(imagePath)) {
     throw new Error(`Rendered image not found for ${post.slot}: ${imagePath}`);
   }
 
-  if (fs.existsSync(publicationPath) && !args.force) {
-    const state = readJson(publicationPath);
+  if (remotePublished.published && !args.force) {
+    const archiveLabel = remotePublished.archiveRootName === "previous-verified-user-posts"
+      ? "Verified-user archive"
+      : "Daily archive";
     process.stdout.write(
-      `LinkedIn post for ${post.slot} on ${args.date} already published: ${state.post_id || "unknown"}\n`,
+      `${archiveLabel} for ${args.date} is already present on ${remotePublished.remote}/${remotePublished.branch}; assuming LinkedIn post already published.\n`,
     );
     return;
   }
@@ -299,20 +340,6 @@ async function main() {
     version,
   });
 
-  writeJson(publicationPath, {
-    author_urn: authorUrn,
-    commentary: post.social.linkedin,
-    image_path: path.relative(REPO_ROOT, imagePath),
-    image_urn: imageUrn,
-    planned_date: post.planned_date,
-    post_id: created.postId,
-    posted_at: new Date().toISOString(),
-    slot: post.slot,
-    status: created.status,
-    source: type,
-    week: null,
-  });
-
   process.stdout.write(
     [
       `Published LinkedIn post for ${post.slot}`,
@@ -320,7 +347,6 @@ async function main() {
       `- container: ${summaryLabel}`,
       `- planned date: ${post.planned_date}`,
       `- post id: ${created.postId || "unknown"}`,
-      `- publication record: ${path.relative(REPO_ROOT, publicationPath)}`,
       "",
     ].join("\n"),
   );
