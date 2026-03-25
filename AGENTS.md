@@ -36,6 +36,13 @@ Use these sources when planning:
 
 Do not treat old archived screenshot releases as the primary source when planning new content.
 
+For verified-user weekly posts:
+
+- poll the live verified-user directory source on each production run
+- assume verified users can be added, removed, or updated at any time
+- do not rely on a stale local snapshot for production selection
+- use a local JSON file only for explicit tests, debugging, or fixture-based verification
+
 ## Screenshot Selection Rules
 
 - Use screenshots from the `latest` folder only.
@@ -103,6 +110,23 @@ Rules:
 - every post must end with a relevant CTA for that specific post, such as:
   - `Sign up at https://hushline.app.`
   - `Learn more at https://hushline.app.`
+
+Verified-user weekly copy style:
+
+- write the opening sentence around the selected person, not around Hush Line
+- every verified-user post should begin with exactly `🤩 Verified Member Highlight!`
+- that opening line must be followed by a blank line before the person-specific copy starts
+- start with the person's name and role or beat, for example `James is an investigative journalist covering national security and politics.`
+- keep the copy plain and direct
+- do not frame the post as a generic "verified profile" announcement
+- do not lead with trust-language, platform-language, or marketing-language
+- the CTA should directly tell people how to send that person a tip
+- prefer CTA lines in this form:
+  - `To send James a tip, go to https://tips.hushline.app/to/james.`
+  - `To send James a tip, visit https://tips.hushline.app/to/james.`
+- when the source bio is written in first person, rewrite it into third person before using it in social copy
+- keep the same core sentence structure across networks, with minor native phrasing changes only
+- alt text still stays separate from the social copy
 
 Structure:
 

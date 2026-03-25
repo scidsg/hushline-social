@@ -11,7 +11,8 @@ This repo plans one post per publish date from current local Hush Line context, 
 - writes network-specific copy plus separate image alt text
 - renders the final `@2x` PNG asset into `previous-posts/YYYY-MM-DD`
 - records LinkedIn publication state to prevent duplicate posting
-- renders one weekly verified-user social card from directory JSON into `previous-verified-user-posts/YYYY-MM-DD`
+- renders one weekly verified-user post archive from directory JSON into `previous-verified-user-posts/YYYY-MM-DD`
+- writes network-specific copy, alt text, and a `post-copy.txt` alongside the verified-user card assets
 - fills the verified-user template with display name, bio, direct `/to/...` URL, and a matching QR code
 
 ## Schedule
