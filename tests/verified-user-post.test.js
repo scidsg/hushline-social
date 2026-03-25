@@ -11,6 +11,7 @@ const {
   prepareVerifiedUserRun,
   renderHtml,
   selectVerifiedUser,
+  validateVerifiedUserSocialParagraphs,
 } = require("../scripts/lib/verified-user-post");
 
 const SAMPLE_USERS = [
@@ -104,20 +105,20 @@ test("selectVerifiedUser rejects duplicate picks once every verified user has al
   );
 });
 
-test("prepareVerifiedUserRun rejects non-Monday dates", async () => {
+test("prepareVerifiedUserRun allows manual non-Monday dates", async () => {
   const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "verified-user-post-"));
   const sourcePath = path.join(tempRoot, "users.json");
   fs.writeFileSync(sourcePath, `${JSON.stringify(SAMPLE_USERS, null, 2)}\n`);
 
-  await assert.rejects(
-    () => prepareVerifiedUserRun({
+  const run = await prepareVerifiedUserRun({
       baseUrl: "https://tips.hushline.app",
       date: "2026-03-31",
       noRender: true,
       source: sourcePath,
-    }),
-    /run only on Mondays/,
-  );
+    });
+
+  assert.equal(run.date, "2026-03-31");
+  assert.equal(run.selectedUser.primary_username, "verified-user-b");
 });
 
 test("prepareVerifiedUserRun selects the next user after archive history", async () => {
@@ -167,4 +168,19 @@ test("renderHtml injects the selected user text and QR filename", () => {
   assert.match(html, /Investigative editor focused on energy and utilities\./);
   assert.match(html, /https:\/\/tips\.hushline\.app\/to\/verified-user-b/);
   assert.match(html, /\.\/verified-user-qr\.png/);
+});
+
+test("validateVerifiedUserSocialParagraphs rejects capitalized first-person copy", () => {
+  assert.throws(
+    () => validateVerifiedUserSocialParagraphs({
+      bluesky: "Verified User B is an investigative editor.",
+      linkedin: "We report on labor issues.",
+      mastodon: "Verified User B is an investigative editor.",
+    }, {
+      display_name: "Verified User B",
+      primary_username: "verified-user-b",
+      user_url: "https://tips.hushline.app/to/verified-user-b",
+    }),
+    /must not use first-person language/,
+  );
 });

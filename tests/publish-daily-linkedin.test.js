@@ -20,6 +20,41 @@ test("publisher skips weekend dates cleanly", () => {
   assert.match(output, /Skipping LinkedIn publication for weekend date 2026-03-21 \(saturday\)\./);
 });
 
+test("publisher allows explicit weekend overrides for verified-user archives", () => {
+  const tempRootParent = fs.mkdtempSync(path.join(os.tmpdir(), "linkedin-publish-"));
+  const tempRoot = path.join(tempRootParent, "previous-verified-user-posts");
+  const postDir = path.join(tempRoot, "2026-03-21");
+  fs.mkdirSync(postDir, { recursive: true });
+
+  fs.writeFileSync(
+    path.join(postDir, "post.json"),
+    JSON.stringify({
+      slot: "verified-user-weekly",
+      planned_date: "2026-03-21",
+      image_alt_text: "A rendered verified-user social card.",
+      social: {
+        linkedin: "🤩 Verified Member Highlight!\n\nJordan is an investigative reporter.\n\nTo send Jordan a tip, go to https://tips.hushline.app/to/jordan.",
+      },
+    }),
+  );
+  fs.writeFileSync(path.join(postDir, "social-card@2x.png"), "png");
+
+  try {
+    const output = runPublisher([
+      "--date",
+      "2026-03-21",
+      "--date-root",
+      tempRoot,
+      "--allow-weekend",
+      "--dry-run",
+    ]);
+    assert.match(output, /Dry run: LinkedIn publication prepared for 2026-03-21/);
+    assert.match(output, /source: verified-user-archive/);
+  } finally {
+    fs.rmSync(tempRootParent, { force: true, recursive: true });
+  }
+});
+
 test("publisher respects the local duplicate-post guard before attempting any network call", () => {
   const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "linkedin-publish-"));
   const postDir = path.join(tempRoot, "2026-03-20");

@@ -40,7 +40,7 @@ Usage:
   ./scripts/agent_weekly_verified_user_runner.sh --date 2026-03-30
 
 Behavior:
-  - Builds one verified-user social card for the requested Monday
+  - Builds one verified-user social card for the requested date
   - Reads a verified directory JSON file or URL
   - Renders the selected user's URL and QR code into previous-verified-user-posts/YYYY-MM-DD
   - Optionally stages, commits, and pushes that weekly archive folder

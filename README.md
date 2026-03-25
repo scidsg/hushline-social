@@ -14,6 +14,7 @@ This repo plans one post per publish date from current local Hush Line context, 
 - renders one weekly verified-user post archive from directory JSON into `previous-verified-user-posts/YYYY-MM-DD`
 - writes network-specific copy, alt text, and a `post-copy.txt` alongside the verified-user card assets
 - fills the verified-user template with display name, bio, direct `/to/...` URL, and a matching QR code
+- publishes the weekly verified-user archive to LinkedIn after rendering
 
 ## Schedule
 
@@ -22,6 +23,7 @@ Default launchd schedules are weekday-only:
 - planner: `06:00` local time, Monday through Friday
 - LinkedIn publisher: `06:10` local time, Monday through Friday
 - verified-user weekly runner: `12:00` local time every Monday
+- verified-user LinkedIn publisher: `12:10` local time every Monday
 
 Weekend dates are intentionally skipped by both the launchd wrappers and the direct daily planner/publisher entrypoints.
 
@@ -44,6 +46,7 @@ cd /Users/scidsg/hushline-social
 ./scripts/run_daily_planner_launchd.sh
 ./scripts/run_daily_linkedin_launchd.sh
 ./scripts/run_verified_user_weekly_launchd.sh
+./scripts/run_verified_user_weekly_linkedin_launchd.sh
 ```
 
 For a specific weekday or Monday:
@@ -53,6 +56,7 @@ cd /Users/scidsg/hushline-social
 ./scripts/run_daily_planner_launchd.sh --date YYYY-MM-DD
 ./scripts/run_daily_linkedin_launchd.sh --date YYYY-MM-DD
 ./scripts/run_verified_user_weekly_launchd.sh --date YYYY-MM-DD
+./scripts/run_verified_user_weekly_linkedin_launchd.sh --date YYYY-MM-DD
 ```
 
 To monitor both launchd jobs from one terminal:
@@ -105,5 +109,6 @@ cd /Users/scidsg/hushline-social
 
 - The planner fails on stale screenshot data unless explicitly overridden.
 - The daily planner wrapper can reset tracked changes and remove untracked files before `git pull --ff-only`.
-- The verified-user weekly runner is deterministic and only runs on Mondays.
+- The verified-user weekly LaunchAgents are scheduled for Mondays, but the manual wrappers can be run for any date override.
+- The verified-user LinkedIn publisher posts from `previous-verified-user-posts/YYYY-MM-DD`.
 - Do not use this repo to permanently patch upstream screenshot ownership issues; fix those in `../hushline`.
