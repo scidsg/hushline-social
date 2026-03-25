@@ -211,10 +211,14 @@ Current default launchd schedule in this repo:
   - `06:00` local time, Monday through Friday
 - `com.hushline.social.linkedin.daily`
   - `06:10` local time, Monday through Friday
+- `com.hushline.social.verified-user.weekly`
+  - `12:00` local time every Monday
+- `com.hushline.social.linkedin.verified-user.weekly`
+  - `12:10` local time every Monday
 
 Keep the publisher scheduled after the planner with enough buffer for rendering, archive writes, and local state updates.
 
-Weekend dates are excluded from the daily planner and daily LinkedIn publisher. If a weekend date is passed manually, the wrappers and publishers should exit cleanly without creating or posting that date.
+Weekend dates are excluded from the daily planner and daily LinkedIn publisher. Verified-user weekly creation and publishing are Monday-only. If an off-schedule date is passed manually, the wrappers and publishers should exit cleanly without creating or posting that date.
 
 For always-on servers, do not rely on GUI-only LaunchAgents. Install the background jobs with:
 
@@ -230,6 +234,7 @@ By default, the daily planner wrapper performs `git pull --ff-only` before plann
 ## Publication State Rules
 
 - `previous-posts/YYYY-MM-DD/linkedin-publication.json` is the local duplicate-post guard for LinkedIn
+- `previous-verified-user-posts/YYYY-MM-DD/linkedin-publication.json` is the local duplicate-post guard for weekly verified-user LinkedIn posts
 - after a real live LinkedIn post, do not delete or rewrite `linkedin-publication.json` unless you explicitly intend to republish that date
 - if the archived post folder for a date is rebuilt after a live publish, preserve or restore `linkedin-publication.json` before the publisher runs again
 - if the local publication state is gone, the publisher may treat that date as unpublished and create a duplicate LinkedIn post
@@ -242,6 +247,8 @@ Use the launchd wrappers for manual runs so env loading and lock handling match 
 cd /Users/scidsg/hushline-social
 ./scripts/run_daily_planner_launchd.sh
 ./scripts/run_daily_linkedin_launchd.sh
+./scripts/run_verified_user_weekly_launchd.sh
+./scripts/run_verified_user_weekly_linkedin_launchd.sh
 ```
 
 For a specific date:
@@ -250,6 +257,8 @@ For a specific date:
 cd /Users/scidsg/hushline-social
 ./scripts/run_daily_planner_launchd.sh --date YYYY-MM-DD
 ./scripts/run_daily_linkedin_launchd.sh --date YYYY-MM-DD
+./scripts/run_verified_user_weekly_launchd.sh --date YYYY-MM-DD
+./scripts/run_verified_user_weekly_linkedin_launchd.sh --date YYYY-MM-DD
 ```
 
 Do not use the bare publisher script for routine live runs when `.env.launchd` or launchd-style locking matters.
@@ -269,6 +278,7 @@ Daemon-mode `.env.launchd` files should include:
 - if you need to stop scheduled runs temporarily, disable and boot out both launch agents rather than editing code paths
 - if a wrapper exits with an "already running" message, check for a stale lock directory under `.tmp/`
 - if the daily archive folder is missing, the publisher should not post until the planner recreates that date's archive
+- if the weekly verified-user archive folder is missing, the verified-user LinkedIn publisher should not post until the runner recreates that date's archive
 - if the planner archive was deleted after a live post, restore `linkedin-publication.json` before allowing the publisher to run again
 
 ## Upstream Screenshot Workflow Notes

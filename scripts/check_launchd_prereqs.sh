@@ -64,9 +64,11 @@ check_repo_paths() {
     "$REPO_DIR/scripts/run_daily_planner_launchd.sh" \
     "$REPO_DIR/scripts/run_daily_linkedin_launchd.sh" \
     "$REPO_DIR/scripts/run_verified_user_weekly_launchd.sh" \
+    "$REPO_DIR/scripts/run_verified_user_weekly_linkedin_launchd.sh" \
     "$REPO_DIR/scripts/agent_daily_social_planner.sh" \
     "$REPO_DIR/scripts/agent_daily_linkedin_publisher.sh" \
-    "$REPO_DIR/scripts/agent_weekly_verified_user_runner.sh"; do
+    "$REPO_DIR/scripts/agent_weekly_verified_user_runner.sh" \
+    "$REPO_DIR/scripts/agent_weekly_verified_user_linkedin_publisher.sh"; do
     if [[ ! -x "$path" ]]; then
       fail "expected executable script: $path"
     fi

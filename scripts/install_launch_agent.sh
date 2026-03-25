@@ -171,6 +171,10 @@ main() {
         "$REPO_DIR/deploy/launchd/com.hushline.social.verified-user.weekly.plist" \
         "$GUI_TARGET_DIR/com.hushline.social.verified-user.weekly.plist" \
         "com.hushline.social.verified-user.weekly"
+      install_gui_unit \
+        "$REPO_DIR/deploy/launchd/com.hushline.social.linkedin.verified-user.weekly.plist" \
+        "$GUI_TARGET_DIR/com.hushline.social.linkedin.verified-user.weekly.plist" \
+        "com.hushline.social.linkedin.verified-user.weekly"
       if [[ $EUID -eq 0 ]]; then
         uninstall_daemon_unit \
           "$SYSTEM_TARGET_DIR/com.hushline.social.daily-planner.plist" \
@@ -181,6 +185,9 @@ main() {
         uninstall_daemon_unit \
           "$SYSTEM_TARGET_DIR/com.hushline.social.verified-user.weekly.plist" \
           "com.hushline.social.verified-user.weekly"
+        uninstall_daemon_unit \
+          "$SYSTEM_TARGET_DIR/com.hushline.social.linkedin.verified-user.weekly.plist" \
+          "com.hushline.social.linkedin.verified-user.weekly"
       fi
       ;;
     daemon)
@@ -201,6 +208,10 @@ main() {
         "$REPO_DIR/deploy/launchd/com.hushline.social.verified-user.weekly.daemon.plist" \
         "$SYSTEM_TARGET_DIR/com.hushline.social.verified-user.weekly.plist" \
         "com.hushline.social.verified-user.weekly"
+      install_daemon_unit \
+        "$REPO_DIR/deploy/launchd/com.hushline.social.linkedin.verified-user.weekly.daemon.plist" \
+        "$SYSTEM_TARGET_DIR/com.hushline.social.linkedin.verified-user.weekly.plist" \
+        "com.hushline.social.linkedin.verified-user.weekly"
       uninstall_gui_unit \
         "$GUI_TARGET_DIR/com.hushline.social.daily-planner.plist" \
         "com.hushline.social.daily-planner"
@@ -210,6 +221,9 @@ main() {
       uninstall_gui_unit \
         "$GUI_TARGET_DIR/com.hushline.social.verified-user.weekly.plist" \
         "com.hushline.social.verified-user.weekly"
+      uninstall_gui_unit \
+        "$GUI_TARGET_DIR/com.hushline.social.linkedin.verified-user.weekly.plist" \
+        "com.hushline.social.linkedin.verified-user.weekly"
       ;;
   esac
 
@@ -218,6 +232,7 @@ Installed launchd jobs ($SCOPE):
 - ${SCOPE/daemon/system}/com.hushline.social.daily-planner
 - ${SCOPE/daemon/system}/com.hushline.social.linkedin.daily
 - ${SCOPE/daemon/system}/com.hushline.social.verified-user.weekly
+- ${SCOPE/daemon/system}/com.hushline.social.linkedin.verified-user.weekly
 
 Logs:
 - $REPO_DIR/logs/daily-planner.stdout.log
@@ -226,6 +241,8 @@ Logs:
 - $REPO_DIR/logs/linkedin-daily.stderr.log
 - $REPO_DIR/logs/verified-user-weekly.stdout.log
 - $REPO_DIR/logs/verified-user-weekly.stderr.log
+- $REPO_DIR/logs/verified-user-weekly-linkedin.stdout.log
+- $REPO_DIR/logs/verified-user-weekly-linkedin.stderr.log
 - $REPO_DIR/logs/social-daily.log
 
 Next steps:
@@ -238,6 +255,7 @@ EOF
 - test with: launchctl kickstart -k gui/$APP_UID/com.hushline.social.daily-planner
 - test with: launchctl kickstart -k gui/$APP_UID/com.hushline.social.linkedin.daily
 - test with: launchctl kickstart -k gui/$APP_UID/com.hushline.social.verified-user.weekly
+- test with: launchctl kickstart -k gui/$APP_UID/com.hushline.social.linkedin.verified-user.weekly
 EOF
   else
     cat <<EOF
@@ -245,6 +263,7 @@ EOF
 - test with: sudo launchctl kickstart -k system/com.hushline.social.daily-planner
 - test with: sudo launchctl kickstart -k system/com.hushline.social.linkedin.daily
 - test with: sudo launchctl kickstart -k system/com.hushline.social.verified-user.weekly
+- test with: sudo launchctl kickstart -k system/com.hushline.social.linkedin.verified-user.weekly
 EOF
   fi
 }
