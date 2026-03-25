@@ -63,14 +63,16 @@ check_repo_paths() {
   for path in \
     "$REPO_DIR/scripts/run_daily_planner_launchd.sh" \
     "$REPO_DIR/scripts/run_daily_linkedin_launchd.sh" \
+    "$REPO_DIR/scripts/run_verified_user_weekly_launchd.sh" \
     "$REPO_DIR/scripts/agent_daily_social_planner.sh" \
-    "$REPO_DIR/scripts/agent_daily_linkedin_publisher.sh"; do
+    "$REPO_DIR/scripts/agent_daily_linkedin_publisher.sh" \
+    "$REPO_DIR/scripts/agent_weekly_verified_user_runner.sh"; do
     if [[ ! -x "$path" ]]; then
       fail "expected executable script: $path"
     fi
   done
 
-  mkdir -p "$REPO_DIR/logs" "$REPO_DIR/.tmp" "$REPO_DIR/previous-posts"
+  mkdir -p "$REPO_DIR/logs" "$REPO_DIR/.tmp" "$REPO_DIR/previous-posts" "$REPO_DIR/previous-verified-user-posts"
 }
 
 load_env_file() {
@@ -190,6 +192,7 @@ main() {
   require_cmd node
   require_cmd plutil
   require_cmd sed
+  require_cmd swift
 
   check_repo_paths
   load_env_file

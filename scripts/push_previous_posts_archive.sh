@@ -4,6 +4,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 DATE=""
+ARCHIVE_ROOT="previous-posts"
 BRANCH="${HUSHLINE_SOCIAL_ARCHIVE_BRANCH:-main}"
 REMOTE="${HUSHLINE_SOCIAL_ARCHIVE_REMOTE:-origin}"
 DRY_RUN=0
@@ -24,6 +25,10 @@ parse_args() {
         DATE="$2"
         shift 2
         ;;
+      --archive-root)
+        ARCHIVE_ROOT="$2"
+        shift 2
+        ;;
       --branch)
         BRANCH="$2"
         shift 2
@@ -42,7 +47,7 @@ Usage:
   ./scripts/push_previous_posts_archive.sh --date 2026-03-19
 
 Behavior:
-  - stages previous-posts/YYYY-MM-DD only
+  - stages ARCHIVE_ROOT/YYYY-MM-DD only
   - creates one archive commit
   - force-pushes the current HEAD to the configured remote branch with --force-with-lease
 EOF
@@ -59,14 +64,19 @@ EOF
     echo "--date must use YYYY-MM-DD format." >&2
     exit 1
   fi
+
+  if [[ -z "$ARCHIVE_ROOT" || "$ARCHIVE_ROOT" == /* || "$ARCHIVE_ROOT" == *".."* ]]; then
+    echo "--archive-root must be a relative path inside the repo." >&2
+    exit 1
+  fi
 }
 
 main() {
   parse_args "$@"
   require_cmd git
 
-  local archive_dir="$REPO_DIR/previous-posts/$DATE"
-  local archive_rel="previous-posts/$DATE"
+  local archive_dir="$REPO_DIR/$ARCHIVE_ROOT/$DATE"
+  local archive_rel="$ARCHIVE_ROOT/$DATE"
   local current_branch=""
   local remote_url=""
   local auth_header=""
