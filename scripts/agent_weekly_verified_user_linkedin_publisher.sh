@@ -57,7 +57,7 @@ effective_date() {
 main() {
   parse_args "$@"
 
-  local -a cmd=(node scripts/publish-daily-linkedin.js --date-root previous-verified-user-posts)
+  local -a cmd=(node scripts/publish-daily-linkedin.js --date-root previous-verified-user-posts --allow-weekend)
   [[ -n "$DATE_OVERRIDE" ]] && cmd+=(--date "$DATE_OVERRIDE")
   (( DRY_RUN == 1 )) && cmd+=(--dry-run)
   (( FORCE == 1 )) && cmd+=(--force)

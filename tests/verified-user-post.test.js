@@ -11,6 +11,7 @@ const {
   prepareVerifiedUserRun,
   renderHtml,
   selectVerifiedUser,
+  validateVerifiedUserSocialParagraphs,
 } = require("../scripts/lib/verified-user-post");
 
 const SAMPLE_USERS = [
@@ -167,4 +168,19 @@ test("renderHtml injects the selected user text and QR filename", () => {
   assert.match(html, /Investigative editor focused on energy and utilities\./);
   assert.match(html, /https:\/\/tips\.hushline\.app\/to\/verified-user-b/);
   assert.match(html, /\.\/verified-user-qr\.png/);
+});
+
+test("validateVerifiedUserSocialParagraphs rejects capitalized first-person copy", () => {
+  assert.throws(
+    () => validateVerifiedUserSocialParagraphs({
+      bluesky: "Verified User B is an investigative editor.",
+      linkedin: "We report on labor issues.",
+      mastodon: "Verified User B is an investigative editor.",
+    }, {
+      display_name: "Verified User B",
+      primary_username: "verified-user-b",
+      user_url: "https://tips.hushline.app/to/verified-user-b",
+    }),
+    /must not use first-person language/,
+  );
 });

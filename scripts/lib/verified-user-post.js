@@ -684,7 +684,7 @@ function validateVerifiedUserSocialParagraphs(paragraphs, selectedUser) {
       throw new Error(`Generated verified-user copy is missing ${network}.`);
     }
 
-    if (/\b(I|I'm|I’m|my|me|we|we're|we’re|our|us)\b/.test(value)) {
+    if (/\b(I|I'm|I’m|my|me|we|we're|we’re|our|us)\b/i.test(value)) {
       throw new Error(`Generated ${network} copy for @${selectedUser.primary_username} must not use first-person language.`);
     }
 
