@@ -29,35 +29,62 @@ guard let outputImage = filter.outputImage else {
   exit(1)
 }
 
-let extent = outputImage.extent.integral
-let representation = NSCIImageRep(ciImage: outputImage)
+guard let falseColorFilter = CIFilter(name: "CIFalseColor") else {
+  fputs("CIFalseColor is unavailable.\n", stderr)
+  exit(1)
+}
+
+falseColorFilter.setValue(outputImage, forKey: kCIInputImageKey)
+falseColorFilter.setValue(CIColor(red: 1, green: 1, blue: 1, alpha: 1), forKey: "inputColor0")
+falseColorFilter.setValue(CIColor(red: 1, green: 1, blue: 1, alpha: 0), forKey: "inputColor1")
+
+guard let styledImage = falseColorFilter.outputImage else {
+  fputs("Failed to recolor QR image.\n", stderr)
+  exit(1)
+}
+
+let extent = styledImage.extent.integral
+let representation = NSCIImageRep(ciImage: styledImage)
 let qrImage = NSImage(size: representation.size)
 qrImage.addRepresentation(representation)
 
 let scaledSize = NSSize(width: size, height: size)
-let scaledImage = NSImage(size: scaledSize)
+guard let bitmap = NSBitmapImageRep(
+  bitmapDataPlanes: nil,
+  pixelsWide: Int(scaledSize.width),
+  pixelsHigh: Int(scaledSize.height),
+  bitsPerSample: 8,
+  samplesPerPixel: 4,
+  hasAlpha: true,
+  isPlanar: false,
+  colorSpaceName: .deviceRGB,
+  bytesPerRow: 0,
+  bitsPerPixel: 0
+) else {
+  fputs("Failed to create bitmap for QR image.\n", stderr)
+  exit(1)
+}
 
-scaledImage.lockFocus()
-guard let graphicsContext = NSGraphicsContext.current else {
+guard let graphicsContext = NSGraphicsContext(bitmapImageRep: bitmap) else {
   fputs("Failed to access graphics context for QR image.\n", stderr)
   exit(1)
 }
+
+NSGraphicsContext.saveGraphicsState()
+NSGraphicsContext.current = graphicsContext
 graphicsContext.imageInterpolation = .none
-NSColor.white.setFill()
+NSColor.clear.setFill()
 NSBezierPath(rect: NSRect(origin: .zero, size: scaledSize)).fill()
 qrImage.draw(
   in: NSRect(origin: .zero, size: scaledSize),
   from: NSRect(origin: .zero, size: extent.size),
-  operation: .copy,
+  operation: .sourceOver,
   fraction: 1.0
 )
-scaledImage.unlockFocus()
+graphicsContext.flushGraphics()
+NSGraphicsContext.restoreGraphicsState()
 
-guard
-  let tiffRepresentation = scaledImage.tiffRepresentation,
-  let bitmap = NSBitmapImageRep(data: tiffRepresentation),
-  let pngData = bitmap.representation(using: .png, properties: [:])
-else {
+guard let pngData = bitmap.representation(using: .png, properties: [:]) else {
   fputs("Failed to encode QR code PNG.\n", stderr)
   exit(1)
 }
