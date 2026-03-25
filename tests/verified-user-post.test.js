@@ -38,6 +38,15 @@ const SAMPLE_USERS = [
     primary_username: "unverified-placeholder",
     profile_url: "/to/unverified-placeholder",
   },
+  {
+    bio: "Ignored because admin accounts should never be selected.",
+    display_name: "Verified Admin Placeholder",
+    entry_type: "user",
+    is_admin: true,
+    is_verified: true,
+    primary_username: "verified-admin-placeholder",
+    profile_url: "/to/verified-admin-placeholder",
+  },
 ];
 
 test("parseArgs rejects malformed dates", () => {
@@ -56,6 +65,15 @@ test("normalizeVerifiedUsers keeps verified user rows and resolves /to URLs", ()
   assert.equal(users[1].user_url, "https://tips.hushline.app/to/verified-user-b");
 });
 
+test("normalizeVerifiedUsers excludes verified admin accounts from the weekly spotlight pool", () => {
+  const users = normalizeVerifiedUsers(SAMPLE_USERS, "https://tips.hushline.app");
+
+  assert.equal(
+    users.some((user) => user.primary_username === "verified-admin-placeholder"),
+    false,
+  );
+});
+
 test("selectVerifiedUser rotates away from recent archive entries", () => {
   const users = normalizeVerifiedUsers(SAMPLE_USERS, "https://tips.hushline.app");
   const selected = selectVerifiedUser(users, [
@@ -66,6 +84,24 @@ test("selectVerifiedUser rotates away from recent archive entries", () => {
   ]);
 
   assert.equal(selected.primary_username, "verified-user-b");
+});
+
+test("selectVerifiedUser rejects duplicate picks once every verified user has already been posted", () => {
+  const users = normalizeVerifiedUsers(SAMPLE_USERS, "https://tips.hushline.app");
+
+  assert.throws(
+    () => selectVerifiedUser(users, [
+      {
+        date: "2026-03-16",
+        primary_username: "verified-user-a",
+      },
+      {
+        date: "2026-03-23",
+        primary_username: "verified-user-b",
+      },
+    ]),
+    /No unposted verified users remain/,
+  );
 });
 
 test("prepareVerifiedUserRun rejects non-Monday dates", async () => {

@@ -1,5 +1,6 @@
 "use strict";
 
+const crypto = require("crypto");
 const fs = require("fs");
 const http = require("http");
 const https = require("https");
@@ -217,6 +218,10 @@ function normalizeVerifiedUsers(payload, baseUrl) {
       continue;
     }
 
+    if (entry.is_admin) {
+      continue;
+    }
+
     const displayName = normalizeWhitespace(entry.display_name || entry.name || entry.primary_username || entry.username);
     const bio = normalizeWhitespace(entry.bio || entry.description);
     const username = normalizeWhitespace(entry.primary_username || entry.username);
@@ -257,7 +262,6 @@ function loadArchiveHistory(currentDate, archiveRoot = VERIFIED_USER_POSTS_ROOT)
     .filter((entry) => entry.isDirectory() && /^\d{4}-\d{2}-\d{2}$/.test(entry.name) && entry.name < currentDate)
     .map((entry) => entry.name)
     .sort()
-    .slice(-20)
     .map((date) => {
       const postPath = path.join(archiveRoot, date, "post.json");
       if (!fs.existsSync(postPath)) {
@@ -275,31 +279,37 @@ function loadArchiveHistory(currentDate, archiveRoot = VERIFIED_USER_POSTS_ROOT)
     .filter(Boolean);
 }
 
-function selectVerifiedUser(users, archiveHistory) {
-  if (users.length === 1) {
-    return users[0];
-  }
+function shuffleKey(user) {
+  return crypto
+    .createHash("sha256")
+    .update(`${user.primary_username}\n${user.user_url}`)
+    .digest("hex");
+}
 
-  const recentUsernames = new Set(
+function selectVerifiedUser(users, archiveHistory) {
+  const postedUsernames = new Set(
     archiveHistory
-      .slice(-8)
       .map((entry) => entry.primary_username)
       .filter(Boolean),
   );
-  const eligiblePool = users.filter((user) => !recentUsernames.has(user.primary_username));
-  const pool = eligiblePool.length > 0 ? eligiblePool : users;
-  const lastUsername = archiveHistory.at(-1)?.primary_username;
+  const unseenUsers = users.filter((user) => !postedUsernames.has(user.primary_username));
 
-  if (!lastUsername) {
-    return pool[0];
+  if (unseenUsers.length === 0) {
+    throw new Error(
+      "No unposted verified users remain in the current directory dataset. Refusing to create a duplicate weekly verified-user post.",
+    );
   }
 
-  const lastIndex = pool.findIndex((user) => user.primary_username === lastUsername);
-  if (lastIndex === -1) {
-    return pool[0];
-  }
-
-  return pool[(lastIndex + 1) % pool.length];
+  return unseenUsers
+    .slice()
+    .sort((left, right) => {
+      const leftKey = shuffleKey(left);
+      const rightKey = shuffleKey(right);
+      if (leftKey === rightKey) {
+        return left.primary_username.localeCompare(right.primary_username);
+      }
+      return leftKey.localeCompare(rightKey);
+    })[0];
 }
 
 function buildPost({ date, selectedUser, source }) {
@@ -324,7 +334,7 @@ function buildContext({ date, archiveHistory, selectedUser, source, verifiedUser
     archive_root: path.relative(REPO_ROOT, VERIFIED_USER_POSTS_ROOT),
     date,
     eligible_verified_user_count: verifiedUsers.length,
-    recent_archive_history: archiveHistory,
+    recent_archive_history: archiveHistory.slice(-20),
     selected_user: selectedUser,
     source,
   };
