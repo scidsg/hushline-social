@@ -6,9 +6,10 @@ const http = require("http");
 const https = require("https");
 const path = require("path");
 const puppeteer = require("puppeteer-core");
-const { execFileSync } = require("child_process");
+const QRCode = require("qrcode");
 const { pathToFileURL } = require("url");
 const {
+  LIMITS,
   LOCAL_LOGO,
   REPO_ROOT,
   findChrome,
@@ -20,10 +21,30 @@ const {
 
 const VERIFIED_USER_POSTS_ROOT = path.join(REPO_ROOT, "previous-verified-user-posts");
 const VERIFIED_USER_TEMPLATE = path.join(REPO_ROOT, "templates", "hushline-social-verified-user-template.html");
-const QR_GENERATOR_SCRIPT = path.join(REPO_ROOT, "scripts", "generate_qr_code.swift");
 const DEFAULT_DIRECTORY_SOURCE = process.env.HUSHLINE_VERIFIED_USERS_SOURCE || "https://tips.hushline.app/directory/users.json";
 const DEFAULT_TIPS_BASE_URL = process.env.HUSHLINE_VERIFIED_USERS_BASE_URL || "https://tips.hushline.app";
 const QR_FILENAME = "verified-user-qr.png";
+const VERIFIED_MEMBER_HIGHLIGHT = "🤩 Verified Member Highlight!";
+const SOCIAL_COPY_CONFIG = {
+  bluesky: {
+    bioLimit: 165,
+    cta: (name, userUrl) => `Send ${name} a tip: ${userUrl}`,
+    minBioLimit: 72,
+    step: 12,
+  },
+  linkedin: {
+    bioLimit: 260,
+    cta: (name, userUrl) => `To send ${name} a tip, go to ${userUrl}.`,
+    minBioLimit: 96,
+    step: 16,
+  },
+  mastodon: {
+    bioLimit: 210,
+    cta: (name, userUrl) => `To send ${name} a tip, visit ${userUrl}.`,
+    minBioLimit: 84,
+    step: 14,
+  },
+};
 
 function todayString() {
   const now = new Date();
@@ -110,6 +131,167 @@ function normalizeWhitespace(value) {
 
 function normalizeSortValue(value) {
   return normalizeWhitespace(value).toLowerCase();
+}
+
+function ensureTerminalPunctuation(value) {
+  const normalized = normalizeWhitespace(value);
+  if (!normalized) {
+    return "";
+  }
+
+  return /(?:[.!?…]|\.{3})$/.test(normalized) ? normalized : `${normalized}.`;
+}
+
+function truncateAtWordBoundary(value, limit) {
+  const normalized = normalizeWhitespace(value);
+  if (!normalized || normalized.length <= limit) {
+    return normalized;
+  }
+
+  const clipped = normalized.slice(0, Math.max(0, limit - 1)).trimEnd();
+  const boundary = clipped.lastIndexOf(" ");
+  const safeClip = boundary > Math.floor(limit * 0.6) ? clipped.slice(0, boundary) : clipped;
+  const cleanClip = safeClip.replace(/[.!?,;:]+$/g, "").trimEnd();
+  return `${cleanClip}…`;
+}
+
+function escapeRegExp(value) {
+  return String(value || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function firstNameFromDisplayName(displayName) {
+  const normalized = normalizeWhitespace(displayName);
+  if (!normalized) {
+    return "";
+  }
+
+  const parts = normalized.split(/\s+/).filter(Boolean);
+  for (const part of parts) {
+    const cleaned = part.replace(/^[^A-Za-z0-9]+|[^A-Za-z0-9]+$/g, "");
+    if (cleaned) {
+      return cleaned;
+    }
+  }
+
+  return normalized;
+}
+
+function cleanedDisplayTokens(displayName) {
+  return normalizeWhitespace(displayName)
+    .split(/\s+/)
+    .map((part) => part.replace(/^[^A-Za-z0-9]+|[^A-Za-z0-9]+$/g, ""))
+    .filter(Boolean);
+}
+
+function isLikelyOrganizationName(displayName) {
+  const normalized = normalizeWhitespace(displayName);
+  if (!normalized) {
+    return false;
+  }
+
+  const organizationPatterns = [
+    /\bboard\b/i,
+    /\bteam\b/i,
+    /\bproject\b/i,
+    /\bregister\b/i,
+    /\bline\b/i,
+    /\bnews\b/i,
+    /\bcorp\b/i,
+    /\binc\b/i,
+    /\bllc\b/i,
+    /\bltd\b/i,
+    /\bmedia\b/i,
+    /\bnetwork\b/i,
+    /\bassociation\b/i,
+    /\bcouncil\b/i,
+    /\bcommittee\b/i,
+    /\bfoundation\b/i,
+  ];
+
+  return organizationPatterns.some((pattern) => pattern.test(normalized));
+}
+
+function prefersPersonStyle(displayName) {
+  const tokens = cleanedDisplayTokens(displayName);
+  if (tokens.length === 0 || isLikelyOrganizationName(displayName)) {
+    return false;
+  }
+
+  if (tokens.length === 1) {
+    return true;
+  }
+
+  if (tokens.length > 3) {
+    return false;
+  }
+
+  return tokens.every((token) => /^[A-Za-z0-9.'-]+$/.test(token));
+}
+
+function lowerCasePhraseLead(value) {
+  const normalized = normalizeWhitespace(value);
+  if (!normalized) {
+    return "";
+  }
+
+  const words = normalized.split(/\s+/);
+  const bridgeWords = new Set(["at", "for", "in", "of", "on", "with", "from", "the", "a", "an", "&"]);
+  const transformed = [];
+  let preserveTail = false;
+
+  for (const word of words) {
+    if (preserveTail) {
+      transformed.push(word);
+      continue;
+    }
+
+    const bare = word.replace(/^[^A-Za-z0-9]+|[^A-Za-z0-9]+$/g, "");
+    const lowerBare = bare.toLowerCase();
+    if (bridgeWords.has(lowerBare)) {
+      transformed.push(lowerBare === bare ? word : word.replace(bare, lowerBare));
+      preserveTail = true;
+      continue;
+    }
+
+    if (/^[A-Z][a-z]+$/.test(bare)) {
+      transformed.push(word.replace(bare, bare.toLowerCase()));
+      continue;
+    }
+
+    transformed.push(word);
+  }
+
+  return transformed.join(" ");
+}
+
+function looksLikeBareRolePhrase(value) {
+  const normalized = normalizeWhitespace(value).replace(/[.!?…]+$/, "");
+  if (!normalized) {
+    return false;
+  }
+
+  if (/\b(is|are|was|were|be|been|being|work|works|working|cover|covers|covering|write|writes|writing|go|goes|accept|accepts|focus|focuses)\b/i.test(normalized)) {
+    return false;
+  }
+
+  return normalized.length <= 120;
+}
+
+function possessiveName(name) {
+  return /s$/i.test(name) ? `${name}'` : `${name}'s`;
+}
+
+function indefiniteArticleForPhrase(value) {
+  const normalized = normalizeWhitespace(value).replace(/^[^A-Za-z0-9]+/, "");
+  if (!normalized) {
+    return "a";
+  }
+
+  if (/^(honest|honor|hour|heir|editorial)\b/i.test(normalized)) {
+    return "an";
+  }
+
+  return /^[aeiou]/i.test(normalized) ? "an" : "a";
 }
 
 function fetchRemoteJson(source) {
@@ -279,14 +461,14 @@ function loadArchiveHistory(currentDate, archiveRoot = VERIFIED_USER_POSTS_ROOT)
     .filter(Boolean);
 }
 
-function shuffleKey(user) {
+function shuffleKey(user, seed = "") {
   return crypto
     .createHash("sha256")
-    .update(`${user.primary_username}\n${user.user_url}`)
+    .update(`${seed}\n${user.primary_username}\n${user.user_url}`)
     .digest("hex");
 }
 
-function selectVerifiedUser(users, archiveHistory) {
+function selectVerifiedUser(users, archiveHistory, currentDate = "") {
   const postedUsernames = new Set(
     archiveHistory
       .map((entry) => entry.primary_username)
@@ -303,13 +485,309 @@ function selectVerifiedUser(users, archiveHistory) {
   return unseenUsers
     .slice()
     .sort((left, right) => {
-      const leftKey = shuffleKey(left);
-      const rightKey = shuffleKey(right);
+      const leftKey = shuffleKey(left, currentDate);
+      const rightKey = shuffleKey(right, currentDate);
       if (leftKey === rightKey) {
         return left.primary_username.localeCompare(right.primary_username);
       }
       return leftKey.localeCompare(rightKey);
     })[0];
+}
+
+function rewriteBioForCopy(selectedUser, limit) {
+  const displayName = normalizeWhitespace(selectedUser.display_name);
+  const personStyle = prefersPersonStyle(displayName);
+  const firstName = firstNameFromDisplayName(displayName) || displayName;
+  const subjectName = personStyle && cleanedDisplayTokens(displayName).length > 1
+    ? firstName
+    : displayName;
+  const bio = normalizeWhitespace(selectedUser.bio);
+  const shortenedBio = truncateAtWordBoundary(bio, limit);
+  const normalized = ensureTerminalPunctuation(shortenedBio);
+  const displayPattern = escapeRegExp(displayName);
+  const firstPattern = escapeRegExp(firstName);
+
+  if (
+    new RegExp(`^${displayPattern}\\b`, "i").test(normalized) ||
+    new RegExp(`^${firstPattern}\\b`, "i").test(normalized)
+  ) {
+    return normalized;
+  }
+
+  if (/^messages go to\s+/i.test(normalized)) {
+    return ensureTerminalPunctuation(normalized.replace(/^messages go to\s+/i, `Messages to ${displayName} go to `));
+  }
+
+  const replacements = [
+    {
+      pattern: new RegExp(`^i am\\s+`, "i"),
+      value: `${subjectName} is `,
+    },
+    {
+      pattern: new RegExp(`^(i'm|i’m)\\s+`, "i"),
+      value: `${subjectName} is `,
+    },
+    {
+      pattern: new RegExp(`^i work as\\s+(an?\\s+)`, "i"),
+      value: `${subjectName} is $1`,
+    },
+    {
+      pattern: new RegExp(`^i work as\\s+`, "i"),
+      value: `${subjectName} is `,
+    },
+    {
+      pattern: new RegExp(`^i work in\\s+`, "i"),
+      value: `${subjectName} works in `,
+    },
+    {
+      pattern: new RegExp(`^i cover\\s+`, "i"),
+      value: `${subjectName} covers `,
+    },
+    {
+      pattern: new RegExp(`^i investigate\\s+`, "i"),
+      value: `${subjectName} investigates `,
+    },
+    {
+      pattern: new RegExp(`^my work focuses on\\s+`, "i"),
+      value: `${possessiveName(subjectName)} work focuses on `,
+    },
+    {
+      pattern: new RegExp(`^my reporting focuses on\\s+`, "i"),
+      value: `${possessiveName(subjectName)} reporting focuses on `,
+    },
+    {
+      pattern: new RegExp(`^${displayPattern}\\s+is\\s+`, "i"),
+      value: `${subjectName} is `,
+    },
+    {
+      pattern: new RegExp(`^${firstPattern}\\s+is\\s+`, "i"),
+      value: `${subjectName} is `,
+    },
+  ];
+
+  for (const replacement of replacements) {
+    if (replacement.pattern.test(normalized)) {
+      return ensureTerminalPunctuation(normalized.replace(replacement.pattern, replacement.value));
+    }
+  }
+
+  if (personStyle && looksLikeBareRolePhrase(normalized)) {
+    const role = lowerCasePhraseLead(normalized).replace(/^[Aa]n?\s+/i, "");
+    return ensureTerminalPunctuation(`${subjectName} is ${indefiniteArticleForPhrase(role)} ${role}`);
+  }
+
+  return normalized;
+}
+
+function shouldPreferLiteralBioRewrite(selectedUser) {
+  const bio = normalizeWhitespace(selectedUser && selectedUser.bio).replace(/[.!?…]+$/, "");
+  if (!bio) {
+    return false;
+  }
+
+  return looksLikeBareRolePhrase(bio) && bio.length <= 80;
+}
+
+function tipRecipientLabel(displayName) {
+  const normalized = normalizeWhitespace(displayName);
+  if (!normalized) {
+    return "";
+  }
+
+  if (prefersPersonStyle(normalized)) {
+    const tokens = cleanedDisplayTokens(normalized);
+    return tokens.length > 1 ? firstNameFromDisplayName(normalized) : normalized;
+  }
+
+  return normalized;
+}
+
+function buildTipCta(network, displayName, userUrl) {
+  const name = tipRecipientLabel(displayName);
+  const personStyle = prefersPersonStyle(displayName);
+
+  if (network === "bluesky") {
+    return personStyle
+      ? `Send ${name} a tip: ${userUrl}`
+      : `Send a tip to ${name}: ${userUrl}`;
+  }
+
+  if (network === "mastodon") {
+    return personStyle
+      ? `To send ${name} a tip, visit ${userUrl}.`
+      : `To send a tip to ${name}, visit ${userUrl}.`;
+  }
+
+  return personStyle
+    ? `To send ${name} a tip, go to ${userUrl}.`
+    : `To send a tip to ${name}, go to ${userUrl}.`;
+}
+
+function composeVerifiedUserSocialCopy(network, selectedUser, middleParagraph) {
+  const paragraph = ensureTerminalPunctuation(normalizeWhitespace(middleParagraph));
+  if (!paragraph) {
+    throw new Error(`Missing generated ${network} paragraph for @${selectedUser.primary_username}.`);
+  }
+
+  return [
+    VERIFIED_MEMBER_HIGHLIGHT,
+    "",
+    paragraph,
+    "",
+    buildTipCta(network, selectedUser.display_name, selectedUser.user_url),
+  ].join("\n");
+}
+
+function stabilizeGeneratedParagraph(network, selectedUser, paragraph) {
+  const candidate = ensureTerminalPunctuation(normalizeWhitespace(paragraph));
+  if (!candidate) {
+    return candidate;
+  }
+
+  if (shouldPreferLiteralBioRewrite(selectedUser)) {
+    const fallbackLimit = Math.max(96, normalizeWhitespace(selectedUser.bio).length + normalizeWhitespace(selectedUser.display_name).length + 32);
+    return rewriteBioForCopy(selectedUser, fallbackLimit);
+  }
+
+  return candidate;
+}
+
+function fitGeneratedParagraphToLimit(network, selectedUser, paragraph) {
+  let candidate = ensureTerminalPunctuation(normalizeWhitespace(paragraph));
+  if (!candidate) {
+    throw new Error(`Missing generated ${network} paragraph for @${selectedUser.primary_username}.`);
+  }
+
+  if (composeVerifiedUserSocialCopy(network, selectedUser, candidate).length <= LIMITS[network]) {
+    return candidate;
+  }
+
+  let limit = Math.max(24, candidate.length - 16);
+  while (limit >= 24) {
+    const shortened = ensureTerminalPunctuation(truncateAtWordBoundary(candidate, limit));
+    if (composeVerifiedUserSocialCopy(network, selectedUser, shortened).length <= LIMITS[network]) {
+      return shortened;
+    }
+    limit -= 12;
+  }
+
+  throw new Error(`Generated ${network} copy exceeds ${LIMITS[network]} characters for @${selectedUser.primary_username}.`);
+}
+
+function validateVerifiedUserSocialParagraphs(paragraphs, selectedUser) {
+  if (!paragraphs || typeof paragraphs !== "object") {
+    throw new Error("Generated verified-user copy must be an object.");
+  }
+
+  const validated = {};
+  for (const network of Object.keys(LIMITS)) {
+    const value = normalizeWhitespace(paragraphs[network]);
+    if (!value) {
+      throw new Error(`Generated verified-user copy is missing ${network}.`);
+    }
+
+    if (/\b(I|I'm|I’m|my|me|we|we're|we’re|our|us)\b/.test(value)) {
+      throw new Error(`Generated ${network} copy for @${selectedUser.primary_username} must not use first-person language.`);
+    }
+
+    if (/\b(the profile says|the bio says|according to (the )?(profile|bio)|listed as|this profile|this bio|this account|the account says|the page says)\b/i.test(value)) {
+      throw new Error(`Generated ${network} copy for @${selectedUser.primary_username} must not use distancing meta-language about the profile.`);
+    }
+
+    validated[network] = fitGeneratedParagraphToLimit(network, selectedUser, stabilizeGeneratedParagraph(network, selectedUser, value));
+  }
+
+  return validated;
+}
+
+function buildVerifiedUserSocialPrompt({ date, outputPath, selectedUser, feedback = "" }) {
+  return [
+    "You are writing social post copy for one verified Hush Line profile.",
+    "Write plain, factual, human copy.",
+    "Do not use marketing language, hype, or filler.",
+    "Do not write in first person.",
+    "Do not invent facts beyond the profile text provided.",
+    "Each output value must be a single middle paragraph only.",
+    "Do not include the intro line.",
+    "Do not include the closing URL line.",
+    "Say what the profile is in clear third-person language.",
+    "If the bio is already a short title or role, keep it simple instead of elaborating on it.",
+    "Do not pad a short bio with synonyms, restatements, or explanatory fluff.",
+    "If the profile looks like an organization, publication, team, or board, write it that way instead of forcing a first name.",
+    "Do not talk about the profile as a source or record.",
+    "Never say phrases like `the profile says`, `the bio says`, `according to the profile`, `listed as`, `this profile`, or `this account`.",
+    "Speak directly about the person, team, publication, or organization.",
+    "",
+    `Planned date: ${date}`,
+    `Display name: ${selectedUser.display_name}`,
+    `Username: @${selectedUser.primary_username}`,
+    `Profile URL: ${selectedUser.user_url}`,
+    `Original profile bio: ${selectedUser.bio}`,
+    feedback ? `Revision note: ${feedback}` : "",
+    "",
+    "Final post structure for each network will be:",
+    "1. 🤩 Verified Member Highlight!",
+    "2. blank line",
+    "3. your generated middle paragraph",
+    "4. blank line",
+    `5. a fixed CTA line with ${selectedUser.user_url}`,
+    "",
+    "Write valid JSON only to this file:",
+    outputPath,
+    "",
+    "JSON schema:",
+    JSON.stringify({
+      type: "object",
+      additionalProperties: false,
+      required: ["linkedin", "mastodon", "bluesky"],
+      properties: {
+        linkedin: { type: "string" },
+        mastodon: { type: "string" },
+        bluesky: { type: "string" },
+      },
+    }, null, 2),
+    "",
+    "Requirements:",
+    "- LinkedIn can be the most complete version.",
+    "- Mastodon should stay tighter.",
+    "- Bluesky should be the tightest version.",
+    "- Preserve specific factual details from the bio when they matter.",
+    "- Rewrite first-person profile text into third person or direct descriptive language.",
+    "- Keep the meaning of the profile intact.",
+    "- Example: if the bio is `3D Character Artist`, write `Yumi is a 3D character artist.` Do not expand it into `working in three-dimensional character art`.",
+  ].join("\n");
+}
+
+function composeSocialCopy(network, selectedUser) {
+  const config = SOCIAL_COPY_CONFIG[network];
+  let bioLimit = config.bioLimit;
+
+  while (bioLimit >= config.minBioLimit) {
+    const bio = rewriteBioForCopy(selectedUser, bioLimit);
+    const copy = [
+      VERIFIED_MEMBER_HIGHLIGHT,
+      "",
+      bio,
+      "",
+      buildTipCta(network, selectedUser.display_name, selectedUser.user_url),
+    ].join("\n");
+
+    if (copy.length <= LIMITS[network]) {
+      return copy;
+    }
+
+    bioLimit -= config.step;
+  }
+
+  throw new Error(`Could not compose ${network} copy within ${LIMITS[network]} characters for @${selectedUser.primary_username}.`);
+}
+
+function buildSocialCopy(selectedUser) {
+  return {
+    bluesky: composeSocialCopy("bluesky", selectedUser),
+    linkedin: composeSocialCopy("linkedin", selectedUser),
+    mastodon: composeSocialCopy("mastodon", selectedUser),
+  };
 }
 
 function buildPost({ date, selectedUser, source }) {
@@ -321,6 +799,7 @@ function buildPost({ date, selectedUser, source }) {
     planned_date: date,
     primary_username: selectedUser.primary_username,
     qr_code_file: QR_FILENAME,
+    social: buildSocialCopy(selectedUser),
     slot: "monday-noon",
     source,
     subtext: selectedUser.bio,
@@ -400,6 +879,33 @@ function renderHtml(post, qrFilename, logoFilename) {
   return html;
 }
 
+function buildTxt(post) {
+  return [
+    `Slot: ${post.slot}`,
+    `Planned date: ${post.planned_date}`,
+    `Verified user: @${post.primary_username}`,
+    `User link: ${post.user_link}`,
+    `Source: ${post.source}`,
+    `Headline: ${post.headline.replace(/\n/g, " ")}`,
+    `Subtext: ${post.subtext}`,
+    "",
+    "Image alt text",
+    post.image_alt_text,
+    "",
+    "Social post copy",
+    "",
+    `LinkedIn (${post.social.linkedin.length}/${LIMITS.linkedin})`,
+    post.social.linkedin,
+    "",
+    `Mastodon (${post.social.mastodon.length}/${LIMITS.mastodon})`,
+    post.social.mastodon,
+    "",
+    `Bluesky (${post.social.bluesky.length}/${LIMITS.bluesky})`,
+    post.social.bluesky,
+    "",
+  ].join("\n");
+}
+
 async function renderPng(htmlPath, outputPath) {
   const browser = await puppeteer.launch({
     executablePath: findChrome(),
@@ -435,28 +941,20 @@ async function renderPng(htmlPath, outputPath) {
   }
 }
 
-function generateQrCode(url, outputPath, size = 720) {
-  if (!fs.existsSync(QR_GENERATOR_SCRIPT)) {
-    throw new Error(`Missing QR generator script: ${QR_GENERATOR_SCRIPT}`);
-  }
-
-  const moduleCachePath = path.join("/tmp", "hushline-social-swift-module-cache");
-  fs.mkdirSync(moduleCachePath, { recursive: true });
-
+async function generateQrCode(url, outputPath, size = 720) {
   try {
-    execFileSync("swift", [
-      "-module-cache-path",
-      moduleCachePath,
-      QR_GENERATOR_SCRIPT,
-      url,
-      outputPath,
-      String(size),
-    ], {
-      stdio: "pipe",
+    await QRCode.toFile(outputPath, url, {
+      color: {
+        dark: "#ffffffff",
+        light: "#00000000",
+      },
+      errorCorrectionLevel: "M",
+      margin: 0,
+      type: "png",
+      width: size,
     });
   } catch (error) {
-    const stderr = error.stderr ? String(error.stderr).trim() : "";
-    throw new Error(stderr || `Failed to generate QR code for ${url}.`);
+    throw new Error(error && error.message ? error.message : `Failed to generate QR code for ${url}.`);
   }
 }
 
@@ -466,6 +964,7 @@ async function renderVerifiedUserPost(run, options = {}) {
   const htmlPath = path.join(outputDir, "social-card.html");
   const pngPath = path.join(outputDir, "social-card@2x.png");
   const postPath = path.join(outputDir, "post.json");
+  const txtPath = path.join(outputDir, "post-copy.txt");
   const contextPath = path.join(outputDir, "context.json");
   const qrPath = path.join(outputDir, QR_FILENAME);
   const logoFilename = path.basename(LOCAL_LOGO);
@@ -477,6 +976,7 @@ async function renderVerifiedUserPost(run, options = {}) {
   fs.mkdirSync(outputDir, { recursive: true });
   writeJson(contextPath, run.context);
   writeJson(postPath, run.post);
+  fs.writeFileSync(txtPath, `${buildTxt(run.post)}\n`);
 
   if (run.noRender) {
     return {
@@ -484,11 +984,12 @@ async function renderVerifiedUserPost(run, options = {}) {
       outputDir,
       postPath,
       rendered: false,
+      txtPath,
     };
   }
 
   fs.copyFileSync(LOCAL_LOGO, path.join(outputDir, logoFilename));
-  generateQrCode(run.post.user_url, qrPath);
+  await generateQrCode(run.post.user_url, qrPath);
 
   const html = renderHtml(run.post, path.basename(qrPath), logoFilename);
   fs.writeFileSync(htmlPath, html);
@@ -502,6 +1003,7 @@ async function renderVerifiedUserPost(run, options = {}) {
     postPath,
     qrPath,
     rendered: true,
+    txtPath,
   };
 }
 
@@ -513,7 +1015,7 @@ async function prepareVerifiedUserRun(args, options = {}) {
   const payload = await readDirectoryPayload(args.source);
   const verifiedUsers = normalizeVerifiedUsers(payload, args.baseUrl);
   const archiveHistory = loadArchiveHistory(args.date, options.archiveRoot);
-  const selectedUser = selectVerifiedUser(verifiedUsers, archiveHistory);
+  const selectedUser = selectVerifiedUser(verifiedUsers, archiveHistory, args.date);
 
   return {
     context: buildContext({
@@ -538,8 +1040,11 @@ module.exports = {
   DEFAULT_DIRECTORY_SOURCE,
   DEFAULT_TIPS_BASE_URL,
   QR_FILENAME,
+  VERIFIED_MEMBER_HIGHLIGHT,
   VERIFIED_USER_POSTS_ROOT,
+  buildVerifiedUserSocialPrompt,
   buildPost,
+  composeVerifiedUserSocialCopy,
   loadArchiveHistory,
   normalizeVerifiedUsers,
   parseArgs,
@@ -547,4 +1052,5 @@ module.exports = {
   renderHtml,
   renderVerifiedUserPost,
   selectVerifiedUser,
+  validateVerifiedUserSocialParagraphs,
 };
