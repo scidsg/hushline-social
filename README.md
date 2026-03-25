@@ -1,8 +1,8 @@
 # Hush Line Social
 
-Dynamic daily social-post automation for Hush Line.
+Dynamic social-post automation for Hush Line.
 
-This repo plans one post per publish date from current local Hush Line context, renders the social asset from the approved template set, archives the day under `previous-posts/YYYY-MM-DD`, and publishes LinkedIn first.
+This repo plans one post per publish date from current local Hush Line context, renders the social asset from the approved template set, archives the result in-repo, and publishes LinkedIn first for the daily flow.
 
 ## What It Does
 
@@ -11,6 +11,8 @@ This repo plans one post per publish date from current local Hush Line context, 
 - writes network-specific copy plus separate image alt text
 - renders the final `@2x` PNG asset into `previous-posts/YYYY-MM-DD`
 - records LinkedIn publication state to prevent duplicate posting
+- renders one weekly verified-user social card from directory JSON into `previous-verified-user-posts/YYYY-MM-DD`
+- fills the verified-user template with display name, bio, direct `/to/...` URL, and a matching QR code
 
 ## Schedule
 
@@ -18,6 +20,7 @@ Default launchd schedules are weekday-only:
 
 - planner: `06:00` local time, Monday through Friday
 - LinkedIn publisher: `06:10` local time, Monday through Friday
+- verified-user weekly runner: `12:00` local time every Monday
 
 Weekend dates are intentionally skipped by both the launchd wrappers and the direct daily planner/publisher entrypoints.
 
@@ -27,6 +30,7 @@ Weekend dates are intentionally skipped by both the launchd wrappers and the dir
 - upstream app repo: `../hushline`
 - screenshot source: `../hushline-screenshots/releases/latest`
 - daily archive root: `previous-posts`
+- verified-user archive root: `previous-verified-user-posts`
 - launchd env file: `.env.launchd`
 - combined live log: `logs/social-daily.log`
 
@@ -38,14 +42,16 @@ Use the launchd wrappers so env loading and lock handling match production:
 cd /Users/scidsg/hushline-social
 ./scripts/run_daily_planner_launchd.sh
 ./scripts/run_daily_linkedin_launchd.sh
+./scripts/run_verified_user_weekly_launchd.sh
 ```
 
-For a specific weekday:
+For a specific weekday or Monday:
 
 ```sh
 cd /Users/scidsg/hushline-social
 ./scripts/run_daily_planner_launchd.sh --date YYYY-MM-DD
 ./scripts/run_daily_linkedin_launchd.sh --date YYYY-MM-DD
+./scripts/run_verified_user_weekly_launchd.sh --date YYYY-MM-DD
 ```
 
 To monitor both launchd jobs from one terminal:
@@ -81,6 +87,11 @@ Daemon mode needs a fully non-interactive `.env.launchd` setup:
 - `LINKEDIN_ACCESS_TOKEN`
 - `LINKEDIN_AUTHOR_URN`
 
+Optional verified-user source overrides:
+
+- `HUSHLINE_VERIFIED_USERS_SOURCE` for a local JSON file or remote `users.json` URL
+- `HUSHLINE_VERIFIED_USERS_BASE_URL` to change the base origin used for relative `/to/...` links
+
 The repo includes a preflight check for this:
 
 ```sh
@@ -93,4 +104,5 @@ cd /Users/scidsg/hushline-social
 
 - The planner fails on stale screenshot data unless explicitly overridden.
 - The daily planner wrapper can reset tracked changes and remove untracked files before `git pull --ff-only`.
+- The verified-user weekly runner is deterministic and only runs on Mondays.
 - Do not use this repo to permanently patch upstream screenshot ownership issues; fix those in `../hushline`.

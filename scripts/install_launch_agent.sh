@@ -167,6 +167,10 @@ main() {
         "$REPO_DIR/deploy/launchd/com.hushline.social.linkedin.daily.plist" \
         "$GUI_TARGET_DIR/com.hushline.social.linkedin.daily.plist" \
         "com.hushline.social.linkedin.daily"
+      install_gui_unit \
+        "$REPO_DIR/deploy/launchd/com.hushline.social.verified-user.weekly.plist" \
+        "$GUI_TARGET_DIR/com.hushline.social.verified-user.weekly.plist" \
+        "com.hushline.social.verified-user.weekly"
       if [[ $EUID -eq 0 ]]; then
         uninstall_daemon_unit \
           "$SYSTEM_TARGET_DIR/com.hushline.social.daily-planner.plist" \
@@ -174,6 +178,9 @@ main() {
         uninstall_daemon_unit \
           "$SYSTEM_TARGET_DIR/com.hushline.social.linkedin.daily.plist" \
           "com.hushline.social.linkedin.daily"
+        uninstall_daemon_unit \
+          "$SYSTEM_TARGET_DIR/com.hushline.social.verified-user.weekly.plist" \
+          "com.hushline.social.verified-user.weekly"
       fi
       ;;
     daemon)
@@ -190,12 +197,19 @@ main() {
         "$REPO_DIR/deploy/launchd/com.hushline.social.linkedin.daily.daemon.plist" \
         "$SYSTEM_TARGET_DIR/com.hushline.social.linkedin.daily.plist" \
         "com.hushline.social.linkedin.daily"
+      install_daemon_unit \
+        "$REPO_DIR/deploy/launchd/com.hushline.social.verified-user.weekly.daemon.plist" \
+        "$SYSTEM_TARGET_DIR/com.hushline.social.verified-user.weekly.plist" \
+        "com.hushline.social.verified-user.weekly"
       uninstall_gui_unit \
         "$GUI_TARGET_DIR/com.hushline.social.daily-planner.plist" \
         "com.hushline.social.daily-planner"
       uninstall_gui_unit \
         "$GUI_TARGET_DIR/com.hushline.social.linkedin.daily.plist" \
         "com.hushline.social.linkedin.daily"
+      uninstall_gui_unit \
+        "$GUI_TARGET_DIR/com.hushline.social.verified-user.weekly.plist" \
+        "com.hushline.social.verified-user.weekly"
       ;;
   esac
 
@@ -203,12 +217,15 @@ main() {
 Installed launchd jobs ($SCOPE):
 - ${SCOPE/daemon/system}/com.hushline.social.daily-planner
 - ${SCOPE/daemon/system}/com.hushline.social.linkedin.daily
+- ${SCOPE/daemon/system}/com.hushline.social.verified-user.weekly
 
 Logs:
 - $REPO_DIR/logs/daily-planner.stdout.log
 - $REPO_DIR/logs/daily-planner.stderr.log
 - $REPO_DIR/logs/linkedin-daily.stdout.log
 - $REPO_DIR/logs/linkedin-daily.stderr.log
+- $REPO_DIR/logs/verified-user-weekly.stdout.log
+- $REPO_DIR/logs/verified-user-weekly.stderr.log
 - $REPO_DIR/logs/social-daily.log
 
 Next steps:
@@ -220,12 +237,14 @@ EOF
     cat <<EOF
 - test with: launchctl kickstart -k gui/$APP_UID/com.hushline.social.daily-planner
 - test with: launchctl kickstart -k gui/$APP_UID/com.hushline.social.linkedin.daily
+- test with: launchctl kickstart -k gui/$APP_UID/com.hushline.social.verified-user.weekly
 EOF
   else
     cat <<EOF
 - required daemon env vars: OPENAI_API_KEY, HUSHLINE_SOCIAL_GITHUB_TOKEN, HUSHLINE_SOCIAL_GIT_SIGNING_KEY_PUB, LINKEDIN_ACCESS_TOKEN, LINKEDIN_AUTHOR_URN
 - test with: sudo launchctl kickstart -k system/com.hushline.social.daily-planner
 - test with: sudo launchctl kickstart -k system/com.hushline.social.linkedin.daily
+- test with: sudo launchctl kickstart -k system/com.hushline.social.verified-user.weekly
 EOF
   fi
 }

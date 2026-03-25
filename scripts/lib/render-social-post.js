@@ -160,8 +160,10 @@ async function renderPng(htmlPath, outputPath) {
       "--allow-file-access-from-files",
       "--disable-background-networking",
       "--disable-gpu",
+      "--disable-setuid-sandbox",
       "--hide-scrollbars",
       "--no-first-run",
+      "--no-sandbox",
     ],
   });
 
