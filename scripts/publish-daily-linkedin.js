@@ -62,10 +62,12 @@ function printHelp() {
       "Usage:",
       "  node scripts/publish-daily-linkedin.js",
       "  node scripts/publish-daily-linkedin.js --date 2026-03-18",
+      "  node scripts/publish-daily-linkedin.js --date 2026-03-30 --date-root previous-verified-user-posts",
       "  node scripts/publish-daily-linkedin.js --dry-run",
       "",
       "Behavior:",
-      "  - Publishes from previous-posts/YYYY-MM-DD",
+      "  - Publishes from previous-posts/YYYY-MM-DD by default",
+      "  - Can also publish verified-user archives via --date-root previous-verified-user-posts",
       "",
       "Environment:",
       "  LINKEDIN_ACCESS_TOKEN    OAuth access token with LinkedIn posting permissions",
@@ -93,6 +95,7 @@ function resolveArchivedDailyPost(args) {
   const postPath = path.join(outputDir, "post.json");
   const imagePath = path.join(outputDir, "social-card@2x.png");
   const publicationPath = path.join(outputDir, "linkedin-publication.json");
+  const archiveRootName = path.basename(args.dateRoot);
 
   if (!fs.existsSync(postPath)) {
     return null;
@@ -104,7 +107,7 @@ function resolveArchivedDailyPost(args) {
     post: readJson(postPath),
     publicationPath,
     summaryLabel: args.date,
-    type: "daily-archive",
+    type: archiveRootName === "previous-verified-user-posts" ? "verified-user-archive" : "daily-archive",
   };
 }
 
