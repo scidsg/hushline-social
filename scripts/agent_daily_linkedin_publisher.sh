@@ -14,9 +14,20 @@ archive_already_pushed() {
   local remote="${HUSHLINE_SOCIAL_ARCHIVE_REMOTE:-origin}"
   local branch="${HUSHLINE_SOCIAL_ARCHIVE_BRANCH:-main}"
   local archive_path=""
+  local remote_ref=""
+
+  if (( FORCE == 1 )); then
+    return
+  fi
 
   publish_date="$(effective_date)"
   archive_path="previous-posts/$publish_date/post.json"
+  remote_ref="refs/remotes/$remote/$branch"
+
+  if ! git -C "$REPO_DIR" fetch --quiet "$remote" "$branch:$remote_ref"; then
+    echo "Failed to refresh $remote/$branch before checking daily publication state." >&2
+    exit 1
+  fi
 
   if git -C "$REPO_DIR" cat-file -e "${remote}/${branch}:${archive_path}" 2>/dev/null; then
     echo "Daily archive for $publish_date is already present on $remote/$branch; skipping publish."

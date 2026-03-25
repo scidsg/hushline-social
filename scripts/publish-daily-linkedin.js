@@ -118,8 +118,13 @@ function remoteArchivePublished(args) {
   const remote = process.env.HUSHLINE_SOCIAL_ARCHIVE_REMOTE || "origin";
   const branch = process.env.HUSHLINE_SOCIAL_ARCHIVE_BRANCH || "main";
   const archivePath = `${archiveRootName}/${args.date}/post.json`;
+  const remoteRef = `refs/remotes/${remote}/${branch}`;
 
   try {
+    execFileSync("git", ["fetch", "--quiet", remote, `${branch}:${remoteRef}`], {
+      cwd: REPO_ROOT,
+      stdio: "ignore",
+    });
     execFileSync("git", ["cat-file", "-e", `${remote}/${branch}:${archivePath}`], {
       cwd: REPO_ROOT,
       stdio: "ignore",
