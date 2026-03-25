@@ -7,6 +7,7 @@ REPO_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 DATE_OVERRIDE=""
 DRY_RUN=0
 FORCE=0
+NO_PUSH=0
 WAIT_SECONDS="${HUSHLINE_SOCIAL_VERIFIED_USER_PUBLISH_WAIT_SECONDS:-600}"
 WAIT_INTERVAL_SECONDS="${HUSHLINE_SOCIAL_VERIFIED_USER_PUBLISH_WAIT_INTERVAL_SECONDS:-5}"
 
@@ -17,6 +18,21 @@ require_positive_integer() {
   if [[ ! "$value" =~ ^[0-9]+$ ]] || (( value <= 0 )); then
     echo "$name must be a positive integer; got: $value" >&2
     exit 1
+  fi
+}
+
+archive_already_pushed() {
+  local publish_date=""
+  local remote="${HUSHLINE_SOCIAL_ARCHIVE_REMOTE:-origin}"
+  local branch="${HUSHLINE_SOCIAL_ARCHIVE_BRANCH:-main}"
+  local archive_path=""
+
+  publish_date="$(effective_date)"
+  archive_path="previous-verified-user-posts/$publish_date/post.json"
+
+  if git -C "$REPO_DIR" cat-file -e "${remote}/${branch}:${archive_path}" 2>/dev/null; then
+    echo "Verified-user archive for $publish_date is already present on $remote/$branch; skipping publish."
+    exit 0
   fi
 }
 
@@ -35,6 +51,10 @@ parse_args() {
         FORCE=1
         shift
         ;;
+      --no-push)
+        NO_PUSH=1
+        shift
+        ;;
       --help|-h)
         cat <<'EOF'
 Usage:
@@ -45,7 +65,8 @@ Usage:
 Behavior:
   - Loads the archived weekly verified-user post from previous-verified-user-posts/YYYY-MM-DD
   - Publishes it to LinkedIn
-  - Writes a local publication record to avoid duplicate posting
+  - Treats the pushed dated folder as the publication-state record across machines
+  - Pushes the weekly archive folder after a successful publish
 EOF
         exit 0
         ;;
@@ -94,10 +115,20 @@ wait_for_archive() {
   done
 }
 
+push_archive() {
+  if (( NO_PUSH == 1 )) || [[ "${HUSHLINE_SOCIAL_ARCHIVE_PUSH:-1}" != "1" ]]; then
+    echo "Archive push skipped."
+    return
+  fi
+
+  (cd "$REPO_DIR" && ./scripts/push_previous_posts_archive.sh --date "$(effective_date)" --archive-root previous-verified-user-posts)
+}
+
 main() {
   parse_args "$@"
   require_positive_integer "$WAIT_SECONDS" "HUSHLINE_SOCIAL_VERIFIED_USER_PUBLISH_WAIT_SECONDS"
   require_positive_integer "$WAIT_INTERVAL_SECONDS" "HUSHLINE_SOCIAL_VERIFIED_USER_PUBLISH_WAIT_INTERVAL_SECONDS"
+  archive_already_pushed
   wait_for_archive
 
   local -a cmd=(node scripts/publish-daily-linkedin.js --date-root previous-verified-user-posts --allow-weekend)
@@ -106,6 +137,10 @@ main() {
   (( FORCE == 1 )) && cmd+=(--force)
 
   (cd "$REPO_DIR" && "${cmd[@]}")
+
+  if (( DRY_RUN == 0 )); then
+    push_archive
+  fi
 }
 
 main "$@"

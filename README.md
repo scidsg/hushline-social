@@ -10,11 +10,12 @@ This repo plans one post per publish date from current local Hush Line context, 
 - selects screenshots only from `../hushline-screenshots/releases/latest`
 - writes network-specific copy plus separate image alt text
 - renders the final `@2x` PNG asset into `previous-posts/YYYY-MM-DD`
-- records LinkedIn publication state to prevent duplicate posting
+- uses the pushed dated archive folder as the LinkedIn publication-state record across machines
 - renders one weekly verified-user post archive from directory JSON into `previous-verified-user-posts/YYYY-MM-DD`
 - writes network-specific copy, alt text, and a `post-copy.txt` alongside the verified-user card assets
 - fills the verified-user template with display name, bio, direct `/to/...` URL, and a matching QR code
 - publishes the weekly verified-user archive to LinkedIn after rendering
+- pushes the weekly verified-user archive to git after successful LinkedIn publication so the pushed dated folder itself is the published-state record
 
 ## Schedule
 
@@ -109,6 +110,8 @@ cd /Users/scidsg/hushline-social
 
 - The planner fails on stale screenshot data unless explicitly overridden.
 - The daily planner wrapper can reset tracked changes and remove untracked files before `git pull --ff-only`.
+- The daily planner keeps its archive local by default; the daily LinkedIn publisher pushes `previous-posts/YYYY-MM-DD` after successful publication, and the pushed dated folder is the publication-state signal across machines.
 - The verified-user weekly LaunchAgents are scheduled for Mondays, but the manual wrappers can be run for any date override.
 - The verified-user LinkedIn publisher posts from `previous-verified-user-posts/YYYY-MM-DD`.
+- The weekly verified-user render step keeps its archive local by default; the LinkedIn publish step pushes that dated folder after successful publication, and the pushed dated folder is the publication-state signal across machines.
 - Do not use this repo to permanently patch upstream screenshot ownership issues; fix those in `../hushline`.

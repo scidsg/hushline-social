@@ -9,13 +9,14 @@ SCREENSHOT_AUTO_SYNC="${HUSHLINE_SCREENSHOT_AUTO_SYNC:-1}"
 SCREENSHOT_REMOTE_CHECK_ATTEMPTS="${HUSHLINE_SCREENSHOT_REMOTE_CHECK_ATTEMPTS:-3}"
 SCREENSHOT_REMOTE_CHECK_TIMEOUT_SECONDS="${HUSHLINE_SCREENSHOT_REMOTE_CHECK_TIMEOUT_SECONDS:-12}"
 ALLOW_STALE_SCREENSHOTS="${HUSHLINE_ALLOW_STALE_SCREENSHOTS:-0}"
-ARCHIVE_PUSH_ENABLED="${HUSHLINE_SOCIAL_ARCHIVE_PUSH:-1}"
+ARCHIVE_PUSH_ENABLED="${HUSHLINE_SOCIAL_DAILY_PUSH_ON_RENDER:-0}"
 
 DATE="$(date +%Y-%m-%d)"
 CANDIDATE_COUNT=""
 DARK_RATIO=""
 NO_RENDER=0
 NO_PUSH=0
+FORCE_PUSH=0
 
 CODEX_MODEL="${CODEX_MODEL:-gpt-5.4}"
 CODEX_REASONING_EFFORT="${CODEX_REASONING_EFFORT:-high}"
@@ -60,6 +61,10 @@ parse_args() {
         NO_PUSH=1
         shift
         ;;
+      --push-render-archive)
+        FORCE_PUSH=1
+        shift
+        ;;
       --help|-h)
         cat <<'EOF'
 Usage:
@@ -69,7 +74,9 @@ Behavior:
   - Prepares daily context and prompt artifacts under previous-posts/YYYY-MM-DD
   - Invokes Codex CLI in the local repo
   - Expects Codex to write previous-posts/YYYY-MM-DD/plan.json
-  - Validates the plan, renders assets, and optionally force-pushes the archive folder
+  - Validates the plan and renders assets
+  - Keeps the daily archive local by default
+  - Pushes the daily archive only when --push-render-archive is passed or HUSHLINE_SOCIAL_DAILY_PUSH_ON_RENDER=1
 EOF
         exit 0
         ;;
@@ -158,7 +165,12 @@ validate_and_render() {
 }
 
 push_archive() {
-  if (( NO_PUSH == 1 )) || [[ "$ARCHIVE_PUSH_ENABLED" != "1" ]]; then
+  if (( NO_PUSH == 1 )); then
+    echo "Archive push skipped."
+    return
+  fi
+
+  if (( FORCE_PUSH == 0 )) && [[ "$ARCHIVE_PUSH_ENABLED" != "1" ]]; then
     echo "Archive push skipped."
     return
   fi

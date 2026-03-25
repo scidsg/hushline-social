@@ -55,7 +55,7 @@ test("publisher allows explicit weekend overrides for verified-user archives", (
   }
 });
 
-test("publisher respects the local duplicate-post guard before attempting any network call", () => {
+test("publisher can dry-run from a local daily archive without a publication record", () => {
   const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "linkedin-publish-"));
   const postDir = path.join(tempRoot, "2026-03-20");
   fs.mkdirSync(postDir, { recursive: true });
@@ -72,14 +72,11 @@ test("publisher respects the local duplicate-post guard before attempting any ne
     }),
   );
   fs.writeFileSync(path.join(postDir, "social-card@2x.png"), "png");
-  fs.writeFileSync(
-    path.join(postDir, "linkedin-publication.json"),
-    JSON.stringify({ post_id: "urn:li:share:12345" }),
-  );
 
   try {
-    const output = runPublisher(["--date", "2026-03-20", "--date-root", tempRoot]);
-    assert.match(output, /LinkedIn post for friday on 2026-03-20 already published: urn:li:share:12345/);
+    const output = runPublisher(["--date", "2026-03-20", "--date-root", tempRoot, "--dry-run"]);
+    assert.match(output, /Dry run: LinkedIn publication prepared for 2026-03-20/);
+    assert.match(output, /source: daily-archive/);
   } finally {
     fs.rmSync(tempRoot, { force: true, recursive: true });
   }

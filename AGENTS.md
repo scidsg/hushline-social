@@ -199,11 +199,13 @@ Publishing is daily, planning is daily.
 - the daily planner creates that day's single post folder under `previous-posts/YYYY-MM-DD`
 - the daily publisher selects the archived post whose date is today
 - LinkedIn is the first production publishing target
-- do not double-post; persist local publication state
+- do not double-post; use the pushed dated archive folder as the cross-machine publication-state record
 - launchd is the intended scheduler on the server
 - launchd should call the wrapper script, not a raw `node` command
 - secrets should come from `.env.launchd` or an explicitly configured env file on the server
 - archive pushes should use signed commits and push only the daily folder contents needed for audit
+- for daily posts, do not push the archive folder before LinkedIn publication succeeds; push the dated folder after publication so the repo reflects posted state
+- for verified-user weekly posts, do not push the archive folder before LinkedIn publication succeeds; push the dated folder after publication so the repo reflects posted state
 
 Current default launchd schedule in this repo:
 
@@ -233,11 +235,10 @@ By default, the daily planner wrapper performs `git pull --ff-only` before plann
 
 ## Publication State Rules
 
-- `previous-posts/YYYY-MM-DD/linkedin-publication.json` is the local duplicate-post guard for LinkedIn
-- `previous-verified-user-posts/YYYY-MM-DD/linkedin-publication.json` is the local duplicate-post guard for weekly verified-user LinkedIn posts
-- after a real live LinkedIn post, do not delete or rewrite `linkedin-publication.json` unless you explicitly intend to republish that date
-- if the archived post folder for a date is rebuilt after a live publish, preserve or restore `linkedin-publication.json` before the publisher runs again
-- if the local publication state is gone, the publisher may treat that date as unpublished and create a duplicate LinkedIn post
+- for daily posts, treat the pushed `previous-posts/YYYY-MM-DD` folder itself as the publication-state record across machines
+- for weekly verified-user posts, treat the pushed `previous-verified-user-posts/YYYY-MM-DD` folder itself as the publication-state record across machines
+- do not push a dated archive folder before its LinkedIn publication succeeds unless you explicitly intend to mark that date as already posted
+- if a published dated archive folder is missing from the repo, another machine may treat that date as unpublished and create a duplicate LinkedIn post
 
 ## Manual Runbook
 
