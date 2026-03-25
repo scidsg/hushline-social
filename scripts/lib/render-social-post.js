@@ -9,9 +9,9 @@ const {
   LOCAL_LOGO,
   REPO_ROOT,
   clampText,
-  detectTemplate,
   ensureLatestFoldScreenshot,
   findChrome,
+  resolveTemplateVariant,
 } = require("./social-common");
 
 function escapeHtml(value) {
@@ -61,7 +61,7 @@ function validatePost(post) {
   }
 }
 
-function buildTxt(post, screenshotPath, templateType) {
+function buildTxt(post, screenshotPath, templateName) {
   const linkedin = clampText(post.social.linkedin, LIMITS.linkedin);
   const mastodon = clampText(post.social.mastodon, LIMITS.mastodon);
   const bluesky = clampText(post.social.bluesky, LIMITS.bluesky);
@@ -69,7 +69,7 @@ function buildTxt(post, screenshotPath, templateType) {
   return [
     `Slot: ${post.slot}`,
     `Planned date: ${post.planned_date}`,
-    `Template: ${templateType}`,
+    `Template: ${templateName}`,
     `Screenshot: ${screenshotPath}`,
     `Content key: ${post.content_key || ""}`.trimEnd(),
     `Headline: ${post.headline.replace(/\n/g, " ")}`,
@@ -190,12 +190,8 @@ async function renderPost(post, outputDir) {
       ? post.screenshot_file
       : path.join(REPO_ROOT, "..", "hushline-screenshots", "releases", "latest", post.screenshot_file),
   );
-  const templateType = detectTemplate(screenshotPath);
-  const templatePath = path.join(
-    REPO_ROOT,
-    "templates",
-    `hushline-social-${templateType}-template.html`,
-  );
+  const templateSelection = resolveTemplateVariant(post, screenshotPath);
+  const templatePath = templateSelection.templatePath;
   const screenshotFilename = path.basename(screenshotPath);
   const logoFilename = path.basename(LOCAL_LOGO);
   const htmlPath = path.join(outputDir, "social-card.html");
@@ -208,7 +204,7 @@ async function renderPost(post, outputDir) {
   }
 
   const html = renderHtml(templatePath, post, screenshotFilename, logoFilename);
-  const txt = buildTxt(post, screenshotPath, templateType);
+  const txt = buildTxt(post, screenshotPath, templateSelection.templateName);
 
   fs.mkdirSync(outputDir, { recursive: true });
   fs.copyFileSync(screenshotPath, path.join(outputDir, screenshotFilename));

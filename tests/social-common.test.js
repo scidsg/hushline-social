@@ -66,3 +66,66 @@ test("ensureLatestFoldScreenshot accepts only files under releases/latest ending
     fs.rmSync(tempRoot, { force: true, recursive: true });
   }
 });
+
+test("listTemplateVariants discovers base and suffixed template files for a type", () => {
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "social-common-"));
+  const templatesDir = path.join(tempRoot, "templates");
+  fs.mkdirSync(templatesDir, { recursive: true });
+  fs.writeFileSync(path.join(templatesDir, "hushline-social-mobile-template.html"), "");
+  fs.writeFileSync(path.join(templatesDir, "hushline-social-mobile-template-2.html"), "");
+  fs.writeFileSync(path.join(templatesDir, "hushline-social-mobile-template-10.html"), "");
+  fs.writeFileSync(path.join(templatesDir, "hushline-social-desktop-template.html"), "");
+
+  const { socialCommon, cleanup } = withFreshSocialCommon(tempRoot);
+
+  try {
+    const variants = socialCommon.listTemplateVariants("mobile", templatesDir).map((filePath) => path.basename(filePath));
+    assert.deepEqual(variants, [
+      "hushline-social-mobile-template.html",
+      "hushline-social-mobile-template-2.html",
+      "hushline-social-mobile-template-10.html",
+    ]);
+  } finally {
+    cleanup();
+    fs.rmSync(tempRoot, { force: true, recursive: true });
+  }
+});
+
+test("resolveTemplateVariant automatically uses newly added matching template variants", () => {
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "social-common-"));
+  const latestDir = path.join(tempRoot, "releases", "latest", "guest");
+  const templatesDir = path.join(tempRoot, "templates");
+  fs.mkdirSync(latestDir, { recursive: true });
+  fs.mkdirSync(templatesDir, { recursive: true });
+  const screenshotPath = path.join(latestDir, "guest-directory-verified-mobile-light-fold.png");
+  fs.writeFileSync(screenshotPath, "png");
+  fs.writeFileSync(path.join(templatesDir, "hushline-social-mobile-template.html"), "");
+  fs.writeFileSync(path.join(templatesDir, "hushline-social-mobile-template-2.html"), "");
+  fs.writeFileSync(path.join(templatesDir, "hushline-social-mobile-template-3.html"), "");
+
+  const { socialCommon, cleanup } = withFreshSocialCommon(tempRoot);
+
+  try {
+    const selections = new Set();
+    const allowed = [
+      "hushline-social-mobile-template.html",
+      "hushline-social-mobile-template-2.html",
+      "hushline-social-mobile-template-3.html",
+    ];
+
+    for (const plannedDate of ["2026-03-24", "2026-03-25", "2026-03-26", "2026-03-27", "2026-03-30"]) {
+      const selection = socialCommon.resolveTemplateVariant({
+        planned_date: plannedDate,
+        content_key: "guest-directory-verified",
+      }, screenshotPath, templatesDir);
+      assert.match(selection.templateName, /^hushline-social-mobile-template(?:-.+)?\.html$/);
+      assert.ok(allowed.includes(selection.templateName));
+      selections.add(selection.templateName);
+    }
+
+    assert.ok(selections.size > 1);
+  } finally {
+    cleanup();
+    fs.rmSync(tempRoot, { force: true, recursive: true });
+  }
+});
