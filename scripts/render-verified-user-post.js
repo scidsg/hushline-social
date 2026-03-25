@@ -37,6 +37,9 @@ function generateVerifiedUserCopy(run, outputDir) {
 
   for (let attempt = 1; attempt <= 2; attempt += 1) {
     const codexOutputPath = path.join(os.tmpdir(), `verified-user-codex-output-${process.pid}-${Date.now()}-${attempt}.txt`);
+    if (fs.existsSync(copyPath)) {
+      fs.unlinkSync(copyPath);
+    }
     const prompt = buildVerifiedUserSocialPrompt({
       date: run.date,
       feedback,
