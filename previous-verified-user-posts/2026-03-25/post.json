@@ -1,0 +1,19 @@
+{
+  "date": "2026-03-25",
+  "display_name": "Cory Smith",
+  "headline": "Cory Smith",
+  "image_alt_text": "A social card featuring verified Hush Line user Cory Smith, their bio, their tip line URL, and a QR code that links to the same URL.",
+  "planned_date": "2026-03-25",
+  "primary_username": "coryjosmith",
+  "qr_code_file": "verified-user-qr.png",
+  "social": {
+    "bluesky": "🤩 Verified Member Highlight!\n\nCory Smith is an investigative journalist and political reporter at The Hill, with a commitment to accuracy and protecting sources.\n\nSend Cory a tip: https://tips.hushline.app/to/coryjosmith",
+    "linkedin": "🤩 Verified Member Highlight!\n\nCory Smith is an investigative journalist and political reporter at The Hill. He is committed to accuracy and protecting sources.\n\nTo send Cory a tip, go to https://tips.hushline.app/to/coryjosmith.",
+    "mastodon": "🤩 Verified Member Highlight!\n\nCory Smith is an investigative journalist and political reporter at The Hill, committed to accuracy and protecting sources.\n\nTo send Cory a tip, visit https://tips.hushline.app/to/coryjosmith."
+  },
+  "slot": "verified-user-weekly",
+  "source": "https://tips.hushline.app/directory/users.json",
+  "subtext": "Investigative journalist and political reporter at The Hill. Committed to accuracy and protecting sources.",
+  "user_link": "https://tips.hushline.app/to/coryjosmith",
+  "user_url": "https://tips.hushline.app/to/coryjosmith"
+}

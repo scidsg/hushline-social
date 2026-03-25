@@ -1,0 +1,34 @@
+Slot: verified-user-weekly
+Planned date: 2026-03-25
+Verified user: @coryjosmith
+User link: https://tips.hushline.app/to/coryjosmith
+Source: https://tips.hushline.app/directory/users.json
+Headline: Cory Smith
+Subtext: Investigative journalist and political reporter at The Hill. Committed to accuracy and protecting sources.
+
+Image alt text
+A social card featuring verified Hush Line user Cory Smith, their bio, their tip line URL, and a QR code that links to the same URL.
+
+Social post copy
+
+LinkedIn (229/3000)
+🤩 Verified Member Highlight!
+
+Cory Smith is an investigative journalist and political reporter at The Hill. He is committed to accuracy and protecting sources.
+
+To send Cory a tip, go to https://tips.hushline.app/to/coryjosmith.
+
+Mastodon (223/500)
+🤩 Verified Member Highlight!
+
+Cory Smith is an investigative journalist and political reporter at The Hill, committed to accuracy and protecting sources.
+
+To send Cory a tip, visit https://tips.hushline.app/to/coryjosmith.
+
+Bluesky (221/300)
+🤩 Verified Member Highlight!
+
+Cory Smith is an investigative journalist and political reporter at The Hill, with a commitment to accuracy and protecting sources.
+
+Send Cory a tip: https://tips.hushline.app/to/coryjosmith
+

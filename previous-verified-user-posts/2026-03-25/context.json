@@ -1,0 +1,15 @@
+{
+  "archive_root": "previous-verified-user-posts",
+  "date": "2026-03-25",
+  "eligible_verified_user_count": 68,
+  "recent_archive_history": [],
+  "selected_user": {
+    "bio": "Investigative journalist and political reporter at The Hill. Committed to accuracy and protecting sources.",
+    "display_name": "Cory Smith",
+    "is_admin": false,
+    "primary_username": "coryjosmith",
+    "profile_url": "/to/coryjosmith",
+    "user_url": "https://tips.hushline.app/to/coryjosmith"
+  },
+  "source": "https://tips.hushline.app/directory/users.json"
+}
