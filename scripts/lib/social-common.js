@@ -17,6 +17,7 @@ const HUSHLINE_DOCS_DIRS = [...new Set([
   path.join(HUSHLINE_DOCS_ROOT, "docs"),
 ])];
 const LOCAL_LOGO = path.join(REPO_ROOT, "assets", "logo-tips.png");
+const TEMPLATES_DIR = path.join(REPO_ROOT, "templates");
 
 const LIMITS = {
   linkedin: 3000,
@@ -259,6 +260,63 @@ function detectTemplate(screenshotPath) {
   throw new Error(`Could not infer template type from screenshot name: ${filename}`);
 }
 
+function compareTemplateNames(left, right) {
+  const leftBase = /^hushline-social-(mobile|desktop)-template\.html$/.test(left);
+  const rightBase = /^hushline-social-(mobile|desktop)-template\.html$/.test(right);
+
+  if (leftBase && !rightBase) {
+    return -1;
+  }
+
+  if (!leftBase && rightBase) {
+    return 1;
+  }
+
+  return left.localeCompare(right, undefined, { numeric: true });
+}
+
+function listTemplateVariants(templateType, templatesDir = TEMPLATES_DIR) {
+  const prefix = `hushline-social-${templateType}-template`;
+  const pattern = new RegExp(`^${prefix}(?:-.+)?\\.html$`);
+
+  return fs.readdirSync(templatesDir)
+    .filter((name) => pattern.test(name))
+    .sort(compareTemplateNames)
+    .map((name) => path.join(templatesDir, name));
+}
+
+function stableIndex(seed, count) {
+  let hash = 0;
+
+  for (const char of String(seed || "")) {
+    hash = ((hash * 31) + char.charCodeAt(0)) >>> 0;
+  }
+
+  return count > 0 ? hash % count : 0;
+}
+
+function resolveTemplateVariant(post, screenshotPath, templatesDir = TEMPLATES_DIR) {
+  const templateType = detectTemplate(screenshotPath);
+  const variants = listTemplateVariants(templateType, templatesDir);
+
+  if (variants.length === 0) {
+    throw new Error(`No template variants found for type: ${templateType}`);
+  }
+
+  const seed = [
+    post && post.planned_date,
+    post && post.content_key,
+    path.basename(screenshotPath),
+  ].filter(Boolean).join("\n");
+  const templatePath = variants[stableIndex(seed || path.basename(screenshotPath), variants.length)];
+
+  return {
+    templateName: path.basename(templatePath),
+    templatePath,
+    templateType,
+  };
+}
+
 function clampText(text, limit) {
   const value = String(text || "").trim();
   if (value.length <= limit) {
@@ -289,6 +347,7 @@ module.exports = {
   REPO_ROOT,
   SCREENSHOT_MANIFEST,
   SCREENSHOTS_ROOT,
+  TEMPLATES_DIR,
   clampText,
   detectTemplate,
   ensureLatestFoldScreenshot,
@@ -298,8 +357,10 @@ module.exports = {
   getWeekdayLabel,
   isWeekendDate,
   listFilesRecursive,
+  listTemplateVariants,
   parseLocalDate,
   readJson,
+  resolveTemplateVariant,
   resolveScreenshotPath,
   sentenceCase,
   sharedTokenCount,
