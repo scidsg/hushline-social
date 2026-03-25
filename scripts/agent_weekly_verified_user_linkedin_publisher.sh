@@ -54,24 +54,8 @@ effective_date() {
   date +%Y-%m-%d
 }
 
-weekday_number() {
-  date -j -f "%Y-%m-%d" "$1" "+%u"
-}
-
-skip_if_not_monday() {
-  local publish_date=""
-  local weekday=""
-  publish_date="$(effective_date)"
-  weekday="$(weekday_number "$publish_date")"
-  if [[ "$weekday" != "1" ]]; then
-    echo "Skipping verified-user LinkedIn publisher for non-Monday date $publish_date."
-    exit 0
-  fi
-}
-
 main() {
   parse_args "$@"
-  skip_if_not_monday
 
   local -a cmd=(node scripts/publish-daily-linkedin.js --date-root previous-verified-user-posts)
   [[ -n "$DATE_OVERRIDE" ]] && cmd+=(--date "$DATE_OVERRIDE")

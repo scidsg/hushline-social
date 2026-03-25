@@ -218,7 +218,7 @@ Current default launchd schedule in this repo:
 
 Keep the publisher scheduled after the planner with enough buffer for rendering, archive writes, and local state updates.
 
-Weekend dates are excluded from the daily planner and daily LinkedIn publisher. Verified-user weekly creation and publishing are Monday-only. If an off-schedule date is passed manually, the wrappers and publishers should exit cleanly without creating or posting that date.
+Weekend dates are excluded from the daily planner and daily LinkedIn publisher. Verified-user LaunchAgents are scheduled for Mondays, but manual verified-user creation and publishing may be run for any explicit date override.
 
 For always-on servers, do not rely on GUI-only LaunchAgents. Install the background jobs with:
 

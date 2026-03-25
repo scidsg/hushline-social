@@ -13,8 +13,6 @@ const {
   LOCAL_LOGO,
   REPO_ROOT,
   findChrome,
-  getWeekdayLabel,
-  isWeekendDate,
   readJson,
   writeJson,
 } = require("./social-common");
@@ -60,7 +58,7 @@ function printHelp() {
       "",
       "Behavior:",
       "  - Reads verified directory listings from a JSON file or URL",
-      "  - Selects one verified user for the requested Monday",
+      "  - Selects one verified user for the requested date",
       "  - Fills the verified-user social template with display name, bio, URL, and QR code",
       "  - Writes artifacts under previous-verified-user-posts/YYYY-MM-DD",
       "",
@@ -800,7 +798,7 @@ function buildPost({ date, selectedUser, source }) {
     primary_username: selectedUser.primary_username,
     qr_code_file: QR_FILENAME,
     social: buildSocialCopy(selectedUser),
-    slot: "monday-noon",
+    slot: "verified-user-weekly",
     source,
     subtext: selectedUser.bio,
     user_link: selectedUser.user_url,
@@ -1008,10 +1006,6 @@ async function renderVerifiedUserPost(run, options = {}) {
 }
 
 async function prepareVerifiedUserRun(args, options = {}) {
-  if (isWeekendDate(args.date) || getWeekdayLabel(args.date) !== "monday") {
-    throw new Error(`Verified-user weekly posts run only on Mondays: ${args.date} (${getWeekdayLabel(args.date)}).`);
-  }
-
   const payload = await readDirectoryPayload(args.source);
   const verifiedUsers = normalizeVerifiedUsers(payload, args.baseUrl);
   const archiveHistory = loadArchiveHistory(args.date, options.archiveRoot);

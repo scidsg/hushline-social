@@ -109,6 +109,6 @@ cd /Users/scidsg/hushline-social
 
 - The planner fails on stale screenshot data unless explicitly overridden.
 - The daily planner wrapper can reset tracked changes and remove untracked files before `git pull --ff-only`.
-- The verified-user weekly runner is deterministic and only runs on Mondays.
-- The verified-user LinkedIn publisher posts from `previous-verified-user-posts/YYYY-MM-DD` and also only runs on Mondays.
+- The verified-user weekly LaunchAgents are scheduled for Mondays, but the manual wrappers can be run for any date override.
+- The verified-user LinkedIn publisher posts from `previous-verified-user-posts/YYYY-MM-DD`.
 - Do not use this repo to permanently patch upstream screenshot ownership issues; fix those in `../hushline`.

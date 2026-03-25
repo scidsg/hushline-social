@@ -34,21 +34,6 @@ effective_date() {
   date +%Y-%m-%d
 }
 
-weekday_number() {
-  date -j -f "%Y-%m-%d" "$1" "+%u"
-}
-
-skip_if_not_monday() {
-  local target_date=""
-  local weekday=""
-  target_date="$(effective_date "$@")"
-  weekday="$(weekday_number "$target_date")"
-  if [[ "$weekday" != "1" ]]; then
-    echo "Skipping verified-user LinkedIn publisher for non-Monday date $target_date."
-    exit 0
-  fi
-}
-
 if ! mkdir -p "$REPO_DIR/.tmp"; then
   echo "Failed to create temp directory under $REPO_DIR/.tmp" >&2
   exit 1
@@ -69,8 +54,6 @@ fi
 
 setup_log_capture
 echo "[$(date '+%Y-%m-%d %H:%M:%S %Z')] Starting verified-user LinkedIn publisher wrapper."
-
-skip_if_not_monday "$@"
 
 cd "$REPO_DIR"
 ./scripts/agent_weekly_verified_user_linkedin_publisher.sh "$@"

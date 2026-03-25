@@ -36,21 +36,6 @@ effective_date() {
   date +%Y-%m-%d
 }
 
-weekday_number() {
-  date -j -f "%Y-%m-%d" "$1" "+%u"
-}
-
-skip_if_not_monday() {
-  local target_date=""
-  local weekday=""
-  target_date="$(effective_date "$@")"
-  weekday="$(weekday_number "$target_date")"
-  if [[ "$weekday" != "1" ]]; then
-    echo "Skipping verified-user weekly runner for non-Monday date $target_date."
-    exit 0
-  fi
-}
-
 update_repo() {
   if [[ "$AUTO_GIT_PULL" != "1" ]]; then
     echo "Automatic git pull skipped."
@@ -103,8 +88,6 @@ fi
 
 setup_log_capture
 echo "[$(date '+%Y-%m-%d %H:%M:%S %Z')] Starting verified-user weekly wrapper."
-
-skip_if_not_monday "$@"
 
 update_repo
 
