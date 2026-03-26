@@ -49,6 +49,91 @@ function normalizeConceptKey(contentKey) {
     .replace(/^-+/, "");
 }
 
+function inferTopicFamily(item) {
+  const pathValue = String(item.path || "");
+  const text = [
+    item.title,
+    item.content_key,
+    item.contentKey,
+    item.screenshot_file,
+    item.file,
+    pathValue,
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+
+  if (/\bdirectory\b/.test(text) || /^\/directory\b/.test(pathValue)) {
+    return "directory";
+  }
+
+  if (/\bencryption\b|\bpgp\b/.test(text) || /^\/settings\/encryption\b/.test(pathValue)) {
+    return "encryption";
+  }
+
+  if (/\bnotification(s)?\b/.test(text) || /^\/settings\/notifications\b/.test(pathValue)) {
+    return "notifications";
+  }
+
+  if (/\bauth(entication)?\b|\b2fa\b/.test(text) || /^\/settings\/auth\b/.test(pathValue)) {
+    return "authentication";
+  }
+
+  if (/\balias(es)?\b/.test(text) || /^\/settings\/aliases\b/.test(pathValue)) {
+    return "aliases";
+  }
+
+  if (/\bguidance\b/.test(text) || /^\/settings\/guidance\b/.test(pathValue)) {
+    return "guidance";
+  }
+
+  if (/\bregistration\b/.test(text) || /^\/settings\/registration\b/.test(pathValue)) {
+    return "registration";
+  }
+
+  if (/\bbranding\b/.test(text) || /^\/settings\/branding\b/.test(pathValue)) {
+    return "branding";
+  }
+
+  if (/\bmessage statuses\b|\breplies\b/.test(text) || /^\/settings\/replies\b/.test(pathValue)) {
+    return "message-statuses";
+  }
+
+  if (/\bvision\b/.test(text) || /^\/vision\b/.test(pathValue)) {
+    return "vision";
+  }
+
+  if (/\bemail headers\b/.test(text) || /^\/email-headers\b/.test(pathValue)) {
+    return "email-headers";
+  }
+
+  if (/\bprofile\b/.test(text) || /^\/to\//.test(pathValue) || /^\/settings\/profile\b/.test(pathValue)) {
+    return "profile";
+  }
+
+  if (/\bonboarding\b/.test(text) || /^\/onboarding\b/.test(pathValue)) {
+    return "onboarding";
+  }
+
+  return normalizeConceptKey(item.content_key || item.contentKey);
+}
+
+function findSaturatedTopicFamilies(archiveHistory, windowSize = 4) {
+  const recentWindow = archiveHistory.slice(-windowSize);
+  const counts = new Map();
+
+  for (const entry of recentWindow) {
+    const family = entry.topic_family || inferTopicFamily(entry);
+    counts.set(family, (counts.get(family) || 0) + 1);
+  }
+
+  return new Set(
+    [...counts.entries()]
+      .filter(([, count]) => count >= 2)
+      .map(([family]) => family),
+  );
+}
+
 function parseArgs(argv) {
   const args = {
     candidateCount: 12,
@@ -134,6 +219,7 @@ function loadArchiveHistory(currentDate) {
         date,
         headline: post.headline,
         screenshot_file: post.screenshot_file,
+        topic_family: post.topic_family || inferTopicFamily(post),
       };
     })
     .filter(Boolean);
@@ -142,15 +228,30 @@ function loadArchiveHistory(currentDate) {
 function filterCandidatesForArchiveHistory(candidates, archiveHistory) {
   const usedContentKeys = new Set(archiveHistory.map((entry) => entry.content_key));
   const usedConceptKeys = new Set(archiveHistory.map((entry) => entry.concept_key));
+  const saturatedTopicFamilies = findSaturatedTopicFamilies(archiveHistory);
 
   const strict = candidates.filter((candidate) => {
     return !usedContentKeys.has(candidate.content_key) && !usedConceptKeys.has(candidate.concept_key);
   });
+  const strictVaried = strict.filter(
+    (candidate) => !saturatedTopicFamilies.has(candidate.topic_family || inferTopicFamily(candidate)),
+  );
+  if (strictVaried.length >= 4) {
+    return strictVaried;
+  }
+
   if (strict.length >= 4) {
     return strict;
   }
 
   const relaxed = candidates.filter((candidate) => !usedContentKeys.has(candidate.content_key));
+  const relaxedVaried = relaxed.filter(
+    (candidate) => !saturatedTopicFamilies.has(candidate.topic_family || inferTopicFamily(candidate)),
+  );
+  if (relaxedVaried.length >= 4) {
+    return relaxedVaried;
+  }
+
   if (relaxed.length >= 4) {
     return relaxed;
   }
@@ -213,7 +314,7 @@ function buildPromptPayload(context) {
   const archiveHistory = context.recent_archive_history.length === 0
     ? "No prior archived daily posts were found."
     : context.recent_archive_history
-        .map((entry) => `${entry.date}: ${entry.content_key} (${entry.screenshot_file})`)
+        .map((entry) => `${entry.date}: ${entry.content_key} [${entry.topic_family}] (${entry.screenshot_file})`)
         .join("\n");
 
   return {
@@ -258,6 +359,8 @@ function buildPromptPayload(context) {
       "- Favor screenshots that matter to journalists, lawyers, whistleblowers, sources, and other trusted recipients.",
       "- Produce exactly one post for the requested date.",
       "- Avoid repeating a content theme or route that was used recently in archived daily posts.",
+      "- Treat screenshots in the same topic family as repeats even when the exact content_key differs. For example, directory-all, directory-verified, and onboarding-directory all count as directory posts for variation purposes.",
+      "- If recent archive history is dominated by one topic family, choose a different family unless there is no strong alternative in the shortlist.",
       "- Match the copy to the candidate audience scope. Public screens should read public-facing. Recipient-shared screens should read like recipient workflows. Admin-only screens must clearly say admin or team context.",
       "- Headline and subtext should be concise and straightforward.",
       "- Each network copy should say the same core thing in a native way, not copy-paste the same sentence three times.",
@@ -351,6 +454,7 @@ function buildCodexPrompt(context, planPath) {
       return [
         `Candidate ${index + 1}`,
         `file: ${candidate.file}`,
+        `topic_family: ${candidate.topic_family}`,
         `concept_key: ${candidate.concept_key}`,
         `content_key: ${candidate.content_key}`,
         `title: ${candidate.title}`,
@@ -395,6 +499,7 @@ function buildCodexPrompt(context, planPath) {
     "- Choose the single highest-value post for the requested date.",
     "- Do not render images yourself.",
     "- Do not pick a candidate that duplicates a recent archived concept unless no stronger option exists.",
+    "- Do not treat directory variants as meaningfully different just because the exact content_key changed.",
     "- If the chosen candidate has audience_scope `admin-only`, make that admin audience explicit in the copy.",
   ].join("\n");
 }
@@ -476,6 +581,7 @@ function validatePlan(modelPlan, context) {
       },
       theme: candidate.theme,
       title: candidate.title,
+      topic_family: candidate.topic_family || inferTopicFamily(candidate),
       viewport: candidate.viewport,
     },
     summary: modelPlan.summary,
@@ -524,6 +630,8 @@ async function planDay(args) {
 module.exports = {
   DAILY_POSTS_ROOT,
   buildDailyContext,
+  filterCandidatesForArchiveHistory,
+  inferTopicFamily,
   parseArgs,
   planDay,
   renderDailyPlan,

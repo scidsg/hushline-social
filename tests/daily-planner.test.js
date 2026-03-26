@@ -2,6 +2,8 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 
 const {
+  filterCandidatesForArchiveHistory,
+  inferTopicFamily,
   parseArgs,
   planDay,
   validatePlan,
@@ -17,6 +19,7 @@ function buildContext(overrides = {}) {
         copy_brief: "Write for sources and public users evaluating or using Hush Line.",
         file: "guest/guest-directory-verified-desktop-light-fold.png",
         matched_pull_requests: [{ number: 1765, title: "Fix guest screenshot" }],
+        topic_family: "directory",
         theme: "light",
         title: "Directory - Verified",
         viewport: "desktop",
@@ -81,6 +84,7 @@ test("validatePlan trims social copy and enriches the selected candidate metadat
   assert.equal(validated.post.screenshot_file, "guest/guest-directory-verified-desktop-light-fold.png");
   assert.equal(validated.post.audience_scope, "public");
   assert.equal(validated.post.concept_key, "directory-verified");
+  assert.equal(validated.post.topic_family, "directory");
   assert.deepEqual(validated.post.matched_pull_requests, [{ number: 1765, title: "Fix guest screenshot" }]);
 });
 
@@ -94,6 +98,7 @@ test("validatePlan rejects admin-only screenshots when the copy never says admin
         copy_brief: "Write for admins.",
         file: "admin/admin-inbox-desktop-light-fold.png",
         matched_pull_requests: [],
+        topic_family: "admin-inbox",
         theme: "light",
         title: "Admin Inbox",
         viewport: "desktop",
@@ -111,5 +116,130 @@ test("validatePlan rejects admin-only screenshots when the copy never says admin
   assert.throws(
     () => validatePlan(plan, context),
     /needs copy that explicitly signals admin\/team context/,
+  );
+});
+
+test("inferTopicFamily groups onboarding directory screenshots under the directory family", () => {
+  assert.equal(
+    inferTopicFamily({
+      content_key: "auth-newman-onboarding-directory",
+      path: "/onboarding?step=directory",
+      title: "Onboarding - Step 4 Directory (newman)",
+    }),
+    "directory",
+  );
+});
+
+test("filterCandidatesForArchiveHistory filters saturated topic families when enough alternatives exist", () => {
+  const archiveHistory = [
+    {
+      concept_key: "directory-verified",
+      content_key: "guest-directory-verified",
+      date: "2026-03-20",
+      screenshot_file: "guest/guest-directory-verified.png",
+      topic_family: "directory",
+    },
+    {
+      concept_key: "directory-attorneys-applied-filters",
+      content_key: "guest-directory-attorneys-applied-filters",
+      date: "2026-03-23",
+      screenshot_file: "guest/guest-directory-attorneys-applied-filters.png",
+      topic_family: "directory",
+    },
+    {
+      concept_key: "onboarding-directory",
+      content_key: "auth-newman-onboarding-directory",
+      date: "2026-03-24",
+      screenshot_file: "newman/auth-newman-onboarding-directory.png",
+      topic_family: "directory",
+    },
+    {
+      concept_key: "directory-all",
+      content_key: "guest-directory-all",
+      date: "2026-03-26",
+      screenshot_file: "guest/guest-directory-all.png",
+      topic_family: "directory",
+    },
+  ];
+
+  const candidates = [
+    {
+      concept_key: "directory-public-records",
+      content_key: "guest-directory-public-records",
+      topic_family: "directory",
+    },
+    {
+      concept_key: "encryption-settings",
+      content_key: "auth-artvandelay-settings-encryption",
+      topic_family: "encryption",
+    },
+    {
+      concept_key: "notifications-settings",
+      content_key: "auth-artvandelay-settings-notifications",
+      topic_family: "notifications",
+    },
+    {
+      concept_key: "aliases-settings",
+      content_key: "auth-artvandelay-settings-aliases",
+      topic_family: "aliases",
+    },
+    {
+      concept_key: "email-headers-tool",
+      content_key: "auth-artvandelay-email-headers",
+      topic_family: "email-headers",
+    },
+  ];
+
+  const filtered = filterCandidatesForArchiveHistory(candidates, archiveHistory);
+
+  assert.equal(filtered.length, 4);
+  assert.deepEqual(
+    filtered.map((candidate) => candidate.topic_family),
+    ["encryption", "notifications", "aliases", "email-headers"],
+  );
+});
+
+test("filterCandidatesForArchiveHistory keeps saturated topic families when too few alternatives remain", () => {
+  const archiveHistory = [
+    {
+      concept_key: "directory-verified",
+      content_key: "guest-directory-verified",
+      date: "2026-03-20",
+      screenshot_file: "guest/guest-directory-verified.png",
+      topic_family: "directory",
+    },
+    {
+      concept_key: "directory-attorneys-applied-filters",
+      content_key: "guest-directory-attorneys-applied-filters",
+      date: "2026-03-23",
+      screenshot_file: "guest/guest-directory-attorneys-applied-filters.png",
+      topic_family: "directory",
+    },
+  ];
+
+  const candidates = [
+    {
+      concept_key: "directory-all",
+      content_key: "guest-directory-all",
+      topic_family: "directory",
+    },
+    {
+      concept_key: "profile-admin",
+      content_key: "guest-profile-admin",
+      topic_family: "profile",
+    },
+    {
+      concept_key: "notifications-settings",
+      content_key: "auth-artvandelay-settings-notifications",
+      topic_family: "notifications",
+    },
+  ];
+
+  const filtered = filterCandidatesForArchiveHistory(candidates, archiveHistory);
+
+  assert.equal(filtered.length, 3);
+  assert.deepEqual(
+    filtered.map((candidate) => candidate.content_key),
+    ["guest-directory-all", "guest-profile-admin", "auth-artvandelay-settings-notifications"],
   );
 });
