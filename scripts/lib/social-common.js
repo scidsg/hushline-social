@@ -91,6 +91,7 @@ const STOPWORDS = new Set([
 ]);
 
 const WEEKDAY_LABELS = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+const ARCHIVE_KEY_PATTERN = /^(\d{4}-\d{2}-\d{2})(?:-(\d+))?$/;
 
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
@@ -102,6 +103,42 @@ function parseLocalDate(date) {
     throw new Error(`Invalid date: ${date}`);
   }
   return parsed;
+}
+
+function parseArchiveKey(archiveKey) {
+  const match = String(archiveKey || "").match(ARCHIVE_KEY_PATTERN);
+  if (!match) {
+    throw new Error(`Invalid archive key: ${archiveKey}`);
+  }
+
+  return {
+    date: match[1],
+    key: match[0],
+    suffix: match[2] === undefined ? 0 : Number(match[2]),
+  };
+}
+
+function archiveKeyDate(archiveKey) {
+  return parseArchiveKey(archiveKey).date;
+}
+
+function isValidArchiveKey(archiveKey) {
+  return ARCHIVE_KEY_PATTERN.test(String(archiveKey || ""));
+}
+
+function compareArchiveKeys(left, right) {
+  const leftParsed = parseArchiveKey(left);
+  const rightParsed = parseArchiveKey(right);
+
+  if (leftParsed.date < rightParsed.date) {
+    return -1;
+  }
+
+  if (leftParsed.date > rightParsed.date) {
+    return 1;
+  }
+
+  return leftParsed.suffix - rightParsed.suffix;
 }
 
 function getWeekdayLabel(date) {
@@ -338,6 +375,7 @@ function execJson(command, args, options = {}) {
 }
 
 module.exports = {
+  ARCHIVE_KEY_PATTERN,
   CHROME_CANDIDATES,
   HUSHLINE_DOCS_DIRS,
   HUSHLINE_DOCS_ROOT,
@@ -348,16 +386,20 @@ module.exports = {
   SCREENSHOT_MANIFEST,
   SCREENSHOTS_ROOT,
   TEMPLATES_DIR,
+  archiveKeyDate,
   clampText,
+  compareArchiveKeys,
   detectTemplate,
   ensureLatestFoldScreenshot,
   excerptText,
   execJson,
   findChrome,
   getWeekdayLabel,
+  isValidArchiveKey,
   isWeekendDate,
   listFilesRecursive,
   listTemplateVariants,
+  parseArchiveKey,
   parseLocalDate,
   readJson,
   resolveTemplateVariant,

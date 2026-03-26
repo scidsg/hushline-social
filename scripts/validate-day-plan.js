@@ -14,7 +14,7 @@ const { REPO_ROOT, readJson, writeJson } = require("./lib/social-common");
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const context = buildDailyContext(args);
-  const planPath = path.join(REPO_ROOT, "previous-posts", args.date, "plan.json");
+  const planPath = path.join(REPO_ROOT, "previous-posts", args.archiveKey, "plan.json");
   const rawPlan = readJson(planPath);
   const validatedPlan = validatePlan(rawPlan, context);
 
@@ -22,7 +22,7 @@ async function main() {
 
   let rendered = null;
   if (!args.noRender) {
-    rendered = await renderDailyPlan(validatedPlan);
+    rendered = await renderDailyPlan(validatedPlan, args.archiveKey);
   }
 
   process.stdout.write(

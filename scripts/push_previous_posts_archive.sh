@@ -4,6 +4,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 DATE=""
+ARCHIVE_KEY=""
 ARCHIVE_ROOT="previous-posts"
 BRANCH="${HUSHLINE_SOCIAL_ARCHIVE_BRANCH:-main}"
 REMOTE="${HUSHLINE_SOCIAL_ARCHIVE_REMOTE:-origin}"
@@ -23,6 +24,10 @@ parse_args() {
     case "$1" in
       --date)
         DATE="$2"
+        shift 2
+        ;;
+      --archive-key)
+        ARCHIVE_KEY="$2"
         shift 2
         ;;
       --archive-root)
@@ -45,9 +50,10 @@ parse_args() {
         cat <<'EOF'
 Usage:
   ./scripts/push_previous_posts_archive.sh --date 2026-03-19
+  ./scripts/push_previous_posts_archive.sh --date 2026-03-19 --archive-key 2026-03-19-1
 
 Behavior:
-  - stages ARCHIVE_ROOT/YYYY-MM-DD only
+  - stages ARCHIVE_ROOT/<archive-key> only
   - creates one archive commit
   - force-pushes the current HEAD to the configured remote branch with --force-with-lease
 EOF
@@ -65,6 +71,20 @@ EOF
     exit 1
   fi
 
+  if [[ -z "$ARCHIVE_KEY" ]]; then
+    ARCHIVE_KEY="$DATE"
+  fi
+
+  if [[ ! "$ARCHIVE_KEY" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}(-[0-9]+)?$ ]]; then
+    echo "--archive-key must use YYYY-MM-DD or YYYY-MM-DD-N format." >&2
+    exit 1
+  fi
+
+  if [[ "$ARCHIVE_KEY" != "$DATE" && "$ARCHIVE_KEY" != "$DATE"-* ]]; then
+    echo "--archive-key must start with the requested --date." >&2
+    exit 1
+  fi
+
   if [[ -z "$ARCHIVE_ROOT" || "$ARCHIVE_ROOT" == /* || "$ARCHIVE_ROOT" == *".."* ]]; then
     echo "--archive-root must be a relative path inside the repo." >&2
     exit 1
@@ -75,8 +95,8 @@ main() {
   parse_args "$@"
   require_cmd git
 
-  local archive_dir="$REPO_DIR/$ARCHIVE_ROOT/$DATE"
-  local archive_rel="$ARCHIVE_ROOT/$DATE"
+  local archive_dir="$REPO_DIR/$ARCHIVE_ROOT/$ARCHIVE_KEY"
+  local archive_rel="$ARCHIVE_ROOT/$ARCHIVE_KEY"
   local current_branch=""
   local remote_url=""
   local auth_header=""
@@ -132,7 +152,7 @@ main() {
     exit 0
   fi
 
-  local commit_message="Archive social post for $DATE"
+  local commit_message="Archive social post for $ARCHIVE_KEY"
 
   if (( DRY_RUN == 1 )); then
     echo "Dry run: would commit $archive_rel and push HEAD to $REMOTE/$BRANCH with --force-with-lease."

@@ -40,6 +40,29 @@ test("getWeekdayLabel and isWeekendDate classify weekdays correctly", () => {
   }
 });
 
+test("archive key helpers parse base and suffixed containers correctly", () => {
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "social-common-"));
+  const { socialCommon, cleanup } = withFreshSocialCommon(tempRoot);
+
+  try {
+    assert.equal(socialCommon.isValidArchiveKey("2026-03-26"), true);
+    assert.equal(socialCommon.isValidArchiveKey("2026-03-26-2"), true);
+    assert.equal(socialCommon.isValidArchiveKey("2026-03-26-extra"), false);
+    assert.equal(socialCommon.archiveKeyDate("2026-03-26-2"), "2026-03-26");
+    assert.deepEqual(socialCommon.parseArchiveKey("2026-03-26-2"), {
+      date: "2026-03-26",
+      key: "2026-03-26-2",
+      suffix: 2,
+    });
+    assert.equal(socialCommon.compareArchiveKeys("2026-03-26", "2026-03-26-1"), -1);
+    assert.equal(socialCommon.compareArchiveKeys("2026-03-26-2", "2026-03-26-1"), 1);
+    assert.equal(socialCommon.compareArchiveKeys("2026-03-27", "2026-03-26-9"), 1);
+  } finally {
+    cleanup();
+    fs.rmSync(tempRoot, { force: true, recursive: true });
+  }
+});
+
 test("ensureLatestFoldScreenshot accepts only files under releases/latest ending in -fold.png", () => {
   const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "social-common-"));
   const latestDir = path.join(tempRoot, "releases", "latest", "guest");

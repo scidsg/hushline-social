@@ -65,6 +65,18 @@ test("parseArgs rejects malformed dates", () => {
   );
 });
 
+test("parseArgs accepts suffixed archive keys for the same planned date", () => {
+  const args = parseArgs(["--date", "2026-03-20", "--archive-key", "2026-03-20-1"]);
+  assert.equal(args.archiveKey, "2026-03-20-1");
+});
+
+test("parseArgs rejects archive keys outside the requested planned date", () => {
+  assert.throws(
+    () => parseArgs(["--date", "2026-03-20", "--archive-key", "2026-03-21-1"]),
+    /`--archive-key` must start with the requested `--date`\./,
+  );
+});
+
 test("planDay rejects weekend dates before planning context is built", async () => {
   await assert.rejects(
     () => planDay({
