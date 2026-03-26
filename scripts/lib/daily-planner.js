@@ -75,7 +75,10 @@ function inferTopicFamily(item) {
     return "notifications";
   }
 
-  if (/\bauth(entication)?\b|\b2fa\b/.test(text) || /^\/settings\/auth\b/.test(pathValue)) {
+  if (
+    /\bauthentication\b|\b2fa\b|\btwo[- ]factor\b|\bsettings[- ]auth\b/.test(text) ||
+    /^\/settings\/auth\b/.test(pathValue)
+  ) {
     return "authentication";
   }
 
@@ -103,7 +106,7 @@ function inferTopicFamily(item) {
     return "vision";
   }
 
-  if (/\bemail headers\b/.test(text) || /^\/email-headers\b/.test(pathValue)) {
+  if (/\bemail[- ]headers\b/.test(text) || /^\/email-headers\b/.test(pathValue)) {
     return "email-headers";
   }
 
@@ -226,15 +229,19 @@ function loadArchiveHistory(currentDate) {
 }
 
 function filterCandidatesForArchiveHistory(candidates, archiveHistory) {
+  const normalizedCandidates = candidates.map((candidate) => ({
+    ...candidate,
+    topic_family: candidate.topic_family || inferTopicFamily(candidate),
+  }));
   const usedContentKeys = new Set(archiveHistory.map((entry) => entry.content_key));
   const usedConceptKeys = new Set(archiveHistory.map((entry) => entry.concept_key));
   const saturatedTopicFamilies = findSaturatedTopicFamilies(archiveHistory);
 
-  const strict = candidates.filter((candidate) => {
+  const strict = normalizedCandidates.filter((candidate) => {
     return !usedContentKeys.has(candidate.content_key) && !usedConceptKeys.has(candidate.concept_key);
   });
   const strictVaried = strict.filter(
-    (candidate) => !saturatedTopicFamilies.has(candidate.topic_family || inferTopicFamily(candidate)),
+    (candidate) => !saturatedTopicFamilies.has(candidate.topic_family),
   );
   if (strictVaried.length >= 4) {
     return strictVaried;
@@ -244,9 +251,9 @@ function filterCandidatesForArchiveHistory(candidates, archiveHistory) {
     return strict;
   }
 
-  const relaxed = candidates.filter((candidate) => !usedContentKeys.has(candidate.content_key));
+  const relaxed = normalizedCandidates.filter((candidate) => !usedContentKeys.has(candidate.content_key));
   const relaxedVaried = relaxed.filter(
-    (candidate) => !saturatedTopicFamilies.has(candidate.topic_family || inferTopicFamily(candidate)),
+    (candidate) => !saturatedTopicFamilies.has(candidate.topic_family),
   );
   if (relaxedVaried.length >= 4) {
     return relaxedVaried;
@@ -256,7 +263,7 @@ function filterCandidatesForArchiveHistory(candidates, archiveHistory) {
     return relaxed;
   }
 
-  return candidates;
+  return normalizedCandidates;
 }
 
 function readHushlineAgentExcerpt() {

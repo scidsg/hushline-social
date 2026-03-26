@@ -166,27 +166,22 @@ test("filterCandidatesForArchiveHistory filters saturated topic families when en
     {
       concept_key: "directory-public-records",
       content_key: "guest-directory-public-records",
-      topic_family: "directory",
     },
     {
       concept_key: "encryption-settings",
       content_key: "auth-artvandelay-settings-encryption",
-      topic_family: "encryption",
     },
     {
       concept_key: "notifications-settings",
       content_key: "auth-artvandelay-settings-notifications",
-      topic_family: "notifications",
     },
     {
       concept_key: "aliases-settings",
       content_key: "auth-artvandelay-settings-aliases",
-      topic_family: "aliases",
     },
     {
       concept_key: "email-headers-tool",
       content_key: "auth-artvandelay-email-headers",
-      topic_family: "email-headers",
     },
   ];
 
