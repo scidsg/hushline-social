@@ -1,0 +1,53 @@
+{
+  "date": "2026-03-26",
+  "post": {
+    "slot": "thursday",
+    "planned_date": "2026-03-26",
+    "screenshot_file": "guest/guest-directory-all-mobile-light-fold.png",
+    "content_key": "guest-directory-all",
+    "headline": "Browse the full directory before you choose who to contact",
+    "subtext": "The public All tab puts lawyers, journalists, and other recipients in one place so sources can compare options before sharing anything sensitive.",
+    "image_alt_text": "Social graphic built around a mobile Hush Line directory screen on the All tab. The image shows the Whistleblower Support Directory heading, a short note explaining that people can find lawyers, journalists, and other recipients, a search field, a banner noting that the list includes automated entries, and a visible recipient card below.",
+    "social": {
+      "bluesky": "If you need to send a tip, the first step is deciding who to contact.\n\nHush Line's public directory puts lawyers, journalists, and other recipients in one place, so you can compare tip lines before you share anything sensitive.\n\nLearn more at https://hushline.app.",
+      "linkedin": "If you need to send a tip, the first step is often deciding who to contact.\n\nHush Line's public directory now gives you one place to browse lawyers, journalists, and other recipients, with clearer ordering and a visible note when a list includes automated entries. That makes it easier to compare tip lines before you share anything sensitive, and you do not need an account to send a message.\n\nLearn more at https://hushline.app.",
+      "mastodon": "If you need to send a tip, the first step is often deciding who to contact.\n\nHush Line's public directory puts lawyers, journalists, and other recipients in one place, with clearer ordering and a visible note when a list includes automated entries. You can compare tip lines before you share anything sensitive.\n\nLearn more at https://hushline.app."
+    },
+    "rationale": "This is the strongest screenshot in the latest release that reflects recent shipped work people can actually use. PRs #1800, #1788, #1787, and #1785 all support a clearer public directory view, and this All-tab screen turns that work into a source-facing workflow. It also avoids repeating this week's narrower directory angles by focusing on the broader task of comparing different kinds of recipients in one public list before sending a message.",
+    "source_pr_numbers": [
+      1800,
+      1788,
+      1787,
+      1785
+    ],
+    "audience_scope": "public",
+    "concept_key": "directory-all",
+    "copy_brief": "Write for sources and public users evaluating or using Hush Line.",
+    "matched_pull_requests": [
+      {
+        "merged_at": "2026-03-25T06:12:19Z",
+        "number": 1800,
+        "title": "Hide directory tab counts in Playwright screenshots"
+      },
+      {
+        "merged_at": "2026-03-22T21:51:47Z",
+        "number": 1788,
+        "title": "Warn on suspicious directory names and move them to the bottom"
+      },
+      {
+        "merged_at": "2026-03-22T20:31:18Z",
+        "number": 1787,
+        "title": "Seed a Korean dev directory account"
+      },
+      {
+        "merged_at": "2026-03-22T19:55:12Z",
+        "number": 1785,
+        "title": "#1783 All tab client-side sort does not preserve transliterated display-name ordering"
+      }
+    ],
+    "theme": "light",
+    "title": "Directory - All",
+    "viewport": "mobile"
+  },
+  "summary": "Feature the public directory All tab because it reflects recent shipped directory work, serves a core source need, and stays distinct from this week's verified-only and attorney-filter posts."
+}
