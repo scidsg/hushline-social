@@ -102,7 +102,7 @@ skip_if_weekend() {
 }
 
 build_context() {
-  local -a cmd=(node scripts/plan-day.js --date "$DATE")
+  local -a cmd=(node "$REPO_DIR/scripts/plan-day.js" --date "$DATE")
   [[ -n "$CANDIDATE_COUNT" ]] && cmd+=(--candidate-count "$CANDIDATE_COUNT")
   [[ -n "$DARK_RATIO" ]] && cmd+=(--dark-ratio "$DARK_RATIO")
 
@@ -156,7 +156,7 @@ run_codex_from_prompt() {
 }
 
 validate_and_render() {
-  local -a cmd=(node scripts/validate-day-plan.js --date "$DATE")
+  local -a cmd=(node "$REPO_DIR/scripts/validate-day-plan.js" --date "$DATE")
   [[ -n "$CANDIDATE_COUNT" ]] && cmd+=(--candidate-count "$CANDIDATE_COUNT")
   [[ -n "$DARK_RATIO" ]] && cmd+=(--dark-ratio "$DARK_RATIO")
   (( NO_RENDER == 1 )) && cmd+=(--no-render)
@@ -175,7 +175,7 @@ push_archive() {
     return
   fi
 
-  ./scripts/push_previous_posts_archive.sh --date "$DATE"
+  "$REPO_DIR/scripts/push_previous_posts_archive.sh" --date "$DATE"
 }
 
 verify_screenshot_source() {
