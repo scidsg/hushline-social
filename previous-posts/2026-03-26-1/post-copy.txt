@@ -1,0 +1,33 @@
+Slot: thursday
+Planned date: 2026-03-26
+Template: hushline-social-desktop-template.html
+Screenshot: /Users/scidsg/hushline-screenshots/releases/latest/newman/auth-newman-onboarding-notifications-desktop-light-fold.png
+Content key: auth-newman-onboarding-notifications
+Headline: Choose how new tips should reach you
+Subtext: The notifications step in onboarding lets recipients decide how Hush Line should alert them about incoming messages before they start using the inbox.
+
+Image alt text
+Social graphic built around a desktop Hush Line onboarding screen for notifications. The card shows step 3 of onboarding with settings for how a recipient wants to be alerted about new messages, plus navigation buttons below.
+
+Social post copy
+
+LinkedIn (343/3000)
+When someone sends a tip, you should already know how you want that alert to reach you.
+
+Hush Line's onboarding walks recipients through notification setup before they start using the inbox. That gives journalists, lawyers, educators, and other trusted recipients a clearer day-to-day workflow from the start.
+
+Sign up at https://hushline.app.
+
+Mastodon (222/500)
+Before your first tip comes in, decide how you want to hear about it.
+
+Hush Line's onboarding includes a notifications step so recipients can set that up before they start using the inbox.
+
+Sign up at https://hushline.app.
+
+Bluesky (228/300)
+Before your first tip arrives, decide how you want that alert to reach you.
+
+Hush Line's onboarding includes a notifications step so recipients can set that up before they start using the inbox.
+
+Sign up at https://hushline.app.

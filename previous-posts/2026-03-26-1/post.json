@@ -1,0 +1,32 @@
+{
+  "slot": "thursday",
+  "planned_date": "2026-03-26",
+  "screenshot_file": "newman/auth-newman-onboarding-notifications-desktop-light-fold.png",
+  "content_key": "auth-newman-onboarding-notifications",
+  "headline": "Choose how new tips should reach you",
+  "subtext": "The notifications step in onboarding lets recipients decide how Hush Line should alert them about incoming messages before they start using the inbox.",
+  "image_alt_text": "Social graphic built around a desktop Hush Line onboarding screen for notifications. The card shows step 3 of onboarding with settings for how a recipient wants to be alerted about new messages, plus navigation buttons below.",
+  "social": {
+    "bluesky": "Before your first tip arrives, decide how you want that alert to reach you.\n\nHush Line's onboarding includes a notifications step so recipients can set that up before they start using the inbox.\n\nSign up at https://hushline.app.",
+    "linkedin": "When someone sends a tip, you should already know how you want that alert to reach you.\n\nHush Line's onboarding walks recipients through notification setup before they start using the inbox. That gives journalists, lawyers, educators, and other trusted recipients a clearer day-to-day workflow from the start.\n\nSign up at https://hushline.app.",
+    "mastodon": "Before your first tip comes in, decide how you want to hear about it.\n\nHush Line's onboarding includes a notifications step so recipients can set that up before they start using the inbox.\n\nSign up at https://hushline.app."
+  },
+  "rationale": "Recent archive history is heavily weighted toward directory posts, so this plan shifts to a different recipient workflow. The chosen screenshot comes from the latest release, is the strongest non-directory candidate tied to recent onboarding-related work in PR #1797, and matches Hush Line's documented guidance that recipients should decide their message delivery and notification setup before they publish a tip line.",
+  "source_pr_numbers": [
+    1797
+  ],
+  "audience_scope": "recipient-shared",
+  "concept_key": "onboarding-notifications",
+  "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+  "matched_pull_requests": [
+    {
+      "merged_at": "2026-03-24T06:01:41Z",
+      "number": 1797,
+      "title": "Add local contributor onboarding prompt"
+    }
+  ],
+  "theme": "light",
+  "title": "Onboarding - Step 3 Notifications (newman)",
+  "topic_family": "notifications",
+  "viewport": "desktop"
+}
