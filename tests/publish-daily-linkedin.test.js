@@ -82,6 +82,41 @@ test("publisher can dry-run from a local daily archive without a publication rec
   }
 });
 
+test("publisher can dry-run from a suffixed daily archive container for the same planned date", () => {
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "linkedin-publish-"));
+  const postDir = path.join(tempRoot, "2026-03-20-1");
+  fs.mkdirSync(postDir, { recursive: true });
+
+  fs.writeFileSync(
+    path.join(postDir, "post.json"),
+    JSON.stringify({
+      slot: "friday",
+      planned_date: "2026-03-20",
+      image_alt_text: "A rendered Hush Line social card.",
+      social: {
+        linkedin: "A second same-day post. Learn more at https://hushline.app/.",
+      },
+    }),
+  );
+  fs.writeFileSync(path.join(postDir, "social-card@2x.png"), "png");
+
+  try {
+    const output = runPublisher([
+      "--date",
+      "2026-03-20",
+      "--archive-key",
+      "2026-03-20-1",
+      "--date-root",
+      tempRoot,
+      "--dry-run",
+    ]);
+    assert.match(output, /Dry run: LinkedIn publication prepared for 2026-03-20/);
+    assert.match(output, /container: 2026-03-20-1/);
+  } finally {
+    fs.rmSync(tempRoot, { force: true, recursive: true });
+  }
+});
+
 test("publisher reports when no archived daily post exists for the requested date", () => {
   const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "linkedin-publish-"));
 

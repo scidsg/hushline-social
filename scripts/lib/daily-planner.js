@@ -8,8 +8,11 @@ const {
   HUSHLINE_ROOT,
   LIMITS,
   REPO_ROOT,
+  archiveKeyDate,
+  compareArchiveKeys,
   excerptText,
   getWeekdayLabel,
+  isValidArchiveKey,
   isWeekendDate,
   readJson,
   writeJson,
@@ -139,6 +142,7 @@ function findSaturatedTopicFamilies(archiveHistory, windowSize = 4) {
 
 function parseArgs(argv) {
   const args = {
+    archiveKey: null,
     candidateCount: 12,
     darkRatio: 0.2,
     date: todayString(),
@@ -150,6 +154,9 @@ function parseArgs(argv) {
 
     if (value === "--date") {
       args.date = argv[index + 1];
+      index += 1;
+    } else if (value === "--archive-key") {
+      args.archiveKey = argv[index + 1];
       index += 1;
     } else if (value === "--candidate-count") {
       args.candidateCount = Number(argv[index + 1]);
@@ -169,6 +176,16 @@ function parseArgs(argv) {
     throw new Error("`--date` must use YYYY-MM-DD format.");
   }
 
+  args.archiveKey = args.archiveKey || args.date;
+
+  if (!isValidArchiveKey(args.archiveKey)) {
+    throw new Error("`--archive-key` must use YYYY-MM-DD or YYYY-MM-DD-N format.");
+  }
+
+  if (archiveKeyDate(args.archiveKey) !== args.date) {
+    throw new Error("`--archive-key` must start with the requested `--date`.");
+  }
+
   if (!Number.isInteger(args.candidateCount) || args.candidateCount < 4 || args.candidateCount > 20) {
     throw new Error("`--candidate-count` must be an integer from 4 to 20.");
   }
@@ -186,40 +203,46 @@ function printHelp() {
       "Usage:",
       "  node scripts/plan-day.js --date 2026-03-19",
       "  node scripts/plan-day.js --date 2026-03-19 --candidate-count 12",
+      "  node scripts/plan-day.js --date 2026-03-19 --archive-key 2026-03-19-1",
       "",
       "Behavior:",
       "  - Reads recent merged PRs from the local Hush Line repo and GitHub CLI",
       "  - Reads audience context from Hush Line docs and ../hushline/AGENTS.md",
       "  - Builds a candidate screenshot inventory from hushline-screenshots/releases/latest",
-      "  - Writes daily planning context and a Codex prompt to previous-posts/YYYY-MM-DD",
+      "  - Writes daily planning context and a Codex prompt to previous-posts/<archive-key>",
       "  - Expects one high-value post for the requested day",
       "",
     ].join("\n"),
   );
 }
 
-function loadArchiveHistory(currentDate) {
+function loadArchiveHistory(currentArchiveKey) {
   if (!fs.existsSync(DAILY_POSTS_ROOT)) {
     return [];
   }
 
   return fs
     .readdirSync(DAILY_POSTS_ROOT, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory() && /^\d{4}-\d{2}-\d{2}$/.test(entry.name) && entry.name < currentDate)
+    .filter(
+      (entry) => entry.isDirectory() &&
+        isValidArchiveKey(entry.name) &&
+        compareArchiveKeys(entry.name, currentArchiveKey) < 0,
+    )
     .map((entry) => entry.name)
-    .sort()
+    .sort(compareArchiveKeys)
     .slice(-20)
-    .map((date) => {
-      const postPath = path.join(DAILY_POSTS_ROOT, date, "post.json");
+    .map((archiveKey) => {
+      const postPath = path.join(DAILY_POSTS_ROOT, archiveKey, "post.json");
       if (!fs.existsSync(postPath)) {
         return null;
       }
 
       const post = readJson(postPath);
       return {
+        archive_key: archiveKey,
         concept_key: post.concept_key || normalizeConceptKey(post.content_key),
         content_key: post.content_key,
-        date,
+        date: archiveKeyDate(archiveKey),
         headline: post.headline,
         screenshot_file: post.screenshot_file,
         topic_family: post.topic_family || inferTopicFamily(post),
@@ -283,7 +306,7 @@ function buildDailyContext(args) {
     darkRatio: args.darkRatio,
     week,
   });
-  const archiveHistory = loadArchiveHistory(args.date);
+  const archiveHistory = loadArchiveHistory(args.archiveKey);
   const filteredCandidates = filterCandidatesForArchiveHistory(
     planningContext.candidate_screenshots,
     archiveHistory,
@@ -321,7 +344,7 @@ function buildPromptPayload(context) {
   const archiveHistory = context.recent_archive_history.length === 0
     ? "No prior archived daily posts were found."
     : context.recent_archive_history
-        .map((entry) => `${entry.date}: ${entry.content_key} [${entry.topic_family}] (${entry.screenshot_file})`)
+        .map((entry) => `${entry.archive_key}: ${entry.content_key} [${entry.topic_family}] (${entry.screenshot_file})`)
         .join("\n");
 
   return {
@@ -595,14 +618,14 @@ function validatePlan(modelPlan, context) {
   };
 }
 
-function writeContextArtifacts(date, context) {
-  const postRoot = path.join(DAILY_POSTS_ROOT, date);
+function writeContextArtifacts(archiveKey, context) {
+  const postRoot = path.join(DAILY_POSTS_ROOT, archiveKey);
   fs.mkdirSync(postRoot, { recursive: true });
   const contextPath = path.join(postRoot, "context.json");
   const promptPath = path.join(postRoot, "prompt.txt");
   const planPath = path.join(postRoot, "plan.json");
   writeJson(contextPath, context);
-  fs.writeFileSync(promptPath, `${buildCodexPrompt(context, path.join("previous-posts", date, "plan.json"))}\n`);
+  fs.writeFileSync(promptPath, `${buildCodexPrompt(context, path.join("previous-posts", archiveKey, "plan.json"))}\n`);
   return {
     contextPath,
     planPath,
@@ -611,8 +634,8 @@ function writeContextArtifacts(date, context) {
   };
 }
 
-async function renderDailyPlan(plan) {
-  const outputDir = path.join(DAILY_POSTS_ROOT, plan.date);
+async function renderDailyPlan(plan, archiveKey = plan.date) {
+  const outputDir = path.join(DAILY_POSTS_ROOT, archiveKey);
   return renderPost(plan.post, outputDir);
 }
 
@@ -622,7 +645,7 @@ async function planDay(args) {
   }
 
   const context = buildDailyContext(args);
-  const artifacts = writeContextArtifacts(args.date, context);
+  const artifacts = writeContextArtifacts(args.archiveKey, context);
 
   return {
     context,

@@ -7,7 +7,9 @@ const path = require("path");
 const { execFileSync } = require("child_process");
 const {
   REPO_ROOT,
+  archiveKeyDate,
   getWeekdayLabel,
+  isValidArchiveKey,
   isWeekendDate,
   readJson,
 } = require("./lib/social-common");
@@ -25,6 +27,7 @@ function defaultLinkedInVersion() {
 function parseArgs(argv) {
   const args = {
     allowWeekend: false,
+    archiveKey: null,
     date: todayString(),
     dateRoot: path.join(REPO_ROOT, "previous-posts"),
     dryRun: false,
@@ -36,6 +39,9 @@ function parseArgs(argv) {
 
     if (value === "--date") {
       args.date = argv[index + 1];
+      index += 1;
+    } else if (value === "--archive-key") {
+      args.archiveKey = argv[index + 1];
       index += 1;
     } else if (value === "--date-root") {
       args.dateRoot = path.resolve(REPO_ROOT, argv[index + 1]);
@@ -56,6 +62,16 @@ function parseArgs(argv) {
     throw new Error("`--date` must use YYYY-MM-DD format.");
   }
 
+  args.archiveKey = args.archiveKey || args.date;
+
+  if (!isValidArchiveKey(args.archiveKey)) {
+    throw new Error("`--archive-key` must use YYYY-MM-DD or YYYY-MM-DD-N format.");
+  }
+
+  if (archiveKeyDate(args.archiveKey) !== args.date) {
+    throw new Error("`--archive-key` must start with the requested `--date`.");
+  }
+
   return args;
 }
 
@@ -65,6 +81,7 @@ function printHelp() {
       "Usage:",
       "  node scripts/publish-daily-linkedin.js",
       "  node scripts/publish-daily-linkedin.js --date 2026-03-18",
+      "  node scripts/publish-daily-linkedin.js --date 2026-03-18 --archive-key 2026-03-18-1",
       "  node scripts/publish-daily-linkedin.js --date 2026-03-30 --date-root previous-verified-user-posts",
       "  node scripts/publish-daily-linkedin.js --date 2026-03-29 --date-root previous-verified-user-posts --allow-weekend",
       "  node scripts/publish-daily-linkedin.js --dry-run",
@@ -91,7 +108,7 @@ function requireEnv(name) {
 }
 
 function getDailyPostDir(args) {
-  return path.join(args.dateRoot, args.date);
+  return path.join(args.dateRoot, args.archiveKey);
 }
 
 function getRepoArchiveRootName(args) {
@@ -117,7 +134,7 @@ function remoteArchivePublished(args) {
 
   const remote = process.env.HUSHLINE_SOCIAL_ARCHIVE_REMOTE || "origin";
   const branch = process.env.HUSHLINE_SOCIAL_ARCHIVE_BRANCH || "main";
-  const archivePath = `${archiveRootName}/${args.date}/post.json`;
+  const archivePath = `${archiveRootName}/${args.archiveKey}/post.json`;
   const remoteRef = `refs/remotes/${remote}/${branch}`;
 
   try {
@@ -149,7 +166,7 @@ function resolveArchivedDailyPost(args) {
     imagePath,
     outputDir,
     post: readJson(postPath),
-    summaryLabel: args.date,
+    summaryLabel: args.archiveKey,
     type: archiveRootName === "previous-verified-user-posts" ? "verified-user-archive" : "daily-archive",
   };
 }
@@ -276,7 +293,7 @@ async function main() {
   const resolved = resolveArchivedDailyPost(args);
 
   if (!resolved) {
-    process.stdout.write(`No archived daily LinkedIn post content found for ${args.date}.\n`);
+    process.stdout.write(`No archived daily LinkedIn post content found for ${args.archiveKey}.\n`);
     return;
   }
   const {
@@ -296,7 +313,7 @@ async function main() {
       ? "Verified-user archive"
       : "Daily archive";
     process.stdout.write(
-      `${archiveLabel} for ${args.date} is already present on ${remotePublished.remote}/${remotePublished.branch}; assuming LinkedIn post already published.\n`,
+      `${archiveLabel} container ${args.archiveKey} is already present on ${remotePublished.remote}/${remotePublished.branch}; assuming LinkedIn post already published.\n`,
     );
     return;
   }

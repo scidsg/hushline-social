@@ -12,6 +12,7 @@ ALLOW_STALE_SCREENSHOTS="${HUSHLINE_ALLOW_STALE_SCREENSHOTS:-0}"
 ARCHIVE_PUSH_ENABLED="${HUSHLINE_SOCIAL_DAILY_PUSH_ON_RENDER:-0}"
 
 DATE="$(date +%Y-%m-%d)"
+ARCHIVE_KEY=""
 CANDIDATE_COUNT=""
 DARK_RATIO=""
 NO_RENDER=0
@@ -45,6 +46,10 @@ parse_args() {
         DATE="$2"
         shift 2
         ;;
+      --archive-key)
+        ARCHIVE_KEY="$2"
+        shift 2
+        ;;
       --candidate-count)
         CANDIDATE_COUNT="$2"
         shift 2
@@ -69,11 +74,12 @@ parse_args() {
         cat <<'EOF'
 Usage:
   ./scripts/agent_daily_social_planner.sh --date 2026-03-19
+  ./scripts/agent_daily_social_planner.sh --date 2026-03-19 --archive-key 2026-03-19-1
 
 Behavior:
-  - Prepares daily context and prompt artifacts under previous-posts/YYYY-MM-DD
+  - Prepares daily context and prompt artifacts under previous-posts/<archive-key>
   - Invokes Codex CLI in the local repo
-  - Expects Codex to write previous-posts/YYYY-MM-DD/plan.json
+  - Expects Codex to write previous-posts/<archive-key>/plan.json
   - Validates the plan and renders assets
   - Keeps the daily archive local by default
   - Pushes the daily archive only when --push-render-archive is passed or HUSHLINE_SOCIAL_DAILY_PUSH_ON_RENDER=1
@@ -103,6 +109,7 @@ skip_if_weekend() {
 
 build_context() {
   local -a cmd=(node "$REPO_DIR/scripts/plan-day.js" --date "$DATE")
+  [[ -n "$ARCHIVE_KEY" ]] && cmd+=(--archive-key "$ARCHIVE_KEY")
   [[ -n "$CANDIDATE_COUNT" ]] && cmd+=(--candidate-count "$CANDIDATE_COUNT")
   [[ -n "$DARK_RATIO" ]] && cmd+=(--dark-ratio "$DARK_RATIO")
 
@@ -110,7 +117,8 @@ build_context() {
 }
 
 reset_day_plan_artifacts() {
-  rm -f "$REPO_DIR/previous-posts/$DATE/plan.json"
+  local archive_key="${ARCHIVE_KEY:-$DATE}"
+  rm -f "$REPO_DIR/previous-posts/$archive_key/plan.json"
 }
 
 run_codex_from_prompt() {
@@ -157,6 +165,7 @@ run_codex_from_prompt() {
 
 validate_and_render() {
   local -a cmd=(node "$REPO_DIR/scripts/validate-day-plan.js" --date "$DATE")
+  [[ -n "$ARCHIVE_KEY" ]] && cmd+=(--archive-key "$ARCHIVE_KEY")
   [[ -n "$CANDIDATE_COUNT" ]] && cmd+=(--candidate-count "$CANDIDATE_COUNT")
   [[ -n "$DARK_RATIO" ]] && cmd+=(--dark-ratio "$DARK_RATIO")
   (( NO_RENDER == 1 )) && cmd+=(--no-render)
@@ -175,7 +184,9 @@ push_archive() {
     return
   fi
 
-  "$REPO_DIR/scripts/push_previous_posts_archive.sh" --date "$DATE"
+  local -a cmd=("$REPO_DIR/scripts/push_previous_posts_archive.sh" --date "$DATE")
+  [[ -n "$ARCHIVE_KEY" ]] && cmd+=(--archive-key "$ARCHIVE_KEY")
+  "${cmd[@]}"
 }
 
 verify_screenshot_source() {
@@ -297,6 +308,9 @@ remote_manifest_matches_local() {
 
 main() {
   parse_args "$@"
+  if [[ -z "$ARCHIVE_KEY" ]]; then
+    ARCHIVE_KEY="$DATE"
+  fi
   skip_if_weekend
 
   require_cmd codex
@@ -308,7 +322,7 @@ main() {
   build_context
   reset_day_plan_artifacts
 
-  cp "$REPO_DIR/previous-posts/$DATE/prompt.txt" "$PROMPT_FILE"
+  cp "$REPO_DIR/previous-posts/$ARCHIVE_KEY/prompt.txt" "$PROMPT_FILE"
   run_codex_from_prompt
   validate_and_render
   push_archive
