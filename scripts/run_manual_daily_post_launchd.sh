@@ -3,8 +3,9 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+source "$REPO_DIR/scripts/lib/load-launchd-env.sh"
 LOCK_DIR="$REPO_DIR/.tmp/manual-daily-post.lock"
-ENV_FILE="${HUSHLINE_SOCIAL_ENV_FILE:-$REPO_DIR/.env.launchd}"
+ENV_FILE=""
 COMBINED_LOG_FILE="${HUSHLINE_SOCIAL_COMBINED_LOG_FILE:-$REPO_DIR/logs/social-daily.log}"
 AUTO_GIT_PULL="${HUSHLINE_SOCIAL_GIT_PULL:-1}"
 AUTO_GIT_CLEAN="${HUSHLINE_SOCIAL_GIT_CLEAN:-1}"
@@ -154,12 +155,8 @@ if ! mkdir "$LOCK_DIR" 2>/dev/null; then
 fi
 trap cleanup EXIT
 
-if [[ -f "$ENV_FILE" ]]; then
-  set -a
-  # shellcheck disable=SC1090
-  . "$ENV_FILE"
-  set +a
-fi
+load_launchd_env_file "$REPO_DIR"
+ENV_FILE="$HUSHLINE_SOCIAL_ENV_FILE"
 
 setup_log_capture
 echo "[$(date '+%Y-%m-%d %H:%M:%S %Z')] Starting manual daily post wrapper."
