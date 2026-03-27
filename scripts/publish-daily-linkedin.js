@@ -248,6 +248,14 @@ async function waitForImageAvailable(imageUrn, token, version) {
 }
 
 async function createLinkedInPost({ authorUrn, commentary, imageUrn, altText, token, version }) {
+  const media = imageUrn
+    ? {
+        media: {
+          altText,
+          id: imageUrn,
+        },
+      }
+    : {};
   const response = await linkedinRequest({
     body: JSON.stringify({
       author: authorUrn,
@@ -258,12 +266,7 @@ async function createLinkedInPost({ authorUrn, commentary, imageUrn, altText, to
         targetEntities: [],
         thirdPartyDistributionChannels: [],
       },
-      content: {
-        media: {
-          altText,
-          id: imageUrn,
-        },
-      },
+      content: media,
       lifecycleState: "PUBLISHED",
       isReshareDisabledByAuthor: false,
     }),
@@ -303,8 +306,10 @@ async function main() {
     type,
   } = resolved;
   const remotePublished = remoteArchivePublished(args);
+  const publishMode = String(post.publish_mode || "image");
+  const imageRequired = publishMode !== "text";
 
-  if (!fs.existsSync(imagePath)) {
+  if (imageRequired && !fs.existsSync(imagePath)) {
     throw new Error(`Rendered image not found for ${post.slot}: ${imagePath}`);
   }
 
@@ -325,7 +330,8 @@ async function main() {
         `- source: ${type}`,
         `- container: ${summaryLabel}`,
         `- slot: ${post.slot}`,
-        `- image: ${path.relative(REPO_ROOT, imagePath)}`,
+        `- publish mode: ${publishMode}`,
+        ...(imageRequired ? [`- image: ${path.relative(REPO_ROOT, imagePath)}`] : []),
         `- commentary length: ${post.social.linkedin.length}`,
         "",
       ].join("\n"),
@@ -336,20 +342,23 @@ async function main() {
   const token = requireEnv("LINKEDIN_ACCESS_TOKEN");
   const authorUrn = requireEnv("LINKEDIN_AUTHOR_URN");
   const version = process.env.LINKEDIN_API_VERSION || defaultLinkedInVersion();
+  let imageUrn = "";
 
-  const initialized = await initializeImageUpload(authorUrn, token, version);
-  const imageUrn = initialized?.value?.image;
-  const uploadUrl = initialized?.value?.uploadUrl;
+  if (imageRequired) {
+    const initialized = await initializeImageUpload(authorUrn, token, version);
+    imageUrn = initialized?.value?.image || "";
+    const uploadUrl = initialized?.value?.uploadUrl;
 
-  if (!imageUrn || !uploadUrl) {
-    throw new Error("LinkedIn image initializeUpload response did not include image URN and upload URL.");
+    if (!imageUrn || !uploadUrl) {
+      throw new Error("LinkedIn image initializeUpload response did not include image URN and upload URL.");
+    }
+
+    await uploadImage(uploadUrl, imagePath, token, version);
+    await waitForImageAvailable(imageUrn, token, version);
   }
 
-  await uploadImage(uploadUrl, imagePath, token, version);
-  await waitForImageAvailable(imageUrn, token, version);
-
   const created = await createLinkedInPost({
-    altText: post.image_alt_text,
+    altText: String(post.image_alt_text || ""),
     authorUrn,
     commentary: post.social.linkedin,
     imageUrn,
