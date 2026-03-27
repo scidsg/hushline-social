@@ -1,0 +1,31 @@
+Slot: thursday
+Planned date: 2026-03-26
+Publish mode: text
+Article URL: https://hushline.app/library/blog/why-verified-tip-lines-matter-for-newsrooms
+Content key: weekly-article-why-verified-tip-lines-matter-for-newsrooms
+Headline: Why Verified Tip Lines Matter for Newsrooms
+Subtext: A local newsroom can do everything right on the reporting side and still lose a source at the first step. A person who has seen wrongdoing usually starts with a simpler question than "How does this newsroom handle secure intake?" They ask, "Is this the real t…
+
+Social post copy
+
+LinkedIn (323/3000)
+What should teams know before launch?
+
+We just published an article describing directory visibility, verified accounts, and shareable profile links make it easier for sources to reach the right newsroom contact without guessing.
+
+Read it here 👉 https://hushline.app/library/blog/why-verified-tip-lines-matter-for-newsrooms
+
+Mastodon (323/500)
+What should teams know before launch?
+
+We just published an article describing directory visibility, verified accounts, and shareable profile links make it easier for sources to reach the right newsroom contact without guessing.
+
+Read it here 👉 https://hushline.app/library/blog/why-verified-tip-lines-matter-for-newsrooms
+
+Bluesky (300/300)
+What should teams know before launch?
+
+We just published an article describing directory visibility, verified accounts, and shareable profile links make it easier for sources to reach the right newsroom c…
+
+Read it here 👉 https://hushline.app/library/blog/why-verified-tip-lines-matter-for-newsrooms
+

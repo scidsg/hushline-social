@@ -1,0 +1,19 @@
+{
+  "slot": "thursday",
+  "planned_date": "2026-03-26",
+  "content_key": "weekly-article-why-verified-tip-lines-matter-for-newsrooms",
+  "headline": "Why Verified Tip Lines Matter for Newsrooms",
+  "subtext": "A local newsroom can do everything right on the reporting side and still lose a source at the first step. A person who has seen wrongdoing usually starts with a simpler question than \"How does this newsroom handle secure intake?\" They ask, \"Is this the real t…",
+  "social": {
+    "bluesky": "What should teams know before launch?\n\nWe just published an article describing directory visibility, verified accounts, and shareable profile links make it easier for sources to reach the right newsroom c…\n\nRead it here 👉 https://hushline.app/library/blog/why-verified-tip-lines-matter-for-newsrooms",
+    "linkedin": "What should teams know before launch?\n\nWe just published an article describing directory visibility, verified accounts, and shareable profile links make it easier for sources to reach the right newsroom contact without guessing.\n\nRead it here 👉 https://hushline.app/library/blog/why-verified-tip-lines-matter-for-newsrooms",
+    "mastodon": "What should teams know before launch?\n\nWe just published an article describing directory visibility, verified accounts, and shareable profile links make it easier for sources to reach the right newsroom contact without guessing.\n\nRead it here 👉 https://hushline.app/library/blog/why-verified-tip-lines-matter-for-newsrooms"
+  },
+  "rationale": "Share the newly published Hush Line article \"Why Verified Tip Lines Matter for Newsrooms\" on social media after the docs site goes live.",
+  "audience_scope": "article-share",
+  "concept_key": "weekly-article-share",
+  "copy_brief": "Share the new article directly, with the article URL as the CTA.",
+  "title": "Why Verified Tip Lines Matter for Newsrooms",
+  "article_url": "https://hushline.app/library/blog/why-verified-tip-lines-matter-for-newsrooms",
+  "publish_mode": "text"
+}
