@@ -1,0 +1,33 @@
+Slot: friday
+Planned date: 2026-03-27
+Template: hushline-social-desktop-template.html
+Screenshot: /Users/scidsg/hushline-screenshots/releases/latest/artvandelay/auth-artvandelay-settings-replies-desktop-light-fold.png
+Content key: auth-artvandelay-settings-replies
+Headline: Set clear message statuses for sources
+Subtext: Recipients can decide what sources see at their temporary reply address after a tip comes in.
+
+Image alt text
+Social graphic showing a Hush Line desktop settings screen with the Message Statuses section open. The page explains that senders can check message status at a temporary address and shows an editable Waiting status text box with an Update Reply Text button.
+
+Social post copy
+
+LinkedIn (329/3000)
+When a source checks back after sending a tip, silence can create confusion.
+
+Hush Line lets recipients set the status text shown at the source's temporary reply address, so a newsroom, law office, or other intake team can show where a message stands without turning the workflow into live chat.
+
+Sign up at https://hushline.app.
+
+Mastodon (292/500)
+When someone checks back after sending a tip, they should not be left guessing.
+
+Hush Line lets recipients set the status text shown at the source's temporary reply address, so people can see where a message stands without turning disclosures into live chat.
+
+Sign up at https://hushline.app.
+
+Bluesky (275/300)
+When a source checks back after sending a tip, silence creates confusion.
+
+Hush Line lets recipients set the status text shown at a temporary reply address, so people can see where a message stands without turning disclosures into live chat.
+
+Sign up at https://hushline.app.

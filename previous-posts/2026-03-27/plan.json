@@ -1,0 +1,36 @@
+{
+  "date": "2026-03-27",
+  "post": {
+    "slot": "friday",
+    "planned_date": "2026-03-27",
+    "screenshot_file": "artvandelay/auth-artvandelay-settings-replies-desktop-light-fold.png",
+    "content_key": "auth-artvandelay-settings-replies",
+    "headline": "Set clear message statuses for sources",
+    "subtext": "Recipients can decide what sources see at their temporary reply address after a tip comes in.",
+    "image_alt_text": "Social graphic showing a Hush Line desktop settings screen with the Message Statuses section open. The page explains that senders can check message status at a temporary address and shows an editable Waiting status text box with an Update Reply Text button.",
+    "social": {
+      "bluesky": "When a source checks back after sending a tip, silence creates confusion.\n\nHush Line lets recipients set the status text shown at a temporary reply address, so people can see where a message stands without turning disclosures into live chat.\n\nSign up at https://hushline.app.",
+      "linkedin": "When a source checks back after sending a tip, silence can create confusion.\n\nHush Line lets recipients set the status text shown at the source's temporary reply address, so a newsroom, law office, or other intake team can show where a message stands without turning the workflow into live chat.\n\nSign up at https://hushline.app.",
+      "mastodon": "When someone checks back after sending a tip, they should not be left guessing.\n\nHush Line lets recipients set the status text shown at the source's temporary reply address, so people can see where a message stands without turning disclosures into live chat.\n\nSign up at https://hushline.app."
+    },
+    "rationale": "Recent daily posts were already heavy on directory and onboarding themes, so this avoids another repeat while still staying close to documented user needs. The screen shows a concrete recipient workflow tied to Hush Line's one-way disclosure model and recent message-handling work, and it is a strong production pick because it is above the fold, light theme, desktop, and clearly non-admin.",
+    "source_pr_numbers": [
+      1809
+    ],
+    "audience_scope": "recipient-shared",
+    "concept_key": "settings-replies",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "matched_pull_requests": [
+      {
+        "merged_at": "2026-03-26T21:17:02Z",
+        "number": 1809,
+        "title": "#1802 Allow Admins to Suspend an Account, Blocking Message Submission"
+      }
+    ],
+    "theme": "light",
+    "title": "Settings - Message Statuses (artvandelay)",
+    "topic_family": "message-statuses",
+    "viewport": "desktop"
+  },
+  "summary": "Recipient-facing post for 2026-03-27 highlighting Hush Line's message status settings using a desktop light screenshot."
+}
