@@ -1,0 +1,19 @@
+{
+  "slot": "thursday",
+  "planned_date": "2026-03-26",
+  "content_key": "weekly-article-how-law-firms-can-handle-sensitive-intake-without-losing-track",
+  "headline": "How Law Firms Can Handle Sensitive Intake Without Losing Track",
+  "subtext": "Small law offices often do intake when the office is effectively closed. A potential client sends a sensitive message after midnight, a paralegal reads it the next morning, and an attorney may not decide until later whether the matter fits the practice, needs…",
+  "social": {
+    "bluesky": "What should teams make clear before they publish a public reporting page?\n\nWe just published an article describing a small law office can use Hush Line's inbox, message statuses, and on…\n\nRead it here 👉 https://hushline.app/library/blog/how-law-firms-can-handle-sensitive-intake-without-losing-track",
+    "linkedin": "What should teams make clear before they publish a public reporting page?\n\nWe just published an article describing a small law office can use Hush Line's inbox, message statuses, and one-way replies to triage sensitive outreach without pushing legal intake into an improvised chat workflow.\n\nRead it here 👉 https://hushline.app/library/blog/how-law-firms-can-handle-sensitive-intake-without-losing-track",
+    "mastodon": "What should teams make clear before they publish a public reporting page?\n\nWe just published an article describing a small law office can use Hush Line's inbox, message statuses, and one-way replies to triage sensitive outreach without pushing legal intake into an improvised chat workflow.\n\nRead it here 👉 https://hushline.app/library/blog/how-law-firms-can-handle-sensitive-intake-without-losing-track"
+  },
+  "rationale": "Share the newly published Hush Line article \"How Law Firms Can Handle Sensitive Intake Without Losing Track\" on social media after the docs site goes live.",
+  "audience_scope": "article-share",
+  "concept_key": "weekly-article-share",
+  "copy_brief": "Share the new article directly, with the article URL as the CTA.",
+  "title": "How Law Firms Can Handle Sensitive Intake Without Losing Track",
+  "article_url": "https://hushline.app/library/blog/how-law-firms-can-handle-sensitive-intake-without-losing-track",
+  "publish_mode": "text"
+}

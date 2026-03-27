@@ -1,0 +1,31 @@
+Slot: thursday
+Planned date: 2026-03-26
+Publish mode: text
+Article URL: https://hushline.app/library/blog/how-law-firms-can-handle-sensitive-intake-without-losing-track
+Content key: weekly-article-how-law-firms-can-handle-sensitive-intake-without-losing-track
+Headline: How Law Firms Can Handle Sensitive Intake Without Losing Track
+Subtext: Small law offices often do intake when the office is effectively closed. A potential client sends a sensitive message after midnight, a paralegal reads it the next morning, and an attorney may not decide until later whether the matter fits the practice, needs…
+
+Social post copy
+
+LinkedIn (404/3000)
+What should teams make clear before they publish a public reporting page?
+
+We just published an article describing a small law office can use Hush Line's inbox, message statuses, and one-way replies to triage sensitive outreach without pushing legal intake into an improvised chat workflow.
+
+Read it here 👉 https://hushline.app/library/blog/how-law-firms-can-handle-sensitive-intake-without-losing-track
+
+Mastodon (404/500)
+What should teams make clear before they publish a public reporting page?
+
+We just published an article describing a small law office can use Hush Line's inbox, message statuses, and one-way replies to triage sensitive outreach without pushing legal intake into an improvised chat workflow.
+
+Read it here 👉 https://hushline.app/library/blog/how-law-firms-can-handle-sensitive-intake-without-losing-track
+
+Bluesky (300/300)
+What should teams make clear before they publish a public reporting page?
+
+We just published an article describing a small law office can use Hush Line's inbox, message statuses, and on…
+
+Read it here 👉 https://hushline.app/library/blog/how-law-firms-can-handle-sensitive-intake-without-losing-track
+
