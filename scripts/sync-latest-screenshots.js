@@ -4,9 +4,11 @@
 
 const fs = require("fs");
 const path = require("path");
+const { spawn } = require("node:child_process");
 
 const DEFAULT_BASE_URL =
   "https://raw.githubusercontent.com/scidsg/hushline-screenshots/main/releases/latest";
+const CURL_USER_AGENT = "hushline-social-sync/1.0";
 
 function parseArgs(argv) {
   const args = {
@@ -48,28 +50,73 @@ function printHelp() {
   );
 }
 
-async function fetchText(url) {
-  const response = await fetch(url, {
-    headers: { "User-Agent": "hushline-social-sync/1.0" },
+function runCurl(args, { captureStdout = false } = {}) {
+  return new Promise((resolve, reject) => {
+    const child = spawn("curl", args, {
+      stdio: captureStdout ? ["ignore", "pipe", "pipe"] : ["ignore", "ignore", "pipe"],
+    });
+    const stdout = [];
+    const stderr = [];
+
+    child.on("error", (error) => {
+      if (error && error.code === "ENOENT") {
+        reject(new Error("Missing required command: curl"));
+        return;
+      }
+      reject(error);
+    });
+
+    if (captureStdout) {
+      child.stdout.on("data", (chunk) => {
+        stdout.push(chunk);
+      });
+    }
+
+    child.stderr.on("data", (chunk) => {
+      stderr.push(chunk);
+    });
+
+    child.on("close", (code) => {
+      if (code !== 0) {
+        const message = Buffer.concat(stderr).toString("utf8").trim();
+        reject(new Error(message || `curl exited with code ${code}`));
+        return;
+      }
+
+      resolve(captureStdout ? Buffer.concat(stdout) : Buffer.alloc(0));
+    });
   });
-
-  if (!response.ok) {
-    throw new Error(`Failed to fetch ${url}: ${response.status} ${response.statusText}`);
-  }
-
-  return response.text();
 }
 
-async function fetchBuffer(url) {
-  const response = await fetch(url, {
-    headers: { "User-Agent": "hushline-social-sync/1.0" },
-  });
+function curlArgs(url) {
+  return [
+    "--fail",
+    "--silent",
+    "--show-error",
+    "--location",
+    "--retry",
+    "2",
+    "--retry-delay",
+    "1",
+    "--connect-timeout",
+    "10",
+    "--max-time",
+    "60",
+    "--user-agent",
+    CURL_USER_AGENT,
+    url,
+  ];
+}
 
-  if (!response.ok) {
-    throw new Error(`Failed to fetch ${url}: ${response.status} ${response.statusText}`);
-  }
+async function fetchText(url) {
+  const buffer = await runCurl(curlArgs(url), { captureStdout: true });
+  return buffer.toString("utf8");
+}
 
-  return Buffer.from(await response.arrayBuffer());
+async function downloadFile(url, destination) {
+  const temporaryDestination = `${destination}.tmp`;
+  await runCurl([...curlArgs(url), "--output", temporaryDestination]);
+  fs.renameSync(temporaryDestination, destination);
 }
 
 function foldFilesFromManifest(manifest) {
@@ -103,24 +150,66 @@ async function downloadWithConcurrency(files, worker) {
   );
 }
 
+function swapDestination(stagedDest, dest) {
+  const parentDir = path.dirname(dest);
+  const backupDest = path.join(
+    parentDir,
+    `.latest-backup-${process.pid}-${Date.now()}`,
+  );
+  const hadExistingDest = fs.existsSync(dest);
+  const backupReadme = path.join(backupDest, "README.md");
+  const nextReadme = path.join(dest, "README.md");
+
+  fs.mkdirSync(parentDir, { recursive: true });
+
+  if (hadExistingDest) {
+    fs.renameSync(dest, backupDest);
+  }
+
+  try {
+    fs.renameSync(stagedDest, dest);
+    if (hadExistingDest && fs.existsSync(backupReadme) && !fs.existsSync(nextReadme)) {
+      fs.copyFileSync(backupReadme, nextReadme);
+    }
+    fs.rmSync(backupDest, { force: true, recursive: true });
+  } catch (error) {
+    if (fs.existsSync(dest)) {
+      fs.rmSync(dest, { force: true, recursive: true });
+    }
+    if (hadExistingDest && fs.existsSync(backupDest)) {
+      fs.renameSync(backupDest, dest);
+    }
+    throw error;
+  }
+}
+
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const manifest = JSON.parse(await fetchText(`${args.baseUrl}/manifest.json`));
   const files = foldFilesFromManifest(manifest);
-
-  fs.mkdirSync(args.dest, { recursive: true });
-  fs.writeFileSync(
-    path.join(args.dest, "manifest.json"),
-    `${JSON.stringify(manifest, null, 2)}\n`,
+  const stagingRoot = fs.mkdtempSync(
+    path.join(path.dirname(args.dest), ".latest-sync-"),
   );
-
+  const stagedDest = path.join(stagingRoot, path.basename(args.dest));
   const imageFiles = files.filter((file) => file !== "manifest.json");
-  await downloadWithConcurrency(imageFiles, async (file) => {
-    const destination = path.join(args.dest, file);
-    const buffer = await fetchBuffer(`${args.baseUrl}/${file}`);
-    fs.mkdirSync(path.dirname(destination), { recursive: true });
-    fs.writeFileSync(destination, buffer);
-  });
+
+  try {
+    fs.mkdirSync(stagedDest, { recursive: true });
+
+    await downloadWithConcurrency(imageFiles, async (file) => {
+      const destination = path.join(stagedDest, file);
+      fs.mkdirSync(path.dirname(destination), { recursive: true });
+      await downloadFile(`${args.baseUrl}/${file}`, destination);
+    });
+
+    fs.writeFileSync(
+      path.join(stagedDest, "manifest.json"),
+      `${JSON.stringify(manifest, null, 2)}\n`,
+    );
+    swapDestination(stagedDest, args.dest);
+  } finally {
+    fs.rmSync(stagingRoot, { force: true, recursive: true });
+  }
 
   process.stdout.write(
     [
@@ -133,7 +222,22 @@ async function main() {
   );
 }
 
-main().catch((error) => {
-  process.stderr.write(`${error.stack || error.message}\n`);
-  process.exit(1);
-});
+module.exports = {
+  DEFAULT_BASE_URL,
+  curlArgs,
+  downloadFile,
+  downloadWithConcurrency,
+  fetchText,
+  foldFilesFromManifest,
+  main,
+  parseArgs,
+  runCurl,
+  swapDestination,
+};
+
+if (require.main === module) {
+  main().catch((error) => {
+    process.stderr.write(`${error.stack || error.message}\n`);
+    process.exit(1);
+  });
+}

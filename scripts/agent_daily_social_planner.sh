@@ -194,6 +194,7 @@ verify_screenshot_source() {
   local local_release=""
   local local_captured_at=""
   local age_days=""
+  local remote_status=""
 
   if [[ ! -d "$SCREENSHOTS_REPO_DIR/.git" ]]; then
     echo "Missing screenshots repo checkout: $SCREENSHOTS_REPO_DIR" >&2
@@ -218,18 +219,37 @@ verify_screenshot_source() {
   fi
 
   echo "Checking upstream latest screenshots manifest."
-  if remote_manifest_matches_local "$manifest_path"; then
+  remote_status="$(remote_manifest_status "$manifest_path")"
+
+  if [[ "$remote_status" == "match" ]]; then
     echo "Local latest screenshots manifest matches upstream."
     return
+  fi
+
+  if [[ "$remote_status" == "probe_failed" ]]; then
+    if [[ "$ALLOW_STALE_SCREENSHOTS" == "1" ]]; then
+      echo "Warning: unable to verify the upstream latest screenshots manifest, but continuing because HUSHLINE_ALLOW_STALE_SCREENSHOTS=1."
+      return
+    fi
+
+    echo "Unable to verify the upstream latest screenshots manifest after ${SCREENSHOT_REMOTE_CHECK_ATTEMPTS} attempts." >&2
+    echo "Set HUSHLINE_ALLOW_STALE_SCREENSHOTS=1 to override intentionally." >&2
+    exit 1
   fi
 
   if [[ "$SCREENSHOT_AUTO_SYNC" == "1" ]]; then
     echo "Local latest screenshots manifest is stale. Syncing upstream latest snapshot."
     node "$REPO_DIR/scripts/sync-latest-screenshots.js" --dest "$SCREENSHOTS_REPO_DIR/releases/latest"
 
-    if remote_manifest_matches_local "$manifest_path"; then
+    remote_status="$(remote_manifest_status "$manifest_path")"
+    if [[ "$remote_status" == "match" ]]; then
       echo "Local latest screenshots folder synced to upstream."
       return
+    fi
+
+    if [[ "$remote_status" == "probe_failed" ]]; then
+      echo "Latest screenshot sync completed, but the upstream manifest could not be re-verified." >&2
+      exit 1
     fi
 
     echo "Automatic latest screenshot sync did not produce an upstream-matching manifest." >&2
@@ -245,7 +265,7 @@ verify_screenshot_source() {
   exit 1
 }
 
-remote_manifest_matches_local() {
+remote_manifest_status() {
   local manifest_path="$1"
   local attempt=""
   local probe_file=""
@@ -257,6 +277,7 @@ remote_manifest_matches_local() {
   local remote_manifest=""
   local remote_release=""
   local remote_captured_at=""
+  local result="probe_failed"
 
   local_release="$(node -e 'const fs=require("fs"); const m=JSON.parse(fs.readFileSync(process.argv[1],"utf8")); process.stdout.write(String(m.release || ""));' "$manifest_path")"
   local_captured_at="$(node -e 'const fs=require("fs"); const m=JSON.parse(fs.readFileSync(process.argv[1],"utf8")); process.stdout.write(String(m.capturedAt || ""));' "$manifest_path")"
@@ -264,10 +285,11 @@ remote_manifest_matches_local() {
   for ((attempt = 1; attempt <= SCREENSHOT_REMOTE_CHECK_ATTEMPTS; attempt += 1)); do
     probe_file="$(mktemp)"
     (
-      curl -sL https://raw.githubusercontent.com/scidsg/hushline-screenshots/main/releases/latest/manifest.json >"$probe_file" 2>&1
+      curl -fsSL https://raw.githubusercontent.com/scidsg/hushline-screenshots/main/releases/latest/manifest.json >"$probe_file" 2>&1
     ) &
     probe_pid=$!
     timed_out=0
+    rc=0
 
     for ((i = 0; i < SCREENSHOT_REMOTE_CHECK_TIMEOUT_SECONDS; i += 1)); do
       if ! kill -0 "$probe_pid" >/dev/null 2>&1; then
@@ -292,8 +314,13 @@ remote_manifest_matches_local() {
       rm -f "$probe_file"
       remote_release="$(printf '%s' "$remote_manifest" | node -e 'let data=""; process.stdin.on("data",(chunk)=>data+=chunk); process.stdin.on("end",()=>{const m=JSON.parse(data); process.stdout.write(String(m.release || ""));});')"
       remote_captured_at="$(printf '%s' "$remote_manifest" | node -e 'let data=""; process.stdin.on("data",(chunk)=>data+=chunk); process.stdin.on("end",()=>{const m=JSON.parse(data); process.stdout.write(String(m.capturedAt || ""));});')"
-      [[ "$local_release" == "$remote_release" && "$local_captured_at" == "$remote_captured_at" ]]
-      return $?
+      if [[ "$local_release" == "$remote_release" && "$local_captured_at" == "$remote_captured_at" ]]; then
+        result="match"
+      else
+        result="mismatch"
+      fi
+      printf '%s\n' "$result"
+      return 0
     fi
 
     if (( attempt < SCREENSHOT_REMOTE_CHECK_ATTEMPTS )); then
@@ -303,7 +330,8 @@ remote_manifest_matches_local() {
     rm -f "$probe_file"
   done
 
-  return 1
+  printf '%s\n' "$result"
+  return 0
 }
 
 main() {
