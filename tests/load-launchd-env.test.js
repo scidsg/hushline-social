@@ -20,7 +20,7 @@ function runShell(script, env = {}) {
   );
 }
 
-test("load-launchd-env falls back to repo-local env file when override path is missing", () => {
+test("load-launchd-env uses repo-local env file when no override is set", () => {
   const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "launchd-env-"));
   const repoDir = path.join(tempRoot, "repo");
   const scriptsLibDir = path.join(repoDir, "scripts", "lib");
@@ -43,12 +43,42 @@ test("load-launchd-env falls back to repo-local env file when override path is m
         'printf "TOKEN=%s\\n" "$LINKEDIN_ACCESS_TOKEN"',
         'printf "AUTHOR=%s\\n" "$LINKEDIN_AUTHOR_URN"',
       ].join("\n"),
-      { HUSHLINE_SOCIAL_ENV_FILE: path.join(tempRoot, "missing.env") },
     );
 
     assert.match(output, new RegExp(`ENV_FILE=${repoDir.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}/\\.env\\.launchd`));
     assert.match(output, /TOKEN=repo-token/);
     assert.match(output, /AUTHOR=urn:li:person:test/);
+  } finally {
+    fs.rmSync(tempRoot, { recursive: true, force: true });
+  }
+});
+
+test("load-launchd-env fails when explicit override path is missing", () => {
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "launchd-env-"));
+  const repoDir = path.join(tempRoot, "repo");
+  const scriptsLibDir = path.join(repoDir, "scripts", "lib");
+  fs.mkdirSync(scriptsLibDir, { recursive: true });
+  fs.copyFileSync(
+    path.join(path.resolve(__dirname, ".."), "scripts", "lib", "load-launchd-env.sh"),
+    path.join(scriptsLibDir, "load-launchd-env.sh"),
+  );
+  fs.writeFileSync(
+    path.join(repoDir, ".env.launchd"),
+    "LINKEDIN_ACCESS_TOKEN=repo-token\nLINKEDIN_AUTHOR_URN=urn:li:person:test\n",
+  );
+
+  try {
+    assert.throws(
+      () => runShell(
+        [
+          "set -e",
+          `source "${path.join(repoDir, "scripts", "lib", "load-launchd-env.sh")}"`,
+          `load_launchd_env_file "${repoDir}"`,
+        ].join("\n"),
+        { HUSHLINE_SOCIAL_ENV_FILE: path.join(tempRoot, "missing.env") },
+      ),
+      /HUSHLINE_SOCIAL_ENV_FILE points to a missing file/,
+    );
   } finally {
     fs.rmSync(tempRoot, { recursive: true, force: true });
   }

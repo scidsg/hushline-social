@@ -11,15 +11,8 @@ resolve_launchd_env_file() {
       return
     fi
 
-    if [[ -f "$default_env_file" ]]; then
-      echo "Warning: HUSHLINE_SOCIAL_ENV_FILE points to a missing file: $requested_env_file" >&2
-      echo "Falling back to repo-local env file: $default_env_file" >&2
-      printf '%s\n' "$default_env_file"
-      return
-    fi
-
-    printf '%s\n' "$requested_env_file"
-    return
+    echo "Error: HUSHLINE_SOCIAL_ENV_FILE points to a missing file: $requested_env_file" >&2
+    return 1
   fi
 
   printf '%s\n' "$default_env_file"
