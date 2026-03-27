@@ -1,0 +1,31 @@
+Slot: thursday
+Planned date: 2026-03-26
+Publish mode: text
+Article URL: https://hushline.app/library/blog/when-ocr-helps-reporters-handle-documents-faster
+Content key: weekly-article-when-ocr-helps-reporters-handle-documents-faster
+Headline: When OCR Helps Reporters Handle Documents Faster
+Subtext: Investigative reporting often starts with imperfect source material. A reporter receives a Hush Line message that includes photos of printed records, screenshots of internal systems, or scanned pages that are readable enough for a human eye but slow to work t…
+
+Social post copy
+
+LinkedIn (386/3000)
+How can reporters turn photographed or scanned material into searchable text during the first pass on a tip?
+
+We just published an article showing how hush Line's Vision Assistant helps reporters turn photographed or scanned material into searchable text during the first pass on a tip.
+
+Read it here 👉 https://hushline.app/library/blog/when-ocr-helps-reporters-handle-documents-faster
+
+Mastodon (386/500)
+How can reporters turn photographed or scanned material into searchable text during the first pass on a tip?
+
+We just published an article showing how hush Line's Vision Assistant helps reporters turn photographed or scanned material into searchable text during the first pass on a tip.
+
+Read it here 👉 https://hushline.app/library/blog/when-ocr-helps-reporters-handle-documents-faster
+
+Bluesky (300/300)
+How can reporters turn photographed or scanned material into searchable text during the first pass on a tip?
+
+We just published an article showing how hush Line's Vision Assistant helps reporters tur…
+
+Read it here 👉 https://hushline.app/library/blog/when-ocr-helps-reporters-handle-documents-faster
+

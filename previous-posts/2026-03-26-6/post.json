@@ -1,0 +1,19 @@
+{
+  "slot": "thursday",
+  "planned_date": "2026-03-26",
+  "content_key": "weekly-article-when-ocr-helps-reporters-handle-documents-faster",
+  "headline": "When OCR Helps Reporters Handle Documents Faster",
+  "subtext": "Investigative reporting often starts with imperfect source material. A reporter receives a Hush Line message that includes photos of printed records, screenshots of internal systems, or scanned pages that are readable enough for a human eye but slow to work t…",
+  "social": {
+    "bluesky": "How can reporters turn photographed or scanned material into searchable text during the first pass on a tip?\n\nWe just published an article showing how hush Line's Vision Assistant helps reporters tur…\n\nRead it here 👉 https://hushline.app/library/blog/when-ocr-helps-reporters-handle-documents-faster",
+    "linkedin": "How can reporters turn photographed or scanned material into searchable text during the first pass on a tip?\n\nWe just published an article showing how hush Line's Vision Assistant helps reporters turn photographed or scanned material into searchable text during the first pass on a tip.\n\nRead it here 👉 https://hushline.app/library/blog/when-ocr-helps-reporters-handle-documents-faster",
+    "mastodon": "How can reporters turn photographed or scanned material into searchable text during the first pass on a tip?\n\nWe just published an article showing how hush Line's Vision Assistant helps reporters turn photographed or scanned material into searchable text during the first pass on a tip.\n\nRead it here 👉 https://hushline.app/library/blog/when-ocr-helps-reporters-handle-documents-faster"
+  },
+  "rationale": "Share the newly published Hush Line article \"When OCR Helps Reporters Handle Documents Faster\" on social media after the docs site goes live.",
+  "audience_scope": "article-share",
+  "concept_key": "weekly-article-share",
+  "copy_brief": "Share the new article directly, with the article URL as the CTA.",
+  "title": "When OCR Helps Reporters Handle Documents Faster",
+  "article_url": "https://hushline.app/library/blog/when-ocr-helps-reporters-handle-documents-faster",
+  "publish_mode": "text"
+}
