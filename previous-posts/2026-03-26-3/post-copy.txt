@@ -1,0 +1,25 @@
+Slot: thursday
+Planned date: 2026-03-26
+Publish mode: text
+Article URL: https://hushline.app/library/blog/how-security-teams-can-investigate-suspicious-email-with-better-context
+Content key: weekly-article-how-security-teams-can-investigate-suspicious-email-with-better-context
+Headline: How Security Teams Can Investigate Suspicious Email With Better Context
+Subtext: Software developers and bug bounty teams often receive messy intake, not polished incident reports. A researcher, contractor, or employee forwards a suspicious email, says "this looks wrong," and leaves the internal team to figure out whether it is a real phi…
+
+Social post copy
+
+LinkedIn (430/3000)
+How can bug bounty and security teams get a better first pass on suspicious forwarded email before deciding what needs escalation?
+We just published an article showing how Hush Line helps bug bounty and security teams get a better first pass on suspicious forwarded email before deciding what needs escalation.
+read it here: https://hushline.app/library/blog/how-security-teams-can-investigate-suspicious-email-with-better-context
+
+Mastodon (430/500)
+How can bug bounty and security teams get a better first pass on suspicious forwarded email before deciding what needs escalation?
+We just published an article showing how Hush Line helps bug bounty and security teams get a better first pass on suspicious forwarded email before deciding what needs escalation.
+read it here: https://hushline.app/library/blog/how-security-teams-can-investigate-suspicious-email-with-better-context
+
+Bluesky (299/300)
+How can bug bounty and security teams get a better first pass on suspicious forwarded email before deciding what needs escalation?
+We just published an article showing how Hush L…
+read it here: https://hushline.app/library/blog/how-security-teams-can-investigate-suspicious-email-with-better-context
+

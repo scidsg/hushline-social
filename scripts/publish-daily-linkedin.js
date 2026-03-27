@@ -248,28 +248,30 @@ async function waitForImageAvailable(imageUrn, token, version) {
 }
 
 async function createLinkedInPost({ authorUrn, commentary, imageUrn, altText, token, version }) {
-  const media = imageUrn
-    ? {
-        media: {
-          altText,
-          id: imageUrn,
-        },
-      }
-    : {};
-  const response = await linkedinRequest({
-    body: JSON.stringify({
-      author: authorUrn,
-      commentary,
-      visibility: "PUBLIC",
-      distribution: {
-        feedDistribution: "MAIN_FEED",
-        targetEntities: [],
-        thirdPartyDistributionChannels: [],
+  const requestBody = {
+    author: authorUrn,
+    commentary,
+    visibility: "PUBLIC",
+    distribution: {
+      feedDistribution: "MAIN_FEED",
+      targetEntities: [],
+      thirdPartyDistributionChannels: [],
+    },
+    lifecycleState: "PUBLISHED",
+    isReshareDisabledByAuthor: false,
+  };
+
+  if (imageUrn) {
+    requestBody.content = {
+      media: {
+        altText,
+        id: imageUrn,
       },
-      content: media,
-      lifecycleState: "PUBLISHED",
-      isReshareDisabledByAuthor: false,
-    }),
+    };
+  }
+
+  const response = await linkedinRequest({
+    body: JSON.stringify(requestBody),
     headers: {
       "Content-Type": "application/json",
     },
