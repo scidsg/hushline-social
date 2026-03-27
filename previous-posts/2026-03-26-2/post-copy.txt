@@ -1,0 +1,35 @@
+Slot: thursday
+Planned date: 2026-03-26
+Template: hushline-social-desktop-template.html
+Screenshot: /Users/scidsg/hushline-screenshots/releases/latest/guest/guest-profile-artvandelay-custom-form-desktop-light-fold.png
+Content key: weekly-article-what-boards-and-ethics-offices-should-put-on-a-tip-line-before-launch
+Headline: What Boards and Ethics Offices Should Put on a Tip Line Before Launch
+Subtext: A board committee or ethics office can do a lot of internal preparation before launching a public reporting channel: decide who monitors it, review policy language, and agree on escalation paths. But the first practical test often happens earlier. A whistlebl…
+
+Image alt text
+Public Hush Line page with custom guidance before message submission
+
+Social post copy
+
+LinkedIn (445/3000)
+What Boards and Ethics Offices Should Put on a Tip Line Before Launch
+
+A board committee or ethics office can do a lot of internal preparation before launching a public reporting channel: decide who monitors it, review policy language, and agree on escalation paths. But the first practical test often happens earlier.
+
+Read the new article: https://hushline.app/library/blog/what-boards-and-ethics-offices-should-put-on-a-tip-line-before-launch
+
+Mastodon (406/500)
+New Hush Line article:
+
+What Boards and Ethics Offices Should Put on a Tip Line Before Launch
+
+A board committee or ethics office can do a lot of internal preparation before launching a public reporting channel: decide who monitors it, review policy language, and agree on escalation paths.
+
+Read more: https://hushline.app/library/blog/what-boards-and-ethics-offices-should-put-on-a-tip-line-before-launch
+
+Bluesky (300/300)
+What Boards and Ethics Offices Should Put on a Tip Line Before Launch
+
+A board committee or ethics office can do a lot of internal preparation before launching a public rep…
+
+Read the new article: https://hushline.app/library/blog/what-boards-and-ethics-offices-should-put-on-a-tip-line-before-launch
