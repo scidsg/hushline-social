@@ -1,0 +1,19 @@
+{
+  "slot": "thursday",
+  "planned_date": "2026-03-26",
+  "content_key": "weekly-article-why-data-export-matters-for-long-running-cases",
+  "headline": "Why Data Export Matters for Long-Running Cases",
+  "subtext": "For lawyers, secure intake is only the beginning of the problem. A matter that starts with one sensitive disclosure may stay active through internal review, negotiation, regulatory contact, or litigation planning for a long time after the first message arrive…",
+  "social": {
+    "bluesky": "How can law offices keep Hush Line records portable and protected when a case stays open for months or years?\n\nWe just published an article on how data export, 2FA, and optional PGP encryption help law…\n\nRead it here 👉 https://hushline.app/library/blog/why-data-export-matters-for-long-running-cases",
+    "linkedin": "How can law offices keep Hush Line records portable and protected when a case stays open for months or years?\n\nWe just published an article on how data export, 2FA, and optional PGP encryption help law offices keep case records usable over time.\n\nRead it here 👉 https://hushline.app/library/blog/why-data-export-matters-for-long-running-cases",
+    "mastodon": "How can law offices keep Hush Line records portable and protected when a case stays open for months or years?\n\nWe just published an article on how data export, 2FA, and optional PGP encryption help law offices keep case records usable over time.\n\nRead it here 👉 https://hushline.app/library/blog/why-data-export-matters-for-long-running-cases"
+  },
+  "rationale": "Share the newly published Hush Line article \"Why Data Export Matters for Long-Running Cases\" on social media after the docs site goes live.",
+  "audience_scope": "article-share",
+  "concept_key": "weekly-article-share",
+  "copy_brief": "Share the new article directly, with the article URL as the CTA.",
+  "title": "Why Data Export Matters for Long-Running Cases",
+  "article_url": "https://hushline.app/library/blog/why-data-export-matters-for-long-running-cases",
+  "publish_mode": "text"
+}

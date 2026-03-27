@@ -1,0 +1,31 @@
+Slot: thursday
+Planned date: 2026-03-26
+Publish mode: text
+Article URL: https://hushline.app/library/blog/why-data-export-matters-for-long-running-cases
+Content key: weekly-article-why-data-export-matters-for-long-running-cases
+Headline: Why Data Export Matters for Long-Running Cases
+Subtext: For lawyers, secure intake is only the beginning of the problem. A matter that starts with one sensitive disclosure may stay active through internal review, negotiation, regulatory contact, or litigation planning for a long time after the first message arrive…
+
+Social post copy
+
+LinkedIn (343/3000)
+How can law offices keep Hush Line records portable and protected when a case stays open for months or years?
+
+We just published an article on how data export, 2FA, and optional PGP encryption help law offices keep case records usable over time.
+
+Read it here 👉 https://hushline.app/library/blog/why-data-export-matters-for-long-running-cases
+
+Mastodon (343/500)
+How can law offices keep Hush Line records portable and protected when a case stays open for months or years?
+
+We just published an article on how data export, 2FA, and optional PGP encryption help law offices keep case records usable over time.
+
+Read it here 👉 https://hushline.app/library/blog/why-data-export-matters-for-long-running-cases
+
+Bluesky (300/300)
+How can law offices keep Hush Line records portable and protected when a case stays open for months or years?
+
+We just published an article on how data export, 2FA, and optional PGP encryption help law…
+
+Read it here 👉 https://hushline.app/library/blog/why-data-export-matters-for-long-running-cases
+
