@@ -1,0 +1,33 @@
+Slot: monday
+Planned date: 2026-03-30
+Template: hushline-social-desktop-template.html
+Screenshot: /Users/scidsg/hushline-screenshots/releases/latest/guest/guest-directory-newsrooms-desktop-light-fold.png
+Content key: guest-directory-newsrooms
+Headline: Find a newsroom before you send a tip
+Subtext: The public Newsrooms tab helps sources search and narrow newsroom listings by location before they share anything sensitive.
+
+Image alt text
+Social graphic showing Hush Line on desktop with the public Whistleblower Support Directory open to the Newsrooms tab. The image shows a search field, a Show Filters link, a note explaining that the tab includes self-reported and automated newsroom listings, and visible newsroom cards including 100 Days in Appalachia and 100Reporters.
+
+Social post copy
+
+LinkedIn (355/3000)
+If you need to reach a newsroom, finding the right one should not depend on guesswork.
+
+Hush Line's public Newsrooms tab lets you search and filter newsroom listings in one place, including location filters, so you can narrow the field before you share anything sensitive. You do not need an account to send a message.
+
+Learn more at https://hushline.app.
+
+Mastodon (268/500)
+Finding the right newsroom should not take guesswork.
+
+Hush Line's public Newsrooms tab lets you search and filter newsroom listings, including by location, before you share anything sensitive. No account is required to send a tip.
+
+Learn more at https://hushline.app.
+
+Bluesky (268/300)
+Finding the right newsroom should not take guesswork.
+
+Hush Line's public Newsrooms tab lets you search and filter newsroom listings, including by location, before you share anything sensitive. No account is required to send a tip.
+
+Learn more at https://hushline.app.
