@@ -1,0 +1,19 @@
+{
+  "date": "2026-03-30",
+  "display_name": "Margie Ratliff",
+  "headline": "Margie Ratliff",
+  "image_alt_text": "A social card featuring verified Hush Line user Margie Ratliff, their bio, their tip line URL, and a QR code that links to the same URL.",
+  "planned_date": "2026-03-30",
+  "primary_username": "IsaThing",
+  "qr_code_file": "verified-user-qr.png",
+  "social": {
+    "bluesky": "🤩 Verified Member Highlight!\n\nMargie Ratliff founded the Documentary Participants' Empowerment Alliance, which brings resources to documentary participants. She is a producer and participant in Subject and a participant in The Staircase.\n\nSend Margie a tip: https://tips.hushline.app/to/IsaThing",
+    "linkedin": "🤩 Verified Member Highlight!\n\nMargie Ratliff is the founder of the Documentary Participants' Empowerment Alliance, which brings resources to documentary participants. She is also a producer and participant in the film Subject and a participant in The Staircase.\n\nTo send Margie a tip, go to https://tips.hushline.app/to/IsaThing.",
+    "mastodon": "🤩 Verified Member Highlight!\n\nMargie Ratliff founded the Documentary Participants' Empowerment Alliance, which brings resources to documentary participants. She is also a producer and participant in Subject and a participant in The Staircase.\n\nTo send Margie a tip, visit https://tips.hushline.app/to/IsaThing."
+  },
+  "slot": "verified-user-weekly",
+  "source": "https://tips.hushline.app/directory/users.json",
+  "subtext": "Margie Ratliff is the Founder of the Documentary Participants’ Empowerment Alliance (DPEA), which brings vital resources to documentary participants. She is a producer/participant in the film Subject and a participant in the film The Staircase.",
+  "user_link": "https://tips.hushline.app/to/IsaThing",
+  "user_url": "https://tips.hushline.app/to/IsaThing"
+}

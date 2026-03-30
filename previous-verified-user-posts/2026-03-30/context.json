@@ -1,0 +1,22 @@
+{
+  "archive_root": "previous-verified-user-posts",
+  "date": "2026-03-30",
+  "eligible_verified_user_count": 68,
+  "recent_archive_history": [
+    {
+      "date": "2026-03-25",
+      "display_name": "Cory Smith",
+      "primary_username": "coryjosmith",
+      "user_url": "https://tips.hushline.app/to/coryjosmith"
+    }
+  ],
+  "selected_user": {
+    "bio": "Margie Ratliff is the Founder of the Documentary Participants’ Empowerment Alliance (DPEA), which brings vital resources to documentary participants. She is a producer/participant in the film Subject and a participant in the film The Staircase.",
+    "display_name": "Margie Ratliff",
+    "is_admin": false,
+    "primary_username": "IsaThing",
+    "profile_url": "/to/IsaThing",
+    "user_url": "https://tips.hushline.app/to/IsaThing"
+  },
+  "source": "https://tips.hushline.app/directory/users.json"
+}
