@@ -15,7 +15,6 @@ const {
   getWeekdayLabel,
   isValidArchiveKey,
   isWeekendDate,
-  listTemplateVariants,
   readJson,
   writeJson,
 } = require("./social-common");
@@ -265,18 +264,17 @@ function loadArchiveHistory(currentArchiveKey) {
 }
 
 function listDailyTemplateNames() {
-  return [
-    ...listTemplateVariants("desktop"),
-    ...listTemplateVariants("mobile"),
-  ].map((templatePath) => path.basename(templatePath));
+  return fs.readdirSync(path.join(REPO_ROOT, "templates"))
+    .filter((name) => /^hushline-daily-.*\.html$/.test(name))
+    .sort((left, right) => left.localeCompare(right, undefined, { numeric: true }));
 }
 
 function templateTypeForName(templateName) {
-  if (/^hushline-social-mobile-template(?:-.+)?\.html$/.test(templateName)) {
+  if (/^hushline-daily-mobile-template(?:-.+)?\.html$/.test(templateName)) {
     return "mobile";
   }
 
-  if (/^hushline-social-desktop-template(?:-.+)?\.html$/.test(templateName)) {
+  if (/^hushline-daily-desktop-template(?:-.+)?\.html$/.test(templateName)) {
     return "desktop";
   }
 
@@ -295,23 +293,12 @@ function detectCandidateTemplateType(candidate) {
   }
 }
 
-function chooseTemplateName(archiveHistory, templateNames) {
+function chooseTemplateName(_archiveHistory, templateNames) {
   if (templateNames.length === 0) {
     throw new Error("No daily templates are available.");
   }
 
-  const lastKnownTemplate = [...archiveHistory]
-    .reverse()
-    .map((entry) => entry.template_name)
-    .find((templateName) => templateNames.includes(templateName));
-
-  if (!lastKnownTemplate) {
-    return templateNames[0];
-  }
-
-  const currentIndex = templateNames.indexOf(lastKnownTemplate);
-
-  return templateNames[(currentIndex + 1) % templateNames.length];
+  return templateNames[Math.floor(Math.random() * templateNames.length)];
 }
 
 function filterCandidatesForTemplateName(candidates, templateName) {

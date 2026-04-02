@@ -159,7 +159,9 @@ Respect current per-network limits:
 
 ## Asset Rules
 
-- Use the existing mobile or desktop template
+- For regular daily posts, use templates discovered from `templates/hushline-daily-*.html`
+- The planner should choose one eligible daily template at random, then select a post that fits that template
+- The verified-user template is separate and not part of daily template selection
 - do not change footer, color system, background graphics, or layout unless explicitly requested
 - render PNG output at `@2x`
 

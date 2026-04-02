@@ -298,8 +298,8 @@ function detectTemplate(screenshotPath) {
 }
 
 function compareTemplateNames(left, right) {
-  const leftBase = /^hushline-social-(mobile|desktop)-template\.html$/.test(left);
-  const rightBase = /^hushline-social-(mobile|desktop)-template\.html$/.test(right);
+  const leftBase = /^hushline-daily-(mobile|desktop)-template\.html$/.test(left);
+  const rightBase = /^hushline-daily-(mobile|desktop)-template\.html$/.test(right);
 
   if (leftBase && !rightBase) {
     return -1;
@@ -313,23 +313,13 @@ function compareTemplateNames(left, right) {
 }
 
 function listTemplateVariants(templateType, templatesDir = TEMPLATES_DIR) {
-  const prefix = `hushline-social-${templateType}-template`;
+  const prefix = `hushline-daily-${templateType}-template`;
   const pattern = new RegExp(`^${prefix}(?:-.+)?\\.html$`);
 
   return fs.readdirSync(templatesDir)
     .filter((name) => pattern.test(name))
     .sort(compareTemplateNames)
     .map((name) => path.join(templatesDir, name));
-}
-
-function stableIndex(seed, count) {
-  let hash = 0;
-
-  for (const char of String(seed || "")) {
-    hash = ((hash * 31) + char.charCodeAt(0)) >>> 0;
-  }
-
-  return count > 0 ? hash % count : 0;
 }
 
 function resolveTemplateVariant(post, screenshotPath, templatesDir = TEMPLATES_DIR) {
@@ -358,12 +348,7 @@ function resolveTemplateVariant(post, screenshotPath, templatesDir = TEMPLATES_D
     };
   }
 
-  const seed = [
-    post && post.planned_date,
-    post && post.content_key,
-    path.basename(screenshotPath),
-  ].filter(Boolean).join("\n");
-  const templatePath = variants[stableIndex(seed || path.basename(screenshotPath), variants.length)];
+  const templatePath = variants[Math.floor(Math.random() * variants.length)];
 
   return {
     templateName: path.basename(templatePath),

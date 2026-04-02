@@ -34,11 +34,11 @@ function buildContext(overrides = {}) {
     },
     template_selection: {
       available_templates: [
-        "hushline-social-desktop-template.html",
-        "hushline-social-mobile-template.html",
-        "hushline-social-mobile-template-2.html",
+        "hushline-daily-desktop-template.html",
+        "hushline-daily-mobile-template.html",
+        "hushline-daily-mobile-template-2.html",
       ],
-      desired_template_name: "hushline-social-desktop-template.html",
+      desired_template_name: "hushline-daily-desktop-template.html",
       desired_template_type: "desktop",
     },
     ...overrides,
@@ -107,25 +107,29 @@ test("validatePlan trims social copy and enriches the selected candidate metadat
   assert.equal(validated.post.screenshot_file, "guest/guest-directory-verified-desktop-light-fold.png");
   assert.equal(validated.post.audience_scope, "public");
   assert.equal(validated.post.concept_key, "directory-verified");
-  assert.equal(validated.post.template_name, "hushline-social-desktop-template.html");
+  assert.equal(validated.post.template_name, "hushline-daily-desktop-template.html");
   assert.equal(validated.post.topic_family, "directory");
   assert.deepEqual(validated.post.matched_pull_requests, [{ number: 1765, title: "Fix guest screenshot" }]);
 });
 
-test("chooseTemplateName rotates to the next daily template in sequence", () => {
-  const selected = chooseTemplateName(
-    [
-      { template_name: "hushline-social-desktop-template.html" },
-      { template_name: "hushline-social-mobile-template.html" },
-    ],
-    [
-      "hushline-social-desktop-template.html",
-      "hushline-social-mobile-template.html",
-      "hushline-social-mobile-template-2.html",
-    ],
-  );
+test("chooseTemplateName picks randomly from the available daily templates", () => {
+  const originalRandom = Math.random;
+  Math.random = () => 0.6;
 
-  assert.equal(selected, "hushline-social-mobile-template-2.html");
+  try {
+    const selected = chooseTemplateName(
+      [],
+      [
+        "hushline-daily-desktop-template.html",
+        "hushline-daily-mobile-template.html",
+        "hushline-daily-mobile-template-2.html",
+      ],
+    );
+
+    assert.equal(selected, "hushline-daily-mobile-template.html");
+  } finally {
+    Math.random = originalRandom;
+  }
 });
 
 test("filterCandidatesForTemplateName narrows the shortlist to the chosen template type", () => {
@@ -142,7 +146,7 @@ test("filterCandidatesForTemplateName narrows the shortlist to the chosen templa
         viewport: "mobile",
       },
     ],
-    "hushline-social-mobile-template-2.html",
+    "hushline-daily-mobile-template-2.html",
   );
 
   assert.deepEqual(
