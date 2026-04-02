@@ -1,0 +1,28 @@
+{
+  "date": "2026-04-01",
+  "post": {
+    "slot": "wednesday",
+    "planned_date": "2026-04-01",
+    "screenshot_file": "artvandelay/auth-artvandelay-settings-auth-desktop-light-fold.png",
+    "content_key": "auth-artvandelay-settings-auth",
+    "headline": "Turn on two-factor authentication for your account",
+    "subtext": "Recipients can manage core sign-in settings and enable 2FA from one place before they start handling sensitive tips.",
+    "image_alt_text": "Social graphic built from a desktop Hush Line screenshot showing the Authentication settings page. The image shows fields for changing the username and password, a warning that changing the username can affect verification status, and a visible Enable 2FA button in the middle of the page.",
+    "social": {
+      "bluesky": "Protecting a tip line starts with protecting the account behind it.\n\nHush Line lets recipients turn on two-factor authentication from Settings and manage sign-in details in one place.\n\nLearn more at https://hushline.app.",
+      "linkedin": "Protecting a tip line starts with protecting the account behind it.\n\nHush Line lets recipients turn on two-factor authentication from Settings and manage core sign-in details in one place. That matters for journalists, lawyers, and other trusted recipients who need to keep access to sensitive inboxes under control.\n\nLearn more at https://hushline.app.",
+      "mastodon": "Protecting a tip line starts with protecting the account behind it.\n\nHush Line lets recipients turn on two-factor authentication and manage sign-in details from Settings, so journalists, lawyers, and other trusted recipients can lock down inbox access.\n\nLearn more at https://hushline.app."
+    },
+    "rationale": "The latest screenshot release is fresh for production use, but recent archive history is already heavy on directory posts, including 2026-03-30's newsroom directory post. The two freshest PR-linked candidates would repeat that same topic family, so this authentication screen is the strongest non-directory option in the shortlist. It highlights a core documented user need, account security with optional 2FA for recipients handling sensitive disclosures, and the above-the-fold desktop view is clear, light, and non-admin.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "settings-auth",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "matched_pull_requests": [],
+    "theme": "light",
+    "title": "Settings - Authentication (artvandelay)",
+    "topic_family": "authentication",
+    "viewport": "desktop"
+  },
+  "summary": "Use the desktop Authentication settings screen for a recipient-facing post about enabling two-factor authentication, which keeps variety after several recent directory posts."
+}

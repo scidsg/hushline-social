@@ -1,0 +1,33 @@
+Slot: wednesday
+Planned date: 2026-04-01
+Template: hushline-social-desktop-template.html
+Screenshot: /Users/scidsg/hushline-screenshots/releases/latest/artvandelay/auth-artvandelay-settings-auth-desktop-light-fold.png
+Content key: auth-artvandelay-settings-auth
+Headline: Turn on two-factor authentication for your account
+Subtext: Recipients can manage core sign-in settings and enable 2FA from one place before they start handling sensitive tips.
+
+Image alt text
+Social graphic built from a desktop Hush Line screenshot showing the Authentication settings page. The image shows fields for changing the username and password, a warning that changing the username can affect verification status, and a visible Enable 2FA button in the middle of the page.
+
+Social post copy
+
+LinkedIn (353/3000)
+Protecting a tip line starts with protecting the account behind it.
+
+Hush Line lets recipients turn on two-factor authentication from Settings and manage core sign-in details in one place. That matters for journalists, lawyers, and other trusted recipients who need to keep access to sensitive inboxes under control.
+
+Learn more at https://hushline.app.
+
+Mastodon (289/500)
+Protecting a tip line starts with protecting the account behind it.
+
+Hush Line lets recipients turn on two-factor authentication and manage sign-in details from Settings, so journalists, lawyers, and other trusted recipients can lock down inbox access.
+
+Learn more at https://hushline.app.
+
+Bluesky (220/300)
+Protecting a tip line starts with protecting the account behind it.
+
+Hush Line lets recipients turn on two-factor authentication from Settings and manage sign-in details in one place.
+
+Learn more at https://hushline.app.
