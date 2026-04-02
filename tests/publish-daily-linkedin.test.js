@@ -7,6 +7,10 @@ const { execFileSync } = require("node:child_process");
 
 const REPO_ROOT = path.resolve(__dirname, "..");
 const scriptPath = path.join(REPO_ROOT, "scripts", "publish-daily-linkedin.js");
+const {
+  resolveLinkedInVersionCandidates,
+  withLinkedInVersionFallback,
+} = require(scriptPath);
 
 function runPublisher(args) {
   return execFileSync(process.execPath, [scriptPath, ...args], {
@@ -126,4 +130,46 @@ test("publisher reports when no archived daily post exists for the requested dat
   } finally {
     fs.rmSync(tempRoot, { force: true, recursive: true });
   }
+});
+
+test("publisher version selection falls back to the previous month when no explicit override is set", () => {
+  assert.deepEqual(
+    resolveLinkedInVersionCandidates("", new Date(2026, 3, 1)),
+    ["202604", "202603"],
+  );
+});
+
+test("publisher rejects explicit LinkedIn version overrides that are not YYYYMM", () => {
+  assert.throws(
+    () => resolveLinkedInVersionCandidates("20260401", new Date(2026, 3, 1)),
+    /LINKEDIN_API_VERSION must use YYYYMM format\./,
+  );
+});
+
+test("publisher retries the previous month when LinkedIn reports the current version is inactive", async () => {
+  const attemptedVersions = [];
+  const retriedVersions = [];
+
+  const result = await withLinkedInVersionFallback({
+    now: new Date(2026, 3, 1),
+    onRetry: ({ currentVersion, nextVersion }) => {
+      retriedVersions.push([currentVersion, nextVersion]);
+    },
+    requestedVersion: "",
+    async run(version) {
+      attemptedVersions.push(version);
+
+      if (version === "202604") {
+        throw new Error(
+          'LinkedIn API POST https://api.linkedin.com/rest/images?action=initializeUpload failed with 426: {"status":426,"code":"NONEXISTENT_VERSION","message":"Requested version 20260401 is not active"}',
+        );
+      }
+
+      return version;
+    },
+  });
+
+  assert.equal(result, "202603");
+  assert.deepEqual(attemptedVersions, ["202604", "202603"]);
+  assert.deepEqual(retriedVersions, [["202604", "202603"]]);
 });
