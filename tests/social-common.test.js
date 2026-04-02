@@ -152,3 +152,30 @@ test("resolveTemplateVariant automatically uses newly added matching template va
     fs.rmSync(tempRoot, { force: true, recursive: true });
   }
 });
+
+test("resolveTemplateVariant honors an explicit template name for the post", () => {
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "social-common-"));
+  const latestDir = path.join(tempRoot, "releases", "latest", "guest");
+  const templatesDir = path.join(tempRoot, "templates");
+  fs.mkdirSync(latestDir, { recursive: true });
+  fs.mkdirSync(templatesDir, { recursive: true });
+  const screenshotPath = path.join(latestDir, "guest-directory-verified-mobile-light-fold.png");
+  fs.writeFileSync(screenshotPath, "png");
+  fs.writeFileSync(path.join(templatesDir, "hushline-social-mobile-template.html"), "");
+  fs.writeFileSync(path.join(templatesDir, "hushline-social-mobile-template-2.html"), "");
+
+  const { socialCommon, cleanup } = withFreshSocialCommon(tempRoot);
+
+  try {
+    const selection = socialCommon.resolveTemplateVariant({
+      content_key: "guest-directory-verified",
+      planned_date: "2026-04-02",
+      template_name: "hushline-social-mobile-template-2.html",
+    }, screenshotPath, templatesDir);
+
+    assert.equal(selection.templateName, "hushline-social-mobile-template-2.html");
+  } finally {
+    cleanup();
+    fs.rmSync(tempRoot, { force: true, recursive: true });
+  }
+});

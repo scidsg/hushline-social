@@ -340,6 +340,24 @@ function resolveTemplateVariant(post, screenshotPath, templatesDir = TEMPLATES_D
     throw new Error(`No template variants found for type: ${templateType}`);
   }
 
+  if (post && post.template_name) {
+    const explicitTemplatePath = variants.find(
+      (variantPath) => path.basename(variantPath) === post.template_name,
+    );
+
+    if (!explicitTemplatePath) {
+      throw new Error(
+        `Requested template ${post.template_name} is not available for type: ${templateType}`,
+      );
+    }
+
+    return {
+      templateName: path.basename(explicitTemplatePath),
+      templatePath: explicitTemplatePath,
+      templateType,
+    };
+  }
+
   const seed = [
     post && post.planned_date,
     post && post.content_key,
