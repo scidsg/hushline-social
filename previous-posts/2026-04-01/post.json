@@ -1,0 +1,19 @@
+{
+  "slot": "wednesday",
+  "planned_date": "2026-04-01",
+  "content_key": "weekly-article-who-should-run-a-personal-server-tip-line",
+  "headline": "Who Should Run a Personal Server Tip Line",
+  "subtext": "An independent journalist, public-interest lawyer, or organizer does not always need to self-host a tip line. In many cases, the easier path is the better one: create an account, finish setup, and publish the address. But some independent recipients have a di…",
+  "social": {
+    "bluesky": "Should an independent journalist, lawyer, or organizer use Hush Line's Personal Server for a tip line?\n\nWe just published an article on how to decide whether more control over the device and setup is worth…\n\nRead it here 👉 https://hushline.app/library/blog/who-should-run-a-personal-server-tip-line",
+    "linkedin": "Should an independent journalist, lawyer, or organizer use Hush Line's Personal Server for a tip line?\n\nWe just published an article on how to decide whether more control over the device and setup is worth the extra work.\n\nRead it here 👉 https://hushline.app/library/blog/who-should-run-a-personal-server-tip-line",
+    "mastodon": "Should an independent journalist, lawyer, or organizer use Hush Line's Personal Server for a tip line?\n\nWe just published an article on how to decide whether more control over the device and setup is worth the extra work.\n\nRead it here 👉 https://hushline.app/library/blog/who-should-run-a-personal-server-tip-line"
+  },
+  "rationale": "Share the newly published Hush Line article \"Who Should Run a Personal Server Tip Line\" on social media after the docs site goes live.",
+  "audience_scope": "article-share",
+  "concept_key": "weekly-article-share",
+  "copy_brief": "Share the new article directly, with the article URL as the CTA.",
+  "title": "Who Should Run a Personal Server Tip Line",
+  "article_url": "https://hushline.app/library/blog/who-should-run-a-personal-server-tip-line",
+  "publish_mode": "text"
+}
