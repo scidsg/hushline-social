@@ -159,13 +159,9 @@ function getDailyPostDir(args) {
 
 function getRepoArchiveRootName(args) {
   const resolvedDateRoot = path.resolve(args.dateRoot);
-
-  if (resolvedDateRoot === path.join(REPO_ROOT, "previous-posts")) {
-    return "previous-posts";
-  }
-
-  if (resolvedDateRoot === path.join(REPO_ROOT, "previous-verified-user-posts")) {
-    return "previous-verified-user-posts";
+  const relativeRoot = path.relative(REPO_ROOT, resolvedDateRoot);
+  if (relativeRoot && !relativeRoot.startsWith("..") && !path.isAbsolute(relativeRoot)) {
+    return relativeRoot;
   }
 
   return null;
@@ -213,7 +209,12 @@ function resolveArchivedDailyPost(args) {
     outputDir,
     post: readJson(postPath),
     summaryLabel: args.archiveKey,
-    type: archiveRootName === "previous-verified-user-posts" ? "verified-user-archive" : "daily-archive",
+    type:
+      archiveRootName === "previous-verified-user-posts"
+        ? "verified-user-archive"
+        : archiveRootName === "previous-article-posts"
+          ? "article-archive"
+          : "daily-archive",
   };
 }
 
