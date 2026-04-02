@@ -1,0 +1,29 @@
+{
+  "date": "2026-04-02",
+  "post": {
+    "slot": "thursday",
+    "planned_date": "2026-04-02",
+    "screenshot_file": "artvandelay/auth-artvandelay-settings-encryption-mobile-light-fold.png",
+    "content_key": "auth-artvandelay-settings-encryption",
+    "headline": "Add your PGP key before you share your tip line",
+    "subtext": "Your profile can stay visible without a key, but sources cannot send encrypted tips until your encryption setup is in place.",
+    "image_alt_text": "A Hush Line social graphic built around a light-mode mobile screenshot of the Encryption settings page. The screen shows options to import a Proton Mail key or paste a public PGP key manually, alongside headline text about setting up encryption before sharing a tip line.",
+    "social": {
+      "bluesky": "Before you share your Hush Line profile, add your PGP key.\n\nRecipients can import a Proton Mail key or paste a public key manually. Your profile can still be visible without it, but people cannot send encrypted tips until encryption is set up.\n\nLearn more at https://hushline.app.",
+      "linkedin": "Before you share your Hush Line profile, add your PGP key.\n\nThis screen lets recipients import a Proton Mail key or paste a public key manually. Your profile can still appear in Hush Line without it, but sources cannot send encrypted tips through your form until encryption is set up.\n\nLearn more at https://hushline.app.",
+      "mastodon": "Before you share your Hush Line profile, add your PGP key.\n\nRecipients can import a Proton Mail key or paste a public key manually from Settings. Your profile can still be visible without it, but people cannot send encrypted tips until encryption is set up.\n\nLearn more at https://hushline.app."
+    },
+    "rationale": "Selected the mobile encryption settings screen because recent archive history is already saturated with directory posts, including one on 2026-03-30. This candidate still addresses a documented core user need for journalists, lawyers, and other recipients preparing a safer public tip line, fits the requested mobile template, uses the latest light-mode capture set, and avoids repeating another directory theme on an adjacent posting day.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "settings-encryption",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "matched_pull_requests": [],
+    "template_name": "hushline-daily-mobile-template.html",
+    "theme": "light",
+    "title": "Settings - Encryption (artvandelay)",
+    "topic_family": "encryption",
+    "viewport": "mobile"
+  },
+  "summary": "Mobile daily post focused on adding a PGP key before publishing a Hush Line tip line."
+}
