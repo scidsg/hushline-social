@@ -1,0 +1,55 @@
+{
+  "date": "2026-04-03",
+  "post": {
+    "slot": "friday",
+    "planned_date": "2026-04-03",
+    "screenshot_file": "guest/guest-directory-securedrop-desktop-light-fold.png",
+    "content_key": "guest-directory-securedrop",
+    "headline": "Check the SecureDrop list before you choose a newsroom",
+    "subtext": "Hush Line's public directory now surfaces refreshed SecureDrop listings so sources can compare news organizations and open the right tip line.",
+    "image_alt_text": "Social graphic with the headline \"Check the SecureDrop list before you choose a newsroom\" above a desktop screenshot of Hush Line's public directory open to the SecureDrop tab, with a search box and automated newsroom listings including Aftenposten AS and Aftonbladet.",
+    "social": {
+      "bluesky": "If you need to contact a newsroom securely, start by confirming you have the right destination.\n\nHush Line's directory now includes refreshed SecureDrop listings so you can search news organizations before you send anything sensitive.\n\nLearn more at https://hushline.app.",
+      "linkedin": "If you need to contact a newsroom securely, the first step is making sure you have the right destination.\n\nHush Line's public directory now includes refreshed SecureDrop listings, so you can search news organizations and open the listing you need from one place. That makes it easier to verify where you're headed before you send anything sensitive.\n\nLearn more at https://hushline.app.",
+      "mastodon": "If you need to contact a newsroom securely, the first step is making sure you have the right destination.\n\nHush Line's public directory now includes refreshed SecureDrop listings, so you can search news organizations and open the listing you need from one place before you send anything sensitive.\n\nLearn more at https://hushline.app."
+    },
+    "rationale": "The recent archive is heavy on directory posts, but this candidate is still the strongest choice because it is the only screenshot in the shortlist that clearly reflects very recent shipped work. The refreshed SecureDrop listings directly support a core Hush Line need: helping sources verify the right newsroom destination before they disclose sensitive information.",
+    "source_pr_numbers": [
+      1848,
+      1845,
+      1844,
+      1841
+    ],
+    "audience_scope": "public",
+    "concept_key": "directory-securedrop",
+    "copy_brief": "Write for sources and public users evaluating or using Hush Line.",
+    "matched_pull_requests": [
+      {
+        "merged_at": "2026-04-03T03:08:14Z",
+        "number": 1848,
+        "title": "[codex] Update seeded directory intro text for screenshots"
+      },
+      {
+        "merged_at": "2026-04-01T19:14:08Z",
+        "number": 1845,
+        "title": "[codex] Improve SecureDrop refresh PR descriptions"
+      },
+      {
+        "merged_at": "2026-04-01T17:43:34Z",
+        "number": 1844,
+        "title": "Refresh SecureDrop directory listings"
+      },
+      {
+        "merged_at": "2026-04-01T00:20:57Z",
+        "number": 1841,
+        "title": "Fix all-directory filter metadata and sync directory bundle"
+      }
+    ],
+    "template_name": "hushline-daily-desktop-template.html",
+    "theme": "light",
+    "title": "Directory - SecureDrop",
+    "topic_family": "directory",
+    "viewport": "desktop"
+  },
+  "summary": "Public-facing desktop post about refreshed SecureDrop directory listings for people choosing a newsroom tip line."
+}

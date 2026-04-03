@@ -1,0 +1,443 @@
+{
+  "audience_docs": [
+    {
+      "excerpt": "Welcome to Hush Line Source basis: the public Hush Line Library welcome section and the project overview in README.md. Hush Line is an open source whistleblower platform for secure, anonymous, one way disclosures. It is built for journalists, lawyers, educators, organizers, employers, and other trusted recipients who need a safer way to receive tips from their communities. What Hush Line is designed to protect Anonymous submissions without requiring a sender account End to end encrypted delivery when the receiver has a PGP key Trust building signals such as verified accounts and public profile details Safer access paths, including Tor support and privacy preserving defaults Common ways people use it Publish a public tip line for your newsroom, law office, classroom, campaign, or company Receive messages in a web inbox without turning the sender flow into a live chat Share a directory listing or direct profile link so sources can verify they reached the right person Run the hosted service or use a Personal Server Where to begin New hosted service users should start with Start Here. If you want the guided setup flow, open New User Onboarding. If you already have an account, jump to Prep Your Account and Secure Your Account.",
+      "file": "../hushline/docs/library/welcome/welcome-to-hush-line.md"
+    },
+    {
+      "excerpt": "Hush Line Hush Line is an open source whistleblower platform for secure, anonymous, one way disclosures to journalists, lawyers, and other trusted recipients. Hosted service: <https://tips.hushline.app Start here: <https://hushline.app/library/docs/getting started/start here/ Why Hush Line Hush Line is built for safety critical reporting workflows where trust, anonymity, and usability all matter. The project design priorities are: Usability of the software Authenticity of the receiver Plausible deniability of the whistleblower Availability of the system Anonymity of the whistleblower Confidentiality and integrity of disclosures Core Capabilities | Area | What Hush Line Provides | | | | | Anonymous submissions | No submitter account required for sending disclosures | | Encryption | End to end encryption workflow with recipient PGP keys, plus server side fallback path | | Receiver trust | Verified account workflow and trusted directory UX | | Account security | Password authentication with optional TOTP 2FA | | Privacy access | Tor onion support and privacy preserving defaults | | Communication workflow | Message status management, one way replies, and optional email forwarding modes | | Org customization | Branding controls, onboarding guidance, and configurable profile fields | | Operational controls | Strong CI checks, migration compatibility testing, and workflow security validation | Quickstart (Local) 1) Clone and start Open <http://localhost:8080 . If you want a slower, guided setup for a brand new machine, use the AI ready prompt in docs/LOCAL CONTRIBUTOR ONBOARDING PROMPT.md . It walks a new contributor through installing Git, Make, Docker, cloning the repo, starting the stack, and trying the first three local flows.",
+      "file": "../hushline/README.md"
+    },
+    {
+      "excerpt": "The Hush Line Personal Server Source: <https://hushline.app/library/docs/personal server/the hush line personal server/ The Hush Line Personal Server is the self hosted Hush Line appliance. It is designed for people who want the Hush Line workflow on hardware they control while still giving sources an anonymous, browser based submission path. How access works The Personal Server presents two addresses: a Tor onion address for private access through Tor Browser a local network HTTPS address for access from the network the device is connected to The in app server info page shows both addresses directly on the device. First run setup 1. Visit the device address. 2. Register the first account. 3. The first user created on a Personal Server becomes the admin. 4. Add your profile, encryption key, and notification settings. 5. Share the onion URL publicly so sources can reach you anonymously. Who it is for The product copy describes the Personal Server as a good fit for lawyers, journalists, educators, and business leaders who want a safer reporting channel for their communities. Related docs Specs Secure Your Account Share Your Tip Line",
+      "file": "../hushline/docs/library/personal-server/the-hush-line-personal-server.md"
+    },
+    {
+      "excerpt": "Public Record Provenance Roadmap (U.S.) This artifact tracks the active U.S. implementation roadmap and the policy only EU scaffold used to open follow on country issues. Scope Build an authoritative, ever growing U.S. public record attorney dataset. Keep only listings with strict, per record official source URLs. Remove listings when the official record can no longer be verified. Current Baseline (March 10, 2026) Active strict listings: 58 States with strict listings: AK , AL , AR , AZ , CA , CO , CT , DE , GA , IA , ID , IL , IN , KS , MA , MD , ME , MI , MN , MO , MS , MT , NC , ND , NE , NH , NJ , NM , OH , RI , SC , SD , TN , TX , UT , WA Other U.S. rows were removed because they only pointed to generic directory pages (not the exact record URL). Strict Provenance Rules source url must point to the exact public record URL for that listing. source url must be on the expected official state authority domain. Generic source pages are rejected. Synthetic markers ( listing= query/fragment hacks) are rejected. Chambers/private rankings are rejected as authoritative sources. State Adapter Strategy Discovery/additions must come from explicit state adapters only. All 50 states now have explicit adapter entries in discovery code. Each adapter must: query the official state authority source resolve an exact per record URL emit normalized listing rows that pass strict validation Until a state specific extractor is implemented, that state's adapter remains a no op.",
+      "file": "../hushline/docs/PUBLIC-RECORD-PROVENANCE-ROADMAP.md"
+    },
+    {
+      "excerpt": "INTERNATIONAL STANDARD ISO 37002 Whistleblowing management systems Guidelines Introduction Whistleblowing is the act of reporting suspected wrongdoing or risk of wrongdoing. Studies and experience demonstrate that a large proportion of wrongdoing comes to the attention of the affected organization via reports from persons within or close to the organization. Organizations are increasingly considering introducing or improving internal whistleblowing policies and processes in response to regulation or on a voluntary basis. This document provides guidance to organizations for establishing, implementing, maintaining and improving a whistleblowing management system, with the following outcomes: a) encouraging and facilitating reporting of wrongdoing; b) supporting and protecting whistleblowers and other interested parties involved; c) ensuring reports of wrongdoing are dealt with in a proper and timely manner; d) improving organizational culture and governance; e) reducing the risks of wrongdoing. Potential benefits for the organization include: allowing the organization to identify and address wrongdoing at the earliest opportunity; helping prevent or minimize loss of assets and aiding recovery of lost assets; ensuring compliance with organizational policies, procedures, and legal and social obligations; attracting and retaining personnel committed to the organization’s values and culture; demonstrating sound, ethical governance practices to society, markets, regulators, owners and other interested parties.",
+      "file": "../hushline/docs/ISO-37002.md"
+    },
+    {
+      "excerpt": "Prep Your Account Source: <https://hushline.app/library/docs/getting started/account setup/ Preparing your account means getting your profile, encryption, and message delivery settings into a state you are comfortable publishing. 1. Fill in your public profile At minimum, add: a recognizable display name an optional account category that matches the type of recipient you are a short bio any extra profile details you want sources to trust, such as a website or Signal handle If you opt into the public directory, this is the information whistleblowers will use to decide whether your tip line belongs to the right person. 2. Add encryption If tips will be delivered to an email address, PGP setup is the important step. Supported options: Proton Mail key lookup manual public key paste Without a PGP key, people can still see your profile, but they cannot submit tips through it. 3. Decide how messages should reach you Hush Line can notify you about new tips in the web inbox and, optionally, by email. In Settings you can: enable or disable email notifications include encrypted message content in those emails encrypt the entire email body for compatibility with clients such as Proton Mail or Thunderbird 4. Review your public form If you use custom message fields, decide which ones are: required or optional encrypted or unencrypted Unencrypted custom fields are visible to you and your hosting provider. Encrypted fields require your PGP workflow to read them. 5. Choose whether to appear in the directory Turning on directory visibility makes your tip line easier to find. If you want stronger trust signals, pair this with Account Verification. Continue Secure Your Account Share Your Tip Line",
+      "file": "../hushline/docs/library/getting-started/prep-your-account.md"
+    }
+  ],
+  "candidate_screenshots": [
+    {
+      "absolute_path": "/Users/scidsg/hushline-screenshots/releases/latest/guest/guest-directory-securedrop-desktop-light-fold.png",
+      "audience_scope": "public",
+      "concept_key": "directory-securedrop",
+      "copy_brief": "Write for sources and public users evaluating or using Hush Line.",
+      "content_key": "guest-directory-securedrop",
+      "file": "guest/guest-directory-securedrop-desktop-light-fold.png",
+      "path": "/directory",
+      "session": "guest",
+      "theme": "light",
+      "title": "Directory - SecureDrop",
+      "viewport": "desktop",
+      "exclusion_reason": null,
+      "matched_pull_requests": [
+        {
+          "merged_at": "2026-04-03T03:08:14Z",
+          "number": 1848,
+          "title": "[codex] Update seeded directory intro text for screenshots"
+        },
+        {
+          "merged_at": "2026-04-01T19:14:08Z",
+          "number": 1845,
+          "title": "[codex] Improve SecureDrop refresh PR descriptions"
+        },
+        {
+          "merged_at": "2026-04-01T17:43:34Z",
+          "number": 1844,
+          "title": "Refresh SecureDrop directory listings"
+        },
+        {
+          "merged_at": "2026-04-01T00:20:57Z",
+          "number": 1841,
+          "title": "Fix all-directory filter metadata and sync directory bundle"
+        }
+      ],
+      "score": 127,
+      "topic_family": "directory"
+    },
+    {
+      "absolute_path": "/Users/scidsg/hushline-screenshots/releases/latest/admin/auth-admin-settings-guidance-desktop-light-fold.png",
+      "audience_scope": "admin-only",
+      "concept_key": "settings-guidance",
+      "copy_brief": "Write for admins or teams running a Hush Line deployment. Make the admin audience explicit.",
+      "content_key": "auth-admin-settings-guidance",
+      "file": "admin/auth-admin-settings-guidance-desktop-light-fold.png",
+      "path": "/settings/guidance",
+      "session": "admin",
+      "theme": "light",
+      "title": "Settings - User Guidance (admin)",
+      "viewport": "desktop",
+      "exclusion_reason": null,
+      "matched_pull_requests": [],
+      "score": 11.5,
+      "topic_family": "guidance"
+    },
+    {
+      "absolute_path": "/Users/scidsg/hushline-screenshots/releases/latest/artvandelay/auth-artvandelay-tools-vision-desktop-light-fold.png",
+      "audience_scope": "recipient-shared",
+      "concept_key": "tools-vision",
+      "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+      "content_key": "auth-artvandelay-tools-vision",
+      "file": "artvandelay/auth-artvandelay-tools-vision-desktop-light-fold.png",
+      "path": "/vision",
+      "session": "artvandelay",
+      "theme": "light",
+      "title": "Tools - Vision Assistant (artvandelay)",
+      "viewport": "desktop",
+      "exclusion_reason": null,
+      "matched_pull_requests": [],
+      "score": 10.5,
+      "topic_family": "vision"
+    },
+    {
+      "absolute_path": "/Users/scidsg/hushline-screenshots/releases/latest/admin/auth-admin-settings-admin-desktop-dark-fold.png",
+      "audience_scope": "admin-only",
+      "concept_key": "settings-admin",
+      "copy_brief": "Write for admins or teams running a Hush Line deployment. Make the admin audience explicit.",
+      "content_key": "auth-admin-settings-admin",
+      "file": "admin/auth-admin-settings-admin-desktop-dark-fold.png",
+      "path": "/settings/admin",
+      "session": "admin",
+      "theme": "dark",
+      "title": "Settings - Admin (admin)",
+      "viewport": "desktop",
+      "exclusion_reason": null,
+      "matched_pull_requests": [],
+      "score": 2.5,
+      "topic_family": "settings-admin"
+    }
+  ],
+  "daily_posts_root": "previous-posts",
+  "date": "2026-04-03",
+  "dark_ratio": 0.2,
+  "hushline_agent_context": "AGENTS.md This file provides operating guidance for coding agents working in the Hush Line repository. We are a 501(c)(3) non profit based in the United States, and consider this software safety critical infrastructure protecting users’ operational, physical, and digital security. Grounding Document Primary grounding reference: docs/ISO 37002.md ( ISO 37002:2021 Whistleblowing management systems Guidelines ) Principles Usability of the Software Authenticity of the Receiver Plausible Deniability of the Whistleblower Availability of the System Anonymity of the Whistleblower Confidentiality and Integrity of the Disclosures Core Users | Message Senders | Message Recipients | Administrators | | | | | | Whistleblowers | Journalists and Newsrooms | Platform Administrators | | Concerned citizens | Lawyers and Law Offices | | | Engaged citizens | Employers and Boards | | | Activists | Educators and Administrators | | | Students | Organizers and Activists | | | Bug bounty hunters | Software developers | | The live public website and verified directory also show recurring recipient patterns that agents should keep in mind when writing copy, shaping features, or evaluating regressions: Investigative reporters, editors, documentary teams, and nonprofit newsrooms using public profiles to receive source outreach. Whistleblower counsel, public interest law firms, and legal intake teams handling fraud, corruption, retaliation, and misconduct reports. Corporate, nonprofit, and project governance contacts such as boards, ethics offices, and public accountability channels. Security researchers, bug bounty teams, software maintainers, and platform security contacts receiving vulnerability reports. Privacy, anti censorship, digital rights, and open source infrastructure organizations receiving sensitive tips from the public. Educators, school administrators, and campus adjacent trusted adults offering safer reporting channels to students and families. Organizers, advocacy groups, and issue specific nonprofits coordinating protected first contact around harms, retaliation, detention, or abuse. Organizations that need shared or role based intake points in addition to individual profiles, such as board inboxes or security reporting addresses. Geographic Location Global; default to privacy preserving choices across jurisdictions. Scope Applies to the entire repository unless a deeper AGENTS.md exists in a subdirectory. Project Priorities Preserve core whistleblower flow above all else. Prefer behavior preserving changes over refactors unless explicitly requested.",
+  "recent_archive_history": [
+    {
+      "archive_key": "2026-03-19",
+      "concept_key": "onboarding-encryption",
+      "content_key": "auth-newman-onboarding-encryption",
+      "date": "2026-03-19",
+      "headline": "Add your encryption key before you share your tip line",
+      "screenshot_file": "newman/auth-newman-onboarding-encryption-mobile-light-fold.png",
+      "template_name": "mobile",
+      "topic_family": "encryption"
+    },
+    {
+      "archive_key": "2026-03-20",
+      "concept_key": "directory-verified",
+      "content_key": "guest-directory-verified",
+      "date": "2026-03-20",
+      "headline": "Check verified tip lines before you reach out",
+      "screenshot_file": "guest/guest-directory-verified-desktop-light-fold.png",
+      "template_name": "desktop",
+      "topic_family": "directory"
+    },
+    {
+      "archive_key": "2026-03-23",
+      "concept_key": "directory-attorneys-applied-filters",
+      "content_key": "guest-directory-attorneys-applied-filters",
+      "date": "2026-03-23",
+      "headline": "Filter attorney listings before you send anything sensitive",
+      "screenshot_file": "guest/guest-directory-attorneys-applied-filters-mobile-light-fold.png",
+      "template_name": "mobile",
+      "topic_family": "directory"
+    },
+    {
+      "archive_key": "2026-03-24",
+      "concept_key": "onboarding-directory",
+      "content_key": "auth-newman-onboarding-directory",
+      "date": "2026-03-24",
+      "headline": "Choose whether sources can find your tip line",
+      "screenshot_file": "newman/auth-newman-onboarding-directory-mobile-light-fold.png",
+      "template_name": "mobile",
+      "topic_family": "directory"
+    },
+    {
+      "archive_key": "2026-03-26",
+      "concept_key": "directory-all",
+      "content_key": "guest-directory-all",
+      "date": "2026-03-26",
+      "headline": "Browse the full directory before you choose who to contact",
+      "screenshot_file": "guest/guest-directory-all-mobile-light-fold.png",
+      "template_name": "hushline-social-mobile-template.html",
+      "topic_family": "directory"
+    },
+    {
+      "archive_key": "2026-03-26-1",
+      "concept_key": "onboarding-notifications",
+      "content_key": "auth-newman-onboarding-notifications",
+      "date": "2026-03-26",
+      "headline": "Choose how new tips should reach you",
+      "screenshot_file": "newman/auth-newman-onboarding-notifications-desktop-light-fold.png",
+      "template_name": "hushline-social-desktop-template.html",
+      "topic_family": "notifications"
+    },
+    {
+      "archive_key": "2026-03-26-2",
+      "concept_key": "weekly-article-share",
+      "content_key": "weekly-article-what-boards-and-ethics-offices-should-put-on-a-tip-line-before-launch",
+      "date": "2026-03-26",
+      "headline": "What Boards and Ethics Offices Should Put on a Tip Line Before Launch",
+      "screenshot_file": "guest/guest-profile-artvandelay-custom-form-desktop-light-fold.png",
+      "template_name": "hushline-social-desktop-template.html",
+      "topic_family": "profile"
+    },
+    {
+      "archive_key": "2026-03-26-3",
+      "concept_key": "weekly-article-share",
+      "content_key": "weekly-article-how-security-teams-can-investigate-suspicious-email-with-better-context",
+      "date": "2026-03-26",
+      "headline": "How Security Teams Can Investigate Suspicious Email With Better Context",
+      "screenshot_file": "",
+      "template_name": "",
+      "topic_family": "weekly-article-how-security-teams-can-investigate-suspicious-email-with-better-context"
+    },
+    {
+      "archive_key": "2026-03-26-4",
+      "concept_key": "weekly-article-share",
+      "content_key": "weekly-article-why-schools-and-universities-need-separate-reporting-addresses",
+      "date": "2026-03-26",
+      "headline": "Why Schools and Universities Need Separate Reporting Addresses",
+      "screenshot_file": "",
+      "template_name": "",
+      "topic_family": "weekly-article-why-schools-and-universities-need-separate-reporting-addresses"
+    },
+    {
+      "archive_key": "2026-03-26-5",
+      "concept_key": "weekly-article-share",
+      "content_key": "weekly-article-why-verified-tip-lines-matter-for-newsrooms",
+      "date": "2026-03-26",
+      "headline": "Why Verified Tip Lines Matter for Newsrooms",
+      "screenshot_file": "",
+      "template_name": "",
+      "topic_family": "weekly-article-why-verified-tip-lines-matter-for-newsrooms"
+    },
+    {
+      "archive_key": "2026-03-26-6",
+      "concept_key": "weekly-article-share",
+      "content_key": "weekly-article-when-ocr-helps-reporters-handle-documents-faster",
+      "date": "2026-03-26",
+      "headline": "When OCR Helps Reporters Handle Documents Faster",
+      "screenshot_file": "",
+      "template_name": "",
+      "topic_family": "weekly-article-when-ocr-helps-reporters-handle-documents-faster"
+    },
+    {
+      "archive_key": "2026-03-26-7",
+      "concept_key": "weekly-article-share",
+      "content_key": "weekly-article-how-law-firms-can-handle-sensitive-intake-without-losing-track",
+      "date": "2026-03-26",
+      "headline": "How Law Firms Can Handle Sensitive Intake Without Losing Track",
+      "screenshot_file": "",
+      "template_name": "",
+      "topic_family": "weekly-article-how-law-firms-can-handle-sensitive-intake-without-losing-track"
+    },
+    {
+      "archive_key": "2026-03-26-8",
+      "concept_key": "weekly-article-share",
+      "content_key": "weekly-article-why-data-export-matters-for-long-running-cases",
+      "date": "2026-03-26",
+      "headline": "Why Data Export Matters for Long-Running Cases",
+      "screenshot_file": "",
+      "template_name": "",
+      "topic_family": "weekly-article-why-data-export-matters-for-long-running-cases"
+    },
+    {
+      "archive_key": "2026-03-27",
+      "concept_key": "settings-replies",
+      "content_key": "auth-artvandelay-settings-replies",
+      "date": "2026-03-27",
+      "headline": "Set clear message statuses for sources",
+      "screenshot_file": "artvandelay/auth-artvandelay-settings-replies-desktop-light-fold.png",
+      "template_name": "hushline-social-desktop-template.html",
+      "topic_family": "message-statuses"
+    },
+    {
+      "archive_key": "2026-03-30",
+      "concept_key": "directory-newsrooms",
+      "content_key": "guest-directory-newsrooms",
+      "date": "2026-03-30",
+      "headline": "Find a newsroom before you send a tip",
+      "screenshot_file": "guest/guest-directory-newsrooms-desktop-light-fold.png",
+      "template_name": "hushline-social-desktop-template.html",
+      "topic_family": "directory"
+    },
+    {
+      "archive_key": "2026-03-31",
+      "concept_key": "tools-email-validation-status-valid",
+      "content_key": "auth-artvandelay-tools-email-validation-status-valid",
+      "date": "2026-03-31",
+      "headline": "Check suspicious email headers before you act",
+      "screenshot_file": "artvandelay/auth-artvandelay-tools-email-validation-status-valid-mobile-light-fold.png",
+      "template_name": "hushline-social-mobile-template.html",
+      "topic_family": "email-headers"
+    },
+    {
+      "archive_key": "2026-04-01",
+      "concept_key": "settings-auth",
+      "content_key": "auth-artvandelay-settings-auth",
+      "date": "2026-04-01",
+      "headline": "Turn on two-factor authentication for your account",
+      "screenshot_file": "artvandelay/auth-artvandelay-settings-auth-desktop-light-fold.png",
+      "template_name": "hushline-social-desktop-template.html",
+      "topic_family": "authentication"
+    },
+    {
+      "archive_key": "2026-04-02",
+      "concept_key": "settings-encryption",
+      "content_key": "auth-artvandelay-settings-encryption",
+      "date": "2026-04-02",
+      "headline": "Add your PGP key before you share your tip line",
+      "screenshot_file": "artvandelay/auth-artvandelay-settings-encryption-mobile-light-fold.png",
+      "template_name": "hushline-daily-mobile-template.html",
+      "topic_family": "encryption"
+    }
+  ],
+  "recent_pull_requests": [
+    {
+      "mergedAt": "2026-04-03T03:08:14Z",
+      "number": 1848,
+      "title": "[codex] Update seeded directory intro text for screenshots",
+      "url": "https://github.com/scidsg/hushline/pull/1848"
+    },
+    {
+      "mergedAt": "2026-04-02T19:29:44Z",
+      "number": 1847,
+      "title": "[codex] Clarify unencrypted field warnings",
+      "url": "https://github.com/scidsg/hushline/pull/1847"
+    },
+    {
+      "mergedAt": "2026-04-01T22:08:39Z",
+      "number": 1846,
+      "title": "build(deps): bump aiohttp from 3.13.3 to 3.13.4",
+      "url": "https://github.com/scidsg/hushline/pull/1846"
+    },
+    {
+      "mergedAt": "2026-04-01T19:14:08Z",
+      "number": 1845,
+      "title": "[codex] Improve SecureDrop refresh PR descriptions",
+      "url": "https://github.com/scidsg/hushline/pull/1845"
+    },
+    {
+      "mergedAt": "2026-04-01T17:43:34Z",
+      "number": 1844,
+      "title": "Refresh SecureDrop directory listings",
+      "url": "https://github.com/scidsg/hushline/pull/1844"
+    },
+    {
+      "mergedAt": "2026-04-01T00:20:57Z",
+      "number": 1841,
+      "title": "Fix all-directory filter metadata and sync directory bundle",
+      "url": "https://github.com/scidsg/hushline/pull/1841"
+    },
+    {
+      "mergedAt": "2026-03-31T21:47:12Z",
+      "number": 1840,
+      "title": "#1836 Add All tab filters for location and listing type",
+      "url": "https://github.com/scidsg/hushline/pull/1840"
+    },
+    {
+      "mergedAt": "2026-03-31T20:29:51Z",
+      "number": 1839,
+      "title": "[codex] Revert make serve reset changes",
+      "url": "https://github.com/scidsg/hushline/pull/1839"
+    },
+    {
+      "mergedAt": "2026-03-31T19:55:09Z",
+      "number": 1837,
+      "title": "Harden Docker dev stack reset behavior",
+      "url": "https://github.com/scidsg/hushline/pull/1837"
+    },
+    {
+      "mergedAt": "2026-03-31T18:39:02Z",
+      "number": 1835,
+      "title": "#1834 Add regression coverage for remaining newsroom and directory edge branches",
+      "url": "https://github.com/scidsg/hushline/pull/1835"
+    },
+    {
+      "mergedAt": "2026-03-31T06:16:34Z",
+      "number": 1832,
+      "title": "Fix directory meta banner punctuation spacing",
+      "url": "https://github.com/scidsg/hushline/pull/1832"
+    },
+    {
+      "mergedAt": "2026-03-31T04:42:57Z",
+      "number": 1831,
+      "title": "#1829 Backfill the European journalism network ingest so the Newsrooms tab covers the full publi",
+      "url": "https://github.com/scidsg/hushline/pull/1831"
+    },
+    {
+      "mergedAt": "2026-03-30T23:18:11Z",
+      "number": 1828,
+      "title": "#1827 Add Directory of European Journalism Networks to automated newsroom ingest and surface ent",
+      "url": "https://github.com/scidsg/hushline/pull/1828"
+    },
+    {
+      "mergedAt": "2026-03-30T08:58:13Z",
+      "number": 1826,
+      "title": "#1825 Add location filters to the Newsrooms tab with parity to Attorneys",
+      "url": "https://github.com/scidsg/hushline/pull/1826"
+    },
+    {
+      "mergedAt": "2026-03-28T18:07:59Z",
+      "number": 1823,
+      "title": "Chevron scroller",
+      "url": "https://github.com/scidsg/hushline/pull/1823"
+    },
+    {
+      "mergedAt": "2026-03-28T02:24:36Z",
+      "number": 1822,
+      "title": "Update style.scss",
+      "url": "https://github.com/scidsg/hushline/pull/1822"
+    },
+    {
+      "mergedAt": "2026-03-28T00:12:10Z",
+      "number": 1821,
+      "title": "Add desktop scroll controls for overflowing directory tabs",
+      "url": "https://github.com/scidsg/hushline/pull/1821"
+    },
+    {
+      "mergedAt": "2026-03-27T23:14:06Z",
+      "number": 1820,
+      "title": "Avoid full-page docs screenshots on heavy directory scenes",
+      "url": "https://github.com/scidsg/hushline/pull/1820"
+    },
+    {
+      "mergedAt": "2026-03-27T23:04:04Z",
+      "number": 1819,
+      "title": "Show default message status text in settings",
+      "url": "https://github.com/scidsg/hushline/pull/1819"
+    },
+    {
+      "mergedAt": "2026-03-27T22:22:09Z",
+      "number": 1818,
+      "title": "[codex] Add docs screenshot for newsrooms tab",
+      "url": "https://github.com/scidsg/hushline/pull/1818"
+    }
+  ],
+  "screenshot_captured_at": "2026-04-03T03:54:52.753Z",
+  "screenshot_release": "v0.6.25",
+  "slot": {
+    "planned_date": "2026-04-03",
+    "slot": "friday"
+  },
+  "template_selection": {
+    "available_templates": [
+      "hushline-daily-desktop-template.html",
+      "hushline-daily-mobile-template-2.html",
+      "hushline-daily-mobile-template.html"
+    ],
+    "desired_template_name": "hushline-daily-desktop-template.html",
+    "desired_template_type": "desktop"
+  },
+  "week": "2026-W14"
+}

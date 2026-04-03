@@ -1,0 +1,33 @@
+Slot: friday
+Planned date: 2026-04-03
+Template: hushline-daily-desktop-template.html
+Screenshot: /Users/scidsg/hushline-screenshots/releases/latest/guest/guest-directory-securedrop-desktop-light-fold.png
+Content key: guest-directory-securedrop
+Headline: Check the SecureDrop list before you choose a newsroom
+Subtext: Hush Line's public directory now surfaces refreshed SecureDrop listings so sources can compare news organizations and open the right tip line.
+
+Image alt text
+Social graphic with the headline "Check the SecureDrop list before you choose a newsroom" above a desktop screenshot of Hush Line's public directory open to the SecureDrop tab, with a search box and automated newsroom listings including Aftenposten AS and Aftonbladet.
+
+Social post copy
+
+LinkedIn (386/3000)
+If you need to contact a newsroom securely, the first step is making sure you have the right destination.
+
+Hush Line's public directory now includes refreshed SecureDrop listings, so you can search news organizations and open the listing you need from one place. That makes it easier to verify where you're headed before you send anything sensitive.
+
+Learn more at https://hushline.app.
+
+Mastodon (334/500)
+If you need to contact a newsroom securely, the first step is making sure you have the right destination.
+
+Hush Line's public directory now includes refreshed SecureDrop listings, so you can search news organizations and open the listing you need from one place before you send anything sensitive.
+
+Learn more at https://hushline.app.
+
+Bluesky (271/300)
+If you need to contact a newsroom securely, start by confirming you have the right destination.
+
+Hush Line's directory now includes refreshed SecureDrop listings so you can search news organizations before you send anything sensitive.
+
+Learn more at https://hushline.app.
