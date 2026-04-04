@@ -5,6 +5,7 @@
 const path = require("path");
 const {
   buildDailyContext,
+  loadSavedDailyContext,
   parseArgs,
   renderDailyPlan,
   validatePlan,
@@ -13,7 +14,7 @@ const { REPO_ROOT, readJson, writeJson } = require("./lib/social-common");
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
-  const context = buildDailyContext(args);
+  const context = loadSavedDailyContext(args.archiveKey) || buildDailyContext(args);
   const planPath = path.join(REPO_ROOT, "previous-posts", args.archiveKey, "plan.json");
   const rawPlan = readJson(planPath);
   const validatedPlan = validatePlan(rawPlan, context);

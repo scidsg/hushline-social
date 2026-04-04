@@ -16,11 +16,14 @@ const {
   inferScreenKey,
   isValidArchiveKey,
   isWeekendDate,
+  parseLocalDate,
   readJson,
+  uniqueTokens,
   writeJson,
 } = require("./social-common");
 
 const DAILY_POSTS_ROOT = path.join(REPO_ROOT, "previous-posts");
+const ARCHIVE_LOOKBACK_DAYS = 31;
 const ADMIN_COPY_PATTERNS = [
   /\badmin\b/i,
   /\badmins\b/i,
@@ -32,6 +35,47 @@ const ADMIN_COPY_PATTERNS = [
   /\bmoderators\b/i,
   /\bteam\b/i,
   /\bteams\b/i,
+];
+const GENERIC_MESSAGE_TOKENS = new Set([
+  "account",
+  "accounts",
+  "admin",
+  "admins",
+  "anonymous",
+  "browser",
+  "deployment",
+  "deployments",
+  "contact",
+  "download",
+  "downloads",
+  "encrypted",
+  "form",
+  "forms",
+  "hush",
+  "hushline",
+  "learn",
+  "line",
+  "more",
+  "message",
+  "messages",
+  "secure",
+  "securely",
+  "sign",
+  "start",
+  "starts",
+  "submission",
+  "submissions",
+  "team",
+  "teams",
+  "tips",
+  "visitor",
+  "visitors",
+  "visit",
+]);
+const HUSHLINE_APP_VOICE_GUIDANCE = [
+  "Use practical language from hushline.app: Hush Line is for anonymous, end-to-end encrypted contact and secure first contact, not broad marketing claims.",
+  "Keep the message grounded in the people Hush Line serves, such as sources, journalists, lawyers, educators, developers, organizers, and trusted recipients when the screenshot supports that audience.",
+  "Prefer concrete platform framing from hushline.app like no app download or account required for sources, a public directory that helps people find the right recipient, and browser-based tools that support real review workflows.",
 ];
 
 function todayString() {
@@ -202,21 +246,129 @@ function printHelp() {
   );
 }
 
+function withinArchiveWindow(archiveDate, currentDate) {
+  const diffDays = Math.floor((currentDate.getTime() - archiveDate.getTime()) / 86400000);
+  return diffDays > 0 && diffDays <= ARCHIVE_LOOKBACK_DAYS;
+}
+
+function buildMessageText(entry) {
+  return [
+    entry.headline,
+    entry.subtext,
+    entry.linkedin_copy,
+    entry.mastodon_copy,
+    entry.bluesky_copy,
+  ]
+    .filter(Boolean)
+    .join(" ");
+}
+
+function messageTokens(value) {
+  return uniqueTokens(value).filter((token) => !GENERIC_MESSAGE_TOKENS.has(token));
+}
+
+function sharedMessageTokenCount(left, right) {
+  const leftSet = new Set(messageTokens(left));
+  const rightSet = new Set(messageTokens(right));
+  let count = 0;
+
+  for (const token of leftSet) {
+    if (rightSet.has(token)) {
+      count += 1;
+    }
+  }
+
+  return count;
+}
+
+function normalizeMessageLine(value) {
+  return String(value || "")
+    .toLowerCase()
+    .replaceAll(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+function lastTemplateUseOffset(archiveHistory, templateName) {
+  for (let index = archiveHistory.length - 1; index >= 0; index -= 1) {
+    if (archiveHistory[index].template_name === templateName) {
+      return archiveHistory.length - index;
+    }
+  }
+
+  return Number.POSITIVE_INFINITY;
+}
+
+function averageTemplateUsageForType(archiveHistory, templateNames, templateType) {
+  const matching = templateNames.filter((name) => templateTypeForName(name) === templateType);
+  if (matching.length === 0) {
+    return Number.POSITIVE_INFINITY;
+  }
+
+  const total = matching.reduce((sum, templateName) => {
+    return sum + archiveHistory.filter((entry) => entry.template_name === templateName).length;
+  }, 0);
+
+  return total / matching.length;
+}
+
+function summarizeCandidateHistory(candidate, archiveHistory) {
+  const normalized = {
+    ...candidate,
+    screen_key: candidate.screen_key || inferScreenKey(candidate),
+    topic_family: candidate.topic_family || inferTopicFamily(candidate),
+  };
+  const stats = {
+    candidate: normalized,
+    content_matches: 0,
+    exact_screenshot_matches: 0,
+    novelty_penalty: 0,
+    screen_matches: 0,
+    topic_matches: 0,
+  };
+
+  archiveHistory.forEach((entry, index) => {
+    const recencyWeight = archiveHistory.length - index;
+
+    if (entry.screenshot_file && entry.screenshot_file === normalized.file) {
+      stats.exact_screenshot_matches += 1;
+      stats.novelty_penalty += 12000 * recencyWeight;
+    }
+
+    if (entry.content_key && entry.content_key === normalized.content_key) {
+      stats.content_matches += 1;
+      stats.novelty_penalty += 6000 * recencyWeight;
+    }
+
+    if (entry.screen_key && entry.screen_key === normalized.screen_key) {
+      stats.screen_matches += 1;
+      stats.novelty_penalty += 4000 * recencyWeight;
+    }
+
+    if (entry.topic_family && entry.topic_family === normalized.topic_family) {
+      stats.topic_matches += 1;
+      stats.novelty_penalty += 1500 * recencyWeight;
+    }
+  });
+
+  return stats;
+}
+
 function loadArchiveHistory(currentArchiveKey) {
   if (!fs.existsSync(DAILY_POSTS_ROOT)) {
     return [];
   }
+  const currentDate = parseLocalDate(archiveKeyDate(currentArchiveKey));
 
   return fs
     .readdirSync(DAILY_POSTS_ROOT, { withFileTypes: true })
     .filter(
       (entry) => entry.isDirectory() &&
         isValidArchiveKey(entry.name) &&
-        compareArchiveKeys(entry.name, currentArchiveKey) < 0,
+        compareArchiveKeys(entry.name, currentArchiveKey) < 0 &&
+        withinArchiveWindow(parseLocalDate(archiveKeyDate(entry.name)), currentDate),
     )
     .map((entry) => entry.name)
     .sort(compareArchiveKeys)
-    .slice(-20)
     .map((archiveKey) => {
       const postPath = path.join(DAILY_POSTS_ROOT, archiveKey, "post.json");
       const postCopyPath = path.join(DAILY_POSTS_ROOT, archiveKey, "post-copy.txt");
@@ -233,15 +385,22 @@ function loadArchiveHistory(currentArchiveKey) {
         ? fs.readFileSync(postCopyPath, "utf8")
         : "";
       const templateMatch = postCopy.match(/^Template:\s+(.+)$/m);
+      const social = post && post.social && typeof post.social === "object"
+        ? post.social
+        : {};
 
       return {
         archive_key: archiveKey,
+        bluesky_copy: social.bluesky || "",
         concept_key: (post && (post.concept_key || normalizeConceptKey(post.content_key))) || "",
         content_key: (post && post.content_key) || "",
         date: archiveKeyDate(archiveKey),
         headline: (post && post.headline) || "",
+        linkedin_copy: social.linkedin || "",
+        mastodon_copy: social.mastodon || "",
         screen_key: (post && (post.screen_key || inferScreenKey(post))) || "",
         screenshot_file: (post && post.screenshot_file) || "",
+        subtext: (post && post.subtext) || "",
         template_name: (post && post.template_name) || (templateMatch ? templateMatch[1].trim() : ""),
         topic_family: (post && (post.topic_family || inferTopicFamily(post))) || "",
       };
@@ -279,12 +438,39 @@ function detectCandidateTemplateType(candidate) {
   }
 }
 
-function chooseTemplateName(_archiveHistory, templateNames) {
-  if (templateNames.length === 0) {
-    throw new Error("No daily templates are available.");
+function chooseTemplateName(archiveHistory, templateNames, options = {}) {
+  let candidates = options.templateType
+    ? templateNames.filter((name) => templateTypeForName(name) === options.templateType)
+    : templateNames.slice();
+
+  if (candidates.length === 0) {
+    throw new Error(`No daily templates are available for type: ${options.templateType}`);
   }
 
-  return templateNames[Math.floor(Math.random() * templateNames.length)];
+  const mostRecentTemplate = archiveHistory[archiveHistory.length - 1]?.template_name;
+  if (candidates.length > 1 && mostRecentTemplate && candidates.includes(mostRecentTemplate)) {
+    candidates = candidates.filter((templateName) => templateName !== mostRecentTemplate);
+  }
+
+  const scoredTemplates = candidates.map((templateName) => {
+    const usageCount = archiveHistory.filter((entry) => entry.template_name === templateName).length;
+
+    return {
+      last_used_offset: lastTemplateUseOffset(archiveHistory, templateName),
+      template_name: templateName,
+      usage_count: usageCount,
+    };
+  });
+
+  scoredTemplates.sort((left, right) => {
+    return (
+      left.usage_count - right.usage_count ||
+      right.last_used_offset - left.last_used_offset ||
+      left.template_name.localeCompare(right.template_name, undefined, { numeric: true })
+    );
+  });
+
+  return scoredTemplates[0].template_name;
 }
 
 function filterCandidatesForTemplateName(candidates, templateName) {
@@ -301,6 +487,101 @@ function filterCandidatesForTemplateName(candidates, templateName) {
   return matchingCandidates.length > 0 ? matchingCandidates : candidates;
 }
 
+function filterCandidatesForArchiveHistory(candidates, archiveHistory) {
+  const normalizedCandidates = candidates.map((candidate) => {
+    const historyStats = summarizeCandidateHistory(candidate, archiveHistory);
+
+    return {
+      ...historyStats.candidate,
+      history_stats: historyStats,
+    };
+  });
+
+  const sortByNovelty = (left, right) => {
+    const leftStats = left.history_stats;
+    const rightStats = right.history_stats;
+
+    return (
+      leftStats.exact_screenshot_matches - rightStats.exact_screenshot_matches ||
+      leftStats.content_matches - rightStats.content_matches ||
+      leftStats.screen_matches - rightStats.screen_matches ||
+      leftStats.topic_matches - rightStats.topic_matches ||
+      leftStats.novelty_penalty - rightStats.novelty_penalty ||
+      (right.score || 0) - (left.score || 0) ||
+      String(left.file || left.content_key || left.path || "")
+        .localeCompare(String(right.file || right.content_key || right.path || ""))
+    );
+  };
+
+  const strict = normalizedCandidates
+    .filter((candidate) => {
+      const stats = candidate.history_stats;
+      return (
+        stats.exact_screenshot_matches === 0 &&
+        stats.content_matches === 0 &&
+        stats.screen_matches === 0 &&
+        stats.topic_matches === 0
+      );
+    })
+    .sort(sortByNovelty);
+  if (strict.length > 0) {
+    return strict;
+  }
+
+  const relaxedScreen = normalizedCandidates
+    .filter((candidate) => {
+      const stats = candidate.history_stats;
+      return (
+        stats.exact_screenshot_matches === 0 &&
+        stats.content_matches === 0 &&
+        stats.screen_matches === 0
+      );
+    })
+    .sort(sortByNovelty);
+  if (relaxedScreen.length > 0) {
+    return relaxedScreen;
+  }
+
+  const relaxedExact = normalizedCandidates
+    .filter((candidate) => {
+      const stats = candidate.history_stats;
+      return stats.exact_screenshot_matches === 0 && stats.content_matches === 0;
+    })
+    .sort(sortByNovelty);
+  if (relaxedExact.length > 0) {
+    return relaxedExact;
+  }
+
+  return normalizedCandidates.sort(sortByNovelty);
+}
+
+function chooseBestCandidate(candidates, archiveHistory, templateNames) {
+  const ranked = candidates
+    .map((candidate) => {
+      const candidateType = detectCandidateTemplateType(candidate);
+
+      return {
+        ...candidate,
+        template_type: candidateType,
+        template_type_average_usage: averageTemplateUsageForType(
+          archiveHistory,
+          templateNames,
+          candidateType,
+        ),
+      };
+    })
+    .sort((left, right) => {
+      return (
+        left.template_type_average_usage - right.template_type_average_usage ||
+        left.history_stats.novelty_penalty - right.history_stats.novelty_penalty ||
+        (right.score || 0) - (left.score || 0) ||
+        left.file.localeCompare(right.file)
+      );
+    });
+
+  return ranked[0] || null;
+}
+
 function chooseTemplateNameForCandidate(candidate, context) {
   if (
     !context.template_selection ||
@@ -312,66 +593,26 @@ function chooseTemplateNameForCandidate(candidate, context) {
       (templateName) => templateTypeForName(templateName) === fallbackType,
     );
 
-    return fallbackTemplates[0] || null;
+    return chooseTemplateName(context.recent_archive_history || [], fallbackTemplates, {
+      templateType: fallbackType,
+    });
   }
 
   const candidateType = detectCandidateTemplateType(candidate);
-  const desiredTemplateType = context.template_selection.desired_template_type;
-
-  if (
-    candidateType &&
-    candidateType === desiredTemplateType &&
-    context.template_selection.desired_template_name
-  ) {
-    return context.template_selection.desired_template_name;
-  }
-
   const matchingTemplateNames = context.template_selection.available_templates.filter(
     (templateName) => templateTypeForName(templateName) === candidateType,
   );
 
   if (matchingTemplateNames.length > 0) {
-    return matchingTemplateNames[0];
+    return chooseTemplateName(context.recent_archive_history || [], matchingTemplateNames, {
+      templateType: candidateType,
+    });
   }
 
-  return context.template_selection.desired_template_name;
-}
-
-function filterCandidatesForArchiveHistory(candidates, archiveHistory) {
-  const normalizedCandidates = candidates.map((candidate) => ({
-    ...candidate,
-    screen_key: candidate.screen_key || inferScreenKey(candidate),
-    topic_family: candidate.topic_family || inferTopicFamily(candidate),
-  }));
-  const usedContentKeys = new Set(archiveHistory.map((entry) => entry.content_key));
-  const usedScreenKeys = new Set(
-    archiveHistory.map((entry) => entry.screen_key || inferScreenKey(entry)),
+  return chooseTemplateName(
+    context.recent_archive_history || [],
+    context.template_selection.available_templates,
   );
-
-  const strict = normalizedCandidates.filter((candidate) => {
-    return !usedContentKeys.has(candidate.content_key) && !usedScreenKeys.has(candidate.screen_key);
-  });
-  if (strict.length > 0) {
-    return strict;
-  }
-
-  const relaxed = normalizedCandidates.filter((candidate) => !usedContentKeys.has(candidate.content_key));
-  if (relaxed.length > 0) {
-    return relaxed;
-  }
-
-  return normalizedCandidates;
-}
-
-function pickRandomCandidates(candidates, count = 1) {
-  const shuffled = candidates.slice();
-
-  for (let index = shuffled.length - 1; index > 0; index -= 1) {
-    const swapIndex = Math.floor(Math.random() * (index + 1));
-    [shuffled[index], shuffled[swapIndex]] = [shuffled[swapIndex], shuffled[index]];
-  }
-
-  return shuffled.slice(0, Math.min(count, shuffled.length));
 }
 
 function readHushlineAgentExcerpt() {
@@ -387,23 +628,31 @@ function buildDailyContext(args) {
   const parsedDate = new Date(`${args.date}T12:00:00`);
   const week = formatIsoWeek(parsedDate);
   const planningContext = buildPlanningContext({
-    candidateCount: args.candidateCount,
+    candidateCount: Math.max(args.candidateCount * 10, 200),
     darkRatio: args.darkRatio,
     week,
   });
   const archiveHistory = loadArchiveHistory(args.archiveKey);
   const templateNames = listDailyTemplateNames();
-  const desiredTemplateName = chooseTemplateName(archiveHistory, templateNames);
   const variedCandidates = filterCandidatesForArchiveHistory(
     planningContext.candidate_screenshots,
     archiveHistory,
   );
-  const filteredCandidates = filterCandidatesForTemplateName(variedCandidates, desiredTemplateName);
-  const selectedCandidates = pickRandomCandidates(filteredCandidates, 1);
+  const selectedCandidate = chooseBestCandidate(variedCandidates, archiveHistory, templateNames);
 
-  if (selectedCandidates.length === 0) {
+  if (!selectedCandidate) {
     throw new Error(`No eligible screenshot candidates remain for ${args.date}.`);
   }
+  const desiredTemplateName = chooseTemplateNameForCandidate(
+    selectedCandidate,
+    {
+      recent_archive_history: archiveHistory,
+      template_selection: {
+        available_templates: templateNames,
+      },
+    },
+  );
+  const selectedCandidates = [selectedCandidate];
 
   return {
     audience_docs: planningContext.audience_docs,
@@ -412,6 +661,7 @@ function buildDailyContext(args) {
     date: args.date,
     dark_ratio: args.darkRatio,
     hushline_agent_context: readHushlineAgentExcerpt(),
+    hushline_app_voice_guidance: HUSHLINE_APP_VOICE_GUIDANCE,
     recent_archive_history: archiveHistory,
     screenshot_captured_at: planningContext.screenshot_captured_at,
     screenshot_release: planningContext.screenshot_release,
@@ -432,10 +682,20 @@ function buildPromptPayload(context) {
   const docs = context.audience_docs
     .map((doc) => `${doc.file}\n${doc.excerpt}`)
     .join("\n\n");
+  const voiceGuidance = (context.hushline_app_voice_guidance || HUSHLINE_APP_VOICE_GUIDANCE)
+    .map((line) => `- ${line}`)
+    .join("\n");
   const archiveHistory = context.recent_archive_history.length === 0
     ? "No prior archived daily posts were found."
     : context.recent_archive_history
-        .map((entry) => `${entry.archive_key}: ${entry.content_key} [${entry.topic_family}] (${entry.screenshot_file})`)
+        .map((entry) => {
+          return [
+            `${entry.archive_key}: ${entry.content_key} [${entry.topic_family}] (${entry.screenshot_file})`,
+            `  Template: ${entry.template_name || "unknown"}`,
+            `  Headline: ${entry.headline || "n/a"}`,
+            `  Subtext: ${entry.subtext || "n/a"}`,
+          ].join("\n");
+        })
         .join("\n");
 
   return {
@@ -462,6 +722,9 @@ function buildPromptPayload(context) {
       `Screenshot release from local latest folder: ${context.screenshot_release}`,
       `Screenshots captured at: ${context.screenshot_captured_at}`,
       "",
+      "Current hushline.app voice guidance:",
+      voiceGuidance,
+      "",
       "Audience and user-base context from docs:",
       docs,
       "",
@@ -473,13 +736,15 @@ function buildPromptPayload(context) {
       "",
       "Instructions:",
       "- Use the provided screenshot only.",
-      "- The screenshot was preselected at random from the current eligible pool after excluding recent repeats of the same screen and matching the target template for this run.",
+      `- Check the prior ${ARCHIVE_LOOKBACK_DAYS} days of archived daily posts before you decide on the messaging angle.`,
+      "- The screenshot was preselected from a ranked pool after excluding recent repeats of the same screenshot, screen, feature family, and overused template types wherever possible.",
       "- Produce exactly one post for the requested date.",
       "- Do not talk about recent releases, recent merges, or product recency unless the prompt explicitly gives you that information.",
-      "- Avoid repeating a content theme or route that was used recently in archived daily posts.",
+      "- Do not repeat a screenshot, feature, or messaging angle that already appeared in the prior month, even if you could retarget it to a different audience.",
       "- Treat screenshots in the same topic family as repeats even when the exact content_key differs. For example, directory-all, directory-verified, and onboarding-directory all count as directory posts for variation purposes.",
       "- The provided screenshot already fits the target template for this run.",
       "- Match the copy to the candidate audience scope. Public screens should read public-facing. Recipient-shared screens should read like recipient workflows. Admin-only screens must clearly say admin or team context.",
+      "- Tailor the message to real Hush Line users and use cases, not generic product copy.",
       "- Headline and subtext should be concise and straightforward.",
       "- Each network copy should say the same core thing in a native way, not copy-paste the same sentence three times.",
       "- The alt text should describe the final image asset, not just the raw UI screenshot.",
@@ -676,6 +941,46 @@ function validatePlan(modelPlan, context) {
     }
   }
 
+  const currentMessageText = buildMessageText({
+    bluesky_copy: post.social.bluesky,
+    headline: post.headline,
+    linkedin_copy: post.social.linkedin,
+    mastodon_copy: post.social.mastodon,
+    subtext: post.subtext,
+  });
+
+  for (const entry of context.recent_archive_history || []) {
+    const archivedMessageText = buildMessageText(entry);
+    const sameFeature = (
+      (entry.screen_key && entry.screen_key === (candidate.screen_key || inferScreenKey(candidate))) ||
+      (entry.topic_family && entry.topic_family === (candidate.topic_family || inferTopicFamily(candidate)))
+    );
+    const matchingHeadline = normalizeMessageLine(entry.headline) === normalizeMessageLine(post.headline);
+    const headlineOverlap = sharedMessageTokenCount(
+      `${post.headline} ${post.subtext}`,
+      `${entry.headline} ${entry.subtext}`,
+    );
+    const bodyOverlap = sharedMessageTokenCount(currentMessageText, archivedMessageText);
+
+    if (matchingHeadline) {
+      throw new Error(
+        `Post headline for ${context.date} duplicates recent archive headline from ${entry.archive_key}.`,
+      );
+    }
+
+    if (sameFeature && (headlineOverlap >= 3 || bodyOverlap >= 6)) {
+      throw new Error(
+        `Post messaging for ${context.date} is too close to recent ${entry.topic_family} archive ${entry.archive_key}.`,
+      );
+    }
+
+    if (headlineOverlap >= 6 && bodyOverlap >= 10) {
+      throw new Error(
+        `Post messaging for ${context.date} overlaps too heavily with recent archive ${entry.archive_key}.`,
+      );
+    }
+  }
+
   return {
     date: modelPlan.date,
     post: {
@@ -717,6 +1022,15 @@ function writeContextArtifacts(archiveKey, context) {
   };
 }
 
+function loadSavedDailyContext(archiveKey) {
+  const contextPath = path.join(DAILY_POSTS_ROOT, archiveKey, "context.json");
+  if (!fs.existsSync(contextPath)) {
+    return null;
+  }
+
+  return readJson(contextPath);
+}
+
 async function renderDailyPlan(plan, archiveKey = plan.date) {
   const outputDir = path.join(DAILY_POSTS_ROOT, archiveKey);
   return renderPost(plan.post, outputDir);
@@ -747,6 +1061,7 @@ module.exports = {
   filterCandidatesForArchiveHistory,
   filterCandidatesForTemplateName,
   inferTopicFamily,
+  loadSavedDailyContext,
   parseArgs,
   planDay,
   renderDailyPlan,

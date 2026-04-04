@@ -515,6 +515,7 @@ function buildCandidateShortlist(options) {
     requestedPosts,
   } = options;
   const audienceDocs = discoverAudienceDocs();
+  const recentPullRequests = fetchRecentPullRequests(20);
   const screenshots = loadScreenshotInventory();
   const recentHistory = loadRecentHistory(week);
   const eligible = screenshots.inventory
@@ -529,7 +530,8 @@ function buildCandidateShortlist(options) {
       };
     })
     .filter((item) => !item.exclusion_reason);
-  const sessionScoped = chooseSessionScopedCandidates(eligible);
+  const scored = scoreCandidates(eligible, recentPullRequests, audienceDocs);
+  const sessionScoped = chooseSessionScopedCandidates(scored);
 
   const targetCount = Math.max(candidateCount, Math.max(8, requestedPosts * 2));
   const grouped = new Map();
@@ -541,9 +543,19 @@ function buildCandidateShortlist(options) {
     grouped.get(item.screen_key).push(item);
   }
 
-  const selectedConcepts = shuffle(
-    [...grouped.values()].map((variants) => ({ variants })),
-  ).slice(0, targetCount);
+  const selectedConcepts = [...grouped.values()]
+    .map((variants) => ({
+      variants: variants.slice().sort((left, right) => {
+        return right.score - left.score || left.file.localeCompare(right.file);
+      }),
+    }))
+    .sort((left, right) => {
+      return (
+        right.variants[0].score - left.variants[0].score ||
+        left.variants[0].file.localeCompare(right.variants[0].file)
+      );
+    })
+    .slice(0, targetCount * 3);
 
   const shortlist = assignVariantsToConcepts(selectedConcepts, targetCount, darkRatio);
 

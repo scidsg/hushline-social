@@ -1,11 +1,15 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const path = require("node:path");
 
 const {
+  DAILY_POSTS_ROOT,
   chooseTemplateName,
   filterCandidatesForArchiveHistory,
   filterCandidatesForTemplateName,
   inferTopicFamily,
+  loadSavedDailyContext,
   parseArgs,
   planDay,
   validatePlan,
@@ -100,6 +104,36 @@ test("planDay rejects weekend dates before planning context is built", async () 
   );
 });
 
+test("loadSavedDailyContext returns the archived context for validation reruns", () => {
+  const archiveKey = "2099-03-20-99";
+  const archiveDir = path.join(DAILY_POSTS_ROOT, archiveKey);
+  const contextPath = path.join(archiveDir, "context.json");
+  const savedContext = buildContext({
+    date: "2099-03-20",
+    candidate_screenshots: [
+      {
+        audience_scope: "recipient-shared",
+        concept_key: "vision-tool",
+        content_key: "auth-artvandelay-tools-vision",
+        copy_brief: "Write for recipients and staff using Hush Line day to day.",
+        file: "artvandelay/auth-artvandelay-tools-vision-mobile-light-fold.png",
+        matched_pull_requests: [],
+        topic_family: "vision",
+        viewport: "mobile",
+      },
+    ],
+  });
+
+  fs.mkdirSync(archiveDir, { recursive: true });
+
+  try {
+    fs.writeFileSync(contextPath, JSON.stringify(savedContext, null, 2));
+    assert.deepEqual(loadSavedDailyContext(archiveKey), savedContext);
+  } finally {
+    fs.rmSync(archiveDir, { force: true, recursive: true });
+  }
+});
+
 test("validatePlan trims social copy and enriches the selected candidate metadata", () => {
   const validated = validatePlan(buildModelPlan(), buildContext());
 
@@ -112,24 +146,21 @@ test("validatePlan trims social copy and enriches the selected candidate metadat
   assert.deepEqual(validated.post.matched_pull_requests, [{ number: 1765, title: "Fix guest screenshot" }]);
 });
 
-test("chooseTemplateName picks randomly from the available daily templates", () => {
-  const originalRandom = Math.random;
-  Math.random = () => 0.6;
+test("chooseTemplateName prefers the least-used daily template from the prior month", () => {
+  const selected = chooseTemplateName(
+    [
+      { archive_key: "2026-03-03", template_name: "hushline-daily-desktop-template.html" },
+      { archive_key: "2026-03-04", template_name: "hushline-daily-desktop-template.html" },
+      { archive_key: "2026-03-05", template_name: "hushline-daily-mobile-template.html" },
+    ],
+    [
+      "hushline-daily-desktop-template.html",
+      "hushline-daily-mobile-template.html",
+      "hushline-daily-mobile-template-2.html",
+    ],
+  );
 
-  try {
-    const selected = chooseTemplateName(
-      [],
-      [
-        "hushline-daily-desktop-template.html",
-        "hushline-daily-mobile-template.html",
-        "hushline-daily-mobile-template-2.html",
-      ],
-    );
-
-    assert.equal(selected, "hushline-daily-mobile-template.html");
-  } finally {
-    Math.random = originalRandom;
-  }
+  assert.equal(selected, "hushline-daily-mobile-template-2.html");
 });
 
 test("filterCandidatesForTemplateName narrows the shortlist to the chosen template type", () => {
@@ -197,7 +228,7 @@ test("inferTopicFamily groups onboarding directory screenshots under the directo
   );
 });
 
-test("filterCandidatesForArchiveHistory removes same-screen variants from recent archive history", () => {
+test("filterCandidatesForArchiveHistory removes same-feature variants from recent archive history", () => {
   const archiveHistory = [
     {
       concept_key: "directory-verified",
@@ -244,15 +275,14 @@ test("filterCandidatesForArchiveHistory removes same-screen variants from recent
 
   const filtered = filterCandidatesForArchiveHistory(candidates, archiveHistory);
 
-  assert.equal(filtered.length, 4);
+  assert.equal(filtered.length, 3);
   assert.deepEqual(
-    filtered.map((candidate) => candidate.content_key),
+    filtered.map((candidate) => candidate.content_key).sort(),
     [
-      "guest-directory-attorney-adam-j-levitt",
+      "auth-admin-settings-guidance",
       "auth-artvandelay-settings-encryption",
       "auth-artvandelay-settings-notifications",
-      "auth-admin-settings-guidance",
-    ],
+    ].sort(),
   );
 });
 
@@ -289,5 +319,25 @@ test("filterCandidatesForArchiveHistory falls back to repeated screens when need
   assert.deepEqual(
     filtered.map((candidate) => candidate.content_key),
     ["guest-directory-verified"],
+  );
+});
+
+test("validatePlan rejects messaging that duplicates a recent archive angle", () => {
+  const context = buildContext({
+    recent_archive_history: [
+      {
+        archive_key: "2026-03-19",
+        headline: "Let sources verify a recipient before they send a tip",
+        linkedin_copy: "Sources can verify trust signals before sending a tip. Learn more at https://hushline.app/.",
+        screen_key: "directory-index",
+        subtext: "The public directory highlights verified accounts before a message is sent.",
+        topic_family: "directory",
+      },
+    ],
+  });
+
+  assert.throws(
+    () => validatePlan(buildModelPlan(), context),
+    /duplicates recent archive headline/,
   );
 });
