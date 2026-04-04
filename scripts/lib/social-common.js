@@ -283,6 +283,88 @@ function resolveScreenshotPath(filePath) {
   return ensureLatestFoldScreenshot(candidate);
 }
 
+function inferScreenKey(item) {
+  const pathValue = String(item.path || "").trim().toLowerCase();
+  const pathname = pathValue.split("?")[0];
+  const onboardingStep = pathValue.match(/[?&]step=([^&]+)/i)?.[1]?.toLowerCase();
+  const text = [
+    item.title,
+    item.content_key,
+    item.contentKey,
+    item.screenshot_file,
+    item.file,
+    pathValue,
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+
+  if (pathname === "/directory" || pathValue.startsWith("/directory?")) {
+    return "directory-index";
+  }
+
+  if (
+    /^\/directory\/public-records\/public-record~[^/]+$/.test(pathname) ||
+    /\battorney listing\b/.test(text)
+  ) {
+    return "directory-public-record";
+  }
+
+  if (pathname === "/onboarding" || pathValue.startsWith("/onboarding?")) {
+    return `onboarding-${onboardingStep || "unknown"}`;
+  }
+
+  if (pathname === "/settings/confirm-disable-2fa") {
+    return "/settings/auth";
+  }
+
+  if (/^\/to\/[^/]+$/.test(pathname)) {
+    return "recipient-profile";
+  }
+
+  if (/^\/reply\/[^/]+$/.test(pathname)) {
+    return "reply-thread";
+  }
+
+  if (pathname) {
+    return pathname;
+  }
+
+  if (/\bdirectory\b/.test(text)) {
+    return "directory-index";
+  }
+
+  if (/\bprofile\b/.test(text)) {
+    return "recipient-profile";
+  }
+
+  if (/\bemail[- ]headers\b|\bemail validation\b/.test(text)) {
+    return "/email-headers";
+  }
+
+  if (/\bvision\b/.test(text)) {
+    return "/vision";
+  }
+
+  if (/\bencryption\b|\bpgp\b/.test(text)) {
+    return "/settings/encryption";
+  }
+
+  if (/\bnotification(s)?\b/.test(text)) {
+    return "/settings/notifications";
+  }
+
+  if (/\balias(es)?\b/.test(text)) {
+    return "/settings/aliases";
+  }
+
+  if (/\bauthentication\b|\b2fa\b|\btwo[- ]factor\b/.test(text)) {
+    return "/settings/auth";
+  }
+
+  return normalizeText(item.content_key || item.contentKey || item.file || item.screenshot_file).replaceAll(" ", "-") || "unknown-screen";
+}
+
 function detectTemplate(screenshotPath) {
   const filename = path.basename(screenshotPath);
 
@@ -395,6 +477,7 @@ module.exports = {
   execJson,
   findChrome,
   getWeekdayLabel,
+  inferScreenKey,
   isValidArchiveKey,
   isWeekendDate,
   listFilesRecursive,

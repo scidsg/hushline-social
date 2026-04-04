@@ -10,6 +10,7 @@ const {
   REPO_ROOT,
   SCREENSHOT_MANIFEST,
   excerptText,
+  inferScreenKey,
   listFilesRecursive,
   readJson,
   resolveScreenshotPath,
@@ -495,6 +496,17 @@ function chooseSessionScopedCandidates(scored) {
   });
 }
 
+function shuffle(items) {
+  const shuffled = items.slice();
+
+  for (let index = shuffled.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(Math.random() * (index + 1));
+    [shuffled[index], shuffled[swapIndex]] = [shuffled[swapIndex], shuffled[index]];
+  }
+
+  return shuffled;
+}
+
 function buildCandidateShortlist(options) {
   const {
     candidateCount,
@@ -502,77 +514,42 @@ function buildCandidateShortlist(options) {
     week,
     requestedPosts,
   } = options;
-  const recentPullRequests = fetchRecentPullRequests(20);
   const audienceDocs = discoverAudienceDocs();
   const screenshots = loadScreenshotInventory();
   const recentHistory = loadRecentHistory(week);
-  const usedContentKeys = new Set(
-    recentHistory.flatMap((plan) => plan.posts.map((post) => post.content_key)),
-  );
-  const usedConceptKeys = new Set(
-    recentHistory.flatMap((plan) => plan.posts.map((post) => post.concept_key)),
-  );
-  const scored = scoreCandidates(screenshots.inventory, recentPullRequests, audienceDocs)
-    .filter((item) => !item.exclusion_reason)
-    .filter((item) => !usedContentKeys.has(item.content_key))
-    .filter((item) => !usedConceptKeys.has(item.concept_key));
-  const sessionScoped = chooseSessionScopedCandidates(scored);
+  const eligible = screenshots.inventory
+    .map((item) => {
+      const quality = evaluateScreenshotQuality(item);
+
+      return {
+        ...item,
+        exclusion_reason: quality.exclusionReason,
+        matched_pull_requests: [],
+        screen_key: inferScreenKey(item),
+      };
+    })
+    .filter((item) => !item.exclusion_reason);
+  const sessionScoped = chooseSessionScopedCandidates(eligible);
 
   const targetCount = Math.max(candidateCount, Math.max(8, requestedPosts * 2));
   const grouped = new Map();
 
   for (const item of sessionScoped) {
-    if (!grouped.has(item.concept_key)) {
-      grouped.set(item.concept_key, []);
+    if (!grouped.has(item.screen_key)) {
+      grouped.set(item.screen_key, []);
     }
-    grouped.get(item.concept_key).push(item);
+    grouped.get(item.screen_key).push(item);
   }
 
-  const concepts = [...grouped.values()]
-    .map((variants) => {
-      const ordered = variants
-        .slice()
-        .sort((left, right) => right.score - left.score || left.file.localeCompare(right.file));
-      return {
-        audience_scope: ordered[0].audience_scope,
-        base_score: ordered[0].score,
-        concept_key: ordered[0].concept_key,
-        copy_brief: ordered[0].copy_brief,
-        path: ordered[0].path,
-        variants: ordered,
-      };
-    })
-    .sort((left, right) => right.base_score - left.base_score || left.concept_key.localeCompare(right.concept_key));
-
-  const selectedConcepts = [];
-  const pathCounts = new Map();
-  const maxPerPath = 1;
-
-  function canSelectConcept(concept) {
-    return (pathCounts.get(concept.path) || 0) < maxPerPath;
-  }
-
-  function rememberConcept(concept) {
-    selectedConcepts.push(concept);
-    pathCounts.set(concept.path, (pathCounts.get(concept.path) || 0) + 1);
-  }
-
-  for (const concept of concepts) {
-    if (selectedConcepts.length >= targetCount) {
-      break;
-    }
-
-    if (canSelectConcept(concept)) {
-      rememberConcept(concept);
-    }
-  }
+  const selectedConcepts = shuffle(
+    [...grouped.values()].map((variants) => ({ variants })),
+  ).slice(0, targetCount);
 
   const shortlist = assignVariantsToConcepts(selectedConcepts, targetCount, darkRatio);
 
   return {
     audienceDocs,
     recentHistory,
-    recentPullRequests,
     screenshotCapturedAt: screenshots.captured_at,
     screenshotRelease: screenshots.release,
     shortlist: shortlist.slice(0, targetCount),
@@ -670,7 +647,7 @@ function buildPromptPayload(context) {
   return {
     system: [
       "You are planning a set of weekday social posts for Hush Line.",
-      "Choose screenshots that reflect recent product work and documented user needs.",
+      "Choose screenshots that reflect Hush Line's documented user needs and vary the underlying screen from prior posts.",
       "Write in plain language. No marketing-speak, no hype, no filler.",
       "Social copy must be end-user-facing. Do not confuse post copy with alt text.",
       "Avoid empty-state screens, duplicate content themes, and repeated scenes across mobile/desktop variants.",
@@ -704,7 +681,7 @@ function buildPromptPayload(context) {
       "",
       "Instructions:",
       "- Pick exactly one screenshot per slot from the provided candidates only.",
-      "- Prioritize recent shipped work that appears clearly in the screenshot.",
+      "- Treat same-screen tab or filter variations as repeats even when the exact content_key changed.",
       "- Favor screenshots that matter to journalists, lawyers, whistleblowers, sources, and other trusted recipients.",
       "- Produce exactly five posts, one for each weekday Monday through Friday.",
       "- Avoid repeating the same content theme or route within the week.",
@@ -813,7 +790,6 @@ function buildPlanningContext(args) {
     dark_ratio: args.darkRatio,
     week: args.week,
     recent_history: shortlistData.recentHistory,
-    recent_pull_requests: shortlistData.recentPullRequests,
     screenshot_captured_at: shortlistData.screenshotCapturedAt,
     screenshot_release: shortlistData.screenshotRelease,
   };

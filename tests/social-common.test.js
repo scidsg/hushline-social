@@ -152,3 +152,46 @@ test("resolveTemplateVariant automatically uses newly added matching template va
     fs.rmSync(tempRoot, { force: true, recursive: true });
   }
 });
+
+test("inferScreenKey groups same-screen variants while keeping distinct screens separate", () => {
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "social-common-"));
+  const { socialCommon, cleanup } = withFreshSocialCommon(tempRoot);
+
+  try {
+    assert.equal(
+      socialCommon.inferScreenKey({
+        content_key: "guest-directory-verified",
+        path: "/directory",
+        title: "Directory - Verified",
+      }),
+      "directory-index",
+    );
+    assert.equal(
+      socialCommon.inferScreenKey({
+        content_key: "guest-directory-all",
+        path: "/directory",
+        title: "Directory - All",
+      }),
+      "directory-index",
+    );
+    assert.equal(
+      socialCommon.inferScreenKey({
+        content_key: "guest-directory-attorney-adam-j-levitt",
+        path: "/directory/public-records/public-record~adam-j-levitt",
+        title: "Directory - Attorney listing (Adam J. Levitt)",
+      }),
+      "directory-public-record",
+    );
+    assert.equal(
+      socialCommon.inferScreenKey({
+        content_key: "auth-newman-onboarding-directory",
+        path: "/onboarding?step=directory",
+        title: "Onboarding - Step 4 Directory (newman)",
+      }),
+      "onboarding-directory",
+    );
+  } finally {
+    cleanup();
+    fs.rmSync(tempRoot, { force: true, recursive: true });
+  }
+});

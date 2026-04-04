@@ -20,7 +20,8 @@ The job is not to produce a static yearly batch with hard-coded copy. The job is
 - The planner must be dynamic.
 - Do not hard-code feature themes, post copy, or a fixed yearly manifest.
 - Use current local Hush Line context to decide what to feature.
-- Prioritize recently shipped work based on closed-completed local PR history and current docs.
+- Pick the daily screenshot from the current eligible pool at random.
+- Treat tab, filter, search, and viewport variations of the same underlying screen as repeats for archive-avoidance purposes.
 - Favor features that align with Hush Line’s documented user base.
 - Keep content fresh day to day. Avoid repeating the same concept across adjacent archived posts.
 
@@ -29,7 +30,6 @@ The job is not to produce a static yearly batch with hard-coded copy. The job is
 Use these sources when planning:
 
 - `../hushline`
-  - recent PR history
   - docs describing users and use cases
 - `../hushline-screenshots/releases/latest`
   - latest published screenshot set
@@ -49,7 +49,7 @@ For verified-user weekly posts:
 - Use above-the-fold screenshots for social asset composition.
 - Avoid empty-state UIs.
 - Avoid screenshots that do not clearly showcase Hush Line.
-- Avoid duplicate concepts, even if one version is mobile and another is desktop.
+- Avoid repeating the same underlying screen across adjacent archived posts, even when the tab, filters, search state, session, mobile/desktop viewport, or theme changed.
 - Balance mobile and desktop usage across recent archived posts.
 - Include some dark mode, but keep it a minority share across recent archived posts.
 - If a screenshot is admin-specific, the copy must clearly say that it is for admins or teams running Hush Line.
@@ -309,5 +309,5 @@ When planning in this repo, verify that:
 - alt text is separate from social copy
 - one post exists for the date being generated
 - the planned date matches the archive folder date
-- no repeated concept appears across adjacent archived posts
+- no repeated underlying screen appears across adjacent archived posts, even when the tab or viewport changed
 - the daily publisher can identify today’s LinkedIn post cleanly from `previous-posts/YYYY-MM-DD`

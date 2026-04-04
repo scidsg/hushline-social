@@ -12,6 +12,7 @@ const {
   compareArchiveKeys,
   excerptText,
   getWeekdayLabel,
+  inferScreenKey,
   isValidArchiveKey,
   isWeekendDate,
   readJson,
@@ -124,22 +125,6 @@ function inferTopicFamily(item) {
   return normalizeConceptKey(item.content_key || item.contentKey);
 }
 
-function findSaturatedTopicFamilies(archiveHistory, windowSize = 4) {
-  const recentWindow = archiveHistory.slice(-windowSize);
-  const counts = new Map();
-
-  for (const entry of recentWindow) {
-    const family = entry.topic_family || inferTopicFamily(entry);
-    counts.set(family, (counts.get(family) || 0) + 1);
-  }
-
-  return new Set(
-    [...counts.entries()]
-      .filter(([, count]) => count >= 2)
-      .map(([family]) => family),
-  );
-}
-
 function parseArgs(argv) {
   const args = {
     archiveKey: null,
@@ -206,9 +191,9 @@ function printHelp() {
       "  node scripts/plan-day.js --date 2026-03-19 --archive-key 2026-03-19-1",
       "",
       "Behavior:",
-      "  - Reads recent merged PRs from the local Hush Line repo and GitHub CLI",
       "  - Reads audience context from Hush Line docs and ../hushline/AGENTS.md",
-      "  - Builds a candidate screenshot inventory from hushline-screenshots/releases/latest",
+      "  - Builds an eligible screenshot pool from hushline-screenshots/releases/latest",
+      "  - Randomly preselects one screenshot after excluding recent repeats of the same screen",
       "  - Writes daily planning context and a Codex prompt to previous-posts/<archive-key>",
       "  - Expects one high-value post for the requested day",
       "",
@@ -244,6 +229,7 @@ function loadArchiveHistory(currentArchiveKey) {
         content_key: post.content_key,
         date: archiveKeyDate(archiveKey),
         headline: post.headline,
+        screen_key: post.screen_key || inferScreenKey(post),
         screenshot_file: post.screenshot_file,
         topic_family: post.topic_family || inferTopicFamily(post),
       };
@@ -254,39 +240,38 @@ function loadArchiveHistory(currentArchiveKey) {
 function filterCandidatesForArchiveHistory(candidates, archiveHistory) {
   const normalizedCandidates = candidates.map((candidate) => ({
     ...candidate,
+    screen_key: candidate.screen_key || inferScreenKey(candidate),
     topic_family: candidate.topic_family || inferTopicFamily(candidate),
   }));
   const usedContentKeys = new Set(archiveHistory.map((entry) => entry.content_key));
-  const usedConceptKeys = new Set(archiveHistory.map((entry) => entry.concept_key));
-  const saturatedTopicFamilies = findSaturatedTopicFamilies(archiveHistory);
+  const usedScreenKeys = new Set(
+    archiveHistory.map((entry) => entry.screen_key || inferScreenKey(entry)),
+  );
 
   const strict = normalizedCandidates.filter((candidate) => {
-    return !usedContentKeys.has(candidate.content_key) && !usedConceptKeys.has(candidate.concept_key);
+    return !usedContentKeys.has(candidate.content_key) && !usedScreenKeys.has(candidate.screen_key);
   });
-  const strictVaried = strict.filter(
-    (candidate) => !saturatedTopicFamilies.has(candidate.topic_family),
-  );
-  if (strictVaried.length >= 4) {
-    return strictVaried;
-  }
-
-  if (strict.length >= 4) {
+  if (strict.length > 0) {
     return strict;
   }
 
   const relaxed = normalizedCandidates.filter((candidate) => !usedContentKeys.has(candidate.content_key));
-  const relaxedVaried = relaxed.filter(
-    (candidate) => !saturatedTopicFamilies.has(candidate.topic_family),
-  );
-  if (relaxedVaried.length >= 4) {
-    return relaxedVaried;
-  }
-
-  if (relaxed.length >= 4) {
+  if (relaxed.length > 0) {
     return relaxed;
   }
 
   return normalizedCandidates;
+}
+
+function pickRandomCandidates(candidates, count = 1) {
+  const shuffled = candidates.slice();
+
+  for (let index = shuffled.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(Math.random() * (index + 1));
+    [shuffled[index], shuffled[swapIndex]] = [shuffled[swapIndex], shuffled[index]];
+  }
+
+  return shuffled.slice(0, Math.min(count, shuffled.length));
 }
 
 function readHushlineAgentExcerpt() {
@@ -311,16 +296,20 @@ function buildDailyContext(args) {
     planningContext.candidate_screenshots,
     archiveHistory,
   );
+  const selectedCandidates = pickRandomCandidates(filteredCandidates, 1);
+
+  if (selectedCandidates.length === 0) {
+    throw new Error(`No eligible screenshot candidates remain for ${args.date}.`);
+  }
 
   return {
     audience_docs: planningContext.audience_docs,
-    candidate_screenshots: filteredCandidates,
+    candidate_screenshots: selectedCandidates,
     daily_posts_root: path.relative(REPO_ROOT, DAILY_POSTS_ROOT),
     date: args.date,
     dark_ratio: args.darkRatio,
     hushline_agent_context: readHushlineAgentExcerpt(),
     recent_archive_history: archiveHistory,
-    recent_pull_requests: planningContext.recent_pull_requests,
     screenshot_captured_at: planningContext.screenshot_captured_at,
     screenshot_release: planningContext.screenshot_release,
     slot: {
@@ -332,12 +321,6 @@ function buildDailyContext(args) {
 }
 
 function buildPromptPayload(context) {
-  const pullRequests = context.recent_pull_requests
-    .map((pr) => {
-      const number = pr.number ? `#${pr.number}` : "local";
-      return `${number} | ${pr.mergedAt} | ${pr.title}`;
-    })
-    .join("\n");
   const docs = context.audience_docs
     .map((doc) => `${doc.file}\n${doc.excerpt}`)
     .join("\n\n");
@@ -349,8 +332,7 @@ function buildPromptPayload(context) {
 
   return {
     system: [
-      "You are planning one daily social post for Hush Line.",
-      "Choose a single high-value feature that reflects recent shipped work and Hush Line's documented user needs.",
+      "You are writing one daily social post for Hush Line around a preselected screenshot.",
       "Write in plain language. No marketing-speak, no hype, no filler.",
       "Social copy must be end-user-facing. Do not confuse post copy with alt text.",
       "Avoid empty-state screens, duplicate content themes, and repeated scenes across mobile/desktop variants.",
@@ -371,9 +353,6 @@ function buildPromptPayload(context) {
       `Screenshot release from local latest folder: ${context.screenshot_release}`,
       `Screenshots captured at: ${context.screenshot_captured_at}`,
       "",
-      "Recently merged Hush Line PRs:",
-      pullRequests,
-      "",
       "Audience and user-base context from docs:",
       docs,
       "",
@@ -384,17 +363,15 @@ function buildPromptPayload(context) {
       archiveHistory,
       "",
       "Instructions:",
-      "- Pick exactly one screenshot from the provided candidates only.",
-      "- Prioritize recent shipped work that appears clearly in the screenshot.",
-      "- Favor screenshots that matter to journalists, lawyers, whistleblowers, sources, and other trusted recipients.",
+      "- Use the provided screenshot only.",
+      "- The screenshot was preselected at random from the current eligible pool after excluding recent repeats of the same screen.",
       "- Produce exactly one post for the requested date.",
-      "- Avoid repeating a content theme or route that was used recently in archived daily posts.",
-      "- Treat screenshots in the same topic family as repeats even when the exact content_key differs. For example, directory-all, directory-verified, and onboarding-directory all count as directory posts for variation purposes.",
-      "- If recent archive history is dominated by one topic family, choose a different family unless there is no strong alternative in the shortlist.",
+      "- Do not talk about recent releases, recent merges, or product recency unless the prompt explicitly gives you that information.",
       "- Match the copy to the candidate audience scope. Public screens should read public-facing. Recipient-shared screens should read like recipient workflows. Admin-only screens must clearly say admin or team context.",
       "- Headline and subtext should be concise and straightforward.",
       "- Each network copy should say the same core thing in a native way, not copy-paste the same sentence three times.",
       "- The alt text should describe the final image asset, not just the raw UI screenshot.",
+      "- Set `source_pr_numbers` to an empty array unless the prompt explicitly provides PR numbers to cite.",
       "",
       "Return strict JSON matching the schema.",
     ].join("\n"),
@@ -494,14 +471,7 @@ function buildCodexPrompt(context, planPath) {
         `copy_brief: ${candidate.copy_brief}`,
         `viewport: ${candidate.viewport}`,
         `theme: ${candidate.theme}`,
-        `score: ${candidate.score}`,
-        `matched_prs: ${
-          candidate.matched_pull_requests.length === 0
-            ? "none"
-            : candidate.matched_pull_requests
-                .map((pr) => `${pr.number ? `#${pr.number}` : "local"} ${pr.title}`)
-                .join(" | ")
-        }`,
+        `screen_key: ${candidate.screen_key}`,
         `absolute_path: ${candidate.absolute_path}`,
       ].join("\n");
     })
@@ -525,11 +495,10 @@ function buildCodexPrompt(context, planPath) {
     JSON.stringify(buildResponseSchema(context), null, 2),
     "",
     "Execution requirements:",
-    "- Use only the provided candidate screenshots.",
-    "- Choose the single highest-value post for the requested date.",
+    "- Use only the provided screenshot.",
     "- Do not render images yourself.",
-    "- Do not pick a candidate that duplicates a recent archived concept unless no stronger option exists.",
-    "- Do not treat directory variants as meaningfully different just because the exact content_key changed.",
+    "- Do not mention recent release timing, recent PRs, or recency-based product claims unless the prompt explicitly includes that evidence.",
+    "- Use `source_pr_numbers: []` unless the prompt explicitly gives you PR numbers to cite.",
     "- If the chosen candidate has audience_scope `admin-only`, make that admin audience explicit in the copy.",
   ].join("\n");
 }
@@ -603,6 +572,7 @@ function validatePlan(modelPlan, context) {
       concept_key: candidate.concept_key,
       copy_brief: candidate.copy_brief,
       matched_pull_requests: candidate.matched_pull_requests,
+      screen_key: candidate.screen_key || inferScreenKey(candidate),
       screenshot_file: candidate.file,
       social: {
         bluesky: post.social.bluesky.trim(),

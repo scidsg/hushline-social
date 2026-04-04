@@ -6,7 +6,8 @@ This repo plans one post per publish date from current local Hush Line context, 
 
 ## What It Does
 
-- builds one fresh post per run from current docs, PR history, and the latest screenshot release
+- builds one fresh post per run from current docs and the latest screenshot set
+- randomly picks one eligible screenshot per run after excluding recent repeats of the same screen
 - selects screenshots only from `../hushline-screenshots/releases/latest`
 - writes network-specific copy plus separate image alt text
 - renders the final `@2x` PNG asset into `previous-posts/YYYY-MM-DD`

@@ -142,58 +142,48 @@ test("inferTopicFamily groups onboarding directory screenshots under the directo
   );
 });
 
-test("filterCandidatesForArchiveHistory filters saturated topic families when enough alternatives exist", () => {
+test("filterCandidatesForArchiveHistory removes same-screen variants from recent archive history", () => {
   const archiveHistory = [
     {
       concept_key: "directory-verified",
       content_key: "guest-directory-verified",
       date: "2026-03-20",
       screenshot_file: "guest/guest-directory-verified.png",
-      topic_family: "directory",
-    },
-    {
-      concept_key: "directory-attorneys-applied-filters",
-      content_key: "guest-directory-attorneys-applied-filters",
-      date: "2026-03-23",
-      screenshot_file: "guest/guest-directory-attorneys-applied-filters.png",
-      topic_family: "directory",
-    },
-    {
-      concept_key: "onboarding-directory",
-      content_key: "auth-newman-onboarding-directory",
-      date: "2026-03-24",
-      screenshot_file: "newman/auth-newman-onboarding-directory.png",
-      topic_family: "directory",
-    },
-    {
-      concept_key: "directory-all",
-      content_key: "guest-directory-all",
-      date: "2026-03-26",
-      screenshot_file: "guest/guest-directory-all.png",
+      screen_key: "directory-index",
       topic_family: "directory",
     },
   ];
 
   const candidates = [
     {
-      concept_key: "directory-public-records",
-      content_key: "guest-directory-public-records",
+      concept_key: "directory-all",
+      content_key: "guest-directory-all",
+      path: "/directory",
+    },
+    {
+      concept_key: "directory-securedrop",
+      content_key: "guest-directory-securedrop",
+      path: "/directory",
+    },
+    {
+      concept_key: "directory-attorney-adam-j-levitt",
+      content_key: "guest-directory-attorney-adam-j-levitt",
+      path: "/directory/public-records/public-record~adam-j-levitt",
     },
     {
       concept_key: "encryption-settings",
       content_key: "auth-artvandelay-settings-encryption",
+      path: "/settings/encryption",
     },
     {
       concept_key: "notifications-settings",
       content_key: "auth-artvandelay-settings-notifications",
+      path: "/settings/notifications",
     },
     {
-      concept_key: "aliases-settings",
-      content_key: "auth-artvandelay-settings-aliases",
-    },
-    {
-      concept_key: "email-headers-tool",
-      content_key: "auth-artvandelay-email-headers",
+      concept_key: "admin-guidance",
+      content_key: "auth-admin-settings-guidance",
+      path: "/settings/guidance",
     },
   ];
 
@@ -201,52 +191,48 @@ test("filterCandidatesForArchiveHistory filters saturated topic families when en
 
   assert.equal(filtered.length, 4);
   assert.deepEqual(
-    filtered.map((candidate) => candidate.topic_family),
-    ["encryption", "notifications", "aliases", "email-headers"],
+    filtered.map((candidate) => candidate.content_key),
+    [
+      "guest-directory-attorney-adam-j-levitt",
+      "auth-artvandelay-settings-encryption",
+      "auth-artvandelay-settings-notifications",
+      "auth-admin-settings-guidance",
+    ],
   );
 });
 
-test("filterCandidatesForArchiveHistory keeps saturated topic families when too few alternatives remain", () => {
+test("filterCandidatesForArchiveHistory falls back to repeated screens when needed but still blocks exact content repeats", () => {
   const archiveHistory = [
     {
-      concept_key: "directory-verified",
-      content_key: "guest-directory-verified",
+      concept_key: "directory-all",
+      content_key: "guest-directory-all",
       date: "2026-03-20",
-      screenshot_file: "guest/guest-directory-verified.png",
-      topic_family: "directory",
-    },
-    {
-      concept_key: "directory-attorneys-applied-filters",
-      content_key: "guest-directory-attorneys-applied-filters",
-      date: "2026-03-23",
-      screenshot_file: "guest/guest-directory-attorneys-applied-filters.png",
+      screenshot_file: "guest/guest-directory-all.png",
+      screen_key: "directory-index",
       topic_family: "directory",
     },
   ];
 
   const candidates = [
     {
-      concept_key: "directory-all",
-      content_key: "guest-directory-all",
+      concept_key: "directory-verified",
+      content_key: "guest-directory-verified",
+      path: "/directory",
       topic_family: "directory",
     },
     {
-      concept_key: "profile-admin",
-      content_key: "guest-profile-admin",
-      topic_family: "profile",
-    },
-    {
-      concept_key: "notifications-settings",
-      content_key: "auth-artvandelay-settings-notifications",
-      topic_family: "notifications",
+      concept_key: "directory-all",
+      content_key: "guest-directory-all",
+      path: "/directory",
+      topic_family: "directory",
     },
   ];
 
   const filtered = filterCandidatesForArchiveHistory(candidates, archiveHistory);
 
-  assert.equal(filtered.length, 3);
+  assert.equal(filtered.length, 1);
   assert.deepEqual(
     filtered.map((candidate) => candidate.content_key),
-    ["guest-directory-all", "guest-profile-admin", "auth-artvandelay-settings-notifications"],
+    ["guest-directory-verified"],
   );
 });
