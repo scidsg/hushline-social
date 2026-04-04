@@ -1,0 +1,31 @@
+Slot: tuesday
+Planned date: 2026-03-31
+Template: hushline-social-mobile-template.html
+Screenshot: /Users/scidsg/hushline-screenshots/releases/latest/artvandelay/auth-artvandelay-tools-email-validation-status-valid-mobile-light-fold.png
+Content key: auth-artvandelay-tools-email-validation-status-valid
+Headline: Check suspicious email headers before you act
+Subtext: Hush Line includes an email validation tool so recipients can inspect raw headers, review authentication checks, and save a report.
+
+Image alt text
+Social graphic built from a mobile Hush Line screenshot showing the Email Validation tool. The screen shows tabs for Email Validation and Vision Assistant, a box of raw email headers, a purple Validate Headers button, a Download Report button, and the start of a results summary below.
+
+Social post copy
+
+LinkedIn (330/3000)
+When a source email looks off, the first question is simple: did it really come from where it says it did?
+
+Hush Line includes an Email Validation tool for recipients and staff. Paste raw headers, inspect DKIM, SPF, and DMARC results, and download a report you can keep with your review notes.
+
+Learn more at https://hushline.app.
+
+Mastodon (282/500)
+When an email looks questionable, recipients need a fast way to check the headers before they rely on it.
+
+Hush Line's Email Validation tool lets you paste raw headers, review DKIM, SPF, and DMARC results, and download a report for your records.
+
+Learn more at https://hushline.app.
+
+Bluesky (256/300)
+When an email looks questionable, recipients need a quick way to inspect the headers before they rely on it.
+
+Hush Line's Email Validation tool checks DKIM, SPF, and DMARC from raw headers and lets you download a report. Learn more at https://hushline.app.

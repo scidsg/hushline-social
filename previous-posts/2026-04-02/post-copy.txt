@@ -1,0 +1,33 @@
+Slot: thursday
+Planned date: 2026-04-02
+Template: hushline-daily-mobile-template.html
+Screenshot: /Users/scidsg/hushline-screenshots/releases/latest/artvandelay/auth-artvandelay-settings-encryption-mobile-light-fold.png
+Content key: auth-artvandelay-settings-encryption
+Headline: Add your PGP key before you share your tip line
+Subtext: Your profile can stay visible without a key, but sources cannot send encrypted tips until your encryption setup is in place.
+
+Image alt text
+A Hush Line social graphic built around a light-mode mobile screenshot of the Encryption settings page. The screen shows options to import a Proton Mail key or paste a public PGP key manually, alongside headline text about setting up encryption before sharing a tip line.
+
+Social post copy
+
+LinkedIn (321/3000)
+Before you share your Hush Line profile, add your PGP key.
+
+This screen lets recipients import a Proton Mail key or paste a public key manually. Your profile can still appear in Hush Line without it, but sources cannot send encrypted tips through your form until encryption is set up.
+
+Learn more at https://hushline.app.
+
+Mastodon (294/500)
+Before you share your Hush Line profile, add your PGP key.
+
+Recipients can import a Proton Mail key or paste a public key manually from Settings. Your profile can still be visible without it, but people cannot send encrypted tips until encryption is set up.
+
+Learn more at https://hushline.app.
+
+Bluesky (280/300)
+Before you share your Hush Line profile, add your PGP key.
+
+Recipients can import a Proton Mail key or paste a public key manually. Your profile can still be visible without it, but people cannot send encrypted tips until encryption is set up.
+
+Learn more at https://hushline.app.

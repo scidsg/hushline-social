@@ -1,0 +1,50 @@
+{
+  "slot": "monday",
+  "planned_date": "2026-03-30",
+  "screenshot_file": "guest/guest-directory-newsrooms-desktop-light-fold.png",
+  "content_key": "guest-directory-newsrooms",
+  "headline": "Find a newsroom before you send a tip",
+  "subtext": "The public Newsrooms tab helps sources search and narrow newsroom listings by location before they share anything sensitive.",
+  "image_alt_text": "Social graphic showing Hush Line on desktop with the public Whistleblower Support Directory open to the Newsrooms tab. The image shows a search field, a Show Filters link, a note explaining that the tab includes self-reported and automated newsroom listings, and visible newsroom cards including 100 Days in Appalachia and 100Reporters.",
+  "social": {
+    "bluesky": "Finding the right newsroom should not take guesswork.\n\nHush Line's public Newsrooms tab lets you search and filter newsroom listings, including by location, before you share anything sensitive. No account is required to send a tip.\n\nLearn more at https://hushline.app.",
+    "linkedin": "If you need to reach a newsroom, finding the right one should not depend on guesswork.\n\nHush Line's public Newsrooms tab lets you search and filter newsroom listings in one place, including location filters, so you can narrow the field before you share anything sensitive. You do not need an account to send a message.\n\nLearn more at https://hushline.app.",
+    "mastodon": "Finding the right newsroom should not take guesswork.\n\nHush Line's public Newsrooms tab lets you search and filter newsroom listings, including by location, before you share anything sensitive. No account is required to send a tip.\n\nLearn more at https://hushline.app."
+  },
+  "rationale": "Recent archive history is already heavy on directory posts, but this is still the strongest production pick because it is the clearest screenshot tied to the newest shipped work in the latest release: the Newsrooms tab and new location filters. It matches a core documented Hush Line need by helping sources identify the right newsroom before disclosing, and the above-the-fold desktop view shows real search, filters, and listings instead of an empty or generic state.",
+  "source_pr_numbers": [
+    1826,
+    1821,
+    1820,
+    1818
+  ],
+  "audience_scope": "public",
+  "concept_key": "directory-newsrooms",
+  "copy_brief": "Write for sources and public users evaluating or using Hush Line.",
+  "matched_pull_requests": [
+    {
+      "merged_at": "2026-03-30T08:58:13Z",
+      "number": 1826,
+      "title": "#1825 Add location filters to the Newsrooms tab with parity to Attorneys"
+    },
+    {
+      "merged_at": "2026-03-28T00:12:10Z",
+      "number": 1821,
+      "title": "Add desktop scroll controls for overflowing directory tabs"
+    },
+    {
+      "merged_at": "2026-03-27T23:14:06Z",
+      "number": 1820,
+      "title": "Avoid full-page docs screenshots on heavy directory scenes"
+    },
+    {
+      "merged_at": "2026-03-27T22:22:09Z",
+      "number": 1818,
+      "title": "[codex] Add docs screenshot for newsrooms tab"
+    }
+  ],
+  "theme": "light",
+  "title": "Directory - Newsrooms",
+  "topic_family": "directory",
+  "viewport": "desktop"
+}

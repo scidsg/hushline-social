@@ -2,7 +2,9 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 
 const {
+  chooseTemplateName,
   filterCandidatesForArchiveHistory,
+  filterCandidatesForTemplateName,
   inferTopicFamily,
   parseArgs,
   planDay,
@@ -29,6 +31,15 @@ function buildContext(overrides = {}) {
     slot: {
       planned_date: "2026-03-20",
       slot: "friday",
+    },
+    template_selection: {
+      available_templates: [
+        "hushline-daily-desktop-template.html",
+        "hushline-daily-mobile-template.html",
+        "hushline-daily-mobile-template-2.html",
+      ],
+      desired_template_name: "hushline-daily-desktop-template.html",
+      desired_template_type: "desktop",
     },
     ...overrides,
   };
@@ -96,8 +107,52 @@ test("validatePlan trims social copy and enriches the selected candidate metadat
   assert.equal(validated.post.screenshot_file, "guest/guest-directory-verified-desktop-light-fold.png");
   assert.equal(validated.post.audience_scope, "public");
   assert.equal(validated.post.concept_key, "directory-verified");
+  assert.equal(validated.post.template_name, "hushline-daily-desktop-template.html");
   assert.equal(validated.post.topic_family, "directory");
   assert.deepEqual(validated.post.matched_pull_requests, [{ number: 1765, title: "Fix guest screenshot" }]);
+});
+
+test("chooseTemplateName picks randomly from the available daily templates", () => {
+  const originalRandom = Math.random;
+  Math.random = () => 0.6;
+
+  try {
+    const selected = chooseTemplateName(
+      [],
+      [
+        "hushline-daily-desktop-template.html",
+        "hushline-daily-mobile-template.html",
+        "hushline-daily-mobile-template-2.html",
+      ],
+    );
+
+    assert.equal(selected, "hushline-daily-mobile-template.html");
+  } finally {
+    Math.random = originalRandom;
+  }
+});
+
+test("filterCandidatesForTemplateName narrows the shortlist to the chosen template type", () => {
+  const filtered = filterCandidatesForTemplateName(
+    [
+      {
+        content_key: "guest-directory-verified",
+        file: "guest/guest-directory-verified-desktop-light-fold.png",
+        viewport: "desktop",
+      },
+      {
+        content_key: "auth-artvandelay-settings-authentication",
+        file: "auth/auth-artvandelay-settings-authentication-mobile-light-fold.png",
+        viewport: "mobile",
+      },
+    ],
+    "hushline-daily-mobile-template-2.html",
+  );
+
+  assert.deepEqual(
+    filtered.map((candidate) => candidate.content_key),
+    ["auth-artvandelay-settings-authentication"],
+  );
 });
 
 test("validatePlan rejects admin-only screenshots when the copy never says admin or team", () => {

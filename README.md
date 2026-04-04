@@ -12,6 +12,8 @@ This repo plans one post per publish date from current local Hush Line context, 
 - writes network-specific copy plus separate image alt text
 - renders the final `@2x` PNG asset into `previous-posts/YYYY-MM-DD`
 - uses the pushed dated archive folder as the LinkedIn publication-state record across machines
+- discovers regular daily templates from any `templates/hushline-daily-*.html` file
+- picks one matching daily template at random for each run, then constrains the screenshot choice to that template type
 - renders one weekly verified-user post archive from directory JSON into `previous-verified-user-posts/YYYY-MM-DD`
 - writes network-specific copy, alt text, and a `post-copy.txt` alongside the verified-user card assets
 - fills the verified-user template with display name, bio, direct `/to/...` URL, and a matching QR code
@@ -109,6 +111,8 @@ cd /Users/scidsg/hushline-social
 
 ## Notes
 
+- Regular daily templates are discovered dynamically from `templates/hushline-daily-*.html`. Adding a new file with that prefix makes it eligible for future daily runs without further code changes.
+- The verified-user template is separate and does not participate in daily template selection.
 - The planner fails on stale screenshot data unless explicitly overridden.
 - The daily planner wrapper can reset tracked changes and remove untracked files before `git pull --ff-only`.
 - The daily planner keeps its archive local by default; the daily LinkedIn publisher pushes `previous-posts/YYYY-MM-DD` after successful publication, and the pushed dated folder is the publication-state signal across machines.

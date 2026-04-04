@@ -1,0 +1,31 @@
+Slot: wednesday
+Planned date: 2026-04-01
+Publish mode: text
+Article URL: https://hushline.app/library/blog/who-should-run-a-personal-server-tip-line
+Content key: weekly-article-who-should-run-a-personal-server-tip-line
+Headline: Who Should Run a Personal Server Tip Line
+Subtext: An independent journalist, public-interest lawyer, or organizer does not always need to self-host a tip line. In many cases, the easier path is the better one: create an account, finish setup, and publish the address. But some independent recipients have a di…
+
+Social post copy
+
+LinkedIn (314/3000)
+Should an independent journalist, lawyer, or organizer use Hush Line's Personal Server for a tip line?
+
+We just published an article on how to decide whether more control over the device and setup is worth the extra work.
+
+Read it here 👉 https://hushline.app/library/blog/who-should-run-a-personal-server-tip-line
+
+Mastodon (314/500)
+Should an independent journalist, lawyer, or organizer use Hush Line's Personal Server for a tip line?
+
+We just published an article on how to decide whether more control over the device and setup is worth the extra work.
+
+Read it here 👉 https://hushline.app/library/blog/who-should-run-a-personal-server-tip-line
+
+Bluesky (299/300)
+Should an independent journalist, lawyer, or organizer use Hush Line's Personal Server for a tip line?
+
+We just published an article on how to decide whether more control over the device and setup is worth…
+
+Read it here 👉 https://hushline.app/library/blog/who-should-run-a-personal-server-tip-line
+

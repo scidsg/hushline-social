@@ -6,13 +6,39 @@ REPO_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 DATE_OVERRIDE=""
 ARCHIVE_KEY=""
+DATE_ROOT="previous-posts"
 DRY_RUN=0
 FORCE=0
 NO_PUSH=0
 
+effective_archive_root() {
+  printf '%s\n' "${DATE_ROOT#./}"
+}
+
+archive_kind_label() {
+  local archive_root=""
+  archive_root="$(effective_archive_root)"
+  case "$archive_root" in
+    previous-posts)
+      printf '%s\n' "Daily"
+      ;;
+    previous-verified-user-posts)
+      printf '%s\n' "Verified-user"
+      ;;
+    previous-article-posts)
+      printf '%s\n' "Article-share"
+      ;;
+    *)
+      printf '%s\n' "Archive"
+      ;;
+  esac
+}
+
 archive_already_pushed() {
   local publish_date=""
   local archive_key=""
+  local archive_root=""
+  local archive_label=""
   local remote="${HUSHLINE_SOCIAL_ARCHIVE_REMOTE:-origin}"
   local branch="${HUSHLINE_SOCIAL_ARCHIVE_BRANCH:-main}"
   local archive_path=""
@@ -24,7 +50,9 @@ archive_already_pushed() {
 
   publish_date="$(effective_date)"
   archive_key="$(effective_archive_key)"
-  archive_path="previous-posts/$archive_key/post.json"
+  archive_root="$(effective_archive_root)"
+  archive_label="$(archive_kind_label)"
+  archive_path="$archive_root/$archive_key/post.json"
   remote_ref="refs/remotes/$remote/$branch"
 
   if ! git -C "$REPO_DIR" fetch --quiet "$remote" "$branch:$remote_ref"; then
@@ -33,7 +61,7 @@ archive_already_pushed() {
   fi
 
   if git -C "$REPO_DIR" cat-file -e "${remote}/${branch}:${archive_path}" 2>/dev/null; then
-    echo "Daily archive container $archive_key for planned date $publish_date is already present on $remote/$branch; skipping publish."
+    echo "$archive_label archive container $archive_key for planned date $publish_date is already present on $remote/$branch; skipping publish."
     exit 0
   fi
 }
@@ -47,6 +75,10 @@ parse_args() {
         ;;
       --archive-key)
         ARCHIVE_KEY="$2"
+        shift 2
+        ;;
+      --date-root)
+        DATE_ROOT="$2"
         shift 2
         ;;
       --dry-run)
@@ -67,10 +99,11 @@ Usage:
   ./scripts/agent_daily_linkedin_publisher.sh
   ./scripts/agent_daily_linkedin_publisher.sh --date 2026-03-18
   ./scripts/agent_daily_linkedin_publisher.sh --date 2026-03-18 --archive-key 2026-03-18-1
+  ./scripts/agent_daily_linkedin_publisher.sh --date 2026-04-01 --date-root previous-article-posts
   ./scripts/agent_daily_linkedin_publisher.sh --dry-run
 
 Behavior:
-  - Loads the archived daily post from previous-posts/YYYY-MM-DD
+  - Loads the archived social post from the selected archive root
   - Finds the post for today or the supplied date
   - Publishes it to LinkedIn
   - Pushes the dated archive folder after successful publication
@@ -124,7 +157,12 @@ push_archive() {
     return
   fi
 
-  local -a cmd=(./scripts/push_previous_posts_archive.sh --date "$(effective_date)" --archive-key "$(effective_archive_key)")
+  local -a cmd=(
+    ./scripts/push_previous_posts_archive.sh
+    --date "$(effective_date)"
+    --archive-key "$(effective_archive_key)"
+    --archive-root "$(effective_archive_root)"
+  )
   (cd "$REPO_DIR" && "${cmd[@]}")
 }
 
@@ -136,6 +174,7 @@ main() {
   local -a cmd=(node scripts/publish-daily-linkedin.js)
   [[ -n "$DATE_OVERRIDE" ]] && cmd+=(--date "$DATE_OVERRIDE")
   [[ -n "$ARCHIVE_KEY" ]] && cmd+=(--archive-key "$ARCHIVE_KEY")
+  [[ -n "$DATE_ROOT" ]] && cmd+=(--date-root "$DATE_ROOT")
   (( DRY_RUN == 1 )) && cmd+=(--dry-run)
   (( FORCE == 1 )) && cmd+=(--force)
 

@@ -10,6 +10,7 @@ const {
   REPO_ROOT,
   archiveKeyDate,
   compareArchiveKeys,
+  detectTemplate,
   excerptText,
   getWeekdayLabel,
   inferScreenKey,
@@ -218,23 +219,122 @@ function loadArchiveHistory(currentArchiveKey) {
     .slice(-20)
     .map((archiveKey) => {
       const postPath = path.join(DAILY_POSTS_ROOT, archiveKey, "post.json");
-      if (!fs.existsSync(postPath)) {
-        return null;
+      const postCopyPath = path.join(DAILY_POSTS_ROOT, archiveKey, "post-copy.txt");
+      let post = null;
+
+      if (fs.existsSync(postPath)) {
+        post = readJson(postPath);
       }
 
-      const post = readJson(postPath);
+      if (!post && !fs.existsSync(postCopyPath)) {
+        return null;
+      }
+      const postCopy = fs.existsSync(postCopyPath)
+        ? fs.readFileSync(postCopyPath, "utf8")
+        : "";
+      const templateMatch = postCopy.match(/^Template:\s+(.+)$/m);
+
       return {
         archive_key: archiveKey,
-        concept_key: post.concept_key || normalizeConceptKey(post.content_key),
-        content_key: post.content_key,
+        concept_key: (post && (post.concept_key || normalizeConceptKey(post.content_key))) || "",
+        content_key: (post && post.content_key) || "",
         date: archiveKeyDate(archiveKey),
-        headline: post.headline,
-        screen_key: post.screen_key || inferScreenKey(post),
-        screenshot_file: post.screenshot_file,
-        topic_family: post.topic_family || inferTopicFamily(post),
+        headline: (post && post.headline) || "",
+        screen_key: (post && (post.screen_key || inferScreenKey(post))) || "",
+        screenshot_file: (post && post.screenshot_file) || "",
+        template_name: (post && post.template_name) || (templateMatch ? templateMatch[1].trim() : ""),
+        topic_family: (post && (post.topic_family || inferTopicFamily(post))) || "",
       };
     })
     .filter(Boolean);
+}
+
+function listDailyTemplateNames() {
+  return fs.readdirSync(path.join(REPO_ROOT, "templates"))
+    .filter((name) => /^hushline-daily-.*\.html$/.test(name))
+    .sort((left, right) => left.localeCompare(right, undefined, { numeric: true }));
+}
+
+function templateTypeForName(templateName) {
+  if (/^hushline-daily-mobile-template(?:-.+)?\.html$/.test(templateName)) {
+    return "mobile";
+  }
+
+  if (/^hushline-daily-desktop-template(?:-.+)?\.html$/.test(templateName)) {
+    return "desktop";
+  }
+
+  return null;
+}
+
+function detectCandidateTemplateType(candidate) {
+  try {
+    return detectTemplate(candidate.file || candidate.screenshot_file);
+  } catch (_error) {
+    if (candidate.viewport === "mobile" || candidate.viewport === "desktop") {
+      return candidate.viewport;
+    }
+
+    return null;
+  }
+}
+
+function chooseTemplateName(_archiveHistory, templateNames) {
+  if (templateNames.length === 0) {
+    throw new Error("No daily templates are available.");
+  }
+
+  return templateNames[Math.floor(Math.random() * templateNames.length)];
+}
+
+function filterCandidatesForTemplateName(candidates, templateName) {
+  const desiredType = templateTypeForName(templateName);
+
+  if (!desiredType) {
+    return candidates;
+  }
+
+  const matchingCandidates = candidates.filter(
+    (candidate) => detectCandidateTemplateType(candidate) === desiredType,
+  );
+
+  return matchingCandidates.length > 0 ? matchingCandidates : candidates;
+}
+
+function chooseTemplateNameForCandidate(candidate, context) {
+  if (
+    !context.template_selection ||
+    !Array.isArray(context.template_selection.available_templates) ||
+    context.template_selection.available_templates.length === 0
+  ) {
+    const fallbackType = detectCandidateTemplateType(candidate);
+    const fallbackTemplates = listDailyTemplateNames().filter(
+      (templateName) => templateTypeForName(templateName) === fallbackType,
+    );
+
+    return fallbackTemplates[0] || null;
+  }
+
+  const candidateType = detectCandidateTemplateType(candidate);
+  const desiredTemplateType = context.template_selection.desired_template_type;
+
+  if (
+    candidateType &&
+    candidateType === desiredTemplateType &&
+    context.template_selection.desired_template_name
+  ) {
+    return context.template_selection.desired_template_name;
+  }
+
+  const matchingTemplateNames = context.template_selection.available_templates.filter(
+    (templateName) => templateTypeForName(templateName) === candidateType,
+  );
+
+  if (matchingTemplateNames.length > 0) {
+    return matchingTemplateNames[0];
+  }
+
+  return context.template_selection.desired_template_name;
 }
 
 function filterCandidatesForArchiveHistory(candidates, archiveHistory) {
@@ -292,10 +392,13 @@ function buildDailyContext(args) {
     week,
   });
   const archiveHistory = loadArchiveHistory(args.archiveKey);
-  const filteredCandidates = filterCandidatesForArchiveHistory(
+  const templateNames = listDailyTemplateNames();
+  const desiredTemplateName = chooseTemplateName(archiveHistory, templateNames);
+  const variedCandidates = filterCandidatesForArchiveHistory(
     planningContext.candidate_screenshots,
     archiveHistory,
   );
+  const filteredCandidates = filterCandidatesForTemplateName(variedCandidates, desiredTemplateName);
   const selectedCandidates = pickRandomCandidates(filteredCandidates, 1);
 
   if (selectedCandidates.length === 0) {
@@ -315,6 +418,11 @@ function buildDailyContext(args) {
     slot: {
       planned_date: args.date,
       slot: getWeekdayLabel(args.date),
+    },
+    template_selection: {
+      available_templates: templateNames,
+      desired_template_name: desiredTemplateName,
+      desired_template_type: templateTypeForName(desiredTemplateName),
     },
     week,
   };
@@ -350,6 +458,7 @@ function buildPromptPayload(context) {
       `Bluesky ${LIMITS.bluesky}`,
       "",
       `Target dark-mode share for this run: ${context.dark_ratio}`,
+      `Target template for this run: ${context.template_selection.desired_template_name}`,
       `Screenshot release from local latest folder: ${context.screenshot_release}`,
       `Screenshots captured at: ${context.screenshot_captured_at}`,
       "",
@@ -364,9 +473,12 @@ function buildPromptPayload(context) {
       "",
       "Instructions:",
       "- Use the provided screenshot only.",
-      "- The screenshot was preselected at random from the current eligible pool after excluding recent repeats of the same screen.",
+      "- The screenshot was preselected at random from the current eligible pool after excluding recent repeats of the same screen and matching the target template for this run.",
       "- Produce exactly one post for the requested date.",
       "- Do not talk about recent releases, recent merges, or product recency unless the prompt explicitly gives you that information.",
+      "- Avoid repeating a content theme or route that was used recently in archived daily posts.",
+      "- Treat screenshots in the same topic family as repeats even when the exact content_key differs. For example, directory-all, directory-verified, and onboarding-directory all count as directory posts for variation purposes.",
+      "- The provided screenshot already fits the target template for this run.",
       "- Match the copy to the candidate audience scope. Public screens should read public-facing. Recipient-shared screens should read like recipient workflows. Admin-only screens must clearly say admin or team context.",
       "- Headline and subtext should be concise and straightforward.",
       "- Each network copy should say the same core thing in a native way, not copy-paste the same sentence three times.",
@@ -579,6 +691,7 @@ function validatePlan(modelPlan, context) {
         linkedin: post.social.linkedin.trim(),
         mastodon: post.social.mastodon.trim(),
       },
+      template_name: chooseTemplateNameForCandidate(candidate, context),
       theme: candidate.theme,
       title: candidate.title,
       topic_family: candidate.topic_family || inferTopicFamily(candidate),
@@ -630,7 +743,9 @@ async function planDay(args) {
 module.exports = {
   DAILY_POSTS_ROOT,
   buildDailyContext,
+  chooseTemplateName,
   filterCandidatesForArchiveHistory,
+  filterCandidatesForTemplateName,
   inferTopicFamily,
   parseArgs,
   planDay,

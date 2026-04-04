@@ -24,6 +24,52 @@ function defaultLinkedInVersion() {
   return `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, "0")}`;
 }
 
+function previousLinkedInVersion(now = new Date()) {
+  const previousMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+  return `${previousMonth.getFullYear()}${String(previousMonth.getMonth() + 1).padStart(2, "0")}`;
+}
+
+function resolveLinkedInVersionCandidates(requestedVersion, now = new Date()) {
+  const explicitVersion = String(requestedVersion || "").trim();
+
+  if (explicitVersion) {
+    if (!/^\d{6}$/.test(explicitVersion)) {
+      throw new Error("LINKEDIN_API_VERSION must use YYYYMM format.");
+    }
+    return [explicitVersion];
+  }
+
+  const currentVersion = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, "0")}`;
+  const fallbackVersion = previousLinkedInVersion(now);
+  return currentVersion === fallbackVersion ? [currentVersion] : [currentVersion, fallbackVersion];
+}
+
+function isInactiveLinkedInVersionError(error) {
+  const message = error instanceof Error ? error.message : String(error);
+  return /NONEXISTENT_VERSION/.test(message);
+}
+
+async function withLinkedInVersionFallback({ requestedVersion, now = new Date(), onRetry = () => {}, run }) {
+  const versionCandidates = resolveLinkedInVersionCandidates(requestedVersion, now);
+
+  for (let index = 0; index < versionCandidates.length; index += 1) {
+    const version = versionCandidates[index];
+
+    try {
+      return await run(version);
+    } catch (error) {
+      const nextVersion = versionCandidates[index + 1];
+      if (!nextVersion || !isInactiveLinkedInVersionError(error)) {
+        throw error;
+      }
+
+      onRetry({ currentVersion: version, error, nextVersion });
+    }
+  }
+
+  throw new Error("No LinkedIn API version candidates were available.");
+}
+
 function parseArgs(argv) {
   const args = {
     allowWeekend: false,
@@ -93,7 +139,7 @@ function printHelp() {
       "Environment:",
       "  LINKEDIN_ACCESS_TOKEN    OAuth access token with LinkedIn posting permissions",
       "  LINKEDIN_AUTHOR_URN      urn:li:person:... or urn:li:organization:...",
-      "  LINKEDIN_API_VERSION     Optional, defaults to current YYYYMM",
+      "  LINKEDIN_API_VERSION     Optional, uses current YYYYMM and retries previous month if inactive",
       "",
     ].join("\n"),
   );
@@ -113,13 +159,9 @@ function getDailyPostDir(args) {
 
 function getRepoArchiveRootName(args) {
   const resolvedDateRoot = path.resolve(args.dateRoot);
-
-  if (resolvedDateRoot === path.join(REPO_ROOT, "previous-posts")) {
-    return "previous-posts";
-  }
-
-  if (resolvedDateRoot === path.join(REPO_ROOT, "previous-verified-user-posts")) {
-    return "previous-verified-user-posts";
+  const relativeRoot = path.relative(REPO_ROOT, resolvedDateRoot);
+  if (relativeRoot && !relativeRoot.startsWith("..") && !path.isAbsolute(relativeRoot)) {
+    return relativeRoot;
   }
 
   return null;
@@ -167,7 +209,12 @@ function resolveArchivedDailyPost(args) {
     outputDir,
     post: readJson(postPath),
     summaryLabel: args.archiveKey,
-    type: archiveRootName === "previous-verified-user-posts" ? "verified-user-archive" : "daily-archive",
+    type:
+      archiveRootName === "previous-verified-user-posts"
+        ? "verified-user-archive"
+        : archiveRootName === "previous-article-posts"
+          ? "article-archive"
+          : "daily-archive",
   };
 }
 
@@ -343,29 +390,39 @@ async function main() {
 
   const token = requireEnv("LINKEDIN_ACCESS_TOKEN");
   const authorUrn = requireEnv("LINKEDIN_AUTHOR_URN");
-  const version = process.env.LINKEDIN_API_VERSION || defaultLinkedInVersion();
-  let imageUrn = "";
+  const requestedVersion = process.env.LINKEDIN_API_VERSION || "";
+  const created = await withLinkedInVersionFallback({
+    onRetry: ({ currentVersion, nextVersion }) => {
+      process.stdout.write(
+        `LinkedIn API version ${currentVersion} is not active; retrying with ${nextVersion}.\n`,
+      );
+    },
+    requestedVersion,
+    async run(version) {
+      let imageUrn = "";
 
-  if (imageRequired) {
-    const initialized = await initializeImageUpload(authorUrn, token, version);
-    imageUrn = initialized?.value?.image || "";
-    const uploadUrl = initialized?.value?.uploadUrl;
+      if (imageRequired) {
+        const initialized = await initializeImageUpload(authorUrn, token, version);
+        imageUrn = initialized?.value?.image || "";
+        const uploadUrl = initialized?.value?.uploadUrl;
 
-    if (!imageUrn || !uploadUrl) {
-      throw new Error("LinkedIn image initializeUpload response did not include image URN and upload URL.");
-    }
+        if (!imageUrn || !uploadUrl) {
+          throw new Error("LinkedIn image initializeUpload response did not include image URN and upload URL.");
+        }
 
-    await uploadImage(uploadUrl, imagePath, token, version);
-    await waitForImageAvailable(imageUrn, token, version);
-  }
+        await uploadImage(uploadUrl, imagePath, token, version);
+        await waitForImageAvailable(imageUrn, token, version);
+      }
 
-  const created = await createLinkedInPost({
-    altText: String(post.image_alt_text || ""),
-    authorUrn,
-    commentary: post.social.linkedin,
-    imageUrn,
-    token,
-    version,
+      return createLinkedInPost({
+        altText: String(post.image_alt_text || ""),
+        authorUrn,
+        commentary: post.social.linkedin,
+        imageUrn,
+        token,
+        version,
+      });
+    },
   });
 
   process.stdout.write(
@@ -380,7 +437,17 @@ async function main() {
   );
 }
 
-main().catch((error) => {
-  process.stderr.write(`${error.stack || error.message}\n`);
-  process.exit(1);
-});
+if (require.main === module) {
+  main().catch((error) => {
+    process.stderr.write(`${error.stack || error.message}\n`);
+    process.exit(1);
+  });
+} else {
+  module.exports = {
+    defaultLinkedInVersion,
+    isInactiveLinkedInVersionError,
+    previousLinkedInVersion,
+    resolveLinkedInVersionCandidates,
+    withLinkedInVersionFallback,
+  };
+}
