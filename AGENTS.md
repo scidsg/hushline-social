@@ -20,9 +20,11 @@ The job is not to produce a static yearly batch with hard-coded copy. The job is
 - The planner must be dynamic.
 - Do not hard-code feature themes, post copy, or a fixed yearly manifest.
 - Use current local Hush Line context to decide what to feature.
+- Ground feature selection and copy in `../hushline/docs/USE-CASES.md`.
 - Pick the daily screenshot from the current eligible pool at random.
 - Treat tab, filter, search, and viewport variations of the same underlying screen as repeats for archive-avoidance purposes.
 - Favor features that align with Hush Line’s documented user base.
+- Use the upstream use-cases document to identify the actual user group, workflow, and deployment context shown in the screenshot before writing copy.
 - Keep content fresh day to day. Avoid repeating the same concept across adjacent archived posts.
 
 ## Source Inputs
@@ -31,10 +33,13 @@ Use these sources when planning:
 
 - `../hushline`
   - docs describing users and use cases
+- `../hushline/docs/USE-CASES.md`
+  - primary grounding document for user groups, workflows, deployment models, and screenshot-to-audience fit
 - `../hushline-screenshots/releases/latest`
   - latest published screenshot set
 
 Do not treat old archived screenshot releases as the primary source when planning new content.
+Do not rely on generic assumptions about Hush Line's audience when `../hushline/docs/USE-CASES.md` provides a more specific grounding for the feature or screen being shown.
 
 For verified-user weekly posts:
 
@@ -57,6 +62,8 @@ For verified-user weekly posts:
 ## Audience Context Rules
 
 Match copy to the screenshot context.
+
+Before writing copy, identify which user group and flow from `../hushline/docs/USE-CASES.md` the screenshot represents, and keep the language grounded in that use case.
 
 - `guest` or public-facing screens:
   - write for sources, visitors, and public users evaluating or using Hush Line
@@ -100,6 +107,7 @@ Rules:
 - social copy must be end-user-facing
 - alt text must be separate from social copy
 - do not include alt text inside post copy
+- ground the message in the relevant use case from `../hushline/docs/USE-CASES.md`, not in generic platform copy
 - no marketing-speak
 - no filler
 - avoid hype, superlatives, and vague claims
