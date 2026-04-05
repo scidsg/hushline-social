@@ -4,6 +4,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 source "$REPO_DIR/scripts/lib/load-launchd-env.sh"
+source "$REPO_DIR/scripts/lib/update-run-repos.sh"
 LOCK_DIR="$REPO_DIR/.tmp/daily-planner.lock"
 ENV_FILE=""
 COMBINED_LOG_FILE="${HUSHLINE_SOCIAL_COMBINED_LOG_FILE:-$REPO_DIR/logs/social-daily.log}"
@@ -53,35 +54,7 @@ skip_if_weekend() {
 }
 
 update_repo() {
-  if [[ "$AUTO_GIT_PULL" != "1" ]]; then
-    echo "Automatic git pull skipped."
-    return
-  fi
-
-  if [[ "$AUTO_GIT_CLEAN" == "1" ]]; then
-    echo "Resetting tracked changes before daily planning."
-    git -C "$REPO_DIR" reset --hard HEAD
-    echo "Removing untracked files before daily planning."
-    git -C "$REPO_DIR" clean -fd
-  else
-    if ! git -C "$REPO_DIR" diff --quiet --ignore-submodules HEAD --; then
-      echo "Refusing to git pull with unstaged tracked changes in $REPO_DIR." >&2
-      exit 1
-    fi
-
-    if ! git -C "$REPO_DIR" diff --cached --quiet --ignore-submodules --; then
-      echo "Refusing to git pull with staged changes in $REPO_DIR." >&2
-      exit 1
-    fi
-
-    if [[ -n "$(git -C "$REPO_DIR" ls-files --others --exclude-standard)" ]]; then
-      echo "Refusing to git pull with untracked files in $REPO_DIR." >&2
-      exit 1
-    fi
-  fi
-
-  echo "Running git pull --ff-only before daily planning."
-  git -C "$REPO_DIR" pull --ff-only
+  update_daily_planning_repos "$REPO_DIR" "$AUTO_GIT_PULL" "$AUTO_GIT_CLEAN"
 }
 
 if ! mkdir -p "$REPO_DIR/.tmp"; then

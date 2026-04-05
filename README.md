@@ -114,7 +114,7 @@ cd /Users/scidsg/hushline-social
 - Regular daily templates are discovered dynamically from `templates/hushline-daily-*.html`. Adding a new file with that prefix makes it eligible for future daily runs without further code changes.
 - The verified-user template is separate and does not participate in daily template selection.
 - The planner fails on stale screenshot data unless explicitly overridden.
-- The daily planner wrapper can reset tracked changes and remove untracked files before `git pull --ff-only`.
+- The daily planner and manual daily post wrappers can reset tracked changes, remove untracked files, and run `git pull --ff-only` in both `hushline-social` and `../hushline-screenshots` before planning.
 - The daily planner keeps its archive local by default; the daily LinkedIn publisher pushes `previous-posts/YYYY-MM-DD` after successful publication, and the pushed dated folder is the publication-state signal across machines.
 - The verified-user weekly LaunchAgents are scheduled for Mondays, but the manual wrappers can be run for any date override.
 - The verified-user LinkedIn publisher posts from `previous-verified-user-posts/YYYY-MM-DD`.
