@@ -1,0 +1,33 @@
+Slot: monday
+Planned date: 2026-04-06
+Template: hushline-daily-mobile-template-2.html
+Screenshot: /Users/scidsg/hushline-screenshots/releases/latest/admin/auth-admin-settings-guidance-mobile-dark-fold.png
+Content key: auth-admin-settings-guidance
+Headline: For admins: set guidance before sources send a message
+Subtext: Admins can add plain-language safety instructions and an emergency exit option so visitors know how to approach a tip line more carefully.
+
+Image alt text
+Social graphic using a dark-mode mobile Hush Line screenshot of the admin Settings page. The screen highlights a User Guidance section with a Show User Guidance toggle, a Test User Guidance button, and Emergency Exit settings for teams running a Hush Line deployment.
+
+Social post copy
+
+LinkedIn (368/3000)
+When a source lands on a tip line, they may still need simple instructions before they decide what to do.
+
+For admins or teams running Hush Line, the guidance settings let you add that context in plain language. You can tell visitors to use Tor Browser, avoid a work device, or leave the page quickly with an emergency exit button.
+
+Learn more at https://hushline.app.
+
+Mastodon (354/500)
+If you run Hush Line for a newsroom, law office, school, or organization, the first screen should answer basic safety questions.
+
+The admin guidance settings let your team add plain-language instructions before a source sends anything, including cautions about work devices, Tor Browser, and an emergency exit button.
+
+Learn more at https://hushline.app.
+
+Bluesky (252/300)
+A tip line should explain itself before a source writes anything.
+
+For admins and teams running Hush Line, the guidance settings let you add plain-language safety notes and an emergency exit button to the send flow.
+
+Learn more at https://hushline.app.

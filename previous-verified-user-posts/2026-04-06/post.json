@@ -1,0 +1,19 @@
+{
+  "date": "2026-04-06",
+  "display_name": "Grace McNally",
+  "headline": "Grace McNally",
+  "image_alt_text": "A social card featuring verified Hush Line user Grace McNally, their bio, their tip line URL, and a QR code that links to the same URL.",
+  "planned_date": "2026-04-06",
+  "primary_username": "gracermcnally",
+  "qr_code_file": "verified-user-qr.png",
+  "social": {
+    "bluesky": "🤩 Verified Member Highlight!\n\nDocumentary director Grace McNally is behind \"Keep Sweet: Pray and Obey\" and \"Slay the Dragon.\".\n\nSend Grace a tip: https://tips.hushline.app/to/gracermcnally",
+    "linkedin": "🤩 Verified Member Highlight!\n\nGrace McNally is a documentary director responsible for \"Keep Sweet: Pray and Obey\" and \"Slay the Dragon.\".\n\nTo send Grace a tip, go to https://tips.hushline.app/to/gracermcnally.",
+    "mastodon": "🤩 Verified Member Highlight!\n\nGrace McNally is a documentary director behind \"Keep Sweet: Pray and Obey\" and \"Slay the Dragon.\".\n\nTo send Grace a tip, visit https://tips.hushline.app/to/gracermcnally."
+  },
+  "slot": "verified-user-weekly",
+  "source": "https://tips.hushline.app/directory/users.json",
+  "subtext": "Documentary Director responsible for \"Keep Sweet: Pray and Obey\" and \"Slay the Dragon.\"",
+  "user_link": "https://tips.hushline.app/to/gracermcnally",
+  "user_url": "https://tips.hushline.app/to/gracermcnally"
+}

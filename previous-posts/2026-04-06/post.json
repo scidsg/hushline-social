@@ -1,0 +1,37 @@
+{
+  "slot": "monday",
+  "planned_date": "2026-04-06",
+  "screenshot_file": "admin/auth-admin-settings-guidance-mobile-dark-fold.png",
+  "content_key": "auth-admin-settings-guidance",
+  "headline": "For admins: set guidance before sources send a message",
+  "subtext": "Admins can add plain-language safety instructions and an emergency exit option so visitors know how to approach a tip line more carefully.",
+  "image_alt_text": "Social graphic using a dark-mode mobile Hush Line screenshot of the admin Settings page. The screen highlights a User Guidance section with a Show User Guidance toggle, a Test User Guidance button, and Emergency Exit settings for teams running a Hush Line deployment.",
+  "social": {
+    "bluesky": "A tip line should explain itself before a source writes anything.\n\nFor admins and teams running Hush Line, the guidance settings let you add plain-language safety notes and an emergency exit button to the send flow.\n\nLearn more at https://hushline.app.",
+    "linkedin": "When a source lands on a tip line, they may still need simple instructions before they decide what to do.\n\nFor admins or teams running Hush Line, the guidance settings let you add that context in plain language. You can tell visitors to use Tor Browser, avoid a work device, or leave the page quickly with an emergency exit button.\n\nLearn more at https://hushline.app.",
+    "mastodon": "If you run Hush Line for a newsroom, law office, school, or organization, the first screen should answer basic safety questions.\n\nThe admin guidance settings let your team add plain-language instructions before a source sends anything, including cautions about work devices, Tor Browser, and an emergency exit button.\n\nLearn more at https://hushline.app."
+  },
+  "rationale": "This screenshot supports the platform-administrator use case in USE-CASES.md and gives the month a new angle: pre-send guidance for admins or teams running a Hush Line deployment. It avoids the recent run of directory, encryption, authentication, and email-validation posts while staying grounded in safer first contact for sources.",
+  "source_pr_numbers": [],
+  "audience_scope": "admin-only",
+  "concept_key": "settings-guidance",
+  "copy_brief": "Write for admins or teams running a Hush Line deployment. Make the admin audience explicit.",
+  "matched_pull_requests": [
+    {
+      "merged_at": "2026-04-05T05:28:31Z",
+      "number": 1853,
+      "title": "Point AGENTS.md use-case guidance to docs/USE-CASES.md"
+    },
+    {
+      "merged_at": "2026-04-03T20:00:01Z",
+      "number": 1850,
+      "title": "Change User Guidance prompt character count"
+    }
+  ],
+  "screen_key": "/settings/guidance",
+  "template_name": "hushline-daily-mobile-template-2.html",
+  "theme": "dark",
+  "title": "Settings - User Guidance (admin)",
+  "topic_family": "guidance",
+  "viewport": "mobile"
+}
