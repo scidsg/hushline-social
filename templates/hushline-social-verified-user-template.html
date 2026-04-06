@@ -143,12 +143,13 @@
     .badge {
       display: inline-block;
       background: rgba(255, 255, 255, 1);
-      color: #7D25C1;
+      color: #7D25C1; 
       font-size: 1rem;
       font-weight: 700;
       padding: 3px 12px 6px 12px;
       border-radius: 9999px;
       margin-bottom: 24px;
+      margin-top: .25rem;
       border: 1px solid #7D25C1;
       width: fit-content;
     }
@@ -158,6 +159,12 @@
       color: #4f168a;
       font-weight: 700;
     }
+    .tag {
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      color: #4f168a;
+    }
   </style>
 </head>
 <body>
@@ -166,7 +173,8 @@
 
     <div class="layout">
       <section class="left">
-        <h1 class="headline">Verified User Name</h1>
+        <span class="tag">🤩 Verified Member Highlight</span>
+        <h1 class="headline">Verified Member Name</h1>
         <span class="badge">⭐️ Verified</span>
         <p class="subtext">
           Short verified-user bio goes here. This is placeholder copy for the
