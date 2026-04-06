@@ -1,0 +1,410 @@
+{
+  "audience_docs": [
+    {
+      "excerpt": "Hush Line Use Cases This document rationalizes Hush Line's use cases with AGENTS.md, the current application surface, and the public/library documentation. The goal is to keep product thinking grounded in the people Hush Line actually serves, the workflows the app currently supports, and the safety/privacy constraints that shape those workflows. Grounding Primary grounding reference: docs/ISO 37002.md Product principles: Usability of the Software Authenticity of the Receiver Plausible Deniability of the Whistleblower Availability of the System Anonymity of the Whistleblower Confidentiality and Integrity of the Disclosures Primary User Groups | Group | Typical Users | What They Need From Hush Line | | | | | | Message Senders | Whistleblowers, concerned citizens, engaged citizens, activists, students, bug bounty hunters | A low friction, privacy preserving way to find a trustworthy recipient and send a message without creating an account | | Message Recipients | Journalists, newsrooms, documentary teams, lawyers, law firms, employers, boards, educators, school administrators, organizers, activists, software developers, security teams, nonprofits | A trustworthy intake channel, secure delivery path, public credibility signals, and a manageable workflow for reviewing and responding to messages | | Shared or Role Based Recipients | Board inboxes, ethics/compliance contacts, public accountability channels, legal intake teams, security reporting addresses | Shared intake endpoints that can be published publicly without forcing a single personal identity | | Platform Administrators | Internal operators for managed or single tenant deployments | Branding, governance controls, registration gates, trust management, and account moderation | Deployment Models | Model | Best Fit | Wh…",
+      "file": "../hushline/docs/USE-CASES.md"
+    },
+    {
+      "excerpt": "Welcome to Hush Line Source basis: the public Hush Line Library welcome section and the project overview in README.md. Hush Line is an open source whistleblower platform for secure, anonymous, one way disclosures. It is built for journalists, lawyers, educators, organizers, employers, and other trusted recipients who need a safer way to receive tips from their communities. What Hush Line is designed to protect Anonymous submissions without requiring a sender account End to end encrypted delivery when the receiver has a PGP key Trust building signals such as verified accounts and public profile details Safer access paths, including Tor support and privacy preserving defaults Common ways people use it Publish a public tip line for your newsroom, law office, classroom, campaign, or company Receive messages in a web inbox without turning the sender flow into a live chat Share a directory listing or direct profile link so sources can verify they reached the right person Run the hosted service or use a Personal Server Where to begin New hosted service users should start with Start Here. If you want the guided setup flow, open New User Onboarding. If you already have an account, jump to Prep Your Account and Secure Your Account.",
+      "file": "../hushline/docs/library/welcome/welcome-to-hush-line.md"
+    },
+    {
+      "excerpt": "Hush Line Hush Line is an open source whistleblower platform for secure, anonymous, one way disclosures to journalists, lawyers, and other trusted recipients. Hosted service: <https://tips.hushline.app Start here: <https://hushline.app/library/docs/getting started/start here/ Why Hush Line Hush Line is built for safety critical reporting workflows where trust, anonymity, and usability all matter. The project design priorities are: Usability of the software Authenticity of the receiver Plausible deniability of the whistleblower Availability of the system Anonymity of the whistleblower Confidentiality and integrity of disclosures Core Capabilities | Area | What Hush Line Provides | | | | | Anonymous submissions | No submitter account required for sending disclosures | | Encryption | End to end encryption workflow with recipient PGP keys, plus server side fallback path | | Receiver trust | Verified account workflow and trusted directory UX | | Account security | Password authentication with optional TOTP 2FA | | Privacy access | Tor onion support and privacy preserving defaults | | Communication workflow | Message status management, one way replies, and optional email forwarding modes | | Org customization | Branding controls, onboarding guidance, and configurable profile fields | | Operational controls | Strong CI checks, migration compatibility testing, and workflow security validation | Quickstart (Local) 1) Clone and start Open <http://localhost:8080 . If you only want to start the current stack without first tearing it down, you can still use docker compose up or make run . If you want a slower, guided setup for a brand new machine, use the AI ready prompt in docs/LOCAL CONTRIBUTOR ONBOARDING PROMPT.md .",
+      "file": "../hushline/README.md"
+    },
+    {
+      "excerpt": "The Hush Line Personal Server Source: <https://hushline.app/library/docs/personal server/the hush line personal server/ The Hush Line Personal Server is the self hosted Hush Line appliance. It is designed for people who want the Hush Line workflow on hardware they control while still giving sources an anonymous, browser based submission path. How access works The Personal Server presents two addresses: a Tor onion address for private access through Tor Browser a local network HTTPS address for access from the network the device is connected to The in app server info page shows both addresses directly on the device. First run setup 1. Visit the device address. 2. Register the first account. 3. The first user created on a Personal Server becomes the admin. 4. Add your profile, encryption key, and notification settings. 5. Share the onion URL publicly so sources can reach you anonymously. Who it is for The product copy describes the Personal Server as a good fit for lawyers, journalists, educators, and business leaders who want a safer reporting channel for their communities. Related docs Specs Secure Your Account Share Your Tip Line",
+      "file": "../hushline/docs/library/personal-server/the-hush-line-personal-server.md"
+    },
+    {
+      "excerpt": "Public Record Provenance Roadmap (U.S.) This artifact tracks the active U.S. implementation roadmap and the policy only EU scaffold used to open follow on country issues. Scope Build an authoritative, ever growing U.S. public record attorney dataset. Keep only listings with strict, per record official source URLs. Remove listings when the official record can no longer be verified. Current Baseline (March 10, 2026) Active strict listings: 58 States with strict listings: AK , AL , AR , AZ , CA , CO , CT , DE , GA , IA , ID , IL , IN , KS , MA , MD , ME , MI , MN , MO , MS , MT , NC , ND , NE , NH , NJ , NM , OH , RI , SC , SD , TN , TX , UT , WA Other U.S. rows were removed because they only pointed to generic directory pages (not the exact record URL). Strict Provenance Rules source url must point to the exact public record URL for that listing. source url must be on the expected official state authority domain. Generic source pages are rejected. Synthetic markers ( listing= query/fragment hacks) are rejected. Chambers/private rankings are rejected as authoritative sources. State Adapter Strategy Discovery/additions must come from explicit state adapters only. All 50 states now have explicit adapter entries in discovery code. Each adapter must: query the official state authority source resolve an exact per record URL emit normalized listing rows that pass strict validation Until a state specific extractor is implemented, that state's adapter remains a no op.",
+      "file": "../hushline/docs/PUBLIC-RECORD-PROVENANCE-ROADMAP.md"
+    },
+    {
+      "excerpt": "INTERNATIONAL STANDARD ISO 37002 Whistleblowing management systems Guidelines Introduction Whistleblowing is the act of reporting suspected wrongdoing or risk of wrongdoing. Studies and experience demonstrate that a large proportion of wrongdoing comes to the attention of the affected organization via reports from persons within or close to the organization. Organizations are increasingly considering introducing or improving internal whistleblowing policies and processes in response to regulation or on a voluntary basis. This document provides guidance to organizations for establishing, implementing, maintaining and improving a whistleblowing management system, with the following outcomes: a) encouraging and facilitating reporting of wrongdoing; b) supporting and protecting whistleblowers and other interested parties involved; c) ensuring reports of wrongdoing are dealt with in a proper and timely manner; d) improving organizational culture and governance; e) reducing the risks of wrongdoing. Potential benefits for the organization include: allowing the organization to identify and address wrongdoing at the earliest opportunity; helping prevent or minimize loss of assets and aiding recovery of lost assets; ensuring compliance with organizational policies, procedures, and legal and social obligations; attracting and retaining personnel committed to the organization’s values and culture; demonstrating sound, ethical governance practices to society, markets, regulators, owners and other interested parties.",
+      "file": "../hushline/docs/ISO-37002.md"
+    }
+  ],
+  "candidate_screenshots": [
+    {
+      "absolute_path": "/Users/scidsg/hushline-screenshots/releases/latest/admin/auth-admin-settings-guidance-mobile-dark-fold.png",
+      "audience_scope": "admin-only",
+      "concept_key": "settings-guidance",
+      "copy_brief": "Write for admins or teams running a Hush Line deployment. Make the admin audience explicit.",
+      "content_key": "auth-admin-settings-guidance",
+      "file": "admin/auth-admin-settings-guidance-mobile-dark-fold.png",
+      "path": "/settings/guidance",
+      "session": "admin",
+      "theme": "dark",
+      "title": "Settings - User Guidance (admin)",
+      "viewport": "mobile",
+      "exclusion_reason": null,
+      "matched_pull_requests": [
+        {
+          "merged_at": "2026-04-05T05:28:31Z",
+          "number": 1853,
+          "title": "Point AGENTS.md use-case guidance to docs/USE-CASES.md"
+        },
+        {
+          "merged_at": "2026-04-03T20:00:01Z",
+          "number": 1850,
+          "title": "Change User Guidance prompt character count"
+        }
+      ],
+      "screen_key": "/settings/guidance",
+      "score": 38,
+      "topic_family": "guidance",
+      "history_stats": {
+        "candidate": {
+          "absolute_path": "/Users/scidsg/hushline-screenshots/releases/latest/admin/auth-admin-settings-guidance-mobile-dark-fold.png",
+          "audience_scope": "admin-only",
+          "concept_key": "settings-guidance",
+          "copy_brief": "Write for admins or teams running a Hush Line deployment. Make the admin audience explicit.",
+          "content_key": "auth-admin-settings-guidance",
+          "file": "admin/auth-admin-settings-guidance-mobile-dark-fold.png",
+          "path": "/settings/guidance",
+          "session": "admin",
+          "theme": "dark",
+          "title": "Settings - User Guidance (admin)",
+          "viewport": "mobile",
+          "exclusion_reason": null,
+          "matched_pull_requests": [
+            {
+              "merged_at": "2026-04-05T05:28:31Z",
+              "number": 1853,
+              "title": "Point AGENTS.md use-case guidance to docs/USE-CASES.md"
+            },
+            {
+              "merged_at": "2026-04-03T20:00:01Z",
+              "number": 1850,
+              "title": "Change User Guidance prompt character count"
+            }
+          ],
+          "screen_key": "/settings/guidance",
+          "score": 38,
+          "topic_family": "guidance"
+        },
+        "content_matches": 0,
+        "exact_screenshot_matches": 0,
+        "novelty_penalty": 0,
+        "screen_matches": 0,
+        "topic_matches": 0
+      },
+      "template_type": "mobile",
+      "template_type_average_usage": 0.5
+    }
+  ],
+  "daily_posts_root": "previous-posts",
+  "date": "2026-04-06",
+  "dark_ratio": 0.2,
+  "hushline_agent_context": "AGENTS.md This file provides operating guidance for coding agents working in the Hush Line repository. We are a 501(c)(3) non profit based in the United States, and consider this software safety critical infrastructure protecting users’ operational, physical, and digital security. Grounding Document Primary grounding reference: docs/ISO 37002.md ( ISO 37002:2021 Whistleblowing management systems Guidelines ) Use case reference: docs/USE CASES.md (canonical product and workflow use cases for agents) Principles Usability of the Software Authenticity of the Receiver Plausible Deniability of the Whistleblower Availability of the System Anonymity of the Whistleblower Confidentiality and Integrity of the Disclosures Core Users | Message Senders | Message Recipients | Administrators | | | | | | Whistleblowers | Journalists and Newsrooms | Platform Administrators | | Concerned citizens | Lawyers and Law Offices | | | Engaged citizens | Employers and Boards | | | Activists | Educators and Administrators | | | Students | Organizers and Activists | | | Bug bounty hunters | Software developers | | Geographic Location Global; default to privacy preserving choices across jurisdictions. Scope Applies to the entire repository unless a deeper AGENTS.md exists in a subdirectory. Project Priorities Preserve core whistleblower flow above all else. Prefer behavior preserving changes over refactors unless explicitly requested. Keep privacy/security guarantees intact when editing routes, models, or settings. Accessibility score must be 100. Performance score must be =95.",
+  "hushline_app_voice_guidance": [
+    "Use practical language from hushline.app: Hush Line is for anonymous, end-to-end encrypted contact and secure first contact, not broad marketing claims.",
+    "Keep the message grounded in the people Hush Line serves, such as sources, journalists, lawyers, educators, developers, organizers, and trusted recipients when the screenshot supports that audience.",
+    "Prefer concrete platform framing from hushline.app like no app download or account required for sources, a public directory that helps people find the right recipient, and browser-based tools that support real review workflows."
+  ],
+  "recent_archive_history": [
+    {
+      "archive_key": "2026-03-19",
+      "bluesky_copy": "Setting up Hush Line? Add your public PGP key during onboarding before you share your tip line. The updated setup flow keeps encryption in the main path, so sources can send messages that only you can read.",
+      "concept_key": "onboarding-encryption",
+      "content_key": "auth-newman-onboarding-encryption",
+      "date": "2026-03-19",
+      "headline": "Add your encryption key before you share your tip line",
+      "linkedin_copy": "Before you share a Hush Line profile, add your public PGP key. The guided setup now puts encryption in the main path, with Proton lookup or manual key entry in the same flow. That helps journalists, lawyers, educators, organizers, and other trusted recipients reach a usable tip line without skipping the step that lets sources send messages only they can read.",
+      "mastodon_copy": "If you're setting up Hush Line for reporting, legal work, education, or community use, don't skip encryption. The onboarding flow now walks you through adding your public PGP key, so sources can send messages that only you can read.",
+      "screen_key": "/settings/encryption",
+      "screenshot_file": "newman/auth-newman-onboarding-encryption-mobile-light-fold.png",
+      "subtext": "The guided setup walks you through adding a public PGP key so sources can send messages that only you can read.",
+      "template_name": "mobile",
+      "topic_family": "encryption"
+    },
+    {
+      "archive_key": "2026-03-20",
+      "bluesky_copy": "Need to verify who you're contacting before you send a tip? Hush Line's public directory shows verified profiles so you can compare recipients first. Learn more at https://hushline.app/.",
+      "concept_key": "directory-verified",
+      "content_key": "guest-directory-verified",
+      "date": "2026-03-20",
+      "headline": "Check verified tip lines before you reach out",
+      "linkedin_copy": "When you need to contact a journalist, lawyer, or other trusted recipient, the first question is whether you found the right person. Hush Line's public directory lets you browse verified profiles before you send anything, so you can check who runs the tip line and choose a better match for your situation. Learn more at https://hushline.app/.",
+      "mastodon_copy": "If you're deciding where to send a tip, Hush Line's public directory helps you start with verified profiles. You can compare recipients and check who runs the tip line before you reach out. Learn more at https://hushline.app/.",
+      "screen_key": "directory-index",
+      "screenshot_file": "guest/guest-directory-verified-desktop-light-fold.png",
+      "subtext": "The public directory helps sources compare verified profiles and choose a tip line that matches the person they need.",
+      "template_name": "desktop",
+      "topic_family": "directory"
+    },
+    {
+      "archive_key": "2026-03-23",
+      "bluesky_copy": "Need legal help before you send a tip?\n\nHush Line's public directory lets you filter attorney listings by location, so you can narrow the list before sharing anything sensitive.\n\nLearn more at https://hushline.app.",
+      "concept_key": "directory-attorneys-applied-filters",
+      "content_key": "guest-directory-attorneys-applied-filters",
+      "date": "2026-03-23",
+      "headline": "Filter attorney listings before you send anything sensitive",
+      "linkedin_copy": "If you're looking for a lawyer to contact through Hush Line, the hard part is often narrowing the field before you share anything sensitive.\n\nThe public directory now gives that search a clearer path with attorney listings you can filter by location, so you can compare recipients in the place you need instead of scanning a generic list.\n\nLearn more at https://hushline.app.",
+      "mastodon_copy": "If you need legal help before you share sensitive information, starting with the right recipient matters.\n\nHush Line's public directory lets you filter attorney listings by location, so you can narrow the list before you send a tip.\n\nLearn more at https://hushline.app.",
+      "screen_key": "directory-index",
+      "screenshot_file": "guest/guest-directory-attorneys-applied-filters-mobile-light-fold.png",
+      "subtext": "The public directory lets sources narrow attorney profiles by location so they can compare recipients before reaching out.",
+      "template_name": "mobile",
+      "topic_family": "directory"
+    },
+    {
+      "archive_key": "2026-03-24",
+      "bluesky_copy": "Before you share your tip line, decide whether people should be able to find it in Hush Line's public directory.\n\nThe last onboarding step lets you turn that on right away, so sources can verify they reached the right person.\n\nSign up at https://hushline.app.",
+      "concept_key": "onboarding-directory",
+      "content_key": "auth-newman-onboarding-directory",
+      "date": "2026-03-24",
+      "headline": "Choose whether sources can find your tip line",
+      "linkedin_copy": "Before you share a Hush Line profile, decide whether people should be able to find it in the public directory.\n\nThe last onboarding step lets journalists, lawyers, educators, organizers, and other trusted recipients turn directory visibility on right away, so sources can verify they reached the right person before they send anything sensitive.\n\nLearn more at https://hushline.app.",
+      "mastodon_copy": "Before you share your tip line, decide whether people should be able to find it in Hush Line's public directory.\n\nThe last onboarding step lets recipients turn directory visibility on right away, so sources can verify they reached the right person before they send anything sensitive.\n\nLearn more at https://hushline.app.",
+      "screen_key": "directory-index",
+      "screenshot_file": "newman/auth-newman-onboarding-directory-mobile-light-fold.png",
+      "subtext": "The final onboarding step lets recipients join the public directory, so sources can verify they reached the right person before they send a message.",
+      "template_name": "mobile",
+      "topic_family": "directory"
+    },
+    {
+      "archive_key": "2026-03-26",
+      "bluesky_copy": "If you need to send a tip, the first step is deciding who to contact.\n\nHush Line's public directory puts lawyers, journalists, and other recipients in one place, so you can compare tip lines before you share anything sensitive.\n\nLearn more at https://hushline.app.",
+      "concept_key": "directory-all",
+      "content_key": "guest-directory-all",
+      "date": "2026-03-26",
+      "headline": "Browse the full directory before you choose who to contact",
+      "linkedin_copy": "If you need to send a tip, the first step is often deciding who to contact.\n\nHush Line's public directory now gives you one place to browse lawyers, journalists, and other recipients, with clearer ordering and a visible note when a list includes automated entries. That makes it easier to compare tip lines before you share anything sensitive, and you do not need an account to send a message.\n\nLearn more at https://hushline.app.",
+      "mastodon_copy": "If you need to send a tip, the first step is often deciding who to contact.\n\nHush Line's public directory puts lawyers, journalists, and other recipients in one place, with clearer ordering and a visible note when a list includes automated entries. You can compare tip lines before you share anything sensitive.\n\nLearn more at https://hushline.app.",
+      "screen_key": "directory-index",
+      "screenshot_file": "guest/guest-directory-all-mobile-light-fold.png",
+      "subtext": "The public All tab puts lawyers, journalists, and other recipients in one place so sources can compare options before sharing anything sensitive.",
+      "template_name": "hushline-social-mobile-template.html",
+      "topic_family": "directory"
+    },
+    {
+      "archive_key": "2026-03-26-1",
+      "bluesky_copy": "Before your first tip arrives, decide how you want that alert to reach you.\n\nHush Line's onboarding includes a notifications step so recipients can set that up before they start using the inbox.\n\nSign up at https://hushline.app.",
+      "concept_key": "onboarding-notifications",
+      "content_key": "auth-newman-onboarding-notifications",
+      "date": "2026-03-26",
+      "headline": "Choose how new tips should reach you",
+      "linkedin_copy": "When someone sends a tip, you should already know how you want that alert to reach you.\n\nHush Line's onboarding walks recipients through notification setup before they start using the inbox. That gives journalists, lawyers, educators, and other trusted recipients a clearer day-to-day workflow from the start.\n\nSign up at https://hushline.app.",
+      "mastodon_copy": "Before your first tip comes in, decide how you want to hear about it.\n\nHush Line's onboarding includes a notifications step so recipients can set that up before they start using the inbox.\n\nSign up at https://hushline.app.",
+      "screen_key": "/settings/notifications",
+      "screenshot_file": "newman/auth-newman-onboarding-notifications-desktop-light-fold.png",
+      "subtext": "The notifications step in onboarding lets recipients decide how Hush Line should alert them about incoming messages before they start using the inbox.",
+      "template_name": "hushline-social-desktop-template.html",
+      "topic_family": "notifications"
+    },
+    {
+      "archive_key": "2026-03-26-2",
+      "bluesky_copy": "What Boards and Ethics Offices Should Put on a Tip Line Before Launch\n\nA board committee or ethics office can do a lot of internal preparation before launching a public rep…\n\nRead the new article: https://hushline.app/library/blog/what-boards-and-ethics-offices-should-put-on-a-tip-line-before-launch",
+      "concept_key": "weekly-article-share",
+      "content_key": "weekly-article-what-boards-and-ethics-offices-should-put-on-a-tip-line-before-launch",
+      "date": "2026-03-26",
+      "headline": "What Boards and Ethics Offices Should Put on a Tip Line Before Launch",
+      "linkedin_copy": "What Boards and Ethics Offices Should Put on a Tip Line Before Launch\n\nA board committee or ethics office can do a lot of internal preparation before launching a public reporting channel: decide who monitors it, review policy language, and agree on escalation paths. But the first practical test often happens earlier.\n\nRead the new article: https://hushline.app/library/blog/what-boards-and-ethics-offices-should-put-on-a-tip-line-before-launch",
+      "mastodon_copy": "New Hush Line article:\n\nWhat Boards and Ethics Offices Should Put on a Tip Line Before Launch\n\nA board committee or ethics office can do a lot of internal preparation before launching a public reporting channel: decide who monitors it, review policy language, and agree on escalation paths.\n\nRead more: https://hushline.app/library/blog/what-boards-and-ethics-offices-should-put-on-a-tip-line-before-launch",
+      "screen_key": "recipient-profile",
+      "screenshot_file": "guest/guest-profile-artvandelay-custom-form-desktop-light-fold.png",
+      "subtext": "A board committee or ethics office can do a lot of internal preparation before launching a public reporting channel: decide who monitors it, review policy language, and agree on escalation paths. But the first practical test often happens earlier. A whistlebl…",
+      "template_name": "hushline-social-desktop-template.html",
+      "topic_family": "profile"
+    },
+    {
+      "archive_key": "2026-03-26-3",
+      "bluesky_copy": "How can bug bounty and security teams get a better first pass on suspicious forwarded email before deciding what needs escalation?\nWe just published an article showing how Hush L…\nread it here: https://hushline.app/library/blog/how-security-teams-can-investigate-suspicious-email-with-better-context",
+      "concept_key": "weekly-article-share",
+      "content_key": "weekly-article-how-security-teams-can-investigate-suspicious-email-with-better-context",
+      "date": "2026-03-26",
+      "headline": "How Security Teams Can Investigate Suspicious Email With Better Context",
+      "linkedin_copy": "How can bug bounty and security teams get a better first pass on suspicious forwarded email before deciding what needs escalation?\nWe just published an article showing how Hush Line helps bug bounty and security teams get a better first pass on suspicious forwarded email before deciding what needs escalation.\nread it here: https://hushline.app/library/blog/how-security-teams-can-investigate-suspicious-email-with-better-context",
+      "mastodon_copy": "How can bug bounty and security teams get a better first pass on suspicious forwarded email before deciding what needs escalation?\nWe just published an article showing how Hush Line helps bug bounty and security teams get a better first pass on suspicious forwarded email before deciding what needs escalation.\nread it here: https://hushline.app/library/blog/how-security-teams-can-investigate-suspicious-email-with-better-context",
+      "screen_key": "weekly-article-how-security-teams-can-investigate-suspicious-email-with-better-context",
+      "screenshot_file": "",
+      "subtext": "Software developers and bug bounty teams often receive messy intake, not polished incident reports. A researcher, contractor, or employee forwards a suspicious email, says \"this looks wrong,\" and leaves the internal team to figure out whether it is a real phi…",
+      "template_name": "",
+      "topic_family": "weekly-article-how-security-teams-can-investigate-suspicious-email-with-better-context"
+    },
+    {
+      "archive_key": "2026-03-26-4",
+      "bluesky_copy": "What should teams know before they set this up?\n\nWe just published an article describing aliases help schools publish clearer reporting lanes for different campus concerns without makin…\n\nRead it here 👉 https://hushline.app/library/blog/why-schools-and-universities-need-separate-reporting-addresses",
+      "concept_key": "weekly-article-share",
+      "content_key": "weekly-article-why-schools-and-universities-need-separate-reporting-addresses",
+      "date": "2026-03-26",
+      "headline": "Why Schools and Universities Need Separate Reporting Addresses",
+      "linkedin_copy": "What should teams know before they set this up?\n\nWe just published an article describing aliases help schools publish clearer reporting lanes for different campus concerns without making students, staff, or families decode the institution first.\n\nRead it here 👉 https://hushline.app/library/blog/why-schools-and-universities-need-separate-reporting-addresses",
+      "mastodon_copy": "What should teams know before they set this up?\n\nWe just published an article describing aliases help schools publish clearer reporting lanes for different campus concerns without making students, staff, or families decode the institution first.\n\nRead it here 👉 https://hushline.app/library/blog/why-schools-and-universities-need-separate-reporting-addresses",
+      "screen_key": "weekly-article-why-schools-and-universities-need-separate-reporting-addresses",
+      "screenshot_file": "",
+      "subtext": "Universities rarely have just one kind of sensitive report to receive. A student safety concern, a Title IX-style complaint, and a financial misconduct report do not belong to the same office, do not carry the same expectations, and usually should not start w…",
+      "template_name": "",
+      "topic_family": "weekly-article-why-schools-and-universities-need-separate-reporting-addresses"
+    },
+    {
+      "archive_key": "2026-03-26-5",
+      "bluesky_copy": "What should teams know before launch?\n\nWe just published an article describing directory visibility, verified accounts, and shareable profile links make it easier for sources to reach the right newsroom c…\n\nRead it here 👉 https://hushline.app/library/blog/why-verified-tip-lines-matter-for-newsrooms",
+      "concept_key": "weekly-article-share",
+      "content_key": "weekly-article-why-verified-tip-lines-matter-for-newsrooms",
+      "date": "2026-03-26",
+      "headline": "Why Verified Tip Lines Matter for Newsrooms",
+      "linkedin_copy": "What should teams know before launch?\n\nWe just published an article describing directory visibility, verified accounts, and shareable profile links make it easier for sources to reach the right newsroom contact without guessing.\n\nRead it here 👉 https://hushline.app/library/blog/why-verified-tip-lines-matter-for-newsrooms",
+      "mastodon_copy": "What should teams know before launch?\n\nWe just published an article describing directory visibility, verified accounts, and shareable profile links make it easier for sources to reach the right newsroom contact without guessing.\n\nRead it here 👉 https://hushline.app/library/blog/why-verified-tip-lines-matter-for-newsrooms",
+      "screen_key": "weekly-article-why-verified-tip-lines-matter-for-newsrooms",
+      "screenshot_file": "",
+      "subtext": "A local newsroom can do everything right on the reporting side and still lose a source at the first step. A person who has seen wrongdoing usually starts with a simpler question than \"How does this newsroom handle secure intake?\" They ask, \"Is this the real t…",
+      "template_name": "",
+      "topic_family": "weekly-article-why-verified-tip-lines-matter-for-newsrooms"
+    },
+    {
+      "archive_key": "2026-03-26-6",
+      "bluesky_copy": "How can reporters turn photographed or scanned material into searchable text during the first pass on a tip?\n\nWe just published an article showing how hush Line's Vision Assistant helps reporters tur…\n\nRead it here 👉 https://hushline.app/library/blog/when-ocr-helps-reporters-handle-documents-faster",
+      "concept_key": "weekly-article-share",
+      "content_key": "weekly-article-when-ocr-helps-reporters-handle-documents-faster",
+      "date": "2026-03-26",
+      "headline": "When OCR Helps Reporters Handle Documents Faster",
+      "linkedin_copy": "How can reporters turn photographed or scanned material into searchable text during the first pass on a tip?\n\nWe just published an article showing how hush Line's Vision Assistant helps reporters turn photographed or scanned material into searchable text during the first pass on a tip.\n\nRead it here 👉 https://hushline.app/library/blog/when-ocr-helps-reporters-handle-documents-faster",
+      "mastodon_copy": "How can reporters turn photographed or scanned material into searchable text during the first pass on a tip?\n\nWe just published an article showing how hush Line's Vision Assistant helps reporters turn photographed or scanned material into searchable text during the first pass on a tip.\n\nRead it here 👉 https://hushline.app/library/blog/when-ocr-helps-reporters-handle-documents-faster",
+      "screen_key": "weekly-article-when-ocr-helps-reporters-handle-documents-faster",
+      "screenshot_file": "",
+      "subtext": "Investigative reporting often starts with imperfect source material. A reporter receives a Hush Line message that includes photos of printed records, screenshots of internal systems, or scanned pages that are readable enough for a human eye but slow to work t…",
+      "template_name": "",
+      "topic_family": "weekly-article-when-ocr-helps-reporters-handle-documents-faster"
+    },
+    {
+      "archive_key": "2026-03-26-7",
+      "bluesky_copy": "What should teams make clear before they publish a public reporting page?\n\nWe just published an article describing a small law office can use Hush Line's inbox, message statuses, and on…\n\nRead it here 👉 https://hushline.app/library/blog/how-law-firms-can-handle-sensitive-intake-without-losing-track",
+      "concept_key": "weekly-article-share",
+      "content_key": "weekly-article-how-law-firms-can-handle-sensitive-intake-without-losing-track",
+      "date": "2026-03-26",
+      "headline": "How Law Firms Can Handle Sensitive Intake Without Losing Track",
+      "linkedin_copy": "What should teams make clear before they publish a public reporting page?\n\nWe just published an article describing a small law office can use Hush Line's inbox, message statuses, and one-way replies to triage sensitive outreach without pushing legal intake into an improvised chat workflow.\n\nRead it here 👉 https://hushline.app/library/blog/how-law-firms-can-handle-sensitive-intake-without-losing-track",
+      "mastodon_copy": "What should teams make clear before they publish a public reporting page?\n\nWe just published an article describing a small law office can use Hush Line's inbox, message statuses, and one-way replies to triage sensitive outreach without pushing legal intake into an improvised chat workflow.\n\nRead it here 👉 https://hushline.app/library/blog/how-law-firms-can-handle-sensitive-intake-without-losing-track",
+      "screen_key": "weekly-article-how-law-firms-can-handle-sensitive-intake-without-losing-track",
+      "screenshot_file": "",
+      "subtext": "Small law offices often do intake when the office is effectively closed. A potential client sends a sensitive message after midnight, a paralegal reads it the next morning, and an attorney may not decide until later whether the matter fits the practice, needs…",
+      "template_name": "",
+      "topic_family": "weekly-article-how-law-firms-can-handle-sensitive-intake-without-losing-track"
+    },
+    {
+      "archive_key": "2026-03-26-8",
+      "bluesky_copy": "How can law offices keep Hush Line records portable and protected when a case stays open for months or years?\n\nWe just published an article on how data export, 2FA, and optional PGP encryption help law…\n\nRead it here 👉 https://hushline.app/library/blog/why-data-export-matters-for-long-running-cases",
+      "concept_key": "weekly-article-share",
+      "content_key": "weekly-article-why-data-export-matters-for-long-running-cases",
+      "date": "2026-03-26",
+      "headline": "Why Data Export Matters for Long-Running Cases",
+      "linkedin_copy": "How can law offices keep Hush Line records portable and protected when a case stays open for months or years?\n\nWe just published an article on how data export, 2FA, and optional PGP encryption help law offices keep case records usable over time.\n\nRead it here 👉 https://hushline.app/library/blog/why-data-export-matters-for-long-running-cases",
+      "mastodon_copy": "How can law offices keep Hush Line records portable and protected when a case stays open for months or years?\n\nWe just published an article on how data export, 2FA, and optional PGP encryption help law offices keep case records usable over time.\n\nRead it here 👉 https://hushline.app/library/blog/why-data-export-matters-for-long-running-cases",
+      "screen_key": "weekly-article-why-data-export-matters-for-long-running-cases",
+      "screenshot_file": "",
+      "subtext": "For lawyers, secure intake is only the beginning of the problem. A matter that starts with one sensitive disclosure may stay active through internal review, negotiation, regulatory contact, or litigation planning for a long time after the first message arrive…",
+      "template_name": "",
+      "topic_family": "weekly-article-why-data-export-matters-for-long-running-cases"
+    },
+    {
+      "archive_key": "2026-03-27",
+      "bluesky_copy": "When a source checks back after sending a tip, silence creates confusion.\n\nHush Line lets recipients set the status text shown at a temporary reply address, so people can see where a message stands without turning disclosures into live chat.\n\nSign up at https://hushline.app.",
+      "concept_key": "settings-replies",
+      "content_key": "auth-artvandelay-settings-replies",
+      "date": "2026-03-27",
+      "headline": "Set clear message statuses for sources",
+      "linkedin_copy": "When a source checks back after sending a tip, silence can create confusion.\n\nHush Line lets recipients set the status text shown at the source's temporary reply address, so a newsroom, law office, or other intake team can show where a message stands without turning the workflow into live chat.\n\nSign up at https://hushline.app.",
+      "mastodon_copy": "When someone checks back after sending a tip, they should not be left guessing.\n\nHush Line lets recipients set the status text shown at the source's temporary reply address, so people can see where a message stands without turning disclosures into live chat.\n\nSign up at https://hushline.app.",
+      "screen_key": "auth-artvandelay-settings-replies",
+      "screenshot_file": "artvandelay/auth-artvandelay-settings-replies-desktop-light-fold.png",
+      "subtext": "Recipients can decide what sources see at their temporary reply address after a tip comes in.",
+      "template_name": "hushline-social-desktop-template.html",
+      "topic_family": "message-statuses"
+    },
+    {
+      "archive_key": "2026-03-30",
+      "bluesky_copy": "Finding the right newsroom should not take guesswork.\n\nHush Line's public Newsrooms tab lets you search and filter newsroom listings, including by location, before you share anything sensitive. No account is required to send a tip.\n\nLearn more at https://hushline.app.",
+      "concept_key": "directory-newsrooms",
+      "content_key": "guest-directory-newsrooms",
+      "date": "2026-03-30",
+      "headline": "Find a newsroom before you send a tip",
+      "linkedin_copy": "If you need to reach a newsroom, finding the right one should not depend on guesswork.\n\nHush Line's public Newsrooms tab lets you search and filter newsroom listings in one place, including location filters, so you can narrow the field before you share anything sensitive. You do not need an account to send a message.\n\nLearn more at https://hushline.app.",
+      "mastodon_copy": "Finding the right newsroom should not take guesswork.\n\nHush Line's public Newsrooms tab lets you search and filter newsroom listings, including by location, before you share anything sensitive. No account is required to send a tip.\n\nLearn more at https://hushline.app.",
+      "screen_key": "directory-index",
+      "screenshot_file": "guest/guest-directory-newsrooms-desktop-light-fold.png",
+      "subtext": "The public Newsrooms tab helps sources search and narrow newsroom listings by location before they share anything sensitive.",
+      "template_name": "hushline-social-desktop-template.html",
+      "topic_family": "directory"
+    },
+    {
+      "archive_key": "2026-03-31",
+      "bluesky_copy": "When an email looks questionable, recipients need a quick way to inspect the headers before they rely on it.\n\nHush Line's Email Validation tool checks DKIM, SPF, and DMARC from raw headers and lets you download a report. Learn more at https://hushline.app.",
+      "concept_key": "tools-email-validation-status-valid",
+      "content_key": "auth-artvandelay-tools-email-validation-status-valid",
+      "date": "2026-03-31",
+      "headline": "Check suspicious email headers before you act",
+      "linkedin_copy": "When a source email looks off, the first question is simple: did it really come from where it says it did?\n\nHush Line includes an Email Validation tool for recipients and staff. Paste raw headers, inspect DKIM, SPF, and DMARC results, and download a report you can keep with your review notes.\n\nLearn more at https://hushline.app.",
+      "mastodon_copy": "When an email looks questionable, recipients need a fast way to check the headers before they rely on it.\n\nHush Line's Email Validation tool lets you paste raw headers, review DKIM, SPF, and DMARC results, and download a report for your records.\n\nLearn more at https://hushline.app.",
+      "screen_key": "/email-headers",
+      "screenshot_file": "artvandelay/auth-artvandelay-tools-email-validation-status-valid-mobile-light-fold.png",
+      "subtext": "Hush Line includes an email validation tool so recipients can inspect raw headers, review authentication checks, and save a report.",
+      "template_name": "hushline-social-mobile-template.html",
+      "topic_family": "email-headers"
+    },
+    {
+      "archive_key": "2026-04-01",
+      "bluesky_copy": "Protecting a tip line starts with protecting the account behind it.\n\nHush Line lets recipients turn on two-factor authentication from Settings and manage sign-in details in one place.\n\nLearn more at https://hushline.app.",
+      "concept_key": "settings-auth",
+      "content_key": "auth-artvandelay-settings-auth",
+      "date": "2026-04-01",
+      "headline": "Turn on two-factor authentication for your account",
+      "linkedin_copy": "Protecting a tip line starts with protecting the account behind it.\n\nHush Line lets recipients turn on two-factor authentication from Settings and manage core sign-in details in one place. That matters for journalists, lawyers, and other trusted recipients who need to keep access to sensitive inboxes under control.\n\nLearn more at https://hushline.app.",
+      "mastodon_copy": "Protecting a tip line starts with protecting the account behind it.\n\nHush Line lets recipients turn on two-factor authentication and manage sign-in details from Settings, so journalists, lawyers, and other trusted recipients can lock down inbox access.\n\nLearn more at https://hushline.app.",
+      "screen_key": "/settings/auth",
+      "screenshot_file": "artvandelay/auth-artvandelay-settings-auth-desktop-light-fold.png",
+      "subtext": "Recipients can manage core sign-in settings and enable 2FA from one place before they start handling sensitive tips.",
+      "template_name": "hushline-social-desktop-template.html",
+      "topic_family": "authentication"
+    },
+    {
+      "archive_key": "2026-04-02",
+      "bluesky_copy": "Before you share your Hush Line profile, add your PGP key.\n\nRecipients can import a Proton Mail key or paste a public key manually. Your profile can still be visible without it, but people cannot send encrypted tips until encryption is set up.\n\nLearn more at https://hushline.app.",
+      "concept_key": "settings-encryption",
+      "content_key": "auth-artvandelay-settings-encryption",
+      "date": "2026-04-02",
+      "headline": "Add your PGP key before you share your tip line",
+      "linkedin_copy": "Before you share your Hush Line profile, add your PGP key.\n\nThis screen lets recipients import a Proton Mail key or paste a public key manually. Your profile can still appear in Hush Line without it, but sources cannot send encrypted tips through your form until encryption is set up.\n\nLearn more at https://hushline.app.",
+      "mastodon_copy": "Before you share your Hush Line profile, add your PGP key.\n\nRecipients can import a Proton Mail key or paste a public key manually from Settings. Your profile can still be visible without it, but people cannot send encrypted tips until encryption is set up.\n\nLearn more at https://hushline.app.",
+      "screen_key": "/settings/encryption",
+      "screenshot_file": "artvandelay/auth-artvandelay-settings-encryption-mobile-light-fold.png",
+      "subtext": "Your profile can stay visible without a key, but sources cannot send encrypted tips until your encryption setup is in place.",
+      "template_name": "hushline-daily-mobile-template.html",
+      "topic_family": "encryption"
+    },
+    {
+      "archive_key": "2026-04-03",
+      "bluesky_copy": "If you need to contact a newsroom securely, start by confirming you have the right destination.\n\nHush Line's directory now includes refreshed SecureDrop listings so you can search news organizations before you send anything sensitive.\n\nLearn more at https://hushline.app.",
+      "concept_key": "directory-securedrop",
+      "content_key": "guest-directory-securedrop",
+      "date": "2026-04-03",
+      "headline": "Check the SecureDrop list before you choose a newsroom",
+      "linkedin_copy": "If you need to contact a newsroom securely, the first step is making sure you have the right destination.\n\nHush Line's public directory now includes refreshed SecureDrop listings, so you can search news organizations and open the listing you need from one place. That makes it easier to verify where you're headed before you send anything sensitive.\n\nLearn more at https://hushline.app.",
+      "mastodon_copy": "If you need to contact a newsroom securely, the first step is making sure you have the right destination.\n\nHush Line's public directory now includes refreshed SecureDrop listings, so you can search news organizations and open the listing you need from one place before you send anything sensitive.\n\nLearn more at https://hushline.app.",
+      "screen_key": "directory-index",
+      "screenshot_file": "guest/guest-directory-securedrop-desktop-light-fold.png",
+      "subtext": "Hush Line's public directory now surfaces refreshed SecureDrop listings so sources can compare news organizations and open the right tip line.",
+      "template_name": "hushline-daily-desktop-template.html",
+      "topic_family": "directory"
+    }
+  ],
+  "screenshot_captured_at": "2026-04-06T04:01:47.770Z",
+  "screenshot_release": "v0.6.29",
+  "slot": {
+    "planned_date": "2026-04-06",
+    "slot": "monday"
+  },
+  "template_selection": {
+    "available_templates": [
+      "hushline-daily-desktop-template-2.html",
+      "hushline-daily-desktop-template.html",
+      "hushline-daily-mobile-template-2.html",
+      "hushline-daily-mobile-template.html"
+    ],
+    "desired_template_name": "hushline-daily-mobile-template-2.html",
+    "desired_template_type": "mobile"
+  },
+  "week": "2026-W15"
+}
