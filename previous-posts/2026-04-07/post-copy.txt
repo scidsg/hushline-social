@@ -1,0 +1,33 @@
+Slot: tuesday
+Planned date: 2026-04-07
+Template: hushline-daily-desktop-template-2.html
+Screenshot: /Users/scidsg/hushline-screenshots/releases/latest/artvandelay/auth-artvandelay-tools-vision-desktop-dark-fold.png
+Content key: auth-artvandelay-tools-vision
+Headline: Turn source images into searchable text
+Subtext: Vision Assistant helps recipients extract text from screenshots, photographed documents, and notes in the browser during case review.
+
+Image alt text
+Desktop social graphic featuring Hush Line's dark-mode Vision Assistant page. The card shows the Tools section with the Vision Assistant tab selected, a note that the OCR runs in the browser, and an Add Images file picker for extracting searchable text from photos and screenshots.
+
+Social post copy
+
+LinkedIn (279/3000)
+Sometimes a source sends photos, screenshots, or scanned pages instead of a clean writeup.
+
+Hush Line's Vision Assistant helps recipients turn those images into searchable text in the browser, without sending the image data to Hush Line servers.
+
+Sign up at https://hushline.app.
+
+Mastodon (279/500)
+Sometimes a source sends photos, screenshots, or scanned pages instead of a clean writeup.
+
+Hush Line's Vision Assistant helps recipients turn those images into searchable text in the browser, without sending the image data to Hush Line servers.
+
+Sign up at https://hushline.app.
+
+Bluesky (259/300)
+Sometimes a source sends photos or screenshots instead of a clean writeup.
+
+Hush Line's Vision Assistant helps recipients turn those images into searchable text in the browser, without sending image data to Hush Line servers.
+
+Sign up at https://hushline.app.

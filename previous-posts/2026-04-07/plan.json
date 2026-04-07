@@ -1,0 +1,30 @@
+{
+  "date": "2026-04-07",
+  "post": {
+    "slot": "tuesday",
+    "planned_date": "2026-04-07",
+    "screenshot_file": "artvandelay/auth-artvandelay-tools-vision-desktop-dark-fold.png",
+    "content_key": "auth-artvandelay-tools-vision",
+    "headline": "Turn source images into searchable text",
+    "subtext": "Vision Assistant helps recipients extract text from screenshots, photographed documents, and notes in the browser during case review.",
+    "image_alt_text": "Desktop social graphic featuring Hush Line's dark-mode Vision Assistant page. The card shows the Tools section with the Vision Assistant tab selected, a note that the OCR runs in the browser, and an Add Images file picker for extracting searchable text from photos and screenshots.",
+    "social": {
+      "bluesky": "Sometimes a source sends photos or screenshots instead of a clean writeup.\n\nHush Line's Vision Assistant helps recipients turn those images into searchable text in the browser, without sending image data to Hush Line servers.\n\nSign up at https://hushline.app.",
+      "linkedin": "Sometimes a source sends photos, screenshots, or scanned pages instead of a clean writeup.\n\nHush Line's Vision Assistant helps recipients turn those images into searchable text in the browser, without sending the image data to Hush Line servers.\n\nSign up at https://hushline.app.",
+      "mastodon": "Sometimes a source sends photos, screenshots, or scanned pages instead of a clean writeup.\n\nHush Line's Vision Assistant helps recipients turn those images into searchable text in the browser, without sending the image data to Hush Line servers.\n\nSign up at https://hushline.app."
+    },
+    "rationale": "This screenshot is a new topic family within the last month and maps directly to the documented recipient workflow in USE-CASES: turning screenshots or photos into searchable text during case review. The copy stays recipient-facing, avoids admin framing, and grounds the value in the browser-based OCR flow shown on the page.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "tools-vision",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "matched_pull_requests": [],
+    "screen_key": "/vision",
+    "template_name": "hushline-daily-desktop-template-2.html",
+    "theme": "dark",
+    "title": "Tools - Vision Assistant (artvandelay)",
+    "topic_family": "vision",
+    "viewport": "desktop"
+  },
+  "summary": "Recipient-facing daily post for the Vision Assistant desktop dark-mode screenshot, focused on turning source images into searchable text during case review."
+}
