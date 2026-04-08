@@ -4,6 +4,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 source "$REPO_DIR/scripts/lib/load-launchd-env.sh"
+source "$REPO_DIR/scripts/lib/transient-retry.sh"
 LOCK_DIR="$REPO_DIR/.tmp/daily-linkedin.lock"
 ENV_FILE=""
 COMBINED_LOG_FILE="${HUSHLINE_SOCIAL_COMBINED_LOG_FILE:-$REPO_DIR/logs/social-daily.log}"
@@ -50,6 +51,55 @@ skip_if_weekend() {
   fi
 }
 
+effective_archive_key() {
+  local previous=""
+  local arg=""
+
+  for arg in "$@"; do
+    if [[ "$previous" == "--archive-key" ]]; then
+      printf '%s\n' "$arg"
+      return
+    fi
+    previous="$arg"
+  done
+
+  effective_date "$@"
+}
+
+wait_for_daily_archive() {
+  local archive_key=""
+  local archive_post_path=""
+  local attempt=1
+  local interval_seconds=""
+  local max_attempts=""
+
+  archive_key="$(effective_archive_key "$@")"
+  archive_post_path="$REPO_DIR/previous-posts/$archive_key/post.json"
+  interval_seconds="$(transient_retry_interval_seconds)"
+  max_attempts="$(transient_retry_max_attempts)"
+
+  while (( attempt <= max_attempts )); do
+    if [[ -f "$archive_post_path" ]]; then
+      return 0
+    fi
+
+    if (( attempt >= max_attempts )); then
+      echo "Archived daily post not found after $max_attempts attempts: $archive_post_path" >&2
+      return 1
+    fi
+
+    echo "Archived daily post is not ready yet: $archive_post_path"
+    echo "Retrying daily LinkedIn publish in $interval_seconds seconds (${attempt}/${max_attempts})."
+    sleep "$interval_seconds"
+    attempt=$((attempt + 1))
+  done
+}
+
+run_daily_linkedin_publisher() {
+  cd "$REPO_DIR"
+  ./scripts/agent_daily_linkedin_publisher.sh "$@"
+}
+
 if ! mkdir -p "$REPO_DIR/.tmp"; then
   echo "Failed to create temp directory under $REPO_DIR/.tmp" >&2
   exit 1
@@ -68,6 +118,9 @@ setup_log_capture
 echo "[$(date '+%Y-%m-%d %H:%M:%S %Z')] Starting daily LinkedIn publisher wrapper."
 
 skip_if_weekend "$@"
+wait_for_daily_archive "$@"
 
-cd "$REPO_DIR"
-./scripts/agent_daily_linkedin_publisher.sh "$@"
+run_with_transient_retry \
+  "Daily LinkedIn publisher" \
+  run_daily_linkedin_publisher \
+  "$@"

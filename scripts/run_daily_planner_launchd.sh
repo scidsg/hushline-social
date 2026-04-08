@@ -4,6 +4,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 source "$REPO_DIR/scripts/lib/load-launchd-env.sh"
+source "$REPO_DIR/scripts/lib/transient-retry.sh"
 source "$REPO_DIR/scripts/lib/update-run-repos.sh"
 LOCK_DIR="$REPO_DIR/.tmp/daily-planner.lock"
 ENV_FILE=""
@@ -57,6 +58,12 @@ update_repo() {
   update_daily_planning_repos "$REPO_DIR" "$AUTO_GIT_PULL" "$AUTO_GIT_CLEAN"
 }
 
+run_daily_planner() {
+  update_repo
+  cd "$REPO_DIR"
+  ./scripts/agent_daily_social_planner.sh "$@"
+}
+
 if ! mkdir -p "$REPO_DIR/.tmp"; then
   echo "Failed to create temp directory under $REPO_DIR/.tmp" >&2
   exit 1
@@ -75,8 +82,7 @@ setup_log_capture
 echo "[$(date '+%Y-%m-%d %H:%M:%S %Z')] Starting daily social planner wrapper."
 
 skip_if_weekend "$@"
-
-update_repo
-
-cd "$REPO_DIR"
-./scripts/agent_daily_social_planner.sh "$@"
+run_with_transient_retry \
+  "Daily social planner" \
+  run_daily_planner \
+  "$@"
