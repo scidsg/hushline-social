@@ -1,0 +1,30 @@
+{
+  "date": "2026-04-08",
+  "post": {
+    "slot": "wednesday",
+    "planned_date": "2026-04-08",
+    "screenshot_file": "admin/auth-admin-settings-branding-desktop-dark-fold.png",
+    "content_key": "auth-admin-settings-branding",
+    "headline": "For admins: explain your deployment clearly",
+    "subtext": "Branding settings let admins set the directory intro and visual identity so visitors understand who runs the tip line and how to use it.",
+    "image_alt_text": "Desktop social graphic featuring Hush Line's dark-mode admin Branding settings page. The image shows a Directory Intro Text editor with copy about finding lawyers, journalists, and other recipients, plus the start of a Primary Color section for teams running a Hush Line deployment.",
+    "social": {
+      "bluesky": "If your team runs Hush Line, the directory should explain itself right away.\n\nThe admin branding settings let you add a plain-language intro so visitors know who runs the deployment and that no account is required to send a message.\n\nLearn more at https://hushline.app.",
+      "linkedin": "When someone lands on your Hush Line deployment, they should be able to tell what it is and who it is for right away.\n\nFor admins and teams running Hush Line, the branding settings let you write a plain-language directory intro and set the visual identity around it. That helps visitors understand where they are, find the right recipient, and send a message without creating an account.\n\nLearn more at https://hushline.app.",
+      "mastodon": "If you run Hush Line for a newsroom, law office, school, or organization, the front page should explain itself fast.\n\nThe admin branding settings let your team add a plain-language directory intro and match the deployment to your organization, so visitors know where they are before they choose a recipient or send a message.\n\nLearn more at https://hushline.app."
+    },
+    "rationale": "This branding screenshot maps directly to the Platform Administrators use case in USE-CASES.md: branding, governance controls, and trust management for managed or single-tenant deployments. It adds a new topic family within the prior month, avoids repeating recent directory, guidance, authentication, encryption, and vision angles, and keeps the copy explicitly admin-facing while grounded in the directory intro text shown on the page.",
+    "source_pr_numbers": [],
+    "audience_scope": "admin-only",
+    "concept_key": "settings-branding",
+    "copy_brief": "Write for admins or teams running a Hush Line deployment. Make the admin audience explicit.",
+    "matched_pull_requests": [],
+    "screen_key": "/settings/branding",
+    "template_name": "hushline-daily-desktop-template.html",
+    "theme": "dark",
+    "title": "Settings - Branding (admin)",
+    "topic_family": "branding",
+    "viewport": "desktop"
+  },
+  "summary": "Admin-only daily post for the dark desktop branding settings screen, focused on helping teams explain who runs a Hush Line deployment and what visitors can do there."
+}

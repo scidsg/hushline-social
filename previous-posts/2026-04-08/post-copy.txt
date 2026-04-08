@@ -1,0 +1,33 @@
+Slot: wednesday
+Planned date: 2026-04-08
+Template: hushline-daily-desktop-template.html
+Screenshot: /Users/scidsg/hushline-screenshots/releases/latest/admin/auth-admin-settings-branding-desktop-dark-fold.png
+Content key: auth-admin-settings-branding
+Headline: For admins: explain your deployment clearly
+Subtext: Branding settings let admins set the directory intro and visual identity so visitors understand who runs the tip line and how to use it.
+
+Image alt text
+Desktop social graphic featuring Hush Line's dark-mode admin Branding settings page. The image shows a Directory Intro Text editor with copy about finding lawyers, journalists, and other recipients, plus the start of a Primary Color section for teams running a Hush Line deployment.
+
+Social post copy
+
+LinkedIn (424/3000)
+When someone lands on your Hush Line deployment, they should be able to tell what it is and who it is for right away.
+
+For admins and teams running Hush Line, the branding settings let you write a plain-language directory intro and set the visual identity around it. That helps visitors understand where they are, find the right recipient, and send a message without creating an account.
+
+Learn more at https://hushline.app.
+
+Mastodon (362/500)
+If you run Hush Line for a newsroom, law office, school, or organization, the front page should explain itself fast.
+
+The admin branding settings let your team add a plain-language directory intro and match the deployment to your organization, so visitors know where they are before they choose a recipient or send a message.
+
+Learn more at https://hushline.app.
+
+Bluesky (269/300)
+If your team runs Hush Line, the directory should explain itself right away.
+
+The admin branding settings let you add a plain-language intro so visitors know who runs the deployment and that no account is required to send a message.
+
+Learn more at https://hushline.app.
