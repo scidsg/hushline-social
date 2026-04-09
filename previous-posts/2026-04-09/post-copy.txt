@@ -1,0 +1,33 @@
+Slot: thursday
+Planned date: 2026-04-09
+Template: hushline-daily-mobile-template.html
+Screenshot: /Users/scidsg/hushline-screenshots/releases/latest/admin/auth-admin-settings-registration-mobile-dark-fold.png
+Content key: auth-admin-settings-registration
+Headline: For admins: control who can register
+Subtext: Registration settings let admins disable signup, keep it open, or require codes so account access matches how their team runs Hush Line.
+
+Image alt text
+Mobile social graphic featuring Hush Line's dark-mode admin Registration settings page. The image shows text explaining that admins can control how users create accounts on a Hush Line deployment, with toggles for Enable Registrations and Require Registration Codes.
+
+Social post copy
+
+LinkedIn (356/3000)
+Not every Hush Line deployment should let anyone create an account.
+
+For admins and teams running Hush Line, the registration settings let you disable signup, leave it open, or require registration codes. That gives a newsroom, law office, school, or internal reporting team more control over who gets recipient access.
+
+Learn more at https://hushline.app.
+
+Mastodon (270/500)
+If your team runs Hush Line, account signup should match how the deployment is actually used.
+
+The admin registration settings let you turn signup off, keep it open, or require registration codes before someone can create an account.
+
+Learn more at https://hushline.app.
+
+Bluesky (233/300)
+If your team runs Hush Line, account signup should match how the deployment is actually used.
+
+The admin registration settings let you turn signup off, keep it open, or require registration codes.
+
+Learn more at https://hushline.app.

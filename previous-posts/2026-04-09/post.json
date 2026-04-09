@@ -1,0 +1,26 @@
+{
+  "slot": "thursday",
+  "planned_date": "2026-04-09",
+  "screenshot_file": "admin/auth-admin-settings-registration-mobile-dark-fold.png",
+  "content_key": "auth-admin-settings-registration",
+  "headline": "For admins: control who can register",
+  "subtext": "Registration settings let admins disable signup, keep it open, or require codes so account access matches how their team runs Hush Line.",
+  "image_alt_text": "Mobile social graphic featuring Hush Line's dark-mode admin Registration settings page. The image shows text explaining that admins can control how users create accounts on a Hush Line deployment, with toggles for Enable Registrations and Require Registration Codes.",
+  "social": {
+    "bluesky": "If your team runs Hush Line, account signup should match how the deployment is actually used.\n\nThe admin registration settings let you turn signup off, keep it open, or require registration codes.\n\nLearn more at https://hushline.app.",
+    "linkedin": "Not every Hush Line deployment should let anyone create an account.\n\nFor admins and teams running Hush Line, the registration settings let you disable signup, leave it open, or require registration codes. That gives a newsroom, law office, school, or internal reporting team more control over who gets recipient access.\n\nLearn more at https://hushline.app.",
+    "mastodon": "If your team runs Hush Line, account signup should match how the deployment is actually used.\n\nThe admin registration settings let you turn signup off, keep it open, or require registration codes before someone can create an account.\n\nLearn more at https://hushline.app."
+  },
+  "rationale": "This admin-only registration screen maps to the Platform Administrators use case in USE-CASES.md, especially registration gates, governance controls, and trust management for managed or single-tenant deployments. It stays distinct from the prior month's directory, guidance, branding, authentication, encryption, and vision posts while matching the visible account-creation controls in the screenshot.",
+  "source_pr_numbers": [],
+  "audience_scope": "admin-only",
+  "concept_key": "settings-registration",
+  "copy_brief": "Write for admins or teams running a Hush Line deployment. Make the admin audience explicit.",
+  "matched_pull_requests": [],
+  "screen_key": "/settings/registration",
+  "template_name": "hushline-daily-mobile-template.html",
+  "theme": "dark",
+  "title": "Settings - Registration (admin)",
+  "topic_family": "registration",
+  "viewport": "mobile"
+}
