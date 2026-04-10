@@ -1,0 +1,30 @@
+{
+  "date": "2026-04-10",
+  "post": {
+    "slot": "friday",
+    "planned_date": "2026-04-10",
+    "screenshot_file": "admin/auth-admin-settings-admin-desktop-dark-fold.png",
+    "content_key": "auth-admin-settings-admin",
+    "headline": "For admins: review account trust in one place",
+    "subtext": "The admin panel helps teams running Hush Line review roles, trust flags, and who has 2FA or PGP enabled across user accounts.",
+    "image_alt_text": "Dark-themed Hush Line social graphic with a desktop screenshot of the Admin settings page. The screen shows summary cards for total users, 2FA enabled, and PGP enabled, plus a searchable user list with controls to change verification, admin, caution, and suspension status.",
+    "social": {
+      "bluesky": "For admins and teams running Hush Line, account setup is part of the safety work.\n\nThis admin view helps operators review roles, trust flags, and whether users have 2FA or PGP enabled.\n\nLearn more at https://hushline.app.",
+      "linkedin": "When a team runs Hush Line, the first question is not just who can sign in. It is who should be trusted to receive sensitive messages and how that access is being managed.\n\nThis admin view gives teams one place to review account roles, verification status, caution or suspension flags, and basic security signals like 2FA and PGP setup across users.\n\nFor admins and teams running Hush Line: check your admin settings before you publish or expand access. Learn more at https://hushline.app.",
+      "mastodon": "For admins and teams running Hush Line, account setup is part of the safety work.\n\nThis admin view shows who is verified, who has admin access, which accounts are flagged, and how many users have 2FA or PGP enabled.\n\nLearn more at https://hushline.app."
+    },
+    "rationale": "This uses the admin-only /settings/admin screen for platform administrators, which the use-case docs frame around governance controls, trust management, and account moderation. The message stays explicit about the admin audience and focuses on reviewing account trust and security signals, which avoids repeating the recent angles about user guidance, branding, and registration settings.",
+    "source_pr_numbers": [],
+    "audience_scope": "admin-only",
+    "concept_key": "settings-admin",
+    "copy_brief": "Write for admins or teams running a Hush Line deployment. Make the admin audience explicit.",
+    "matched_pull_requests": [],
+    "screen_key": "/settings/admin",
+    "template_name": "hushline-daily-desktop-template-2.html",
+    "theme": "dark",
+    "title": "Settings - Admin (admin)",
+    "topic_family": "settings-admin",
+    "viewport": "desktop"
+  },
+  "summary": "Admin-only desktop post focused on account trust, roles, and security oversight for teams running Hush Line."
+}
