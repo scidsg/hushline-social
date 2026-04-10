@@ -7,6 +7,7 @@ const {
   DAILY_POSTS_ROOT,
   chooseTemplateName,
   filterCandidatesForArchiveHistory,
+  filterCandidatesForWeeklyCaps,
   filterCandidatesForTemplateName,
   inferTopicFamily,
   loadSavedDailyContext,
@@ -322,6 +323,55 @@ test("filterCandidatesForArchiveHistory falls back to repeated screens when need
   );
 });
 
+test("filterCandidatesForWeeklyCaps blocks a second admin or dark post in the same ISO week", () => {
+  const archiveHistory = [
+    {
+      archive_key: "2026-04-06",
+      audience_scope: "admin-only",
+      date: "2026-04-06",
+      screenshot_file: "admin/auth-admin-settings-guidance-mobile-light-fold.png",
+      theme: "light",
+    },
+    {
+      archive_key: "2026-04-07",
+      audience_scope: "recipient-shared",
+      date: "2026-04-07",
+      screenshot_file: "artvandelay/auth-artvandelay-settings-notifications-mobile-dark-fold.png",
+      theme: "dark",
+    },
+  ];
+
+  const filtered = filterCandidatesForWeeklyCaps(
+    [
+      {
+        audience_scope: "admin-only",
+        content_key: "auth-admin-settings-registration",
+        file: "admin/auth-admin-settings-registration-mobile-light-fold.png",
+        theme: "light",
+      },
+      {
+        audience_scope: "recipient-shared",
+        content_key: "auth-artvandelay-tools-vision",
+        file: "artvandelay/auth-artvandelay-tools-vision-mobile-dark-fold.png",
+        theme: "dark",
+      },
+      {
+        audience_scope: "recipient-shared",
+        content_key: "auth-artvandelay-settings-encryption",
+        file: "artvandelay/auth-artvandelay-settings-encryption-mobile-light-fold.png",
+        theme: "light",
+      },
+    ],
+    archiveHistory,
+    "2026-04-10",
+  );
+
+  assert.deepEqual(
+    filtered.map((candidate) => candidate.content_key),
+    ["auth-artvandelay-settings-encryption"],
+  );
+});
+
 test("validatePlan rejects messaging that duplicates a recent archive angle", () => {
   const context = buildContext({
     recent_archive_history: [
@@ -339,5 +389,113 @@ test("validatePlan rejects messaging that duplicates a recent archive angle", ()
   assert.throws(
     () => validatePlan(buildModelPlan(), context),
     /duplicates recent archive headline/,
+  );
+});
+
+test("validatePlan rejects a second admin-only post in the same ISO week", () => {
+  const context = buildContext({
+    candidate_screenshots: [
+      {
+        audience_scope: "admin-only",
+        concept_key: "settings-guidance",
+        content_key: "auth-admin-settings-guidance",
+        copy_brief: "Write for admins.",
+        file: "admin/auth-admin-settings-guidance-mobile-light-fold.png",
+        matched_pull_requests: [],
+        topic_family: "guidance",
+        theme: "light",
+        title: "Settings - User Guidance (admin)",
+        viewport: "mobile",
+      },
+    ],
+    date: "2026-04-10",
+    recent_archive_history: [
+      {
+        archive_key: "2026-04-06",
+        audience_scope: "admin-only",
+        date: "2026-04-06",
+        screenshot_file: "admin/auth-admin-settings-branding-mobile-light-fold.png",
+        theme: "light",
+      },
+    ],
+    slot: {
+      planned_date: "2026-04-10",
+      slot: "friday",
+    },
+    template_selection: {
+      available_templates: ["hushline-daily-mobile-template.html"],
+      desired_template_name: "hushline-daily-mobile-template.html",
+      desired_template_type: "mobile",
+    },
+  });
+
+  const plan = buildModelPlan({
+    date: "2026-04-10",
+    post: {
+      ...buildModelPlan().post,
+      planned_date: "2026-04-10",
+      screenshot_file: "admin/auth-admin-settings-guidance-mobile-light-fold.png",
+      content_key: "auth-admin-settings-guidance",
+      slot: "friday",
+    },
+  });
+
+  assert.throws(
+    () => validatePlan(plan, context),
+    /Weekly admin-only cap already reached/,
+  );
+});
+
+test("validatePlan rejects a second dark-mode post in the same ISO week", () => {
+  const context = buildContext({
+    candidate_screenshots: [
+      {
+        audience_scope: "recipient-shared",
+        concept_key: "settings-notifications",
+        content_key: "auth-artvandelay-settings-notifications",
+        copy_brief: "Write for recipients.",
+        file: "artvandelay/auth-artvandelay-settings-notifications-mobile-dark-fold.png",
+        matched_pull_requests: [],
+        topic_family: "notifications",
+        theme: "dark",
+        title: "Settings - Notifications",
+        viewport: "mobile",
+      },
+    ],
+    date: "2026-04-10",
+    recent_archive_history: [
+      {
+        archive_key: "2026-04-07",
+        audience_scope: "recipient-shared",
+        date: "2026-04-07",
+        screenshot_file: "artvandelay/auth-artvandelay-settings-encryption-mobile-dark-fold.png",
+        theme: "dark",
+      },
+    ],
+    slot: {
+      planned_date: "2026-04-10",
+      slot: "friday",
+    },
+    template_selection: {
+      available_templates: ["hushline-daily-mobile-template.html"],
+      desired_template_name: "hushline-daily-mobile-template.html",
+      desired_template_type: "mobile",
+    },
+  });
+
+  const plan = buildModelPlan({
+    date: "2026-04-10",
+    post: {
+      ...buildModelPlan().post,
+      planned_date: "2026-04-10",
+      screenshot_file: "artvandelay/auth-artvandelay-settings-notifications-mobile-dark-fold.png",
+      content_key: "auth-artvandelay-settings-notifications",
+      slot: "friday",
+    },
+  });
+
+  assert.throws(
+    () => validatePlan(plan, context),
+    /Weekly dark-mode cap already reached/,
   );
 });

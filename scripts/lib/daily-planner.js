@@ -92,6 +92,36 @@ function formatIsoWeek(date) {
   return `${cursor.getUTCFullYear()}-W${String(weekNumber).padStart(2, "0")}`;
 }
 
+function inferAudienceScopeFromEntry(entry) {
+  if (entry.audience_scope) {
+    return entry.audience_scope;
+  }
+
+  const screenshotFile = String(entry.screenshot_file || entry.file || "");
+  if (screenshotFile.startsWith("admin/")) {
+    return "admin-only";
+  }
+
+  return null;
+}
+
+function inferThemeFromEntry(entry) {
+  if (entry.theme === "light" || entry.theme === "dark") {
+    return entry.theme;
+  }
+
+  const screenshotFile = String(entry.screenshot_file || entry.file || "");
+  if (/-dark-fold\.png$/i.test(screenshotFile)) {
+    return "dark";
+  }
+
+  if (/-light-fold\.png$/i.test(screenshotFile)) {
+    return "light";
+  }
+
+  return null;
+}
+
 function normalizeConceptKey(contentKey) {
   return String(contentKey || "")
     .replace(/^(auth-(admin|artvandelay|newman)|guest)-/, "")
@@ -353,6 +383,30 @@ function summarizeCandidateHistory(candidate, archiveHistory) {
   return stats;
 }
 
+function summarizeWeeklyUsage(archiveHistory, plannedDate) {
+  const week = formatIsoWeek(parseLocalDate(plannedDate));
+
+  return archiveHistory.reduce((summary, entry) => {
+    if (!entry.date || formatIsoWeek(parseLocalDate(entry.date)) !== week) {
+      return summary;
+    }
+
+    if (inferAudienceScopeFromEntry(entry) === "admin-only") {
+      summary.admin_count += 1;
+    }
+
+    if (inferThemeFromEntry(entry) === "dark") {
+      summary.dark_count += 1;
+    }
+
+    return summary;
+  }, {
+    admin_count: 0,
+    dark_count: 0,
+    week,
+  });
+}
+
 function loadArchiveHistory(currentArchiveKey) {
   if (!fs.existsSync(DAILY_POSTS_ROOT)) {
     return [];
@@ -390,6 +444,7 @@ function loadArchiveHistory(currentArchiveKey) {
         : {};
 
       return {
+        audience_scope: (post && post.audience_scope) || "",
         archive_key: archiveKey,
         bluesky_copy: social.bluesky || "",
         concept_key: (post && (post.concept_key || normalizeConceptKey(post.content_key))) || "",
@@ -402,6 +457,7 @@ function loadArchiveHistory(currentArchiveKey) {
         screenshot_file: (post && post.screenshot_file) || "",
         subtext: (post && post.subtext) || "",
         template_name: (post && post.template_name) || (templateMatch ? templateMatch[1].trim() : ""),
+        theme: (post && post.theme) || "",
         topic_family: (post && (post.topic_family || inferTopicFamily(post))) || "",
       };
     })
@@ -555,6 +611,31 @@ function filterCandidatesForArchiveHistory(candidates, archiveHistory) {
   return normalizedCandidates.sort(sortByNovelty);
 }
 
+function filterCandidatesForWeeklyCaps(candidates, archiveHistory, plannedDate) {
+  const weeklyUsage = summarizeWeeklyUsage(archiveHistory, plannedDate);
+  let filtered = candidates.slice();
+
+  if (weeklyUsage.admin_count >= 1) {
+    filtered = filtered.filter((candidate) => candidate.audience_scope !== "admin-only");
+    if (filtered.length === 0) {
+      throw new Error(
+        `No eligible non-admin screenshot candidates remain for ${plannedDate}; weekly admin-only cap for ${weeklyUsage.week} is already full.`,
+      );
+    }
+  }
+
+  if (weeklyUsage.dark_count >= 1) {
+    filtered = filtered.filter((candidate) => candidate.theme !== "dark");
+    if (filtered.length === 0) {
+      throw new Error(
+        `No eligible light-mode screenshot candidates remain for ${plannedDate}; weekly dark-mode cap for ${weeklyUsage.week} is already full.`,
+      );
+    }
+  }
+
+  return filtered;
+}
+
 function chooseBestCandidate(candidates, archiveHistory, templateNames) {
   const ranked = candidates
     .map((candidate) => {
@@ -638,7 +719,16 @@ function buildDailyContext(args) {
     planningContext.candidate_screenshots,
     archiveHistory,
   );
-  const selectedCandidate = chooseBestCandidate(variedCandidates, archiveHistory, templateNames);
+  const weekEligibleCandidates = filterCandidatesForWeeklyCaps(
+    variedCandidates,
+    archiveHistory,
+    args.date,
+  );
+  const selectedCandidate = chooseBestCandidate(
+    weekEligibleCandidates,
+    archiveHistory,
+    templateNames,
+  );
 
   if (!selectedCandidate) {
     throw new Error(`No eligible screenshot candidates remain for ${args.date}.`);
@@ -909,6 +999,19 @@ function validatePlan(modelPlan, context) {
     throw new Error(`Model selected screenshot outside shortlist: ${post.screenshot_file}`);
   }
 
+  const weeklyUsage = summarizeWeeklyUsage(context.recent_archive_history || [], context.date);
+  if (candidate.audience_scope === "admin-only" && weeklyUsage.admin_count >= 1) {
+    throw new Error(
+      `Weekly admin-only cap already reached for ${weeklyUsage.week}; cannot select ${post.screenshot_file} on ${context.date}.`,
+    );
+  }
+
+  if (candidate.theme === "dark" && weeklyUsage.dark_count >= 1) {
+    throw new Error(
+      `Weekly dark-mode cap already reached for ${weeklyUsage.week}; cannot select ${post.screenshot_file} on ${context.date}.`,
+    );
+  }
+
   if (post.content_key !== candidate.content_key) {
     throw new Error(
       `Model content key mismatch for ${post.screenshot_file}: expected ${candidate.content_key}, received ${post.content_key}.`,
@@ -1059,6 +1162,7 @@ module.exports = {
   buildDailyContext,
   chooseTemplateName,
   filterCandidatesForArchiveHistory,
+  filterCandidatesForWeeklyCaps,
   filterCandidatesForTemplateName,
   inferTopicFamily,
   loadSavedDailyContext,

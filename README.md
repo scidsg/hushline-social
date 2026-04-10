@@ -14,6 +14,7 @@ This repo plans one post per publish date from current local Hush Line context, 
 - uses the pushed dated archive folder as the LinkedIn publication-state record across machines
 - discovers regular daily templates from any `templates/hushline-daily-*.html` file
 - picks one matching daily template at random for each run, then constrains the screenshot choice to that template type
+- enforces weekly daily-post caps of at most one admin-targeted screenshot and at most one dark-mode screenshot per Monday-through-Friday week
 - renders one weekly verified-user post archive from directory JSON into `previous-verified-user-posts/YYYY-MM-DD`
 - writes network-specific copy, alt text, and a `post-copy.txt` alongside the verified-user card assets
 - fills the verified-user template with display name, bio, direct `/to/...` URL, and a matching QR code
@@ -114,6 +115,7 @@ cd /Users/scidsg/hushline-social
 - Regular daily templates are discovered dynamically from `templates/hushline-daily-*.html`. Adding a new file with that prefix makes it eligible for future daily runs without further code changes.
 - The verified-user template is separate and does not participate in daily template selection.
 - The planner fails on stale screenshot data unless explicitly overridden.
+- The daily planner enforces hard weekly caps for the weekday run set: no more than one admin-targeted post and no more than one dark-mode screenshot in the same Monday-through-Friday week.
 - The daily planner and manual daily post wrappers can reset tracked changes, remove untracked files, and run `git pull --ff-only` in both `hushline-social` and `../hushline-screenshots` before planning.
 - The daily planner keeps its archive local by default; the daily LinkedIn publisher pushes `previous-posts/YYYY-MM-DD` after successful publication, and the pushed dated folder is the publication-state signal across machines.
 - The verified-user weekly LaunchAgents are scheduled for Mondays, but the manual wrappers can be run for any date override.

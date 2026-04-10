@@ -56,8 +56,9 @@ For verified-user weekly posts:
 - Avoid screenshots that do not clearly showcase Hush Line.
 - Avoid repeating the same underlying screen across adjacent archived posts, even when the tab, filters, search state, session, mobile/desktop viewport, or theme changed.
 - Balance mobile and desktop usage across recent archived posts.
-- Include some dark mode, but keep it a minority share across recent archived posts.
+- Allow at most one dark-mode screenshot in any Monday-through-Friday daily posting week.
 - If a screenshot is admin-specific, the copy must clearly say that it is for admins or teams running Hush Line.
+- Allow at most one admin-targeted daily post in any Monday-through-Friday daily posting week.
 
 ## Audience Context Rules
 
@@ -313,9 +314,9 @@ make test TESTS=tests/test_docs_screenshots_manifest.py
 When planning in this repo, verify that:
 
 - selected screenshots come from `latest`
-- admin-only screenshots are rare and clearly labeled in copy
+- admin-only screenshots are clearly labeled in copy and appear no more than once per Monday-through-Friday daily posting week
 - mobile/desktop balance is reasonable across recent archived posts
-- dark mode stays a minority share across recent archived posts
+- dark mode appears no more than once per Monday-through-Friday daily posting week
 - alt text is separate from social copy
 - one post exists for the date being generated
 - the planned date matches the archive folder date
