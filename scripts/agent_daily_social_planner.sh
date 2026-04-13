@@ -195,6 +195,7 @@ verify_screenshot_source() {
   local local_captured_at=""
   local age_days=""
   local remote_status=""
+  local freshness_status="stale"
 
   if [[ ! -d "$SCREENSHOTS_REPO_DIR/.git" ]]; then
     echo "Missing screenshots repo checkout: $SCREENSHOTS_REPO_DIR" >&2
@@ -212,7 +213,11 @@ verify_screenshot_source() {
 
   echo "Latest screenshots manifest: release=${local_release:-unknown} captured_at=${local_captured_at:-unknown} age_days=$age_days"
 
-  if [[ "$ALLOW_STALE_SCREENSHOTS" != "1" ]] && [[ "$age_days" =~ ^[0-9]+$ ]] && (( age_days > SCREENSHOT_MAX_AGE_DAYS )); then
+  if [[ "$age_days" =~ ^[0-9]+$ ]] && (( age_days <= SCREENSHOT_MAX_AGE_DAYS )); then
+    freshness_status="fresh"
+  fi
+
+  if [[ "$ALLOW_STALE_SCREENSHOTS" != "1" ]] && [[ "$freshness_status" != "fresh" ]]; then
     echo "Latest screenshots manifest is older than ${SCREENSHOT_MAX_AGE_DAYS} days." >&2
     echo "Set HUSHLINE_ALLOW_STALE_SCREENSHOTS=1 to override intentionally." >&2
     exit 1
@@ -229,6 +234,11 @@ verify_screenshot_source() {
   if [[ "$remote_status" == "probe_failed" ]]; then
     if [[ "$ALLOW_STALE_SCREENSHOTS" == "1" ]]; then
       echo "Warning: unable to verify the upstream latest screenshots manifest, but continuing because HUSHLINE_ALLOW_STALE_SCREENSHOTS=1."
+      return
+    fi
+
+    if [[ "$freshness_status" == "fresh" ]]; then
+      echo "Warning: unable to verify the upstream latest screenshots manifest after ${SCREENSHOT_REMOTE_CHECK_ATTEMPTS} attempts, but the local latest manifest is still within the freshness window."
       return
     fi
 

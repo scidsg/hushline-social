@@ -14,6 +14,9 @@ const {
   resolveTemplateVariant,
 } = require("./social-common");
 
+const FONT_REGULAR_PATH = path.join(REPO_ROOT, "assets", "fonts", "AtkinsonHyperlegible-Regular.ttf");
+const FONT_BOLD_PATH = path.join(REPO_ROOT, "assets", "fonts", "AtkinsonHyperlegible-Bold.ttf");
+
 function escapeHtml(value) {
   return String(value || "")
     .replaceAll("&", "&amp;")
@@ -24,6 +27,41 @@ function escapeHtml(value) {
 
 function escapeAttribute(value) {
   return escapeHtml(value).replaceAll("'", "&#39;");
+}
+
+function buildEmbeddedFontCss() {
+  if (!fs.existsSync(FONT_REGULAR_PATH) || !fs.existsSync(FONT_BOLD_PATH)) {
+    throw new Error(`Missing embedded font assets: ${FONT_REGULAR_PATH} and ${FONT_BOLD_PATH}`);
+  }
+
+  const regularBase64 = fs.readFileSync(FONT_REGULAR_PATH).toString("base64");
+  const boldBase64 = fs.readFileSync(FONT_BOLD_PATH).toString("base64");
+
+  return [
+    "  <style>",
+    "    @font-face {",
+    "      font-family: \"Atkinson Hyperlegible Embedded\";",
+    "      font-style: normal;",
+    "      font-weight: 400;",
+    "      src: url(data:font/ttf;base64," + regularBase64 + ") format(\"truetype\");",
+    "    }",
+    "",
+    "    @font-face {",
+    "      font-family: \"Atkinson Hyperlegible Embedded\";",
+    "      font-style: normal;",
+    "      font-weight: 700;",
+    "      src: url(data:font/ttf;base64," + boldBase64 + ") format(\"truetype\");",
+    "    }",
+    "",
+    "    body {",
+    "      font-family: \"Atkinson Hyperlegible Embedded\", \"Atkinson Hyperlegible\", Inter, Arial, Helvetica, sans-serif !important;",
+    "    }",
+    "",
+    "    h1, h2, h3, h4, h5, h6, p, span, div, a, button, li {",
+    "      font-family: \"Atkinson Hyperlegible Embedded\", \"Atkinson Hyperlegible\", Inter, Arial, Helvetica, sans-serif;",
+    "    }",
+    "  </style>",
+  ].join("\n");
 }
 
 function validatePost(post) {
@@ -95,6 +133,10 @@ function buildTxt(post, screenshotPath, templateName) {
 function renderHtml(templatePath, post, screenshotFilename, logoFilename) {
   let html = fs.readFileSync(templatePath, "utf8");
 
+  html = html.replace(/<link rel="preconnect" href="https:\/\/fonts\.googleapis\.com">\s*/g, "");
+  html = html.replace(/<link rel="preconnect" href="https:\/\/fonts\.gstatic\.com" crossorigin>\s*/g, "");
+  html = html.replace(/<link href="https:\/\/fonts\.googleapis\.com\/css2[^"]+" rel="stylesheet">\s*/g, "");
+
   html = html.replace(
     /<h1 class="headline">[\s\S]*?<\/h1>/,
     `<h1 class="headline">${escapeHtml(post.headline).replace(/\n/g, "<br />")}</h1>`,
@@ -123,6 +165,7 @@ function renderHtml(templatePath, post, screenshotFilename, logoFilename) {
   html = html.replace(
     "</head>",
     [
+      buildEmbeddedFontCss(),
       "  <style>",
       "    html, body {",
       "      width: 1024px;",
@@ -225,5 +268,6 @@ async function renderPost(post, outputDir) {
 }
 
 module.exports = {
+  renderHtml,
   renderPost,
 };

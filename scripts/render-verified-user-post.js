@@ -8,6 +8,7 @@ const path = require("path");
 const { spawnSync } = require("child_process");
 const {
   VERIFIED_USER_POSTS_ROOT,
+  buildVerifiedUserSocialParagraphs,
   buildVerifiedUserSocialPrompt,
   composeVerifiedUserSocialCopy,
   parseArgs,
@@ -27,19 +28,76 @@ function requireCommand(command) {
   }
 }
 
+function writeCopyJson(copyPath, paragraphs) {
+  fs.writeFileSync(copyPath, `${JSON.stringify(paragraphs, null, 2)}\n`);
+}
+
+function buildSocialFromParagraphs(selectedUser, paragraphs) {
+  return {
+    bluesky: composeVerifiedUserSocialCopy("bluesky", selectedUser, paragraphs.bluesky),
+    linkedin: composeVerifiedUserSocialCopy("linkedin", selectedUser, paragraphs.linkedin),
+    mastodon: composeVerifiedUserSocialCopy("mastodon", selectedUser, paragraphs.mastodon),
+  };
+}
+
+function loadValidatedExistingCopy(copyPath, selectedUser) {
+  if (!fs.existsSync(copyPath)) {
+    return null;
+  }
+
+  const generated = JSON.parse(fs.readFileSync(copyPath, "utf8"));
+  const paragraphs = validateVerifiedUserSocialParagraphs(generated, selectedUser);
+
+  return {
+    copyPath,
+    fallback: false,
+    provided: true,
+    social: buildSocialFromParagraphs(selectedUser, paragraphs),
+  };
+}
+
+function buildLocalFallbackCopy(run, outputDir, promptPath, lastError) {
+  const copyPath = path.join(outputDir, "copy.json");
+  const paragraphs = buildVerifiedUserSocialParagraphs(run.selectedUser);
+  writeCopyJson(copyPath, paragraphs);
+
+  if (lastError) {
+    process.stderr.write(
+      `Falling back to local verified-user copy for ${run.date}: ${lastError.message}\n`,
+    );
+  }
+
+  return {
+    copyPath,
+    fallback: true,
+    promptPath,
+    social: buildSocialFromParagraphs(run.selectedUser, paragraphs),
+  };
+}
+
 function generateVerifiedUserCopy(run, outputDir) {
-  requireCommand("codex");
   const copyPath = path.join(outputDir, "copy.json");
   const promptPath = path.join(outputDir, "copy-prompt.txt");
   fs.mkdirSync(outputDir, { recursive: true });
   let feedback = "";
   let lastError = null;
 
-  for (let attempt = 1; attempt <= 2; attempt += 1) {
-    const codexOutputPath = path.join(os.tmpdir(), `verified-user-codex-output-${process.pid}-${Date.now()}-${attempt}.txt`);
-    if (fs.existsSync(copyPath)) {
-      fs.unlinkSync(copyPath);
+  try {
+    const providedCopy = loadValidatedExistingCopy(copyPath, run.selectedUser);
+    if (providedCopy) {
+      return providedCopy;
     }
+  } catch (error) {
+    lastError = new Error(`Existing verified-user copy.json is invalid: ${error.message}`);
+  }
+
+  try {
+    requireCommand("codex");
+  } catch (error) {
+    lastError = error;
+  }
+
+  for (let attempt = 1; attempt <= 2; attempt += 1) {
     const prompt = buildVerifiedUserSocialPrompt({
       date: run.date,
       feedback,
@@ -47,6 +105,15 @@ function generateVerifiedUserCopy(run, outputDir) {
       selectedUser: run.selectedUser,
     });
     fs.writeFileSync(promptPath, `${prompt}\n`);
+
+    if (lastError && /Missing required command: codex/.test(lastError.message)) {
+      break;
+    }
+
+    const codexOutputPath = path.join(os.tmpdir(), `verified-user-codex-output-${process.pid}-${Date.now()}-${attempt}.txt`);
+    if (fs.existsSync(copyPath)) {
+      fs.unlinkSync(copyPath);
+    }
 
     const result = spawnSync(
       "codex",
@@ -74,11 +141,13 @@ function generateVerifiedUserCopy(run, outputDir) {
 
     if (result.status !== 0) {
       const stderr = [result.stderr, result.stdout].filter(Boolean).join("\n").trim();
-      throw new Error(stderr || `Codex copy generation failed with exit ${result.status}.`);
+      lastError = new Error(stderr || `Codex copy generation failed with exit ${result.status}.`);
+      continue;
     }
 
     if (!fs.existsSync(copyPath)) {
-      throw new Error(`Codex did not write verified-user copy to ${copyPath}.`);
+      lastError = new Error(`Codex did not write verified-user copy to ${copyPath}.`);
+      continue;
     }
 
     try {
@@ -99,7 +168,7 @@ function generateVerifiedUserCopy(run, outputDir) {
     }
   }
 
-  throw lastError || new Error("Codex copy generation failed validation.");
+  return buildLocalFallbackCopy(run, outputDir, promptPath, lastError);
 }
 
 async function main() {
@@ -116,6 +185,11 @@ async function main() {
       `Prepared verified-user weekly post for ${args.date}`,
       `- selected ${run.selectedUser.display_name} (@${run.selectedUser.primary_username})`,
       `- archive: ${archiveRel}`,
+      generatedCopy.provided
+        ? "- social copy: existing copy.json"
+        : generatedCopy.fallback
+          ? "- social copy: local fallback"
+          : "- social copy: codex-generated",
       args.noRender ? "- rendering skipped" : `- rendered into ${path.relative(REPO_ROOT, rendered.outputDir)}`,
       "",
     ].join("\n"),
