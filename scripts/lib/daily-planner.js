@@ -569,46 +569,16 @@ function filterCandidatesForArchiveHistory(candidates, archiveHistory) {
     );
   };
 
-  const strict = normalizedCandidates
-    .filter((candidate) => {
-      const stats = candidate.history_stats;
-      return (
-        stats.exact_screenshot_matches === 0 &&
-        stats.content_matches === 0 &&
-        stats.screen_matches === 0 &&
-        stats.topic_matches === 0
-      );
-    })
-    .sort(sortByNovelty);
-  if (strict.length > 0) {
-    return strict;
-  }
-
-  const relaxedScreen = normalizedCandidates
-    .filter((candidate) => {
-      const stats = candidate.history_stats;
-      return (
-        stats.exact_screenshot_matches === 0 &&
-        stats.content_matches === 0 &&
-        stats.screen_matches === 0
-      );
-    })
-    .sort(sortByNovelty);
-  if (relaxedScreen.length > 0) {
-    return relaxedScreen;
-  }
-
-  const relaxedExact = normalizedCandidates
+  const withoutExactOrContentRepeats = normalizedCandidates
     .filter((candidate) => {
       const stats = candidate.history_stats;
       return stats.exact_screenshot_matches === 0 && stats.content_matches === 0;
     })
     .sort(sortByNovelty);
-  if (relaxedExact.length > 0) {
-    return relaxedExact;
-  }
 
-  return normalizedCandidates.sort(sortByNovelty);
+  return (withoutExactOrContentRepeats.length > 0
+    ? withoutExactOrContentRepeats
+    : normalizedCandidates.slice().sort(sortByNovelty));
 }
 
 function filterCandidatesForWeeklyCaps(candidates, archiveHistory, plannedDate) {

@@ -15,6 +15,7 @@ const {
   planDay,
   validatePlan,
 } = require("../scripts/lib/daily-planner");
+const { assignVariantsToConcepts } = require("../scripts/lib/planning-context");
 
 function buildContext(overrides = {}) {
   return {
@@ -229,7 +230,7 @@ test("inferTopicFamily groups onboarding directory screenshots under the directo
   );
 });
 
-test("filterCandidatesForArchiveHistory removes same-feature variants from recent archive history", () => {
+test("filterCandidatesForArchiveHistory ranks less-repetitive candidates ahead of recent archive themes", () => {
   const archiveHistory = [
     {
       concept_key: "directory-verified",
@@ -276,14 +277,14 @@ test("filterCandidatesForArchiveHistory removes same-feature variants from recen
 
   const filtered = filterCandidatesForArchiveHistory(candidates, archiveHistory);
 
-  assert.equal(filtered.length, 3);
+  assert.equal(filtered.length, 6);
   assert.deepEqual(
-    filtered.map((candidate) => candidate.content_key).sort(),
+    filtered.slice(0, 3).map((candidate) => candidate.content_key),
     [
       "auth-admin-settings-guidance",
       "auth-artvandelay-settings-encryption",
       "auth-artvandelay-settings-notifications",
-    ].sort(),
+    ],
   );
 });
 
@@ -498,4 +499,31 @@ test("validatePlan rejects a second dark-mode post in the same ISO week", () => 
     () => validatePlan(plan, context),
     /Weekly dark-mode cap already reached/,
   );
+});
+
+test("assignVariantsToConcepts preserves light candidates when the concept set is smaller than the target count", () => {
+  const selectedConcepts = Array.from({ length: 17 }, (_, index) => ({
+    variants: [
+      {
+        file: `guest/example-${index + 1}-desktop-light-fold.png`,
+        score: 10,
+        theme: "light",
+        viewport: "desktop",
+      },
+      {
+        file: `guest/example-${index + 1}-desktop-dark-fold.png`,
+        score: 11,
+        theme: "dark",
+        viewport: "desktop",
+      },
+    ],
+  }));
+
+  const shortlist = assignVariantsToConcepts(selectedConcepts, 200, 0.25);
+  const darkCount = shortlist.filter((candidate) => candidate.theme === "dark").length;
+  const lightCount = shortlist.filter((candidate) => candidate.theme === "light").length;
+
+  assert.equal(shortlist.length, 17);
+  assert.equal(darkCount, 4);
+  assert.equal(lightCount, 13);
 });

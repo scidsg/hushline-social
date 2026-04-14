@@ -568,22 +568,60 @@ function buildCandidateShortlist(options) {
   };
 }
 
+function countConceptsWithTheme(concepts, theme) {
+  return concepts.filter((concept) => {
+    return concept.variants.some((variant) => variant.theme === theme);
+  }).length;
+}
+
+function clamp(value, min, max) {
+  return Math.min(max, Math.max(min, value));
+}
+
 function assignVariantsToConcepts(selectedConcepts, targetCount, darkRatio) {
-  const targetMobile = Math.floor(targetCount / 2);
-  const targetDesktop = targetCount - targetMobile;
-  const targetDark = darkRatio <= 0 ? 0 : Math.max(1, Math.round(targetCount * darkRatio));
+  const concepts = selectedConcepts.slice(0, targetCount);
+  const assignmentCount = concepts.length;
+  const targetMobile = Math.floor(assignmentCount / 2);
+  const targetDesktop = assignmentCount - targetMobile;
+  const desiredDark = darkRatio <= 0 ? 0 : Math.round(assignmentCount * darkRatio);
+  const availableDark = countConceptsWithTheme(concepts, "dark");
+  const availableLight = countConceptsWithTheme(concepts, "light");
+  const minimumDark = Math.max(0, assignmentCount - availableLight);
+  const targetDark = clamp(desiredDark, minimumDark, availableDark);
   let mobileCount = 0;
   let desktopCount = 0;
   let darkCount = 0;
 
-  return selectedConcepts.map((concept, index) => {
-    const remaining = selectedConcepts.length - index;
+  return concepts.map((concept, index) => {
+    const remainingConcepts = concepts.slice(index + 1);
     const needMobile = targetMobile - mobileCount;
     const needDesktop = targetDesktop - desktopCount;
+    const lightCount = index - darkCount;
+    const targetLight = assignmentCount - targetDark;
+    const needLight = targetLight - lightCount;
     const needDark = targetDark - darkCount;
 
+    const hasDark = concept.variants.some((variant) => variant.theme === "dark");
+    const hasLight = concept.variants.some((variant) => variant.theme === "light");
+    const remainingDarkCapacity = countConceptsWithTheme(remainingConcepts, "dark");
+    const remainingLightCapacity = countConceptsWithTheme(remainingConcepts, "light");
+
     const preferredViewport = needMobile > needDesktop ? "mobile" : "desktop";
-    const preferredTheme = needDark > 0 && needDark >= remaining ? "dark" : "light";
+    let preferredTheme = "light";
+
+    if (!hasLight && hasDark) {
+      preferredTheme = "dark";
+    } else if (!hasDark && hasLight) {
+      preferredTheme = "light";
+    } else if (needDark <= 0) {
+      preferredTheme = "light";
+    } else if (needLight <= 0) {
+      preferredTheme = "dark";
+    } else if (remainingDarkCapacity < needDark) {
+      preferredTheme = "dark";
+    } else if (remainingLightCapacity < needLight) {
+      preferredTheme = "light";
+    }
 
     const chosen = concept.variants
       .slice()
@@ -808,5 +846,6 @@ function buildPlanningContext(args) {
 }
 
 module.exports = {
+  assignVariantsToConcepts,
   buildPlanningContext,
 };
