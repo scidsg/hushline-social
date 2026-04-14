@@ -393,6 +393,76 @@ test("validatePlan rejects messaging that duplicates a recent archive angle", ()
   );
 });
 
+test("validatePlan allows a distinct directory message that only shares generic public-directory wording", () => {
+  const context = buildContext({
+    candidate_screenshots: [
+      {
+        absolute_path: "/tmp/guest-directory-attorney-adam-j-levitt-mobile-light-fold.png",
+        audience_scope: "public",
+        concept_key: "directory-attorney-adam-j-levitt",
+        content_key: "guest-directory-attorney-adam-j-levitt",
+        copy_brief: "Write for sources and public users evaluating or using Hush Line.",
+        file: "guest/guest-directory-attorney-adam-j-levitt-mobile-light-fold.png",
+        matched_pull_requests: [],
+        path: "/directory/public-records/public-record~adam-j-levitt",
+        screen_key: "directory-public-record",
+        theme: "light",
+        title: "Directory - Attorney listing (Adam J. Levitt)",
+        topic_family: "directory",
+        viewport: "mobile",
+      },
+    ],
+    date: "2026-04-14",
+    recent_archive_history: [
+      {
+        archive_key: "2026-03-20",
+        audience_scope: "public",
+        bluesky_copy: "Need to verify who you're contacting before you send a tip? Hush Line's public directory shows verified profiles so you can compare recipients first. Learn more at https://hushline.app/.",
+        date: "2026-03-20",
+        headline: "Check verified tip lines before you reach out",
+        linkedin_copy: "When you need to contact a journalist, lawyer, or other trusted recipient, the first question is whether you found the right person. Hush Line's public directory lets you browse verified profiles before you send anything, so you can check who runs the tip line and choose a better match for your situation. Learn more at https://hushline.app/.",
+        mastodon_copy: "If you're deciding where to send a tip, Hush Line's public directory helps you start with verified profiles. You can compare recipients and check who runs the tip line before you reach out. Learn more at https://hushline.app/.",
+        screen_key: "directory-index",
+        subtext: "The public directory helps sources compare verified profiles and choose a tip line that matches the person they need.",
+        theme: "light",
+        topic_family: "directory",
+      },
+    ],
+    slot: {
+      planned_date: "2026-04-14",
+      slot: "tuesday",
+    },
+    template_selection: {
+      available_templates: ["hushline-daily-mobile-template.html"],
+      desired_template_name: "hushline-daily-mobile-template.html",
+      desired_template_type: "mobile",
+    },
+  });
+
+  const plan = {
+    date: "2026-04-14",
+    summary: "Public-facing attorney listing post.",
+    post: {
+      slot: "tuesday",
+      planned_date: "2026-04-14",
+      screenshot_file: "guest/guest-directory-attorney-adam-j-levitt-mobile-light-fold.png",
+      content_key: "guest-directory-attorney-adam-j-levitt",
+      headline: "Review a whistleblower law listing before you reach out",
+      subtext: "This public attorney listing shows bar-registration details, location, and firm links so a source can judge whether a law office fits the disclosure they need to make.",
+      image_alt_text: "A portrait Hush Line social graphic built from a light-mode mobile public directory screen. It shows an attorney listing with a law firm name, location, practice description, and links to the lawyer's site and source record.",
+      social: {
+        linkedin: "Sometimes the hardest part of asking for legal help is figuring out which office actually handles the kind of disclosure you need to make.\n\nHush Line's public attorney listings can point people to bar-record details, locations, and firm links before first contact, so they can compare legal options with more context instead of guessing.\n\nLearn more at https://hushline.app.",
+        mastodon: "Legal intake starts before the first message.\n\nHush Line's public attorney listings show record details, locations, and firm links so people can compare law offices with more context before they reach out.\n\nLearn more at https://hushline.app.",
+        bluesky: "Finding the right law office can be part of the hard part.\n\nHush Line's public attorney listings show record details, location, and firm links before first contact.\n\nLearn more at https://hushline.app.",
+      },
+      rationale: "This uses the attorney listing screen and stays focused on legal-fit context instead of general directory browsing.",
+      source_pr_numbers: [],
+    },
+  };
+
+  assert.doesNotThrow(() => validatePlan(plan, context));
+});
+
 test("validatePlan rejects a second admin-only post in the same ISO week", () => {
   const context = buildContext({
     candidate_screenshots: [
