@@ -288,7 +288,7 @@ test("filterCandidatesForArchiveHistory ranks less-repetitive candidates ahead o
   );
 });
 
-test("filterCandidatesForArchiveHistory falls back to repeated screens when needed but still blocks exact content repeats", () => {
+test("filterCandidatesForArchiveHistory broadens to non-exact repeats when only one fresh option remains", () => {
   const archiveHistory = [
     {
       concept_key: "directory-all",
@@ -317,10 +317,70 @@ test("filterCandidatesForArchiveHistory falls back to repeated screens when need
 
   const filtered = filterCandidatesForArchiveHistory(candidates, archiveHistory);
 
-  assert.equal(filtered.length, 1);
+  assert.equal(filtered.length, 2);
   assert.deepEqual(
     filtered.map((candidate) => candidate.content_key),
-    ["guest-directory-verified"],
+    ["guest-directory-verified", "guest-directory-all"],
+  );
+});
+
+test("filterCandidatesForArchiveHistory broadens to non-exact repeats when the fresh pool is too small", () => {
+  const archiveHistory = [
+    {
+      archive_key: "2026-04-14",
+      content_key: "guest-directory-attorney-adam-j-levitt",
+      date: "2026-04-14",
+      screenshot_file: "guest/guest-directory-attorney-adam-j-levitt-mobile-light-fold.png",
+      screen_key: "directory-public-record",
+      topic_family: "directory",
+    },
+    {
+      archive_key: "2026-03-26-1",
+      content_key: "auth-newman-onboarding-notifications",
+      date: "2026-03-26",
+      screenshot_file: "newman/auth-newman-onboarding-notifications-desktop-light-fold.png",
+      screen_key: "/onboarding/notifications",
+      topic_family: "notifications",
+    },
+    {
+      archive_key: "2026-03-31",
+      content_key: "auth-artvandelay-settings-encryption",
+      date: "2026-03-31",
+      screenshot_file: "artvandelay/auth-artvandelay-settings-encryption-mobile-dark-fold.png",
+      screen_key: "/settings/encryption",
+      topic_family: "settings-encryption",
+    },
+  ];
+
+  const candidates = [
+    {
+      content_key: "auth-artvandelay-settings-notifications",
+      file: "artvandelay/auth-artvandelay-settings-notifications-mobile-light-fold.png",
+      screen_key: "/settings/notifications",
+      topic_family: "notifications",
+    },
+    {
+      content_key: "auth-artvandelay-settings-encryption",
+      file: "artvandelay/auth-artvandelay-settings-encryption-desktop-light-fold.png",
+      screen_key: "/settings/encryption",
+      topic_family: "settings-encryption",
+    },
+    {
+      content_key: "guest-directory-attorney-adam-j-levitt",
+      file: "guest/guest-directory-attorney-adam-j-levitt-mobile-light-fold.png",
+      screen_key: "directory-public-record",
+      topic_family: "directory",
+    },
+  ];
+
+  const filtered = filterCandidatesForArchiveHistory(candidates, archiveHistory);
+
+  assert.deepEqual(
+    filtered.map((candidate) => candidate.content_key),
+    [
+      "auth-artvandelay-settings-notifications",
+      "auth-artvandelay-settings-encryption",
+    ],
   );
 });
 

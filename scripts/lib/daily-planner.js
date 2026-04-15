@@ -635,6 +635,7 @@ function filterCandidatesForArchiveHistory(candidates, archiveHistory) {
         .localeCompare(String(right.file || right.content_key || right.path || ""))
     );
   };
+  const minimumFreshPool = 3;
 
   const withoutExactOrContentRepeats = normalizedCandidates
     .filter((candidate) => {
@@ -643,8 +644,16 @@ function filterCandidatesForArchiveHistory(candidates, archiveHistory) {
     })
     .sort(sortByNovelty);
 
-  return (withoutExactOrContentRepeats.length > 0
-    ? withoutExactOrContentRepeats
+  if (withoutExactOrContentRepeats.length >= minimumFreshPool) {
+    return withoutExactOrContentRepeats;
+  }
+
+  const withoutExactRepeats = normalizedCandidates
+    .filter((candidate) => candidate.history_stats.exact_screenshot_matches === 0)
+    .sort(sortByNovelty);
+
+  return (withoutExactRepeats.length > 0
+    ? withoutExactRepeats
     : normalizedCandidates.slice().sort(sortByNovelty));
 }
 
@@ -674,7 +683,13 @@ function filterCandidatesForWeeklyCaps(candidates, archiveHistory, plannedDate) 
 }
 
 function chooseBestCandidate(candidates, archiveHistory, templateNames) {
-  const ranked = candidates
+  const ranked = rankCandidates(candidates, archiveHistory, templateNames);
+
+  return ranked[0] || null;
+}
+
+function rankCandidates(candidates, archiveHistory, templateNames) {
+  return candidates
     .map((candidate) => {
       const candidateType = detectCandidateTemplateType(candidate);
 
@@ -690,14 +705,13 @@ function chooseBestCandidate(candidates, archiveHistory, templateNames) {
     })
     .sort((left, right) => {
       return (
+        Number(left.audience_scope === "admin-only") - Number(right.audience_scope === "admin-only") ||
         left.template_type_average_usage - right.template_type_average_usage ||
         left.history_stats.novelty_penalty - right.history_stats.novelty_penalty ||
         (right.score || 0) - (left.score || 0) ||
         left.file.localeCompare(right.file)
       );
     });
-
-  return ranked[0] || null;
 }
 
 function chooseTemplateNameForCandidate(candidate, context) {
@@ -761,11 +775,12 @@ function buildDailyContext(args) {
     archiveHistory,
     args.date,
   );
-  const selectedCandidate = chooseBestCandidate(
+  const rankedCandidates = rankCandidates(
     weekEligibleCandidates,
     archiveHistory,
     templateNames,
   );
+  const selectedCandidate = rankedCandidates[0] || null;
 
   if (!selectedCandidate) {
     throw new Error(`No eligible screenshot candidates remain for ${args.date}.`);
@@ -779,7 +794,7 @@ function buildDailyContext(args) {
       },
     },
   );
-  const selectedCandidates = [selectedCandidate];
+  const selectedCandidates = rankedCandidates.slice(0, 3);
 
   return {
     audience_docs: planningContext.audience_docs,
@@ -827,7 +842,7 @@ function buildPromptPayload(context) {
 
   return {
     system: [
-      "You are writing one daily social post for Hush Line around a preselected screenshot.",
+      "You are writing one daily social post for Hush Line around a small ranked screenshot shortlist.",
       "Write in plain language. No marketing-speak, no hype, no filler.",
       "Social copy must be end-user-facing. Do not confuse post copy with alt text.",
       "Avoid empty-state screens, duplicate content themes, and repeated scenes across mobile/desktop variants.",
@@ -845,7 +860,6 @@ function buildPromptPayload(context) {
       `Bluesky ${LIMITS.bluesky}`,
       "",
       `Target dark-mode share for this run: ${context.dark_ratio}`,
-      `Target template for this run: ${context.template_selection.desired_template_name}`,
       `Screenshot release from local latest folder: ${context.screenshot_release}`,
       `Screenshots captured at: ${context.screenshot_captured_at}`,
       "",
@@ -862,14 +876,14 @@ function buildPromptPayload(context) {
       archiveHistory,
       "",
       "Instructions:",
-      "- Use the provided screenshot only.",
+      "- Choose exactly one screenshot from the provided candidates.",
       `- Check the prior ${ARCHIVE_LOOKBACK_DAYS} days of archived daily posts before you decide on the messaging angle.`,
-      "- The screenshot was preselected from a ranked pool after excluding recent repeats of the same screenshot, screen, feature family, and overused template types wherever possible.",
+      "- The candidates were preselected from a ranked pool after excluding recent repeats of the same screenshot, screen, feature family, and overused template types wherever possible.",
       "- Produce exactly one post for the requested date.",
       "- Do not talk about recent releases, recent merges, or product recency unless the prompt explicitly gives you that information.",
       "- Do not repeat a screenshot, feature, or messaging angle that already appeared in the prior month, even if you could retarget it to a different audience.",
       "- Treat screenshots in the same topic family as repeats even when the exact content_key differs. For example, directory-all, directory-verified, and onboarding-directory all count as directory posts for variation purposes.",
-      "- The provided screenshot already fits the target template for this run.",
+      "- Prefer the candidate that gives you the most distinct message from the recent archive, not just the highest-ranked familiar topic.",
       "- Match the copy to the candidate audience scope. Public screens should read public-facing. Recipient-shared screens should read like recipient workflows. Admin-only screens must clearly say admin or team context.",
       "- Tailor the message to real Hush Line users and use cases, not generic product copy.",
       "- Headline and subtext should be concise and straightforward.",
@@ -999,7 +1013,7 @@ function buildCodexPrompt(context, planPath) {
     JSON.stringify(buildResponseSchema(context), null, 2),
     "",
     "Execution requirements:",
-    "- Use only the provided screenshot.",
+    "- Use exactly one of the provided screenshots.",
     "- Do not render images yourself.",
     "- Do not mention recent release timing, recent PRs, or recency-based product claims unless the prompt explicitly includes that evidence.",
     "- Use `source_pr_numbers: []` unless the prompt explicitly gives you PR numbers to cite.",
