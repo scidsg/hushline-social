@@ -334,7 +334,7 @@ function printHelp() {
       "",
       "Behavior:",
       "  - Reads audience context from Hush Line docs and ../hushline/AGENTS.md",
-      "  - Builds an eligible screenshot pool from hushline-screenshots/releases/latest",
+      "  - Builds an eligible screenshot pool from the local curated hushline-screenshots set when available",
       "  - Randomly preselects one screenshot after excluding recent repeats of the same screen",
       "  - Writes daily planning context and a Codex prompt to previous-posts/<archive-key>",
       "  - Expects one high-value post for the requested day",

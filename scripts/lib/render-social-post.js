@@ -11,6 +11,7 @@ const {
   clampText,
   ensureLatestFoldScreenshot,
   findChrome,
+  resolveScreenshotPath,
   resolveTemplateVariant,
 } = require("./social-common");
 
@@ -231,7 +232,7 @@ async function renderPost(post, outputDir) {
   const screenshotPath = ensureLatestFoldScreenshot(
     path.isAbsolute(post.screenshot_file)
       ? post.screenshot_file
-      : path.join(REPO_ROOT, "..", "hushline-screenshots", "releases", "latest", post.screenshot_file),
+      : resolveScreenshotPath(post.screenshot_file),
   );
   const templateSelection = resolveTemplateVariant(post, screenshotPath);
   const templatePath = templateSelection.templatePath;

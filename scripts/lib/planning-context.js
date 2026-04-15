@@ -122,7 +122,12 @@ function loadScreenshotInventory() {
           return null;
         }
 
-        const absolutePath = resolveScreenshotPath(fold.file);
+        let absolutePath = null;
+        try {
+          absolutePath = resolveScreenshotPath(fold.file);
+        } catch (_error) {
+          return null;
+        }
         return {
           absolute_path: absolutePath,
           ...inferCandidateContext({
