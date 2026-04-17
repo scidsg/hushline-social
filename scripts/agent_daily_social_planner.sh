@@ -18,6 +18,8 @@ DARK_RATIO=""
 NO_RENDER=0
 NO_PUSH=0
 FORCE_PUSH=0
+LAST_VALIDATION_OUTPUT=""
+EXCLUDED_SCREENSHOTS=()
 
 CODEX_MODEL="${CODEX_MODEL:-gpt-5.4}"
 CODEX_REASONING_EFFORT="${CODEX_REASONING_EFFORT:-high}"
@@ -81,6 +83,7 @@ Behavior:
   - Invokes Codex CLI in the local repo
   - Expects Codex to write previous-posts/<archive-key>/plan.json
   - Validates the plan and renders assets
+  - Retries with alternate shortlisted screenshots when validation rejects a repetitive angle
   - Keeps the daily archive local by default
   - Pushes the daily archive only when --push-render-archive is passed or HUSHLINE_SOCIAL_DAILY_PUSH_ON_RENDER=1
 EOF
@@ -112,6 +115,12 @@ build_context() {
   [[ -n "$ARCHIVE_KEY" ]] && cmd+=(--archive-key "$ARCHIVE_KEY")
   [[ -n "$CANDIDATE_COUNT" ]] && cmd+=(--candidate-count "$CANDIDATE_COUNT")
   [[ -n "$DARK_RATIO" ]] && cmd+=(--dark-ratio "$DARK_RATIO")
+  local excluded=""
+  if (( ${#EXCLUDED_SCREENSHOTS[@]} > 0 )); then
+    for excluded in "${EXCLUDED_SCREENSHOTS[@]}"; do
+      cmd+=(--exclude-screenshot "$excluded")
+    done
+  fi
 
   "${cmd[@]}"
 }
@@ -165,12 +174,108 @@ run_codex_from_prompt() {
 
 validate_and_render() {
   local -a cmd=(node "$REPO_DIR/scripts/validate-day-plan.js" --date "$DATE")
+  local output=""
+  local rc=0
   [[ -n "$ARCHIVE_KEY" ]] && cmd+=(--archive-key "$ARCHIVE_KEY")
   [[ -n "$CANDIDATE_COUNT" ]] && cmd+=(--candidate-count "$CANDIDATE_COUNT")
   [[ -n "$DARK_RATIO" ]] && cmd+=(--dark-ratio "$DARK_RATIO")
   (( NO_RENDER == 1 )) && cmd+=(--no-render)
 
-  "${cmd[@]}"
+  set +e
+  output="$("${cmd[@]}" 2>&1)"
+  rc=$?
+  set -e
+
+  LAST_VALIDATION_OUTPUT="$output"
+  if [[ -n "$output" ]]; then
+    printf '%s\n' "$output"
+  fi
+
+  return "$rc"
+}
+
+validation_retry_budget() {
+  if [[ -n "$CANDIDATE_COUNT" ]]; then
+    printf '%s\n' "$CANDIDATE_COUNT"
+    return
+  fi
+
+  printf '%s\n' "12"
+}
+
+selected_screenshot_from_plan() {
+  local archive_key="${ARCHIVE_KEY:-$DATE}"
+  local plan_path="$REPO_DIR/previous-posts/$archive_key/plan.json"
+
+  if [[ ! -f "$plan_path" ]]; then
+    return 1
+  fi
+
+  node -e 'const fs=require("fs"); const plan=JSON.parse(fs.readFileSync(process.argv[1],"utf8")); process.stdout.write(String(plan?.post?.screenshot_file || ""));' "$plan_path"
+}
+
+is_retryable_validation_failure() {
+  [[ "$LAST_VALIDATION_OUTPUT" == *"is too close to recent"* ]] ||
+    [[ "$LAST_VALIDATION_OUTPUT" == *"overlaps too heavily with recent archive"* ]] ||
+    [[ "$LAST_VALIDATION_OUTPUT" == *"duplicates recent archive headline"* ]] ||
+    [[ "$LAST_VALIDATION_OUTPUT" == *"Weekly admin-only cap already reached"* ]] ||
+    [[ "$LAST_VALIDATION_OUTPUT" == *"Weekly dark-mode cap already reached"* ]]
+}
+
+array_contains() {
+  local needle="$1"
+  shift
+  local value=""
+
+  for value in "$@"; do
+    if [[ "$value" == "$needle" ]]; then
+      return 0
+    fi
+  done
+
+  return 1
+}
+
+run_with_validation_retries() {
+  local retry_budget=""
+  local selected_screenshot=""
+
+  retry_budget="$(validation_retry_budget)"
+
+  while true; do
+    build_context
+    reset_day_plan_artifacts
+
+    cp "$REPO_DIR/previous-posts/$ARCHIVE_KEY/prompt.txt" "$PROMPT_FILE"
+    run_codex_from_prompt
+
+    if validate_and_render; then
+      return 0
+    fi
+
+    if ! is_retryable_validation_failure; then
+      return 1
+    fi
+
+    selected_screenshot="$(selected_screenshot_from_plan || true)"
+    if [[ -z "$selected_screenshot" ]]; then
+      echo "Validation failed, but the selected screenshot could not be recovered for an automatic retry." >&2
+      return 1
+    fi
+
+    if (( ${#EXCLUDED_SCREENSHOTS[@]} > 0 )) && array_contains "$selected_screenshot" "${EXCLUDED_SCREENSHOTS[@]}"; then
+      echo "Validation failed again for already-excluded screenshot $selected_screenshot." >&2
+      return 1
+    fi
+
+    EXCLUDED_SCREENSHOTS+=("$selected_screenshot")
+    if (( ${#EXCLUDED_SCREENSHOTS[@]} >= retry_budget )); then
+      echo "Daily planner exhausted its validation retry budget after excluding ${#EXCLUDED_SCREENSHOTS[@]} screenshots." >&2
+      return 1
+    fi
+
+    echo "Retrying daily planner with excluded screenshot: $selected_screenshot"
+  done
 }
 
 push_archive() {
@@ -357,12 +462,7 @@ main() {
   echo "Runner Codex config: model=$CODEX_MODEL reasoning_effort=$CODEX_REASONING_EFFORT verbose_codex_output=$VERBOSE_CODEX_OUTPUT"
 
   verify_screenshot_source
-  build_context
-  reset_day_plan_artifacts
-
-  cp "$REPO_DIR/previous-posts/$ARCHIVE_KEY/prompt.txt" "$PROMPT_FILE"
-  run_codex_from_prompt
-  validate_and_render
+  run_with_validation_retries
   push_archive
 }
 

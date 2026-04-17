@@ -24,6 +24,7 @@ const {
 
 const DAILY_POSTS_ROOT = path.join(REPO_ROOT, "previous-posts");
 const ARCHIVE_LOOKBACK_DAYS = 31;
+const FEATURE_REPEAT_HARD_LOOKBACK_POSTS = 5;
 const ADMIN_COPY_PATTERNS = [
   /\badmin\b/i,
   /\badmins\b/i,
@@ -273,6 +274,7 @@ function parseArgs(argv) {
     candidateCount: 12,
     darkRatio: 0.2,
     date: todayString(),
+    excludeScreenshots: [],
     noRender: false,
   };
 
@@ -290,6 +292,9 @@ function parseArgs(argv) {
       index += 1;
     } else if (value === "--dark-ratio") {
       args.darkRatio = Number(argv[index + 1]);
+      index += 1;
+    } else if (value === "--exclude-screenshot") {
+      args.excludeScreenshots.push(String(argv[index + 1] || ""));
       index += 1;
     } else if (value === "--no-render") {
       args.noRender = true;
@@ -320,6 +325,10 @@ function parseArgs(argv) {
   if (Number.isNaN(args.darkRatio) || args.darkRatio < 0 || args.darkRatio > 1) {
     throw new Error("`--dark-ratio` must be a number from 0 to 1.");
   }
+
+  args.excludeScreenshots = Array.from(
+    new Set(args.excludeScreenshots.filter((value) => value.length > 0)),
+  );
 
   return args;
 }
@@ -759,6 +768,7 @@ function readHushlineAgentExcerpt() {
 function buildDailyContext(args) {
   const parsedDate = new Date(`${args.date}T12:00:00`);
   const week = formatIsoWeek(parsedDate);
+  const excludedScreenshots = new Set(args.excludeScreenshots || []);
   const planningContext = buildPlanningContext({
     candidateCount: Math.max(args.candidateCount * 10, 200),
     darkRatio: args.darkRatio,
@@ -780,7 +790,10 @@ function buildDailyContext(args) {
     archiveHistory,
     templateNames,
   );
-  const selectedCandidate = rankedCandidates[0] || null;
+  const eligibleCandidates = rankedCandidates.filter(
+    (candidate) => !excludedScreenshots.has(candidate.file),
+  );
+  const selectedCandidate = eligibleCandidates[0] || null;
 
   if (!selectedCandidate) {
     throw new Error(`No eligible screenshot candidates remain for ${args.date}.`);
@@ -794,7 +807,7 @@ function buildDailyContext(args) {
       },
     },
   );
-  const selectedCandidates = rankedCandidates.slice(0, 3);
+  const selectedCandidates = eligibleCandidates.slice(0, 3);
 
   return {
     audience_docs: planningContext.audience_docs,
@@ -802,6 +815,7 @@ function buildDailyContext(args) {
     daily_posts_root: path.relative(REPO_ROOT, DAILY_POSTS_ROOT),
     date: args.date,
     dark_ratio: args.darkRatio,
+    excluded_screenshots: Array.from(excludedScreenshots),
     hushline_agent_context: readHushlineAgentExcerpt(),
     hushline_app_voice_guidance: HUSHLINE_APP_VOICE_GUIDANCE,
     recent_archive_history: archiveHistory,
@@ -972,7 +986,7 @@ function buildResponseSchema(context) {
   };
 }
 
-function buildCodexPrompt(context, planPath) {
+function buildCodexPrompt(context, archiveKey) {
   const prompt = buildPromptPayload(context);
   const candidates = context.candidate_screenshots
     .map((candidate, index) => {
@@ -1003,8 +1017,8 @@ function buildCodexPrompt(context, planPath) {
     "Candidate screenshots:",
     candidates,
     "",
-    `Read planning context from: ${path.join("previous-posts", context.date, "context.json")}`,
-    `Write the finished plan JSON to: ${planPath}`,
+    `Read planning context from: ${path.join("previous-posts", archiveKey, "context.json")}`,
+    `Write the finished plan JSON to: ${path.join("previous-posts", archiveKey, "plan.json")}`,
     "",
     "Output requirements:",
     "- Write valid JSON only to the target file.",
@@ -1024,6 +1038,9 @@ function buildCodexPrompt(context, planPath) {
 function validatePlan(modelPlan, context) {
   const candidateMap = new Map(
     context.candidate_screenshots.map((candidate) => [candidate.file, candidate]),
+  );
+  const recentFeatureEntries = (context.recent_archive_history || []).slice(
+    -FEATURE_REPEAT_HARD_LOOKBACK_POSTS,
   );
 
   if (modelPlan.date !== context.date) {
@@ -1109,6 +1126,7 @@ function validatePlan(modelPlan, context) {
       (entry.screen_key && entry.screen_key === (candidate.screen_key || inferScreenKey(candidate))) ||
       (entry.topic_family && entry.topic_family === (candidate.topic_family || inferTopicFamily(candidate)))
     );
+    const recentFeatureOverlap = sameFeature && recentFeatureEntries.includes(entry);
     const matchingHeadline = normalizeMessageLine(entry.headline) === normalizeMessageLine(post.headline);
     const headlineOverlap = sharedMessageTokenCount(
       `${post.headline} ${post.subtext}`,
@@ -1122,7 +1140,7 @@ function validatePlan(modelPlan, context) {
       );
     }
 
-    if (sameFeature && (headlineOverlap >= 3 || bodyOverlap >= 6)) {
+    if (recentFeatureOverlap && (headlineOverlap >= 3 || bodyOverlap >= 6)) {
       throw new Error(
         `Post messaging for ${context.date} is too close to recent ${entry.topic_family} archive ${entry.archive_key}.`,
       );
@@ -1167,7 +1185,7 @@ function writeContextArtifacts(archiveKey, context) {
   const promptPath = path.join(postRoot, "prompt.txt");
   const planPath = path.join(postRoot, "plan.json");
   writeJson(contextPath, context);
-  fs.writeFileSync(promptPath, `${buildCodexPrompt(context, path.join("previous-posts", archiveKey, "plan.json"))}\n`);
+  fs.writeFileSync(promptPath, `${buildCodexPrompt(context, archiveKey)}\n`);
   return {
     contextPath,
     planPath,

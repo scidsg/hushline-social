@@ -87,6 +87,24 @@ test("parseArgs accepts suffixed archive keys for the same planned date", () => 
   assert.equal(args.archiveKey, "2026-03-20-1");
 });
 
+test("parseArgs collects unique excluded screenshots", () => {
+  const args = parseArgs([
+    "--date",
+    "2026-03-20",
+    "--exclude-screenshot",
+    "artvandelay/auth-artvandelay-settings-notifications-mobile-light-fold.png",
+    "--exclude-screenshot",
+    "artvandelay/auth-artvandelay-settings-notifications-mobile-light-fold.png",
+    "--exclude-screenshot",
+    "artvandelay/auth-artvandelay-tools-vision-mobile-light-fold.png",
+  ]);
+
+  assert.deepEqual(args.excludeScreenshots, [
+    "artvandelay/auth-artvandelay-settings-notifications-mobile-light-fold.png",
+    "artvandelay/auth-artvandelay-tools-vision-mobile-light-fold.png",
+  ]);
+});
+
 test("parseArgs rejects archive keys outside the requested planned date", () => {
   assert.throws(
     () => parseArgs(["--date", "2026-03-20", "--archive-key", "2026-03-21-1"]),
@@ -451,6 +469,71 @@ test("validatePlan rejects messaging that duplicates a recent archive angle", ()
     () => validatePlan(buildModelPlan(), context),
     /duplicates recent archive headline/,
   );
+});
+
+test("validatePlan allows an older same-topic archive outside the recent-feature window", () => {
+  const context = buildContext({
+    recent_archive_history: [
+      {
+        archive_key: "2026-03-10",
+        headline: "Verify a recipient before you send a tip",
+        linkedin_copy: "Trust signals help people verify a recipient before they send a tip. Learn more at https://hushline.app/.",
+        screen_key: "directory-index",
+        subtext: "The public directory highlights trust signals before someone sends a message.",
+        topic_family: "directory",
+      },
+      {
+        archive_key: "2026-03-11",
+        headline: "Archive one",
+        linkedin_copy: "Distinct copy one.",
+        screen_key: "/settings/encryption",
+        subtext: "Distinct one.",
+        topic_family: "encryption",
+      },
+      {
+        archive_key: "2026-03-12",
+        headline: "Archive two",
+        linkedin_copy: "Distinct copy two.",
+        screen_key: "/settings/profile",
+        subtext: "Distinct two.",
+        topic_family: "profile",
+      },
+      {
+        archive_key: "2026-03-13",
+        headline: "Archive three",
+        linkedin_copy: "Distinct copy three.",
+        screen_key: "/settings/replies",
+        subtext: "Distinct three.",
+        topic_family: "message-statuses",
+      },
+      {
+        archive_key: "2026-03-14",
+        headline: "Archive four",
+        linkedin_copy: "Distinct copy four.",
+        screen_key: "/vision",
+        subtext: "Distinct four.",
+        topic_family: "vision",
+      },
+      {
+        archive_key: "2026-03-17",
+        headline: "Archive five",
+        linkedin_copy: "Distinct copy five.",
+        screen_key: "/settings/auth",
+        subtext: "Distinct five.",
+        topic_family: "authentication",
+      },
+      {
+        archive_key: "2026-03-18",
+        headline: "Archive six",
+        linkedin_copy: "Distinct copy six.",
+        screen_key: "/settings/guidance",
+        subtext: "Distinct six.",
+        topic_family: "guidance",
+      },
+    ],
+  });
+
+  assert.doesNotThrow(() => validatePlan(buildModelPlan(), context));
 });
 
 test("validatePlan allows a distinct directory message that only shares generic public-directory wording", () => {
