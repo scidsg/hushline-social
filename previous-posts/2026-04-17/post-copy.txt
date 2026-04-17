@@ -1,0 +1,33 @@
+Slot: friday
+Planned date: 2026-04-17
+Template: hushline-daily-desktop-template.html
+Screenshot: /Users/scidsg/hushline-screenshots/curated/newman/auth-newman-onboarding-encryption-desktop-light-fold.png
+Content key: auth-newman-onboarding-encryption
+Headline: Set up your public key during onboarding
+Subtext: The encryption step lets recipients search Proton Mail or paste a public PGP key manually so sources can send messages that only the intended recipient can read.
+
+Image alt text
+Social graphic using a Hush Line desktop screenshot from the onboarding flow. The card shows step 2, "Now, let's set up encryption," with options to search Proton Mail for a key or paste a public PGP key manually, plus Continue and Skip setup for now buttons.
+
+Social post copy
+
+LinkedIn (372/3000)
+If you are setting up a tip line for a newsroom, law office, school, or organizing team, encryption needs to be in place before sources rely on it.
+
+Hush Line's onboarding flow lets recipients search for a Proton Mail key or paste a public PGP key manually, so anonymous first contact can be encrypted for the right person from the start.
+
+Sign up at https://hushline.app.
+
+Mastodon (348/500)
+If you're setting up a Hush Line account for a newsroom, law office, school, or organizing team, encryption should be part of setup, not an afterthought.
+
+The onboarding flow lets recipients search Proton Mail for a key or paste a public PGP key manually so sources can send encrypted first contact from the start.
+
+Sign up at https://hushline.app.
+
+Bluesky (252/300)
+If you're setting up a tip line, add your public key during setup.
+
+Hush Line lets recipients search Proton Mail for a key or paste a public PGP key manually, so sources can send encrypted first contact from the start.
+
+Sign up at https://hushline.app.
