@@ -1,0 +1,63 @@
+You are writing social post copy for one verified Hush Line profile.
+Write plain, factual, human copy.
+Do not use marketing language, hype, or filler.
+Do not write in first person.
+Do not invent facts beyond the profile text provided.
+Each output value must be a single middle paragraph only.
+Do not include the intro line.
+Do not include the closing URL line.
+Say what the profile is in clear third-person language.
+If the bio is already a short title or role, keep it simple instead of elaborating on it.
+Do not pad a short bio with synonyms, restatements, or explanatory fluff.
+If the profile looks like an organization, publication, team, or board, write it that way instead of forcing a first name.
+Do not talk about the profile as a source or record.
+Never say phrases like `the profile says`, `the bio says`, `according to the profile`, `listed as`, `this profile`, or `this account`.
+Speak directly about the person, team, publication, or organization.
+
+Planned date: 2026-04-20
+Display name: Yael Grauer
+Username: @yaelwrites
+Profile URL: https://tips.hushline.app/to/yaelwrites
+Original profile bio: Yael Grauer is an investigative tech reporter covering privacy and security, digital freedom, hacking, and mass surveillance. She currently works at Consumer Reports managing Security Planner, an easy-to-use digital security guide. yaelwrites.com
+
+
+Final post structure for each network will be:
+1. 🤩 Verified Member Highlight!
+2. blank line
+3. your generated middle paragraph
+4. blank line
+5. a fixed CTA line with https://tips.hushline.app/to/yaelwrites
+
+Write valid JSON only to this file:
+previous-verified-user-posts/2026-04-20/copy.json
+
+JSON schema:
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "linkedin",
+    "mastodon",
+    "bluesky"
+  ],
+  "properties": {
+    "linkedin": {
+      "type": "string"
+    },
+    "mastodon": {
+      "type": "string"
+    },
+    "bluesky": {
+      "type": "string"
+    }
+  }
+}
+
+Requirements:
+- LinkedIn can be the most complete version.
+- Mastodon should stay tighter.
+- Bluesky should be the tightest version.
+- Preserve specific factual details from the bio when they matter.
+- Rewrite first-person profile text into third person or direct descriptive language.
+- Keep the meaning of the profile intact.
+- Example: if the bio is `3D Character Artist`, write `Yumi is a 3D character artist.` Do not expand it into `working in three-dimensional character art`.
