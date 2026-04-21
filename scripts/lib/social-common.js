@@ -272,7 +272,7 @@ function ensureLatestFoldScreenshot(screenshotPath) {
     !path.basename(resolved).endsWith("-fold.png")
   ) {
     throw new Error(
-      `Screenshot must come from the local \`${path.relative(REPO_ROOT, SCREENSHOTS_ROOT)}\` folder and use an above-the-fold \`-fold\` capture.`,
+      "Screenshot must come from the local `hushline-screenshots/releases/latest` folder and use an above-the-fold `-fold` capture.",
     );
   }
 
