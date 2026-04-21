@@ -1,0 +1,33 @@
+Slot: thursday
+Planned date: 2026-04-16
+Template: hushline-daily-desktop-template-2.html
+Screenshot: /Users/scidsg/hushline-screenshots/curated/artvandelay/auth-artvandelay-settings-notifications-desktop-light-fold.png
+Content key: auth-artvandelay-settings-notifications
+Headline: Route new tip alerts to the right people
+Subtext: Notification settings let recipients add separate alert addresses, so one public tip line can support a newsroom, law office, or other small team without relying on a single inbox.
+
+Image alt text
+A social graphic built around Hush Line on desktop showing notification settings with multiple recipient email rows and options for how new tip alerts are delivered.
+
+Social post copy
+
+LinkedIn (435/3000)
+A public tip line should not depend on one person noticing every message.
+
+Hush Line's notification settings let recipients add separate alert addresses, so a newsroom, law office, or other small team can keep one public intake point while routing alerts into the review workflow they already use. That helps teams stay responsive without turning secure first contact into a shared mailbox problem.
+
+Learn more at https://hushline.app.
+
+Mastodon (299/500)
+A public tip line should not depend on one person noticing every message.
+
+Hush Line's notification settings let recipients add separate alert addresses, so a newsroom, law office, or other small team can share one intake point without relying on a single inbox.
+
+Learn more at https://hushline.app.
+
+Bluesky (298/300)
+A tip line should not depend on one person noticing every message.
+
+Hush Line's notification settings let recipients add separate alert addresses, so a newsroom, law office, or other small team can share one intake point while keeping their own review workflow.
+
+Learn more at https://hushline.app.

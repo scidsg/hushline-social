@@ -1,0 +1,33 @@
+Slot: tuesday
+Planned date: 2026-04-21
+Template: hushline-daily-mobile-template.html
+Screenshot: /Users/scidsg/hushline-screenshots/curated/artvandelay/auth-artvandelay-settings-auth-mobile-light-fold.png
+Content key: auth-artvandelay-settings-auth
+Headline: Keep your tip line account recognizable and secure
+Subtext: Authentication settings let recipients review username changes, update a password, and turn on 2FA from one place.
+
+Image alt text
+Mobile social graphic showing Hush Line's Authentication settings page in a light theme. The image includes a username change form, an Enable 2FA button, and the top of the password section, highlighting account access controls for a recipient tip-line account.
+
+Social post copy
+
+LinkedIn (447/3000)
+Before someone sends a sensitive message, they need confidence that your tip line still points to the right person.
+
+Hush Line's authentication settings let recipients review username changes, update a password, and turn on 2FA from one place. That gives journalists, lawyers, educators, and other trusted recipients a straightforward way to manage account access without treating security as a separate workflow.
+
+Sign up at https://hushline.app.
+
+Mastodon (297/500)
+People deciding whether to contact you need to know they reached the right recipient.
+
+Hush Line's authentication settings let you review your username, change your password, and turn on 2FA from one place, so the account behind your tip line stays under control.
+
+Sign up at https://hushline.app.
+
+Bluesky (240/300)
+People deciding whether to contact you need to know they reached the right recipient.
+
+Hush Line's authentication settings let you review your username, change your password, and turn on 2FA from one place.
+
+Sign up at https://hushline.app.

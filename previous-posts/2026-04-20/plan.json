@@ -1,0 +1,30 @@
+{
+  "date": "2026-04-20",
+  "post": {
+    "slot": "monday",
+    "planned_date": "2026-04-20",
+    "screenshot_file": "artvandelay/auth-artvandelay-settings-aliases-mobile-dark-fold.png",
+    "content_key": "auth-artvandelay-settings-aliases",
+    "headline": "Create a separate tip line for each kind of intake",
+    "subtext": "Aliases let recipients create matter-specific, campaign-specific, or role-based endpoints instead of routing every disclosure through one public address.",
+    "image_alt_text": "Mobile social graphic with a dark Hush Line settings screen open to the Aliases tab. An Add Alias form appears above a Current Aliases list, showing how a recipient can create separate tip-line endpoints for different roles, matters, or campaigns.",
+    "social": {
+      "bluesky": "Different kinds of intake should not all land under the same public tip line.\n\nHush Line aliases let you create separate endpoints for a specific matter, campaign, or role, so different workflows do not get folded into one public address.\n\nSign up at https://hushline.app.",
+      "linkedin": "Different kinds of intake should not all land under the same public tip line.\n\nHush Line aliases let recipients create separate endpoints for a specific matter, campaign, or role. A newsroom, law office, school, or organizing team can keep those workflows distinct instead of sending every source to the same public address.\n\nSign up at https://hushline.app.",
+      "mastodon": "Different kinds of intake should not all land under the same public tip line.\n\nHush Line aliases let recipients create separate endpoints for a specific matter, campaign, or role, so a team can keep those workflows distinct instead of routing everything through one public address.\n\nSign up at https://hushline.app."
+    },
+    "rationale": "This candidate is the strongest fit because aliases are not represented in the prior 31 days of archived daily posts, while authentication and notifications both appeared recently. The message is grounded in USE-CASES.md, which frames aliases as a recipient workflow for matter-specific, campaign-specific, or role-based intake endpoints.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "settings-aliases",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "matched_pull_requests": [],
+    "screen_key": "/settings/aliases",
+    "template_name": "hushline-daily-mobile-template-2.html",
+    "theme": "dark",
+    "title": "Settings - Aliases (artvandelay)",
+    "topic_family": "aliases",
+    "viewport": "mobile"
+  },
+  "summary": "Recipient-shared aliases post focused on creating separate tip lines for different workflows without repeating recent authentication or notifications themes."
+}
