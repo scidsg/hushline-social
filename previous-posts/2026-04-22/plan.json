@@ -1,0 +1,30 @@
+{
+  "date": "2026-04-22",
+  "post": {
+    "slot": "wednesday",
+    "planned_date": "2026-04-22",
+    "screenshot_file": "admin/auth-admin-settings-registration-desktop-light-fold.png",
+    "content_key": "auth-admin-settings-registration",
+    "headline": "For admins: choose how staff accounts are created",
+    "subtext": "Registration settings let teams running Hush Line decide whether staff signup stays off, open, or code-only.",
+    "image_alt_text": "Desktop social graphic showing Hush Line's Registration settings page in a light theme. A large settings panel highlights two controls for admins running a deployment: Enable Registrations is switched on and Require Registration Codes is switched off, with the settings navigation visible on the left.",
+    "social": {
+      "bluesky": "Sources should not need an account to send a tip.\n\nFor admins and teams running Hush Line, registration settings decide whether staff signup is off, open, or code-only.\n\nLearn more at https://hushline.app.",
+      "linkedin": "Sources should not need an account to send a tip. For admins and teams running Hush Line, the separate question is how staff accounts get created.\n\nRegistration settings let you disable self-signup, leave it open, or require a registration code. That gives a newsroom, law office, school, or nonprofit a straightforward way to match account creation to the way the deployment is actually run.\n\nLearn more at https://hushline.app.",
+      "mastodon": "Sources should not need an account to send a tip. For admins and teams running Hush Line, the separate question is how staff accounts get created.\n\nRegistration settings let you turn self-signup off, leave it open, or require a code so staff access matches the way your deployment actually runs.\n\nLearn more at https://hushline.app."
+    },
+    "rationale": "All three shortlisted candidates overlapped with material from the prior 31 days. I rejected the onboarding-directory option because directory posts dominated the recent archive and the same onboarding-directory content already ran on 2026-03-24. I also avoided branding because branding messaging ran on 2026-04-08 with a very similar admin audience and explanation theme. Registration still repeats a recent settings area from 2026-04-09, but it offers the cleanest new angle: separating anonymous source access from admin decisions about how staff accounts are created. That keeps the copy grounded in documented administrator needs around registration gates without repeating the heavier directory or branding themes.",
+    "source_pr_numbers": [],
+    "audience_scope": "admin-only",
+    "concept_key": "settings-registration",
+    "copy_brief": "Write for admins or teams running a Hush Line deployment. Make the admin audience explicit.",
+    "matched_pull_requests": [],
+    "screen_key": "/settings/registration",
+    "template_name": "hushline-daily-desktop-template-2.html",
+    "theme": "light",
+    "title": "Settings - Registration (admin)",
+    "topic_family": "registration",
+    "viewport": "desktop"
+  },
+  "summary": "Admin-facing registration post focused on how teams control staff account creation while keeping source submission account-free."
+}
