@@ -1,0 +1,30 @@
+{
+  "date": "2026-04-23",
+  "post": {
+    "slot": "thursday",
+    "planned_date": "2026-04-23",
+    "screenshot_file": "newman/auth-newman-onboarding-directory-desktop-light-fold.png",
+    "content_key": "auth-newman-onboarding-directory",
+    "headline": "Decide when your tip line goes public",
+    "subtext": "The final onboarding step lets recipients join the public directory only when their profile, encryption, and delivery settings are ready for sources to use.",
+    "image_alt_text": "Desktop social graphic showing Hush Line's onboarding flow in a light theme. The card highlights the final setup step asking whether to list the account in the public directory, with Yes and No options and a Continue button.",
+    "social": {
+      "bluesky": "Don't publish a half-finished tip line.\n\nThe last Hush Line onboarding step lets recipients decide whether to join the public directory now or wait until their profile, encryption key, and delivery settings are ready for sources.\n\nSign up at https://hushline.app.",
+      "linkedin": "A public tip line should not send sources to a half-finished profile.\n\nThe last step in Hush Line onboarding lets recipients choose whether to appear in the public directory now or wait until their profile, encryption key, and delivery settings are ready. That helps journalists, lawyers, educators, and other trusted recipients publish a listing only when a source can verify who they are and send a message with confidence.\n\nSign up at https://hushline.app.",
+      "mastodon": "A public tip line should not send sources to a half-finished profile.\n\nThe last onboarding step lets recipients decide whether to join Hush Line's public directory now or wait until their profile, encryption key, and delivery settings are ready.\n\nSign up at https://hushline.app."
+    },
+    "rationale": "This candidate sits in the directory family, which has been used heavily in the prior 31 days, including the same onboarding-directory content on 2026-03-24. I kept it only because it was the sole shortlisted option and shifted the message away from source-side directory browsing. The copy instead focuses on a recipient workflow grounded in the account setup docs: deciding whether a tip line is ready to be publicly listed after profile, encryption, and delivery choices are in place.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "onboarding-directory",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "matched_pull_requests": [],
+    "screen_key": "onboarding-directory",
+    "template_name": "hushline-daily-desktop-template.html",
+    "theme": "light",
+    "title": "Onboarding - Step 4 Directory (newman)",
+    "topic_family": "directory",
+    "viewport": "desktop"
+  },
+  "summary": "Recipient-facing desktop post about deciding whether a tip line is ready to appear in the public directory."
+}

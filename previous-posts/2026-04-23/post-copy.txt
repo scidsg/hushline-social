@@ -1,0 +1,33 @@
+Slot: thursday
+Planned date: 2026-04-23
+Template: hushline-daily-desktop-template.html
+Screenshot: /Users/scidsg/hushline-screenshots/curated/newman/auth-newman-onboarding-directory-desktop-light-fold.png
+Content key: auth-newman-onboarding-directory
+Headline: Decide when your tip line goes public
+Subtext: The final onboarding step lets recipients join the public directory only when their profile, encryption, and delivery settings are ready for sources to use.
+
+Image alt text
+Desktop social graphic showing Hush Line's onboarding flow in a light theme. The card highlights the final setup step asking whether to list the account in the public directory, with Yes and No options and a Continue button.
+
+Social post copy
+
+LinkedIn (459/3000)
+A public tip line should not send sources to a half-finished profile.
+
+The last step in Hush Line onboarding lets recipients choose whether to appear in the public directory now or wait until their profile, encryption key, and delivery settings are ready. That helps journalists, lawyers, educators, and other trusted recipients publish a listing only when a source can verify who they are and send a message with confidence.
+
+Sign up at https://hushline.app.
+
+Mastodon (279/500)
+A public tip line should not send sources to a half-finished profile.
+
+The last onboarding step lets recipients decide whether to join Hush Line's public directory now or wait until their profile, encryption key, and delivery settings are ready.
+
+Sign up at https://hushline.app.
+
+Bluesky (263/300)
+Don't publish a half-finished tip line.
+
+The last Hush Line onboarding step lets recipients decide whether to join the public directory now or wait until their profile, encryption key, and delivery settings are ready for sources.
+
+Sign up at https://hushline.app.
