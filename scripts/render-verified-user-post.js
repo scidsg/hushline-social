@@ -17,7 +17,7 @@ const {
 } = require("./lib/verified-user-post");
 const { REPO_ROOT } = require("./lib/social-common");
 
-const CODEX_MODEL = process.env.CODEX_MODEL || "gpt-5.4";
+const CODEX_MODEL = process.env.CODEX_MODEL || "gpt-5.5";
 const CODEX_REASONING_EFFORT = process.env.CODEX_REASONING_EFFORT || "high";
 
 function requireCommand(command) {

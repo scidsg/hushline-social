@@ -97,6 +97,11 @@ Daemon mode needs a fully non-interactive `.env.launchd` setup:
 - `LINKEDIN_ACCESS_TOKEN`
 - `LINKEDIN_AUTHOR_URN`
 
+Optional Codex overrides:
+
+- `CODEX_MODEL` defaults to `gpt-5.5`
+- `CODEX_REASONING_EFFORT` defaults to `high`
+
 Optional verified-user source overrides:
 
 - `HUSHLINE_VERIFIED_USERS_SOURCE` for a local JSON file or remote `users.json` URL

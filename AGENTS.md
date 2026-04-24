@@ -283,6 +283,13 @@ Daemon-mode `.env.launchd` files should include:
 - `LINKEDIN_ACCESS_TOKEN`
 - `LINKEDIN_AUTHOR_URN`
 
+Optional Codex overrides:
+
+- `CODEX_MODEL`
+  - defaults to `gpt-5.5`
+- `CODEX_REASONING_EFFORT`
+  - defaults to `high`
+
 ## Launchd Troubleshooting
 
 - if a scheduled time changes, reinstall the agents with `./scripts/install_launch_agent.sh`

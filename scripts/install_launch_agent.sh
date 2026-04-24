@@ -260,6 +260,7 @@ EOF
   else
     cat <<EOF
 - required daemon env vars: OPENAI_API_KEY, HUSHLINE_SOCIAL_GITHUB_TOKEN, HUSHLINE_SOCIAL_GIT_SIGNING_KEY_PUB, LINKEDIN_ACCESS_TOKEN, LINKEDIN_AUTHOR_URN
+- optional Codex defaults: CODEX_MODEL=gpt-5.5, CODEX_REASONING_EFFORT=high
 - test with: sudo launchctl kickstart -k system/com.hushline.social.daily-planner
 - test with: sudo launchctl kickstart -k system/com.hushline.social.linkedin.daily
 - test with: sudo launchctl kickstart -k system/com.hushline.social.verified-user.weekly
