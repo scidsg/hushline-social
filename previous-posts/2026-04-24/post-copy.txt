@@ -1,0 +1,31 @@
+Slot: friday
+Planned date: 2026-04-24
+Template: hushline-daily-mobile-template-2.html
+Screenshot: /Users/scidsg/hushline-screenshots/curated/guest/guest-directory-attorneys-applied-filters-mobile-light-fold.png
+Content key: guest-directory-attorneys-applied-filters
+Headline: Filter the attorney directory before you reach out
+Subtext: Public filters help sources narrow whistleblower-support attorneys by location before they contact a law office or share sensitive details.
+
+Image alt text
+Social graphic built around a mobile Hush Line screenshot showing the Whistleblower Support Directory with the Attorneys tab selected and filters open for United States and California. The image highlights a public, searchable directory view for comparing attorney options before sending a message.
+
+Social post copy
+
+LinkedIn (397/3000)
+If you need to contact a lawyer about a sensitive matter, the first problem is often figuring out which office fits your situation.
+
+This Hush Line directory view lets sources narrow attorney listings by location before they reach out. It helps people compare options, verify who they are contacting, and start secure first contact without creating an account.
+
+Learn more at https://hushline.app.
+
+Mastodon (316/500)
+If you need to contact a lawyer about a sensitive matter, it helps to narrow the list before you share anything.
+
+Hush Line's public attorney directory lets sources filter by location, compare options, and verify who they are contacting. No account is required to send a message.
+
+Learn more at https://hushline.app.
+
+Bluesky (281/300)
+If you need to contact a lawyer about a sensitive matter, it helps to narrow the list first.
+
+Hush Line's public attorney directory lets sources filter by location, compare options, and verify who they are contacting before secure first contact. Learn more at https://hushline.app.
