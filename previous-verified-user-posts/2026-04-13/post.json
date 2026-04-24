@@ -1,0 +1,19 @@
+{
+  "date": "2026-04-13",
+  "display_name": "Levi Kalish",
+  "headline": "Levi Kalish",
+  "image_alt_text": "A social card featuring verified Hush Line user Levi Kalish, their bio, their tip line URL, and a QR code that links to the same URL.",
+  "planned_date": "2026-04-13",
+  "primary_username": "LKalish",
+  "qr_code_file": "verified-user-qr.png",
+  "social": {
+    "bluesky": "🤩 Verified Member Highlight!\n\nLevi Kalish covers LGBTQ+ rights for HuffPost, including the Trump administration, attacks on trans rights, and organized resistance. Signal @levikalish.01.\n\nSend Levi a tip: https://tips.hushline.app/to/LKalish",
+    "linkedin": "🤩 Verified Member Highlight!\n\nLevi Kalish is an LGBTQ+ rights reporter at HuffPost covering the Trump administration, legal attacks on trans rights, and organized resistance. He writes at the speed of trust and shares Signal @levikalish.01 for secure outreach.\n\nTo send Levi a tip, go to https://tips.hushline.app/to/LKalish.",
+    "mastodon": "🤩 Verified Member Highlight!\n\nLevi Kalish is an LGBTQ+ rights reporter at HuffPost covering the Trump administration, legal attacks on trans rights, and organized resistance. He writes at the speed of trust. Signal @levikalish.01.\n\nTo send Levi a tip, visit https://tips.hushline.app/to/LKalish."
+  },
+  "slot": "verified-user-weekly",
+  "source": "/tmp/levi-verified-user.json",
+  "subtext": "LGBTQ+ rights reporter at HuffPost. Covering Trump admin, legal attacks on trans rights, and organized resistance. Writing at the speed of trust. Signal @levikalish.01",
+  "user_link": "https://tips.hushline.app/to/LKalish",
+  "user_url": "https://tips.hushline.app/to/LKalish"
+}

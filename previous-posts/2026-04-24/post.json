@@ -1,0 +1,32 @@
+{
+  "slot": "friday",
+  "planned_date": "2026-04-24",
+  "screenshot_file": "guest/guest-directory-attorneys-applied-filters-mobile-light-fold.png",
+  "content_key": "guest-directory-attorneys-applied-filters",
+  "headline": "Filter the attorney directory before you reach out",
+  "subtext": "Public filters help sources narrow whistleblower-support attorneys by location before they contact a law office or share sensitive details.",
+  "image_alt_text": "Social graphic built around a mobile Hush Line screenshot showing the Whistleblower Support Directory with the Attorneys tab selected and filters open for United States and California. The image highlights a public, searchable directory view for comparing attorney options before sending a message.",
+  "social": {
+    "bluesky": "If you need to contact a lawyer about a sensitive matter, it helps to narrow the list first.\n\nHush Line's public attorney directory lets sources filter by location, compare options, and verify who they are contacting before secure first contact. Learn more at https://hushline.app.",
+    "linkedin": "If you need to contact a lawyer about a sensitive matter, the first problem is often figuring out which office fits your situation.\n\nThis Hush Line directory view lets sources narrow attorney listings by location before they reach out. It helps people compare options, verify who they are contacting, and start secure first contact without creating an account.\n\nLearn more at https://hushline.app.",
+    "mastodon": "If you need to contact a lawyer about a sensitive matter, it helps to narrow the list before you share anything.\n\nHush Line's public attorney directory lets sources filter by location, compare options, and verify who they are contacting. No account is required to send a message.\n\nLearn more at https://hushline.app."
+  },
+  "rationale": "This candidate is the least repetitive option in the shortlist because the other two are exact screen repeats from the last month. The attorney directory is still in a familiar family, so the angle stays narrow: filtering a public legal directory by location before sharing sensitive information, which is distinct from recent posts about single attorney profiles, newsroom browsing, onboarding, notifications, and encryption.",
+  "source_pr_numbers": [],
+  "audience_scope": "public",
+  "concept_key": "directory-attorneys-applied-filters",
+  "copy_brief": "Write for sources and public users evaluating or using Hush Line.",
+  "matched_pull_requests": [
+    {
+      "merged_at": "2026-04-12T06:41:02Z",
+      "number": 1871,
+      "title": "#1870 Add count next to filter trigger when filters applied"
+    }
+  ],
+  "screen_key": "directory-index",
+  "template_name": "hushline-daily-mobile-template-2.html",
+  "theme": "light",
+  "title": "Directory - Attorneys (applied filters)",
+  "topic_family": "directory",
+  "viewport": "mobile"
+}

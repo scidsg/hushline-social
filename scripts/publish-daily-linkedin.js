@@ -49,6 +49,41 @@ function isInactiveLinkedInVersionError(error) {
   return /NONEXISTENT_VERSION/.test(message);
 }
 
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function isRetryableLinkedInRequestError(error) {
+  const message = error instanceof Error ? error.message : String(error);
+  return /\b(ENOTFOUND|EAI_AGAIN|ECONNRESET|ECONNREFUSED|ETIMEDOUT|UND_ERR_CONNECT_TIMEOUT|UND_ERR_HEADERS_TIMEOUT)\b/.test(message);
+}
+
+async function withLinkedInRequestRetry({
+  attempts = Number(process.env.HUSHLINE_SOCIAL_LINKEDIN_REQUEST_RETRY_ATTEMPTS || 4),
+  baseDelayMs = Number(process.env.HUSHLINE_SOCIAL_LINKEDIN_REQUEST_RETRY_DELAY_MS || 1500),
+  onRetry = () => {},
+  run,
+}) {
+  let lastError = null;
+
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      return await run();
+    } catch (error) {
+      lastError = error;
+      if (attempt >= attempts || !isRetryableLinkedInRequestError(error)) {
+        throw error;
+      }
+
+      const delayMs = baseDelayMs * attempt;
+      onRetry({ attempt, delayMs, error, nextAttempt: attempt + 1 });
+      await sleep(delayMs);
+    }
+  }
+
+  throw lastError || new Error("LinkedIn request retry exhausted without an error.");
+}
+
 async function withLinkedInVersionFallback({ requestedVersion, now = new Date(), onRetry = () => {}, run }) {
   const versionCandidates = resolveLinkedInVersionCandidates(requestedVersion, now);
 
@@ -221,15 +256,34 @@ function resolveArchivedDailyPost(args) {
 async function linkedinRequest({ method, pathOrUrl, token, version, body, headers = {} }) {
   const isAbsolute = /^https?:\/\//.test(pathOrUrl);
   const url = isAbsolute ? pathOrUrl : `https://api.linkedin.com/rest${pathOrUrl}`;
-  const response = await fetch(url, {
-    method,
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Linkedin-Version": version,
-      "X-Restli-Protocol-Version": "2.0.0",
-      ...headers,
+  const response = await withLinkedInRequestRetry({
+    onRetry: ({ attempt, delayMs, nextAttempt, error }) => {
+      process.stderr.write(
+        `LinkedIn request attempt ${attempt} failed for ${method} ${url}: ${error.message}. Retrying attempt ${nextAttempt} in ${delayMs}ms.\n`,
+      );
     },
-    body,
+    async run() {
+      try {
+        return await fetch(url, {
+          method,
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Linkedin-Version": version,
+            "X-Restli-Protocol-Version": "2.0.0",
+            ...headers,
+          },
+          body,
+        });
+      } catch (error) {
+        const causeMessage =
+          error && error.cause && error.cause.message
+            ? error.cause.message
+            : error instanceof Error
+              ? error.message
+              : String(error);
+        throw new Error(`LinkedIn API ${method} ${url} request failed: ${causeMessage}`);
+      }
+    },
   });
 
   if (!response.ok) {
@@ -446,8 +500,10 @@ if (require.main === module) {
   module.exports = {
     defaultLinkedInVersion,
     isInactiveLinkedInVersionError,
+    isRetryableLinkedInRequestError,
     previousLinkedInVersion,
     resolveLinkedInVersionCandidates,
+    withLinkedInRequestRetry,
     withLinkedInVersionFallback,
   };
 }

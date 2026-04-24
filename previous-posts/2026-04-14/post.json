@@ -1,0 +1,26 @@
+{
+  "slot": "tuesday",
+  "planned_date": "2026-04-14",
+  "screenshot_file": "guest/guest-directory-attorney-adam-j-levitt-mobile-light-fold.png",
+  "content_key": "guest-directory-attorney-adam-j-levitt",
+  "headline": "Review a whistleblower law listing before you reach out",
+  "subtext": "This public attorney listing shows bar-registration details, location, and firm links so a source can judge whether a law office fits the disclosure they need to make.",
+  "image_alt_text": "A portrait Hush Line social graphic built from a light-mode mobile public directory screen. It shows an attorney listing with a law firm name, location, practice description, and links to the lawyer's site and source record.",
+  "social": {
+    "bluesky": "Finding the right law office can be part of the hard part.\n\nHush Line's public attorney listings show record details, location, and firm links before first contact.\n\nLearn more at https://hushline.app.",
+    "linkedin": "Sometimes the hardest part of asking for legal help is figuring out which office actually handles the kind of disclosure you need to make.\n\nHush Line's public attorney listings can point people to bar-record details, locations, and firm links before first contact, so they can compare legal options with more context instead of guessing.\n\nLearn more at https://hushline.app.",
+    "mastodon": "Legal intake starts before the first message.\n\nHush Line's public attorney listings show record details, locations, and firm links so people can compare law offices with more context before they reach out.\n\nLearn more at https://hushline.app."
+  },
+  "rationale": "The selected screenshot is a public-facing attorney listing from the directory, so the copy is written for sources evaluating where to make first contact. The angle stays on legal-fit and public-record context rather than newsroom search or SecureDrop destination checks, which keeps it distinct from the recent directory archive while matching the screen directly.",
+  "source_pr_numbers": [],
+  "audience_scope": "public",
+  "concept_key": "directory-attorney-adam-j-levitt",
+  "copy_brief": "Write for sources and public users evaluating or using Hush Line.",
+  "matched_pull_requests": [],
+  "screen_key": "directory-public-record",
+  "template_name": "hushline-daily-mobile-template.html",
+  "theme": "light",
+  "title": "Directory - Attorney listing (Adam J. Levitt)",
+  "topic_family": "directory",
+  "viewport": "mobile"
+}

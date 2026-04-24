@@ -15,6 +15,7 @@ const {
   planDay,
   validatePlan,
 } = require("../scripts/lib/daily-planner");
+const { assignVariantsToConcepts } = require("../scripts/lib/planning-context");
 
 function buildContext(overrides = {}) {
   return {
@@ -84,6 +85,24 @@ test("parseArgs rejects malformed dates", () => {
 test("parseArgs accepts suffixed archive keys for the same planned date", () => {
   const args = parseArgs(["--date", "2026-03-20", "--archive-key", "2026-03-20-1"]);
   assert.equal(args.archiveKey, "2026-03-20-1");
+});
+
+test("parseArgs collects unique excluded screenshots", () => {
+  const args = parseArgs([
+    "--date",
+    "2026-03-20",
+    "--exclude-screenshot",
+    "artvandelay/auth-artvandelay-settings-notifications-mobile-light-fold.png",
+    "--exclude-screenshot",
+    "artvandelay/auth-artvandelay-settings-notifications-mobile-light-fold.png",
+    "--exclude-screenshot",
+    "artvandelay/auth-artvandelay-tools-vision-mobile-light-fold.png",
+  ]);
+
+  assert.deepEqual(args.excludeScreenshots, [
+    "artvandelay/auth-artvandelay-settings-notifications-mobile-light-fold.png",
+    "artvandelay/auth-artvandelay-tools-vision-mobile-light-fold.png",
+  ]);
 });
 
 test("parseArgs rejects archive keys outside the requested planned date", () => {
@@ -229,7 +248,7 @@ test("inferTopicFamily groups onboarding directory screenshots under the directo
   );
 });
 
-test("filterCandidatesForArchiveHistory removes same-feature variants from recent archive history", () => {
+test("filterCandidatesForArchiveHistory ranks less-repetitive candidates ahead of recent archive themes", () => {
   const archiveHistory = [
     {
       concept_key: "directory-verified",
@@ -276,18 +295,18 @@ test("filterCandidatesForArchiveHistory removes same-feature variants from recen
 
   const filtered = filterCandidatesForArchiveHistory(candidates, archiveHistory);
 
-  assert.equal(filtered.length, 3);
+  assert.equal(filtered.length, 6);
   assert.deepEqual(
-    filtered.map((candidate) => candidate.content_key).sort(),
+    filtered.slice(0, 3).map((candidate) => candidate.content_key),
     [
       "auth-admin-settings-guidance",
       "auth-artvandelay-settings-encryption",
       "auth-artvandelay-settings-notifications",
-    ].sort(),
+    ],
   );
 });
 
-test("filterCandidatesForArchiveHistory falls back to repeated screens when needed but still blocks exact content repeats", () => {
+test("filterCandidatesForArchiveHistory broadens to non-exact repeats when only one fresh option remains", () => {
   const archiveHistory = [
     {
       concept_key: "directory-all",
@@ -316,10 +335,70 @@ test("filterCandidatesForArchiveHistory falls back to repeated screens when need
 
   const filtered = filterCandidatesForArchiveHistory(candidates, archiveHistory);
 
-  assert.equal(filtered.length, 1);
+  assert.equal(filtered.length, 2);
   assert.deepEqual(
     filtered.map((candidate) => candidate.content_key),
-    ["guest-directory-verified"],
+    ["guest-directory-verified", "guest-directory-all"],
+  );
+});
+
+test("filterCandidatesForArchiveHistory broadens to non-exact repeats when the fresh pool is too small", () => {
+  const archiveHistory = [
+    {
+      archive_key: "2026-04-14",
+      content_key: "guest-directory-attorney-adam-j-levitt",
+      date: "2026-04-14",
+      screenshot_file: "guest/guest-directory-attorney-adam-j-levitt-mobile-light-fold.png",
+      screen_key: "directory-public-record",
+      topic_family: "directory",
+    },
+    {
+      archive_key: "2026-03-26-1",
+      content_key: "auth-newman-onboarding-notifications",
+      date: "2026-03-26",
+      screenshot_file: "newman/auth-newman-onboarding-notifications-desktop-light-fold.png",
+      screen_key: "/onboarding/notifications",
+      topic_family: "notifications",
+    },
+    {
+      archive_key: "2026-03-31",
+      content_key: "auth-artvandelay-settings-encryption",
+      date: "2026-03-31",
+      screenshot_file: "artvandelay/auth-artvandelay-settings-encryption-mobile-dark-fold.png",
+      screen_key: "/settings/encryption",
+      topic_family: "settings-encryption",
+    },
+  ];
+
+  const candidates = [
+    {
+      content_key: "auth-artvandelay-settings-notifications",
+      file: "artvandelay/auth-artvandelay-settings-notifications-mobile-light-fold.png",
+      screen_key: "/settings/notifications",
+      topic_family: "notifications",
+    },
+    {
+      content_key: "auth-artvandelay-settings-encryption",
+      file: "artvandelay/auth-artvandelay-settings-encryption-desktop-light-fold.png",
+      screen_key: "/settings/encryption",
+      topic_family: "settings-encryption",
+    },
+    {
+      content_key: "guest-directory-attorney-adam-j-levitt",
+      file: "guest/guest-directory-attorney-adam-j-levitt-mobile-light-fold.png",
+      screen_key: "directory-public-record",
+      topic_family: "directory",
+    },
+  ];
+
+  const filtered = filterCandidatesForArchiveHistory(candidates, archiveHistory);
+
+  assert.deepEqual(
+    filtered.map((candidate) => candidate.content_key),
+    [
+      "auth-artvandelay-settings-notifications",
+      "auth-artvandelay-settings-encryption",
+    ],
   );
 });
 
@@ -390,6 +469,141 @@ test("validatePlan rejects messaging that duplicates a recent archive angle", ()
     () => validatePlan(buildModelPlan(), context),
     /duplicates recent archive headline/,
   );
+});
+
+test("validatePlan allows an older same-topic archive outside the recent-feature window", () => {
+  const context = buildContext({
+    recent_archive_history: [
+      {
+        archive_key: "2026-03-10",
+        headline: "Verify a recipient before you send a tip",
+        linkedin_copy: "Trust signals help people verify a recipient before they send a tip. Learn more at https://hushline.app/.",
+        screen_key: "directory-index",
+        subtext: "The public directory highlights trust signals before someone sends a message.",
+        topic_family: "directory",
+      },
+      {
+        archive_key: "2026-03-11",
+        headline: "Archive one",
+        linkedin_copy: "Distinct copy one.",
+        screen_key: "/settings/encryption",
+        subtext: "Distinct one.",
+        topic_family: "encryption",
+      },
+      {
+        archive_key: "2026-03-12",
+        headline: "Archive two",
+        linkedin_copy: "Distinct copy two.",
+        screen_key: "/settings/profile",
+        subtext: "Distinct two.",
+        topic_family: "profile",
+      },
+      {
+        archive_key: "2026-03-13",
+        headline: "Archive three",
+        linkedin_copy: "Distinct copy three.",
+        screen_key: "/settings/replies",
+        subtext: "Distinct three.",
+        topic_family: "message-statuses",
+      },
+      {
+        archive_key: "2026-03-14",
+        headline: "Archive four",
+        linkedin_copy: "Distinct copy four.",
+        screen_key: "/vision",
+        subtext: "Distinct four.",
+        topic_family: "vision",
+      },
+      {
+        archive_key: "2026-03-17",
+        headline: "Archive five",
+        linkedin_copy: "Distinct copy five.",
+        screen_key: "/settings/auth",
+        subtext: "Distinct five.",
+        topic_family: "authentication",
+      },
+      {
+        archive_key: "2026-03-18",
+        headline: "Archive six",
+        linkedin_copy: "Distinct copy six.",
+        screen_key: "/settings/guidance",
+        subtext: "Distinct six.",
+        topic_family: "guidance",
+      },
+    ],
+  });
+
+  assert.doesNotThrow(() => validatePlan(buildModelPlan(), context));
+});
+
+test("validatePlan allows a distinct directory message that only shares generic public-directory wording", () => {
+  const context = buildContext({
+    candidate_screenshots: [
+      {
+        absolute_path: "/tmp/guest-directory-attorney-adam-j-levitt-mobile-light-fold.png",
+        audience_scope: "public",
+        concept_key: "directory-attorney-adam-j-levitt",
+        content_key: "guest-directory-attorney-adam-j-levitt",
+        copy_brief: "Write for sources and public users evaluating or using Hush Line.",
+        file: "guest/guest-directory-attorney-adam-j-levitt-mobile-light-fold.png",
+        matched_pull_requests: [],
+        path: "/directory/public-records/public-record~adam-j-levitt",
+        screen_key: "directory-public-record",
+        theme: "light",
+        title: "Directory - Attorney listing (Adam J. Levitt)",
+        topic_family: "directory",
+        viewport: "mobile",
+      },
+    ],
+    date: "2026-04-14",
+    recent_archive_history: [
+      {
+        archive_key: "2026-03-20",
+        audience_scope: "public",
+        bluesky_copy: "Need to verify who you're contacting before you send a tip? Hush Line's public directory shows verified profiles so you can compare recipients first. Learn more at https://hushline.app/.",
+        date: "2026-03-20",
+        headline: "Check verified tip lines before you reach out",
+        linkedin_copy: "When you need to contact a journalist, lawyer, or other trusted recipient, the first question is whether you found the right person. Hush Line's public directory lets you browse verified profiles before you send anything, so you can check who runs the tip line and choose a better match for your situation. Learn more at https://hushline.app/.",
+        mastodon_copy: "If you're deciding where to send a tip, Hush Line's public directory helps you start with verified profiles. You can compare recipients and check who runs the tip line before you reach out. Learn more at https://hushline.app/.",
+        screen_key: "directory-index",
+        subtext: "The public directory helps sources compare verified profiles and choose a tip line that matches the person they need.",
+        theme: "light",
+        topic_family: "directory",
+      },
+    ],
+    slot: {
+      planned_date: "2026-04-14",
+      slot: "tuesday",
+    },
+    template_selection: {
+      available_templates: ["hushline-daily-mobile-template.html"],
+      desired_template_name: "hushline-daily-mobile-template.html",
+      desired_template_type: "mobile",
+    },
+  });
+
+  const plan = {
+    date: "2026-04-14",
+    summary: "Public-facing attorney listing post.",
+    post: {
+      slot: "tuesday",
+      planned_date: "2026-04-14",
+      screenshot_file: "guest/guest-directory-attorney-adam-j-levitt-mobile-light-fold.png",
+      content_key: "guest-directory-attorney-adam-j-levitt",
+      headline: "Review a whistleblower law listing before you reach out",
+      subtext: "This public attorney listing shows bar-registration details, location, and firm links so a source can judge whether a law office fits the disclosure they need to make.",
+      image_alt_text: "A portrait Hush Line social graphic built from a light-mode mobile public directory screen. It shows an attorney listing with a law firm name, location, practice description, and links to the lawyer's site and source record.",
+      social: {
+        linkedin: "Sometimes the hardest part of asking for legal help is figuring out which office actually handles the kind of disclosure you need to make.\n\nHush Line's public attorney listings can point people to bar-record details, locations, and firm links before first contact, so they can compare legal options with more context instead of guessing.\n\nLearn more at https://hushline.app.",
+        mastodon: "Legal intake starts before the first message.\n\nHush Line's public attorney listings show record details, locations, and firm links so people can compare law offices with more context before they reach out.\n\nLearn more at https://hushline.app.",
+        bluesky: "Finding the right law office can be part of the hard part.\n\nHush Line's public attorney listings show record details, location, and firm links before first contact.\n\nLearn more at https://hushline.app.",
+      },
+      rationale: "This uses the attorney listing screen and stays focused on legal-fit context instead of general directory browsing.",
+      source_pr_numbers: [],
+    },
+  };
+
+  assert.doesNotThrow(() => validatePlan(plan, context));
 });
 
 test("validatePlan rejects a second admin-only post in the same ISO week", () => {
@@ -498,4 +712,31 @@ test("validatePlan rejects a second dark-mode post in the same ISO week", () => 
     () => validatePlan(plan, context),
     /Weekly dark-mode cap already reached/,
   );
+});
+
+test("assignVariantsToConcepts preserves light candidates when the concept set is smaller than the target count", () => {
+  const selectedConcepts = Array.from({ length: 17 }, (_, index) => ({
+    variants: [
+      {
+        file: `guest/example-${index + 1}-desktop-light-fold.png`,
+        score: 10,
+        theme: "light",
+        viewport: "desktop",
+      },
+      {
+        file: `guest/example-${index + 1}-desktop-dark-fold.png`,
+        score: 11,
+        theme: "dark",
+        viewport: "desktop",
+      },
+    ],
+  }));
+
+  const shortlist = assignVariantsToConcepts(selectedConcepts, 200, 0.25);
+  const darkCount = shortlist.filter((candidate) => candidate.theme === "dark").length;
+  const lightCount = shortlist.filter((candidate) => candidate.theme === "light").length;
+
+  assert.equal(shortlist.length, 17);
+  assert.equal(darkCount, 4);
+  assert.equal(lightCount, 13);
 });

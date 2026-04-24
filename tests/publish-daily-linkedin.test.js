@@ -8,7 +8,9 @@ const { execFileSync } = require("node:child_process");
 const REPO_ROOT = path.resolve(__dirname, "..");
 const scriptPath = path.join(REPO_ROOT, "scripts", "publish-daily-linkedin.js");
 const {
+  isRetryableLinkedInRequestError,
   resolveLinkedInVersionCandidates,
+  withLinkedInRequestRetry,
   withLinkedInVersionFallback,
 } = require(scriptPath);
 
@@ -207,4 +209,40 @@ test("publisher retries the previous month when LinkedIn reports the current ver
   assert.equal(result, "202603");
   assert.deepEqual(attemptedVersions, ["202604", "202603"]);
   assert.deepEqual(retriedVersions, [["202604", "202603"]]);
+});
+
+test("publisher marks transient DNS failures as retryable", () => {
+  assert.equal(
+    isRetryableLinkedInRequestError(new Error("LinkedIn API POST https://api.linkedin.com/rest/images request failed: getaddrinfo ENOTFOUND api.linkedin.com")),
+    true,
+  );
+  assert.equal(
+    isRetryableLinkedInRequestError(new Error("LinkedIn API POST https://api.linkedin.com/rest/posts failed with 401: unauthorized")),
+    false,
+  );
+});
+
+test("publisher retries transient request failures before succeeding", async () => {
+  const attempts = [];
+  const retries = [];
+
+  const result = await withLinkedInRequestRetry({
+    attempts: 3,
+    baseDelayMs: 1,
+    onRetry({ attempt, nextAttempt }) {
+      retries.push([attempt, nextAttempt]);
+    },
+    async run() {
+      attempts.push(attempts.length + 1);
+      if (attempts.length < 3) {
+        throw new Error("LinkedIn API POST https://api.linkedin.com/rest/images request failed: getaddrinfo ENOTFOUND api.linkedin.com");
+      }
+
+      return "ok";
+    },
+  });
+
+  assert.equal(result, "ok");
+  assert.deepEqual(attempts, [1, 2, 3]);
+  assert.deepEqual(retries, [[1, 2], [2, 3]]);
 });

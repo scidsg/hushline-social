@@ -1,0 +1,34 @@
+Slot: verified-user-weekly
+Planned date: 2026-04-20
+Verified user: @yaelwrites
+User link: https://tips.hushline.app/to/yaelwrites
+Source: https://tips.hushline.app/directory/users.json
+Headline: Yael Grauer
+Subtext: Yael Grauer is an investigative tech reporter covering privacy and security, digital freedom, hacking, and mass surveillance. She currently works at Consumer Reports managing Security Planner, an easy-to-use digital security guide. yaelwrites.com
+
+Image alt text
+A social card featuring verified Hush Line user Yael Grauer, their bio, their tip line URL, and a QR code that links to the same URL.
+
+Social post copy
+
+LinkedIn (327/3000)
+🤩 Verified Member Highlight!
+
+Yael Grauer is an investigative tech reporter covering privacy and security, digital freedom, hacking, and mass surveillance. She currently works at Consumer Reports, where she manages Security Planner, a digital security guide.
+
+To send Yael a tip, go to https://tips.hushline.app/to/yaelwrites.
+
+Mastodon (304/500)
+🤩 Verified Member Highlight!
+
+Yael Grauer is an investigative tech reporter covering privacy, security, digital freedom, hacking, and mass surveillance. She works at Consumer Reports managing Security Planner, a digital security guide.
+
+To send Yael a tip, visit https://tips.hushline.app/to/yaelwrites.
+
+Bluesky (277/300)
+🤩 Verified Member Highlight!
+
+Yael Grauer is an investigative tech reporter covering privacy, security, hacking, and mass surveillance. She works at Consumer Reports managing Security Planner, a digital security guide.
+
+Send Yael a tip: https://tips.hushline.app/to/yaelwrites
+

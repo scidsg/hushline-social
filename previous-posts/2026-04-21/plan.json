@@ -1,0 +1,30 @@
+{
+  "date": "2026-04-21",
+  "post": {
+    "slot": "tuesday",
+    "planned_date": "2026-04-21",
+    "screenshot_file": "artvandelay/auth-artvandelay-settings-auth-mobile-light-fold.png",
+    "content_key": "auth-artvandelay-settings-auth",
+    "headline": "Keep your tip line account recognizable and secure",
+    "subtext": "Authentication settings let recipients review username changes, update a password, and turn on 2FA from one place.",
+    "image_alt_text": "Mobile social graphic showing Hush Line's Authentication settings page in a light theme. The image includes a username change form, an Enable 2FA button, and the top of the password section, highlighting account access controls for a recipient tip-line account.",
+    "social": {
+      "bluesky": "People deciding whether to contact you need to know they reached the right recipient.\n\nHush Line's authentication settings let you review your username, change your password, and turn on 2FA from one place.\n\nSign up at https://hushline.app.",
+      "linkedin": "Before someone sends a sensitive message, they need confidence that your tip line still points to the right person.\n\nHush Line's authentication settings let recipients review username changes, update a password, and turn on 2FA from one place. That gives journalists, lawyers, educators, and other trusted recipients a straightforward way to manage account access without treating security as a separate workflow.\n\nSign up at https://hushline.app.",
+      "mastodon": "People deciding whether to contact you need to know they reached the right recipient.\n\nHush Line's authentication settings let you review your username, change your password, and turn on 2FA from one place, so the account behind your tip line stays under control.\n\nSign up at https://hushline.app."
+    },
+    "rationale": "Among the provided candidates, this is the least repetitive choice across the prior 31 days. Directory posts appeared repeatedly, including the same onboarding-directory content, and encryption also appeared twice recently. Authentication overlaps with the April 1 archive, but it has the lowest repeat pressure in this shortlist. The copy stays grounded in documented recipient workflows from Settings -> Authentication and shifts the angle from a simple 2FA reminder to keeping a published tip-line account recognizable and access-controlled.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "settings-auth",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "matched_pull_requests": [],
+    "screen_key": "/settings/auth",
+    "template_name": "hushline-daily-mobile-template.html",
+    "theme": "light",
+    "title": "Settings - Authentication (artvandelay)",
+    "topic_family": "authentication",
+    "viewport": "mobile"
+  },
+  "summary": "Recipient-facing authentication post centered on keeping a published tip-line account recognizable and under control, which is the least repetitive option in this shortlist."
+}

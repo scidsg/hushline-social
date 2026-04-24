@@ -6,6 +6,7 @@ const path = require("node:path");
 
 const {
   buildPost,
+  buildVerifiedUserSocialParagraphs,
   normalizeVerifiedUsers,
   parseArgs,
   prepareVerifiedUserRun,
@@ -170,6 +171,25 @@ test("renderHtml injects the selected user text and QR filename", () => {
   assert.match(html, /\.\/verified-user-qr\.png/);
 });
 
+test("verified-user renderHtml embeds local fonts and strips remote Google Fonts links", () => {
+  const post = buildPost({
+    date: "2026-03-30",
+    selectedUser: {
+      bio: "Investigative editor focused on energy and utilities.",
+      display_name: "Verified User B",
+      primary_username: "verified-user-b",
+      user_url: "https://tips.hushline.app/to/verified-user-b",
+    },
+    source: "fixture",
+  });
+  const html = renderHtml(post, "verified-user-qr.png", "logo-tips.png");
+
+  assert.doesNotMatch(html, /fonts\.googleapis\.com/);
+  assert.doesNotMatch(html, /fonts\.gstatic\.com/);
+  assert.match(html, /Atkinson Hyperlegible Embedded/);
+  assert.match(html, /data:font\/ttf;base64,/);
+});
+
 test("validateVerifiedUserSocialParagraphs rejects capitalized first-person copy", () => {
   assert.throws(
     () => validateVerifiedUserSocialParagraphs({
@@ -183,4 +203,22 @@ test("validateVerifiedUserSocialParagraphs rejects capitalized first-person copy
     }),
     /must not use first-person language/,
   );
+});
+
+test("buildVerifiedUserSocialParagraphs rewrites first-person bios into direct third-person copy", () => {
+  const selectedUser = {
+    bio: "LGBTQ+ rights reporter at HuffPost. Covering Trump admin, legal attacks on trans rights, and organized resistance. Writing at the speed of trust. Signal @levikalish.01",
+    display_name: "Levi Kalish",
+    primary_username: "LKalish",
+    user_url: "https://tips.hushline.app/to/LKalish",
+  };
+
+  const paragraphs = buildVerifiedUserSocialParagraphs(selectedUser);
+
+  assert.equal(typeof paragraphs.linkedin, "string");
+  assert.equal(typeof paragraphs.mastodon, "string");
+  assert.equal(typeof paragraphs.bluesky, "string");
+  assert.doesNotMatch(paragraphs.linkedin, /\b(I|I'm|I’m|my|me|we|we're|we’re|our|us)\b/i);
+  assert.match(paragraphs.linkedin, /LGBTQ\+ rights reporter at HuffPost\./);
+  assert.match(paragraphs.linkedin, /Trump admin/);
 });

@@ -8,8 +8,12 @@ const REPO_ROOT = path.resolve(__dirname, "..", "..");
 const SCREENSHOTS_REPO_ROOT = path.resolve(
   process.env.HUSHLINE_SCREENSHOTS_REPO_DIR || path.join(REPO_ROOT, "..", "hushline-screenshots"),
 );
-const SCREENSHOTS_ROOT = path.join(SCREENSHOTS_REPO_ROOT, "releases", "latest");
-const SCREENSHOT_MANIFEST = path.join(SCREENSHOTS_ROOT, "manifest.json");
+const CURATED_SCREENSHOTS_ROOT = path.join(SCREENSHOTS_REPO_ROOT, "curated");
+const LATEST_SCREENSHOTS_ROOT = path.join(SCREENSHOTS_REPO_ROOT, "releases", "latest");
+const SCREENSHOTS_ROOT = fs.existsSync(CURATED_SCREENSHOTS_ROOT)
+  ? CURATED_SCREENSHOTS_ROOT
+  : LATEST_SCREENSHOTS_ROOT;
+const SCREENSHOT_MANIFEST = path.join(LATEST_SCREENSHOTS_ROOT, "manifest.json");
 const HUSHLINE_ROOT = path.resolve(process.env.HUSHLINE_ROOT || path.join(REPO_ROOT, "..", "hushline"));
 const HUSHLINE_DOCS_ROOT = path.resolve(process.env.HUSHLINE_DOCS_ROOT || HUSHLINE_ROOT);
 const HUSHLINE_DOCS_DIRS = [...new Set([

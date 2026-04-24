@@ -1,0 +1,30 @@
+{
+  "date": "2026-04-15",
+  "post": {
+    "slot": "wednesday",
+    "planned_date": "2026-04-15",
+    "screenshot_file": "artvandelay/auth-artvandelay-tools-email-validation-status-valid-desktop-light-fold.png",
+    "content_key": "auth-artvandelay-tools-email-validation-status-valid",
+    "headline": "Turn header data into a provenance record",
+    "subtext": "This desktop tool summarizes a forwarded message and exports a downloadable result for case files or team handoffs.",
+    "image_alt_text": "A social graphic built around Hush Line on desktop showing a header-analysis tool with a readable authenticity summary and a button to download the result.",
+    "social": {
+      "bluesky": "Forwarded evidence is easier to hand off when the result is already summarized.\n\nHush Line turns raw header data into a readable authenticity summary and downloadable result for case files or team handoffs.\n\nLearn more at https://hushline.app.",
+      "linkedin": "Forwarded evidence is easier to hand off when the result is already summarized.\n\nHush Line turns raw header data into a readable authenticity summary and a downloadable result, so recipients can attach provenance findings to a case file or pass them to a teammate without retracing the same thread.\n\nLearn more at https://hushline.app.",
+      "mastodon": "Forwarded evidence is easier to hand off when the result is already summarized.\n\nHush Line turns raw header data into a readable authenticity summary and downloadable result for case files or team handoffs.\n\nLearn more at https://hushline.app."
+    },
+    "rationale": "The selected screen supports a different recipient workflow from the March 31 post. Instead of asking whether a message looks suspicious, this angle focuses on producing a handoff-ready provenance record after a message has already been forwarded for review.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "tools-email-validation-status-valid",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "matched_pull_requests": [],
+    "screen_key": "/email-headers",
+    "template_name": "hushline-daily-desktop-template.html",
+    "theme": "light",
+    "title": "Tools - Email Validation status: appears valid (artvandelay)",
+    "topic_family": "email-headers",
+    "viewport": "desktop"
+  },
+  "summary": "Recipient-facing post for the email-header tool focused on creating a handoff-ready provenance record."
+}

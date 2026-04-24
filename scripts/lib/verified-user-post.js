@@ -19,6 +19,8 @@ const {
 
 const VERIFIED_USER_POSTS_ROOT = path.join(REPO_ROOT, "previous-verified-user-posts");
 const VERIFIED_USER_TEMPLATE = path.join(REPO_ROOT, "templates", "hushline-social-verified-user-template.html");
+const FONT_REGULAR_PATH = path.join(REPO_ROOT, "assets", "fonts", "AtkinsonHyperlegible-Regular.ttf");
+const FONT_BOLD_PATH = path.join(REPO_ROOT, "assets", "fonts", "AtkinsonHyperlegible-Bold.ttf");
 const DEFAULT_DIRECTORY_SOURCE = process.env.HUSHLINE_VERIFIED_USERS_SOURCE || "https://tips.hushline.app/directory/users.json";
 const DEFAULT_TIPS_BASE_URL = process.env.HUSHLINE_VERIFIED_USERS_BASE_URL || "https://tips.hushline.app";
 const QR_FILENAME = "verified-user-qr.png";
@@ -121,6 +123,41 @@ function escapeHtml(value) {
 
 function escapeAttribute(value) {
   return escapeHtml(value).replaceAll("'", "&#39;");
+}
+
+function buildEmbeddedFontCss() {
+  if (!fs.existsSync(FONT_REGULAR_PATH) || !fs.existsSync(FONT_BOLD_PATH)) {
+    throw new Error(`Missing embedded font assets: ${FONT_REGULAR_PATH} and ${FONT_BOLD_PATH}`);
+  }
+
+  const regularBase64 = fs.readFileSync(FONT_REGULAR_PATH).toString("base64");
+  const boldBase64 = fs.readFileSync(FONT_BOLD_PATH).toString("base64");
+
+  return [
+    "  <style>",
+    "    @font-face {",
+    "      font-family: \"Atkinson Hyperlegible Embedded\";",
+    "      font-style: normal;",
+    "      font-weight: 400;",
+    "      src: url(data:font/ttf;base64," + regularBase64 + ") format(\"truetype\");",
+    "    }",
+    "",
+    "    @font-face {",
+    "      font-family: \"Atkinson Hyperlegible Embedded\";",
+    "      font-style: normal;",
+    "      font-weight: 700;",
+    "      src: url(data:font/ttf;base64," + boldBase64 + ") format(\"truetype\");",
+    "    }",
+    "",
+    "    body {",
+    "      font-family: \"Atkinson Hyperlegible Embedded\", \"Atkinson Hyperlegible\", Inter, Arial, Helvetica, sans-serif !important;",
+    "    }",
+    "",
+    "    h1, h2, h3, h4, h5, h6, p, span, div, a, button, li {",
+    "      font-family: \"Atkinson Hyperlegible Embedded\", \"Atkinson Hyperlegible\", Inter, Arial, Helvetica, sans-serif;",
+    "    }",
+    "  </style>",
+  ].join("\n");
 }
 
 function normalizeWhitespace(value) {
@@ -636,6 +673,22 @@ function composeVerifiedUserSocialCopy(network, selectedUser, middleParagraph) {
   ].join("\n");
 }
 
+function composeSocialParagraph(network, selectedUser) {
+  const config = SOCIAL_COPY_CONFIG[network];
+  let bioLimit = config.bioLimit;
+
+  while (bioLimit >= config.minBioLimit) {
+    const bio = rewriteBioForCopy(selectedUser, bioLimit);
+    if (composeVerifiedUserSocialCopy(network, selectedUser, bio).length <= LIMITS[network]) {
+      return bio;
+    }
+
+    bioLimit -= config.step;
+  }
+
+  throw new Error(`Could not compose ${network} copy within ${LIMITS[network]} characters for @${selectedUser.primary_username}.`);
+}
+
 function stabilizeGeneratedParagraph(network, selectedUser, paragraph) {
   const candidate = ensureTerminalPunctuation(normalizeWhitespace(paragraph));
   if (!candidate) {
@@ -757,27 +810,15 @@ function buildVerifiedUserSocialPrompt({ date, outputPath, selectedUser, feedbac
 }
 
 function composeSocialCopy(network, selectedUser) {
-  const config = SOCIAL_COPY_CONFIG[network];
-  let bioLimit = config.bioLimit;
+  return composeVerifiedUserSocialCopy(network, selectedUser, composeSocialParagraph(network, selectedUser));
+}
 
-  while (bioLimit >= config.minBioLimit) {
-    const bio = rewriteBioForCopy(selectedUser, bioLimit);
-    const copy = [
-      VERIFIED_MEMBER_HIGHLIGHT,
-      "",
-      bio,
-      "",
-      buildTipCta(network, selectedUser.display_name, selectedUser.user_url),
-    ].join("\n");
-
-    if (copy.length <= LIMITS[network]) {
-      return copy;
-    }
-
-    bioLimit -= config.step;
-  }
-
-  throw new Error(`Could not compose ${network} copy within ${LIMITS[network]} characters for @${selectedUser.primary_username}.`);
+function buildVerifiedUserSocialParagraphs(selectedUser) {
+  return {
+    bluesky: composeSocialParagraph("bluesky", selectedUser),
+    linkedin: composeSocialParagraph("linkedin", selectedUser),
+    mastodon: composeSocialParagraph("mastodon", selectedUser),
+  };
 }
 
 function buildSocialCopy(selectedUser) {
@@ -820,6 +861,10 @@ function buildContext({ date, archiveHistory, selectedUser, source, verifiedUser
 function renderHtml(post, qrFilename, logoFilename) {
   let html = fs.readFileSync(VERIFIED_USER_TEMPLATE, "utf8");
 
+  html = html.replace(/<link rel="preconnect" href="https:\/\/fonts\.googleapis\.com">\s*/g, "");
+  html = html.replace(/<link rel="preconnect" href="https:\/\/fonts\.gstatic\.com" crossorigin>\s*/g, "");
+  html = html.replace(/<link href="https:\/\/fonts\.googleapis\.com\/css2[^"]+" rel="stylesheet">\s*/g, "");
+
   html = html.replace(
     /<h1 class="headline">[\s\S]*?<\/h1>/,
     `<h1 class="headline">${escapeHtml(post.headline)}</h1>`,
@@ -853,6 +898,7 @@ function renderHtml(post, qrFilename, logoFilename) {
   html = html.replace(
     "</head>",
     [
+      buildEmbeddedFontCss(),
       "  <style>",
       "    html, body {",
       "      width: 1024px;",
@@ -1038,6 +1084,7 @@ module.exports = {
   VERIFIED_USER_POSTS_ROOT,
   buildVerifiedUserSocialPrompt,
   buildPost,
+  buildVerifiedUserSocialParagraphs,
   composeVerifiedUserSocialCopy,
   loadArchiveHistory,
   normalizeVerifiedUsers,

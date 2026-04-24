@@ -1,0 +1,41 @@
+{
+  "date": "2026-04-16",
+  "post": {
+    "slot": "thursday",
+    "planned_date": "2026-04-16",
+    "screenshot_file": "artvandelay/auth-artvandelay-settings-notifications-desktop-light-fold.png",
+    "content_key": "auth-artvandelay-settings-notifications",
+    "headline": "Route new tip alerts to the right people",
+    "subtext": "Notification settings let recipients add separate alert addresses, so one public tip line can support a newsroom, law office, or other small team without relying on a single inbox.",
+    "image_alt_text": "A social graphic built around Hush Line on desktop showing notification settings with multiple recipient email rows and options for how new tip alerts are delivered.",
+    "social": {
+      "bluesky": "A tip line should not depend on one person noticing every message.\n\nHush Line's notification settings let recipients add separate alert addresses, so a newsroom, law office, or other small team can share one intake point while keeping their own review workflow.\n\nLearn more at https://hushline.app.",
+      "linkedin": "A public tip line should not depend on one person noticing every message.\n\nHush Line's notification settings let recipients add separate alert addresses, so a newsroom, law office, or other small team can keep one public intake point while routing alerts into the review workflow they already use. That helps teams stay responsive without turning secure first contact into a shared mailbox problem.\n\nLearn more at https://hushline.app.",
+      "mastodon": "A public tip line should not depend on one person noticing every message.\n\nHush Line's notification settings let recipients add separate alert addresses, so a newsroom, law office, or other small team can share one intake point without relying on a single inbox.\n\nLearn more at https://hushline.app."
+    },
+    "rationale": "From the provided shortlist, this was the least repetitive option. Notifications did appear on 2026-03-26, but that post was about first-run onboarding. This settings screen supports a different documented use case: shared or role-based recipients who need one public intake point with alerts routed across a real team workflow.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "settings-notifications",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "matched_pull_requests": [
+      {
+        "merged_at": "2026-04-16T23:18:52Z",
+        "number": 1883,
+        "title": "Support multi-recipient notifications and recipient-specific encryption"
+      },
+      {
+        "merged_at": "2026-04-16T19:35:29Z",
+        "number": 1882,
+        "title": "#1876 Add migration coverage, regression tests, and docs for multi-recipient org notifications"
+      }
+    ],
+    "screen_key": "/settings/notifications",
+    "template_name": "hushline-daily-desktop-template-2.html",
+    "theme": "light",
+    "title": "Settings - Notifications (artvandelay)",
+    "topic_family": "notifications",
+    "viewport": "desktop"
+  },
+  "summary": "Recipient-facing post for 2026-04-16 focused on routing tip alerts across a shared team workflow."
+}

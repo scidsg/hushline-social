@@ -1,0 +1,33 @@
+Slot: tuesday
+Planned date: 2026-04-14
+Template: hushline-daily-mobile-template.html
+Screenshot: /Users/scidsg/hushline-screenshots/releases/latest/guest/guest-directory-attorney-adam-j-levitt-mobile-light-fold.png
+Content key: guest-directory-attorney-adam-j-levitt
+Headline: Review a whistleblower law listing before you reach out
+Subtext: This public attorney listing shows bar-registration details, location, and firm links so a source can judge whether a law office fits the disclosure they need to make.
+
+Image alt text
+A portrait Hush Line social graphic built from a light-mode mobile public directory screen. It shows an attorney listing with a law firm name, location, practice description, and links to the lawyer's site and source record.
+
+Social post copy
+
+LinkedIn (374/3000)
+Sometimes the hardest part of asking for legal help is figuring out which office actually handles the kind of disclosure you need to make.
+
+Hush Line's public attorney listings can point people to bar-record details, locations, and firm links before first contact, so they can compare legal options with more context instead of guessing.
+
+Learn more at https://hushline.app.
+
+Mastodon (242/500)
+Legal intake starts before the first message.
+
+Hush Line's public attorney listings show record details, locations, and firm links so people can compare law offices with more context before they reach out.
+
+Learn more at https://hushline.app.
+
+Bluesky (201/300)
+Finding the right law office can be part of the hard part.
+
+Hush Line's public attorney listings show record details, location, and firm links before first contact.
+
+Learn more at https://hushline.app.

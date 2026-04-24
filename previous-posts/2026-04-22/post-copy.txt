@@ -1,0 +1,33 @@
+Slot: wednesday
+Planned date: 2026-04-22
+Template: hushline-daily-desktop-template-2.html
+Screenshot: /Users/scidsg/hushline-screenshots/curated/admin/auth-admin-settings-registration-desktop-light-fold.png
+Content key: auth-admin-settings-registration
+Headline: For admins: choose how staff accounts are created
+Subtext: Registration settings let teams running Hush Line decide whether staff signup stays off, open, or code-only.
+
+Image alt text
+Desktop social graphic showing Hush Line's Registration settings page in a light theme. A large settings panel highlights two controls for admins running a deployment: Enable Registrations is switched on and Require Registration Codes is switched off, with the settings navigation visible on the left.
+
+Social post copy
+
+LinkedIn (429/3000)
+Sources should not need an account to send a tip. For admins and teams running Hush Line, the separate question is how staff accounts get created.
+
+Registration settings let you disable self-signup, leave it open, or require a registration code. That gives a newsroom, law office, school, or nonprofit a straightforward way to match account creation to the way the deployment is actually run.
+
+Learn more at https://hushline.app.
+
+Mastodon (332/500)
+Sources should not need an account to send a tip. For admins and teams running Hush Line, the separate question is how staff accounts get created.
+
+Registration settings let you turn self-signup off, leave it open, or require a code so staff access matches the way your deployment actually runs.
+
+Learn more at https://hushline.app.
+
+Bluesky (205/300)
+Sources should not need an account to send a tip.
+
+For admins and teams running Hush Line, registration settings decide whether staff signup is off, open, or code-only.
+
+Learn more at https://hushline.app.

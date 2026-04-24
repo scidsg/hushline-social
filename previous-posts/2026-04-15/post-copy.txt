@@ -1,0 +1,33 @@
+Slot: wednesday
+Planned date: 2026-04-15
+Template: hushline-daily-desktop-template.html
+Screenshot: /Users/scidsg/hushline-screenshots/curated/artvandelay/auth-artvandelay-tools-email-validation-status-valid-desktop-light-fold.png
+Content key: auth-artvandelay-tools-email-validation-status-valid
+Headline: Turn header data into a provenance record
+Subtext: This desktop tool summarizes a forwarded message and exports a downloadable result for case files or team handoffs.
+
+Image alt text
+A social graphic built around Hush Line on desktop showing a header-analysis tool with a readable authenticity summary and a button to download the result.
+
+Social post copy
+
+LinkedIn (335/3000)
+Forwarded evidence is easier to hand off when the result is already summarized.
+
+Hush Line turns raw header data into a readable authenticity summary and a downloadable result, so recipients can attach provenance findings to a case file or pass them to a teammate without retracing the same thread.
+
+Learn more at https://hushline.app.
+
+Mastodon (243/500)
+Forwarded evidence is easier to hand off when the result is already summarized.
+
+Hush Line turns raw header data into a readable authenticity summary and downloadable result for case files or team handoffs.
+
+Learn more at https://hushline.app.
+
+Bluesky (243/300)
+Forwarded evidence is easier to hand off when the result is already summarized.
+
+Hush Line turns raw header data into a readable authenticity summary and downloadable result for case files or team handoffs.
+
+Learn more at https://hushline.app.

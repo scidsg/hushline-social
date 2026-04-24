@@ -24,6 +24,7 @@ const {
 
 const DAILY_POSTS_ROOT = path.join(REPO_ROOT, "previous-posts");
 const ARCHIVE_LOOKBACK_DAYS = 31;
+const FEATURE_REPEAT_HARD_LOOKBACK_POSTS = 5;
 const ADMIN_COPY_PATTERNS = [
   /\badmin\b/i,
   /\badmins\b/i,
@@ -37,40 +38,107 @@ const ADMIN_COPY_PATTERNS = [
   /\bteams\b/i,
 ];
 const GENERIC_MESSAGE_TOKENS = new Set([
+  "a",
   "account",
   "accounts",
   "admin",
   "admins",
+  "an",
+  "and",
   "anonymous",
+  "app",
+  "at",
+  "attorney",
+  "attorneys",
+  "before",
   "browser",
+  "by",
+  "can",
+  "compare",
   "deployment",
   "deployments",
   "contact",
+  "decide",
+  "directory",
   "download",
   "downloads",
   "encrypted",
+  "first",
+  "for",
   "form",
   "forms",
+  "from",
+  "hard",
+  "help",
   "hush",
   "hushline",
+  "if",
+  "in",
+  "includes",
+  "into",
+  "is",
+  "it",
+  "its",
+  "law",
+  "lawyer",
+  "lawyers",
   "learn",
+  "legal",
   "line",
+  "listing",
+  "listings",
+  "lets",
+  "location",
   "more",
   "message",
   "messages",
+  "need",
+  "not",
+  "of",
+  "on",
+  "one",
+  "or",
+  "out",
+  "people",
+  "profile",
+  "profiles",
+  "public",
+  "reach",
+  "recipient",
+  "recipients",
+  "right",
+  "s",
   "secure",
   "securely",
+  "set",
   "sign",
+  "so",
+  "source",
+  "sources",
   "start",
   "starts",
   "submission",
   "submissions",
   "team",
   "teams",
+  "that",
+  "the",
+  "their",
+  "there",
+  "they",
+  "this",
+  "to",
   "tips",
+  "up",
   "visitor",
   "visitors",
   "visit",
+  "want",
+  "way",
+  "whether",
+  "with",
+  "you",
+  "your",
 ]);
 const HUSHLINE_APP_VOICE_GUIDANCE = [
   "Use practical language from hushline.app: Hush Line is for anonymous, end-to-end encrypted contact and secure first contact, not broad marketing claims.",
@@ -206,6 +274,7 @@ function parseArgs(argv) {
     candidateCount: 12,
     darkRatio: 0.2,
     date: todayString(),
+    excludeScreenshots: [],
     noRender: false,
   };
 
@@ -223,6 +292,9 @@ function parseArgs(argv) {
       index += 1;
     } else if (value === "--dark-ratio") {
       args.darkRatio = Number(argv[index + 1]);
+      index += 1;
+    } else if (value === "--exclude-screenshot") {
+      args.excludeScreenshots.push(String(argv[index + 1] || ""));
       index += 1;
     } else if (value === "--no-render") {
       args.noRender = true;
@@ -254,6 +326,10 @@ function parseArgs(argv) {
     throw new Error("`--dark-ratio` must be a number from 0 to 1.");
   }
 
+  args.excludeScreenshots = Array.from(
+    new Set(args.excludeScreenshots.filter((value) => value.length > 0)),
+  );
+
   return args;
 }
 
@@ -267,7 +343,7 @@ function printHelp() {
       "",
       "Behavior:",
       "  - Reads audience context from Hush Line docs and ../hushline/AGENTS.md",
-      "  - Builds an eligible screenshot pool from hushline-screenshots/releases/latest",
+      "  - Builds an eligible screenshot pool from the local curated hushline-screenshots set when available",
       "  - Randomly preselects one screenshot after excluding recent repeats of the same screen",
       "  - Writes daily planning context and a Codex prompt to previous-posts/<archive-key>",
       "  - Expects one high-value post for the requested day",
@@ -568,47 +644,26 @@ function filterCandidatesForArchiveHistory(candidates, archiveHistory) {
         .localeCompare(String(right.file || right.content_key || right.path || ""))
     );
   };
+  const minimumFreshPool = 3;
 
-  const strict = normalizedCandidates
-    .filter((candidate) => {
-      const stats = candidate.history_stats;
-      return (
-        stats.exact_screenshot_matches === 0 &&
-        stats.content_matches === 0 &&
-        stats.screen_matches === 0 &&
-        stats.topic_matches === 0
-      );
-    })
-    .sort(sortByNovelty);
-  if (strict.length > 0) {
-    return strict;
-  }
-
-  const relaxedScreen = normalizedCandidates
-    .filter((candidate) => {
-      const stats = candidate.history_stats;
-      return (
-        stats.exact_screenshot_matches === 0 &&
-        stats.content_matches === 0 &&
-        stats.screen_matches === 0
-      );
-    })
-    .sort(sortByNovelty);
-  if (relaxedScreen.length > 0) {
-    return relaxedScreen;
-  }
-
-  const relaxedExact = normalizedCandidates
+  const withoutExactOrContentRepeats = normalizedCandidates
     .filter((candidate) => {
       const stats = candidate.history_stats;
       return stats.exact_screenshot_matches === 0 && stats.content_matches === 0;
     })
     .sort(sortByNovelty);
-  if (relaxedExact.length > 0) {
-    return relaxedExact;
+
+  if (withoutExactOrContentRepeats.length >= minimumFreshPool) {
+    return withoutExactOrContentRepeats;
   }
 
-  return normalizedCandidates.sort(sortByNovelty);
+  const withoutExactRepeats = normalizedCandidates
+    .filter((candidate) => candidate.history_stats.exact_screenshot_matches === 0)
+    .sort(sortByNovelty);
+
+  return (withoutExactRepeats.length > 0
+    ? withoutExactRepeats
+    : normalizedCandidates.slice().sort(sortByNovelty));
 }
 
 function filterCandidatesForWeeklyCaps(candidates, archiveHistory, plannedDate) {
@@ -637,7 +692,13 @@ function filterCandidatesForWeeklyCaps(candidates, archiveHistory, plannedDate) 
 }
 
 function chooseBestCandidate(candidates, archiveHistory, templateNames) {
-  const ranked = candidates
+  const ranked = rankCandidates(candidates, archiveHistory, templateNames);
+
+  return ranked[0] || null;
+}
+
+function rankCandidates(candidates, archiveHistory, templateNames) {
+  return candidates
     .map((candidate) => {
       const candidateType = detectCandidateTemplateType(candidate);
 
@@ -653,14 +714,13 @@ function chooseBestCandidate(candidates, archiveHistory, templateNames) {
     })
     .sort((left, right) => {
       return (
+        Number(left.audience_scope === "admin-only") - Number(right.audience_scope === "admin-only") ||
         left.template_type_average_usage - right.template_type_average_usage ||
         left.history_stats.novelty_penalty - right.history_stats.novelty_penalty ||
         (right.score || 0) - (left.score || 0) ||
         left.file.localeCompare(right.file)
       );
     });
-
-  return ranked[0] || null;
 }
 
 function chooseTemplateNameForCandidate(candidate, context) {
@@ -708,6 +768,7 @@ function readHushlineAgentExcerpt() {
 function buildDailyContext(args) {
   const parsedDate = new Date(`${args.date}T12:00:00`);
   const week = formatIsoWeek(parsedDate);
+  const excludedScreenshots = new Set(args.excludeScreenshots || []);
   const planningContext = buildPlanningContext({
     candidateCount: Math.max(args.candidateCount * 10, 200),
     darkRatio: args.darkRatio,
@@ -724,11 +785,15 @@ function buildDailyContext(args) {
     archiveHistory,
     args.date,
   );
-  const selectedCandidate = chooseBestCandidate(
+  const rankedCandidates = rankCandidates(
     weekEligibleCandidates,
     archiveHistory,
     templateNames,
   );
+  const eligibleCandidates = rankedCandidates.filter(
+    (candidate) => !excludedScreenshots.has(candidate.file),
+  );
+  const selectedCandidate = eligibleCandidates[0] || null;
 
   if (!selectedCandidate) {
     throw new Error(`No eligible screenshot candidates remain for ${args.date}.`);
@@ -742,7 +807,7 @@ function buildDailyContext(args) {
       },
     },
   );
-  const selectedCandidates = [selectedCandidate];
+  const selectedCandidates = eligibleCandidates.slice(0, 3);
 
   return {
     audience_docs: planningContext.audience_docs,
@@ -750,6 +815,7 @@ function buildDailyContext(args) {
     daily_posts_root: path.relative(REPO_ROOT, DAILY_POSTS_ROOT),
     date: args.date,
     dark_ratio: args.darkRatio,
+    excluded_screenshots: Array.from(excludedScreenshots),
     hushline_agent_context: readHushlineAgentExcerpt(),
     hushline_app_voice_guidance: HUSHLINE_APP_VOICE_GUIDANCE,
     recent_archive_history: archiveHistory,
@@ -790,7 +856,7 @@ function buildPromptPayload(context) {
 
   return {
     system: [
-      "You are writing one daily social post for Hush Line around a preselected screenshot.",
+      "You are writing one daily social post for Hush Line around a small ranked screenshot shortlist.",
       "Write in plain language. No marketing-speak, no hype, no filler.",
       "Social copy must be end-user-facing. Do not confuse post copy with alt text.",
       "Avoid empty-state screens, duplicate content themes, and repeated scenes across mobile/desktop variants.",
@@ -808,7 +874,6 @@ function buildPromptPayload(context) {
       `Bluesky ${LIMITS.bluesky}`,
       "",
       `Target dark-mode share for this run: ${context.dark_ratio}`,
-      `Target template for this run: ${context.template_selection.desired_template_name}`,
       `Screenshot release from local latest folder: ${context.screenshot_release}`,
       `Screenshots captured at: ${context.screenshot_captured_at}`,
       "",
@@ -825,14 +890,14 @@ function buildPromptPayload(context) {
       archiveHistory,
       "",
       "Instructions:",
-      "- Use the provided screenshot only.",
+      "- Choose exactly one screenshot from the provided candidates.",
       `- Check the prior ${ARCHIVE_LOOKBACK_DAYS} days of archived daily posts before you decide on the messaging angle.`,
-      "- The screenshot was preselected from a ranked pool after excluding recent repeats of the same screenshot, screen, feature family, and overused template types wherever possible.",
+      "- The candidates were preselected from a ranked pool after excluding recent repeats of the same screenshot, screen, feature family, and overused template types wherever possible.",
       "- Produce exactly one post for the requested date.",
       "- Do not talk about recent releases, recent merges, or product recency unless the prompt explicitly gives you that information.",
       "- Do not repeat a screenshot, feature, or messaging angle that already appeared in the prior month, even if you could retarget it to a different audience.",
       "- Treat screenshots in the same topic family as repeats even when the exact content_key differs. For example, directory-all, directory-verified, and onboarding-directory all count as directory posts for variation purposes.",
-      "- The provided screenshot already fits the target template for this run.",
+      "- Prefer the candidate that gives you the most distinct message from the recent archive, not just the highest-ranked familiar topic.",
       "- Match the copy to the candidate audience scope. Public screens should read public-facing. Recipient-shared screens should read like recipient workflows. Admin-only screens must clearly say admin or team context.",
       "- Tailor the message to real Hush Line users and use cases, not generic product copy.",
       "- Headline and subtext should be concise and straightforward.",
@@ -921,7 +986,7 @@ function buildResponseSchema(context) {
   };
 }
 
-function buildCodexPrompt(context, planPath) {
+function buildCodexPrompt(context, archiveKey) {
   const prompt = buildPromptPayload(context);
   const candidates = context.candidate_screenshots
     .map((candidate, index) => {
@@ -952,8 +1017,8 @@ function buildCodexPrompt(context, planPath) {
     "Candidate screenshots:",
     candidates,
     "",
-    `Read planning context from: ${path.join("previous-posts", context.date, "context.json")}`,
-    `Write the finished plan JSON to: ${planPath}`,
+    `Read planning context from: ${path.join("previous-posts", archiveKey, "context.json")}`,
+    `Write the finished plan JSON to: ${path.join("previous-posts", archiveKey, "plan.json")}`,
     "",
     "Output requirements:",
     "- Write valid JSON only to the target file.",
@@ -962,7 +1027,7 @@ function buildCodexPrompt(context, planPath) {
     JSON.stringify(buildResponseSchema(context), null, 2),
     "",
     "Execution requirements:",
-    "- Use only the provided screenshot.",
+    "- Use exactly one of the provided screenshots.",
     "- Do not render images yourself.",
     "- Do not mention recent release timing, recent PRs, or recency-based product claims unless the prompt explicitly includes that evidence.",
     "- Use `source_pr_numbers: []` unless the prompt explicitly gives you PR numbers to cite.",
@@ -973,6 +1038,9 @@ function buildCodexPrompt(context, planPath) {
 function validatePlan(modelPlan, context) {
   const candidateMap = new Map(
     context.candidate_screenshots.map((candidate) => [candidate.file, candidate]),
+  );
+  const recentFeatureEntries = (context.recent_archive_history || []).slice(
+    -FEATURE_REPEAT_HARD_LOOKBACK_POSTS,
   );
 
   if (modelPlan.date !== context.date) {
@@ -1058,6 +1126,7 @@ function validatePlan(modelPlan, context) {
       (entry.screen_key && entry.screen_key === (candidate.screen_key || inferScreenKey(candidate))) ||
       (entry.topic_family && entry.topic_family === (candidate.topic_family || inferTopicFamily(candidate)))
     );
+    const recentFeatureOverlap = sameFeature && recentFeatureEntries.includes(entry);
     const matchingHeadline = normalizeMessageLine(entry.headline) === normalizeMessageLine(post.headline);
     const headlineOverlap = sharedMessageTokenCount(
       `${post.headline} ${post.subtext}`,
@@ -1071,7 +1140,7 @@ function validatePlan(modelPlan, context) {
       );
     }
 
-    if (sameFeature && (headlineOverlap >= 3 || bodyOverlap >= 6)) {
+    if (recentFeatureOverlap && (headlineOverlap >= 3 || bodyOverlap >= 6)) {
       throw new Error(
         `Post messaging for ${context.date} is too close to recent ${entry.topic_family} archive ${entry.archive_key}.`,
       );
@@ -1116,7 +1185,7 @@ function writeContextArtifacts(archiveKey, context) {
   const promptPath = path.join(postRoot, "prompt.txt");
   const planPath = path.join(postRoot, "plan.json");
   writeJson(contextPath, context);
-  fs.writeFileSync(promptPath, `${buildCodexPrompt(context, path.join("previous-posts", archiveKey, "plan.json"))}\n`);
+  fs.writeFileSync(promptPath, `${buildCodexPrompt(context, archiveKey)}\n`);
   return {
     contextPath,
     planPath,

@@ -1,0 +1,30 @@
+{
+  "date": "2026-04-13",
+  "post": {
+    "slot": "monday",
+    "planned_date": "2026-04-13",
+    "screenshot_file": "artvandelay/auth-artvandelay-settings-advanced-mobile-dark-fold.png",
+    "content_key": "auth-artvandelay-settings-advanced",
+    "headline": "Take your records with you if your setup changes",
+    "subtext": "Advanced settings let recipients export their Hush Line data, including encrypted PGP messages, before they close an account.",
+    "image_alt_text": "A portrait Hush Line social graphic built from a dark-mode mobile settings screen. It shows the Advanced page with a Download My Data section, a checked option to encrypt the export with a PGP key, and a Delete Account section below.",
+    "social": {
+      "bluesky": "When a reporting workflow changes, you should be able to leave with your records.\n\nHush Line's advanced settings let recipients download their data, including encrypted PGP messages, and close an account from one place.\n\nSign up at https://hushline.app.",
+      "linkedin": "When a reporting workflow changes, you may need to leave with your records instead of starting over.\n\nHush Line's advanced settings let recipients download a ZIP of their data, including encrypted PGP messages, and handle account closure from the same place. That gives journalists, lawyers, educators, and other trusted recipients a clearer exit path when they need to move work, archive it, or shut an account down.\n\nSign up at https://hushline.app.",
+      "mastodon": "When a reporting workflow changes, you should be able to leave with your records.\n\nHush Line's advanced settings let recipients download their data, including encrypted PGP messages, and close an account from one place.\n\nSign up at https://hushline.app."
+    },
+    "rationale": "The selected screenshot is a recipient-facing advanced settings view that clearly shows data export and account deletion on mobile. The message is grounded in recipient workflows from the use-case docs: journalists, lawyers, educators, organizers, and other trusted recipients may need a clean way to archive work, move it, or close an account. This angle stays distinct from recent daily posts about onboarding, directory discovery, encryption setup, 2FA, admin controls, message statuses, and review tools, while also avoiding the earlier long-running-case framing by focusing on account exit and record portability from the settings screen itself.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "settings-advanced",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "matched_pull_requests": [],
+    "screen_key": "/settings/advanced",
+    "template_name": "hushline-daily-mobile-template-2.html",
+    "theme": "dark",
+    "title": "Settings - Advanced (artvandelay)",
+    "topic_family": "settings-advanced",
+    "viewport": "mobile"
+  },
+  "summary": "Recipient-facing daily post for the advanced settings screen, focused on exporting records and closing an account cleanly when a workflow changes."
+}

@@ -1,0 +1,299 @@
+You are writing one daily social post for Hush Line around a small ranked screenshot shortlist. Write in plain language. No marketing-speak, no hype, no filler. Social copy must be end-user-facing. Do not confuse post copy with alt text. Avoid empty-state screens, duplicate content themes, and repeated scenes across mobile/desktop variants. If a screenshot is admin-only, the copy must explicitly say that it is for admins or teams running Hush Line. LinkedIn is the first automated publishing target, so LinkedIn copy should be especially ready for production use.
+
+Plan date: 2026-04-23
+Week context: 2026-W17
+Slot label: thursday
+
+Character limits:
+LinkedIn 3000
+Mastodon 500
+Bluesky 300
+
+Target dark-mode share for this run: 0.2
+Screenshot release from local latest folder: v0.6.37
+Screenshots captured at: 2026-04-21T19:46:39.556Z
+
+Current hushline.app voice guidance:
+- Use practical language from hushline.app: Hush Line is for anonymous, end-to-end encrypted contact and secure first contact, not broad marketing claims.
+- Keep the message grounded in the people Hush Line serves, such as sources, journalists, lawyers, educators, developers, organizers, and trusted recipients when the screenshot supports that audience.
+- Prefer concrete platform framing from hushline.app like no app download or account required for sources, a public directory that helps people find the right recipient, and browser-based tools that support real review workflows.
+
+Audience and user-base context from docs:
+../hushline/docs/USE-CASES.md
+Hush Line Use Cases This document rationalizes Hush Line's use cases with AGENTS.md, the current application surface, and the public/library documentation. The goal is to keep product thinking grounded in the people Hush Line actually serves, the workflows the app currently supports, and the safety/privacy constraints that shape those workflows. Grounding Primary grounding reference: docs/ISO 37002.md Product principles: Usability of the Software Authenticity of the Receiver Plausible Deniability of the Whistleblower Availability of the System Anonymity of the Whistleblower Confidentiality and Integrity of the Disclosures Primary User Groups | Group | Typical Users | What They Need From Hush Line | | | | | | Message Senders | Whistleblowers, concerned citizens, engaged citizens, activists, students, bug bounty hunters | A low friction, privacy preserving way to find a trustworthy recipient and send a message without creating an account | | Message Recipients | Journalists, newsrooms, documentary teams, lawyers, law firms, employers, boards, educators, school administrators, organizers, activists, software developers, security teams, nonprofits | A trustworthy intake channel, secure delivery path, public credibility signals, and a manageable workflow for reviewing and responding to messages | | Shared or Role Based Recipients | Board inboxes, ethics/compliance contacts, public accountability channels, legal intake teams, security reporting addresses | Shared intake endpoints that can be published publicly without forcing a single personal identity | | Platform Administrators | Internal operators for managed or single tenant deployments | Branding, governance controls, registration gates, trust management, and account moderation | Deployment Models | Model | Best Fit | Wh…
+
+../hushline/docs/library/welcome/welcome-to-hush-line.md
+Welcome to Hush Line Source basis: the public Hush Line Library welcome section and the project overview in README.md. Hush Line is an open source whistleblower platform for secure, anonymous, one way disclosures. It is built for journalists, lawyers, educators, organizers, employers, and other trusted recipients who need a safer way to receive tips from their communities. What Hush Line is designed to protect Anonymous submissions without requiring a sender account End to end encrypted delivery when the receiver has a PGP key Trust building signals such as verified accounts and public profile details Safer access paths, including Tor support and privacy preserving defaults Common ways people use it Publish a public tip line for your newsroom, law office, classroom, campaign, or company Receive messages in a web inbox without turning the sender flow into a live chat Share a directory listing or direct profile link so sources can verify they reached the right person Run the hosted service or use a Personal Server Where to begin New hosted service users should start with Start Here. If you want the guided setup flow, open New User Onboarding. If you already have an account, jump to Prep Your Account and Secure Your Account.
+
+../hushline/README.md
+Hush Line Hush Line is an open source whistleblower platform for secure, anonymous, one way disclosures to journalists, lawyers, and other trusted recipients. Hosted service: <https://tips.hushline.app Start here: <https://hushline.app/library/docs/getting started/start here/ Why Hush Line Hush Line is built for safety critical reporting workflows where trust, anonymity, and usability all matter. The project design priorities are: Usability of the software Authenticity of the receiver Plausible deniability of the whistleblower Availability of the system Anonymity of the whistleblower Confidentiality and integrity of disclosures Core Capabilities | Area | What Hush Line Provides | | | | | Anonymous submissions | No submitter account required for sending disclosures | | Encryption | End to end encryption workflow with recipient PGP keys, plus server side fallback path | | Receiver trust | Verified account workflow and trusted directory UX | | Account security | Password authentication with optional TOTP 2FA | | Privacy access | Tor onion support and privacy preserving defaults | | Communication workflow | Message status management, one way replies, and optional email forwarding modes | | Org customization | Branding controls, onboarding guidance, and configurable profile fields | | Operational controls | Strong CI checks, migration compatibility testing, and workflow security validation | Quickstart (Local) 1) Clone and start Open <http://localhost:8080 . If you only want to start the current stack without first tearing it down, you can still use docker compose up or make run . If you want a slower, guided setup for a brand new machine, use the AI ready prompt in docs/LOCAL CONTRIBUTOR ONBOARDING PROMPT.md .
+
+../hushline/docs/library/getting-started/prep-your-account.md
+Prep Your Account Source: <https://hushline.app/library/docs/getting started/account setup/ Preparing your account means getting your profile, encryption, and message delivery settings into a state you are comfortable publishing. 1. Fill in your public profile At minimum, add: a recognizable display name an optional account category that matches the type of recipient you are a short bio any extra profile details you want sources to trust, such as a website or Signal handle If you opt into the public directory, this is the information whistleblowers will use to decide whether your tip line belongs to the right person. 2. Add encryption If tips will be delivered to an email address, PGP setup is the important step. Supported options: Proton Mail key lookup manual public key paste Without a PGP key, people can still see your profile, but they cannot submit tips through it. 3. Decide how messages should reach you Hush Line can notify you about new tips in the web inbox and, optionally, by email. In Settings you can: enable or disable email notifications add multiple notification recipients when one shared account needs to alert a small team include encrypted message content in those emails encrypt the entire email body for compatibility with clients such as Proton Mail or Thunderbird Each notification recipient can use a different delivery address and PGP key. This lets a newsroom, nonprofit, or legal intake team share one public account while keeping each operator's mail workflow separate. 4. Review your public form If you use custom message fields, decide which ones are: required or optional encrypted or unencrypted Unencrypted custom fields are visible to you and your hosting provider. Encrypted fields require your PGP workflow to read them. 5.
+
+../hushline/docs/library/personal-server/the-hush-line-personal-server.md
+The Hush Line Personal Server Source: <https://hushline.app/library/docs/personal server/the hush line personal server/ The Hush Line Personal Server is the self hosted Hush Line appliance. It is designed for people who want the Hush Line workflow on hardware they control while still giving sources an anonymous, browser based submission path. How access works The Personal Server presents two addresses: a Tor onion address for private access through Tor Browser a local network HTTPS address for access from the network the device is connected to The in app server info page shows both addresses directly on the device. First run setup 1. Visit the device address. 2. Register the first account. 3. The first user created on a Personal Server becomes the admin. 4. Add your profile, encryption key, and notification settings. 5. Share the onion URL publicly so sources can reach you anonymously. Who it is for The product copy describes the Personal Server as a good fit for lawyers, journalists, educators, and business leaders who want a safer reporting channel for their communities. Related docs Specs Secure Your Account Share Your Tip Line
+
+../hushline/docs/PUBLIC-RECORD-PROVENANCE-ROADMAP.md
+Public Record Provenance Roadmap (U.S.) This artifact tracks the active U.S. implementation roadmap and the policy only EU scaffold used to open follow on country issues. Scope Build an authoritative, ever growing U.S. public record attorney dataset. Keep only listings with strict, per record official source URLs. Remove listings when the official record can no longer be verified. Current Baseline (March 10, 2026) Active strict listings: 58 States with strict listings: AK , AL , AR , AZ , CA , CO , CT , DE , GA , IA , ID , IL , IN , KS , MA , MD , ME , MI , MN , MO , MS , MT , NC , ND , NE , NH , NJ , NM , OH , RI , SC , SD , TN , TX , UT , WA Other U.S. rows were removed because they only pointed to generic directory pages (not the exact record URL). Strict Provenance Rules source url must point to the exact public record URL for that listing. source url must be on the expected official state authority domain. Generic source pages are rejected. Synthetic markers ( listing= query/fragment hacks) are rejected. Chambers/private rankings are rejected as authoritative sources. State Adapter Strategy Discovery/additions must come from explicit state adapters only. All 50 states now have explicit adapter entries in discovery code. Each adapter must: query the official state authority source resolve an exact per record URL emit normalized listing rows that pass strict validation Until a state specific extractor is implemented, that state's adapter remains a no op.
+
+Additional Hush Line AGENTS guidance:
+AGENTS.md This file provides operating guidance for coding agents working in the Hush Line repository. We are a 501(c)(3) non profit based in the United States, and consider this software safety critical infrastructure protecting users’ operational, physical, and digital security. Grounding Document Primary grounding reference: docs/ISO 37002.md ( ISO 37002:2021 Whistleblowing management systems Guidelines ) Use case reference: docs/USE CASES.md (canonical product and workflow use cases for agents) Principles Usability of the Software Authenticity of the Receiver Plausible Deniability of the Whistleblower Availability of the System Anonymity of the Whistleblower Confidentiality and Integrity of the Disclosures Core Users | Message Senders | Message Recipients | Administrators | | | | | | Whistleblowers | Journalists and Newsrooms | Platform Administrators | | Concerned citizens | Lawyers and Law Offices | | | Engaged citizens | Employers and Boards | | | Activists | Educators and Administrators | | | Students | Organizers and Activists | | | Bug bounty hunters | Software developers | | Geographic Location Global; default to privacy preserving choices across jurisdictions. Scope Applies to the entire repository unless a deeper AGENTS.md exists in a subdirectory. Project Priorities Preserve core whistleblower flow above all else. Prefer behavior preserving changes over refactors unless explicitly requested. Keep privacy/security guarantees intact when editing routes, models, or settings. Accessibility score must be 100. Performance score must be =95.
+
+Recent archived daily posts to avoid repeating:
+2026-03-23: guest-directory-attorneys-applied-filters [directory] (guest/guest-directory-attorneys-applied-filters-mobile-light-fold.png)
+  Template: mobile
+  Headline: Filter attorney listings before you send anything sensitive
+  Subtext: The public directory lets sources narrow attorney profiles by location so they can compare recipients before reaching out.
+2026-03-24: auth-newman-onboarding-directory [directory] (newman/auth-newman-onboarding-directory-mobile-light-fold.png)
+  Template: mobile
+  Headline: Choose whether sources can find your tip line
+  Subtext: The final onboarding step lets recipients join the public directory, so sources can verify they reached the right person before they send a message.
+2026-03-26: guest-directory-all [directory] (guest/guest-directory-all-mobile-light-fold.png)
+  Template: hushline-social-mobile-template.html
+  Headline: Browse the full directory before you choose who to contact
+  Subtext: The public All tab puts lawyers, journalists, and other recipients in one place so sources can compare options before sharing anything sensitive.
+2026-03-26-1: auth-newman-onboarding-notifications [notifications] (newman/auth-newman-onboarding-notifications-desktop-light-fold.png)
+  Template: hushline-social-desktop-template.html
+  Headline: Choose how new tips should reach you
+  Subtext: The notifications step in onboarding lets recipients decide how Hush Line should alert them about incoming messages before they start using the inbox.
+2026-03-26-2: weekly-article-what-boards-and-ethics-offices-should-put-on-a-tip-line-before-launch [profile] (guest/guest-profile-artvandelay-custom-form-desktop-light-fold.png)
+  Template: hushline-social-desktop-template.html
+  Headline: What Boards and Ethics Offices Should Put on a Tip Line Before Launch
+  Subtext: A board committee or ethics office can do a lot of internal preparation before launching a public reporting channel: decide who monitors it, review policy language, and agree on escalation paths. But the first practical test often happens earlier. A whistlebl…
+2026-03-26-3: weekly-article-how-security-teams-can-investigate-suspicious-email-with-better-context [weekly-article-how-security-teams-can-investigate-suspicious-email-with-better-context] ()
+  Template: unknown
+  Headline: How Security Teams Can Investigate Suspicious Email With Better Context
+  Subtext: Software developers and bug bounty teams often receive messy intake, not polished incident reports. A researcher, contractor, or employee forwards a suspicious email, says "this looks wrong," and leaves the internal team to figure out whether it is a real phi…
+2026-03-26-4: weekly-article-why-schools-and-universities-need-separate-reporting-addresses [weekly-article-why-schools-and-universities-need-separate-reporting-addresses] ()
+  Template: unknown
+  Headline: Why Schools and Universities Need Separate Reporting Addresses
+  Subtext: Universities rarely have just one kind of sensitive report to receive. A student safety concern, a Title IX-style complaint, and a financial misconduct report do not belong to the same office, do not carry the same expectations, and usually should not start w…
+2026-03-26-5: weekly-article-why-verified-tip-lines-matter-for-newsrooms [weekly-article-why-verified-tip-lines-matter-for-newsrooms] ()
+  Template: unknown
+  Headline: Why Verified Tip Lines Matter for Newsrooms
+  Subtext: A local newsroom can do everything right on the reporting side and still lose a source at the first step. A person who has seen wrongdoing usually starts with a simpler question than "How does this newsroom handle secure intake?" They ask, "Is this the real t…
+2026-03-26-6: weekly-article-when-ocr-helps-reporters-handle-documents-faster [weekly-article-when-ocr-helps-reporters-handle-documents-faster] ()
+  Template: unknown
+  Headline: When OCR Helps Reporters Handle Documents Faster
+  Subtext: Investigative reporting often starts with imperfect source material. A reporter receives a Hush Line message that includes photos of printed records, screenshots of internal systems, or scanned pages that are readable enough for a human eye but slow to work t…
+2026-03-26-7: weekly-article-how-law-firms-can-handle-sensitive-intake-without-losing-track [weekly-article-how-law-firms-can-handle-sensitive-intake-without-losing-track] ()
+  Template: unknown
+  Headline: How Law Firms Can Handle Sensitive Intake Without Losing Track
+  Subtext: Small law offices often do intake when the office is effectively closed. A potential client sends a sensitive message after midnight, a paralegal reads it the next morning, and an attorney may not decide until later whether the matter fits the practice, needs…
+2026-03-26-8: weekly-article-why-data-export-matters-for-long-running-cases [weekly-article-why-data-export-matters-for-long-running-cases] ()
+  Template: unknown
+  Headline: Why Data Export Matters for Long-Running Cases
+  Subtext: For lawyers, secure intake is only the beginning of the problem. A matter that starts with one sensitive disclosure may stay active through internal review, negotiation, regulatory contact, or litigation planning for a long time after the first message arrive…
+2026-03-27: auth-artvandelay-settings-replies [message-statuses] (artvandelay/auth-artvandelay-settings-replies-desktop-light-fold.png)
+  Template: hushline-social-desktop-template.html
+  Headline: Set clear message statuses for sources
+  Subtext: Recipients can decide what sources see at their temporary reply address after a tip comes in.
+2026-03-30: guest-directory-newsrooms [directory] (guest/guest-directory-newsrooms-desktop-light-fold.png)
+  Template: hushline-social-desktop-template.html
+  Headline: Find a newsroom before you send a tip
+  Subtext: The public Newsrooms tab helps sources search and narrow newsroom listings by location before they share anything sensitive.
+2026-03-31: auth-artvandelay-tools-email-validation-status-valid [email-headers] (artvandelay/auth-artvandelay-tools-email-validation-status-valid-mobile-light-fold.png)
+  Template: hushline-social-mobile-template.html
+  Headline: Check suspicious email headers before you act
+  Subtext: Hush Line includes an email validation tool so recipients can inspect raw headers, review authentication checks, and save a report.
+2026-04-01: auth-artvandelay-settings-auth [authentication] (artvandelay/auth-artvandelay-settings-auth-desktop-light-fold.png)
+  Template: hushline-social-desktop-template.html
+  Headline: Turn on two-factor authentication for your account
+  Subtext: Recipients can manage core sign-in settings and enable 2FA from one place before they start handling sensitive tips.
+2026-04-02: auth-artvandelay-settings-encryption [encryption] (artvandelay/auth-artvandelay-settings-encryption-mobile-light-fold.png)
+  Template: hushline-daily-mobile-template.html
+  Headline: Add your PGP key before you share your tip line
+  Subtext: Your profile can stay visible without a key, but sources cannot send encrypted tips until your encryption setup is in place.
+2026-04-03: guest-directory-securedrop [directory] (guest/guest-directory-securedrop-desktop-light-fold.png)
+  Template: hushline-daily-desktop-template.html
+  Headline: Check the SecureDrop list before you choose a newsroom
+  Subtext: Hush Line's public directory now surfaces refreshed SecureDrop listings so sources can compare news organizations and open the right tip line.
+2026-04-06: auth-admin-settings-guidance [guidance] (admin/auth-admin-settings-guidance-mobile-dark-fold.png)
+  Template: hushline-daily-mobile-template-2.html
+  Headline: For admins: set guidance before sources send a message
+  Subtext: Admins can add plain-language safety instructions and an emergency exit option so visitors know how to approach a tip line more carefully.
+2026-04-07: auth-artvandelay-tools-vision [vision] (artvandelay/auth-artvandelay-tools-vision-desktop-dark-fold.png)
+  Template: hushline-daily-desktop-template-2.html
+  Headline: Turn source images into searchable text
+  Subtext: Vision Assistant helps recipients extract text from screenshots, photographed documents, and notes in the browser during case review.
+2026-04-08: auth-admin-settings-branding [branding] (admin/auth-admin-settings-branding-desktop-dark-fold.png)
+  Template: hushline-daily-desktop-template.html
+  Headline: For admins: explain your deployment clearly
+  Subtext: Branding settings let admins set the directory intro and visual identity so visitors understand who runs the tip line and how to use it.
+2026-04-09: auth-admin-settings-registration [registration] (admin/auth-admin-settings-registration-mobile-dark-fold.png)
+  Template: hushline-daily-mobile-template.html
+  Headline: For admins: control who can register
+  Subtext: Registration settings let admins disable signup, keep it open, or require codes so account access matches how their team runs Hush Line.
+2026-04-10: auth-admin-settings-admin [settings-admin] (admin/auth-admin-settings-admin-desktop-dark-fold.png)
+  Template: hushline-daily-desktop-template-2.html
+  Headline: For admins: review account trust in one place
+  Subtext: The admin panel helps teams running Hush Line review roles, trust flags, and who has 2FA or PGP enabled across user accounts.
+2026-04-13: auth-artvandelay-settings-advanced [settings-advanced] (artvandelay/auth-artvandelay-settings-advanced-mobile-dark-fold.png)
+  Template: hushline-daily-mobile-template-2.html
+  Headline: Take your records with you if your setup changes
+  Subtext: Advanced settings let recipients export their Hush Line data, including encrypted PGP messages, before they close an account.
+2026-04-14: guest-directory-attorney-adam-j-levitt [directory] (guest/guest-directory-attorney-adam-j-levitt-mobile-light-fold.png)
+  Template: hushline-daily-mobile-template.html
+  Headline: Review a whistleblower law listing before you reach out
+  Subtext: This public attorney listing shows bar-registration details, location, and firm links so a source can judge whether a law office fits the disclosure they need to make.
+2026-04-15: auth-artvandelay-tools-email-validation-status-valid [email-headers] (artvandelay/auth-artvandelay-tools-email-validation-status-valid-desktop-light-fold.png)
+  Template: hushline-daily-desktop-template.html
+  Headline: Turn header data into a provenance record
+  Subtext: This desktop tool summarizes a forwarded message and exports a downloadable result for case files or team handoffs.
+2026-04-16: auth-artvandelay-settings-notifications [notifications] (artvandelay/auth-artvandelay-settings-notifications-desktop-light-fold.png)
+  Template: hushline-daily-desktop-template-2.html
+  Headline: Route new tip alerts to the right people
+  Subtext: Notification settings let recipients add separate alert addresses, so one public tip line can support a newsroom, law office, or other small team without relying on a single inbox.
+2026-04-17: auth-newman-onboarding-encryption [encryption] (newman/auth-newman-onboarding-encryption-desktop-light-fold.png)
+  Template: hushline-daily-desktop-template.html
+  Headline: Set up your public key during onboarding
+  Subtext: The encryption step lets recipients search Proton Mail or paste a public PGP key manually so sources can send messages that only the intended recipient can read.
+2026-04-20: auth-artvandelay-settings-aliases [aliases] (artvandelay/auth-artvandelay-settings-aliases-mobile-dark-fold.png)
+  Template: hushline-daily-mobile-template-2.html
+  Headline: Create a separate tip line for each kind of intake
+  Subtext: Aliases let recipients create matter-specific, campaign-specific, or role-based endpoints instead of routing every disclosure through one public address.
+2026-04-21: auth-artvandelay-settings-auth [authentication] (artvandelay/auth-artvandelay-settings-auth-mobile-light-fold.png)
+  Template: hushline-daily-mobile-template.html
+  Headline: Keep your tip line account recognizable and secure
+  Subtext: Authentication settings let recipients review username changes, update a password, and turn on 2FA from one place.
+2026-04-22: auth-admin-settings-registration [registration] (admin/auth-admin-settings-registration-desktop-light-fold.png)
+  Template: hushline-daily-desktop-template-2.html
+  Headline: For admins: choose how staff accounts are created
+  Subtext: Registration settings let teams running Hush Line decide whether staff signup stays off, open, or code-only.
+
+Instructions:
+- Choose exactly one screenshot from the provided candidates.
+- Check the prior 31 days of archived daily posts before you decide on the messaging angle.
+- The candidates were preselected from a ranked pool after excluding recent repeats of the same screenshot, screen, feature family, and overused template types wherever possible.
+- Produce exactly one post for the requested date.
+- Do not talk about recent releases, recent merges, or product recency unless the prompt explicitly gives you that information.
+- Do not repeat a screenshot, feature, or messaging angle that already appeared in the prior month, even if you could retarget it to a different audience.
+- Treat screenshots in the same topic family as repeats even when the exact content_key differs. For example, directory-all, directory-verified, and onboarding-directory all count as directory posts for variation purposes.
+- Prefer the candidate that gives you the most distinct message from the recent archive, not just the highest-ranked familiar topic.
+- Match the copy to the candidate audience scope. Public screens should read public-facing. Recipient-shared screens should read like recipient workflows. Admin-only screens must clearly say admin or team context.
+- Tailor the message to real Hush Line users and use cases, not generic product copy.
+- Headline and subtext should be concise and straightforward.
+- Each network copy should say the same core thing in a native way, not copy-paste the same sentence three times.
+- The alt text should describe the final image asset, not just the raw UI screenshot.
+- Set `source_pr_numbers` to an empty array unless the prompt explicitly provides PR numbers to cite.
+
+Return strict JSON matching the schema.
+
+Candidate screenshots:
+Candidate 1
+file: newman/auth-newman-onboarding-directory-desktop-light-fold.png
+topic_family: directory
+concept_key: onboarding-directory
+content_key: auth-newman-onboarding-directory
+title: Onboarding - Step 4 Directory (newman)
+route: /onboarding?step=directory
+session: newman
+audience_scope: recipient-shared
+copy_brief: Write for recipients and staff using Hush Line day to day, not for platform admins.
+viewport: desktop
+theme: light
+screen_key: onboarding-directory
+absolute_path: /Users/scidsg/hushline-screenshots/curated/newman/auth-newman-onboarding-directory-desktop-light-fold.png
+
+Read planning context from: previous-posts/2026-04-23/context.json
+Write the finished plan JSON to: previous-posts/2026-04-23/plan.json
+
+Output requirements:
+- Write valid JSON only to the target file.
+- Do not write markdown fences.
+- Use exactly this JSON schema:
+{
+  "additionalProperties": false,
+  "properties": {
+    "date": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "type": "string"
+    },
+    "post": {
+      "additionalProperties": false,
+      "properties": {
+        "content_key": {
+          "type": "string"
+        },
+        "headline": {
+          "type": "string"
+        },
+        "image_alt_text": {
+          "type": "string"
+        },
+        "planned_date": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "type": "string"
+        },
+        "rationale": {
+          "type": "string"
+        },
+        "screenshot_file": {
+          "type": "string"
+        },
+        "slot": {
+          "type": "string"
+        },
+        "social": {
+          "additionalProperties": false,
+          "properties": {
+            "bluesky": {
+              "type": "string"
+            },
+            "linkedin": {
+              "type": "string"
+            },
+            "mastodon": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "linkedin",
+            "mastodon",
+            "bluesky"
+          ],
+          "type": "object"
+        },
+        "source_pr_numbers": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "subtext": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "slot",
+        "planned_date",
+        "screenshot_file",
+        "content_key",
+        "headline",
+        "subtext",
+        "image_alt_text",
+        "social",
+        "rationale",
+        "source_pr_numbers"
+      ],
+      "type": "object"
+    },
+    "summary": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "date",
+    "summary",
+    "post"
+  ],
+  "type": "object"
+}
+
+Execution requirements:
+- Use exactly one of the provided screenshots.
+- Do not render images yourself.
+- Do not mention recent release timing, recent PRs, or recency-based product claims unless the prompt explicitly includes that evidence.
+- Use `source_pr_numbers: []` unless the prompt explicitly gives you PR numbers to cite.
+- If the chosen candidate has audience_scope `admin-only`, make that admin audience explicit in the copy.

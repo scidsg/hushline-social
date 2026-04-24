@@ -1,0 +1,46 @@
+{
+  "date": "2026-04-17",
+  "post": {
+    "slot": "friday",
+    "planned_date": "2026-04-17",
+    "screenshot_file": "newman/auth-newman-onboarding-encryption-desktop-light-fold.png",
+    "content_key": "auth-newman-onboarding-encryption",
+    "headline": "Set up your public key during onboarding",
+    "subtext": "The encryption step lets recipients search Proton Mail or paste a public PGP key manually so sources can send messages that only the intended recipient can read.",
+    "image_alt_text": "Social graphic using a Hush Line desktop screenshot from the onboarding flow. The card shows step 2, \"Now, let's set up encryption,\" with options to search Proton Mail for a key or paste a public PGP key manually, plus Continue and Skip setup for now buttons.",
+    "social": {
+      "bluesky": "If you're setting up a tip line, add your public key during setup.\n\nHush Line lets recipients search Proton Mail for a key or paste a public PGP key manually, so sources can send encrypted first contact from the start.\n\nSign up at https://hushline.app.",
+      "linkedin": "If you are setting up a tip line for a newsroom, law office, school, or organizing team, encryption needs to be in place before sources rely on it.\n\nHush Line's onboarding flow lets recipients search for a Proton Mail key or paste a public PGP key manually, so anonymous first contact can be encrypted for the right person from the start.\n\nSign up at https://hushline.app.",
+      "mastodon": "If you're setting up a Hush Line account for a newsroom, law office, school, or organizing team, encryption should be part of setup, not an afterthought.\n\nThe onboarding flow lets recipients search Proton Mail for a key or paste a public PGP key manually so sources can send encrypted first contact from the start.\n\nSign up at https://hushline.app."
+    },
+    "rationale": "The shortlist was constrained by recent archive overlap. The vision candidate repeats the same screen and topic family used on 2026-04-07, and the settings-encryption desktop candidate is a closer repeat of the settings-encryption post from 2026-04-02. This onboarding encryption desktop screen still sits in the encryption family, but it gives the most distinct remaining angle by focusing on the setup workflow itself: Proton key lookup or manual PGP paste during onboarding for recipient accounts.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "onboarding-encryption",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "matched_pull_requests": [
+      {
+        "merged_at": "2026-04-16T23:18:52Z",
+        "number": 1883,
+        "title": "Support multi-recipient notifications and recipient-specific encryption"
+      },
+      {
+        "merged_at": "2026-04-16T18:43:52Z",
+        "number": 1881,
+        "title": "#1875 Update public submission and client-side encryption for multiple recipient keys"
+      },
+      {
+        "merged_at": "2026-04-16T07:28:59Z",
+        "number": 1879,
+        "title": "#1874 Support multi-recipient OpenPGP encryption and per-recipient notification delivery"
+      }
+    ],
+    "screen_key": "onboarding-encryption",
+    "template_name": "hushline-daily-desktop-template.html",
+    "theme": "light",
+    "title": "Onboarding - Step 2 Encryption (newman)",
+    "topic_family": "encryption",
+    "viewport": "desktop"
+  },
+  "summary": "Recipient-facing desktop post about adding a public encryption key during onboarding."
+}
