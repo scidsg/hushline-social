@@ -1,0 +1,46 @@
+{
+  "archive_root": "previous-verified-user-posts",
+  "date": "2026-04-27",
+  "eligible_verified_user_count": 69,
+  "recent_archive_history": [
+    {
+      "date": "2026-03-25",
+      "display_name": "Cory Smith",
+      "primary_username": "coryjosmith",
+      "user_url": "https://tips.hushline.app/to/coryjosmith"
+    },
+    {
+      "date": "2026-03-30",
+      "display_name": "Margie Ratliff",
+      "primary_username": "IsaThing",
+      "user_url": "https://tips.hushline.app/to/IsaThing"
+    },
+    {
+      "date": "2026-04-06",
+      "display_name": "Grace McNally",
+      "primary_username": "gracermcnally",
+      "user_url": "https://tips.hushline.app/to/gracermcnally"
+    },
+    {
+      "date": "2026-04-13",
+      "display_name": "Levi Kalish",
+      "primary_username": "LKalish",
+      "user_url": "https://tips.hushline.app/to/LKalish"
+    },
+    {
+      "date": "2026-04-20",
+      "display_name": "Yael Grauer",
+      "primary_username": "yaelwrites",
+      "user_url": "https://tips.hushline.app/to/yaelwrites"
+    }
+  ],
+  "selected_user": {
+    "bio": "Open Source @ United Nations Development Programme (UNDP)",
+    "display_name": "Michael Downey",
+    "is_admin": false,
+    "primary_username": "downey",
+    "profile_url": "/to/downey",
+    "user_url": "https://tips.hushline.app/to/downey"
+  },
+  "source": "https://tips.hushline.app/directory/users.json"
+}
