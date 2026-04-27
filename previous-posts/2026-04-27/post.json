@@ -1,0 +1,42 @@
+{
+  "slot": "monday",
+  "planned_date": "2026-04-27",
+  "screenshot_file": "newman/auth-newman-onboarding-notifications-desktop-light-fold.png",
+  "content_key": "auth-newman-onboarding-notifications",
+  "headline": "Set tip alerts before your line goes public",
+  "subtext": "The notification step helps recipients decide where new message alerts should go before sources start using the tip line.",
+  "image_alt_text": "A Hush Line social post showing the desktop onboarding notifications screen. The screenshot shows a setup step for choosing how a recipient account should handle new message notifications.",
+  "social": {
+    "bluesky": "New-message alerts should reach the people who can review them.\n\nHush Line includes notification setup during onboarding, before recipients share a public tip line with sources.\n\nLearn more at https://hushline.app.",
+    "linkedin": "When a newsroom, law office, classroom, or security team opens a tip line, new-message alerts should reach the people who can review them.\n\nHush Line includes notification setup during onboarding so recipients can decide how new tips are surfaced before they share a public address with sources.\n\nLearn more at https://hushline.app.",
+    "mastodon": "When a newsroom, law office, classroom, or security team opens a tip line, new-message alerts should reach the people who can review them.\n\nHush Line includes notification setup during onboarding, before recipients share a public address with sources.\n\nLearn more at https://hushline.app."
+  },
+  "rationale": "Selected the onboarding notifications desktop screenshot because it avoids the heavily repeated directory family and is less duplicative than the settings notifications mobile screen. The copy is written for recipients and shared teams using Hush Line day to day, grounded in documented workflows for newsrooms, law offices, educators, security teams, and other trusted recipients.",
+  "source_pr_numbers": [],
+  "audience_scope": "recipient-shared",
+  "concept_key": "onboarding-notifications",
+  "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+  "matched_pull_requests": [
+    {
+      "merged_at": "2026-04-21T19:02:58Z",
+      "number": 1891,
+      "title": "[codex] Fix notifications upsell copy and multi-recipient PGP fallback"
+    },
+    {
+      "merged_at": "2026-04-16T23:18:52Z",
+      "number": 1883,
+      "title": "Support multi-recipient notifications and recipient-specific encryption"
+    },
+    {
+      "merged_at": "2026-04-16T19:35:29Z",
+      "number": 1882,
+      "title": "#1876 Add migration coverage, regression tests, and docs for multi-recipient org notifications"
+    }
+  ],
+  "screen_key": "onboarding-notifications",
+  "template_name": "hushline-daily-desktop-template-2.html",
+  "theme": "light",
+  "title": "Onboarding - Step 3 Notifications (newman)",
+  "topic_family": "notifications",
+  "viewport": "desktop"
+}
