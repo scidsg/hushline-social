@@ -1,0 +1,33 @@
+Slot: tuesday
+Planned date: 2026-04-28
+Template: hushline-daily-desktop-template.html
+Screenshot: /Users/scidsg/hushline-screenshots/curated/artvandelay/auth-artvandelay-settings-replies-desktop-light-fold.png
+Content key: auth-artvandelay-settings-replies
+Headline: Set clear status text for incoming messages
+Subtext: Recipients can edit the update a sender sees after submitting a message, so sources know what to expect while the disclosure is reviewed.
+
+Image alt text
+Social graphic showing the Hush Line desktop settings page for Message Statuses, with the Message Statuses tab selected and editable status text for a waiting message. The graphic headline reads, "Set clear status text for incoming messages."
+
+Social post copy
+
+LinkedIn (341/3000)
+When someone sends a sensitive message, uncertainty can make the waiting period harder.
+
+Hush Line lets recipients set the status text a sender sees after submitting. A newsroom, law office, nonprofit, or other intake team can explain what happens next without turning the disclosure flow into live chat.
+
+Learn more at https://hushline.app.
+
+Mastodon (278/500)
+When someone sends a sensitive message, the waiting period should be clear.
+
+Hush Line lets recipients set the status text a sender sees after submitting, so a newsroom, law office, or intake team can explain what happens next during review.
+
+Learn more at https://hushline.app.
+
+Bluesky (241/300)
+After someone sends a sensitive message, they should know what happens next.
+
+Hush Line lets recipients set the status text a sender sees during review, without turning the disclosure flow into live chat.
+
+Learn more at https://hushline.app.
