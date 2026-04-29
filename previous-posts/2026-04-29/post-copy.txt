@@ -1,0 +1,33 @@
+Slot: wednesday
+Planned date: 2026-04-29
+Template: hushline-daily-desktop-template-2.html
+Screenshot: /Users/scidsg/hushline-screenshots/curated/artvandelay/auth-artvandelay-settings-advanced-desktop-dark-fold.png
+Content key: auth-artvandelay-settings-advanced
+Headline: Export your records before a permanent change
+Subtext: Advanced settings let recipients download their Hush Line data, including encrypted PGP messages, before deleting an account.
+
+Image alt text
+Dark desktop social image showing the Hush Line Advanced settings page, with controls to download a data export, encrypt the export with a PGP key, and delete the account.
+
+Social post copy
+
+LinkedIn (341/3000)
+A tip line can hold records that matter to a newsroom, law office, school, nonprofit, or security team.
+
+Hush Line's Advanced settings let recipients download their data, including encrypted PGP messages, before making a permanent account change. The export can be encrypted with the recipient's PGP key.
+
+Learn more at https://hushline.app.
+
+Mastodon (283/500)
+A tip line can hold records that matter to a newsroom, law office, school, nonprofit, or security team.
+
+Hush Line's Advanced settings let recipients download their data, including encrypted PGP messages, before making a permanent account change.
+
+Learn more at https://hushline.app.
+
+Bluesky (255/300)
+A tip line can hold records that matter to a newsroom, law office, school, nonprofit, or security team.
+
+Hush Line lets recipients export their data, including encrypted PGP messages, before a permanent account change.
+
+Learn more at https://hushline.app.
