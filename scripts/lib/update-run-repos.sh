@@ -69,9 +69,12 @@ update_daily_planning_repos() {
   local auto_git_pull="$2"
   local auto_git_clean="$3"
   local screenshots_repo_dir=""
+  local rc=0
 
   screenshots_repo_dir="$(resolve_screenshots_repo_dir "$repo_dir")"
 
-  update_git_checkout "$repo_dir" "hushline-social" "$auto_git_pull" "$auto_git_clean"
-  update_git_checkout "$screenshots_repo_dir" "hushline-screenshots" "$auto_git_pull" "$auto_git_clean"
+  update_git_checkout "$repo_dir" "hushline-social" "$auto_git_pull" "$auto_git_clean" || rc=1
+  update_git_checkout "$screenshots_repo_dir" "hushline-screenshots" "$auto_git_pull" "$auto_git_clean" || rc=1
+
+  return "$rc"
 }

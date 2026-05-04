@@ -322,16 +322,16 @@ verify_screenshot_source() {
     freshness_status="fresh"
   fi
 
-  if [[ "$ALLOW_STALE_SCREENSHOTS" != "1" ]] && [[ "$freshness_status" != "fresh" ]]; then
-    echo "Latest screenshots manifest is older than ${SCREENSHOT_MAX_AGE_DAYS} days." >&2
-    echo "Set HUSHLINE_ALLOW_STALE_SCREENSHOTS=1 to override intentionally." >&2
-    exit 1
-  fi
-
   echo "Checking upstream latest screenshots manifest."
   remote_status="$(remote_manifest_status "$manifest_path")"
 
   if [[ "$remote_status" == "match" ]]; then
+    if [[ "$ALLOW_STALE_SCREENSHOTS" != "1" ]] && [[ "$freshness_status" != "fresh" ]]; then
+      echo "Latest screenshots manifest is older than ${SCREENSHOT_MAX_AGE_DAYS} days." >&2
+      echo "Set HUSHLINE_ALLOW_STALE_SCREENSHOTS=1 to override intentionally." >&2
+      exit 1
+    fi
+
     echo "Local latest screenshots manifest matches upstream."
     return
   fi
@@ -355,6 +355,22 @@ verify_screenshot_source() {
   if [[ "$SCREENSHOT_AUTO_SYNC" == "1" ]]; then
     echo "Local latest screenshots manifest is stale. Syncing upstream latest snapshot."
     node "$REPO_DIR/scripts/sync-latest-screenshots.js" --dest "$SCREENSHOTS_REPO_DIR/releases/latest"
+
+    local_release="$(node -e 'const fs=require("fs"); const m=JSON.parse(fs.readFileSync(process.argv[1],"utf8")); process.stdout.write(String(m.release || ""));' "$manifest_path")"
+    local_captured_at="$(node -e 'const fs=require("fs"); const m=JSON.parse(fs.readFileSync(process.argv[1],"utf8")); process.stdout.write(String(m.capturedAt || ""));' "$manifest_path")"
+    age_days="$(node -e 'const fs=require("fs"); const m=JSON.parse(fs.readFileSync(process.argv[1],"utf8")); const captured=new Date(m.capturedAt); const age=Math.floor((Date.now()-captured.getTime())/86400000); process.stdout.write(String(age));' "$manifest_path")"
+    freshness_status="stale"
+    if [[ "$age_days" =~ ^[0-9]+$ ]] && (( age_days <= SCREENSHOT_MAX_AGE_DAYS )); then
+      freshness_status="fresh"
+    fi
+
+    echo "Synced screenshots manifest: release=${local_release:-unknown} captured_at=${local_captured_at:-unknown} age_days=$age_days"
+
+    if [[ "$ALLOW_STALE_SCREENSHOTS" != "1" ]] && [[ "$freshness_status" != "fresh" ]]; then
+      echo "Latest screenshots manifest is older than ${SCREENSHOT_MAX_AGE_DAYS} days after sync." >&2
+      echo "Set HUSHLINE_ALLOW_STALE_SCREENSHOTS=1 to override intentionally." >&2
+      exit 1
+    fi
 
     remote_status="$(remote_manifest_status "$manifest_path")"
     if [[ "$remote_status" == "match" ]]; then
@@ -466,4 +482,6 @@ main() {
   push_archive
 }
 
-main "$@"
+if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
+  main "$@"
+fi
