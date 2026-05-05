@@ -23,6 +23,8 @@ EXCLUDED_SCREENSHOTS=()
 
 CODEX_MODEL="${CODEX_MODEL:-gpt-5.5}"
 CODEX_REASONING_EFFORT="${CODEX_REASONING_EFFORT:-high}"
+CODEX_MAX_ATTEMPTS="${HUSHLINE_SOCIAL_CODEX_MAX_ATTEMPTS:-3}"
+CODEX_RETRY_DELAY_SECONDS="${HUSHLINE_SOCIAL_CODEX_RETRY_DELAY_SECONDS:-30}"
 VERBOSE_CODEX_OUTPUT="${VERBOSE_CODEX_OUTPUT:-0}"
 
 PROMPT_FILE="$(mktemp)"
@@ -130,46 +132,96 @@ reset_day_plan_artifacts() {
   rm -f "$REPO_DIR/previous-posts/$archive_key/plan.json"
 }
 
-run_codex_from_prompt() {
-  local rc=0
-  : > "$CODEX_OUTPUT_FILE"
-  : > "$CODEX_TRANSCRIPT_FILE"
+codex_plan_path() {
+  local archive_key="${ARCHIVE_KEY:-$DATE}"
+  printf '%s\n' "$REPO_DIR/previous-posts/$archive_key/plan.json"
+}
 
-  if [[ "$VERBOSE_CODEX_OUTPUT" == "1" ]]; then
-    echo "Codex execution started; streaming transcript to console."
-  else
-    echo "Codex execution started; transcript captured to a temporary file."
-  fi
-
-  set +e
-  codex exec \
-    --model "$CODEX_MODEL" \
-    -c "model_reasoning_effort=\"$CODEX_REASONING_EFFORT\"" \
-    --full-auto \
-    --sandbox workspace-write \
-    -C "$REPO_DIR" \
-    -o "$CODEX_OUTPUT_FILE" \
-    - < "$PROMPT_FILE" 2>&1 | {
-      if [[ "$VERBOSE_CODEX_OUTPUT" == "1" ]]; then
-        tee "$CODEX_TRANSCRIPT_FILE"
-      else
-        cat > "$CODEX_TRANSCRIPT_FILE"
-      fi
-    }
-  rc=${PIPESTATUS[0]}
-  set -e
-
-  if (( rc != 0 )); then
-    echo "Codex execution failed (exit ${rc})." >&2
-    return "$rc"
-  fi
-
-  echo "Codex execution completed."
+print_codex_failure_context() {
   if [[ -s "$CODEX_OUTPUT_FILE" ]]; then
-    echo "Codex final message:"
-    sed -n '1,60p' "$CODEX_OUTPUT_FILE"
-    printf '\n'
+    echo "Codex final message before failure:" >&2
+    sed -n '1,60p' "$CODEX_OUTPUT_FILE" >&2
   fi
+
+  if [[ -s "$CODEX_TRANSCRIPT_FILE" ]]; then
+    echo "Codex transcript tail:" >&2
+    tail -80 "$CODEX_TRANSCRIPT_FILE" >&2
+  else
+    echo "Codex produced no transcript output." >&2
+  fi
+}
+
+run_codex_from_prompt() {
+  local attempt=1
+  local max_attempts="$CODEX_MAX_ATTEMPTS"
+  local plan_path=""
+  local rc=0
+
+  if [[ ! "$max_attempts" =~ ^[0-9]+$ ]] || (( max_attempts < 1 )); then
+    echo "HUSHLINE_SOCIAL_CODEX_MAX_ATTEMPTS must be an integer greater than zero." >&2
+    return 1
+  fi
+
+  if [[ ! "$CODEX_RETRY_DELAY_SECONDS" =~ ^[0-9]+$ ]]; then
+    echo "HUSHLINE_SOCIAL_CODEX_RETRY_DELAY_SECONDS must be a non-negative integer." >&2
+    return 1
+  fi
+
+  while (( attempt <= max_attempts )); do
+    : > "$CODEX_OUTPUT_FILE"
+    : > "$CODEX_TRANSCRIPT_FILE"
+    plan_path="$(codex_plan_path)"
+
+    if [[ "$VERBOSE_CODEX_OUTPUT" == "1" ]]; then
+      echo "Codex execution started (attempt ${attempt}/${max_attempts}); streaming transcript to console."
+    else
+      echo "Codex execution started (attempt ${attempt}/${max_attempts}); transcript captured to a temporary file."
+    fi
+
+    set +e
+    codex exec \
+      --model "$CODEX_MODEL" \
+      -c "model_reasoning_effort=\"$CODEX_REASONING_EFFORT\"" \
+      --full-auto \
+      --sandbox workspace-write \
+      -C "$REPO_DIR" \
+      -o "$CODEX_OUTPUT_FILE" \
+      - < "$PROMPT_FILE" 2>&1 | {
+        if [[ "$VERBOSE_CODEX_OUTPUT" == "1" ]]; then
+          tee "$CODEX_TRANSCRIPT_FILE"
+        else
+          cat > "$CODEX_TRANSCRIPT_FILE"
+        fi
+      }
+    rc=${PIPESTATUS[0]}
+    set -e
+
+    if (( rc == 0 )) && [[ ! -s "$plan_path" ]]; then
+      echo "Codex execution completed but did not write a plan: $plan_path" >&2
+      rc=1
+    fi
+
+    if (( rc == 0 )); then
+      echo "Codex execution completed."
+      if [[ -s "$CODEX_OUTPUT_FILE" ]]; then
+        echo "Codex final message:"
+        sed -n '1,60p' "$CODEX_OUTPUT_FILE"
+        printf '\n'
+      fi
+      return 0
+    fi
+
+    echo "Codex execution failed (exit ${rc}) on attempt ${attempt}/${max_attempts}." >&2
+    print_codex_failure_context
+
+    if (( attempt >= max_attempts )); then
+      return "$rc"
+    fi
+
+    echo "Retrying Codex execution in $CODEX_RETRY_DELAY_SECONDS seconds."
+    sleep "$CODEX_RETRY_DELAY_SECONDS"
+    attempt=$((attempt + 1))
+  done
 }
 
 validate_and_render() {
