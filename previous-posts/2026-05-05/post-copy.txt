@@ -1,0 +1,33 @@
+Slot: tuesday
+Planned date: 2026-05-05
+Template: hushline-daily-mobile-template.html
+Screenshot: /Users/scidsg/hushline-screenshots/curated/artvandelay/auth-artvandelay-settings-encryption-mobile-light-fold.png
+Content key: auth-artvandelay-settings-encryption
+Headline: Review encryption before sharing your tip line
+Subtext: Encryption settings give recipients a place to add or update the PGP public key used for protected message delivery.
+
+Image alt text
+Mobile screenshot of Hush Line encryption settings showing controls for adding or updating a PGP key for secure message delivery.
+
+Social post copy
+
+LinkedIn (416/3000)
+Before a recipient shares a public tip line, encryption settings should be part of the setup checklist.
+
+Hush Line gives recipients a place to add or update the PGP public key used for protected message delivery. That helps journalists, lawyers, organizers, educators, and other trusted recipients review how sensitive disclosures will reach them before sources rely on the line.
+
+Learn more at https://hushline.app.
+
+Mastodon (225/500)
+Before sharing a public tip line, recipients should review encryption settings.
+
+Hush Line gives recipients a place to add or update the PGP public key used for protected message delivery.
+
+Learn more at https://hushline.app.
+
+Bluesky (225/300)
+Before sharing a public tip line, recipients should review encryption settings.
+
+Hush Line gives recipients a place to add or update the PGP public key used for protected message delivery.
+
+Learn more at https://hushline.app.

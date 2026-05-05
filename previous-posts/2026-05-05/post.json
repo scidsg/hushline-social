@@ -1,0 +1,26 @@
+{
+  "slot": "tuesday",
+  "planned_date": "2026-05-05",
+  "screenshot_file": "artvandelay/auth-artvandelay-settings-encryption-mobile-light-fold.png",
+  "content_key": "auth-artvandelay-settings-encryption",
+  "headline": "Review encryption before sharing your tip line",
+  "subtext": "Encryption settings give recipients a place to add or update the PGP public key used for protected message delivery.",
+  "image_alt_text": "Mobile screenshot of Hush Line encryption settings showing controls for adding or updating a PGP key for secure message delivery.",
+  "social": {
+    "bluesky": "Before sharing a public tip line, recipients should review encryption settings.\n\nHush Line gives recipients a place to add or update the PGP public key used for protected message delivery.\n\nLearn more at https://hushline.app.",
+    "linkedin": "Before a recipient shares a public tip line, encryption settings should be part of the setup checklist.\n\nHush Line gives recipients a place to add or update the PGP public key used for protected message delivery. That helps journalists, lawyers, organizers, educators, and other trusted recipients review how sensitive disclosures will reach them before sources rely on the line.\n\nLearn more at https://hushline.app.",
+    "mastodon": "Before sharing a public tip line, recipients should review encryption settings.\n\nHush Line gives recipients a place to add or update the PGP public key used for protected message delivery.\n\nLearn more at https://hushline.app."
+  },
+  "rationale": "Selected the recipient encryption settings screen because it is more distinct from the recent directory and message-status posts than the other available candidates.",
+  "source_pr_numbers": [],
+  "audience_scope": "recipient-shared",
+  "concept_key": "settings-encryption",
+  "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+  "matched_pull_requests": [],
+  "screen_key": "/settings/encryption",
+  "template_name": "hushline-daily-mobile-template.html",
+  "theme": "light",
+  "title": "Settings - Encryption (artvandelay)",
+  "topic_family": "encryption",
+  "viewport": "mobile"
+}
