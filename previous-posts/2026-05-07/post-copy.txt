@@ -1,0 +1,33 @@
+Slot: thursday
+Planned date: 2026-05-07
+Template: hushline-daily-mobile-template-2.html
+Screenshot: /Users/scidsg/hushline-screenshots/curated/artvandelay/auth-artvandelay-settings-notifications-mobile-light-fold.png
+Content key: auth-artvandelay-settings-notifications
+Headline: Choose how new tip alerts reach you
+Subtext: Notification settings let recipients turn alerts on, include encrypted message content, and encrypt the full email body for compatible mail clients.
+
+Image alt text
+A Hush Line daily social image showing a mobile settings screen for notifications. The screen includes toggles for tip notifications, including message contents, encrypting the entire email body, an email forwarding address field, custom SMTP settings, and an update email forwarding button.
+
+Social post copy
+
+LinkedIn (411/3000)
+Some tips need quick attention, but that does not mean every message should land in an ordinary inbox.
+
+Hush Line notification settings let recipients decide when email alerts are sent and whether encrypted message content is included. That helps journalists, lawyers, educators, and other trusted recipients keep review work moving without asking sources to create an account.
+
+Sign up at https://hushline.app.
+
+Mastodon (281/500)
+Some tips need quick attention, but not every message belongs in a regular inbox.
+
+Hush Line notification settings let recipients choose email alerts, encrypted message content, and full-body encryption for clients like Proton Mail or Thunderbird.
+
+Sign up at https://hushline.app.
+
+Bluesky (234/300)
+Some tips need quick attention without turning the sender flow into chat.
+
+Hush Line notification settings help recipients choose email alerts and encrypted message delivery for their review workflow.
+
+Sign up at https://hushline.app.
