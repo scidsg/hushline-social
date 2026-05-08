@@ -1,0 +1,33 @@
+Slot: friday
+Planned date: 2026-05-08
+Template: hushline-daily-mobile-template.html
+Screenshot: /Users/scidsg/hushline-screenshots/curated/artvandelay/auth-artvandelay-tools-email-validation-status-valid-mobile-light-fold.png
+Content key: auth-artvandelay-tools-email-validation-status-valid
+Headline: Check message headers during review
+Subtext: Email Validation helps recipients inspect DKIM, SPF, DMARC, and signing-key records before follow-up or team handoff.
+
+Image alt text
+A mobile Hush Line social asset showing the Tools page with the Email Validation tab selected, a raw email headers field, and buttons to validate headers or download a report.
+
+Social post copy
+
+LinkedIn (393/3000)
+When a tip comes in by email, the headers can help a recipient understand what path the message took.
+
+Hush Line's Email Validation tool lets recipients paste raw headers and review DKIM, SPF, DMARC, and signing-key records from DNS. It gives journalists, lawyers, security teams, and other trusted recipients a clearer record for follow-up and team handoffs.
+
+Sign up at https://hushline.app.
+
+Mastodon (277/500)
+Email headers can help a recipient understand how a message reached them.
+
+Hush Line's Email Validation tool lets journalists, lawyers, security teams, and other trusted recipients check DKIM, SPF, DMARC, and signing-key records during review.
+
+Sign up at https://hushline.app.
+
+Bluesky (237/300)
+Email headers can help a recipient understand how a message reached them.
+
+Hush Line's Email Validation tool checks DKIM, SPF, DMARC, and signing-key records so teams have a clearer record during review.
+
+Sign up at https://hushline.app.
