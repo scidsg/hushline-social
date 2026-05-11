@@ -1,0 +1,58 @@
+{
+  "archive_root": "previous-verified-user-posts",
+  "date": "2026-05-11",
+  "eligible_verified_user_count": 70,
+  "recent_archive_history": [
+    {
+      "date": "2026-03-25",
+      "display_name": "Cory Smith",
+      "primary_username": "coryjosmith",
+      "user_url": "https://tips.hushline.app/to/coryjosmith"
+    },
+    {
+      "date": "2026-03-30",
+      "display_name": "Margie Ratliff",
+      "primary_username": "IsaThing",
+      "user_url": "https://tips.hushline.app/to/IsaThing"
+    },
+    {
+      "date": "2026-04-06",
+      "display_name": "Grace McNally",
+      "primary_username": "gracermcnally",
+      "user_url": "https://tips.hushline.app/to/gracermcnally"
+    },
+    {
+      "date": "2026-04-13",
+      "display_name": "Levi Kalish",
+      "primary_username": "LKalish",
+      "user_url": "https://tips.hushline.app/to/LKalish"
+    },
+    {
+      "date": "2026-04-20",
+      "display_name": "Yael Grauer",
+      "primary_username": "yaelwrites",
+      "user_url": "https://tips.hushline.app/to/yaelwrites"
+    },
+    {
+      "date": "2026-04-27",
+      "display_name": "Michael Downey",
+      "primary_username": "downey",
+      "user_url": "https://tips.hushline.app/to/downey"
+    },
+    {
+      "date": "2026-05-04",
+      "display_name": "Tim Farmer",
+      "primary_username": "tim_farmer",
+      "user_url": "https://tips.hushline.app/to/tim_farmer"
+    }
+  ],
+  "selected_user": {
+    "bio": "I'm an investigative reporter for Bloomberg News covering cybersecurity, technology, crime, surveillance & human rights. I have more than a decade's experience working with whistleblowers to produce impactful journalism & I always protect my sources.",
+    "display_name": "Ryan Gallagher",
+    "is_admin": false,
+    "primary_username": "ryan",
+    "profile_url": "/to/ryan",
+    "user_url": "https://tips.hushline.app/to/ryan"
+  },
+  "source": "https://tips.hushline.app/directory/users.json"
+}
