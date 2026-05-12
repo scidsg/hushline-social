@@ -1,0 +1,31 @@
+Slot: tuesday
+Planned date: 2026-05-12
+Template: hushline-daily-mobile-template.html
+Screenshot: /Users/scidsg/hushline-screenshots/curated/admin/auth-admin-settings-guidance-mobile-light-fold.png
+Content key: auth-admin-settings-guidance
+Headline: For admins: give visitors safety guidance before they submit
+Subtext: User Guidance lets teams running Hush Line show practical instructions, Tor reminders, and an emergency exit option before a source sends a message.
+
+Image alt text
+A Hush Line social graphic built around a light-mode mobile screenshot of the admin User Guidance settings page. The screen shows the guidance toggle, a test button, and emergency exit settings for teams running Hush Line.
+
+Social post copy
+
+LinkedIn (472/3000)
+People may reach a tip line from a work device, a shared network, or another place where they need plain safety guidance before they decide what to send.
+
+For admins and teams running Hush Line, User Guidance settings provide a place to show practical instructions before the message form. Teams can include reminders about Tor Browser, cautions for their community, and an emergency exit option for visitors who need to leave quickly.
+
+Learn more at https://hushline.app.
+
+Mastodon (277/500)
+Sources may need clear safety guidance before they send anything.
+
+For admins and teams running Hush Line, User Guidance settings can show practical instructions before the message form, including Tor reminders and an emergency exit option.
+
+Learn more at https://hushline.app.
+
+Bluesky (222/300)
+For admins and teams running Hush Line, User Guidance settings help visitors see practical safety notes before they send a message, including Tor reminders and an emergency exit option.
+
+Learn more at https://hushline.app.
