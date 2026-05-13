@@ -1,0 +1,33 @@
+Slot: wednesday
+Planned date: 2026-05-13
+Template: hushline-daily-desktop-template.html
+Screenshot: /Users/scidsg/hushline-screenshots/curated/guest/guest-directory-verified-desktop-light-fold.png
+Content key: guest-directory-verified
+Headline: Find a verified recipient before first contact
+Subtext: The public directory helps sources review profile details and choose a trusted Hush Line recipient before sending a sensitive message.
+
+Image alt text
+A Hush Line daily social graphic showing a desktop screenshot of the public directory filtered to verified recipients, with profile cards for people and organizations who can receive secure tips.
+
+Social post copy
+
+LinkedIn (366/3000)
+Before sending a sensitive message, a source needs to know they are reaching the right person.
+
+Hush Line's public directory lets people review verified recipients, profile details, and direct tip line links before first contact. It supports anonymous, browser-based submissions without requiring the sender to create an account.
+
+Learn more at https://hushline.app.
+
+Mastodon (284/500)
+Before sending a sensitive message, a source needs to know they are reaching the right person.
+
+Hush Line's public directory helps people review verified recipients and direct tip line links before first contact, without creating a sender account.
+
+Learn more at https://hushline.app.
+
+Bluesky (240/300)
+A source should be able to check who they are contacting before sending a sensitive message.
+
+Hush Line's public directory lists verified recipients and direct tip line links for anonymous first contact.
+
+Learn more at https://hushline.app.
