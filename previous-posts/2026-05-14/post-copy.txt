@@ -1,0 +1,33 @@
+Slot: thursday
+Planned date: 2026-05-14
+Template: hushline-daily-mobile-template-2.html
+Screenshot: /Users/scidsg/hushline-screenshots/curated/artvandelay/auth-artvandelay-settings-replies-mobile-light-fold.png
+Content key: auth-artvandelay-settings-replies
+Headline: Set expectations after a source sends a message
+Subtext: Message status settings let recipients write the update a sender sees after submission, so the review process is clear without opening a live chat.
+
+Image alt text
+Hush Line social graphic showing a mobile settings screen for message statuses, with editable text fields for the update a sender sees after submitting a message.
+
+Social post copy
+
+LinkedIn (381/3000)
+After someone sends a sensitive message, silence can make the next step harder to understand.
+
+Hush Line lets recipients edit the status text a sender sees after submission. Journalists, lawyers, educators, organizers, and shared intake teams can use plain language to explain how messages are reviewed without turning the tip line into live chat.
+
+Sign up at https://hushline.app.
+
+Mastodon (293/500)
+After someone sends a sensitive message, they should know what happens next.
+
+Hush Line lets recipients edit the status text a sender sees after submission, so a newsroom, law office, classroom, or intake team can explain its review process in plain language.
+
+Sign up at https://hushline.app.
+
+Bluesky (234/300)
+After a sensitive message is sent, the sender should know what happens next.
+
+Hush Line lets recipients edit the status text shown after submission, so review expectations are clear without live chat.
+
+Sign up at https://hushline.app.

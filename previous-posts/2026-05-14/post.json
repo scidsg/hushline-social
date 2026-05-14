@@ -1,0 +1,26 @@
+{
+  "slot": "thursday",
+  "planned_date": "2026-05-14",
+  "screenshot_file": "artvandelay/auth-artvandelay-settings-replies-mobile-light-fold.png",
+  "content_key": "auth-artvandelay-settings-replies",
+  "headline": "Set expectations after a source sends a message",
+  "subtext": "Message status settings let recipients write the update a sender sees after submission, so the review process is clear without opening a live chat.",
+  "image_alt_text": "Hush Line social graphic showing a mobile settings screen for message statuses, with editable text fields for the update a sender sees after submitting a message.",
+  "social": {
+    "bluesky": "After a sensitive message is sent, the sender should know what happens next.\n\nHush Line lets recipients edit the status text shown after submission, so review expectations are clear without live chat.\n\nSign up at https://hushline.app.",
+    "linkedin": "After someone sends a sensitive message, silence can make the next step harder to understand.\n\nHush Line lets recipients edit the status text a sender sees after submission. Journalists, lawyers, educators, organizers, and shared intake teams can use plain language to explain how messages are reviewed without turning the tip line into live chat.\n\nSign up at https://hushline.app.",
+    "mastodon": "After someone sends a sensitive message, they should know what happens next.\n\nHush Line lets recipients edit the status text a sender sees after submission, so a newsroom, law office, classroom, or intake team can explain its review process in plain language.\n\nSign up at https://hushline.app."
+  },
+  "rationale": "Chose the message statuses screenshot because the directory candidate repeats yesterday's directory theme and the encryption candidate repeats a more recent encryption post. This recipient-shared screen supports a practical workflow for journalists, lawyers, educators, organizers, and shared intake teams: setting clear post-submission expectations without turning Hush Line into live chat.",
+  "source_pr_numbers": [],
+  "audience_scope": "recipient-shared",
+  "concept_key": "settings-replies",
+  "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+  "matched_pull_requests": [],
+  "screen_key": "/settings/replies",
+  "template_name": "hushline-daily-mobile-template-2.html",
+  "theme": "light",
+  "title": "Settings - Message Statuses (artvandelay)",
+  "topic_family": "message-statuses",
+  "viewport": "mobile"
+}
