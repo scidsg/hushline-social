@@ -23,7 +23,7 @@ const {
 } = require("./social-common");
 
 const DAILY_POSTS_ROOT = path.join(REPO_ROOT, "previous-posts");
-const ARCHIVE_LOOKBACK_DAYS = 31;
+const ARCHIVE_LOOKBACK_DAYS = 90;
 const FEATURE_REPEAT_HARD_LOOKBACK_POSTS = 5;
 const ADMIN_COPY_PATTERNS = [
   /\badmin\b/i,
@@ -394,6 +394,26 @@ function normalizeMessageLine(value) {
     .trim();
 }
 
+function stableHash(value) {
+  let hash = 2166136261;
+  const text = String(value || "");
+
+  for (let index = 0; index < text.length; index += 1) {
+    hash ^= text.charCodeAt(index);
+    hash = Math.imul(hash, 16777619);
+  }
+
+  return hash >>> 0;
+}
+
+function candidateRotationIdentity(candidate) {
+  return String(candidate.file || candidate.screenshot_file || candidate.content_key || "");
+}
+
+function archiveRotationIdentity(entry) {
+  return String(entry.screenshot_file || entry.content_key || "");
+}
+
 function lastTemplateUseOffset(archiveHistory, templateName) {
   for (let index = archiveHistory.length - 1; index >= 0; index -= 1) {
     if (archiveHistory[index].template_name === templateName) {
@@ -619,7 +639,38 @@ function filterCandidatesForTemplateName(candidates, templateName) {
   return matchingCandidates.length > 0 ? matchingCandidates : candidates;
 }
 
-function filterCandidatesForArchiveHistory(candidates, archiveHistory) {
+function summarizeScreenshotRotation(candidates, archiveHistory, currentArchiveKey) {
+  const identities = new Set(candidates.map(candidateRotationIdentity).filter(Boolean));
+  const usedIdentities = new Set();
+  let cycleStartArchiveKey = "";
+  const relevantHistory = archiveHistory.filter((entry) => {
+    return identities.has(archiveRotationIdentity(entry));
+  });
+
+  for (const entry of relevantHistory) {
+    const identity = archiveRotationIdentity(entry);
+
+    if (usedIdentities.has(identity)) {
+      usedIdentities.clear();
+      cycleStartArchiveKey = "";
+    }
+
+    usedIdentities.add(identity);
+    cycleStartArchiveKey = entry.archive_key || entry.date || cycleStartArchiveKey;
+  }
+
+  const cycleComplete = identities.size > 0 && usedIdentities.size >= identities.size;
+
+  return {
+    cycle_complete: cycleComplete,
+    rotation_seed: cycleComplete
+      ? currentArchiveKey
+      : (cycleStartArchiveKey || currentArchiveKey),
+    used_identities: cycleComplete ? new Set() : usedIdentities,
+  };
+}
+
+function filterCandidatesForArchiveHistory(candidates, archiveHistory, options = {}) {
   const normalizedCandidates = candidates.map((candidate) => {
     const historyStats = summarizeCandidateHistory(candidate, archiveHistory);
 
@@ -628,42 +679,27 @@ function filterCandidatesForArchiveHistory(candidates, archiveHistory) {
       history_stats: historyStats,
     };
   });
+  const rotation = summarizeScreenshotRotation(
+    normalizedCandidates,
+    archiveHistory,
+    options.currentArchiveKey || "",
+  );
+  const rotationCandidates = normalizedCandidates.filter((candidate) => {
+    const identity = candidateRotationIdentity(candidate);
+    return !identity || !rotation.used_identities.has(identity);
+  });
 
-  const sortByNovelty = (left, right) => {
-    const leftStats = left.history_stats;
-    const rightStats = right.history_stats;
-
-    return (
-      leftStats.exact_screenshot_matches - rightStats.exact_screenshot_matches ||
-      leftStats.content_matches - rightStats.content_matches ||
-      leftStats.screen_matches - rightStats.screen_matches ||
-      leftStats.topic_matches - rightStats.topic_matches ||
-      leftStats.novelty_penalty - rightStats.novelty_penalty ||
-      (right.score || 0) - (left.score || 0) ||
-      String(left.file || left.content_key || left.path || "")
-        .localeCompare(String(right.file || right.content_key || right.path || ""))
-    );
-  };
-  const minimumFreshPool = 3;
-
-  const withoutExactOrContentRepeats = normalizedCandidates
-    .filter((candidate) => {
-      const stats = candidate.history_stats;
-      return stats.exact_screenshot_matches === 0 && stats.content_matches === 0;
-    })
-    .sort(sortByNovelty);
-
-  if (withoutExactOrContentRepeats.length >= minimumFreshPool) {
-    return withoutExactOrContentRepeats;
-  }
-
-  const withoutExactRepeats = normalizedCandidates
-    .filter((candidate) => candidate.history_stats.exact_screenshot_matches === 0)
-    .sort(sortByNovelty);
-
-  return (withoutExactRepeats.length > 0
-    ? withoutExactRepeats
-    : normalizedCandidates.slice().sort(sortByNovelty));
+  return (rotationCandidates.length > 0 ? rotationCandidates : normalizedCandidates)
+    .map((candidate) => ({
+      ...candidate,
+      rotation_sort_key: stableHash(
+        `${rotation.rotation_seed}\0${candidateRotationIdentity(candidate)}`,
+      ),
+      screenshot_rotation: {
+        cycle_complete: rotation.cycle_complete,
+        seed: rotation.rotation_seed,
+      },
+    }));
 }
 
 function filterCandidatesForWeeklyCaps(candidates, archiveHistory, plannedDate) {
@@ -715,9 +751,10 @@ function rankCandidates(candidates, archiveHistory, templateNames) {
     .sort((left, right) => {
       return (
         Number(left.audience_scope === "admin-only") - Number(right.audience_scope === "admin-only") ||
+        (left.rotation_sort_key || 0) - (right.rotation_sort_key || 0) ||
         left.template_type_average_usage - right.template_type_average_usage ||
-        left.history_stats.novelty_penalty - right.history_stats.novelty_penalty ||
         (right.score || 0) - (left.score || 0) ||
+        left.history_stats.novelty_penalty - right.history_stats.novelty_penalty ||
         left.file.localeCompare(right.file)
       );
     });
@@ -779,6 +816,7 @@ function buildDailyContext(args) {
   const variedCandidates = filterCandidatesForArchiveHistory(
     planningContext.candidate_screenshots,
     archiveHistory,
+    { currentArchiveKey: args.archiveKey },
   );
   const weekEligibleCandidates = filterCandidatesForWeeklyCaps(
     variedCandidates,
@@ -819,6 +857,7 @@ function buildDailyContext(args) {
     hushline_agent_context: readHushlineAgentExcerpt(),
     hushline_app_voice_guidance: HUSHLINE_APP_VOICE_GUIDANCE,
     recent_archive_history: archiveHistory,
+    screenshot_rotation: selectedCandidate.screenshot_rotation,
     screenshot_captured_at: planningContext.screenshot_captured_at,
     screenshot_release: planningContext.screenshot_release,
     slot: {
@@ -1122,11 +1161,8 @@ function validatePlan(modelPlan, context) {
 
   for (const entry of context.recent_archive_history || []) {
     const archivedMessageText = buildMessageText(entry);
-    const sameFeature = (
-      (entry.screen_key && entry.screen_key === (candidate.screen_key || inferScreenKey(candidate))) ||
-      (entry.topic_family && entry.topic_family === (candidate.topic_family || inferTopicFamily(candidate)))
-    );
-    const recentFeatureOverlap = sameFeature && recentFeatureEntries.includes(entry);
+    const sameScreenshot = entry.screenshot_file && entry.screenshot_file === candidate.file;
+    const recentFeatureOverlap = sameScreenshot && recentFeatureEntries.includes(entry);
     const matchingHeadline = normalizeMessageLine(entry.headline) === normalizeMessageLine(post.headline);
     const headlineOverlap = sharedMessageTokenCount(
       `${post.headline} ${post.subtext}`,
@@ -1229,6 +1265,7 @@ async function planDay(args) {
 module.exports = {
   DAILY_POSTS_ROOT,
   buildDailyContext,
+  candidateRotationIdentity,
   chooseTemplateName,
   filterCandidatesForArchiveHistory,
   filterCandidatesForWeeklyCaps,
@@ -1238,5 +1275,6 @@ module.exports = {
   parseArgs,
   planDay,
   renderDailyPlan,
+  summarizeScreenshotRotation,
   validatePlan,
 };
