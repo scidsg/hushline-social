@@ -13,6 +13,7 @@ const {
   loadSavedDailyContext,
   parseArgs,
   planDay,
+  summarizeScreenshotRotation,
   validatePlan,
 } = require("../scripts/lib/daily-planner");
 const { assignVariantsToConcepts } = require("../scripts/lib/planning-context");
@@ -248,157 +249,127 @@ test("inferTopicFamily groups onboarding directory screenshots under the directo
   );
 });
 
-test("filterCandidatesForArchiveHistory ranks less-repetitive candidates ahead of recent archive themes", () => {
+test("filterCandidatesForArchiveHistory keeps unused screenshots in the current rotation", () => {
   const archiveHistory = [
     {
-      concept_key: "directory-verified",
+      archive_key: "2026-03-20",
       content_key: "guest-directory-verified",
       date: "2026-03-20",
-      screenshot_file: "guest/guest-directory-verified.png",
-      screen_key: "directory-index",
-      topic_family: "directory",
+      screenshot_file: "guest/guest-directory-verified-desktop-light-fold.png",
     },
   ];
 
   const candidates = [
     {
-      concept_key: "directory-all",
-      content_key: "guest-directory-all",
-      path: "/directory",
-    },
-    {
-      concept_key: "directory-securedrop",
-      content_key: "guest-directory-securedrop",
-      path: "/directory",
-    },
-    {
-      concept_key: "directory-attorney-adam-j-levitt",
-      content_key: "guest-directory-attorney-adam-j-levitt",
-      path: "/directory/public-records/public-record~adam-j-levitt",
-    },
-    {
-      concept_key: "encryption-settings",
-      content_key: "auth-artvandelay-settings-encryption",
-      path: "/settings/encryption",
-    },
-    {
-      concept_key: "notifications-settings",
-      content_key: "auth-artvandelay-settings-notifications",
-      path: "/settings/notifications",
-    },
-    {
-      concept_key: "admin-guidance",
-      content_key: "auth-admin-settings-guidance",
-      path: "/settings/guidance",
-    },
-  ];
-
-  const filtered = filterCandidatesForArchiveHistory(candidates, archiveHistory);
-
-  assert.equal(filtered.length, 6);
-  assert.deepEqual(
-    filtered.slice(0, 3).map((candidate) => candidate.content_key),
-    [
-      "auth-admin-settings-guidance",
-      "auth-artvandelay-settings-encryption",
-      "auth-artvandelay-settings-notifications",
-    ],
-  );
-});
-
-test("filterCandidatesForArchiveHistory broadens to non-exact repeats when only one fresh option remains", () => {
-  const archiveHistory = [
-    {
-      concept_key: "directory-all",
-      content_key: "guest-directory-all",
-      date: "2026-03-20",
-      screenshot_file: "guest/guest-directory-all.png",
-      screen_key: "directory-index",
-      topic_family: "directory",
-    },
-  ];
-
-  const candidates = [
-    {
-      concept_key: "directory-verified",
       content_key: "guest-directory-verified",
-      path: "/directory",
-      topic_family: "directory",
-    },
-    {
-      concept_key: "directory-all",
-      content_key: "guest-directory-all",
-      path: "/directory",
-      topic_family: "directory",
-    },
-  ];
-
-  const filtered = filterCandidatesForArchiveHistory(candidates, archiveHistory);
-
-  assert.equal(filtered.length, 2);
-  assert.deepEqual(
-    filtered.map((candidate) => candidate.content_key),
-    ["guest-directory-verified", "guest-directory-all"],
-  );
-});
-
-test("filterCandidatesForArchiveHistory broadens to non-exact repeats when the fresh pool is too small", () => {
-  const archiveHistory = [
-    {
-      archive_key: "2026-04-14",
-      content_key: "guest-directory-attorney-adam-j-levitt",
-      date: "2026-04-14",
-      screenshot_file: "guest/guest-directory-attorney-adam-j-levitt-mobile-light-fold.png",
-      screen_key: "directory-public-record",
-      topic_family: "directory",
-    },
-    {
-      archive_key: "2026-03-26-1",
-      content_key: "auth-newman-onboarding-notifications",
-      date: "2026-03-26",
-      screenshot_file: "newman/auth-newman-onboarding-notifications-desktop-light-fold.png",
-      screen_key: "/onboarding/notifications",
-      topic_family: "notifications",
-    },
-    {
-      archive_key: "2026-03-31",
-      content_key: "auth-artvandelay-settings-encryption",
-      date: "2026-03-31",
-      screenshot_file: "artvandelay/auth-artvandelay-settings-encryption-mobile-dark-fold.png",
-      screen_key: "/settings/encryption",
-      topic_family: "settings-encryption",
-    },
-  ];
-
-  const candidates = [
-    {
-      content_key: "auth-artvandelay-settings-notifications",
-      file: "artvandelay/auth-artvandelay-settings-notifications-mobile-light-fold.png",
-      screen_key: "/settings/notifications",
-      topic_family: "notifications",
+      file: "guest/guest-directory-verified-desktop-light-fold.png",
     },
     {
       content_key: "auth-artvandelay-settings-encryption",
       file: "artvandelay/auth-artvandelay-settings-encryption-desktop-light-fold.png",
-      screen_key: "/settings/encryption",
-      topic_family: "settings-encryption",
     },
     {
-      content_key: "guest-directory-attorney-adam-j-levitt",
-      file: "guest/guest-directory-attorney-adam-j-levitt-mobile-light-fold.png",
-      screen_key: "directory-public-record",
-      topic_family: "directory",
+      content_key: "auth-artvandelay-settings-notifications",
+      file: "artvandelay/auth-artvandelay-settings-notifications-desktop-light-fold.png",
     },
   ];
 
-  const filtered = filterCandidatesForArchiveHistory(candidates, archiveHistory);
+  const filtered = filterCandidatesForArchiveHistory(candidates, archiveHistory, {
+    currentArchiveKey: "2026-03-21",
+  });
+
+  assert.equal(filtered.length, 2);
+  assert.deepEqual(
+    new Set(filtered.map((candidate) => candidate.file)),
+    new Set([
+      "artvandelay/auth-artvandelay-settings-encryption-desktop-light-fold.png",
+      "artvandelay/auth-artvandelay-settings-notifications-desktop-light-fold.png",
+    ]),
+  );
+});
+
+test("filterCandidatesForArchiveHistory starts a new shuffled cycle after all screenshots are used", () => {
+  const archiveHistory = [
+    {
+      archive_key: "2026-03-20",
+      content_key: "guest-directory-verified",
+      date: "2026-03-20",
+      screenshot_file: "guest/guest-directory-verified-desktop-light-fold.png",
+    },
+    {
+      archive_key: "2026-03-21",
+      content_key: "auth-artvandelay-settings-encryption",
+      date: "2026-03-21",
+      screenshot_file: "artvandelay/auth-artvandelay-settings-encryption-desktop-light-fold.png",
+    },
+  ];
+
+  const candidates = [
+    {
+      concept_key: "directory-verified",
+      content_key: "guest-directory-verified",
+      file: "guest/guest-directory-verified-desktop-light-fold.png",
+    },
+    {
+      concept_key: "encryption-settings",
+      content_key: "auth-artvandelay-settings-encryption",
+      file: "artvandelay/auth-artvandelay-settings-encryption-desktop-light-fold.png",
+    },
+  ];
+
+  const rotation = summarizeScreenshotRotation(candidates, archiveHistory, "2026-03-22");
+  const filtered = filterCandidatesForArchiveHistory(candidates, archiveHistory, {
+    currentArchiveKey: "2026-03-22",
+  });
+
+  assert.equal(rotation.cycle_complete, true);
+  assert.equal(filtered.length, 2);
+  assert.deepEqual(
+    new Set(filtered.map((candidate) => candidate.content_key)),
+    new Set(["guest-directory-verified", "auth-artvandelay-settings-encryption"]),
+  );
+});
+
+test("filterCandidatesForArchiveHistory treats repeats before the current cycle as available later", () => {
+  const archiveHistory = [
+    {
+      archive_key: "2026-03-20",
+      content_key: "guest-directory-verified",
+      date: "2026-03-20",
+      screenshot_file: "guest/guest-directory-verified-desktop-light-fold.png",
+    },
+    {
+      archive_key: "2026-03-21",
+      content_key: "auth-artvandelay-settings-encryption",
+      date: "2026-03-21",
+      screenshot_file: "artvandelay/auth-artvandelay-settings-encryption-desktop-light-fold.png",
+    },
+    {
+      archive_key: "2026-03-22",
+      content_key: "guest-directory-verified",
+      date: "2026-03-22",
+      screenshot_file: "guest/guest-directory-verified-desktop-light-fold.png",
+    },
+  ];
+
+  const candidates = [
+    {
+      content_key: "guest-directory-verified",
+      file: "guest/guest-directory-verified-desktop-light-fold.png",
+    },
+    {
+      content_key: "auth-artvandelay-settings-encryption",
+      file: "artvandelay/auth-artvandelay-settings-encryption-desktop-light-fold.png",
+    },
+  ];
+
+  const filtered = filterCandidatesForArchiveHistory(candidates, archiveHistory, {
+    currentArchiveKey: "2026-03-23",
+  });
 
   assert.deepEqual(
     filtered.map((candidate) => candidate.content_key),
-    [
-      "auth-artvandelay-settings-notifications",
-      "auth-artvandelay-settings-encryption",
-    ],
+    ["auth-artvandelay-settings-encryption"],
   );
 });
 
