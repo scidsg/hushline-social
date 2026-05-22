@@ -1,0 +1,30 @@
+{
+  "date": "2026-05-22",
+  "post": {
+    "slot": "friday",
+    "planned_date": "2026-05-22",
+    "screenshot_file": "newman/auth-newman-onboarding-directory-desktop-light-fold.png",
+    "content_key": "auth-newman-onboarding-directory",
+    "headline": "List your tip line when it is ready for sources",
+    "subtext": "The directory step lets recipients decide whether their public profile is ready to appear before they start sharing it.",
+    "image_alt_text": "A desktop Hush Line social graphic showing the final onboarding step, where a recipient can choose whether to be listed in the public directory before finishing setup.",
+    "social": {
+      "bluesky": "A public tip line should be ready before people start relying on it.\n\nHush Line onboarding lets recipients choose whether their profile appears in the public directory after setup basics are in place.\n\nSign up at https://hushline.app.",
+      "linkedin": "A public tip line should be ready before people start relying on it.\n\nIn Hush Line onboarding, journalists, lawyers, educators, organizers, and other recipients can choose whether their profile appears in the public directory. That decision belongs after the basics are in place: profile details, encryption, and a message workflow the recipient is prepared to monitor.\n\nSign up at https://hushline.app.",
+      "mastodon": "A public tip line should be ready before people start relying on it.\n\nHush Line onboarding lets recipients decide whether their profile appears in the public directory after they have reviewed profile, encryption, and message workflow basics.\n\nSign up at https://hushline.app."
+    },
+    "rationale": "The shortlist contained one eligible screenshot: the recipient-shared directory step in onboarding. Directory topics appeared recently, so this plan avoids a source-side browsing or verification angle and focuses instead on the recipient setup decision: only list a public tip line once profile, encryption, and monitoring basics are ready. The message is grounded in the documented recipient workflow for journalists, lawyers, educators, organizers, nonprofits, and other trusted recipients preparing a public intake channel.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "onboarding-directory",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "matched_pull_requests": [],
+    "screen_key": "onboarding-directory",
+    "template_name": "hushline-daily-desktop-template-2.html",
+    "theme": "light",
+    "title": "Onboarding - Step 4 Directory (newman)",
+    "topic_family": "directory",
+    "viewport": "desktop"
+  },
+  "summary": "Daily post for 2026-05-22 using the desktop onboarding directory screenshot."
+}
