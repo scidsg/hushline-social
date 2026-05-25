@@ -122,19 +122,20 @@ Rules:
 
 Verified-user weekly copy style:
 
-- write the opening sentence around the selected person, not around Hush Line
-- every verified-user post should begin with exactly `🤩 Verified Member Highlight!`
-- that opening line must be followed by a blank line before the person-specific copy starts
+- rotate the verified-user editorial format across recent posts instead of using a fixed announcement opener
+- supported formats include why follow this tip line, what this recipient covers, before you contact them, how to verify the link, source-safe first contact, and from the directory
+- the selected format opening line must be followed by a blank line before the person-specific copy starts
 - start with the person's name and role or beat, for example `James is an investigative journalist covering national security and politics.`
 - keep the copy plain and direct
-- do not frame the post as a generic "verified profile" announcement
-- do not lead with trust-language, platform-language, or marketing-language
-- the CTA should directly tell people how to send that person a tip
-- prefer CTA lines in this form:
+- do not invent beats, specialties, solicitation categories, or audience claims beyond the verified profile data
+- format-specific openings and CTAs may mention verified links, source-safe first contact, or the directory, but the bio paragraph must stay grounded in the profile text
+- CTA lines should directly tell people how to use or verify that person's Hush Line link, for example:
   - `To send James a tip, go to https://tips.hushline.app/to/james.`
   - `To send James a tip, visit https://tips.hushline.app/to/james.`
+  - `Review James' verified Hush Line link before sending a tip: https://tips.hushline.app/to/james.`
 - when the source bio is written in first person, rewrite it into third person before using it in social copy
-- keep the same core sentence structure across networks, with minor native phrasing changes only
+- keep the same selected editorial format across networks, with minor native phrasing changes only
+- validate malformed punctuation, awkward bio normalization, empty generated copy, and repeated recent opening formats before rendering
 - alt text still stays separate from the social copy
 
 Structure:

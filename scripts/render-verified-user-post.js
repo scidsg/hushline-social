@@ -32,33 +32,33 @@ function writeCopyJson(copyPath, paragraphs) {
   fs.writeFileSync(copyPath, `${JSON.stringify(paragraphs, null, 2)}\n`);
 }
 
-function buildSocialFromParagraphs(selectedUser, paragraphs) {
+function buildSocialFromParagraphs(selectedUser, paragraphs, format) {
   return {
-    bluesky: composeVerifiedUserSocialCopy("bluesky", selectedUser, paragraphs.bluesky),
-    linkedin: composeVerifiedUserSocialCopy("linkedin", selectedUser, paragraphs.linkedin),
-    mastodon: composeVerifiedUserSocialCopy("mastodon", selectedUser, paragraphs.mastodon),
+    bluesky: composeVerifiedUserSocialCopy("bluesky", selectedUser, paragraphs.bluesky, format),
+    linkedin: composeVerifiedUserSocialCopy("linkedin", selectedUser, paragraphs.linkedin, format),
+    mastodon: composeVerifiedUserSocialCopy("mastodon", selectedUser, paragraphs.mastodon, format),
   };
 }
 
-function loadValidatedExistingCopy(copyPath, selectedUser) {
+function loadValidatedExistingCopy(copyPath, selectedUser, format) {
   if (!fs.existsSync(copyPath)) {
     return null;
   }
 
   const generated = JSON.parse(fs.readFileSync(copyPath, "utf8"));
-  const paragraphs = validateVerifiedUserSocialParagraphs(generated, selectedUser);
+  const paragraphs = validateVerifiedUserSocialParagraphs(generated, selectedUser, { format });
 
   return {
     copyPath,
     fallback: false,
     provided: true,
-    social: buildSocialFromParagraphs(selectedUser, paragraphs),
+    social: buildSocialFromParagraphs(selectedUser, paragraphs, format),
   };
 }
 
 function buildLocalFallbackCopy(run, outputDir, promptPath, lastError) {
   const copyPath = path.join(outputDir, "copy.json");
-  const paragraphs = buildVerifiedUserSocialParagraphs(run.selectedUser);
+  const paragraphs = buildVerifiedUserSocialParagraphs(run.selectedUser, run.verifiedUserFormat);
   writeCopyJson(copyPath, paragraphs);
 
   if (lastError) {
@@ -71,7 +71,7 @@ function buildLocalFallbackCopy(run, outputDir, promptPath, lastError) {
     copyPath,
     fallback: true,
     promptPath,
-    social: buildSocialFromParagraphs(run.selectedUser, paragraphs),
+    social: buildSocialFromParagraphs(run.selectedUser, paragraphs, run.verifiedUserFormat),
   };
 }
 
@@ -83,7 +83,7 @@ function generateVerifiedUserCopy(run, outputDir) {
   let lastError = null;
 
   try {
-    const providedCopy = loadValidatedExistingCopy(copyPath, run.selectedUser);
+    const providedCopy = loadValidatedExistingCopy(copyPath, run.selectedUser, run.verifiedUserFormat);
     if (providedCopy) {
       return providedCopy;
     }
@@ -101,6 +101,7 @@ function generateVerifiedUserCopy(run, outputDir) {
     const prompt = buildVerifiedUserSocialPrompt({
       date: run.date,
       feedback,
+      format: run.verifiedUserFormat,
       outputPath: path.relative(REPO_ROOT, copyPath),
       selectedUser: run.selectedUser,
     });
@@ -152,15 +153,11 @@ function generateVerifiedUserCopy(run, outputDir) {
 
     try {
       const generated = JSON.parse(fs.readFileSync(copyPath, "utf8"));
-      const paragraphs = validateVerifiedUserSocialParagraphs(generated, run.selectedUser);
+      const paragraphs = validateVerifiedUserSocialParagraphs(generated, run.selectedUser, { format: run.verifiedUserFormat });
       return {
         copyPath,
         promptPath,
-        social: {
-          bluesky: composeVerifiedUserSocialCopy("bluesky", run.selectedUser, paragraphs.bluesky),
-          linkedin: composeVerifiedUserSocialCopy("linkedin", run.selectedUser, paragraphs.linkedin),
-          mastodon: composeVerifiedUserSocialCopy("mastodon", run.selectedUser, paragraphs.mastodon),
-        },
+        social: buildSocialFromParagraphs(run.selectedUser, paragraphs, run.verifiedUserFormat),
       };
     } catch (error) {
       lastError = error;

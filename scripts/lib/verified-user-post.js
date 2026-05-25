@@ -25,6 +25,7 @@ const DEFAULT_DIRECTORY_SOURCE = process.env.HUSHLINE_VERIFIED_USERS_SOURCE || "
 const DEFAULT_TIPS_BASE_URL = process.env.HUSHLINE_VERIFIED_USERS_BASE_URL || "https://tips.hushline.app";
 const QR_FILENAME = "verified-user-qr.png";
 const VERIFIED_MEMBER_HIGHLIGHT = "🤩 Verified Member Highlight!";
+const RECENT_FORMAT_WINDOW = 6;
 const SOCIAL_COPY_CONFIG = {
   bluesky: {
     bioLimit: 165,
@@ -45,6 +46,72 @@ const SOCIAL_COPY_CONFIG = {
     step: 14,
   },
 };
+const VERIFIED_USER_FORMATS = [
+  {
+    id: "why_follow_tip_line",
+    label: "Why follow this tip line",
+    opening: (_network, selectedUser) => `Why follow ${possessiveName(tipRecipientLabel(selectedUser.display_name))} Hush Line?`,
+    cta: (network, selectedUser) => {
+      const name = tipRecipientLabel(selectedUser.display_name);
+      if (network === "bluesky") {
+        return `Review the verified link before sending a tip: ${selectedUser.user_url}`;
+      }
+      return `Review ${possessiveName(name)} verified Hush Line link before sending a tip: ${selectedUser.user_url}.`;
+    },
+  },
+  {
+    id: "what_this_recipient_covers",
+    label: "What this recipient covers",
+    opening: () => "What this recipient covers:",
+    cta: (network, selectedUser) => buildTipCta(network, selectedUser.display_name, selectedUser.user_url),
+  },
+  {
+    id: "before_you_contact_them",
+    label: "Before you contact them",
+    opening: (_network, selectedUser) => `Before you contact ${tipRecipientLabel(selectedUser.display_name)}:`,
+    cta: (network, selectedUser) => {
+      if (network === "bluesky") {
+        return `Use the verified URL when you are ready to reach out: ${selectedUser.user_url}`;
+      }
+      return `Use the verified URL when you are ready to reach out: ${selectedUser.user_url}.`;
+    },
+  },
+  {
+    id: "how_to_verify_the_link",
+    label: "How to verify the link",
+    opening: () => "Verify the link before you send anything sensitive.",
+    cta: (network, selectedUser) => {
+      const name = tipRecipientLabel(selectedUser.display_name);
+      if (network === "bluesky") {
+        return `${possessiveName(name)} verified Hush Line URL: ${selectedUser.user_url}`;
+      }
+      return `${possessiveName(name)} verified Hush Line URL: ${selectedUser.user_url}.`;
+    },
+  },
+  {
+    id: "source_safe_first_contact",
+    label: "Source-safe first contact",
+    opening: () => "First contact should be source-safe.",
+    cta: (network, selectedUser) => {
+      const name = tipRecipientLabel(selectedUser.display_name);
+      if (network === "bluesky") {
+        return `Start with ${possessiveName(name)} verified Hush Line URL: ${selectedUser.user_url}`;
+      }
+      return `Start with ${possessiveName(name)} verified Hush Line URL: ${selectedUser.user_url}.`;
+    },
+  },
+  {
+    id: "from_the_directory",
+    label: "From the directory",
+    opening: (_network, selectedUser) => `From the verified Hush Line directory: ${selectedUser.display_name}.`,
+    cta: (network, selectedUser) => {
+      if (network === "bluesky") {
+        return `Open the profile: ${selectedUser.user_url}`;
+      }
+      return `Open the profile: ${selectedUser.user_url}.`;
+    },
+  },
+];
 
 function todayString() {
   const now = new Date();
@@ -164,12 +231,23 @@ function normalizeWhitespace(value) {
   return String(value || "").replace(/\s+/g, " ").trim();
 }
 
+function cleanMalformedPunctuation(value) {
+  return normalizeWhitespace(value)
+    .replace(/\s+([,.;:!?])/g, "$1")
+    .replace(/([!?])\./g, "$1")
+    .replace(/\.([!?])/g, "$1")
+    .replace(/([!?]){2,}/g, "$1")
+    .replace(/\.{2,}(?!\.)/g, ".")
+    .replace(/,([.!?])/g, "$1")
+    .trim();
+}
+
 function normalizeSortValue(value) {
   return normalizeWhitespace(value).toLowerCase();
 }
 
 function ensureTerminalPunctuation(value) {
-  const normalized = normalizeWhitespace(value);
+  const normalized = cleanMalformedPunctuation(value);
   if (!normalized) {
     return "";
   }
@@ -489,11 +567,29 @@ function loadArchiveHistory(currentDate, archiveRoot = VERIFIED_USER_POSTS_ROOT)
       return {
         date,
         display_name: post.display_name,
+        opening_line: normalizeWhitespace(post.opening_line || firstSocialLine(post.social)),
         primary_username: post.primary_username,
+        verified_user_format: normalizeWhitespace(post.verified_user_format || post.social_format || post.format),
         user_url: post.user_url,
       };
     })
     .filter(Boolean);
+}
+
+function firstSocialLine(social) {
+  if (!social || typeof social !== "object") {
+    return "";
+  }
+
+  for (const network of ["linkedin", "mastodon", "bluesky"]) {
+    const copy = String(social[network] || "");
+    const line = copy.split(/\r?\n/).map(normalizeWhitespace).find(Boolean);
+    if (line) {
+      return line;
+    }
+  }
+
+  return "";
 }
 
 function shuffleKey(user, seed = "") {
@@ -537,6 +633,10 @@ function rewriteBioForCopy(selectedUser, limit) {
     ? firstName
     : displayName;
   const bio = normalizeWhitespace(selectedUser.bio);
+  if (!bio) {
+    return ensureTerminalPunctuation(`${displayName} has a verified Hush Line profile`);
+  }
+
   const shortenedBio = truncateAtWordBoundary(bio, limit);
   const normalized = ensureTerminalPunctuation(shortenedBio);
   const displayPattern = escapeRegExp(displayName);
@@ -637,6 +737,62 @@ function tipRecipientLabel(displayName) {
   return normalized;
 }
 
+function resolveVerifiedUserFormat(format) {
+  if (!format) {
+    return VERIFIED_USER_FORMATS[0];
+  }
+
+  const id = typeof format === "string" ? format : format.id;
+  return VERIFIED_USER_FORMATS.find((candidate) => candidate.id === id) || VERIFIED_USER_FORMATS[0];
+}
+
+function chooseVerifiedUserFormat(archiveHistory = [], currentDate = "") {
+  const recent = archiveHistory.slice(-RECENT_FORMAT_WINDOW);
+  const recentFormatIds = new Set(recent.map((entry) => entry.verified_user_format).filter(Boolean));
+  const unusedRecentFormats = VERIFIED_USER_FORMATS.filter((format) => !recentFormatIds.has(format.id));
+  const candidates = unusedRecentFormats.length > 0 ? unusedRecentFormats : VERIFIED_USER_FORMATS;
+
+  return candidates
+    .slice()
+    .sort((left, right) => {
+      const leftLastUsed = lastUsedIndex(archiveHistory, left.id);
+      const rightLastUsed = lastUsedIndex(archiveHistory, right.id);
+      if (leftLastUsed !== rightLastUsed) {
+        return rightLastUsed - leftLastUsed;
+      }
+
+      const leftKey = formatShuffleKey(left.id, currentDate);
+      const rightKey = formatShuffleKey(right.id, currentDate);
+      if (leftKey === rightKey) {
+        return left.id.localeCompare(right.id);
+      }
+      return leftKey.localeCompare(rightKey);
+    })[0];
+}
+
+function lastUsedIndex(archiveHistory, formatId) {
+  const index = archiveHistory
+    .map((entry) => entry.verified_user_format)
+    .lastIndexOf(formatId);
+
+  return index === -1 ? Number.MAX_SAFE_INTEGER : archiveHistory.length - index;
+}
+
+function formatShuffleKey(formatId, seed = "") {
+  return crypto
+    .createHash("sha256")
+    .update(`${seed}\n${formatId}`)
+    .digest("hex");
+}
+
+function buildOpeningLine(network, selectedUser, format) {
+  return cleanMalformedPunctuation(resolveVerifiedUserFormat(format).opening(network, selectedUser));
+}
+
+function buildFormatCta(network, selectedUser, format) {
+  return cleanMalformedPunctuation(resolveVerifiedUserFormat(format).cta(network, selectedUser));
+}
+
 function buildTipCta(network, displayName, userUrl) {
   const name = tipRecipientLabel(displayName);
   const personStyle = prefersPersonStyle(displayName);
@@ -658,28 +814,30 @@ function buildTipCta(network, displayName, userUrl) {
     : `To send a tip to ${name}, go to ${userUrl}.`;
 }
 
-function composeVerifiedUserSocialCopy(network, selectedUser, middleParagraph) {
+function composeVerifiedUserSocialCopy(network, selectedUser, middleParagraph, format = VERIFIED_USER_FORMATS[0]) {
+  const selectedFormat = resolveVerifiedUserFormat(format);
   const paragraph = ensureTerminalPunctuation(normalizeWhitespace(middleParagraph));
   if (!paragraph) {
     throw new Error(`Missing generated ${network} paragraph for @${selectedUser.primary_username}.`);
   }
 
   return [
-    VERIFIED_MEMBER_HIGHLIGHT,
+    buildOpeningLine(network, selectedUser, selectedFormat),
     "",
     paragraph,
     "",
-    buildTipCta(network, selectedUser.display_name, selectedUser.user_url),
+    buildFormatCta(network, selectedUser, selectedFormat),
   ].join("\n");
 }
 
-function composeSocialParagraph(network, selectedUser) {
+function composeSocialParagraph(network, selectedUser, format = VERIFIED_USER_FORMATS[0]) {
   const config = SOCIAL_COPY_CONFIG[network];
   let bioLimit = config.bioLimit;
+  const selectedFormat = resolveVerifiedUserFormat(format);
 
   while (bioLimit >= config.minBioLimit) {
     const bio = rewriteBioForCopy(selectedUser, bioLimit);
-    if (composeVerifiedUserSocialCopy(network, selectedUser, bio).length <= LIMITS[network]) {
+    if (composeVerifiedUserSocialCopy(network, selectedUser, bio, selectedFormat).length <= LIMITS[network]) {
       return bio;
     }
 
@@ -703,20 +861,20 @@ function stabilizeGeneratedParagraph(network, selectedUser, paragraph) {
   return candidate;
 }
 
-function fitGeneratedParagraphToLimit(network, selectedUser, paragraph) {
+function fitGeneratedParagraphToLimit(network, selectedUser, paragraph, format = VERIFIED_USER_FORMATS[0]) {
   let candidate = ensureTerminalPunctuation(normalizeWhitespace(paragraph));
   if (!candidate) {
     throw new Error(`Missing generated ${network} paragraph for @${selectedUser.primary_username}.`);
   }
 
-  if (composeVerifiedUserSocialCopy(network, selectedUser, candidate).length <= LIMITS[network]) {
+  if (composeVerifiedUserSocialCopy(network, selectedUser, candidate, format).length <= LIMITS[network]) {
     return candidate;
   }
 
   let limit = Math.max(24, candidate.length - 16);
   while (limit >= 24) {
     const shortened = ensureTerminalPunctuation(truncateAtWordBoundary(candidate, limit));
-    if (composeVerifiedUserSocialCopy(network, selectedUser, shortened).length <= LIMITS[network]) {
+    if (composeVerifiedUserSocialCopy(network, selectedUser, shortened, format).length <= LIMITS[network]) {
       return shortened;
     }
     limit -= 12;
@@ -725,7 +883,7 @@ function fitGeneratedParagraphToLimit(network, selectedUser, paragraph) {
   throw new Error(`Generated ${network} copy exceeds ${LIMITS[network]} characters for @${selectedUser.primary_username}.`);
 }
 
-function validateVerifiedUserSocialParagraphs(paragraphs, selectedUser) {
+function validateVerifiedUserSocialParagraphs(paragraphs, selectedUser, options = {}) {
   if (!paragraphs || typeof paragraphs !== "object") {
     throw new Error("Generated verified-user copy must be an object.");
   }
@@ -745,13 +903,18 @@ function validateVerifiedUserSocialParagraphs(paragraphs, selectedUser) {
       throw new Error(`Generated ${network} copy for @${selectedUser.primary_username} must not use distancing meta-language about the profile.`);
     }
 
-    validated[network] = fitGeneratedParagraphToLimit(network, selectedUser, stabilizeGeneratedParagraph(network, selectedUser, value));
+    if (/[.!?]{2,}|[!?]\.|\.([!?])|,\s*[.!?]/.test(value)) {
+      throw new Error(`Generated ${network} copy for @${selectedUser.primary_username} has malformed punctuation.`);
+    }
+
+    validated[network] = fitGeneratedParagraphToLimit(network, selectedUser, stabilizeGeneratedParagraph(network, selectedUser, value), options.format);
   }
 
   return validated;
 }
 
-function buildVerifiedUserSocialPrompt({ date, outputPath, selectedUser, feedback = "" }) {
+function buildVerifiedUserSocialPrompt({ date, format = VERIFIED_USER_FORMATS[0], outputPath, selectedUser, feedback = "" }) {
+  const selectedFormat = resolveVerifiedUserFormat(format);
   return [
     "You are writing social post copy for one verified Hush Line profile.",
     "Write plain, factual, human copy.",
@@ -774,14 +937,15 @@ function buildVerifiedUserSocialPrompt({ date, outputPath, selectedUser, feedbac
     `Username: @${selectedUser.primary_username}`,
     `Profile URL: ${selectedUser.user_url}`,
     `Original profile bio: ${selectedUser.bio}`,
+    `Editorial format: ${selectedFormat.label} (${selectedFormat.id})`,
     feedback ? `Revision note: ${feedback}` : "",
     "",
     "Final post structure for each network will be:",
-    "1. 🤩 Verified Member Highlight!",
+    `1. ${buildOpeningLine("linkedin", selectedUser, selectedFormat)}`,
     "2. blank line",
     "3. your generated middle paragraph",
     "4. blank line",
-    `5. a fixed CTA line with ${selectedUser.user_url}`,
+    `5. ${buildFormatCta("linkedin", selectedUser, selectedFormat)}`,
     "",
     "Write valid JSON only to this file:",
     outputPath,
@@ -809,50 +973,59 @@ function buildVerifiedUserSocialPrompt({ date, outputPath, selectedUser, feedbac
   ].join("\n");
 }
 
-function composeSocialCopy(network, selectedUser) {
-  return composeVerifiedUserSocialCopy(network, selectedUser, composeSocialParagraph(network, selectedUser));
+function composeSocialCopy(network, selectedUser, format = VERIFIED_USER_FORMATS[0]) {
+  return composeVerifiedUserSocialCopy(network, selectedUser, composeSocialParagraph(network, selectedUser, format), format);
 }
 
-function buildVerifiedUserSocialParagraphs(selectedUser) {
+function buildVerifiedUserSocialParagraphs(selectedUser, format = VERIFIED_USER_FORMATS[0]) {
   return {
-    bluesky: composeSocialParagraph("bluesky", selectedUser),
-    linkedin: composeSocialParagraph("linkedin", selectedUser),
-    mastodon: composeSocialParagraph("mastodon", selectedUser),
+    bluesky: composeSocialParagraph("bluesky", selectedUser, format),
+    linkedin: composeSocialParagraph("linkedin", selectedUser, format),
+    mastodon: composeSocialParagraph("mastodon", selectedUser, format),
   };
 }
 
-function buildSocialCopy(selectedUser) {
+function buildSocialCopy(selectedUser, format = VERIFIED_USER_FORMATS[0]) {
   return {
-    bluesky: composeSocialCopy("bluesky", selectedUser),
-    linkedin: composeSocialCopy("linkedin", selectedUser),
-    mastodon: composeSocialCopy("mastodon", selectedUser),
+    bluesky: composeSocialCopy("bluesky", selectedUser, format),
+    linkedin: composeSocialCopy("linkedin", selectedUser, format),
+    mastodon: composeSocialCopy("mastodon", selectedUser, format),
   };
 }
 
-function buildPost({ date, selectedUser, source }) {
+function buildPost({ archiveHistory = [], date, format, selectedUser, source }) {
+  const selectedFormat = resolveVerifiedUserFormat(format || chooseVerifiedUserFormat(archiveHistory, date));
   return {
     date,
     display_name: selectedUser.display_name,
+    editorial_format_label: selectedFormat.label,
     headline: selectedUser.display_name,
     image_alt_text: `A social card featuring verified Hush Line user ${selectedUser.display_name}, their bio, their tip line URL, and a QR code that links to the same URL.`,
+    opening_line: buildOpeningLine("linkedin", selectedUser, selectedFormat),
     planned_date: date,
     primary_username: selectedUser.primary_username,
     qr_code_file: QR_FILENAME,
-    social: buildSocialCopy(selectedUser),
+    social: buildSocialCopy(selectedUser, selectedFormat),
     slot: "verified-user-weekly",
     source,
     subtext: selectedUser.bio,
     user_link: selectedUser.user_url,
     user_url: selectedUser.user_url,
+    verified_user_format: selectedFormat.id,
   };
 }
 
-function buildContext({ date, archiveHistory, selectedUser, source, verifiedUsers }) {
+function buildContext({ date, archiveHistory, selectedFormat, selectedUser, source, verifiedUsers }) {
   return {
     archive_root: path.relative(REPO_ROOT, VERIFIED_USER_POSTS_ROOT),
     date,
     eligible_verified_user_count: verifiedUsers.length,
     recent_archive_history: archiveHistory.slice(-20),
+    selected_format: {
+      id: selectedFormat.id,
+      label: selectedFormat.label,
+      opening_line: buildOpeningLine("linkedin", selectedUser, selectedFormat),
+    },
     selected_user: selectedUser,
     source,
   };
@@ -930,6 +1103,8 @@ function buildTxt(post) {
     `Verified user: @${post.primary_username}`,
     `User link: ${post.user_link}`,
     `Source: ${post.source}`,
+    `Editorial format: ${post.editorial_format_label} (${post.verified_user_format})`,
+    `Opening line: ${post.opening_line}`,
     `Headline: ${post.headline.replace(/\n/g, " ")}`,
     `Subtext: ${post.subtext}`,
     "",
@@ -1056,11 +1231,13 @@ async function prepareVerifiedUserRun(args, options = {}) {
   const verifiedUsers = normalizeVerifiedUsers(payload, args.baseUrl);
   const archiveHistory = loadArchiveHistory(args.date, options.archiveRoot);
   const selectedUser = selectVerifiedUser(verifiedUsers, archiveHistory, args.date);
+  const selectedFormat = chooseVerifiedUserFormat(archiveHistory, args.date);
 
   return {
     context: buildContext({
       archiveHistory,
       date: args.date,
+      selectedFormat,
       selectedUser,
       source: args.source,
       verifiedUsers,
@@ -1068,11 +1245,14 @@ async function prepareVerifiedUserRun(args, options = {}) {
     date: args.date,
     noRender: args.noRender,
     post: buildPost({
+      archiveHistory,
       date: args.date,
+      format: selectedFormat,
       selectedUser,
       source: args.source,
     }),
     selectedUser,
+    verifiedUserFormat: selectedFormat,
   };
 }
 
@@ -1085,6 +1265,7 @@ module.exports = {
   buildVerifiedUserSocialPrompt,
   buildPost,
   buildVerifiedUserSocialParagraphs,
+  chooseVerifiedUserFormat,
   composeVerifiedUserSocialCopy,
   loadArchiveHistory,
   normalizeVerifiedUsers,
