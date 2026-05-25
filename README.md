@@ -169,4 +169,6 @@ cd /Users/scidsg/hushline-social
 - The verified-user weekly LaunchAgents are scheduled for Mondays, but the manual wrappers can be run for any date override.
 - The verified-user LinkedIn publisher posts from `previous-verified-user-posts/YYYY-MM-DD`.
 - The weekly verified-user render step keeps its archive local by default; the LinkedIn publish step pushes that dated folder after successful publication, and the pushed dated folder is the publication-state signal across machines.
+- Weekly verified-user copy rotates across six grounded editorial formats: why follow this tip line, what this recipient covers, before you contact them, how to verify the link, source-safe first contact, and from the directory. Each archive records `verified_user_format` and `opening_line` in `post.json`.
+- Verified-user copy must stay grounded in the directory profile. The generator can rewrite first-person bios into third person and clean punctuation, but it must not invent beats, specialties, claims, solicitation categories, or audience fit beyond the profile text.
 - Do not use this repo to permanently patch upstream screenshot ownership issues; fix those in `../hushline`.
