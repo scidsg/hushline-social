@@ -75,6 +75,23 @@ npm run analyze:history -- --as-of YYYY-MM-DD --window 30 --window 90
 
 The history report reads `previous-posts` and `previous-verified-user-posts`, then summarizes 30, 60, and 90 day freshness by topic family, audience scope, template, concept key, opening hook, and CTA pattern. Use the JSON output for automation and the human summary for quick editorial review.
 
+Daily planning enforces hard freshness cooldowns before publish:
+
+- topic family: last 5 archived daily posts
+- concept key: last 20 archived daily posts
+- opening hook: last 30 archived daily posts
+- CTA pattern: last archived daily post
+
+Override the defaults only for a documented manual exception:
+
+```sh
+cd /Users/scidsg/hushline-social
+npm run plan:day -- --date YYYY-MM-DD --topic-family-cooldown-posts 7 --concept-key-cooldown-posts 30
+npm run plan:day -- --date YYYY-MM-DD --allow-cooldown-override
+```
+
+The same knobs are available to launchd or wrapper scripts through `HUSHLINE_SOCIAL_TOPIC_FAMILY_COOLDOWN_POSTS`, `HUSHLINE_SOCIAL_CONCEPT_KEY_COOLDOWN_POSTS`, `HUSHLINE_SOCIAL_HOOK_COOLDOWN_POSTS`, `HUSHLINE_SOCIAL_CTA_COOLDOWN_POSTS`, and `HUSHLINE_SOCIAL_ALLOW_COOLDOWN_OVERRIDE=1`.
+
 To monitor both launchd jobs from one terminal:
 
 ```sh
