@@ -107,6 +107,8 @@ Current daily format taxonomy:
 
 Daily planning chooses editorial intent before choosing visual support. The planner first rotates among audience scopes (`public`, `recipient-shared`, and `admin-only`) and combines the selected audience with the required `content_format` and reader need. Only after that does it filter screenshots to those that support the selected audience. If the highest-ranked audience has no eligible visual support, the planner records that rejected intent and tries the next audience instead of letting a sole screenshot candidate drive the post idea. Validated plans archive the chosen `editorial_intent` alongside the post.
 
+Before rendering, the daily planner runs an editorial critic gate over the completed draft. The critic scores topic freshness, hook freshness, format novelty, audience specificity, concrete reader value, Hush Line relevance, CTA freshness, and safety/compliance against recent archive history. Drafts below threshold are rewritten once with critic feedback; if the rewrite still fails, the run stops before render/publish and writes the critic rationale to the archive.
+
 To monitor both launchd jobs from one terminal:
 
 ```sh

@@ -121,3 +121,19 @@ test("daily planner treats content format validation failures as retryable", () 
     encoding: "utf8",
   }));
 });
+
+test("daily planner recognizes editorial critic failures for rewrite handling", () => {
+  const testScript = [
+    "set -euo pipefail",
+    `source ${shellQuote(plannerScriptPath)}`,
+    "LAST_VALIDATION_OUTPUT='Error: Editorial critic score 8/16 is below threshold 12.'",
+    "is_critic_validation_failure",
+    "if is_retryable_validation_failure; then exit 1; fi",
+    "",
+  ].join("\n");
+
+  assert.doesNotThrow(() => execFileSync("bash", ["-c", testScript], {
+    cwd: REPO_ROOT,
+    encoding: "utf8",
+  }));
+});

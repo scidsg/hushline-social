@@ -23,6 +23,7 @@ const {
   parseArgs,
   planDay,
   rankEditorialIntents,
+  scoreEditorialCritic,
   summarizeScreenshotRotation,
   validatePlan,
 } = require("../scripts/lib/daily-planner");
@@ -226,7 +227,62 @@ test("validatePlan trims social copy and enriches the selected candidate metadat
     validated.post.visual_selection_reason,
     "Selected screenshots only after choosing the Public sources and visitors editorial intent.",
   );
+  assert.equal(validated.critic.passed, true);
+  assert.equal(validated.critic.threshold, 12);
   assert.deepEqual(validated.post.matched_pull_requests, [{ number: 1765, title: "Fix guest screenshot" }]);
+});
+
+test("scoreEditorialCritic passes fresh, specific drafts", () => {
+  const validated = validatePlan(buildModelPlan(), buildContext());
+  const critic = scoreEditorialCritic(validated, buildContext());
+
+  assert.equal(critic.passed, true);
+  assert.equal(critic.score >= critic.threshold, true);
+  assert.equal(critic.criteria.length, 8);
+});
+
+test("validatePlan blocks drafts that still fail the editorial critic threshold", () => {
+  const staleContext = buildContext({
+    cooldown_policy: buildCooldownPolicy({
+      allow_override: true,
+      cta_posts: 0,
+      hook_posts: 0,
+    }),
+    recent_archive_history: [
+      {
+        archive_key: "2026-03-13",
+        content_format: "feature_benefit",
+        cta_pattern: "learn_more",
+        date: "2026-03-13",
+        hook_pattern: "different archived hook",
+        linkedin_copy: "Different archived hook. Learn more at https://hushline.app/.",
+        topic_family: "directory",
+      },
+    ],
+  });
+  const lowValuePlan = buildModelPlan({
+    post: {
+      ...buildModelPlan().post,
+      headline: "Better tools for better work",
+      image_alt_text: "A social graphic showing a product screen.",
+      social: {
+        bluesky: "Better tools make things easier. Learn more at https://hushline.app/.",
+        linkedin: "Better tools make things easier. Learn more at https://hushline.app/.",
+        mastodon: "Better tools make things easier. Learn more at https://hushline.app/.",
+      },
+      subtext: "A product screen shows a useful feature.",
+    },
+  });
+
+  assert.throws(
+    () => validatePlan(lowValuePlan, staleContext),
+    (error) => {
+      assert.match(error.message, /Editorial critic score .* is below threshold/);
+      assert.equal(error.critic.passed, false);
+      assert.equal(error.critic.rationale.includes("Topic freshness"), true);
+      return true;
+    },
+  );
 });
 
 test("contentFormatIds includes the required editorial format taxonomy", () => {

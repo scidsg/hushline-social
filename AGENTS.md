@@ -75,6 +75,8 @@ Before writing copy, identify which user group and flow from `../hushline/docs/U
 
 Do not write generic copy that ignores the screenshot’s audience.
 
+Daily drafts must pass the editorial critic gate before rendering or publishing. The critic scores topic freshness, hook freshness, format novelty, audience specificity, concrete reader value, Hush Line relevance, CTA freshness, and safety/compliance against recent archive history. If the first draft is below threshold, rewrite it once using the critic rationale; if the rewrite still fails, stop before publishing and preserve the critic reason in the archive.
+
 ## Screenshot Ownership Rules
 
 The screenshot logic lives upstream in `../hushline`.

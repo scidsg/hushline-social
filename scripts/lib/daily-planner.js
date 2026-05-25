@@ -25,6 +25,7 @@ const {
 const DAILY_POSTS_ROOT = path.join(REPO_ROOT, "previous-posts");
 const ARCHIVE_LOOKBACK_DAYS = 90;
 const FEATURE_REPEAT_HARD_LOOKBACK_POSTS = 5;
+const EDITORIAL_CRITIC_THRESHOLD = 12;
 const DEFAULT_COOLDOWN_POLICY = {
   allow_override: false,
   concept_key_posts: 20,
@@ -151,6 +152,65 @@ const HUSHLINE_APP_VOICE_GUIDANCE = [
   "Use practical language from hushline.app: Hush Line is for anonymous, end-to-end encrypted contact and secure first contact, not broad marketing claims.",
   "Keep the message grounded in the people Hush Line serves, such as sources, journalists, lawyers, educators, developers, organizers, and trusted recipients when the screenshot supports that audience.",
   "Prefer concrete platform framing from hushline.app like no app download or account required for sources, a public directory that helps people find the right recipient, and browser-based tools that support real review workflows.",
+];
+const AUDIENCE_SPECIFICITY_PATTERNS = {
+  "admin-only": [
+    /\badmin(s|istrator|istrators)?\b/i,
+    /\bdeployment(s)?\b/i,
+    /\boperator(s)?\b/i,
+    /\bteam(s)?\b/i,
+  ],
+  public: [
+    /\bsource(s)?\b/i,
+    /\bvisitor(s)?\b/i,
+    /\bpublic\b/i,
+    /\btip(s)?\b/i,
+    /\bfind\b/i,
+    /\brecipient(s)?\b/i,
+  ],
+  "recipient-shared": [
+    /\brecipient(s)?\b/i,
+    /\bstaff\b/i,
+    /\binbox\b/i,
+    /\bmessage(s)?\b/i,
+    /\breview\b/i,
+    /\bintake\b/i,
+  ],
+};
+const CONCRETE_VALUE_PATTERNS = [
+  /\bbefore\b/i,
+  /\bcheck\b/i,
+  /\bchoose\b/i,
+  /\bcompare\b/i,
+  /\bdecide\b/i,
+  /\bdownload\b/i,
+  /\bfind\b/i,
+  /\bmanage\b/i,
+  /\breview\b/i,
+  /\bsend\b/i,
+  /\bset up\b/i,
+  /\bverify\b/i,
+];
+const HUSHLINE_RELEVANCE_PATTERNS = [
+  /\bHush Line\b/i,
+  /https:\/\/hushline\.app\b/i,
+  /\banonymous\b/i,
+  /\bdirectory\b/i,
+  /\bencrypted\b/i,
+  /\binbox\b/i,
+  /\bmessage(s)?\b/i,
+  /\bprofile(s)?\b/i,
+  /\btip line\b/i,
+];
+const SAFETY_RISK_PATTERNS = [
+  /\bguarantee(s|d)? anonymity\b/i,
+  /\bcompletely anonymous\b/i,
+  /\bunbreakable\b/i,
+  /\bmilitary[- ]grade\b/i,
+  /\bzero risk\b/i,
+  /\bnewly released\b/i,
+  /\bjust shipped\b/i,
+  /\brecently launched\b/i,
 ];
 const CONTENT_FORMAT_WEEKLY_CAP = 1;
 const CONTENT_FORMATS = Object.freeze([
@@ -615,6 +675,198 @@ function classifyCta(value) {
   }
 
   return cta;
+}
+
+function buildPlanText(post) {
+  return [
+    post.headline,
+    post.subtext,
+    post.image_alt_text,
+    post.rationale,
+    post.social?.linkedin,
+    post.social?.mastodon,
+    post.social?.bluesky,
+  ]
+    .filter(Boolean)
+    .join(" ");
+}
+
+function scoreCriterion(id, label, score, max_score, rationale) {
+  return {
+    id,
+    label,
+    max_score,
+    rationale,
+    score: Math.max(0, Math.min(max_score, score)),
+  };
+}
+
+function countPatternMatches(value, patterns) {
+  return patterns.reduce((count, pattern) => count + (pattern.test(value) ? 1 : 0), 0);
+}
+
+function hasRecentMatch(entries, count, predicate) {
+  return recentArchiveEntries(entries, count).some(predicate);
+}
+
+function scoreEditorialCritic(validatedPlan, context) {
+  const post = validatedPlan.post || {};
+  const archiveHistory = context.recent_archive_history || [];
+  const text = buildPlanText(post);
+  const linkedinText = post.social?.linkedin || text;
+  const currentHookPattern = normalizePhrase(firstSentence(linkedinText || text));
+  const currentCtaPattern = classifyCta(linkedinText || text);
+  const currentTopicFamily = post.topic_family || inferTopicFamily(post);
+  const currentAudience = post.audience_scope || context.editorial_intent?.audience_scope || "";
+  const currentFormat = post.content_format || "";
+  const criteria = [];
+
+  const recentTopicMatch5 = hasRecentMatch(
+    archiveHistory,
+    5,
+    (entry) => entry.topic_family && entry.topic_family === currentTopicFamily,
+  );
+  const recentTopicMatch2 = hasRecentMatch(
+    archiveHistory,
+    2,
+    (entry) => entry.topic_family && entry.topic_family === currentTopicFamily,
+  );
+  criteria.push(scoreCriterion(
+    "topic_freshness",
+    "Topic freshness",
+    recentTopicMatch2 ? 0 : recentTopicMatch5 ? 1 : 2,
+    2,
+    recentTopicMatch2
+      ? `Topic family ${currentTopicFamily || "unknown"} appeared in the last two posts.`
+      : recentTopicMatch5
+        ? `Topic family ${currentTopicFamily || "unknown"} appeared recently but not in the last two posts.`
+        : `Topic family ${currentTopicFamily || "unknown"} is fresh against the recent archive.`,
+  ));
+
+  const repeatedHook = currentHookPattern && hasRecentMatch(
+    archiveHistory,
+    Math.max(1, context.cooldown_policy?.hook_posts || DEFAULT_COOLDOWN_POLICY.hook_posts),
+    (entry) => archiveEntryHookPattern(entry) === currentHookPattern,
+  );
+  criteria.push(scoreCriterion(
+    "hook_freshness",
+    "Hook freshness",
+    repeatedHook ? 0 : 2,
+    2,
+    repeatedHook ? "Opening hook repeats recent archive language." : "Opening hook is distinct from recent archive hooks.",
+  ));
+
+  const recentFormatMatch3 = hasRecentMatch(
+    archiveHistory,
+    3,
+    (entry) => entry.content_format && entry.content_format === currentFormat,
+  );
+  const lastFormatMatch = hasRecentMatch(
+    archiveHistory,
+    1,
+    (entry) => entry.content_format && entry.content_format === currentFormat,
+  );
+  criteria.push(scoreCriterion(
+    "format_novelty",
+    "Format novelty",
+    lastFormatMatch ? 0 : recentFormatMatch3 ? 1 : 2,
+    2,
+    lastFormatMatch
+      ? `Format ${currentFormat || "unknown"} was used in the last post.`
+      : recentFormatMatch3
+        ? `Format ${currentFormat || "unknown"} appeared in the last three posts.`
+        : `Format ${currentFormat || "unknown"} is not overused in the recent archive.`,
+  ));
+
+  const audiencePatterns = AUDIENCE_SPECIFICITY_PATTERNS[currentAudience] || [];
+  const audienceMatches = countPatternMatches(text, audiencePatterns);
+  criteria.push(scoreCriterion(
+    "audience_specificity",
+    "Audience specificity",
+    audienceMatches >= 2 ? 2 : audienceMatches === 1 ? 1 : 0,
+    2,
+    audienceMatches > 0
+      ? `Copy contains ${audienceMatches} signal(s) for ${currentAudience || "the selected audience"}.`
+      : `Copy does not clearly name or signal ${currentAudience || "the selected audience"}.`,
+  ));
+
+  const concreteValueMatches = countPatternMatches(text, CONCRETE_VALUE_PATTERNS);
+  const textTokenCount = messageTokens(text).length;
+  criteria.push(scoreCriterion(
+    "concrete_reader_value",
+    "Concrete reader value",
+    concreteValueMatches >= 2 && textTokenCount >= 10 ? 2 : concreteValueMatches >= 1 ? 1 : 0,
+    2,
+    concreteValueMatches > 0
+      ? `Copy gives ${concreteValueMatches} concrete action/value signal(s).`
+      : "Copy does not give the reader a concrete action or decision point.",
+  ));
+
+  const hushlineMatches = countPatternMatches(text, HUSHLINE_RELEVANCE_PATTERNS);
+  criteria.push(scoreCriterion(
+    "hushline_relevance",
+    "Hush Line relevance",
+    /\bHush Line\b/i.test(text) || /https:\/\/hushline\.app\b/i.test(text) ? 2 : hushlineMatches > 0 ? 1 : 0,
+    2,
+    hushlineMatches > 0 ? "Copy is tied to Hush Line or a concrete Hush Line surface." : "Copy could apply to a generic product.",
+  ));
+
+  const repeatedCta = currentCtaPattern !== "none" && hasRecentMatch(
+    archiveHistory,
+    Math.max(1, context.cooldown_policy?.cta_posts || DEFAULT_COOLDOWN_POLICY.cta_posts),
+    (entry) => archiveEntryCtaPattern(entry) === currentCtaPattern,
+  );
+  criteria.push(scoreCriterion(
+    "cta_freshness",
+    "CTA freshness",
+    repeatedCta ? 0 : 2,
+    2,
+    repeatedCta ? "CTA pattern repeats a recent archive CTA." : "CTA pattern is fresh against the configured CTA cooldown.",
+  ));
+
+  const safetyRisks = SAFETY_RISK_PATTERNS
+    .filter((pattern) => pattern.test(text))
+    .map((pattern) => pattern.source);
+  criteria.push(scoreCriterion(
+    "safety_compliance",
+    "Safety and compliance",
+    safetyRisks.length > 0 ? 0 : 2,
+    2,
+    safetyRisks.length > 0
+      ? "Copy includes unsupported safety, anonymity, or recency claims."
+      : "Copy avoids unsupported safety, anonymity, and recency claims.",
+  ));
+
+  const totalScore = criteria.reduce((sum, criterion) => sum + criterion.score, 0);
+  const maxScore = criteria.reduce((sum, criterion) => sum + criterion.max_score, 0);
+  const failedCriteria = criteria.filter((criterion) => criterion.score === 0);
+
+  return {
+    blocked: totalScore < EDITORIAL_CRITIC_THRESHOLD,
+    criteria,
+    failed_criteria: failedCriteria.map((criterion) => criterion.id),
+    max_score: maxScore,
+    passed: totalScore >= EDITORIAL_CRITIC_THRESHOLD,
+    rationale: criteria.map((criterion) => `${criterion.label}: ${criterion.rationale}`).join(" "),
+    score: totalScore,
+    threshold: EDITORIAL_CRITIC_THRESHOLD,
+  };
+}
+
+function assertEditorialCriticPass(validatedPlan, context) {
+  const critic = scoreEditorialCritic(validatedPlan, context);
+  if (!critic.passed) {
+    const failed = critic.failed_criteria.length > 0
+      ? ` Failed criteria: ${critic.failed_criteria.join(", ")}.`
+      : "";
+    const error = new Error(
+      `Editorial critic score ${critic.score}/${critic.max_score} is below threshold ${critic.threshold}.${failed} ${critic.rationale}`,
+    );
+    error.critic = critic;
+    throw error;
+  }
+
+  return critic;
 }
 
 function stableHash(value) {
@@ -1369,6 +1621,19 @@ function buildDailyContext(args) {
     daily_posts_root: path.relative(REPO_ROOT, DAILY_POSTS_ROOT),
     date: args.date,
     dark_ratio: args.darkRatio,
+    editorial_critic: {
+      criteria: [
+        "topic_freshness",
+        "hook_freshness",
+        "format_novelty",
+        "audience_specificity",
+        "concrete_reader_value",
+        "hushline_relevance",
+        "cta_freshness",
+        "safety_compliance",
+      ],
+      threshold: EDITORIAL_CRITIC_THRESHOLD,
+    },
     editorial_intent: editorialIntentSelection.intent,
     editorial_intent_rejections: editorialIntentSelection.rejected_intents,
     excluded_screenshots: Array.from(excludedScreenshots),
@@ -1436,6 +1701,7 @@ function buildPromptPayload(context) {
       `Screenshot release from local latest folder: ${context.screenshot_release}`,
       `Screenshots captured at: ${context.screenshot_captured_at}`,
       `Hard cooldown policy: ${JSON.stringify(context.cooldown_policy || DEFAULT_COOLDOWN_POLICY)}`,
+      `Editorial critic threshold: ${context.editorial_critic?.threshold || EDITORIAL_CRITIC_THRESHOLD}`,
       `Required content format: ${context.content_format_selection?.selected_format?.id || "feature_benefit"}`,
       `Editorial intent: ${JSON.stringify(context.editorial_intent || {})}`,
       `Visual selection reason: ${context.visual_selection_reason || "Selected screenshot as visual support after editorial planning."}`,
@@ -1473,6 +1739,8 @@ function buildPromptPayload(context) {
       "- The candidates were preselected from a ranked pool after excluding recent repeats of the same screenshot, screen, feature family, and overused template types wherever possible.",
       "- The candidate shortlist also enforces hard topic-family and concept-key cooldowns unless an explicit manual override is set.",
       "- Opening hooks and CTA patterns are validated against recent archive cooldowns after drafting; choose a fresh hook and closing line.",
+      "- A final editorial critic will score topic freshness, hook freshness, format novelty, audience specificity, concrete reader value, Hush Line relevance, CTA freshness, and safety/compliance before rendering.",
+      "- Drafts below the critic threshold are rewritten once and then blocked if they still fail, so avoid generic or low-value copy on the first pass.",
       "- Let the selected editorial format shape the post structure, hook, CTA, and alt text. Do not write another generic screenshot tour.",
       "- Produce exactly one post for the requested date.",
       "- Do not talk about recent releases, recent merges, or product recency unless the prompt explicitly gives you that information.",
@@ -1795,7 +2063,7 @@ function validatePlan(modelPlan, context) {
     }
   }
 
-  return {
+  const validatedPlan = {
     date: modelPlan.date,
     post: {
       ...post,
@@ -1820,6 +2088,12 @@ function validatePlan(modelPlan, context) {
       viewport: candidate.viewport,
     },
     summary: modelPlan.summary,
+  };
+  const critic = assertEditorialCriticPass(validatedPlan, context);
+
+  return {
+    ...validatedPlan,
+    critic,
   };
 }
 
@@ -1899,6 +2173,7 @@ module.exports = {
   parseArgs,
   planDay,
   renderDailyPlan,
+  scoreEditorialCritic,
   summarizeScreenshotRotation,
   validatePlan,
 };
