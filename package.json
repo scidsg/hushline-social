@@ -9,6 +9,7 @@
     "render:verified-user": "node scripts/render-verified-user-post.js",
     "install:launch-agent": "./scripts/install_launch_agent.sh",
     "install:launch-daemon": "sudo ./scripts/install_launch_agent.sh --scope daemon",
+    "analyze:history": "node scripts/analyze-post-history.js",
     "test": "node --test",
     "validate:day": "node scripts/validate-day-plan.js",
     "validate:plan": "node scripts/validate-day-plan.js"

@@ -64,6 +64,17 @@ cd /Users/scidsg/hushline-social
 ./scripts/run_verified_user_weekly_linkedin_launchd.sh --date YYYY-MM-DD
 ```
 
+To inspect whether recent archived posts are becoming repetitive:
+
+```sh
+cd /Users/scidsg/hushline-social
+npm run analyze:history
+npm run analyze:history -- --format json
+npm run analyze:history -- --as-of YYYY-MM-DD --window 30 --window 90
+```
+
+The history report reads `previous-posts` and `previous-verified-user-posts`, then summarizes 30, 60, and 90 day freshness by topic family, audience scope, template, concept key, opening hook, and CTA pattern. Use the JSON output for automation and the human summary for quick editorial review.
+
 To monitor both launchd jobs from one terminal:
 
 ```sh
