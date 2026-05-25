@@ -241,6 +241,32 @@ test("scoreEditorialCritic passes fresh, specific drafts", () => {
   assert.equal(critic.criteria.length, 8);
 });
 
+test("scoreEditorialCritic respects disabled hook and CTA cooldowns", () => {
+  const context = buildContext({
+    cooldown_policy: buildCooldownPolicy({
+      cta_posts: 0,
+      hook_posts: 0,
+    }),
+    recent_archive_history: [
+      {
+        archive_key: "2026-03-19",
+        cta_pattern: "learn_more",
+        hook_pattern: "sources can verify trust signals before sending a tip",
+        linkedin_copy: "Sources can verify trust signals before sending a tip. Learn more at https://hushline.app/.",
+      },
+    ],
+  });
+  const validated = validatePlan(buildModelPlan(), context);
+  const critic = scoreEditorialCritic(validated, context);
+  const hookCriterion = critic.criteria.find((criterion) => criterion.id === "hook_freshness");
+  const ctaCriterion = critic.criteria.find((criterion) => criterion.id === "cta_freshness");
+
+  assert.equal(hookCriterion.score, 2);
+  assert.match(hookCriterion.rationale, /disabled by cooldown policy/);
+  assert.equal(ctaCriterion.score, 2);
+  assert.match(ctaCriterion.rationale, /disabled by cooldown policy/);
+});
+
 test("validatePlan blocks drafts that still fail the editorial critic threshold", () => {
   const staleContext = buildContext({
     cooldown_policy: buildCooldownPolicy({

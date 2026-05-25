@@ -709,6 +709,11 @@ function hasRecentMatch(entries, count, predicate) {
   return recentArchiveEntries(entries, count).some(predicate);
 }
 
+function cooldownWindow(value, fallback) {
+  const resolved = value ?? fallback;
+  return Number.isInteger(resolved) && resolved > 0 ? resolved : 0;
+}
+
 function scoreEditorialCritic(validatedPlan, context) {
   const post = validatedPlan.post || {};
   const archiveHistory = context.recent_archive_history || [];
@@ -743,9 +748,10 @@ function scoreEditorialCritic(validatedPlan, context) {
         : `Topic family ${currentTopicFamily || "unknown"} is fresh against the recent archive.`,
   ));
 
-  const repeatedHook = currentHookPattern && hasRecentMatch(
+  const hookWindow = cooldownWindow(context.cooldown_policy?.hook_posts, DEFAULT_COOLDOWN_POLICY.hook_posts);
+  const repeatedHook = hookWindow > 0 && currentHookPattern && hasRecentMatch(
     archiveHistory,
-    Math.max(1, context.cooldown_policy?.hook_posts || DEFAULT_COOLDOWN_POLICY.hook_posts),
+    hookWindow,
     (entry) => archiveEntryHookPattern(entry) === currentHookPattern,
   );
   criteria.push(scoreCriterion(
@@ -753,7 +759,9 @@ function scoreEditorialCritic(validatedPlan, context) {
     "Hook freshness",
     repeatedHook ? 0 : 2,
     2,
-    repeatedHook ? "Opening hook repeats recent archive language." : "Opening hook is distinct from recent archive hooks.",
+    hookWindow === 0
+      ? "Opening hook freshness check is disabled by cooldown policy."
+      : repeatedHook ? "Opening hook repeats recent archive language." : "Opening hook is distinct from recent archive hooks.",
   ));
 
   const recentFormatMatch3 = hasRecentMatch(
@@ -811,9 +819,10 @@ function scoreEditorialCritic(validatedPlan, context) {
     hushlineMatches > 0 ? "Copy is tied to Hush Line or a concrete Hush Line surface." : "Copy could apply to a generic product.",
   ));
 
-  const repeatedCta = currentCtaPattern !== "none" && hasRecentMatch(
+  const ctaWindow = cooldownWindow(context.cooldown_policy?.cta_posts, DEFAULT_COOLDOWN_POLICY.cta_posts);
+  const repeatedCta = ctaWindow > 0 && currentCtaPattern !== "none" && hasRecentMatch(
     archiveHistory,
-    Math.max(1, context.cooldown_policy?.cta_posts || DEFAULT_COOLDOWN_POLICY.cta_posts),
+    ctaWindow,
     (entry) => archiveEntryCtaPattern(entry) === currentCtaPattern,
   );
   criteria.push(scoreCriterion(
@@ -821,7 +830,9 @@ function scoreEditorialCritic(validatedPlan, context) {
     "CTA freshness",
     repeatedCta ? 0 : 2,
     2,
-    repeatedCta ? "CTA pattern repeats a recent archive CTA." : "CTA pattern is fresh against the configured CTA cooldown.",
+    ctaWindow === 0
+      ? "CTA freshness check is disabled by cooldown policy."
+      : repeatedCta ? "CTA pattern repeats a recent archive CTA." : "CTA pattern is fresh against the configured CTA cooldown.",
   ));
 
   const safetyRisks = SAFETY_RISK_PATTERNS
