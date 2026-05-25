@@ -1331,21 +1331,21 @@ function buildDailyContext(args) {
     archiveHistory,
     cooldownPolicy,
   );
+  const eligibleCandidates = cooldownEligibleCandidates.filter(
+    (candidate) => !excludedScreenshots.has(candidate.file),
+  );
   const editorialIntentSelection = chooseSupportedEditorialIntent(
     archiveHistory,
     args.date,
     contentFormatSelection,
-    cooldownEligibleCandidates,
+    eligibleCandidates,
   );
   const rankedCandidates = rankCandidates(
     editorialIntentSelection.supporting_candidates,
     archiveHistory,
     templateNames,
   );
-  const eligibleCandidates = rankedCandidates.filter(
-    (candidate) => !excludedScreenshots.has(candidate.file),
-  );
-  const selectedCandidate = eligibleCandidates[0] || null;
+  const selectedCandidate = rankedCandidates[0] || null;
 
   if (!selectedCandidate) {
     throw new Error(`No eligible screenshot candidates remain for ${args.date}.`);

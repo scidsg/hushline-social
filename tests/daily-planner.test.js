@@ -307,6 +307,34 @@ test("chooseSupportedEditorialIntent skips unsupported intents before selecting 
   assert.ok(selection.rejected_intents.some((intent) => intent.audience_scope === "admin-only"));
 });
 
+test("chooseSupportedEditorialIntent can fall through after excluded screenshots are removed", () => {
+  const excludedScreenshots = new Set(["admin-settings-branding-mobile-light-fold.png"]);
+  const candidates = [
+    {
+      audience_scope: "admin-only",
+      content_key: "auth-admin-settings-branding",
+      file: "admin-settings-branding-mobile-light-fold.png",
+    },
+    {
+      audience_scope: "recipient-shared",
+      content_key: "auth-artvandelay-settings-notifications",
+      file: "settings-notifications-mobile-light-fold.png",
+    },
+  ].filter((candidate) => !excludedScreenshots.has(candidate.file));
+  const selection = chooseSupportedEditorialIntent(
+    [],
+    "2026-05-21",
+    {
+      selected_format: CONTENT_FORMATS.find((format) => format.id === "feature_benefit"),
+    },
+    candidates,
+  );
+
+  assert.equal(selection.intent.audience_scope, "recipient-shared");
+  assert.ok(selection.rejected_intents.some((intent) => intent.audience_scope === "admin-only"));
+  assert.ok(selection.rejected_intents.some((intent) => intent.audience_scope === "public"));
+});
+
 test("chooseContentFormat rotates away from formats already used this week", () => {
   const selection = chooseContentFormat(
     [
