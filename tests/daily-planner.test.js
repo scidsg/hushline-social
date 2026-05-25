@@ -4,9 +4,13 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const {
+  CONTENT_FORMATS,
   DAILY_POSTS_ROOT,
   buildCooldownPolicy,
+  buildPromptPayload,
+  chooseContentFormat,
   chooseTemplateName,
+  contentFormatIds,
   filterCandidatesForArchiveHistory,
   filterCandidatesForCooldowns,
   filterCandidatesForWeeklyCaps,
@@ -37,6 +41,15 @@ function buildContext(overrides = {}) {
       },
     ],
     date: "2026-03-20",
+    content_format_selection: {
+      available_formats: CONTENT_FORMATS,
+      selected_format: CONTENT_FORMATS.find((format) => format.id === "feature_benefit"),
+      weekly_cap: 1,
+      weekly_usage: {
+        counts: {},
+        week: "2026-W12",
+      },
+    },
     cooldown_policy: buildCooldownPolicy({
       cta_posts: 0,
       hook_posts: 0,
@@ -64,6 +77,7 @@ function buildModelPlan(overrides = {}) {
     summary: "Public directory trust signals",
     post: {
       content_key: "guest-directory-verified",
+      content_format: "feature_benefit",
       headline: "Let sources verify a recipient before they send a tip",
       image_alt_text: "A social graphic showing the verified directory view.",
       planned_date: "2026-03-20",
@@ -189,12 +203,136 @@ test("validatePlan trims social copy and enriches the selected candidate metadat
   const validated = validatePlan(buildModelPlan(), buildContext());
 
   assert.equal(validated.post.social.linkedin, "Sources can verify trust signals before sending a tip. Learn more at https://hushline.app/.");
+  assert.equal(validated.post.content_format, "feature_benefit");
   assert.equal(validated.post.screenshot_file, "guest/guest-directory-verified-desktop-light-fold.png");
   assert.equal(validated.post.audience_scope, "public");
   assert.equal(validated.post.concept_key, "directory-verified");
   assert.equal(validated.post.template_name, "hushline-daily-desktop-template.html");
   assert.equal(validated.post.topic_family, "directory");
   assert.deepEqual(validated.post.matched_pull_requests, [{ number: 1765, title: "Fix guest screenshot" }]);
+});
+
+test("contentFormatIds includes the required editorial format taxonomy", () => {
+  assert.deepEqual(contentFormatIds(), [
+    "source_safety_checklist",
+    "recipient_playbook",
+    "iso_37002_principle",
+    "mistake_to_avoid",
+    "myth_vs_reality",
+    "workflow_teardown",
+    "design_principle",
+    "feature_benefit",
+  ]);
+});
+
+test("chooseContentFormat rotates away from formats already used this week", () => {
+  const selection = chooseContentFormat(
+    [
+      {
+        archive_key: "2026-05-18",
+        content_format: "source_safety_checklist",
+        date: "2026-05-18",
+      },
+      {
+        archive_key: "2026-05-19",
+        content_format: "recipient_playbook",
+        date: "2026-05-19",
+      },
+    ],
+    "2026-05-20",
+  );
+
+  assert.equal(selection.weekly_usage.week, "2026-W21");
+  assert.notEqual(selection.selected_format.id, "source_safety_checklist");
+  assert.notEqual(selection.selected_format.id, "recipient_playbook");
+  assert.equal(selection.weekly_cap, 1);
+});
+
+test("chooseContentFormat fails when the weekly format rotation is exhausted", () => {
+  assert.throws(
+    () => chooseContentFormat(
+      CONTENT_FORMATS.map((format, index) => ({
+        archive_key: `2026-05-${18 + index}`,
+        content_format: format.id,
+        date: "2026-05-18",
+      })),
+      "2026-05-20",
+    ),
+    /No eligible content formats remain/,
+  );
+});
+
+test("buildPromptPayload includes selected editorial format guidance", () => {
+  const context = buildContext({
+    audience_docs: [],
+    content_format_selection: {
+      available_formats: CONTENT_FORMATS,
+      selected_format: CONTENT_FORMATS.find((format) => format.id === "mistake_to_avoid"),
+      weekly_cap: 1,
+      weekly_usage: {
+        counts: {},
+        week: "2026-W12",
+      },
+    },
+    hushline_agent_context: "",
+    hushline_app_voice_guidance: [],
+    recent_archive_history: [],
+    screenshot_captured_at: "2026-03-20T00:00:00Z",
+    screenshot_release: "test-release",
+    week: "2026-W12",
+  });
+  const payload = buildPromptPayload(context);
+
+  assert.match(payload.user, /Required content format: mistake_to_avoid/);
+  assert.match(payload.user, /Mistake to avoid \(mistake_to_avoid\)/);
+  assert.match(payload.user, /Use exactly the required content format/);
+});
+
+test("validatePlan rejects a missing or mismatched content format", () => {
+  assert.throws(
+    () => validatePlan(
+      buildModelPlan({
+        post: {
+          ...buildModelPlan().post,
+          content_format: "workflow_teardown",
+        },
+      }),
+      buildContext(),
+    ),
+    /expected feature_benefit/,
+  );
+
+  assert.throws(
+    () => validatePlan(
+      buildModelPlan({
+        post: {
+          ...buildModelPlan().post,
+          content_format: "unknown_format",
+        },
+      }),
+      buildContext({
+        content_format_selection: null,
+      }),
+    ),
+    /Unknown content format/,
+  );
+});
+
+test("validatePlan rejects a content format that already reached the weekly cap", () => {
+  const context = buildContext({
+    recent_archive_history: [
+      {
+        archive_key: "2026-03-19",
+        content_format: "feature_benefit",
+        date: "2026-03-19",
+      },
+    ],
+  });
+
+  assert.throws(
+    () => validatePlan(buildModelPlan(), context),
+    /already reached the weekly cap/,
+  );
 });
 
 test("chooseTemplateName prefers the least-used daily template from the prior month", () => {
@@ -756,6 +894,7 @@ test("validatePlan allows a distinct directory message that only shares generic 
       planned_date: "2026-04-14",
       screenshot_file: "guest/guest-directory-attorney-adam-j-levitt-mobile-light-fold.png",
       content_key: "guest-directory-attorney-adam-j-levitt",
+      content_format: "feature_benefit",
       headline: "Review a whistleblower law listing before you reach out",
       subtext: "This public attorney listing shows bar-registration details, location, and firm links so a source can judge whether a law office fits the disclosure they need to make.",
       image_alt_text: "A portrait Hush Line social graphic built from a light-mode mobile public directory screen. It shows an attorney listing with a law firm name, location, practice description, and links to the lawyer's site and source record.",

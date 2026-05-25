@@ -152,6 +152,65 @@ const HUSHLINE_APP_VOICE_GUIDANCE = [
   "Keep the message grounded in the people Hush Line serves, such as sources, journalists, lawyers, educators, developers, organizers, and trusted recipients when the screenshot supports that audience.",
   "Prefer concrete platform framing from hushline.app like no app download or account required for sources, a public directory that helps people find the right recipient, and browser-based tools that support real review workflows.",
 ];
+const CONTENT_FORMAT_WEEKLY_CAP = 1;
+const CONTENT_FORMATS = Object.freeze([
+  {
+    cta_guidance: "Close with a next step that matches the checklist, not a generic product slogan.",
+    id: "source_safety_checklist",
+    label: "Source safety checklist",
+    copy_guidance: "Write as a short practical checklist for a person deciding whether and how to make first contact safely.",
+    alt_text_guidance: "Describe the UI and the checklist context the asset is illustrating.",
+  },
+  {
+    cta_guidance: "Close with a recipient-oriented action, such as setting up or reviewing the relevant workflow.",
+    id: "recipient_playbook",
+    label: "Recipient playbook",
+    copy_guidance: "Write like an operational playbook for recipients or staff who need to manage sensitive intake repeatedly.",
+    alt_text_guidance: "Describe the screen as part of a recipient workflow, including the visible controls or state.",
+  },
+  {
+    cta_guidance: "Close by connecting the principle to a concrete Hush Line action or learning path.",
+    id: "iso_37002_principle",
+    label: "ISO 37002 principle",
+    copy_guidance: "Tie the screenshot to one plain-English whistleblowing-system principle without sounding academic.",
+    alt_text_guidance: "Describe the asset and the principle it is demonstrating in accessible language.",
+  },
+  {
+    cta_guidance: "Close with how to avoid the mistake or where to learn the safer path.",
+    id: "mistake_to_avoid",
+    label: "Mistake to avoid",
+    copy_guidance: "Open with a realistic mistake a source, recipient, or admin could make, then explain the safer workflow.",
+    alt_text_guidance: "Describe the visual as an example of the safer workflow that avoids the mistake.",
+  },
+  {
+    cta_guidance: "Close by inviting the reader to use the corrected understanding in Hush Line.",
+    id: "myth_vs_reality",
+    label: "Myth versus reality",
+    copy_guidance: "Contrast one common misconception with a concrete reality shown or supported by the screenshot.",
+    alt_text_guidance: "Describe the UI and the misconception/reality comparison the graphic supports.",
+  },
+  {
+    cta_guidance: "Close with a workflow-specific next step instead of a broad sign-up line when possible.",
+    id: "workflow_teardown",
+    label: "Workflow teardown",
+    copy_guidance: "Walk through one workflow moment: what the user is trying to decide, what the UI shows, and what happens next.",
+    alt_text_guidance: "Describe the relevant UI elements in the order a user would encounter them.",
+  },
+  {
+    cta_guidance: "Close by linking the design choice to a concrete reader benefit.",
+    id: "design_principle",
+    label: "Design principle",
+    copy_guidance: "Explain one product design choice and why it matters for privacy, trust, accessibility, or operational safety.",
+    alt_text_guidance: "Describe the visible design choice and the user-facing context.",
+  },
+  {
+    cta_guidance: "Close with the most relevant product action for the audience and screen.",
+    id: "feature_benefit",
+    label: "Feature benefit",
+    copy_guidance: "Explain the feature through the specific user benefit it creates, avoiding release-note language.",
+    alt_text_guidance: "Describe the final social asset and the feature being shown.",
+  },
+]);
 
 function todayString() {
   const now = new Date();
@@ -195,6 +254,14 @@ function inferThemeFromEntry(entry) {
   }
 
   return null;
+}
+
+function getContentFormat(formatId) {
+  return CONTENT_FORMATS.find((format) => format.id === formatId) || null;
+}
+
+function contentFormatIds() {
+  return CONTENT_FORMATS.map((format) => format.id);
 }
 
 function normalizeConceptKey(contentKey) {
@@ -638,6 +705,100 @@ function summarizeWeeklyUsage(archiveHistory, plannedDate) {
   });
 }
 
+function summarizeWeeklyContentFormatUsage(archiveHistory, plannedDate) {
+  const week = formatIsoWeek(parseLocalDate(plannedDate));
+
+  return (archiveHistory || []).reduce((summary, entry) => {
+    if (!entry.date || formatIsoWeek(parseLocalDate(entry.date)) !== week || !entry.content_format) {
+      return summary;
+    }
+
+    summary.counts[entry.content_format] = (summary.counts[entry.content_format] || 0) + 1;
+    return summary;
+  }, {
+    counts: {},
+    week,
+  });
+}
+
+function lastContentFormatUseOffset(archiveHistory, formatId) {
+  for (let index = archiveHistory.length - 1; index >= 0; index -= 1) {
+    if (archiveHistory[index].content_format === formatId) {
+      return archiveHistory.length - index;
+    }
+  }
+
+  return Number.POSITIVE_INFINITY;
+}
+
+function chooseContentFormat(archiveHistory, plannedDate, options = {}) {
+  const weeklyCap = options.weeklyCap || CONTENT_FORMAT_WEEKLY_CAP;
+  const weeklyUsage = summarizeWeeklyContentFormatUsage(archiveHistory, plannedDate);
+  let candidates = CONTENT_FORMATS.filter((format) => {
+    return (weeklyUsage.counts[format.id] || 0) < weeklyCap;
+  });
+
+  if (candidates.length === 0) {
+    throw new Error(
+      `No eligible content formats remain for ${weeklyUsage.week}; each format is capped at ${weeklyCap} use per week.`,
+    );
+  }
+
+  const recentHistory = (archiveHistory || []).slice(-30);
+  candidates = candidates
+    .map((format) => ({
+      ...format,
+      last_used_offset: lastContentFormatUseOffset(archiveHistory || [], format.id),
+      recent_count: recentHistory.filter((entry) => entry.content_format === format.id).length,
+      weekly_count: weeklyUsage.counts[format.id] || 0,
+    }))
+    .sort((left, right) => {
+      return (
+        left.weekly_count - right.weekly_count ||
+        left.recent_count - right.recent_count ||
+        right.last_used_offset - left.last_used_offset ||
+        left.id.localeCompare(right.id)
+      );
+    });
+
+  return {
+    available_formats: CONTENT_FORMATS,
+    selected_format: getContentFormat(candidates[0].id),
+    weekly_cap: weeklyCap,
+    weekly_usage: weeklyUsage,
+  };
+}
+
+function validateContentFormatSelection(contentFormat, context) {
+  const selectedFormat = context.content_format_selection?.selected_format;
+  const format = getContentFormat(contentFormat);
+
+  if (!format) {
+    throw new Error(`Unknown content format: ${contentFormat || "missing"}.`);
+  }
+
+  if (selectedFormat && contentFormat !== selectedFormat.id) {
+    throw new Error(
+      `Model returned content_format ${contentFormat}, expected ${selectedFormat.id}.`,
+    );
+  }
+
+  const weeklyCap = context.content_format_selection?.weekly_cap || CONTENT_FORMAT_WEEKLY_CAP;
+  const weeklyUsage = summarizeWeeklyContentFormatUsage(
+    context.recent_archive_history || [],
+    context.date,
+  );
+  const currentCount = weeklyUsage.counts[contentFormat] || 0;
+
+  if (currentCount >= weeklyCap) {
+    throw new Error(
+      `Content format ${contentFormat} already reached the weekly cap for ${weeklyUsage.week}.`,
+    );
+  }
+
+  return format;
+}
+
 function recentArchiveEntries(archiveHistory, count) {
   if (!count) {
     return [];
@@ -695,6 +856,7 @@ function loadArchiveHistory(currentArchiveKey) {
         archive_key: archiveKey,
         bluesky_copy: social.bluesky || "",
         concept_key: (post && (post.concept_key || normalizeConceptKey(post.content_key))) || "",
+        content_format: (post && post.content_format) || "",
         content_key: (post && post.content_key) || "",
         cta_pattern: classifyCta(social.linkedin || postCopy),
         date: archiveKeyDate(archiveKey),
@@ -1030,6 +1192,7 @@ function buildDailyContext(args) {
     week,
   });
   const archiveHistory = loadArchiveHistory(args.archiveKey);
+  const contentFormatSelection = chooseContentFormat(archiveHistory, args.date);
   const templateNames = listDailyTemplateNames();
   const variedCandidates = filterCandidatesForArchiveHistory(
     planningContext.candidate_screenshots,
@@ -1073,6 +1236,7 @@ function buildDailyContext(args) {
   return {
     audience_docs: planningContext.audience_docs,
     candidate_screenshots: selectedCandidates,
+    content_format_selection: contentFormatSelection,
     cooldown_policy: cooldownPolicy,
     daily_posts_root: path.relative(REPO_ROOT, DAILY_POSTS_ROOT),
     date: args.date,
@@ -1110,6 +1274,7 @@ function buildPromptPayload(context) {
         .map((entry) => {
           return [
             `${entry.archive_key}: ${entry.content_key} [${entry.topic_family}] (${entry.screenshot_file})`,
+            `  Format: ${entry.content_format || "unknown"}`,
             `  Template: ${entry.template_name || "unknown"}`,
             `  Headline: ${entry.headline || "n/a"}`,
             `  Subtext: ${entry.subtext || "n/a"}`,
@@ -1140,6 +1305,7 @@ function buildPromptPayload(context) {
       `Screenshot release from local latest folder: ${context.screenshot_release}`,
       `Screenshots captured at: ${context.screenshot_captured_at}`,
       `Hard cooldown policy: ${JSON.stringify(context.cooldown_policy || DEFAULT_COOLDOWN_POLICY)}`,
+      `Required content format: ${context.content_format_selection?.selected_format?.id || "feature_benefit"}`,
       "",
       "Current hushline.app voice guidance:",
       voiceGuidance,
@@ -1153,12 +1319,27 @@ function buildPromptPayload(context) {
       "Recent archived daily posts to avoid repeating:",
       archiveHistory,
       "",
+      "Available editorial formats:",
+      JSON.stringify(context.content_format_selection?.available_formats || CONTENT_FORMATS, null, 2),
+      "",
+      "Selected format guidance:",
+      context.content_format_selection?.selected_format
+        ? [
+            `${context.content_format_selection.selected_format.label} (${context.content_format_selection.selected_format.id})`,
+            `Copy: ${context.content_format_selection.selected_format.copy_guidance}`,
+            `CTA: ${context.content_format_selection.selected_format.cta_guidance}`,
+            `Alt text: ${context.content_format_selection.selected_format.alt_text_guidance}`,
+          ].join("\n")
+        : "Use feature_benefit guidance.",
+      "",
       "Instructions:",
       "- Choose exactly one screenshot from the provided candidates.",
+      "- Use exactly the required content format and set `content_format` to that format id.",
       `- Check the prior ${ARCHIVE_LOOKBACK_DAYS} days of archived daily posts before you decide on the messaging angle.`,
       "- The candidates were preselected from a ranked pool after excluding recent repeats of the same screenshot, screen, feature family, and overused template types wherever possible.",
       "- The candidate shortlist also enforces hard topic-family and concept-key cooldowns unless an explicit manual override is set.",
       "- Opening hooks and CTA patterns are validated against recent archive cooldowns after drafting; choose a fresh hook and closing line.",
+      "- Let the selected editorial format shape the post structure, hook, CTA, and alt text. Do not write another generic screenshot tour.",
       "- Produce exactly one post for the requested date.",
       "- Do not talk about recent releases, recent merges, or product recency unless the prompt explicitly gives you that information.",
       "- Do not repeat a screenshot, feature, or messaging angle that already appeared in the prior month, even if you could retarget it to a different audience.",
@@ -1188,6 +1369,10 @@ function buildResponseSchema(context) {
         additionalProperties: false,
         properties: {
           content_key: {
+            type: "string",
+          },
+          content_format: {
+            enum: contentFormatIds(),
             type: "string",
           },
           headline: {
@@ -1234,6 +1419,7 @@ function buildResponseSchema(context) {
           "planned_date",
           "screenshot_file",
           "content_key",
+          "content_format",
           "headline",
           "subtext",
           "image_alt_text",
@@ -1368,6 +1554,8 @@ function validatePlan(modelPlan, context) {
     );
   }
 
+  validateContentFormatSelection(post.content_format, context);
+
   if (!post.social || typeof post.social !== "object") {
     throw new Error("Post is missing a social copy object.");
   }
@@ -1470,6 +1658,7 @@ function validatePlan(modelPlan, context) {
       ...post,
       audience_scope: candidate.audience_scope,
       concept_key: candidate.concept_key,
+      content_format: post.content_format,
       copy_brief: candidate.copy_brief,
       matched_pull_requests: candidate.matched_pull_requests,
       screen_key: candidate.screen_key || inferScreenKey(candidate),
@@ -1539,16 +1728,22 @@ async function planDay(args) {
 
 module.exports = {
   DAILY_POSTS_ROOT,
+  CONTENT_FORMATS,
+  CONTENT_FORMAT_WEEKLY_CAP,
   DEFAULT_COOLDOWN_POLICY,
   buildDailyContext,
+  buildPromptPayload,
   buildCooldownPolicy,
   candidateRotationIdentity,
   candidateCooldownViolations,
+  chooseContentFormat,
   chooseTemplateName,
+  contentFormatIds,
   filterCandidatesForArchiveHistory,
   filterCandidatesForCooldowns,
   filterCandidatesForWeeklyCaps,
   filterCandidatesForTemplateName,
+  getContentFormat,
   inferTopicFamily,
   loadSavedDailyContext,
   parseArgs,

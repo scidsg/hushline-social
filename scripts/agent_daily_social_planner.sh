@@ -271,7 +271,10 @@ is_retryable_validation_failure() {
     [[ "$LAST_VALIDATION_OUTPUT" == *"overlaps too heavily with recent archive"* ]] ||
     [[ "$LAST_VALIDATION_OUTPUT" == *"duplicates recent archive headline"* ]] ||
     [[ "$LAST_VALIDATION_OUTPUT" == *"Weekly admin-only cap already reached"* ]] ||
-    [[ "$LAST_VALIDATION_OUTPUT" == *"Weekly dark-mode cap already reached"* ]]
+    [[ "$LAST_VALIDATION_OUTPUT" == *"Weekly dark-mode cap already reached"* ]] ||
+    [[ "$LAST_VALIDATION_OUTPUT" == *"Model returned content_format"* ]] ||
+    [[ "$LAST_VALIDATION_OUTPUT" == *"Unknown content format"* ]] ||
+    [[ "$LAST_VALIDATION_OUTPUT" == *"already reached the weekly cap"* ]]
 }
 
 array_contains() {

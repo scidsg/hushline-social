@@ -102,3 +102,22 @@ test("daily repo update returns failure when either checkout update fails", () =
   assert.match(output, /hushline-screenshots/);
   assert.match(output, /rc:1/);
 });
+
+test("daily planner treats content format validation failures as retryable", () => {
+  const testScript = [
+    "set -euo pipefail",
+    `source ${shellQuote(plannerScriptPath)}`,
+    "LAST_VALIDATION_OUTPUT='Error: Model returned content_format workflow_teardown, expected feature_benefit.'",
+    "is_retryable_validation_failure",
+    "LAST_VALIDATION_OUTPUT='Error: Unknown content format: missing.'",
+    "is_retryable_validation_failure",
+    "LAST_VALIDATION_OUTPUT='Error: Content format feature_benefit already reached the weekly cap for 2026-W12.'",
+    "is_retryable_validation_failure",
+    "",
+  ].join("\n");
+
+  assert.doesNotThrow(() => execFileSync("bash", ["-c", testScript], {
+    cwd: REPO_ROOT,
+    encoding: "utf8",
+  }));
+});
