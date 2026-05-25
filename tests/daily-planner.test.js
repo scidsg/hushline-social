@@ -5,8 +5,10 @@ const path = require("node:path");
 
 const {
   DAILY_POSTS_ROOT,
+  buildCooldownPolicy,
   chooseTemplateName,
   filterCandidatesForArchiveHistory,
+  filterCandidatesForCooldowns,
   filterCandidatesForWeeklyCaps,
   filterCandidatesForTemplateName,
   inferTopicFamily,
@@ -35,6 +37,10 @@ function buildContext(overrides = {}) {
       },
     ],
     date: "2026-03-20",
+    cooldown_policy: buildCooldownPolicy({
+      cta_posts: 0,
+      hook_posts: 0,
+    }),
     slot: {
       planned_date: "2026-03-20",
       slot: "friday",
@@ -104,6 +110,30 @@ test("parseArgs collects unique excluded screenshots", () => {
     "artvandelay/auth-artvandelay-settings-notifications-mobile-light-fold.png",
     "artvandelay/auth-artvandelay-tools-vision-mobile-light-fold.png",
   ]);
+});
+
+test("parseArgs accepts explicit cooldown windows and override", () => {
+  const args = parseArgs([
+    "--date",
+    "2026-03-20",
+    "--topic-family-cooldown-posts",
+    "7",
+    "--concept-key-cooldown-posts",
+    "30",
+    "--hook-cooldown-posts",
+    "14",
+    "--cta-cooldown-posts",
+    "2",
+    "--allow-cooldown-override",
+  ]);
+
+  assert.deepEqual(args.cooldownPolicy, {
+    allow_override: true,
+    concept_key_posts: 30,
+    cta_posts: 2,
+    hook_posts: 14,
+    topic_family_posts: 7,
+  });
 });
 
 test("parseArgs rejects archive keys outside the requested planned date", () => {
@@ -422,8 +452,170 @@ test("filterCandidatesForWeeklyCaps blocks a second admin or dark post in the sa
   );
 });
 
+test("filterCandidatesForCooldowns blocks recent topic and concept repeats", () => {
+  const archiveHistory = [
+    {
+      archive_key: "2026-04-01",
+      concept_key: "settings-notifications",
+      topic_family: "notifications",
+    },
+    {
+      archive_key: "2026-04-02",
+      concept_key: "directory-verified",
+      topic_family: "directory",
+    },
+  ];
+  const candidates = [
+    {
+      concept_key: "directory-verified",
+      content_key: "guest-directory-verified",
+      file: "guest-directory-verified-desktop-light-fold.png",
+      topic_family: "directory",
+    },
+    {
+      concept_key: "settings-encryption",
+      content_key: "auth-artvandelay-settings-encryption",
+      file: "settings-encryption-desktop-light-fold.png",
+      topic_family: "encryption",
+    },
+  ];
+
+  const filtered = filterCandidatesForCooldowns(
+    candidates,
+    archiveHistory,
+    buildCooldownPolicy({
+      concept_key_posts: 20,
+      topic_family_posts: 5,
+    }),
+  );
+
+  assert.deepEqual(
+    filtered.map((candidate) => candidate.content_key),
+    ["auth-artvandelay-settings-encryption"],
+  );
+});
+
+test("filterCandidatesForCooldowns fails when every candidate violates cooldowns", () => {
+  assert.throws(
+    () => filterCandidatesForCooldowns(
+      [
+        {
+          concept_key: "directory-verified",
+          content_key: "guest-directory-verified",
+          file: "guest-directory-verified-desktop-light-fold.png",
+          topic_family: "directory",
+        },
+      ],
+      [
+        {
+          archive_key: "2026-04-02",
+          concept_key: "directory-verified",
+          topic_family: "directory",
+        },
+      ],
+      buildCooldownPolicy({
+        concept_key_posts: 20,
+        topic_family_posts: 5,
+      }),
+    ),
+    /No eligible screenshot candidates remain after hard cooldowns/,
+  );
+});
+
+test("filterCandidatesForCooldowns preserves blocked candidates with an explicit override", () => {
+  const filtered = filterCandidatesForCooldowns(
+    [
+      {
+        concept_key: "directory-verified",
+        content_key: "guest-directory-verified",
+        file: "guest-directory-verified-desktop-light-fold.png",
+        topic_family: "directory",
+      },
+    ],
+    [
+      {
+        archive_key: "2026-04-02",
+        concept_key: "directory-verified",
+        topic_family: "directory",
+      },
+    ],
+    buildCooldownPolicy({
+      allow_override: true,
+      concept_key_posts: 20,
+      topic_family_posts: 5,
+    }),
+  );
+
+  assert.equal(filtered.length, 1);
+  assert.equal(filtered[0].cooldown_violations.length, 2);
+});
+
+test("validatePlan rejects repeated hooks and CTA patterns inside cooldown windows", () => {
+  const context = buildContext({
+    cooldown_policy: buildCooldownPolicy({
+      concept_key_posts: 0,
+      cta_posts: 2,
+      hook_posts: 5,
+      topic_family_posts: 0,
+    }),
+    recent_archive_history: [
+      {
+        archive_key: "2026-03-18",
+        cta_pattern: "learn_more",
+        hook_pattern: "sources can verify trust signals before sending a tip",
+        linkedin_copy: "Sources can verify trust signals before sending a tip. Learn more at https://hushline.app/.",
+      },
+    ],
+  });
+
+  assert.throws(
+    () => validatePlan(buildModelPlan(), context),
+    /repeats 2026-03-18 within the 5-post hook cooldown/,
+  );
+});
+
+test("validatePlan rejects a repeated CTA when the hook is fresh", () => {
+  const context = buildContext({
+    cooldown_policy: buildCooldownPolicy({
+      concept_key_posts: 0,
+      cta_posts: 2,
+      hook_posts: 5,
+      topic_family_posts: 0,
+    }),
+    recent_archive_history: [
+      {
+        archive_key: "2026-03-18",
+        cta_pattern: "learn_more",
+        hook_pattern: "different opening line",
+        linkedin_copy: "Different opening line. Learn more at https://hushline.app/.",
+      },
+    ],
+  });
+  const plan = buildModelPlan({
+    post: {
+      ...buildModelPlan().post,
+      social: {
+        bluesky: "Fresh public copy. Learn more at https://hushline.app/.",
+        linkedin: "Fresh public copy.\n\nLearn more at https://hushline.app/.",
+        mastodon: "Fresh public copy. Learn more at https://hushline.app/.",
+      },
+    },
+  });
+
+  assert.throws(
+    () => validatePlan(plan, context),
+    /repeats 2026-03-18 within the 2-post CTA cooldown/,
+  );
+});
+
 test("validatePlan rejects messaging that duplicates a recent archive angle", () => {
   const context = buildContext({
+    cooldown_policy: buildCooldownPolicy({
+      concept_key_posts: 0,
+      cta_posts: 0,
+      hook_posts: 0,
+      topic_family_posts: 0,
+    }),
     recent_archive_history: [
       {
         archive_key: "2026-03-19",
@@ -509,6 +701,9 @@ test("validatePlan allows an older same-topic archive outside the recent-feature
 
 test("validatePlan allows a distinct directory message that only shares generic public-directory wording", () => {
   const context = buildContext({
+    cooldown_policy: buildCooldownPolicy({
+      allow_override: true,
+    }),
     candidate_screenshots: [
       {
         absolute_path: "/tmp/guest-directory-attorney-adam-j-levitt-mobile-light-fold.png",

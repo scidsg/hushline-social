@@ -25,6 +25,13 @@ const {
 const DAILY_POSTS_ROOT = path.join(REPO_ROOT, "previous-posts");
 const ARCHIVE_LOOKBACK_DAYS = 90;
 const FEATURE_REPEAT_HARD_LOOKBACK_POSTS = 5;
+const DEFAULT_COOLDOWN_POLICY = {
+  allow_override: false,
+  concept_key_posts: 20,
+  cta_posts: 1,
+  hook_posts: 30,
+  topic_family_posts: 5,
+};
 const ADMIN_COPY_PATTERNS = [
   /\badmin\b/i,
   /\badmins\b/i,
@@ -268,14 +275,59 @@ function inferTopicFamily(item) {
   return normalizeConceptKey(item.content_key || item.contentKey);
 }
 
+function parseCooldownCount(value, name) {
+  const parsed = Number(value);
+
+  if (!Number.isInteger(parsed) || parsed < 0 || parsed > ARCHIVE_LOOKBACK_DAYS) {
+    throw new Error(`\`${name}\` must be an integer from 0 to ${ARCHIVE_LOOKBACK_DAYS}.`);
+  }
+
+  return parsed;
+}
+
+function envFlag(name) {
+  return ["1", "true", "yes"].includes(String(process.env[name] || "").toLowerCase());
+}
+
+function buildCooldownPolicy(overrides = {}) {
+  return {
+    allow_override: Boolean(overrides.allow_override || envFlag("HUSHLINE_SOCIAL_ALLOW_COOLDOWN_OVERRIDE")),
+    concept_key_posts: overrides.concept_key_posts ?? (
+      process.env.HUSHLINE_SOCIAL_CONCEPT_KEY_COOLDOWN_POSTS
+        ? parseCooldownCount(process.env.HUSHLINE_SOCIAL_CONCEPT_KEY_COOLDOWN_POSTS, "HUSHLINE_SOCIAL_CONCEPT_KEY_COOLDOWN_POSTS")
+        : DEFAULT_COOLDOWN_POLICY.concept_key_posts
+    ),
+    cta_posts: overrides.cta_posts ?? (
+      process.env.HUSHLINE_SOCIAL_CTA_COOLDOWN_POSTS
+        ? parseCooldownCount(process.env.HUSHLINE_SOCIAL_CTA_COOLDOWN_POSTS, "HUSHLINE_SOCIAL_CTA_COOLDOWN_POSTS")
+        : DEFAULT_COOLDOWN_POLICY.cta_posts
+    ),
+    hook_posts: overrides.hook_posts ?? (
+      process.env.HUSHLINE_SOCIAL_HOOK_COOLDOWN_POSTS
+        ? parseCooldownCount(process.env.HUSHLINE_SOCIAL_HOOK_COOLDOWN_POSTS, "HUSHLINE_SOCIAL_HOOK_COOLDOWN_POSTS")
+        : DEFAULT_COOLDOWN_POLICY.hook_posts
+    ),
+    topic_family_posts: overrides.topic_family_posts ?? (
+      process.env.HUSHLINE_SOCIAL_TOPIC_FAMILY_COOLDOWN_POSTS
+        ? parseCooldownCount(process.env.HUSHLINE_SOCIAL_TOPIC_FAMILY_COOLDOWN_POSTS, "HUSHLINE_SOCIAL_TOPIC_FAMILY_COOLDOWN_POSTS")
+        : DEFAULT_COOLDOWN_POLICY.topic_family_posts
+    ),
+  };
+}
+
 function parseArgs(argv) {
   const args = {
+    allowCooldownOverride: false,
     archiveKey: null,
     candidateCount: 12,
+    conceptKeyCooldownPosts: null,
+    ctaCooldownPosts: null,
     darkRatio: 0.2,
     date: todayString(),
     excludeScreenshots: [],
+    hookCooldownPosts: null,
     noRender: false,
+    topicFamilyCooldownPosts: null,
   };
 
   for (let index = 0; index < argv.length; index += 1) {
@@ -296,6 +348,20 @@ function parseArgs(argv) {
     } else if (value === "--exclude-screenshot") {
       args.excludeScreenshots.push(String(argv[index + 1] || ""));
       index += 1;
+    } else if (value === "--topic-family-cooldown-posts") {
+      args.topicFamilyCooldownPosts = parseCooldownCount(argv[index + 1], "--topic-family-cooldown-posts");
+      index += 1;
+    } else if (value === "--concept-key-cooldown-posts") {
+      args.conceptKeyCooldownPosts = parseCooldownCount(argv[index + 1], "--concept-key-cooldown-posts");
+      index += 1;
+    } else if (value === "--hook-cooldown-posts") {
+      args.hookCooldownPosts = parseCooldownCount(argv[index + 1], "--hook-cooldown-posts");
+      index += 1;
+    } else if (value === "--cta-cooldown-posts") {
+      args.ctaCooldownPosts = parseCooldownCount(argv[index + 1], "--cta-cooldown-posts");
+      index += 1;
+    } else if (value === "--allow-cooldown-override") {
+      args.allowCooldownOverride = true;
     } else if (value === "--no-render") {
       args.noRender = true;
     } else if (value === "--help" || value === "-h") {
@@ -329,6 +395,13 @@ function parseArgs(argv) {
   args.excludeScreenshots = Array.from(
     new Set(args.excludeScreenshots.filter((value) => value.length > 0)),
   );
+  args.cooldownPolicy = buildCooldownPolicy({
+    allow_override: args.allowCooldownOverride,
+    concept_key_posts: args.conceptKeyCooldownPosts,
+    cta_posts: args.ctaCooldownPosts,
+    hook_posts: args.hookCooldownPosts,
+    topic_family_posts: args.topicFamilyCooldownPosts,
+  });
 
   return args;
 }
@@ -340,11 +413,13 @@ function printHelp() {
       "  node scripts/plan-day.js --date 2026-03-19",
       "  node scripts/plan-day.js --date 2026-03-19 --candidate-count 12",
       "  node scripts/plan-day.js --date 2026-03-19 --archive-key 2026-03-19-1",
+      "  node scripts/plan-day.js --date 2026-03-19 --topic-family-cooldown-posts 5",
       "",
       "Behavior:",
       "  - Reads audience context from Hush Line docs and ../hushline/AGENTS.md",
       "  - Builds an eligible screenshot pool from the local curated hushline-screenshots set when available",
       "  - Randomly preselects one screenshot after excluding recent repeats of the same screen",
+      "  - Enforces hard cooldowns for repeated topic families, concepts, hooks, and CTA patterns",
       "  - Writes daily planning context and a Codex prompt to previous-posts/<archive-key>",
       "  - Expects one high-value post for the requested day",
       "",
@@ -392,6 +467,66 @@ function normalizeMessageLine(value) {
     .toLowerCase()
     .replaceAll(/[^a-z0-9]+/g, " ")
     .trim();
+}
+
+function splitParagraphs(value) {
+  return String(value || "")
+    .split(/\n\s*\n/)
+    .map((line) => line.replace(/\s+/g, " ").trim())
+    .filter(Boolean);
+}
+
+function firstSentence(value) {
+  const paragraph = splitParagraphs(value)[0] || String(value || "").replace(/\s+/g, " ").trim();
+  const match = paragraph.match(/^(.+?[.!?])(?:\s|$)/);
+  return (match ? match[1] : paragraph).trim();
+}
+
+function lastParagraph(value) {
+  const paragraphs = splitParagraphs(value);
+  return paragraphs[paragraphs.length - 1] || "";
+}
+
+function normalizePhrase(value) {
+  return String(value || "")
+    .toLowerCase()
+    .replace(/https?:\/\/\S+/g, " url ")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+function classifyCta(value) {
+  const cta = normalizePhrase(lastParagraph(value));
+
+  if (!cta) {
+    return "none";
+  }
+
+  if (/^sign up at url/.test(cta)) {
+    return "sign_up";
+  }
+
+  if (/^learn more at url/.test(cta)) {
+    return "learn_more";
+  }
+
+  if (/^to send .+ a tip go to url/.test(cta)) {
+    return "send_tip_go_to";
+  }
+
+  if (/^to send .+ a tip visit url/.test(cta)) {
+    return "send_tip_visit";
+  }
+
+  if (/^send .+ a tip url/.test(cta)) {
+    return "send_tip_direct";
+  }
+
+  if (/\burl\b/.test(cta)) {
+    return "other_url";
+  }
+
+  return cta;
 }
 
 function stableHash(value) {
@@ -503,6 +638,22 @@ function summarizeWeeklyUsage(archiveHistory, plannedDate) {
   });
 }
 
+function recentArchiveEntries(archiveHistory, count) {
+  if (!count) {
+    return [];
+  }
+
+  return (archiveHistory || []).slice(-count);
+}
+
+function archiveEntryHookPattern(entry) {
+  return entry.hook_pattern || normalizePhrase(firstSentence(entry.linkedin_copy || buildMessageText(entry)));
+}
+
+function archiveEntryCtaPattern(entry) {
+  return entry.cta_pattern || classifyCta(entry.linkedin_copy || buildMessageText(entry));
+}
+
 function loadArchiveHistory(currentArchiveKey) {
   if (!fs.existsSync(DAILY_POSTS_ROOT)) {
     return [];
@@ -545,8 +696,10 @@ function loadArchiveHistory(currentArchiveKey) {
         bluesky_copy: social.bluesky || "",
         concept_key: (post && (post.concept_key || normalizeConceptKey(post.content_key))) || "",
         content_key: (post && post.content_key) || "",
+        cta_pattern: classifyCta(social.linkedin || postCopy),
         date: archiveKeyDate(archiveKey),
         headline: (post && post.headline) || "",
+        hook_pattern: normalizePhrase(firstSentence(social.linkedin || postCopy)),
         linkedin_copy: social.linkedin || "",
         mastodon_copy: social.mastodon || "",
         screen_key: (post && (post.screen_key || inferScreenKey(post))) || "",
@@ -727,6 +880,70 @@ function filterCandidatesForWeeklyCaps(candidates, archiveHistory, plannedDate) 
   return filtered;
 }
 
+function candidateCooldownViolations(candidate, archiveHistory, cooldownPolicy = DEFAULT_COOLDOWN_POLICY) {
+  const normalized = {
+    ...candidate,
+    concept_key: candidate.concept_key || normalizeConceptKey(candidate.content_key),
+    topic_family: candidate.topic_family || inferTopicFamily(candidate),
+  };
+  const violations = [];
+
+  if (cooldownPolicy.topic_family_posts > 0 && normalized.topic_family) {
+    const match = recentArchiveEntries(archiveHistory, cooldownPolicy.topic_family_posts)
+      .find((entry) => entry.topic_family === normalized.topic_family);
+
+    if (match) {
+      violations.push({
+        archive_key: match.archive_key,
+        field: "topic_family",
+        value: normalized.topic_family,
+        window_posts: cooldownPolicy.topic_family_posts,
+      });
+    }
+  }
+
+  if (cooldownPolicy.concept_key_posts > 0 && normalized.concept_key) {
+    const match = recentArchiveEntries(archiveHistory, cooldownPolicy.concept_key_posts)
+      .find((entry) => entry.concept_key === normalized.concept_key);
+
+    if (match) {
+      violations.push({
+        archive_key: match.archive_key,
+        field: "concept_key",
+        value: normalized.concept_key,
+        window_posts: cooldownPolicy.concept_key_posts,
+      });
+    }
+  }
+
+  return violations;
+}
+
+function filterCandidatesForCooldowns(candidates, archiveHistory, cooldownPolicy = DEFAULT_COOLDOWN_POLICY) {
+  const evaluated = candidates.map((candidate) => ({
+    ...candidate,
+    cooldown_violations: candidateCooldownViolations(candidate, archiveHistory, cooldownPolicy),
+  }));
+
+  if (cooldownPolicy.allow_override) {
+    return evaluated;
+  }
+
+  const allowed = evaluated.filter((candidate) => candidate.cooldown_violations.length === 0);
+
+  if (allowed.length === 0) {
+    const blockedFields = Array.from(
+      new Set(evaluated.flatMap((candidate) => candidate.cooldown_violations.map((violation) => violation.field))),
+    ).join(", ");
+
+    throw new Error(
+      `No eligible screenshot candidates remain after hard cooldowns (${blockedFields || "none"}). Use --allow-cooldown-override only for a documented manual exception.`,
+    );
+  }
+
+  return allowed;
+}
+
 function chooseBestCandidate(candidates, archiveHistory, templateNames) {
   const ranked = rankCandidates(candidates, archiveHistory, templateNames);
 
@@ -806,6 +1023,7 @@ function buildDailyContext(args) {
   const parsedDate = new Date(`${args.date}T12:00:00`);
   const week = formatIsoWeek(parsedDate);
   const excludedScreenshots = new Set(args.excludeScreenshots || []);
+  const cooldownPolicy = args.cooldownPolicy || buildCooldownPolicy();
   const planningContext = buildPlanningContext({
     candidateCount: Math.max(args.candidateCount * 10, 200),
     darkRatio: args.darkRatio,
@@ -823,8 +1041,13 @@ function buildDailyContext(args) {
     archiveHistory,
     args.date,
   );
-  const rankedCandidates = rankCandidates(
+  const cooldownEligibleCandidates = filterCandidatesForCooldowns(
     weekEligibleCandidates,
+    archiveHistory,
+    cooldownPolicy,
+  );
+  const rankedCandidates = rankCandidates(
+    cooldownEligibleCandidates,
     archiveHistory,
     templateNames,
   );
@@ -850,6 +1073,7 @@ function buildDailyContext(args) {
   return {
     audience_docs: planningContext.audience_docs,
     candidate_screenshots: selectedCandidates,
+    cooldown_policy: cooldownPolicy,
     daily_posts_root: path.relative(REPO_ROOT, DAILY_POSTS_ROOT),
     date: args.date,
     dark_ratio: args.darkRatio,
@@ -915,6 +1139,7 @@ function buildPromptPayload(context) {
       `Target dark-mode share for this run: ${context.dark_ratio}`,
       `Screenshot release from local latest folder: ${context.screenshot_release}`,
       `Screenshots captured at: ${context.screenshot_captured_at}`,
+      `Hard cooldown policy: ${JSON.stringify(context.cooldown_policy || DEFAULT_COOLDOWN_POLICY)}`,
       "",
       "Current hushline.app voice guidance:",
       voiceGuidance,
@@ -932,6 +1157,8 @@ function buildPromptPayload(context) {
       "- Choose exactly one screenshot from the provided candidates.",
       `- Check the prior ${ARCHIVE_LOOKBACK_DAYS} days of archived daily posts before you decide on the messaging angle.`,
       "- The candidates were preselected from a ranked pool after excluding recent repeats of the same screenshot, screen, feature family, and overused template types wherever possible.",
+      "- The candidate shortlist also enforces hard topic-family and concept-key cooldowns unless an explicit manual override is set.",
+      "- Opening hooks and CTA patterns are validated against recent archive cooldowns after drafting; choose a fresh hook and closing line.",
       "- Produce exactly one post for the requested date.",
       "- Do not talk about recent releases, recent merges, or product recency unless the prompt explicitly gives you that information.",
       "- Do not repeat a screenshot, feature, or messaging angle that already appeared in the prior month, even if you could retarget it to a different audience.",
@@ -1106,6 +1333,22 @@ function validatePlan(modelPlan, context) {
     throw new Error(`Model selected screenshot outside shortlist: ${post.screenshot_file}`);
   }
 
+  const cooldownPolicy = context.cooldown_policy || DEFAULT_COOLDOWN_POLICY;
+  if (!cooldownPolicy.allow_override) {
+    const violations = candidateCooldownViolations(
+      candidate,
+      context.recent_archive_history || [],
+      cooldownPolicy,
+    );
+
+    if (violations.length > 0) {
+      const violation = violations[0];
+      throw new Error(
+        `Selected screenshot ${post.screenshot_file} violates ${violation.field} cooldown from ${violation.archive_key}.`,
+      );
+    }
+  }
+
   const weeklyUsage = summarizeWeeklyUsage(context.recent_archive_history || [], context.date);
   if (candidate.audience_scope === "admin-only" && weeklyUsage.admin_count >= 1) {
     throw new Error(
@@ -1158,6 +1401,38 @@ function validatePlan(modelPlan, context) {
     mastodon_copy: post.social.mastodon,
     subtext: post.subtext,
   });
+  const currentHookPattern = normalizePhrase(firstSentence(post.social.linkedin || currentMessageText));
+  const currentCtaPattern = classifyCta(post.social.linkedin || currentMessageText);
+
+  if (!cooldownPolicy.allow_override && cooldownPolicy.hook_posts > 0 && currentHookPattern) {
+    const matchingHook = recentArchiveEntries(
+      context.recent_archive_history || [],
+      cooldownPolicy.hook_posts,
+    ).find((entry) => archiveEntryHookPattern(entry) === currentHookPattern);
+
+    if (matchingHook) {
+      throw new Error(
+        `Post opening hook for ${context.date} repeats ${matchingHook.archive_key} within the ${cooldownPolicy.hook_posts}-post hook cooldown.`,
+      );
+    }
+  }
+
+  if (
+    !cooldownPolicy.allow_override &&
+    cooldownPolicy.cta_posts > 0 &&
+    currentCtaPattern !== "none"
+  ) {
+    const matchingCta = recentArchiveEntries(
+      context.recent_archive_history || [],
+      cooldownPolicy.cta_posts,
+    ).find((entry) => archiveEntryCtaPattern(entry) === currentCtaPattern);
+
+    if (matchingCta) {
+      throw new Error(
+        `Post CTA pattern for ${context.date} repeats ${matchingCta.archive_key} within the ${cooldownPolicy.cta_posts}-post CTA cooldown.`,
+      );
+    }
+  }
 
   for (const entry of context.recent_archive_history || []) {
     const archivedMessageText = buildMessageText(entry);
@@ -1264,10 +1539,14 @@ async function planDay(args) {
 
 module.exports = {
   DAILY_POSTS_ROOT,
+  DEFAULT_COOLDOWN_POLICY,
   buildDailyContext,
+  buildCooldownPolicy,
   candidateRotationIdentity,
+  candidateCooldownViolations,
   chooseTemplateName,
   filterCandidatesForArchiveHistory,
+  filterCandidatesForCooldowns,
   filterCandidatesForWeeklyCaps,
   filterCandidatesForTemplateName,
   inferTopicFamily,
