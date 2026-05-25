@@ -277,6 +277,25 @@ is_retryable_validation_failure() {
     [[ "$LAST_VALIDATION_OUTPUT" == *"already reached the weekly cap"* ]]
 }
 
+is_critic_validation_failure() {
+  [[ "$LAST_VALIDATION_OUTPUT" == *"Editorial critic score"* ]]
+}
+
+build_critic_rewrite_prompt() {
+  local archive_key="${ARCHIVE_KEY:-$DATE}"
+  local source_prompt="$REPO_DIR/previous-posts/$archive_key/prompt.txt"
+
+  {
+    cat "$source_prompt"
+    printf '\n'
+    printf '%s\n' "Rewrite request:"
+    printf '%s\n' "The previous draft failed the editorial critic gate. Rewrite the same daily plan before rendering."
+    printf '%s\n' "Keep the same JSON schema and continue to use one of the shortlisted screenshots."
+    printf '%s\n' "Address the critic rationale below with a fresher hook, clearer audience value, stronger Hush Line relevance, and a non-repetitive CTA."
+    printf '%s\n' "$LAST_VALIDATION_OUTPUT" | sed -n '1,30p'
+  } > "$PROMPT_FILE"
+}
+
 array_contains() {
   local needle="$1"
   shift
@@ -294,6 +313,7 @@ array_contains() {
 run_with_validation_retries() {
   local retry_budget=""
   local selected_screenshot=""
+  local critic_retry_used=0
 
   retry_budget="$(validation_retry_budget)"
 
@@ -304,9 +324,27 @@ run_with_validation_retries() {
     cp "$REPO_DIR/previous-posts/$ARCHIVE_KEY/prompt.txt" "$PROMPT_FILE"
     run_codex_from_prompt
 
-    if validate_and_render; then
-      return 0
-    fi
+    while true; do
+      if validate_and_render; then
+        return 0
+      fi
+
+      if is_critic_validation_failure; then
+        if (( critic_retry_used == 1 )); then
+          echo "Editorial critic gate failed after one rewrite attempt; blocking daily planner before render/publish." >&2
+          return 1
+        fi
+
+        critic_retry_used=1
+        echo "Editorial critic gate requested a rewrite; retrying Codex once with critic feedback."
+        build_critic_rewrite_prompt
+        reset_day_plan_artifacts
+        run_codex_from_prompt
+        continue
+      fi
+
+      break
+    done
 
     if ! is_retryable_validation_failure; then
       return 1
@@ -324,6 +362,7 @@ run_with_validation_retries() {
     fi
 
     EXCLUDED_SCREENSHOTS+=("$selected_screenshot")
+    critic_retry_used=0
     if (( ${#EXCLUDED_SCREENSHOTS[@]} >= retry_budget )); then
       echo "Daily planner exhausted its validation retry budget after excluding ${#EXCLUDED_SCREENSHOTS[@]} screenshots." >&2
       return 1
