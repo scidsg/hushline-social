@@ -7,6 +7,7 @@ const { execFileSync } = require("node:child_process");
 
 const REPO_ROOT = path.resolve(__dirname, "..");
 const plannerScriptPath = path.join(REPO_ROOT, "scripts", "agent_daily_social_planner.sh");
+const plannerWrapperPath = path.join(REPO_ROOT, "scripts", "run_daily_planner_launchd.sh");
 const updateRunReposLibPath = path.join(REPO_ROOT, "scripts", "lib", "update-run-repos.sh");
 
 function shellQuote(value) {
@@ -103,6 +104,11 @@ test("daily repo update returns failure when either checkout update fails", () =
   assert.match(output, /rc:1/);
 });
 
+test("daily planner wrapper stops when repo update fails under transient retry", () => {
+  const wrapper = fs.readFileSync(plannerWrapperPath, "utf8");
+  assert.match(wrapper, /update_repo \|\| return \$\?/);
+});
+
 test("daily planner treats content format validation failures as retryable", () => {
   const testScript = [
     "set -euo pipefail",
@@ -120,6 +126,150 @@ test("daily planner treats content format validation failures as retryable", () 
     cwd: REPO_ROOT,
     encoding: "utf8",
   }));
+});
+
+test("daily planner rewrites archive-overlap failures before excluding the only screenshot", () => {
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "daily-planner-overlap-rewrite-"));
+  const archiveKey = "2026-05-25";
+  const archiveRoot = path.join(tempRoot, "previous-posts", archiveKey);
+
+  fs.mkdirSync(archiveRoot, { recursive: true });
+
+  const testScript = [
+    "set -euo pipefail",
+    `source ${shellQuote(plannerScriptPath)}`,
+    `REPO_DIR=${shellQuote(tempRoot)}`,
+    "DATE=2026-05-25",
+    `ARCHIVE_KEY=${shellQuote(archiveKey)}`,
+    "build_context() {",
+    "  mkdir -p \"$REPO_DIR/previous-posts/$ARCHIVE_KEY\"",
+    "  printf 'Base prompt\\n' > \"$REPO_DIR/previous-posts/$ARCHIVE_KEY/prompt.txt\"",
+    "  printf '{\"candidate_screenshots\":[{\"file\":\"one.png\"}]}\\n' > \"$REPO_DIR/previous-posts/$ARCHIVE_KEY/context.json\"",
+    "}",
+    "run_codex_from_prompt() {",
+    "  codex_count=$((codex_count + 1))",
+    "  printf '{\"post\":{\"screenshot_file\":\"one.png\"}}\\n' > \"$REPO_DIR/previous-posts/$ARCHIVE_KEY/plan.json\"",
+    "}",
+    "validate_and_render() {",
+    "  validate_count=$((validate_count + 1))",
+    "  if (( validate_count == 1 )); then",
+    "    LAST_VALIDATION_OUTPUT='Error: Post messaging for 2026-05-25 overlaps too heavily with recent archive 2026-04-21.'",
+    "    return 1",
+    "  fi",
+    "  return 0",
+    "}",
+    "codex_count=0",
+    "validate_count=0",
+    "run_with_validation_retries",
+    "printf 'codex:%s validate:%s excluded:%s\\n' \"$codex_count\" \"$validate_count\" \"${#EXCLUDED_SCREENSHOTS[@]}\"",
+    "",
+  ].join("\n");
+
+  try {
+    const output = execFileSync("bash", ["-c", testScript], {
+      cwd: REPO_ROOT,
+      encoding: "utf8",
+    });
+
+    assert.match(output, /Archive-overlap validation requested a rewrite/);
+    assert.match(output, /codex:2 validate:2 excluded:0/);
+    assert.doesNotMatch(output, /Retrying daily planner with excluded screenshot/);
+  } finally {
+    fs.rmSync(tempRoot, { force: true, recursive: true });
+  }
+});
+
+test("daily planner caps archive-overlap rewrites when Codex switches screenshots", () => {
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "daily-planner-overlap-cap-"));
+  const archiveKey = "2026-05-25";
+
+  const testScript = [
+    "set -euo pipefail",
+    `source ${shellQuote(plannerScriptPath)}`,
+    `REPO_DIR=${shellQuote(tempRoot)}`,
+    "DATE=2026-05-25",
+    `ARCHIVE_KEY=${shellQuote(archiveKey)}`,
+    "build_context() {",
+    "  mkdir -p \"$REPO_DIR/previous-posts/$ARCHIVE_KEY\"",
+    "  printf 'Base prompt\\n' > \"$REPO_DIR/previous-posts/$ARCHIVE_KEY/prompt.txt\"",
+    "  printf '{\"candidate_screenshots\":[{\"file\":\"one.png\"},{\"file\":\"two.png\"}]}\\n' > \"$REPO_DIR/previous-posts/$ARCHIVE_KEY/context.json\"",
+    "}",
+    "run_codex_from_prompt() {",
+    "  codex_count=$((codex_count + 1))",
+    "  local screenshot='one.png'",
+    "  if (( codex_count == 2 )); then",
+    "    screenshot='two.png'",
+    "  fi",
+    "  printf '{\"post\":{\"screenshot_file\":\"%s\"}}\\n' \"$screenshot\" > \"$REPO_DIR/previous-posts/$ARCHIVE_KEY/plan.json\"",
+    "}",
+    "validate_and_render() {",
+    "  validate_count=$((validate_count + 1))",
+    "  if (( validate_count <= 2 )); then",
+    "    LAST_VALIDATION_OUTPUT='Error: Post messaging for 2026-05-25 overlaps too heavily with recent archive 2026-04-21.'",
+    "    return 1",
+    "  fi",
+    "  return 0",
+    "}",
+    "codex_count=0",
+    "validate_count=0",
+    "run_with_validation_retries",
+    "printf 'codex:%s validate:%s excluded:%s first_excluded:%s\\n' \"$codex_count\" \"$validate_count\" \"${#EXCLUDED_SCREENSHOTS[@]}\" \"${EXCLUDED_SCREENSHOTS[0]:-}\"",
+    "",
+  ].join("\n");
+
+  try {
+    const output = execFileSync("bash", ["-c", testScript], {
+      cwd: REPO_ROOT,
+      encoding: "utf8",
+    });
+
+    assert.match(output, /Archive-overlap validation requested a rewrite/);
+    assert.match(output, /Retrying daily planner with excluded screenshot: two\.png/);
+    assert.match(output, /codex:3 validate:3 excluded:1 first_excluded:two\.png/);
+  } finally {
+    fs.rmSync(tempRoot, { force: true, recursive: true });
+  }
+});
+
+test("daily planner reports no alternate screenshot instead of rebuilding an empty context", () => {
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "daily-planner-no-alternate-"));
+  const archiveKey = "2026-05-25";
+
+  const testScript = [
+    "set -euo pipefail",
+    `source ${shellQuote(plannerScriptPath)}`,
+    "set +e",
+    `REPO_DIR=${shellQuote(tempRoot)}`,
+    "DATE=2026-05-25",
+    `ARCHIVE_KEY=${shellQuote(archiveKey)}`,
+    "build_context() {",
+    "  mkdir -p \"$REPO_DIR/previous-posts/$ARCHIVE_KEY\"",
+    "  printf 'Base prompt\\n' > \"$REPO_DIR/previous-posts/$ARCHIVE_KEY/prompt.txt\"",
+    "  printf '{\"candidate_screenshots\":[{\"file\":\"one.png\"}]}\\n' > \"$REPO_DIR/previous-posts/$ARCHIVE_KEY/context.json\"",
+    "}",
+    "run_codex_from_prompt() {",
+    "  printf '{\"post\":{\"screenshot_file\":\"one.png\"}}\\n' > \"$REPO_DIR/previous-posts/$ARCHIVE_KEY/plan.json\"",
+    "}",
+    "validate_and_render() {",
+    "  LAST_VALIDATION_OUTPUT='Error: Post messaging for 2026-05-25 overlaps too heavily with recent archive 2026-04-21.'",
+    "  return 1",
+    "}",
+    "run_with_validation_retries",
+    "printf 'rc:%s excluded:%s\\n' \"$?\" \"${#EXCLUDED_SCREENSHOTS[@]}\"",
+    "",
+  ].join("\n");
+
+  try {
+    const output = execFileSync("bash", ["-c", testScript], {
+      cwd: REPO_ROOT,
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "pipe"],
+    });
+
+    assert.match(output, /rc:1 excluded:0/);
+  } finally {
+    fs.rmSync(tempRoot, { force: true, recursive: true });
+  }
 });
 
 test("daily planner recognizes editorial critic failures for rewrite handling", () => {
