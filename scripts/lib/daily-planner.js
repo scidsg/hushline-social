@@ -211,6 +211,23 @@ const CONTENT_FORMATS = Object.freeze([
     alt_text_guidance: "Describe the final social asset and the feature being shown.",
   },
 ]);
+const EDITORIAL_AUDIENCES = Object.freeze([
+  {
+    audience_scope: "public",
+    label: "Public sources and visitors",
+    reader_need: "Help someone decide whether Hush Line is the right place to make safe first contact or find a trusted recipient.",
+  },
+  {
+    audience_scope: "recipient-shared",
+    label: "Recipients and staff",
+    reader_need: "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+  },
+  {
+    audience_scope: "admin-only",
+    label: "Admins and deployment teams",
+    reader_need: "Help an admin or deployment team run Hush Line responsibly without weakening safety or trust.",
+  },
+]);
 
 function todayString() {
   const now = new Date();
@@ -262,6 +279,10 @@ function getContentFormat(formatId) {
 
 function contentFormatIds() {
   return CONTENT_FORMATS.map((format) => format.id);
+}
+
+function getEditorialAudience(audienceScope) {
+  return EDITORIAL_AUDIENCES.find((audience) => audience.audience_scope === audienceScope) || null;
 }
 
 function normalizeConceptKey(contentKey) {
@@ -799,6 +820,107 @@ function validateContentFormatSelection(contentFormat, context) {
   return format;
 }
 
+function summarizeAudienceUsage(archiveHistory, plannedDate) {
+  const week = formatIsoWeek(parseLocalDate(plannedDate));
+
+  return (archiveHistory || []).reduce((summary, entry) => {
+    const audienceScope = inferAudienceScopeFromEntry(entry);
+    if (!audienceScope) {
+      return summary;
+    }
+
+    summary.recent_counts[audienceScope] = (summary.recent_counts[audienceScope] || 0) + 1;
+
+    if (entry.date && formatIsoWeek(parseLocalDate(entry.date)) === week) {
+      summary.weekly_counts[audienceScope] = (summary.weekly_counts[audienceScope] || 0) + 1;
+    }
+
+    return summary;
+  }, {
+    recent_counts: {},
+    week,
+    weekly_counts: {},
+  });
+}
+
+function lastAudienceUseOffset(archiveHistory, audienceScope) {
+  for (let index = archiveHistory.length - 1; index >= 0; index -= 1) {
+    if (inferAudienceScopeFromEntry(archiveHistory[index]) === audienceScope) {
+      return archiveHistory.length - index;
+    }
+  }
+
+  return Number.POSITIVE_INFINITY;
+}
+
+function rankEditorialIntents(archiveHistory, plannedDate, contentFormatSelection) {
+  const weeklyUsage = summarizeWeeklyUsage(archiveHistory, plannedDate);
+  const audienceUsage = summarizeAudienceUsage(archiveHistory, plannedDate);
+  const contentFormat = contentFormatSelection?.selected_format || getContentFormat("feature_benefit");
+
+  return EDITORIAL_AUDIENCES
+    .filter((audience) => {
+      return audience.audience_scope !== "admin-only" || weeklyUsage.admin_count < 1;
+    })
+    .map((audience) => ({
+      ...audience,
+      content_format: contentFormat.id,
+      content_format_label: contentFormat.label,
+      last_used_offset: lastAudienceUseOffset(archiveHistory || [], audience.audience_scope),
+      recent_count: audienceUsage.recent_counts[audience.audience_scope] || 0,
+      visual_role: "supporting_screenshot",
+      weekly_count: audienceUsage.weekly_counts[audience.audience_scope] || 0,
+    }))
+    .sort((left, right) => {
+      return (
+        left.weekly_count - right.weekly_count ||
+        left.recent_count - right.recent_count ||
+        right.last_used_offset - left.last_used_offset ||
+        left.audience_scope.localeCompare(right.audience_scope)
+      );
+    });
+}
+
+function filterCandidatesForEditorialIntent(candidates, editorialIntent) {
+  if (!editorialIntent?.audience_scope) {
+    return candidates;
+  }
+
+  return candidates.filter((candidate) => candidate.audience_scope === editorialIntent.audience_scope);
+}
+
+function chooseSupportedEditorialIntent(archiveHistory, plannedDate, contentFormatSelection, candidates) {
+  const rankedIntents = rankEditorialIntents(archiveHistory, plannedDate, contentFormatSelection);
+  const rejectedIntents = [];
+
+  for (const intent of rankedIntents) {
+    const supportingCandidates = filterCandidatesForEditorialIntent(candidates, intent);
+
+    if (supportingCandidates.length > 0) {
+      return {
+        intent: {
+          audience_scope: intent.audience_scope,
+          content_format: intent.content_format,
+          content_format_label: intent.content_format_label,
+          label: intent.label,
+          reader_need: intent.reader_need,
+          visual_role: intent.visual_role,
+        },
+        rejected_intents: rejectedIntents,
+        supporting_candidates: supportingCandidates,
+        visual_selection_reason: `Selected screenshots only after choosing the ${intent.label} editorial intent.`,
+      };
+    }
+
+    rejectedIntents.push({
+      audience_scope: intent.audience_scope,
+      reason: "No cooldown-eligible screenshot supports this editorial intent.",
+    });
+  }
+
+  throw new Error("No eligible screenshot candidates support any editorial intent.");
+}
+
 function recentArchiveEntries(archiveHistory, count) {
   if (!count) {
     return [];
@@ -1209,8 +1331,14 @@ function buildDailyContext(args) {
     archiveHistory,
     cooldownPolicy,
   );
-  const rankedCandidates = rankCandidates(
+  const editorialIntentSelection = chooseSupportedEditorialIntent(
+    archiveHistory,
+    args.date,
+    contentFormatSelection,
     cooldownEligibleCandidates,
+  );
+  const rankedCandidates = rankCandidates(
+    editorialIntentSelection.supporting_candidates,
     archiveHistory,
     templateNames,
   );
@@ -1241,11 +1369,14 @@ function buildDailyContext(args) {
     daily_posts_root: path.relative(REPO_ROOT, DAILY_POSTS_ROOT),
     date: args.date,
     dark_ratio: args.darkRatio,
+    editorial_intent: editorialIntentSelection.intent,
+    editorial_intent_rejections: editorialIntentSelection.rejected_intents,
     excluded_screenshots: Array.from(excludedScreenshots),
     hushline_agent_context: readHushlineAgentExcerpt(),
     hushline_app_voice_guidance: HUSHLINE_APP_VOICE_GUIDANCE,
     recent_archive_history: archiveHistory,
     screenshot_rotation: selectedCandidate.screenshot_rotation,
+    visual_selection_reason: editorialIntentSelection.visual_selection_reason,
     screenshot_captured_at: planningContext.screenshot_captured_at,
     screenshot_release: planningContext.screenshot_release,
     slot: {
@@ -1306,6 +1437,8 @@ function buildPromptPayload(context) {
       `Screenshots captured at: ${context.screenshot_captured_at}`,
       `Hard cooldown policy: ${JSON.stringify(context.cooldown_policy || DEFAULT_COOLDOWN_POLICY)}`,
       `Required content format: ${context.content_format_selection?.selected_format?.id || "feature_benefit"}`,
+      `Editorial intent: ${JSON.stringify(context.editorial_intent || {})}`,
+      `Visual selection reason: ${context.visual_selection_reason || "Selected screenshot as visual support after editorial planning."}`,
       "",
       "Current hushline.app voice guidance:",
       voiceGuidance,
@@ -1333,7 +1466,8 @@ function buildPromptPayload(context) {
         : "Use feature_benefit guidance.",
       "",
       "Instructions:",
-      "- Choose exactly one screenshot from the provided candidates.",
+      "- Start from the editorial intent and reader need above. Treat screenshots as visual support, not the source of the idea.",
+      "- Choose exactly one supporting screenshot from the provided candidates.",
       "- Use exactly the required content format and set `content_format` to that format id.",
       `- Check the prior ${ARCHIVE_LOOKBACK_DAYS} days of archived daily posts before you decide on the messaging angle.`,
       "- The candidates were preselected from a ranked pool after excluding recent repeats of the same screenshot, screen, feature family, and overused template types wherever possible.",
@@ -1554,6 +1688,15 @@ function validatePlan(modelPlan, context) {
     );
   }
 
+  if (
+    context.editorial_intent?.audience_scope &&
+    candidate.audience_scope !== context.editorial_intent.audience_scope
+  ) {
+    throw new Error(
+      `Selected screenshot ${post.screenshot_file} does not support editorial intent audience ${context.editorial_intent.audience_scope}.`,
+    );
+  }
+
   validateContentFormatSelection(post.content_format, context);
 
   if (!post.social || typeof post.social !== "object") {
@@ -1660,6 +1803,7 @@ function validatePlan(modelPlan, context) {
       concept_key: candidate.concept_key,
       content_format: post.content_format,
       copy_brief: candidate.copy_brief,
+      editorial_intent: context.editorial_intent || null,
       matched_pull_requests: candidate.matched_pull_requests,
       screen_key: candidate.screen_key || inferScreenKey(candidate),
       screenshot_file: candidate.file,
@@ -1672,6 +1816,7 @@ function validatePlan(modelPlan, context) {
       theme: candidate.theme,
       title: candidate.title,
       topic_family: candidate.topic_family || inferTopicFamily(candidate),
+      visual_selection_reason: context.visual_selection_reason || "",
       viewport: candidate.viewport,
     },
     summary: modelPlan.summary,
@@ -1731,20 +1876,25 @@ module.exports = {
   CONTENT_FORMATS,
   CONTENT_FORMAT_WEEKLY_CAP,
   DEFAULT_COOLDOWN_POLICY,
+  EDITORIAL_AUDIENCES,
   buildDailyContext,
   buildPromptPayload,
   buildCooldownPolicy,
   candidateRotationIdentity,
   candidateCooldownViolations,
+  chooseSupportedEditorialIntent,
   chooseContentFormat,
   chooseTemplateName,
   contentFormatIds,
+  filterCandidatesForEditorialIntent,
   filterCandidatesForArchiveHistory,
   filterCandidatesForCooldowns,
   filterCandidatesForWeeklyCaps,
   filterCandidatesForTemplateName,
   getContentFormat,
+  getEditorialAudience,
   inferTopicFamily,
+  rankEditorialIntents,
   loadSavedDailyContext,
   parseArgs,
   planDay,
