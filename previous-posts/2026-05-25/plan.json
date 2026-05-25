@@ -1,0 +1,107 @@
+{
+  "date": "2026-05-25",
+  "post": {
+    "slot": "monday",
+    "planned_date": "2026-05-25",
+    "screenshot_file": "artvandelay/auth-artvandelay-settings-auth-desktop-light-fold.png",
+    "content_key": "auth-artvandelay-settings-auth",
+    "content_format": "design_principle",
+    "headline": "Separate access checks from message review",
+    "subtext": "Sign-in controls sit outside the inbox so recipients can handle routine upkeep without interrupting sensitive intake.",
+    "image_alt_text": "A Hush Line daily social graphic showing the desktop Authentication settings page. The screen places account access controls in a separate settings area, away from the inbox where recipients review sensitive messages.",
+    "social": {
+      "bluesky": "Keep account upkeep out of the inbox.\n\nHush Line separates sign-in controls from message review so recipients and staff can check access details without interrupting sensitive intake.\n\nLearn more at https://hushline.app.",
+      "linkedin": "Sensitive intake work is easier to manage when account upkeep is not mixed into the inbox.\n\nHush Line keeps sign-in controls in their own account area, separate from message review. For journalists, lawyers, educators, organizers, and other recipients, that design keeps routine access checks from interrupting the work of reading and triaging disclosures.\n\nLearn more at https://hushline.app.",
+      "mastodon": "Sensitive intake gets harder when account upkeep interrupts the inbox.\n\nHush Line keeps sign-in controls outside message review, so recipients and staff can check access details without mixing that work into disclosure triage.\n\nLearn more at https://hushline.app."
+    },
+    "rationale": "This uses the required design_principle format for a recipient-shared screenshot. The angle focuses on separation between access upkeep and sensitive message review, which is distinct from the recent archive post about username, password, and 2FA controls.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "settings-auth",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "editorial_intent": {
+      "audience_scope": "recipient-shared",
+      "content_format": "design_principle",
+      "content_format_label": "Design principle",
+      "label": "Recipients and staff",
+      "reader_need": "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+      "visual_role": "supporting_screenshot"
+    },
+    "matched_pull_requests": [],
+    "screen_key": "/settings/auth",
+    "template_name": "hushline-daily-desktop-template.html",
+    "theme": "light",
+    "title": "Settings - Authentication (artvandelay)",
+    "topic_family": "authentication",
+    "visual_selection_reason": "Selected screenshots only after choosing the Recipients and staff editorial intent.",
+    "viewport": "desktop"
+  },
+  "summary": "Daily design-principle post for recipients and staff using the desktop authentication settings screenshot.",
+  "critic": {
+    "blocked": false,
+    "criteria": [
+      {
+        "id": "topic_freshness",
+        "label": "Topic freshness",
+        "max_score": 2,
+        "rationale": "Topic family authentication is fresh against the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "hook_freshness",
+        "label": "Hook freshness",
+        "max_score": 2,
+        "rationale": "Opening hook is distinct from recent archive hooks.",
+        "score": 2
+      },
+      {
+        "id": "format_novelty",
+        "label": "Format novelty",
+        "max_score": 2,
+        "rationale": "Format design_principle is not overused in the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "audience_specificity",
+        "label": "Audience specificity",
+        "max_score": 2,
+        "rationale": "Copy contains 6 signal(s) for recipient-shared.",
+        "score": 2
+      },
+      {
+        "id": "concrete_reader_value",
+        "label": "Concrete reader value",
+        "max_score": 2,
+        "rationale": "Copy gives 3 concrete action/value signal(s).",
+        "score": 2
+      },
+      {
+        "id": "hushline_relevance",
+        "label": "Hush Line relevance",
+        "max_score": 2,
+        "rationale": "Copy is tied to Hush Line or a concrete Hush Line surface.",
+        "score": 2
+      },
+      {
+        "id": "cta_freshness",
+        "label": "CTA freshness",
+        "max_score": 2,
+        "rationale": "CTA pattern is fresh against the configured CTA cooldown.",
+        "score": 2
+      },
+      {
+        "id": "safety_compliance",
+        "label": "Safety and compliance",
+        "max_score": 2,
+        "rationale": "Copy avoids unsupported safety, anonymity, and recency claims.",
+        "score": 2
+      }
+    ],
+    "failed_criteria": [],
+    "max_score": 16,
+    "passed": true,
+    "rationale": "Topic freshness: Topic family authentication is fresh against the recent archive. Hook freshness: Opening hook is distinct from recent archive hooks. Format novelty: Format design_principle is not overused in the recent archive. Audience specificity: Copy contains 6 signal(s) for recipient-shared. Concrete reader value: Copy gives 3 concrete action/value signal(s). Hush Line relevance: Copy is tied to Hush Line or a concrete Hush Line surface. CTA freshness: CTA pattern is fresh against the configured CTA cooldown. Safety and compliance: Copy avoids unsupported safety, anonymity, and recency claims.",
+    "score": 16,
+    "threshold": 12
+  }
+}
