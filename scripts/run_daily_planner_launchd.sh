@@ -59,7 +59,7 @@ update_repo() {
 }
 
 run_daily_planner() {
-  update_repo
+  update_repo || return $?
   cd "$REPO_DIR"
   ./scripts/agent_daily_social_planner.sh "$@"
 }

@@ -266,6 +266,18 @@ selected_screenshot_from_plan() {
   node -e 'const fs=require("fs"); const plan=JSON.parse(fs.readFileSync(process.argv[1],"utf8")); process.stdout.write(String(plan?.post?.screenshot_file || ""));' "$plan_path"
 }
 
+candidate_count_from_context() {
+  local archive_key="${ARCHIVE_KEY:-$DATE}"
+  local context_path="$REPO_DIR/previous-posts/$archive_key/context.json"
+
+  if [[ ! -f "$context_path" ]]; then
+    printf '%s\n' "0"
+    return
+  fi
+
+  node -e 'const fs=require("fs"); const context=JSON.parse(fs.readFileSync(process.argv[1],"utf8")); process.stdout.write(String(Array.isArray(context?.candidate_screenshots) ? context.candidate_screenshots.length : 0));' "$context_path"
+}
+
 is_retryable_validation_failure() {
   [[ "$LAST_VALIDATION_OUTPUT" == *"is too close to recent"* ]] ||
     [[ "$LAST_VALIDATION_OUTPUT" == *"overlaps too heavily with recent archive"* ]] ||
@@ -275,6 +287,12 @@ is_retryable_validation_failure() {
     [[ "$LAST_VALIDATION_OUTPUT" == *"Model returned content_format"* ]] ||
     [[ "$LAST_VALIDATION_OUTPUT" == *"Unknown content format"* ]] ||
     [[ "$LAST_VALIDATION_OUTPUT" == *"already reached the weekly cap"* ]]
+}
+
+is_message_overlap_validation_failure() {
+  [[ "$LAST_VALIDATION_OUTPUT" == *"is too close to recent"* ]] ||
+    [[ "$LAST_VALIDATION_OUTPUT" == *"overlaps too heavily with recent archive"* ]] ||
+    [[ "$LAST_VALIDATION_OUTPUT" == *"duplicates recent archive headline"* ]]
 }
 
 is_critic_validation_failure() {
@@ -296,6 +314,24 @@ build_critic_rewrite_prompt() {
   } > "$PROMPT_FILE"
 }
 
+build_validation_rewrite_prompt() {
+  local archive_key="${ARCHIVE_KEY:-$DATE}"
+  local source_prompt="$REPO_DIR/previous-posts/$archive_key/prompt.txt"
+  local selected_screenshot="$1"
+
+  {
+    cat "$source_prompt"
+    printf '\n'
+    printf '%s\n' "Rewrite request:"
+    printf '%s\n' "The previous draft failed archive-overlap validation. Rewrite the same daily plan before rendering."
+    printf '%s\n' "Keep the same JSON schema and use the same screenshot: $selected_screenshot"
+    printf '%s\n' "Use a meaningfully different angle, headline, opening hook, value proposition, and CTA from the rejected recent archive."
+    printf '%s\n' "Do not reuse the rejected wording or merely swap synonyms; the validator compares shared message tokens."
+    printf '%s\n' "Validation rejection:"
+    printf '%s\n' "$LAST_VALIDATION_OUTPUT" | sed -n '1,40p'
+  } > "$PROMPT_FILE"
+}
+
 array_contains() {
   local needle="$1"
   shift
@@ -313,7 +349,10 @@ array_contains() {
 run_with_validation_retries() {
   local retry_budget=""
   local selected_screenshot=""
+  local available_candidate_count=""
   local critic_retry_used=0
+  local validation_rewrite_screenshot=""
+  local validation_rewrite_used=0
 
   retry_budget="$(validation_retry_budget)"
 
@@ -343,6 +382,24 @@ run_with_validation_retries() {
         continue
       fi
 
+      if is_message_overlap_validation_failure; then
+        selected_screenshot="$(selected_screenshot_from_plan || true)"
+        if [[ -z "$selected_screenshot" ]]; then
+          echo "Validation failed, but the selected screenshot could not be recovered for an automatic rewrite." >&2
+          return 1
+        fi
+
+        if (( validation_rewrite_used == 0 )); then
+          validation_rewrite_used=1
+          validation_rewrite_screenshot="$selected_screenshot"
+          echo "Archive-overlap validation requested a rewrite; retrying Codex once with validator feedback."
+          build_validation_rewrite_prompt "$selected_screenshot"
+          reset_day_plan_artifacts
+          run_codex_from_prompt
+          continue
+        fi
+      fi
+
       break
     done
 
@@ -356,6 +413,12 @@ run_with_validation_retries() {
       return 1
     fi
 
+    available_candidate_count="$(candidate_count_from_context)"
+    if [[ "$available_candidate_count" =~ ^[0-9]+$ ]] && (( available_candidate_count <= 1 )); then
+      echo "Validation failed after rewrite, and no alternate shortlisted screenshots are available for $selected_screenshot." >&2
+      return 1
+    fi
+
     if (( ${#EXCLUDED_SCREENSHOTS[@]} > 0 )) && array_contains "$selected_screenshot" "${EXCLUDED_SCREENSHOTS[@]}"; then
       echo "Validation failed again for already-excluded screenshot $selected_screenshot." >&2
       return 1
@@ -363,6 +426,8 @@ run_with_validation_retries() {
 
     EXCLUDED_SCREENSHOTS+=("$selected_screenshot")
     critic_retry_used=0
+    validation_rewrite_screenshot=""
+    validation_rewrite_used=0
     if (( ${#EXCLUDED_SCREENSHOTS[@]} >= retry_budget )); then
       echo "Daily planner exhausted its validation retry budget after excluding ${#EXCLUDED_SCREENSHOTS[@]} screenshots." >&2
       return 1
