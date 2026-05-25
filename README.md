@@ -92,6 +92,19 @@ npm run plan:day -- --date YYYY-MM-DD --allow-cooldown-override
 
 The same knobs are available to launchd or wrapper scripts through `HUSHLINE_SOCIAL_TOPIC_FAMILY_COOLDOWN_POSTS`, `HUSHLINE_SOCIAL_CONCEPT_KEY_COOLDOWN_POSTS`, `HUSHLINE_SOCIAL_HOOK_COOLDOWN_POSTS`, `HUSHLINE_SOCIAL_CTA_COOLDOWN_POSTS`, and `HUSHLINE_SOCIAL_ALLOW_COOLDOWN_OVERRIDE=1`.
 
+Daily planning also rotates editorial formats so the feed does not collapse back into a screenshot-of-the-day product tour. The planner selects one required `content_format`, includes format-specific copy, CTA, and alt-text guidance in the prompt, and rejects plans that omit or change the selected format. A format can be used at most once in a Monday-through-Friday posting week.
+
+Current daily format taxonomy:
+
+- `source_safety_checklist`: practical checklist for someone deciding whether and how to make first contact safely
+- `recipient_playbook`: operational workflow guidance for recipients or staff managing sensitive intake
+- `iso_37002_principle`: plain-English whistleblowing-system principle tied to the selected screen
+- `mistake_to_avoid`: realistic mistake plus the safer workflow
+- `myth_vs_reality`: common misconception contrasted with the concrete reality shown by the product
+- `workflow_teardown`: step-by-step explanation of one workflow moment
+- `design_principle`: product design choice connected to privacy, trust, accessibility, or operational safety
+- `feature_benefit`: feature explained through the specific user benefit it creates
+
 To monitor both launchd jobs from one terminal:
 
 ```sh
