@@ -6,11 +6,14 @@ const path = require("node:path");
 const {
   CONTENT_FORMATS,
   DAILY_POSTS_ROOT,
+  EDITORIAL_AUDIENCES,
   buildCooldownPolicy,
   buildPromptPayload,
+  chooseSupportedEditorialIntent,
   chooseContentFormat,
   chooseTemplateName,
   contentFormatIds,
+  filterCandidatesForEditorialIntent,
   filterCandidatesForArchiveHistory,
   filterCandidatesForCooldowns,
   filterCandidatesForWeeklyCaps,
@@ -19,6 +22,7 @@ const {
   loadSavedDailyContext,
   parseArgs,
   planDay,
+  rankEditorialIntents,
   summarizeScreenshotRotation,
   validatePlan,
 } = require("../scripts/lib/daily-planner");
@@ -41,6 +45,15 @@ function buildContext(overrides = {}) {
       },
     ],
     date: "2026-03-20",
+    editorial_intent: {
+      audience_scope: "public",
+      content_format: "feature_benefit",
+      content_format_label: "Feature benefit",
+      label: "Public sources and visitors",
+      reader_need: "Help someone decide whether Hush Line is the right place to make safe first contact or find a trusted recipient.",
+      visual_role: "supporting_screenshot",
+    },
+    visual_selection_reason: "Selected screenshots only after choosing the Public sources and visitors editorial intent.",
     content_format_selection: {
       available_formats: CONTENT_FORMATS,
       selected_format: CONTENT_FORMATS.find((format) => format.id === "feature_benefit"),
@@ -209,6 +222,10 @@ test("validatePlan trims social copy and enriches the selected candidate metadat
   assert.equal(validated.post.concept_key, "directory-verified");
   assert.equal(validated.post.template_name, "hushline-daily-desktop-template.html");
   assert.equal(validated.post.topic_family, "directory");
+  assert.equal(
+    validated.post.visual_selection_reason,
+    "Selected screenshots only after choosing the Public sources and visitors editorial intent.",
+  );
   assert.deepEqual(validated.post.matched_pull_requests, [{ number: 1765, title: "Fix guest screenshot" }]);
 });
 
@@ -223,6 +240,99 @@ test("contentFormatIds includes the required editorial format taxonomy", () => {
     "design_principle",
     "feature_benefit",
   ]);
+});
+
+test("rankEditorialIntents rotates toward less-used audiences before visual selection", () => {
+  assert.deepEqual(
+    EDITORIAL_AUDIENCES.map((audience) => audience.audience_scope),
+    ["public", "recipient-shared", "admin-only"],
+  );
+
+  const ranked = rankEditorialIntents(
+    [
+      { archive_key: "2026-05-18", audience_scope: "public", date: "2026-05-18" },
+      { archive_key: "2026-05-19", audience_scope: "public", date: "2026-05-19" },
+      { archive_key: "2026-05-20", audience_scope: "recipient-shared", date: "2026-05-20" },
+    ],
+    "2026-05-21",
+    {
+      selected_format: CONTENT_FORMATS.find((format) => format.id === "workflow_teardown"),
+    },
+  );
+
+  assert.equal(ranked[0].audience_scope, "admin-only");
+  assert.equal(ranked[0].content_format, "workflow_teardown");
+});
+
+test("filterCandidatesForEditorialIntent keeps only screenshots that support the planned audience", () => {
+  const filtered = filterCandidatesForEditorialIntent(
+    [
+      {
+        audience_scope: "public",
+        content_key: "guest-directory-verified",
+      },
+      {
+        audience_scope: "recipient-shared",
+        content_key: "auth-artvandelay-settings-notifications",
+      },
+    ],
+    {
+      audience_scope: "recipient-shared",
+    },
+  );
+
+  assert.deepEqual(
+    filtered.map((candidate) => candidate.content_key),
+    ["auth-artvandelay-settings-notifications"],
+  );
+});
+
+test("chooseSupportedEditorialIntent skips unsupported intents before selecting screenshots", () => {
+  const selection = chooseSupportedEditorialIntent(
+    [],
+    "2026-05-21",
+    {
+      selected_format: CONTENT_FORMATS.find((format) => format.id === "feature_benefit"),
+    },
+    [
+      {
+        audience_scope: "recipient-shared",
+        content_key: "auth-artvandelay-settings-notifications",
+      },
+    ],
+  );
+
+  assert.equal(selection.intent.audience_scope, "recipient-shared");
+  assert.equal(selection.supporting_candidates[0].content_key, "auth-artvandelay-settings-notifications");
+  assert.ok(selection.rejected_intents.some((intent) => intent.audience_scope === "admin-only"));
+});
+
+test("chooseSupportedEditorialIntent can fall through after excluded screenshots are removed", () => {
+  const excludedScreenshots = new Set(["admin-settings-branding-mobile-light-fold.png"]);
+  const candidates = [
+    {
+      audience_scope: "admin-only",
+      content_key: "auth-admin-settings-branding",
+      file: "admin-settings-branding-mobile-light-fold.png",
+    },
+    {
+      audience_scope: "recipient-shared",
+      content_key: "auth-artvandelay-settings-notifications",
+      file: "settings-notifications-mobile-light-fold.png",
+    },
+  ].filter((candidate) => !excludedScreenshots.has(candidate.file));
+  const selection = chooseSupportedEditorialIntent(
+    [],
+    "2026-05-21",
+    {
+      selected_format: CONTENT_FORMATS.find((format) => format.id === "feature_benefit"),
+    },
+    candidates,
+  );
+
+  assert.equal(selection.intent.audience_scope, "recipient-shared");
+  assert.ok(selection.rejected_intents.some((intent) => intent.audience_scope === "admin-only"));
+  assert.ok(selection.rejected_intents.some((intent) => intent.audience_scope === "public"));
 });
 
 test("chooseContentFormat rotates away from formats already used this week", () => {
@@ -284,6 +394,8 @@ test("buildPromptPayload includes selected editorial format guidance", () => {
   const payload = buildPromptPayload(context);
 
   assert.match(payload.user, /Required content format: mistake_to_avoid/);
+  assert.match(payload.user, /Editorial intent:/);
+  assert.match(payload.user, /Treat screenshots as visual support/);
   assert.match(payload.user, /Mistake to avoid \(mistake_to_avoid\)/);
   assert.match(payload.user, /Use exactly the required content format/);
 });
@@ -335,6 +447,24 @@ test("validatePlan rejects a content format that already reached the weekly cap"
   );
 });
 
+test("validatePlan rejects a screenshot that does not support the editorial intent audience", () => {
+  const context = buildContext({
+    editorial_intent: {
+      audience_scope: "recipient-shared",
+      content_format: "feature_benefit",
+      content_format_label: "Feature benefit",
+      label: "Recipients and staff",
+      reader_need: "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+      visual_role: "supporting_screenshot",
+    },
+  });
+
+  assert.throws(
+    () => validatePlan(buildModelPlan(), context),
+    /does not support editorial intent audience recipient-shared/,
+  );
+});
+
 test("chooseTemplateName prefers the least-used daily template from the prior month", () => {
   const selected = chooseTemplateName(
     [
@@ -377,6 +507,14 @@ test("filterCandidatesForTemplateName narrows the shortlist to the chosen templa
 
 test("validatePlan rejects admin-only screenshots when the copy never says admin or team", () => {
   const context = buildContext({
+    editorial_intent: {
+      audience_scope: "admin-only",
+      content_format: "feature_benefit",
+      content_format_label: "Feature benefit",
+      label: "Admins and deployment teams",
+      reader_need: "Help an admin or deployment team run Hush Line responsibly without weakening safety or trust.",
+      visual_role: "supporting_screenshot",
+    },
     candidate_screenshots: [
       {
         audience_scope: "admin-only",
