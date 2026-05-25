@@ -8,7 +8,6 @@ const {
   compareArchiveKeys,
   inferScreenKey,
   isValidArchiveKey,
-  parseLocalDate,
   readJson,
 } = require("./social-common");
 const { inferTopicFamily } = require("./daily-planner");
@@ -215,9 +214,12 @@ function latestDate(entries) {
 }
 
 function daysBetween(leftDate, rightDate) {
-  const left = parseLocalDate(leftDate);
-  const right = parseLocalDate(rightDate);
-  return Math.floor((right.getTime() - left.getTime()) / 86400000);
+  const left = String(leftDate).split("-").map(Number);
+  const right = String(rightDate).split("-").map(Number);
+  const leftUtc = Date.UTC(left[0], left[1] - 1, left[2]);
+  const rightUtc = Date.UTC(right[0], right[1] - 1, right[2]);
+
+  return Math.floor((rightUtc - leftUtc) / 86400000);
 }
 
 function entriesForWindow(entries, asOfDate, days) {
@@ -376,6 +378,7 @@ module.exports = {
   VERIFIED_USER_POSTS_ROOT,
   analyzePostHistory,
   classifyCta,
+  daysBetween,
   firstSentence,
   formatPostHistoryReport,
   normalizePhrase,

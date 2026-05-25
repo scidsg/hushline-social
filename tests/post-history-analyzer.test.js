@@ -7,6 +7,7 @@ const path = require("node:path");
 const {
   analyzePostHistory,
   classifyCta,
+  daysBetween,
   firstSentence,
   formatPostHistoryReport,
 } = require("../scripts/lib/post-history-analyzer");
@@ -78,6 +79,11 @@ test("classifyCta normalizes common Hush Line CTA patterns", () => {
     classifyCta("Body.\n\nTo send Alex a tip, go to https://tips.hushline.app/to/alex."),
     "send_tip_go_to",
   );
+});
+
+test("daysBetween compares calendar days across DST boundaries", () => {
+  assert.equal(daysBetween("2026-03-07", "2026-03-08"), 1);
+  assert.equal(daysBetween("2026-11-01", "2026-11-02"), 1);
 });
 
 test("analyzePostHistory reports daily topic, hook, CTA, template, and concept repetition", () => {
