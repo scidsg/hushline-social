@@ -1483,9 +1483,16 @@ function filterCandidatesForCooldowns(candidates, archiveHistory, cooldownPolicy
       new Set(evaluated.flatMap((candidate) => candidate.cooldown_violations.map((violation) => violation.field))),
     ).join(", ");
 
-    throw new Error(
-      `No eligible screenshot candidates remain after hard cooldowns (${blockedFields || "none"}). Use --allow-cooldown-override only for a documented manual exception.`,
-    );
+    return evaluated
+      .map((candidate) => ({
+        ...candidate,
+        cooldown_exhaustion_fallback: true,
+        cooldown_exhaustion_reason: `All eligible screenshots violate cooldowns (${blockedFields || "none"}).`,
+      }))
+      .sort((left, right) => (
+        left.cooldown_violations.length - right.cooldown_violations.length ||
+        left.file.localeCompare(right.file)
+      ));
   }
 
   return allowed;
@@ -1522,6 +1529,14 @@ function rankCandidates(candidates, archiveHistory, templateNames) {
         left.file.localeCompare(right.file)
       );
     });
+}
+
+function selectCandidateShortlist(editorialIntentSelection, archiveHistory, templateNames, count = 3) {
+  return rankCandidates(
+    editorialIntentSelection.supporting_candidates || [],
+    archiveHistory,
+    templateNames,
+  ).slice(0, count);
 }
 
 function chooseTemplateNameForCandidate(candidate, context) {
@@ -1603,12 +1618,12 @@ function buildDailyContext(args) {
     contentFormatSelection,
     eligibleCandidates,
   );
-  const rankedCandidates = rankCandidates(
-    editorialIntentSelection.supporting_candidates,
+  const selectedCandidates = selectCandidateShortlist(
+    editorialIntentSelection,
     archiveHistory,
     templateNames,
   );
-  const selectedCandidate = rankedCandidates[0] || null;
+  const selectedCandidate = selectedCandidates[0] || null;
 
   if (!selectedCandidate) {
     throw new Error(`No eligible screenshot candidates remain for ${args.date}.`);
@@ -1622,13 +1637,26 @@ function buildDailyContext(args) {
       },
     },
   );
-  const selectedCandidates = eligibleCandidates.slice(0, 3);
+  const cooldownFallbackCandidates = selectedCandidates.filter(
+    (candidate) => candidate.cooldown_exhaustion_fallback,
+  );
 
   return {
     audience_docs: planningContext.audience_docs,
     candidate_screenshots: selectedCandidates,
     content_format_selection: contentFormatSelection,
     cooldown_policy: cooldownPolicy,
+    cooldown_exhaustion_fallback: cooldownFallbackCandidates.length > 0
+      ? {
+          candidate_count: cooldownFallbackCandidates.length,
+          reason: cooldownFallbackCandidates[0].cooldown_exhaustion_reason,
+          violated_fields: Array.from(
+            new Set(cooldownFallbackCandidates.flatMap(
+              (candidate) => candidate.cooldown_violations.map((violation) => violation.field),
+            )),
+          ).sort(),
+        }
+      : null,
     daily_posts_root: path.relative(REPO_ROOT, DAILY_POSTS_ROOT),
     date: args.date,
     dark_ratio: args.darkRatio,
@@ -1652,7 +1680,9 @@ function buildDailyContext(args) {
     hushline_app_voice_guidance: HUSHLINE_APP_VOICE_GUIDANCE,
     recent_archive_history: archiveHistory,
     screenshot_rotation: selectedCandidate.screenshot_rotation,
-    visual_selection_reason: editorialIntentSelection.visual_selection_reason,
+    visual_selection_reason: cooldownFallbackCandidates.length > 0
+      ? `${editorialIntentSelection.visual_selection_reason} Cooldown fallback was used because no fully fresh screenshot candidates remained.`
+      : editorialIntentSelection.visual_selection_reason,
     screenshot_captured_at: planningContext.screenshot_captured_at,
     screenshot_release: planningContext.screenshot_release,
     slot: {
@@ -1712,6 +1742,9 @@ function buildPromptPayload(context) {
       `Screenshot release from local latest folder: ${context.screenshot_release}`,
       `Screenshots captured at: ${context.screenshot_captured_at}`,
       `Hard cooldown policy: ${JSON.stringify(context.cooldown_policy || DEFAULT_COOLDOWN_POLICY)}`,
+      context.cooldown_exhaustion_fallback
+        ? `Cooldown exhaustion fallback: ${JSON.stringify(context.cooldown_exhaustion_fallback)}`
+        : "Cooldown exhaustion fallback: not used",
       `Editorial critic threshold: ${context.editorial_critic?.threshold || EDITORIAL_CRITIC_THRESHOLD}`,
       `Required content format: ${context.content_format_selection?.selected_format?.id || "feature_benefit"}`,
       `Editorial intent: ${JSON.stringify(context.editorial_intent || {})}`,
@@ -1748,7 +1781,8 @@ function buildPromptPayload(context) {
       "- Use exactly the required content format and set `content_format` to that format id.",
       `- Check the prior ${ARCHIVE_LOOKBACK_DAYS} days of archived daily posts before you decide on the messaging angle.`,
       "- The candidates were preselected from a ranked pool after excluding recent repeats of the same screenshot, screen, feature family, and overused template types wherever possible.",
-      "- The candidate shortlist also enforces hard topic-family and concept-key cooldowns unless an explicit manual override is set.",
+      "- The candidate shortlist enforces topic-family and concept-key cooldowns when fresh candidates exist.",
+      "- If the current screenshot pool is exhausted, the shortlist may include least-bad cooldown fallback candidates; in that case, write a clearly fresh hook, value proposition, and CTA for the selected screenshot.",
       "- Opening hooks and CTA patterns are validated against recent archive cooldowns after drafting; choose a fresh hook and closing line.",
       "- A final editorial critic will score topic freshness, hook freshness, format novelty, audience specificity, concrete reader value, Hush Line relevance, CTA freshness, and safety/compliance before rendering.",
       "- Drafts below the critic threshold are rewritten once and then blocked if they still fail, so avoid generic or low-value copy on the first pass.",
@@ -1933,7 +1967,7 @@ function validatePlan(modelPlan, context) {
   }
 
   const cooldownPolicy = context.cooldown_policy || DEFAULT_COOLDOWN_POLICY;
-  if (!cooldownPolicy.allow_override) {
+  if (!cooldownPolicy.allow_override && !candidate.cooldown_exhaustion_fallback) {
     const violations = candidateCooldownViolations(
       candidate,
       context.recent_archive_history || [],
@@ -2185,6 +2219,7 @@ module.exports = {
   planDay,
   renderDailyPlan,
   scoreEditorialCritic,
+  selectCandidateShortlist,
   summarizeScreenshotRotation,
   validatePlan,
 };
