@@ -24,6 +24,7 @@ const {
   planDay,
   rankEditorialIntents,
   scoreEditorialCritic,
+  selectCandidateShortlist,
   summarizeScreenshotRotation,
   validatePlan,
 } = require("../scripts/lib/daily-planner");
@@ -415,6 +416,69 @@ test("chooseSupportedEditorialIntent can fall through after excluded screenshots
   assert.equal(selection.intent.audience_scope, "recipient-shared");
   assert.ok(selection.rejected_intents.some((intent) => intent.audience_scope === "admin-only"));
   assert.ok(selection.rejected_intents.some((intent) => intent.audience_scope === "public"));
+});
+
+test("selectCandidateShortlist preserves selected audience during cooldown fallback", () => {
+  const archiveHistory = [
+    { archive_key: "2026-05-18", audience_scope: "public", date: "2026-05-18" },
+    { archive_key: "2026-05-19", audience_scope: "public", date: "2026-05-19" },
+  ];
+  const fallbackCandidates = [
+    {
+      audience_scope: "public",
+      content_key: "guest-directory-verified",
+      cooldown_exhaustion_fallback: true,
+      cooldown_violations: [{ field: "concept_key" }],
+      file: "public-lowest-violation.png",
+      history_stats: { novelty_penalty: 0 },
+      rotation_sort_key: 0,
+      score: 100,
+      viewport: "desktop",
+    },
+    {
+      audience_scope: "recipient-shared",
+      content_key: "auth-inbox-detail",
+      cooldown_exhaustion_fallback: true,
+      cooldown_violations: [{ field: "topic_family" }, { field: "concept_key" }],
+      file: "recipient-supported-a.png",
+      history_stats: { novelty_penalty: 0 },
+      rotation_sort_key: 1,
+      score: 80,
+      viewport: "desktop",
+    },
+    {
+      audience_scope: "recipient-shared",
+      content_key: "auth-settings-notifications",
+      cooldown_exhaustion_fallback: true,
+      cooldown_violations: [{ field: "topic_family" }, { field: "concept_key" }],
+      file: "recipient-supported-b.png",
+      history_stats: { novelty_penalty: 0 },
+      rotation_sort_key: 2,
+      score: 70,
+      viewport: "desktop",
+    },
+  ];
+  const selection = chooseSupportedEditorialIntent(
+    archiveHistory,
+    "2026-05-21",
+    {
+      selected_format: CONTENT_FORMATS.find((format) => format.id === "feature_benefit"),
+    },
+    fallbackCandidates,
+  );
+
+  const shortlist = selectCandidateShortlist(
+    selection,
+    archiveHistory,
+    ["hushline-daily-desktop-template.html"],
+  );
+
+  assert.equal(selection.intent.audience_scope, "recipient-shared");
+  assert.deepEqual(
+    shortlist.map((candidate) => candidate.file),
+    ["recipient-supported-a.png", "recipient-supported-b.png"],
+  );
+  assert.ok(shortlist.every((candidate) => candidate.audience_scope === selection.intent.audience_scope));
 });
 
 test("chooseContentFormat rotates away from formats already used this week", () => {

@@ -1531,6 +1531,14 @@ function rankCandidates(candidates, archiveHistory, templateNames) {
     });
 }
 
+function selectCandidateShortlist(editorialIntentSelection, archiveHistory, templateNames, count = 3) {
+  return rankCandidates(
+    editorialIntentSelection.supporting_candidates || [],
+    archiveHistory,
+    templateNames,
+  ).slice(0, count);
+}
+
 function chooseTemplateNameForCandidate(candidate, context) {
   if (
     !context.template_selection ||
@@ -1610,12 +1618,12 @@ function buildDailyContext(args) {
     contentFormatSelection,
     eligibleCandidates,
   );
-  const rankedCandidates = rankCandidates(
-    editorialIntentSelection.supporting_candidates,
+  const selectedCandidates = selectCandidateShortlist(
+    editorialIntentSelection,
     archiveHistory,
     templateNames,
   );
-  const selectedCandidate = rankedCandidates[0] || null;
+  const selectedCandidate = selectedCandidates[0] || null;
 
   if (!selectedCandidate) {
     throw new Error(`No eligible screenshot candidates remain for ${args.date}.`);
@@ -1629,7 +1637,6 @@ function buildDailyContext(args) {
       },
     },
   );
-  const selectedCandidates = eligibleCandidates.slice(0, 3);
   const cooldownFallbackCandidates = selectedCandidates.filter(
     (candidate) => candidate.cooldown_exhaustion_fallback,
   );
@@ -2212,6 +2219,7 @@ module.exports = {
   planDay,
   renderDailyPlan,
   scoreEditorialCritic,
+  selectCandidateShortlist,
   summarizeScreenshotRotation,
   validatePlan,
 };
