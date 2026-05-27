@@ -1,0 +1,33 @@
+Slot: wednesday
+Planned date: 2026-05-27
+Template: hushline-daily-desktop-template.html
+Screenshot: /Users/scidsg/hushline-screenshots/curated/newman/auth-newman-settings-encryption-desktop-light-fold.png
+Content key: auth-newman-settings-encryption
+Headline: Build confidentiality into intake
+Subtext: Recipients can confirm how the account handles encrypted submissions before publishing a tip line.
+
+Image alt text
+Social asset showing the Hush Line desktop Encryption settings page for a recipient account. The screen includes Proton key import, a Proton email search field, a Search Proton button, and a manual public PGP key entry area, illustrating how confidentiality of disclosures depends on a clear encryption setup.
+
+Social post copy
+
+LinkedIn (452/3000)
+When a source sends a disclosure, the receiving workflow should already be prepared.
+
+Confidentiality is not only a policy word. In Hush Line, recipients and staff can connect their account to an OpenPGP setup from the account area, using Proton lookup or a manual paste. That turns encryption from a one-time launch task into routine upkeep for the intake channel.
+
+Sign up at https://hushline.app, then confirm the account's encryption configuration.
+
+Mastodon (349/500)
+When a source sends a disclosure, the receiving workflow should already be prepared.
+
+Confidentiality is practical upkeep. Hush Line lets recipients and staff connect their account to an OpenPGP setup from the account area, using Proton lookup or a manual paste.
+
+Sign up at https://hushline.app, then confirm the account's encryption configuration.
+
+Bluesky (270/300)
+When a source sends a disclosure, the receiving workflow should already be prepared.
+
+Hush Line lets recipients and staff connect an account to OpenPGP from the account area, using Proton lookup or manual paste.
+
+Sign up at https://hushline.app, then confirm encryption.
