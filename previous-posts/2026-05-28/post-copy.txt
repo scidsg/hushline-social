@@ -1,0 +1,33 @@
+Slot: thursday
+Planned date: 2026-05-28
+Template: hushline-daily-desktop-template-2.html
+Screenshot: /Users/scidsg/hushline-screenshots/curated/guest/guest-directory-verified-desktop-dark-fold.png
+Content key: guest-directory-verified
+Headline: Do not trust a tip link on name alone
+Subtext: The public directory gives sources a place to check verified profile details before opening an anonymous message path.
+
+Image alt text
+A dark-mode desktop social graphic showing the Hush Line verified directory, with profile cards for trusted recipients. The image supports guidance for sources to check the recipient before using a tip link.
+
+Social post copy
+
+LinkedIn (459/3000)
+A common mistake is treating the first tip link you find as the right one. A familiar name is not enough when the message may include sensitive details.
+
+Hush Line's public directory gives sources a place to review verified profiles and decide whether a recipient matches the person or organization they mean to contact. You can do that in the browser without creating a sender account.
+
+Use the directory to confirm the recipient first: https://hushline.app.
+
+Mastodon (304/500)
+One mistake to avoid: starting with the first tip link that looks close enough.
+
+Hush Line's public directory helps sources review verified profiles and confirm the recipient before opening an anonymous message path. No sender account is required.
+
+Use the directory to check first: https://hushline.app.
+
+Bluesky (222/300)
+Do not start with the first tip link that looks close enough.
+
+Hush Line's public directory helps sources review verified profiles before opening an anonymous message path.
+
+Check the recipient first: https://hushline.app.
