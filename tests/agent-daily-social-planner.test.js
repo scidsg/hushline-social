@@ -128,6 +128,25 @@ test("daily planner treats content format validation failures as retryable", () 
   }));
 });
 
+test("daily planner treats hook and CTA cooldown validation failures as rewriteable", () => {
+  const testScript = [
+    "set -euo pipefail",
+    `source ${shellQuote(plannerScriptPath)}`,
+    "LAST_VALIDATION_OUTPUT='Error: Post opening hook for 2026-05-29 repeats 2026-05-28 within the 5-post hook cooldown.'",
+    "is_retryable_validation_failure",
+    "is_message_overlap_validation_failure",
+    "LAST_VALIDATION_OUTPUT='Error: Post CTA pattern for 2026-05-29 repeats 2026-05-28 within the 1-post CTA cooldown.'",
+    "is_retryable_validation_failure",
+    "is_message_overlap_validation_failure",
+    "",
+  ].join("\n");
+
+  assert.doesNotThrow(() => execFileSync("bash", ["-c", testScript], {
+    cwd: REPO_ROOT,
+    encoding: "utf8",
+  }));
+});
+
 test("daily planner rewrites archive-overlap failures before excluding the only screenshot", () => {
   const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "daily-planner-overlap-rewrite-"));
   const archiveKey = "2026-05-25";

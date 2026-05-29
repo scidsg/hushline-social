@@ -282,6 +282,8 @@ is_retryable_validation_failure() {
   [[ "$LAST_VALIDATION_OUTPUT" == *"is too close to recent"* ]] ||
     [[ "$LAST_VALIDATION_OUTPUT" == *"overlaps too heavily with recent archive"* ]] ||
     [[ "$LAST_VALIDATION_OUTPUT" == *"duplicates recent archive headline"* ]] ||
+    [[ "$LAST_VALIDATION_OUTPUT" == *"Post opening hook"* ]] ||
+    [[ "$LAST_VALIDATION_OUTPUT" == *"Post CTA pattern"* ]] ||
     [[ "$LAST_VALIDATION_OUTPUT" == *"Weekly admin-only cap already reached"* ]] ||
     [[ "$LAST_VALIDATION_OUTPUT" == *"Weekly dark-mode cap already reached"* ]] ||
     [[ "$LAST_VALIDATION_OUTPUT" == *"Model returned content_format"* ]] ||
@@ -292,7 +294,9 @@ is_retryable_validation_failure() {
 is_message_overlap_validation_failure() {
   [[ "$LAST_VALIDATION_OUTPUT" == *"is too close to recent"* ]] ||
     [[ "$LAST_VALIDATION_OUTPUT" == *"overlaps too heavily with recent archive"* ]] ||
-    [[ "$LAST_VALIDATION_OUTPUT" == *"duplicates recent archive headline"* ]]
+    [[ "$LAST_VALIDATION_OUTPUT" == *"duplicates recent archive headline"* ]] ||
+    [[ "$LAST_VALIDATION_OUTPUT" == *"Post opening hook"* ]] ||
+    [[ "$LAST_VALIDATION_OUTPUT" == *"Post CTA pattern"* ]]
 }
 
 is_critic_validation_failure() {
