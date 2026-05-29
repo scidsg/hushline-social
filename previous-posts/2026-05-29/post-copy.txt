@@ -1,0 +1,37 @@
+Slot: friday
+Planned date: 2026-05-29
+Template: hushline-daily-desktop-template.html
+Screenshot: /Users/scidsg/hushline-screenshots/curated/newman/auth-newman-onboarding-encryption-desktop-light-fold.png
+Content key: auth-newman-onboarding-encryption
+Headline: Key setup is part of operating the channel
+Subtext: Recipients can connect OpenPGP during onboarding so the intake path is configured before people rely on it.
+
+Image alt text
+Social graphic showing the Hush Line desktop onboarding encryption step, where a recipient can look up a Proton Mail key or paste an OpenPGP public key. The post contrasts the myth that encryption setup is a one-time launch chore with the reality that key setup is part of operating a sensitive intake channel.
+
+Social post copy
+
+LinkedIn (411/3000)
+Myth: encryption setup is a launch-day chore.
+
+Reality: for journalists, lawyers, educators, organizers, and other recipients, key setup is part of operating a sensitive intake channel. It should be checked before people depend on the address.
+
+Hush Line includes OpenPGP setup in onboarding, with Proton lookup or manual key paste, so recipients can configure that path early.
+
+Sign up at https://hushline.app.
+
+Mastodon (297/500)
+Myth: encryption setup is a launch-day chore.
+
+Reality: key setup is part of operating a sensitive intake channel. Recipients should check it before people depend on the address.
+
+Hush Line includes OpenPGP setup in onboarding, with Proton lookup or manual paste.
+
+Sign up at https://hushline.app.
+
+Bluesky (200/300)
+Myth: encryption setup is a launch-day chore.
+
+Reality: key setup is part of operating a sensitive intake channel. Hush Line includes OpenPGP setup during onboarding.
+
+Sign up at https://hushline.app.

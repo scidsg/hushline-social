@@ -1,0 +1,42 @@
+{
+  "slot": "friday",
+  "planned_date": "2026-05-29",
+  "screenshot_file": "newman/auth-newman-onboarding-encryption-desktop-light-fold.png",
+  "content_key": "auth-newman-onboarding-encryption",
+  "content_format": "myth_vs_reality",
+  "headline": "Key setup is part of operating the channel",
+  "subtext": "Recipients can connect OpenPGP during onboarding so the intake path is configured before people rely on it.",
+  "image_alt_text": "Social graphic showing the Hush Line desktop onboarding encryption step, where a recipient can look up a Proton Mail key or paste an OpenPGP public key. The post contrasts the myth that encryption setup is a one-time launch chore with the reality that key setup is part of operating a sensitive intake channel.",
+  "social": {
+    "bluesky": "Myth: encryption setup is a launch-day chore.\n\nReality: key setup is part of operating a sensitive intake channel. Hush Line includes OpenPGP setup during onboarding.\n\nSign up at https://hushline.app.",
+    "linkedin": "Myth: encryption setup is a launch-day chore.\n\nReality: for journalists, lawyers, educators, organizers, and other recipients, key setup is part of operating a sensitive intake channel. It should be checked before people depend on the address.\n\nHush Line includes OpenPGP setup in onboarding, with Proton lookup or manual key paste, so recipients can configure that path early.\n\nSign up at https://hushline.app.",
+    "mastodon": "Myth: encryption setup is a launch-day chore.\n\nReality: key setup is part of operating a sensitive intake channel. Recipients should check it before people depend on the address.\n\nHush Line includes OpenPGP setup in onboarding, with Proton lookup or manual paste.\n\nSign up at https://hushline.app."
+  },
+  "rationale": "Selected the onboarding encryption screenshot from the cooldown fallback shortlist. The post uses a recipient-focused myth-versus-reality angle about key setup as operational upkeep, with a sign-up CTA to avoid repeating yesterday's URL CTA pattern.",
+  "source_pr_numbers": [],
+  "audience_scope": "recipient-shared",
+  "concept_key": "onboarding-encryption",
+  "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+  "editorial_intent": {
+    "audience_scope": "recipient-shared",
+    "content_format": "myth_vs_reality",
+    "content_format_label": "Myth versus reality",
+    "label": "Recipients and staff",
+    "reader_need": "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+    "visual_role": "supporting_screenshot"
+  },
+  "matched_pull_requests": [
+    {
+      "merged_at": "2026-05-29T02:27:40Z",
+      "number": 2103,
+      "title": "#2090 Add multi-key encrypted-field readers or key identifiers for ENCRYPTION_KEY rotation"
+    }
+  ],
+  "screen_key": "onboarding-encryption",
+  "template_name": "hushline-daily-desktop-template.html",
+  "theme": "light",
+  "title": "Onboarding - Step 2 Encryption (newman)",
+  "topic_family": "encryption",
+  "visual_selection_reason": "Selected screenshots only after choosing the Recipients and staff editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+  "viewport": "desktop"
+}
