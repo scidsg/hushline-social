@@ -1,0 +1,22 @@
+{
+  "date": "2026-06-01",
+  "display_name": "Julia Lurie",
+  "editorial_format_label": "What this recipient covers",
+  "headline": "Julia Lurie",
+  "image_alt_text": "A social card featuring verified Hush Line user Julia Lurie, their bio, their tip line URL, and a QR code that links to the same URL.",
+  "opening_line": "What this recipient covers:",
+  "planned_date": "2026-06-01",
+  "primary_username": "julialurie",
+  "qr_code_file": "verified-user-qr.png",
+  "social": {
+    "bluesky": "What this recipient covers:\n\nJulia is a senior reporter covering addiction, child welfare, and mental health at the Center for Investigative Reporting.\n\nSend Julia a tip: https://tips.hushline.app/to/julialurie",
+    "linkedin": "What this recipient covers:\n\nJulia is a senior reporter at the Center for Investigative Reporting covering addiction, child welfare, and mental health.\n\nTo send Julia a tip, go to https://tips.hushline.app/to/julialurie.",
+    "mastodon": "What this recipient covers:\n\nJulia is a senior reporter at the Center for Investigative Reporting, where she covers addiction, child welfare, and mental health.\n\nTo send Julia a tip, visit https://tips.hushline.app/to/julialurie."
+  },
+  "slot": "verified-user-weekly",
+  "source": "https://tips.hushline.app/directory/users.json",
+  "subtext": "I’m a senior reporter at the Center for Investigative Reporting covering addiction, child welfare, and mental health.",
+  "user_link": "https://tips.hushline.app/to/julialurie",
+  "user_url": "https://tips.hushline.app/to/julialurie",
+  "verified_user_format": "what_this_recipient_covers"
+}

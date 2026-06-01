@@ -1,0 +1,36 @@
+Slot: verified-user-weekly
+Planned date: 2026-06-01
+Verified user: @julialurie
+User link: https://tips.hushline.app/to/julialurie
+Source: https://tips.hushline.app/directory/users.json
+Editorial format: What this recipient covers (what_this_recipient_covers)
+Opening line: What this recipient covers:
+Headline: Julia Lurie
+Subtext: I’m a senior reporter at the Center for Investigative Reporting covering addiction, child welfare, and mental health.
+
+Image alt text
+A social card featuring verified Hush Line user Julia Lurie, their bio, their tip line URL, and a QR code that links to the same URL.
+
+Social post copy
+
+LinkedIn (220/3000)
+What this recipient covers:
+
+Julia is a senior reporter at the Center for Investigative Reporting covering addiction, child welfare, and mental health.
+
+To send Julia a tip, go to https://tips.hushline.app/to/julialurie.
+
+Mastodon (229/500)
+What this recipient covers:
+
+Julia is a senior reporter at the Center for Investigative Reporting, where she covers addiction, child welfare, and mental health.
+
+To send Julia a tip, visit https://tips.hushline.app/to/julialurie.
+
+Bluesky (210/300)
+What this recipient covers:
+
+Julia is a senior reporter covering addiction, child welfare, and mental health at the Center for Investigative Reporting.
+
+Send Julia a tip: https://tips.hushline.app/to/julialurie
+
