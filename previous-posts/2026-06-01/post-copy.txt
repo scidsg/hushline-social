@@ -1,0 +1,33 @@
+Slot: monday
+Planned date: 2026-06-01
+Template: hushline-daily-desktop-template-2.html
+Screenshot: /Users/scidsg/hushline-screenshots/curated/artvandelay/auth-artvandelay-settings-replies-desktop-light-fold.png
+Content key: auth-artvandelay-settings-replies
+Headline: Keep reply wording consistent across shifts
+Subtext: Recipients can maintain the short note shown on the reply page so staff give the same signal while new intake is being triaged.
+
+Image alt text
+Social graphic showing the Hush Line desktop Message Statuses settings page for a recipient account. The Message Statuses tab is selected, with a text area for the waiting-state reply note and a button to update the reply text.
+
+Social post copy
+
+LinkedIn (448/3000)
+A shared intake channel needs a house style for small moments, too.
+
+In Hush Line, recipients can prepare the short reply-page note that appears while new intake is being triaged. For a newsroom, law office, school, nonprofit, or security team, that gives staff one agreed line to maintain instead of rewriting the handoff every time someone checks the queue.
+
+Review the wording your team wants people to see during triage at https://hushline.app.
+
+Mastodon (269/500)
+A shared intake channel needs consistent handoffs.
+
+Hush Line lets recipients prepare the short reply-page note shown while new intake is being triaged, so staff have one agreed line to maintain across shifts.
+
+Review your team's triage wording at https://hushline.app.
+
+Bluesky (247/300)
+Shared intake works better when staff use the same handoff language.
+
+Hush Line lets recipients prepare the short reply-page note shown during triage, so teams are not rewriting it shift by shift.
+
+Review your team's wording: https://hushline.app.
