@@ -63,10 +63,13 @@ check_repo_paths() {
   for path in \
     "$REPO_DIR/scripts/run_daily_planner_launchd.sh" \
     "$REPO_DIR/scripts/run_daily_linkedin_launchd.sh" \
+    "$REPO_DIR/scripts/run_weekly_article_launchd.sh" \
+    "$REPO_DIR/scripts/run_weekly_article_linkedin_launchd.sh" \
     "$REPO_DIR/scripts/run_verified_user_weekly_launchd.sh" \
     "$REPO_DIR/scripts/run_verified_user_weekly_linkedin_launchd.sh" \
     "$REPO_DIR/scripts/agent_daily_social_planner.sh" \
     "$REPO_DIR/scripts/agent_daily_linkedin_publisher.sh" \
+    "$REPO_DIR/scripts/plan-weekly-article-post.js" \
     "$REPO_DIR/scripts/agent_weekly_verified_user_runner.sh" \
     "$REPO_DIR/scripts/agent_weekly_verified_user_linkedin_publisher.sh"; do
     if [[ ! -x "$path" ]]; then
@@ -74,7 +77,7 @@ check_repo_paths() {
     fi
   done
 
-  mkdir -p "$REPO_DIR/logs" "$REPO_DIR/.tmp" "$REPO_DIR/previous-posts" "$REPO_DIR/previous-verified-user-posts"
+  mkdir -p "$REPO_DIR/logs" "$REPO_DIR/.tmp" "$REPO_DIR/previous-posts" "$REPO_DIR/previous-article-posts" "$REPO_DIR/previous-verified-user-posts"
 }
 
 load_env_file() {

@@ -14,6 +14,7 @@ The job is not to produce a static yearly batch with hard-coded copy. The job is
 - render final social assets from approved templates
 - archive rendered daily assets under `previous-posts/YYYY-MM-DD`
 - support daily automatic publishing, with LinkedIn as the first target platform
+- support one weekly Wednesday article-share post for current whistleblower-related news from approved mainstream sources
 
 ## Core Planning Rules
 
@@ -47,6 +48,15 @@ For verified-user weekly posts:
 - assume verified users can be added, removed, or updated at any time
 - do not rely on a stale local snapshot for production selection
 - use a local JSON file only for explicit tests, debugging, or fixture-based verification
+
+For weekly article posts:
+
+- choose exactly one current whistleblower-related news article
+- use only the approved mainstream source allowlist in `scripts/plan-weekly-article-post.js`
+- do not use Fox, Breitbart, fringe, partisan, or controversial sources
+- prefer articles involving whistleblowers, protected disclosures, retaliation, leaks, confidential sources, corruption, fraud, misconduct, inspector general reports, or accountability investigations
+- fail closed if no sufficiently relevant article is available
+- always include the article link and a signup call to action for Hush Line
 
 ## Screenshot Selection Rules
 
@@ -227,6 +237,10 @@ Current default launchd schedule in this repo:
   - `06:00` local time, Monday through Friday
 - `com.hushline.social.linkedin.daily`
   - `06:10` local time, Monday through Friday
+- `com.hushline.social.weekly-article`
+  - `11:50` local time every Wednesday
+- `com.hushline.social.linkedin.weekly-article`
+  - `12:00` local time every Wednesday
 - `com.hushline.social.verified-user.weekly`
   - `12:00` local time every Monday
 - `com.hushline.social.linkedin.verified-user.weekly`
@@ -262,6 +276,8 @@ Use the launchd wrappers for manual runs so env loading and lock handling match 
 cd /Users/scidsg/hushline-social
 ./scripts/run_daily_planner_launchd.sh
 ./scripts/run_daily_linkedin_launchd.sh
+./scripts/run_weekly_article_launchd.sh
+./scripts/run_weekly_article_linkedin_launchd.sh
 ./scripts/run_verified_user_weekly_launchd.sh
 ./scripts/run_verified_user_weekly_linkedin_launchd.sh
 ```
@@ -272,6 +288,8 @@ For a specific date:
 cd /Users/scidsg/hushline-social
 ./scripts/run_daily_planner_launchd.sh --date YYYY-MM-DD
 ./scripts/run_daily_linkedin_launchd.sh --date YYYY-MM-DD
+./scripts/run_weekly_article_launchd.sh --date YYYY-MM-DD
+./scripts/run_weekly_article_linkedin_launchd.sh --date YYYY-MM-DD
 ./scripts/run_verified_user_weekly_launchd.sh --date YYYY-MM-DD
 ./scripts/run_verified_user_weekly_linkedin_launchd.sh --date YYYY-MM-DD
 ```
@@ -300,6 +318,7 @@ Optional Codex overrides:
 - if you need to stop scheduled runs temporarily, disable and boot out both launch agents rather than editing code paths
 - if a wrapper exits with an "already running" message, check for a stale lock directory under `.tmp/`
 - if the daily archive folder is missing, the publisher should not post until the planner recreates that date's archive
+- if the weekly article archive folder is missing, the weekly article LinkedIn publisher should not post until the planner recreates that date's archive
 - if the weekly verified-user archive folder is missing, the verified-user LinkedIn publisher should not post until the runner recreates that date's archive
 - if the planner archive was deleted after a live post, restore `linkedin-publication.json` before allowing the publisher to run again
 
@@ -332,3 +351,4 @@ When planning in this repo, verify that:
 - the planned date matches the archive folder date
 - no repeated underlying screen appears across adjacent archived posts, even when the tab or viewport changed
 - the daily publisher can identify today’s LinkedIn post cleanly from `previous-posts/YYYY-MM-DD`
+- the weekly article publisher can identify Wednesday's LinkedIn post cleanly from `previous-article-posts/YYYY-MM-DD`

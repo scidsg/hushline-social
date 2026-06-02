@@ -20,6 +20,8 @@ This repo plans one post per publish date from current local Hush Line context, 
 - fills the verified-user template with display name, bio, direct `/to/...` URL, and a matching QR code
 - publishes the weekly verified-user archive to LinkedIn after rendering
 - pushes the weekly verified-user archive to git after successful LinkedIn publication so the pushed dated folder itself is the published-state record
+- plans one weekly whistleblower-related news article from approved mainstream sources into `previous-article-posts/YYYY-MM-DD`
+- publishes the weekly article-share post to LinkedIn on Wednesdays at noon, then pushes the article archive after successful publication
 
 ## Schedule
 
@@ -27,6 +29,8 @@ Default launchd schedules are weekday-only:
 
 - planner: `06:00` local time, Monday through Friday
 - LinkedIn publisher: `06:10` local time, Monday through Friday
+- weekly article planner: `11:50` local time every Wednesday
+- weekly article LinkedIn publisher: `12:00` local time every Wednesday
 - verified-user weekly runner: `12:00` local time every Monday
 - verified-user LinkedIn publisher: `12:10` local time every Monday
 
@@ -50,6 +54,8 @@ Use the launchd wrappers so env loading and lock handling match production:
 cd /Users/scidsg/hushline-social
 ./scripts/run_daily_planner_launchd.sh
 ./scripts/run_daily_linkedin_launchd.sh
+./scripts/run_weekly_article_launchd.sh
+./scripts/run_weekly_article_linkedin_launchd.sh
 ./scripts/run_verified_user_weekly_launchd.sh
 ./scripts/run_verified_user_weekly_linkedin_launchd.sh
 ```
@@ -60,9 +66,13 @@ For a specific weekday or Monday:
 cd /Users/scidsg/hushline-social
 ./scripts/run_daily_planner_launchd.sh --date YYYY-MM-DD
 ./scripts/run_daily_linkedin_launchd.sh --date YYYY-MM-DD
+./scripts/run_weekly_article_launchd.sh --date YYYY-MM-DD
+./scripts/run_weekly_article_linkedin_launchd.sh --date YYYY-MM-DD
 ./scripts/run_verified_user_weekly_launchd.sh --date YYYY-MM-DD
 ./scripts/run_verified_user_weekly_linkedin_launchd.sh --date YYYY-MM-DD
 ```
+
+Weekly article posts are text-only LinkedIn posts that select one current whistleblower-related article from an approved source allowlist: The New York Times, The Atlantic, The Guardian, BBC News, Al Jazeera, ABC News, NBC News, CBS News, and CNN. The selector rejects blocked/fringe sources, requires whistleblower-related relevance, includes the article link, and ends with a Hush Line signup call to action.
 
 To inspect whether recent archived posts are becoming repetitive:
 
@@ -168,6 +178,7 @@ cd /Users/scidsg/hushline-social
 - The daily planner enforces hard weekly caps for the weekday run set: no more than one admin-targeted post and no more than one dark-mode screenshot in the same Monday-through-Friday week.
 - The daily planner and manual daily post wrappers can reset tracked changes, remove untracked files, and run `git pull --ff-only` in both `hushline-social` and `../hushline-screenshots` before planning.
 - The daily planner keeps its archive local by default; the daily LinkedIn publisher pushes `previous-posts/YYYY-MM-DD` after successful publication, and the pushed dated folder is the publication-state signal across machines.
+- The weekly article planner keeps its archive local by default; the weekly article LinkedIn publisher pushes `previous-article-posts/YYYY-MM-DD` after successful publication, and the pushed dated folder is the publication-state signal across machines.
 - The verified-user weekly LaunchAgents are scheduled for Mondays, but the manual wrappers can be run for any date override.
 - The verified-user LinkedIn publisher posts from `previous-verified-user-posts/YYYY-MM-DD`.
 - The weekly verified-user render step keeps its archive local by default; the LinkedIn publish step pushes that dated folder after successful publication, and the pushed dated folder is the publication-state signal across machines.
