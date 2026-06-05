@@ -294,13 +294,31 @@ function contentKey(article) {
     .slice(0, 96);
 }
 
+function composeArticleIntro(article) {
+  const source = article.source.trim();
+  const title = article.title.replace(/\s+/g, " ").trim();
+
+  if (/\bwhistle[-\s]?blow(?:er|ers|ing)?\b/i.test(title)) {
+    return `${source} has a new report centered on a whistleblower allegation: ${title}.`;
+  }
+
+  if (/\bretaliat(?:e|ed|ion|ory)\b/i.test(title)) {
+    return `${source} has a new report on alleged retaliation after someone spoke up: ${title}.`;
+  }
+
+  if (/\b(leak|leaked|leaks|leaker|confidential source|anonymous source)\b/i.test(title)) {
+    return `${source} has a new report on source-provided information and accountability: ${title}.`;
+  }
+
+  return `${source} has a new accountability report worth reading: ${title}.`;
+}
+
 function composeCopy(article) {
-  const intro = "Whistleblower-related news is a reminder that safe reporting channels are part of accountability.";
-  const articleLine = `${article.source}: ${article.title}\n${article.link}`;
-  const cta = `Give people a safer way to report wrongdoing. Sign up for Hush Line: ${HUSHLINE_URL}.`;
-  const linkedin = `${intro}\n\n${articleLine}\n\n${cta}`;
-  const mastodon = `${intro}\n\n${article.source}: ${article.title}\n${article.link}\n\nSign up for Hush Line: ${HUSHLINE_URL}.`;
-  const bluesky = `${article.source}: ${article.title}\n${article.link}\n\nSafer reporting channels matter. Sign up for Hush Line: ${HUSHLINE_URL}.`;
+  const intro = composeArticleIntro(article);
+  const cta = `Hush Line helps organizations give people a safer way to report wrongdoing. Sign up for Hush Line: ${HUSHLINE_URL}.`;
+  const linkedin = `${intro}\n${article.link}\n\n${cta}`;
+  const mastodon = `${intro}\n${article.link}\n\nSign up for Hush Line: ${HUSHLINE_URL}.`;
+  const bluesky = `${article.source}: ${article.title}\n${article.link}\n\nSign up: ${HUSHLINE_URL}.`;
 
   return {
     bluesky: clampText(bluesky, LIMITS.bluesky),

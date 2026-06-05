@@ -82,9 +82,14 @@ test("builds professional article copy with the article link and Hush Line signu
 
   assert.equal(post.publish_mode, "text");
   assert.equal(post.article_url, article.link);
-  assert.match(post.social.linkedin, /The Guardian: Whistleblower says reporting fraud led to retaliation/);
+  assert.match(
+    post.social.linkedin,
+    /^The Guardian has a new report centered on a whistleblower allegation: Whistleblower says reporting fraud led to retaliation\./,
+  );
   assert.match(post.social.linkedin, /https:\/\/www\.theguardian\.com\/world\/example-whistleblower/);
   assert.match(post.social.linkedin, /Sign up for Hush Line: https:\/\/hushline\.app\./);
+  assert.doesNotMatch(post.social.linkedin, /Whistleblower-related news is a reminder/);
+  assert.doesNotMatch(post.social.linkedin, /safe reporting channels are part of accountability/);
   assert.ok(post.social.bluesky.length <= 300);
 });
 
