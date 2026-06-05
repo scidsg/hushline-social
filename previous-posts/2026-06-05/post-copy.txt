@@ -1,0 +1,33 @@
+Slot: friday
+Planned date: 2026-06-05
+Template: hushline-daily-desktop-template-2.html
+Screenshot: /Users/scidsg/hushline-screenshots/curated/artvandelay/auth-artvandelay-settings-notifications-desktop-light-fold.png
+Content key: auth-artvandelay-settings-notifications
+Headline: Check forwarding rules for sensitive intake
+Subtext: The Notifications page shows email notifications, Hush Line inbox notifications, message contents, the forwarding address, and Custom SMTP controls.
+
+Image alt text
+A Hush Line social post graphic about reviewing email forwarding. The desktop Settings page shows Notifications selected in the left menu, followed by toggles for Tip Notifications, Include Message Contents, and Encrypt Entire Body, an Email Address field, Custom SMTP Settings, and an Update Email Forwarding button.
+
+Social post copy
+
+LinkedIn (496/3000)
+Sensitive intake can stall if the wrong people miss the notice. Start by opening Notifications and checking the forwarding address for the account.
+
+The screen separates Hush Line inbox notifications from email notifications. It also asks whether encrypted tip contents go in email, so a shared newsroom, legal, nonprofit, or security address does not receive more than the group expects.
+
+Check those choices with the staff who monitor intake, then update email forwarding: https://hushline.app.
+
+Mastodon (312/500)
+Do a forwarding check before staff rely on the tip line.
+
+Notifications separates Hush Line inbox notifications from email notifications. The same page asks whether encrypted tip contents go in email and which address receives the notice.
+
+Confirm the choices, then update email forwarding: https://hushline.app.
+
+Bluesky (237/300)
+Do a forwarding check with the staff who monitor intake.
+
+Notifications separates Hush Line inbox notifications from email notifications and asks whether encrypted tip contents go in email.
+
+Update email forwarding: https://hushline.app.

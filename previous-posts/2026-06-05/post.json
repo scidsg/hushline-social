@@ -1,0 +1,36 @@
+{
+  "slot": "friday",
+  "planned_date": "2026-06-05",
+  "screenshot_file": "artvandelay/auth-artvandelay-settings-notifications-desktop-light-fold.png",
+  "content_key": "auth-artvandelay-settings-notifications",
+  "content_format": "workflow_teardown",
+  "headline": "Check forwarding rules for sensitive intake",
+  "subtext": "The Notifications page shows email notifications, Hush Line inbox notifications, message contents, the forwarding address, and Custom SMTP controls.",
+  "image_alt_text": "A Hush Line social post graphic about reviewing email forwarding. The desktop Settings page shows Notifications selected in the left menu, followed by toggles for Tip Notifications, Include Message Contents, and Encrypt Entire Body, an Email Address field, Custom SMTP Settings, and an Update Email Forwarding button.",
+  "social": {
+    "bluesky": "Do a forwarding check with the staff who monitor intake.\n\nNotifications separates Hush Line inbox notifications from email notifications and asks whether encrypted tip contents go in email.\n\nUpdate email forwarding: https://hushline.app.",
+    "linkedin": "Sensitive intake can stall if the wrong people miss the notice. Start by opening Notifications and checking the forwarding address for the account.\n\nThe screen separates Hush Line inbox notifications from email notifications. It also asks whether encrypted tip contents go in email, so a shared newsroom, legal, nonprofit, or security address does not receive more than the group expects.\n\nCheck those choices with the staff who monitor intake, then update email forwarding: https://hushline.app.",
+    "mastodon": "Do a forwarding check before staff rely on the tip line.\n\nNotifications separates Hush Line inbox notifications from email notifications. The same page asks whether encrypted tip contents go in email and which address receives the notice.\n\nConfirm the choices, then update email forwarding: https://hushline.app."
+  },
+  "rationale": "Selected the recipient-shared Settings - Notifications screenshot because it supports the required workflow teardown format without using an admin-only or public screen. The angle focuses on the repeatable decision a recipient or staff member makes on the Notifications page: who monitors the Hush Line inbox, how email notifications behave, whether encrypted tip contents go in email, and when to update forwarding before a shared tip line is used.",
+  "source_pr_numbers": [],
+  "audience_scope": "recipient-shared",
+  "concept_key": "settings-notifications",
+  "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+  "editorial_intent": {
+    "audience_scope": "recipient-shared",
+    "content_format": "workflow_teardown",
+    "content_format_label": "Workflow teardown",
+    "label": "Recipients and staff",
+    "reader_need": "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+    "visual_role": "supporting_screenshot"
+  },
+  "matched_pull_requests": [],
+  "screen_key": "/settings/notifications",
+  "template_name": "hushline-daily-desktop-template-2.html",
+  "theme": "light",
+  "title": "Settings - Notifications (artvandelay)",
+  "topic_family": "notifications",
+  "visual_selection_reason": "Selected screenshots only after choosing the Recipients and staff editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+  "viewport": "desktop"
+}

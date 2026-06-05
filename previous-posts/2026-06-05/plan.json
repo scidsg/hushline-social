@@ -1,0 +1,107 @@
+{
+  "date": "2026-06-05",
+  "post": {
+    "slot": "friday",
+    "planned_date": "2026-06-05",
+    "screenshot_file": "artvandelay/auth-artvandelay-settings-notifications-desktop-light-fold.png",
+    "content_key": "auth-artvandelay-settings-notifications",
+    "content_format": "workflow_teardown",
+    "headline": "Check forwarding rules for sensitive intake",
+    "subtext": "The Notifications page shows email notifications, Hush Line inbox notifications, message contents, the forwarding address, and Custom SMTP controls.",
+    "image_alt_text": "A Hush Line social post graphic about reviewing email forwarding. The desktop Settings page shows Notifications selected in the left menu, followed by toggles for Tip Notifications, Include Message Contents, and Encrypt Entire Body, an Email Address field, Custom SMTP Settings, and an Update Email Forwarding button.",
+    "social": {
+      "bluesky": "Do a forwarding check with the staff who monitor intake.\n\nNotifications separates Hush Line inbox notifications from email notifications and asks whether encrypted tip contents go in email.\n\nUpdate email forwarding: https://hushline.app.",
+      "linkedin": "Sensitive intake can stall if the wrong people miss the notice. Start by opening Notifications and checking the forwarding address for the account.\n\nThe screen separates Hush Line inbox notifications from email notifications. It also asks whether encrypted tip contents go in email, so a shared newsroom, legal, nonprofit, or security address does not receive more than the group expects.\n\nCheck those choices with the staff who monitor intake, then update email forwarding: https://hushline.app.",
+      "mastodon": "Do a forwarding check before staff rely on the tip line.\n\nNotifications separates Hush Line inbox notifications from email notifications. The same page asks whether encrypted tip contents go in email and which address receives the notice.\n\nConfirm the choices, then update email forwarding: https://hushline.app."
+    },
+    "rationale": "Selected the recipient-shared Settings - Notifications screenshot because it supports the required workflow teardown format without using an admin-only or public screen. The angle focuses on the repeatable decision a recipient or staff member makes on the Notifications page: who monitors the Hush Line inbox, how email notifications behave, whether encrypted tip contents go in email, and when to update forwarding before a shared tip line is used.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "settings-notifications",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "editorial_intent": {
+      "audience_scope": "recipient-shared",
+      "content_format": "workflow_teardown",
+      "content_format_label": "Workflow teardown",
+      "label": "Recipients and staff",
+      "reader_need": "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+      "visual_role": "supporting_screenshot"
+    },
+    "matched_pull_requests": [],
+    "screen_key": "/settings/notifications",
+    "template_name": "hushline-daily-desktop-template-2.html",
+    "theme": "light",
+    "title": "Settings - Notifications (artvandelay)",
+    "topic_family": "notifications",
+    "visual_selection_reason": "Selected screenshots only after choosing the Recipients and staff editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+    "viewport": "desktop"
+  },
+  "summary": "Daily workflow teardown post for recipients and staff about reviewing notification settings before relying on email forwarding for sensitive intake.",
+  "critic": {
+    "blocked": false,
+    "criteria": [
+      {
+        "id": "topic_freshness",
+        "label": "Topic freshness",
+        "max_score": 2,
+        "rationale": "Topic family notifications is fresh against the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "hook_freshness",
+        "label": "Hook freshness",
+        "max_score": 2,
+        "rationale": "Opening hook is distinct from recent archive hooks.",
+        "score": 2
+      },
+      {
+        "id": "format_novelty",
+        "label": "Format novelty",
+        "max_score": 2,
+        "rationale": "Format workflow_teardown is not overused in the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "audience_specificity",
+        "label": "Audience specificity",
+        "max_score": 2,
+        "rationale": "Copy contains 5 signal(s) for recipient-shared.",
+        "score": 2
+      },
+      {
+        "id": "concrete_reader_value",
+        "label": "Concrete reader value",
+        "max_score": 2,
+        "rationale": "Copy gives 2 concrete action/value signal(s).",
+        "score": 2
+      },
+      {
+        "id": "hushline_relevance",
+        "label": "Hush Line relevance",
+        "max_score": 2,
+        "rationale": "Copy is tied to Hush Line or a concrete Hush Line surface.",
+        "score": 2
+      },
+      {
+        "id": "cta_freshness",
+        "label": "CTA freshness",
+        "max_score": 2,
+        "rationale": "CTA pattern is fresh against the configured CTA cooldown.",
+        "score": 2
+      },
+      {
+        "id": "safety_compliance",
+        "label": "Safety and compliance",
+        "max_score": 2,
+        "rationale": "Copy avoids unsupported safety, anonymity, and recency claims.",
+        "score": 2
+      }
+    ],
+    "failed_criteria": [],
+    "max_score": 16,
+    "passed": true,
+    "rationale": "Topic freshness: Topic family notifications is fresh against the recent archive. Hook freshness: Opening hook is distinct from recent archive hooks. Format novelty: Format workflow_teardown is not overused in the recent archive. Audience specificity: Copy contains 5 signal(s) for recipient-shared. Concrete reader value: Copy gives 2 concrete action/value signal(s). Hush Line relevance: Copy is tied to Hush Line or a concrete Hush Line surface. CTA freshness: CTA pattern is fresh against the configured CTA cooldown. Safety and compliance: Copy avoids unsupported safety, anonymity, and recency claims.",
+    "score": 16,
+    "threshold": 12
+  }
+}
