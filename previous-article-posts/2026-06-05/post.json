@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-06-05",
+  "weekday": "friday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "Nauru issues rare statement after whistleblower alleges violent threats against Australia’s non-citizens",
+  "article_url": "https://www.theguardian.com/australia-news/2026/jun/04/nauru-issues-rare-statement-after-whistleblower-alleges-violent-threats-against-non-citizens-ntwnfb",
+  "article_published_at": "2026-06-04T15:00:09.000Z",
+  "relevance_score": 14,
+  "content_key": "weekly-news-the-guardian-nauru-issues-rare-statement-after-whistleblower-alleges-violent-threats",
+  "headline": "Whistleblower-related news worth reading",
+  "subtext": "The Guardian reports: Nauru issues rare statement after whistleblower alleges violent threats against Australia’s non-citizens",
+  "social": {
+    "bluesky": "The Guardian: Nauru issues rare statement after whistleblower alleges violent threats against Australia’s non-citizens\nhttps://www.theguardian.com/australia-news/2026/jun/04/nauru-issues-rare-statement-after-whistleblower-alleges-violent-threats-against-non-citizens-ntwnfb\n\nSign up: https://hushlin…",
+    "linkedin": "The Guardian has a new report centered on a whistleblower allegation: Nauru issues rare statement after whistleblower alleges violent threats against Australia’s non-citizens.\nhttps://www.theguardian.com/australia-news/2026/jun/04/nauru-issues-rare-statement-after-whistleblower-alleges-violent-threats-against-non-citizens-ntwnfb\n\nHush Line helps organizations give people a safer way to report wrongdoing. Sign up for Hush Line: https://hushline.app.",
+    "mastodon": "The Guardian has a new report centered on a whistleblower allegation: Nauru issues rare statement after whistleblower alleges violent threats against Australia’s non-citizens.\nhttps://www.theguardian.com/australia-news/2026/jun/04/nauru-issues-rare-statement-after-whistleblower-alleges-violent-threats-against-non-citizens-ntwnfb\n\nSign up for Hush Line: https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Professional article-share copy with article link and Hush Line signup CTA."
+}

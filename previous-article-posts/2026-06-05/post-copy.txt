@@ -1,0 +1,28 @@
+Slot: weekly-news-article
+Planned date: 2026-06-05
+Publish mode: text
+Source: The Guardian
+Article URL: https://www.theguardian.com/australia-news/2026/jun/04/nauru-issues-rare-statement-after-whistleblower-alleges-violent-threats-against-non-citizens-ntwnfb
+Content key: weekly-news-the-guardian-nauru-issues-rare-statement-after-whistleblower-alleges-violent-threats
+Headline: Whistleblower-related news worth reading
+Subtext: The Guardian reports: Nauru issues rare statement after whistleblower alleges violent threats against Australia’s non-citizens
+
+Social post copy
+
+LinkedIn (452/3000)
+The Guardian has a new report centered on a whistleblower allegation: Nauru issues rare statement after whistleblower alleges violent threats against Australia’s non-citizens.
+https://www.theguardian.com/australia-news/2026/jun/04/nauru-issues-rare-statement-after-whistleblower-alleges-violent-threats-against-non-citizens-ntwnfb
+
+Hush Line helps organizations give people a safer way to report wrongdoing. Sign up for Hush Line: https://hushline.app.
+
+Mastodon (376/500)
+The Guardian has a new report centered on a whistleblower allegation: Nauru issues rare statement after whistleblower alleges violent threats against Australia’s non-citizens.
+https://www.theguardian.com/australia-news/2026/jun/04/nauru-issues-rare-statement-after-whistleblower-alleges-violent-threats-against-non-citizens-ntwnfb
+
+Sign up for Hush Line: https://hushline.app.
+
+Bluesky (300/300)
+The Guardian: Nauru issues rare statement after whistleblower alleges violent threats against Australia’s non-citizens
+https://www.theguardian.com/australia-news/2026/jun/04/nauru-issues-rare-statement-after-whistleblower-alleges-violent-threats-against-non-citizens-ntwnfb
+
+Sign up: https://hushlin…
