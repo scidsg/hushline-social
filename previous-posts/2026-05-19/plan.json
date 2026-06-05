@@ -1,0 +1,30 @@
+{
+  "date": "2026-05-19",
+  "post": {
+    "slot": "tuesday",
+    "planned_date": "2026-05-19",
+    "screenshot_file": "newman/auth-newman-onboarding-encryption-desktop-light-fold.png",
+    "content_key": "auth-newman-onboarding-encryption",
+    "headline": "Set up message encryption during onboarding",
+    "subtext": "Recipients can search Proton Mail for a key or paste a public PGP key before sources begin using the tip line.",
+    "image_alt_text": "Social card for Hush Line with the headline \"Set up message encryption during onboarding\" and a desktop screenshot of the account setup encryption step. The screenshot shows a Tor Browser reminder, Proton Mail key search, a manual public PGP key field, and continue and skip setup buttons.",
+    "social": {
+      "bluesky": "Set up encryption before sources use your tip line.\n\nHush Line onboarding lets recipients search Proton Mail for a key or paste a public PGP key manually, so message delivery is ready before the line is shared.\n\nSign up at https://hushline.app.",
+      "linkedin": "People setting up a tip line need encryption in place before they ask sources to use it.\n\nIn Hush Line onboarding, recipients can add a public encryption key by searching Proton Mail or pasting a PGP public key manually. That setup keeps the first disclosure workflow focused: sources do not need an account, and recipients have a key ready for protected message delivery.\n\nSign up at https://hushline.app.",
+      "mastodon": "Before a journalist, lawyer, educator, or team shares a tip line, encryption should be set up.\n\nHush Line onboarding lets recipients search Proton Mail for a key or paste a public PGP key manually, so submitted messages can be protected from the start.\n\nSign up at https://hushline.app."
+    },
+    "rationale": "Chose the onboarding encryption screenshot because it is the least repetitive candidate in the shortlist. The settings encryption screen repeats the recent settings encryption angle more directly, and the email validation screen repeats an exact content key from 2026-05-08. This post is written for recipients and staff preparing a tip line, grounded in the documented workflow of adding encryption before publishing a public intake channel.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "onboarding-encryption",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "matched_pull_requests": [],
+    "screen_key": "onboarding-encryption",
+    "template_name": "hushline-daily-desktop-template.html",
+    "theme": "light",
+    "title": "Onboarding - Step 2 Encryption (newman)",
+    "topic_family": "encryption",
+    "viewport": "desktop"
+  },
+  "summary": "Daily post for 2026-05-19 using the onboarding encryption screenshot, focused on recipients setting up a public key before sharing a tip line."
+}

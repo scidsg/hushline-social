@@ -23,8 +23,16 @@ const {
 } = require("./social-common");
 
 const DAILY_POSTS_ROOT = path.join(REPO_ROOT, "previous-posts");
-const ARCHIVE_LOOKBACK_DAYS = 31;
+const ARCHIVE_LOOKBACK_DAYS = 90;
 const FEATURE_REPEAT_HARD_LOOKBACK_POSTS = 5;
+const EDITORIAL_CRITIC_THRESHOLD = 12;
+const DEFAULT_COOLDOWN_POLICY = {
+  allow_override: false,
+  concept_key_posts: 20,
+  cta_posts: 1,
+  hook_posts: 30,
+  topic_family_posts: 5,
+};
 const ADMIN_COPY_PATTERNS = [
   /\badmin\b/i,
   /\badmins\b/i,
@@ -179,6 +187,141 @@ const NOTIFICATION_COPY_PATTERNS = [
   /\binbox\b/i,
   /\bencrypted\b/i,
 ];
+const AUDIENCE_SPECIFICITY_PATTERNS = {
+  "admin-only": [
+    /\badmin(s|istrator|istrators)?\b/i,
+    /\bdeployment(s)?\b/i,
+    /\boperator(s)?\b/i,
+    /\bteam(s)?\b/i,
+  ],
+  public: [
+    /\bsource(s)?\b/i,
+    /\bvisitor(s)?\b/i,
+    /\bpublic\b/i,
+    /\btip(s)?\b/i,
+    /\bfind\b/i,
+    /\brecipient(s)?\b/i,
+  ],
+  "recipient-shared": [
+    /\brecipient(s)?\b/i,
+    /\bstaff\b/i,
+    /\binbox\b/i,
+    /\bmessage(s)?\b/i,
+    /\breview\b/i,
+    /\bintake\b/i,
+  ],
+};
+const CONCRETE_VALUE_PATTERNS = [
+  /\bbefore\b/i,
+  /\bcheck\b/i,
+  /\bchoose\b/i,
+  /\bcompare\b/i,
+  /\bdecide\b/i,
+  /\bdownload\b/i,
+  /\bfind\b/i,
+  /\bmanage\b/i,
+  /\breview\b/i,
+  /\bsend\b/i,
+  /\bset up\b/i,
+  /\bverify\b/i,
+];
+const HUSHLINE_RELEVANCE_PATTERNS = [
+  /\bHush Line\b/i,
+  /https:\/\/hushline\.app\b/i,
+  /\banonymous\b/i,
+  /\bdirectory\b/i,
+  /\bencrypted\b/i,
+  /\binbox\b/i,
+  /\bmessage(s)?\b/i,
+  /\bprofile(s)?\b/i,
+  /\btip line\b/i,
+];
+const SAFETY_RISK_PATTERNS = [
+  /\bguarantee(s|d)? anonymity\b/i,
+  /\bcompletely anonymous\b/i,
+  /\bunbreakable\b/i,
+  /\bmilitary[- ]grade\b/i,
+  /\bzero risk\b/i,
+  /\bnewly released\b/i,
+  /\bjust shipped\b/i,
+  /\brecently launched\b/i,
+];
+const CONTENT_FORMAT_WEEKLY_CAP = 1;
+const CONTENT_FORMATS = Object.freeze([
+  {
+    cta_guidance: "Close with a next step that matches the checklist, not a generic product slogan.",
+    id: "source_safety_checklist",
+    label: "Source safety checklist",
+    copy_guidance: "Write as a short practical checklist for a person deciding whether and how to make first contact safely.",
+    alt_text_guidance: "Describe the UI and the checklist context the asset is illustrating.",
+  },
+  {
+    cta_guidance: "Close with a recipient-oriented action, such as setting up or reviewing the relevant workflow.",
+    id: "recipient_playbook",
+    label: "Recipient playbook",
+    copy_guidance: "Write like an operational playbook for recipients or staff who need to manage sensitive intake repeatedly.",
+    alt_text_guidance: "Describe the screen as part of a recipient workflow, including the visible controls or state.",
+  },
+  {
+    cta_guidance: "Close by connecting the principle to a concrete Hush Line action or learning path.",
+    id: "iso_37002_principle",
+    label: "ISO 37002 principle",
+    copy_guidance: "Tie the screenshot to one plain-English whistleblowing-system principle without sounding academic.",
+    alt_text_guidance: "Describe the asset and the principle it is demonstrating in accessible language.",
+  },
+  {
+    cta_guidance: "Close with how to avoid the mistake or where to learn the safer path.",
+    id: "mistake_to_avoid",
+    label: "Mistake to avoid",
+    copy_guidance: "Open with a realistic mistake a source, recipient, or admin could make, then explain the safer workflow.",
+    alt_text_guidance: "Describe the visual as an example of the safer workflow that avoids the mistake.",
+  },
+  {
+    cta_guidance: "Close by inviting the reader to use the corrected understanding in Hush Line.",
+    id: "myth_vs_reality",
+    label: "Myth versus reality",
+    copy_guidance: "Contrast one common misconception with a concrete reality shown or supported by the screenshot.",
+    alt_text_guidance: "Describe the UI and the misconception/reality comparison the graphic supports.",
+  },
+  {
+    cta_guidance: "Close with a workflow-specific next step instead of a broad sign-up line when possible.",
+    id: "workflow_teardown",
+    label: "Workflow teardown",
+    copy_guidance: "Walk through one workflow moment: what the user is trying to decide, what the UI shows, and what happens next.",
+    alt_text_guidance: "Describe the relevant UI elements in the order a user would encounter them.",
+  },
+  {
+    cta_guidance: "Close by linking the design choice to a concrete reader benefit.",
+    id: "design_principle",
+    label: "Design principle",
+    copy_guidance: "Explain one product design choice and why it matters for privacy, trust, accessibility, or operational safety.",
+    alt_text_guidance: "Describe the visible design choice and the user-facing context.",
+  },
+  {
+    cta_guidance: "Close with the most relevant product action for the audience and screen.",
+    id: "feature_benefit",
+    label: "Feature benefit",
+    copy_guidance: "Explain the feature through the specific user benefit it creates, avoiding release-note language.",
+    alt_text_guidance: "Describe the final social asset and the feature being shown.",
+  },
+]);
+const EDITORIAL_AUDIENCES = Object.freeze([
+  {
+    audience_scope: "public",
+    label: "Public sources and visitors",
+    reader_need: "Help someone decide whether Hush Line is the right place to make safe first contact or find a trusted recipient.",
+  },
+  {
+    audience_scope: "recipient-shared",
+    label: "Recipients and staff",
+    reader_need: "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+  },
+  {
+    audience_scope: "admin-only",
+    label: "Admins and deployment teams",
+    reader_need: "Help an admin or deployment team run Hush Line responsibly without weakening safety or trust.",
+  },
+]);
 
 function todayString() {
   const now = new Date();
@@ -222,6 +365,18 @@ function inferThemeFromEntry(entry) {
   }
 
   return null;
+}
+
+function getContentFormat(formatId) {
+  return CONTENT_FORMATS.find((format) => format.id === formatId) || null;
+}
+
+function contentFormatIds() {
+  return CONTENT_FORMATS.map((format) => format.id);
+}
+
+function getEditorialAudience(audienceScope) {
+  return EDITORIAL_AUDIENCES.find((audience) => audience.audience_scope === audienceScope) || null;
 }
 
 function normalizeConceptKey(contentKey) {
@@ -302,14 +457,59 @@ function inferTopicFamily(item) {
   return normalizeConceptKey(item.content_key || item.contentKey);
 }
 
+function parseCooldownCount(value, name) {
+  const parsed = Number(value);
+
+  if (!Number.isInteger(parsed) || parsed < 0 || parsed > ARCHIVE_LOOKBACK_DAYS) {
+    throw new Error(`\`${name}\` must be an integer from 0 to ${ARCHIVE_LOOKBACK_DAYS}.`);
+  }
+
+  return parsed;
+}
+
+function envFlag(name) {
+  return ["1", "true", "yes"].includes(String(process.env[name] || "").toLowerCase());
+}
+
+function buildCooldownPolicy(overrides = {}) {
+  return {
+    allow_override: Boolean(overrides.allow_override || envFlag("HUSHLINE_SOCIAL_ALLOW_COOLDOWN_OVERRIDE")),
+    concept_key_posts: overrides.concept_key_posts ?? (
+      process.env.HUSHLINE_SOCIAL_CONCEPT_KEY_COOLDOWN_POSTS
+        ? parseCooldownCount(process.env.HUSHLINE_SOCIAL_CONCEPT_KEY_COOLDOWN_POSTS, "HUSHLINE_SOCIAL_CONCEPT_KEY_COOLDOWN_POSTS")
+        : DEFAULT_COOLDOWN_POLICY.concept_key_posts
+    ),
+    cta_posts: overrides.cta_posts ?? (
+      process.env.HUSHLINE_SOCIAL_CTA_COOLDOWN_POSTS
+        ? parseCooldownCount(process.env.HUSHLINE_SOCIAL_CTA_COOLDOWN_POSTS, "HUSHLINE_SOCIAL_CTA_COOLDOWN_POSTS")
+        : DEFAULT_COOLDOWN_POLICY.cta_posts
+    ),
+    hook_posts: overrides.hook_posts ?? (
+      process.env.HUSHLINE_SOCIAL_HOOK_COOLDOWN_POSTS
+        ? parseCooldownCount(process.env.HUSHLINE_SOCIAL_HOOK_COOLDOWN_POSTS, "HUSHLINE_SOCIAL_HOOK_COOLDOWN_POSTS")
+        : DEFAULT_COOLDOWN_POLICY.hook_posts
+    ),
+    topic_family_posts: overrides.topic_family_posts ?? (
+      process.env.HUSHLINE_SOCIAL_TOPIC_FAMILY_COOLDOWN_POSTS
+        ? parseCooldownCount(process.env.HUSHLINE_SOCIAL_TOPIC_FAMILY_COOLDOWN_POSTS, "HUSHLINE_SOCIAL_TOPIC_FAMILY_COOLDOWN_POSTS")
+        : DEFAULT_COOLDOWN_POLICY.topic_family_posts
+    ),
+  };
+}
+
 function parseArgs(argv) {
   const args = {
+    allowCooldownOverride: false,
     archiveKey: null,
     candidateCount: 12,
+    conceptKeyCooldownPosts: null,
+    ctaCooldownPosts: null,
     darkRatio: 0.2,
     date: todayString(),
     excludeScreenshots: [],
+    hookCooldownPosts: null,
     noRender: false,
+    topicFamilyCooldownPosts: null,
   };
 
   for (let index = 0; index < argv.length; index += 1) {
@@ -330,6 +530,20 @@ function parseArgs(argv) {
     } else if (value === "--exclude-screenshot") {
       args.excludeScreenshots.push(String(argv[index + 1] || ""));
       index += 1;
+    } else if (value === "--topic-family-cooldown-posts") {
+      args.topicFamilyCooldownPosts = parseCooldownCount(argv[index + 1], "--topic-family-cooldown-posts");
+      index += 1;
+    } else if (value === "--concept-key-cooldown-posts") {
+      args.conceptKeyCooldownPosts = parseCooldownCount(argv[index + 1], "--concept-key-cooldown-posts");
+      index += 1;
+    } else if (value === "--hook-cooldown-posts") {
+      args.hookCooldownPosts = parseCooldownCount(argv[index + 1], "--hook-cooldown-posts");
+      index += 1;
+    } else if (value === "--cta-cooldown-posts") {
+      args.ctaCooldownPosts = parseCooldownCount(argv[index + 1], "--cta-cooldown-posts");
+      index += 1;
+    } else if (value === "--allow-cooldown-override") {
+      args.allowCooldownOverride = true;
     } else if (value === "--no-render") {
       args.noRender = true;
     } else if (value === "--help" || value === "-h") {
@@ -363,6 +577,13 @@ function parseArgs(argv) {
   args.excludeScreenshots = Array.from(
     new Set(args.excludeScreenshots.filter((value) => value.length > 0)),
   );
+  args.cooldownPolicy = buildCooldownPolicy({
+    allow_override: args.allowCooldownOverride,
+    concept_key_posts: args.conceptKeyCooldownPosts,
+    cta_posts: args.ctaCooldownPosts,
+    hook_posts: args.hookCooldownPosts,
+    topic_family_posts: args.topicFamilyCooldownPosts,
+  });
 
   return args;
 }
@@ -374,11 +595,13 @@ function printHelp() {
       "  node scripts/plan-day.js --date 2026-03-19",
       "  node scripts/plan-day.js --date 2026-03-19 --candidate-count 12",
       "  node scripts/plan-day.js --date 2026-03-19 --archive-key 2026-03-19-1",
+      "  node scripts/plan-day.js --date 2026-03-19 --topic-family-cooldown-posts 5",
       "",
       "Behavior:",
       "  - Reads audience context from Hush Line docs and ../hushline/AGENTS.md",
       "  - Builds an eligible screenshot pool from the local curated hushline-screenshots set when available",
       "  - Randomly preselects one screenshot after excluding recent repeats of the same screen",
+      "  - Enforces hard cooldowns for repeated topic families, concepts, hooks, and CTA patterns",
       "  - Writes daily planning context and a Codex prompt to previous-posts/<archive-key>",
       "  - Expects one high-value post for the requested day",
       "",
@@ -460,6 +683,289 @@ function normalizeMessageLine(value) {
     .toLowerCase()
     .replaceAll(/[^a-z0-9]+/g, " ")
     .trim();
+}
+
+function splitParagraphs(value) {
+  return String(value || "")
+    .split(/\n\s*\n/)
+    .map((line) => line.replace(/\s+/g, " ").trim())
+    .filter(Boolean);
+}
+
+function firstSentence(value) {
+  const paragraph = splitParagraphs(value)[0] || String(value || "").replace(/\s+/g, " ").trim();
+  const match = paragraph.match(/^(.+?[.!?])(?:\s|$)/);
+  return (match ? match[1] : paragraph).trim();
+}
+
+function lastParagraph(value) {
+  const paragraphs = splitParagraphs(value);
+  return paragraphs[paragraphs.length - 1] || "";
+}
+
+function normalizePhrase(value) {
+  return String(value || "")
+    .toLowerCase()
+    .replace(/https?:\/\/\S+/g, " url ")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+function classifyCta(value) {
+  const cta = normalizePhrase(lastParagraph(value));
+
+  if (!cta) {
+    return "none";
+  }
+
+  if (/^sign up at url/.test(cta)) {
+    return "sign_up";
+  }
+
+  if (/^learn more at url/.test(cta)) {
+    return "learn_more";
+  }
+
+  if (/^to send .+ a tip go to url/.test(cta)) {
+    return "send_tip_go_to";
+  }
+
+  if (/^to send .+ a tip visit url/.test(cta)) {
+    return "send_tip_visit";
+  }
+
+  if (/^send .+ a tip url/.test(cta)) {
+    return "send_tip_direct";
+  }
+
+  if (/\burl\b/.test(cta)) {
+    return "other_url";
+  }
+
+  return cta;
+}
+
+function buildPlanText(post) {
+  return [
+    post.headline,
+    post.subtext,
+    post.image_alt_text,
+    post.rationale,
+    post.social?.linkedin,
+    post.social?.mastodon,
+    post.social?.bluesky,
+  ]
+    .filter(Boolean)
+    .join(" ");
+}
+
+function scoreCriterion(id, label, score, max_score, rationale) {
+  return {
+    id,
+    label,
+    max_score,
+    rationale,
+    score: Math.max(0, Math.min(max_score, score)),
+  };
+}
+
+function countPatternMatches(value, patterns) {
+  return patterns.reduce((count, pattern) => count + (pattern.test(value) ? 1 : 0), 0);
+}
+
+function hasRecentMatch(entries, count, predicate) {
+  return recentArchiveEntries(entries, count).some(predicate);
+}
+
+function cooldownWindow(value, fallback) {
+  const resolved = value ?? fallback;
+  return Number.isInteger(resolved) && resolved > 0 ? resolved : 0;
+}
+
+function scoreEditorialCritic(validatedPlan, context) {
+  const post = validatedPlan.post || {};
+  const archiveHistory = context.recent_archive_history || [];
+  const text = buildPlanText(post);
+  const linkedinText = post.social?.linkedin || text;
+  const currentHookPattern = normalizePhrase(firstSentence(linkedinText || text));
+  const currentCtaPattern = classifyCta(linkedinText || text);
+  const currentTopicFamily = post.topic_family || inferTopicFamily(post);
+  const currentAudience = post.audience_scope || context.editorial_intent?.audience_scope || "";
+  const currentFormat = post.content_format || "";
+  const criteria = [];
+
+  const recentTopicMatch5 = hasRecentMatch(
+    archiveHistory,
+    5,
+    (entry) => entry.topic_family && entry.topic_family === currentTopicFamily,
+  );
+  const recentTopicMatch2 = hasRecentMatch(
+    archiveHistory,
+    2,
+    (entry) => entry.topic_family && entry.topic_family === currentTopicFamily,
+  );
+  criteria.push(scoreCriterion(
+    "topic_freshness",
+    "Topic freshness",
+    recentTopicMatch2 ? 0 : recentTopicMatch5 ? 1 : 2,
+    2,
+    recentTopicMatch2
+      ? `Topic family ${currentTopicFamily || "unknown"} appeared in the last two posts.`
+      : recentTopicMatch5
+        ? `Topic family ${currentTopicFamily || "unknown"} appeared recently but not in the last two posts.`
+        : `Topic family ${currentTopicFamily || "unknown"} is fresh against the recent archive.`,
+  ));
+
+  const hookWindow = cooldownWindow(context.cooldown_policy?.hook_posts, DEFAULT_COOLDOWN_POLICY.hook_posts);
+  const repeatedHook = hookWindow > 0 && currentHookPattern && hasRecentMatch(
+    archiveHistory,
+    hookWindow,
+    (entry) => archiveEntryHookPattern(entry) === currentHookPattern,
+  );
+  criteria.push(scoreCriterion(
+    "hook_freshness",
+    "Hook freshness",
+    repeatedHook ? 0 : 2,
+    2,
+    hookWindow === 0
+      ? "Opening hook freshness check is disabled by cooldown policy."
+      : repeatedHook ? "Opening hook repeats recent archive language." : "Opening hook is distinct from recent archive hooks.",
+  ));
+
+  const recentFormatMatch3 = hasRecentMatch(
+    archiveHistory,
+    3,
+    (entry) => entry.content_format && entry.content_format === currentFormat,
+  );
+  const lastFormatMatch = hasRecentMatch(
+    archiveHistory,
+    1,
+    (entry) => entry.content_format && entry.content_format === currentFormat,
+  );
+  criteria.push(scoreCriterion(
+    "format_novelty",
+    "Format novelty",
+    lastFormatMatch ? 0 : recentFormatMatch3 ? 1 : 2,
+    2,
+    lastFormatMatch
+      ? `Format ${currentFormat || "unknown"} was used in the last post.`
+      : recentFormatMatch3
+        ? `Format ${currentFormat || "unknown"} appeared in the last three posts.`
+        : `Format ${currentFormat || "unknown"} is not overused in the recent archive.`,
+  ));
+
+  const audiencePatterns = AUDIENCE_SPECIFICITY_PATTERNS[currentAudience] || [];
+  const audienceMatches = countPatternMatches(text, audiencePatterns);
+  criteria.push(scoreCriterion(
+    "audience_specificity",
+    "Audience specificity",
+    audienceMatches >= 2 ? 2 : audienceMatches === 1 ? 1 : 0,
+    2,
+    audienceMatches > 0
+      ? `Copy contains ${audienceMatches} signal(s) for ${currentAudience || "the selected audience"}.`
+      : `Copy does not clearly name or signal ${currentAudience || "the selected audience"}.`,
+  ));
+
+  const concreteValueMatches = countPatternMatches(text, CONCRETE_VALUE_PATTERNS);
+  const textTokenCount = messageTokens(text).length;
+  criteria.push(scoreCriterion(
+    "concrete_reader_value",
+    "Concrete reader value",
+    concreteValueMatches >= 2 && textTokenCount >= 10 ? 2 : concreteValueMatches >= 1 ? 1 : 0,
+    2,
+    concreteValueMatches > 0
+      ? `Copy gives ${concreteValueMatches} concrete action/value signal(s).`
+      : "Copy does not give the reader a concrete action or decision point.",
+  ));
+
+  const hushlineMatches = countPatternMatches(text, HUSHLINE_RELEVANCE_PATTERNS);
+  criteria.push(scoreCriterion(
+    "hushline_relevance",
+    "Hush Line relevance",
+    /\bHush Line\b/i.test(text) || /https:\/\/hushline\.app\b/i.test(text) ? 2 : hushlineMatches > 0 ? 1 : 0,
+    2,
+    hushlineMatches > 0 ? "Copy is tied to Hush Line or a concrete Hush Line surface." : "Copy could apply to a generic product.",
+  ));
+
+  const ctaWindow = cooldownWindow(context.cooldown_policy?.cta_posts, DEFAULT_COOLDOWN_POLICY.cta_posts);
+  const repeatedCta = ctaWindow > 0 && currentCtaPattern !== "none" && hasRecentMatch(
+    archiveHistory,
+    ctaWindow,
+    (entry) => archiveEntryCtaPattern(entry) === currentCtaPattern,
+  );
+  criteria.push(scoreCriterion(
+    "cta_freshness",
+    "CTA freshness",
+    repeatedCta ? 0 : 2,
+    2,
+    ctaWindow === 0
+      ? "CTA freshness check is disabled by cooldown policy."
+      : repeatedCta ? "CTA pattern repeats a recent archive CTA." : "CTA pattern is fresh against the configured CTA cooldown.",
+  ));
+
+  const safetyRisks = SAFETY_RISK_PATTERNS
+    .filter((pattern) => pattern.test(text))
+    .map((pattern) => pattern.source);
+  criteria.push(scoreCriterion(
+    "safety_compliance",
+    "Safety and compliance",
+    safetyRisks.length > 0 ? 0 : 2,
+    2,
+    safetyRisks.length > 0
+      ? "Copy includes unsupported safety, anonymity, or recency claims."
+      : "Copy avoids unsupported safety, anonymity, and recency claims.",
+  ));
+
+  const totalScore = criteria.reduce((sum, criterion) => sum + criterion.score, 0);
+  const maxScore = criteria.reduce((sum, criterion) => sum + criterion.max_score, 0);
+  const failedCriteria = criteria.filter((criterion) => criterion.score === 0);
+
+  return {
+    blocked: totalScore < EDITORIAL_CRITIC_THRESHOLD,
+    criteria,
+    failed_criteria: failedCriteria.map((criterion) => criterion.id),
+    max_score: maxScore,
+    passed: totalScore >= EDITORIAL_CRITIC_THRESHOLD,
+    rationale: criteria.map((criterion) => `${criterion.label}: ${criterion.rationale}`).join(" "),
+    score: totalScore,
+    threshold: EDITORIAL_CRITIC_THRESHOLD,
+  };
+}
+
+function assertEditorialCriticPass(validatedPlan, context) {
+  const critic = scoreEditorialCritic(validatedPlan, context);
+  if (!critic.passed) {
+    const failed = critic.failed_criteria.length > 0
+      ? ` Failed criteria: ${critic.failed_criteria.join(", ")}.`
+      : "";
+    const error = new Error(
+      `Editorial critic score ${critic.score}/${critic.max_score} is below threshold ${critic.threshold}.${failed} ${critic.rationale}`,
+    );
+    error.critic = critic;
+    throw error;
+  }
+
+  return critic;
+}
+
+function stableHash(value) {
+  let hash = 2166136261;
+  const text = String(value || "");
+
+  for (let index = 0; index < text.length; index += 1) {
+    hash ^= text.charCodeAt(index);
+    hash = Math.imul(hash, 16777619);
+  }
+
+  return hash >>> 0;
+}
+
+function candidateRotationIdentity(candidate) {
+  return String(candidate.file || candidate.screenshot_file || candidate.content_key || "");
+}
+
+function archiveRotationIdentity(entry) {
+  return String(entry.screenshot_file || entry.content_key || "");
 }
 
 function lastTemplateUseOffset(archiveHistory, templateName) {
@@ -551,6 +1057,217 @@ function summarizeWeeklyUsage(archiveHistory, plannedDate) {
   });
 }
 
+function summarizeWeeklyContentFormatUsage(archiveHistory, plannedDate) {
+  const week = formatIsoWeek(parseLocalDate(plannedDate));
+
+  return (archiveHistory || []).reduce((summary, entry) => {
+    if (!entry.date || formatIsoWeek(parseLocalDate(entry.date)) !== week || !entry.content_format) {
+      return summary;
+    }
+
+    summary.counts[entry.content_format] = (summary.counts[entry.content_format] || 0) + 1;
+    return summary;
+  }, {
+    counts: {},
+    week,
+  });
+}
+
+function lastContentFormatUseOffset(archiveHistory, formatId) {
+  for (let index = archiveHistory.length - 1; index >= 0; index -= 1) {
+    if (archiveHistory[index].content_format === formatId) {
+      return archiveHistory.length - index;
+    }
+  }
+
+  return Number.POSITIVE_INFINITY;
+}
+
+function chooseContentFormat(archiveHistory, plannedDate, options = {}) {
+  const weeklyCap = options.weeklyCap || CONTENT_FORMAT_WEEKLY_CAP;
+  const weeklyUsage = summarizeWeeklyContentFormatUsage(archiveHistory, plannedDate);
+  let candidates = CONTENT_FORMATS.filter((format) => {
+    return (weeklyUsage.counts[format.id] || 0) < weeklyCap;
+  });
+
+  if (candidates.length === 0) {
+    throw new Error(
+      `No eligible content formats remain for ${weeklyUsage.week}; each format is capped at ${weeklyCap} use per week.`,
+    );
+  }
+
+  const recentHistory = (archiveHistory || []).slice(-30);
+  candidates = candidates
+    .map((format) => ({
+      ...format,
+      last_used_offset: lastContentFormatUseOffset(archiveHistory || [], format.id),
+      recent_count: recentHistory.filter((entry) => entry.content_format === format.id).length,
+      weekly_count: weeklyUsage.counts[format.id] || 0,
+    }))
+    .sort((left, right) => {
+      return (
+        left.weekly_count - right.weekly_count ||
+        left.recent_count - right.recent_count ||
+        right.last_used_offset - left.last_used_offset ||
+        left.id.localeCompare(right.id)
+      );
+    });
+
+  return {
+    available_formats: CONTENT_FORMATS,
+    selected_format: getContentFormat(candidates[0].id),
+    weekly_cap: weeklyCap,
+    weekly_usage: weeklyUsage,
+  };
+}
+
+function validateContentFormatSelection(contentFormat, context) {
+  const selectedFormat = context.content_format_selection?.selected_format;
+  const format = getContentFormat(contentFormat);
+
+  if (!format) {
+    throw new Error(`Unknown content format: ${contentFormat || "missing"}.`);
+  }
+
+  if (selectedFormat && contentFormat !== selectedFormat.id) {
+    throw new Error(
+      `Model returned content_format ${contentFormat}, expected ${selectedFormat.id}.`,
+    );
+  }
+
+  const weeklyCap = context.content_format_selection?.weekly_cap || CONTENT_FORMAT_WEEKLY_CAP;
+  const weeklyUsage = summarizeWeeklyContentFormatUsage(
+    context.recent_archive_history || [],
+    context.date,
+  );
+  const currentCount = weeklyUsage.counts[contentFormat] || 0;
+
+  if (currentCount >= weeklyCap) {
+    throw new Error(
+      `Content format ${contentFormat} already reached the weekly cap for ${weeklyUsage.week}.`,
+    );
+  }
+
+  return format;
+}
+
+function summarizeAudienceUsage(archiveHistory, plannedDate) {
+  const week = formatIsoWeek(parseLocalDate(plannedDate));
+
+  return (archiveHistory || []).reduce((summary, entry) => {
+    const audienceScope = inferAudienceScopeFromEntry(entry);
+    if (!audienceScope) {
+      return summary;
+    }
+
+    summary.recent_counts[audienceScope] = (summary.recent_counts[audienceScope] || 0) + 1;
+
+    if (entry.date && formatIsoWeek(parseLocalDate(entry.date)) === week) {
+      summary.weekly_counts[audienceScope] = (summary.weekly_counts[audienceScope] || 0) + 1;
+    }
+
+    return summary;
+  }, {
+    recent_counts: {},
+    week,
+    weekly_counts: {},
+  });
+}
+
+function lastAudienceUseOffset(archiveHistory, audienceScope) {
+  for (let index = archiveHistory.length - 1; index >= 0; index -= 1) {
+    if (inferAudienceScopeFromEntry(archiveHistory[index]) === audienceScope) {
+      return archiveHistory.length - index;
+    }
+  }
+
+  return Number.POSITIVE_INFINITY;
+}
+
+function rankEditorialIntents(archiveHistory, plannedDate, contentFormatSelection) {
+  const weeklyUsage = summarizeWeeklyUsage(archiveHistory, plannedDate);
+  const audienceUsage = summarizeAudienceUsage(archiveHistory, plannedDate);
+  const contentFormat = contentFormatSelection?.selected_format || getContentFormat("feature_benefit");
+
+  return EDITORIAL_AUDIENCES
+    .filter((audience) => {
+      return audience.audience_scope !== "admin-only" || weeklyUsage.admin_count < 1;
+    })
+    .map((audience) => ({
+      ...audience,
+      content_format: contentFormat.id,
+      content_format_label: contentFormat.label,
+      last_used_offset: lastAudienceUseOffset(archiveHistory || [], audience.audience_scope),
+      recent_count: audienceUsage.recent_counts[audience.audience_scope] || 0,
+      visual_role: "supporting_screenshot",
+      weekly_count: audienceUsage.weekly_counts[audience.audience_scope] || 0,
+    }))
+    .sort((left, right) => {
+      return (
+        left.weekly_count - right.weekly_count ||
+        left.recent_count - right.recent_count ||
+        right.last_used_offset - left.last_used_offset ||
+        left.audience_scope.localeCompare(right.audience_scope)
+      );
+    });
+}
+
+function filterCandidatesForEditorialIntent(candidates, editorialIntent) {
+  if (!editorialIntent?.audience_scope) {
+    return candidates;
+  }
+
+  return candidates.filter((candidate) => candidate.audience_scope === editorialIntent.audience_scope);
+}
+
+function chooseSupportedEditorialIntent(archiveHistory, plannedDate, contentFormatSelection, candidates) {
+  const rankedIntents = rankEditorialIntents(archiveHistory, plannedDate, contentFormatSelection);
+  const rejectedIntents = [];
+
+  for (const intent of rankedIntents) {
+    const supportingCandidates = filterCandidatesForEditorialIntent(candidates, intent);
+
+    if (supportingCandidates.length > 0) {
+      return {
+        intent: {
+          audience_scope: intent.audience_scope,
+          content_format: intent.content_format,
+          content_format_label: intent.content_format_label,
+          label: intent.label,
+          reader_need: intent.reader_need,
+          visual_role: intent.visual_role,
+        },
+        rejected_intents: rejectedIntents,
+        supporting_candidates: supportingCandidates,
+        visual_selection_reason: `Selected screenshots only after choosing the ${intent.label} editorial intent.`,
+      };
+    }
+
+    rejectedIntents.push({
+      audience_scope: intent.audience_scope,
+      reason: "No cooldown-eligible screenshot supports this editorial intent.",
+    });
+  }
+
+  throw new Error("No eligible screenshot candidates support any editorial intent.");
+}
+
+function recentArchiveEntries(archiveHistory, count) {
+  if (!count) {
+    return [];
+  }
+
+  return (archiveHistory || []).slice(-count);
+}
+
+function archiveEntryHookPattern(entry) {
+  return entry.hook_pattern || normalizePhrase(firstSentence(entry.linkedin_copy || buildMessageText(entry)));
+}
+
+function archiveEntryCtaPattern(entry) {
+  return entry.cta_pattern || classifyCta(entry.linkedin_copy || buildMessageText(entry));
+}
+
 function loadArchiveHistory(currentArchiveKey) {
   if (!fs.existsSync(DAILY_POSTS_ROOT)) {
     return [];
@@ -592,9 +1309,12 @@ function loadArchiveHistory(currentArchiveKey) {
         archive_key: archiveKey,
         bluesky_copy: social.bluesky || "",
         concept_key: (post && (post.concept_key || normalizeConceptKey(post.content_key))) || "",
+        content_format: (post && post.content_format) || "",
         content_key: (post && post.content_key) || "",
+        cta_pattern: classifyCta(social.linkedin || postCopy),
         date: archiveKeyDate(archiveKey),
         headline: (post && post.headline) || "",
+        hook_pattern: normalizePhrase(firstSentence(social.linkedin || postCopy)),
         linkedin_copy: social.linkedin || "",
         mastodon_copy: social.mastodon || "",
         screen_key: (post && (post.screen_key || inferScreenKey(post))) || "",
@@ -687,7 +1407,38 @@ function filterCandidatesForTemplateName(candidates, templateName) {
   return matchingCandidates.length > 0 ? matchingCandidates : candidates;
 }
 
-function filterCandidatesForArchiveHistory(candidates, archiveHistory) {
+function summarizeScreenshotRotation(candidates, archiveHistory, currentArchiveKey) {
+  const identities = new Set(candidates.map(candidateRotationIdentity).filter(Boolean));
+  const usedIdentities = new Set();
+  let cycleStartArchiveKey = "";
+  const relevantHistory = archiveHistory.filter((entry) => {
+    return identities.has(archiveRotationIdentity(entry));
+  });
+
+  for (const entry of relevantHistory) {
+    const identity = archiveRotationIdentity(entry);
+
+    if (usedIdentities.has(identity)) {
+      usedIdentities.clear();
+      cycleStartArchiveKey = "";
+    }
+
+    usedIdentities.add(identity);
+    cycleStartArchiveKey = entry.archive_key || entry.date || cycleStartArchiveKey;
+  }
+
+  const cycleComplete = identities.size > 0 && usedIdentities.size >= identities.size;
+
+  return {
+    cycle_complete: cycleComplete,
+    rotation_seed: cycleComplete
+      ? currentArchiveKey
+      : (cycleStartArchiveKey || currentArchiveKey),
+    used_identities: cycleComplete ? new Set() : usedIdentities,
+  };
+}
+
+function filterCandidatesForArchiveHistory(candidates, archiveHistory, options = {}) {
   const normalizedCandidates = candidates.map((candidate) => {
     const historyStats = summarizeCandidateHistory(candidate, archiveHistory);
 
@@ -696,42 +1447,27 @@ function filterCandidatesForArchiveHistory(candidates, archiveHistory) {
       history_stats: historyStats,
     };
   });
+  const rotation = summarizeScreenshotRotation(
+    normalizedCandidates,
+    archiveHistory,
+    options.currentArchiveKey || "",
+  );
+  const rotationCandidates = normalizedCandidates.filter((candidate) => {
+    const identity = candidateRotationIdentity(candidate);
+    return !identity || !rotation.used_identities.has(identity);
+  });
 
-  const sortByNovelty = (left, right) => {
-    const leftStats = left.history_stats;
-    const rightStats = right.history_stats;
-
-    return (
-      leftStats.exact_screenshot_matches - rightStats.exact_screenshot_matches ||
-      leftStats.content_matches - rightStats.content_matches ||
-      leftStats.screen_matches - rightStats.screen_matches ||
-      leftStats.topic_matches - rightStats.topic_matches ||
-      leftStats.novelty_penalty - rightStats.novelty_penalty ||
-      (right.score || 0) - (left.score || 0) ||
-      String(left.file || left.content_key || left.path || "")
-        .localeCompare(String(right.file || right.content_key || right.path || ""))
-    );
-  };
-  const minimumFreshPool = 3;
-
-  const withoutExactOrContentRepeats = normalizedCandidates
-    .filter((candidate) => {
-      const stats = candidate.history_stats;
-      return stats.exact_screenshot_matches === 0 && stats.content_matches === 0;
-    })
-    .sort(sortByNovelty);
-
-  if (withoutExactOrContentRepeats.length >= minimumFreshPool) {
-    return withoutExactOrContentRepeats;
-  }
-
-  const withoutExactRepeats = normalizedCandidates
-    .filter((candidate) => candidate.history_stats.exact_screenshot_matches === 0)
-    .sort(sortByNovelty);
-
-  return (withoutExactRepeats.length > 0
-    ? withoutExactRepeats
-    : normalizedCandidates.slice().sort(sortByNovelty));
+  return (rotationCandidates.length > 0 ? rotationCandidates : normalizedCandidates)
+    .map((candidate) => ({
+      ...candidate,
+      rotation_sort_key: stableHash(
+        `${rotation.rotation_seed}\0${candidateRotationIdentity(candidate)}`,
+      ),
+      screenshot_rotation: {
+        cycle_complete: rotation.cycle_complete,
+        seed: rotation.rotation_seed,
+      },
+    }));
 }
 
 function filterCandidatesForWeeklyCaps(candidates, archiveHistory, plannedDate) {
@@ -759,6 +1495,77 @@ function filterCandidatesForWeeklyCaps(candidates, archiveHistory, plannedDate) 
   return filtered;
 }
 
+function candidateCooldownViolations(candidate, archiveHistory, cooldownPolicy = DEFAULT_COOLDOWN_POLICY) {
+  const normalized = {
+    ...candidate,
+    concept_key: candidate.concept_key || normalizeConceptKey(candidate.content_key),
+    topic_family: candidate.topic_family || inferTopicFamily(candidate),
+  };
+  const violations = [];
+
+  if (cooldownPolicy.topic_family_posts > 0 && normalized.topic_family) {
+    const match = recentArchiveEntries(archiveHistory, cooldownPolicy.topic_family_posts)
+      .find((entry) => entry.topic_family === normalized.topic_family);
+
+    if (match) {
+      violations.push({
+        archive_key: match.archive_key,
+        field: "topic_family",
+        value: normalized.topic_family,
+        window_posts: cooldownPolicy.topic_family_posts,
+      });
+    }
+  }
+
+  if (cooldownPolicy.concept_key_posts > 0 && normalized.concept_key) {
+    const match = recentArchiveEntries(archiveHistory, cooldownPolicy.concept_key_posts)
+      .find((entry) => entry.concept_key === normalized.concept_key);
+
+    if (match) {
+      violations.push({
+        archive_key: match.archive_key,
+        field: "concept_key",
+        value: normalized.concept_key,
+        window_posts: cooldownPolicy.concept_key_posts,
+      });
+    }
+  }
+
+  return violations;
+}
+
+function filterCandidatesForCooldowns(candidates, archiveHistory, cooldownPolicy = DEFAULT_COOLDOWN_POLICY) {
+  const evaluated = candidates.map((candidate) => ({
+    ...candidate,
+    cooldown_violations: candidateCooldownViolations(candidate, archiveHistory, cooldownPolicy),
+  }));
+
+  if (cooldownPolicy.allow_override) {
+    return evaluated;
+  }
+
+  const allowed = evaluated.filter((candidate) => candidate.cooldown_violations.length === 0);
+
+  if (allowed.length === 0) {
+    const blockedFields = Array.from(
+      new Set(evaluated.flatMap((candidate) => candidate.cooldown_violations.map((violation) => violation.field))),
+    ).join(", ");
+
+    return evaluated
+      .map((candidate) => ({
+        ...candidate,
+        cooldown_exhaustion_fallback: true,
+        cooldown_exhaustion_reason: `All eligible screenshots violate cooldowns (${blockedFields || "none"}).`,
+      }))
+      .sort((left, right) => (
+        left.cooldown_violations.length - right.cooldown_violations.length ||
+        left.file.localeCompare(right.file)
+      ));
+  }
+
+  return allowed;
+}
+
 function chooseBestCandidate(candidates, archiveHistory, templateNames) {
   const ranked = rankCandidates(candidates, archiveHistory, templateNames);
 
@@ -783,12 +1590,21 @@ function rankCandidates(candidates, archiveHistory, templateNames) {
     .sort((left, right) => {
       return (
         Number(left.audience_scope === "admin-only") - Number(right.audience_scope === "admin-only") ||
+        (left.rotation_sort_key || 0) - (right.rotation_sort_key || 0) ||
         left.template_type_average_usage - right.template_type_average_usage ||
-        left.history_stats.novelty_penalty - right.history_stats.novelty_penalty ||
         (right.score || 0) - (left.score || 0) ||
+        left.history_stats.novelty_penalty - right.history_stats.novelty_penalty ||
         left.file.localeCompare(right.file)
       );
     });
+}
+
+function selectCandidateShortlist(editorialIntentSelection, archiveHistory, templateNames, count = 3) {
+  return rankCandidates(
+    editorialIntentSelection.supporting_candidates || [],
+    archiveHistory,
+    templateNames,
+  ).slice(0, count);
 }
 
 function chooseTemplateNameForCandidate(candidate, context) {
@@ -837,31 +1653,45 @@ function buildDailyContext(args) {
   const parsedDate = new Date(`${args.date}T12:00:00`);
   const week = formatIsoWeek(parsedDate);
   const excludedScreenshots = new Set(args.excludeScreenshots || []);
+  const cooldownPolicy = args.cooldownPolicy || buildCooldownPolicy();
   const planningContext = buildPlanningContext({
     candidateCount: Math.max(args.candidateCount * 10, 200),
     darkRatio: args.darkRatio,
     week,
   });
   const archiveHistory = loadArchiveHistory(args.archiveKey);
+  const contentFormatSelection = chooseContentFormat(archiveHistory, args.date);
   const templateNames = listDailyTemplateNames();
   const variedCandidates = filterCandidatesForArchiveHistory(
     planningContext.candidate_screenshots,
     archiveHistory,
+    { currentArchiveKey: args.archiveKey },
   );
   const weekEligibleCandidates = filterCandidatesForWeeklyCaps(
     variedCandidates,
     archiveHistory,
     args.date,
   );
-  const rankedCandidates = rankCandidates(
+  const cooldownEligibleCandidates = filterCandidatesForCooldowns(
     weekEligibleCandidates,
+    archiveHistory,
+    cooldownPolicy,
+  );
+  const eligibleCandidates = cooldownEligibleCandidates.filter(
+    (candidate) => !excludedScreenshots.has(candidate.file),
+  );
+  const editorialIntentSelection = chooseSupportedEditorialIntent(
+    archiveHistory,
+    args.date,
+    contentFormatSelection,
+    eligibleCandidates,
+  );
+  const selectedCandidates = selectCandidateShortlist(
+    editorialIntentSelection,
     archiveHistory,
     templateNames,
   );
-  const eligibleCandidates = rankedCandidates.filter(
-    (candidate) => !excludedScreenshots.has(candidate.file),
-  );
-  const selectedCandidate = eligibleCandidates[0] || null;
+  const selectedCandidate = selectedCandidates[0] || null;
 
   if (!selectedCandidate) {
     throw new Error(`No eligible screenshot candidates remain for ${args.date}.`);
@@ -875,18 +1705,52 @@ function buildDailyContext(args) {
       },
     },
   );
-  const selectedCandidates = eligibleCandidates.slice(0, 3);
+  const cooldownFallbackCandidates = selectedCandidates.filter(
+    (candidate) => candidate.cooldown_exhaustion_fallback,
+  );
 
   return {
     audience_docs: planningContext.audience_docs,
     candidate_screenshots: selectedCandidates,
+    content_format_selection: contentFormatSelection,
+    cooldown_policy: cooldownPolicy,
+    cooldown_exhaustion_fallback: cooldownFallbackCandidates.length > 0
+      ? {
+          candidate_count: cooldownFallbackCandidates.length,
+          reason: cooldownFallbackCandidates[0].cooldown_exhaustion_reason,
+          violated_fields: Array.from(
+            new Set(cooldownFallbackCandidates.flatMap(
+              (candidate) => candidate.cooldown_violations.map((violation) => violation.field),
+            )),
+          ).sort(),
+        }
+      : null,
     daily_posts_root: path.relative(REPO_ROOT, DAILY_POSTS_ROOT),
     date: args.date,
     dark_ratio: args.darkRatio,
+    editorial_critic: {
+      criteria: [
+        "topic_freshness",
+        "hook_freshness",
+        "format_novelty",
+        "audience_specificity",
+        "concrete_reader_value",
+        "hushline_relevance",
+        "cta_freshness",
+        "safety_compliance",
+      ],
+      threshold: EDITORIAL_CRITIC_THRESHOLD,
+    },
+    editorial_intent: editorialIntentSelection.intent,
+    editorial_intent_rejections: editorialIntentSelection.rejected_intents,
     excluded_screenshots: Array.from(excludedScreenshots),
     hushline_agent_context: readHushlineAgentExcerpt(),
     hushline_app_voice_guidance: HUSHLINE_APP_VOICE_GUIDANCE,
     recent_archive_history: archiveHistory,
+    screenshot_rotation: selectedCandidate.screenshot_rotation,
+    visual_selection_reason: cooldownFallbackCandidates.length > 0
+      ? `${editorialIntentSelection.visual_selection_reason} Cooldown fallback was used because no fully fresh screenshot candidates remained.`
+      : editorialIntentSelection.visual_selection_reason,
     screenshot_captured_at: planningContext.screenshot_captured_at,
     screenshot_release: planningContext.screenshot_release,
     slot: {
@@ -923,6 +1787,7 @@ function buildPromptPayload(context) {
         .map((entry) => {
           return [
             `${entry.archive_key}: ${entry.content_key} [${entry.topic_family}] (${entry.screenshot_file})`,
+            `  Format: ${entry.content_format || "unknown"}`,
             `  Template: ${entry.template_name || "unknown"}`,
             `  Headline: ${entry.headline || "n/a"}`,
             `  Subtext: ${entry.subtext || "n/a"}`,
@@ -953,6 +1818,14 @@ function buildPromptPayload(context) {
       `Target dark-mode share for this run: ${context.dark_ratio}`,
       `Screenshot release from local latest folder: ${context.screenshot_release}`,
       `Screenshots captured at: ${context.screenshot_captured_at}`,
+      `Hard cooldown policy: ${JSON.stringify(context.cooldown_policy || DEFAULT_COOLDOWN_POLICY)}`,
+      context.cooldown_exhaustion_fallback
+        ? `Cooldown exhaustion fallback: ${JSON.stringify(context.cooldown_exhaustion_fallback)}`
+        : "Cooldown exhaustion fallback: not used",
+      `Editorial critic threshold: ${context.editorial_critic?.threshold || EDITORIAL_CRITIC_THRESHOLD}`,
+      `Required content format: ${context.content_format_selection?.selected_format?.id || "feature_benefit"}`,
+      `Editorial intent: ${JSON.stringify(context.editorial_intent || {})}`,
+      `Visual selection reason: ${context.visual_selection_reason || "Selected screenshot as visual support after editorial planning."}`,
       "",
       "Current hushline.app voice guidance:",
       voiceGuidance,
@@ -972,10 +1845,31 @@ function buildPromptPayload(context) {
       "Recent archived daily posts to avoid repeating:",
       archiveHistory,
       "",
+      "Available editorial formats:",
+      JSON.stringify(context.content_format_selection?.available_formats || CONTENT_FORMATS, null, 2),
+      "",
+      "Selected format guidance:",
+      context.content_format_selection?.selected_format
+        ? [
+            `${context.content_format_selection.selected_format.label} (${context.content_format_selection.selected_format.id})`,
+            `Copy: ${context.content_format_selection.selected_format.copy_guidance}`,
+            `CTA: ${context.content_format_selection.selected_format.cta_guidance}`,
+            `Alt text: ${context.content_format_selection.selected_format.alt_text_guidance}`,
+          ].join("\n")
+        : "Use feature_benefit guidance.",
+      "",
       "Instructions:",
-      "- Choose exactly one screenshot from the provided candidates.",
+      "- Start from the editorial intent and reader need above. Treat screenshots as visual support, not the source of the idea.",
+      "- Choose exactly one supporting screenshot from the provided candidates.",
+      "- Use exactly the required content format and set `content_format` to that format id.",
       `- Check the prior ${ARCHIVE_LOOKBACK_DAYS} days of archived daily posts before you decide on the messaging angle.`,
       "- The candidates were preselected from a ranked pool after excluding recent repeats of the same screenshot, screen, feature family, and overused template types wherever possible.",
+      "- The candidate shortlist enforces topic-family and concept-key cooldowns when fresh candidates exist.",
+      "- If the current screenshot pool is exhausted, the shortlist may include least-bad cooldown fallback candidates; in that case, write a clearly fresh hook, value proposition, and CTA for the selected screenshot.",
+      "- Opening hooks and CTA patterns are validated against recent archive cooldowns after drafting; choose a fresh hook and closing line.",
+      "- A final editorial critic will score topic freshness, hook freshness, format novelty, audience specificity, concrete reader value, Hush Line relevance, CTA freshness, and safety/compliance before rendering.",
+      "- Drafts below the critic threshold are rewritten once and then blocked if they still fail, so avoid generic or low-value copy on the first pass.",
+      "- Let the selected editorial format shape the post structure, hook, CTA, and alt text. Do not write another generic screenshot tour.",
       "- Produce exactly one post for the requested date.",
       "- Do not talk about recent releases, recent merges, or product recency unless the prompt explicitly gives you that information.",
       "- Do not repeat a screenshot, feature, or messaging angle that already appeared in the prior month, even if you could retarget it to a different audience.",
@@ -1007,6 +1901,10 @@ function buildResponseSchema(context) {
         additionalProperties: false,
         properties: {
           content_key: {
+            type: "string",
+          },
+          content_format: {
+            enum: contentFormatIds(),
             type: "string",
           },
           headline: {
@@ -1053,6 +1951,7 @@ function buildResponseSchema(context) {
           "planned_date",
           "screenshot_file",
           "content_key",
+          "content_format",
           "headline",
           "subtext",
           "image_alt_text",
@@ -1152,6 +2051,22 @@ function validatePlan(modelPlan, context) {
     throw new Error(`Model selected screenshot outside shortlist: ${post.screenshot_file}`);
   }
 
+  const cooldownPolicy = context.cooldown_policy || DEFAULT_COOLDOWN_POLICY;
+  if (!cooldownPolicy.allow_override && !candidate.cooldown_exhaustion_fallback) {
+    const violations = candidateCooldownViolations(
+      candidate,
+      context.recent_archive_history || [],
+      cooldownPolicy,
+    );
+
+    if (violations.length > 0) {
+      const violation = violations[0];
+      throw new Error(
+        `Selected screenshot ${post.screenshot_file} violates ${violation.field} cooldown from ${violation.archive_key}.`,
+      );
+    }
+  }
+
   const weeklyUsage = summarizeWeeklyUsage(context.recent_archive_history || [], context.date);
   if (candidate.audience_scope === "admin-only" && weeklyUsage.admin_count >= 1) {
     throw new Error(
@@ -1170,6 +2085,17 @@ function validatePlan(modelPlan, context) {
       `Model content key mismatch for ${post.screenshot_file}: expected ${candidate.content_key}, received ${post.content_key}.`,
     );
   }
+
+  if (
+    context.editorial_intent?.audience_scope &&
+    candidate.audience_scope !== context.editorial_intent.audience_scope
+  ) {
+    throw new Error(
+      `Selected screenshot ${post.screenshot_file} does not support editorial intent audience ${context.editorial_intent.audience_scope}.`,
+    );
+  }
+
+  validateContentFormatSelection(post.content_format, context);
 
   if (!post.social || typeof post.social !== "object") {
     throw new Error("Post is missing a social copy object.");
@@ -1206,14 +2132,43 @@ function validatePlan(modelPlan, context) {
     mastodon_copy: post.social.mastodon,
     subtext: post.subtext,
   });
+  const currentHookPattern = normalizePhrase(firstSentence(post.social.linkedin || currentMessageText));
+  const currentCtaPattern = classifyCta(post.social.linkedin || currentMessageText);
+
+  if (!cooldownPolicy.allow_override && cooldownPolicy.hook_posts > 0 && currentHookPattern) {
+    const matchingHook = recentArchiveEntries(
+      context.recent_archive_history || [],
+      cooldownPolicy.hook_posts,
+    ).find((entry) => archiveEntryHookPattern(entry) === currentHookPattern);
+
+    if (matchingHook) {
+      throw new Error(
+        `Post opening hook for ${context.date} repeats ${matchingHook.archive_key} within the ${cooldownPolicy.hook_posts}-post hook cooldown.`,
+      );
+    }
+  }
+
+  if (
+    !cooldownPolicy.allow_override &&
+    cooldownPolicy.cta_posts > 0 &&
+    currentCtaPattern !== "none"
+  ) {
+    const matchingCta = recentArchiveEntries(
+      context.recent_archive_history || [],
+      cooldownPolicy.cta_posts,
+    ).find((entry) => archiveEntryCtaPattern(entry) === currentCtaPattern);
+
+    if (matchingCta) {
+      throw new Error(
+        `Post CTA pattern for ${context.date} repeats ${matchingCta.archive_key} within the ${cooldownPolicy.cta_posts}-post CTA cooldown.`,
+      );
+    }
+  }
 
   for (const entry of context.recent_archive_history || []) {
     const archivedMessageText = buildMessageText(entry);
-    const sameFeature = (
-      (entry.screen_key && entry.screen_key === (candidate.screen_key || inferScreenKey(candidate))) ||
-      (entry.topic_family && entry.topic_family === (candidate.topic_family || inferTopicFamily(candidate)))
-    );
-    const recentFeatureOverlap = sameFeature && recentFeatureEntries.includes(entry);
+    const sameScreenshot = entry.screenshot_file && entry.screenshot_file === candidate.file;
+    const recentFeatureOverlap = sameScreenshot && recentFeatureEntries.includes(entry);
     const matchingHeadline = normalizeMessageLine(entry.headline) === normalizeMessageLine(post.headline);
     const headlineOverlap = sharedMessageTokenCount(
       `${post.headline} ${post.subtext}`,
@@ -1240,13 +2195,15 @@ function validatePlan(modelPlan, context) {
     }
   }
 
-  return {
+  const validatedPlan = {
     date: modelPlan.date,
     post: {
       ...post,
       audience_scope: candidate.audience_scope,
       concept_key: candidate.concept_key,
+      content_format: post.content_format,
       copy_brief: candidate.copy_brief,
+      editorial_intent: context.editorial_intent || null,
       matched_pull_requests: candidate.matched_pull_requests,
       screen_key: candidate.screen_key || inferScreenKey(candidate),
       screenshot_file: candidate.file,
@@ -1259,9 +2216,16 @@ function validatePlan(modelPlan, context) {
       theme: candidate.theme,
       title: candidate.title,
       topic_family: candidate.topic_family || inferTopicFamily(candidate),
+      visual_selection_reason: context.visual_selection_reason || "",
       viewport: candidate.viewport,
     },
     summary: modelPlan.summary,
+  };
+  const critic = assertEditorialCriticPass(validatedPlan, context);
+
+  return {
+    ...validatedPlan,
+    critic,
   };
 }
 
@@ -1315,15 +2279,34 @@ async function planDay(args) {
 
 module.exports = {
   DAILY_POSTS_ROOT,
+  CONTENT_FORMATS,
+  CONTENT_FORMAT_WEEKLY_CAP,
+  DEFAULT_COOLDOWN_POLICY,
+  EDITORIAL_AUDIENCES,
   buildDailyContext,
+  buildPromptPayload,
+  buildCooldownPolicy,
+  candidateRotationIdentity,
+  candidateCooldownViolations,
+  chooseSupportedEditorialIntent,
+  chooseContentFormat,
   chooseTemplateName,
+  contentFormatIds,
+  filterCandidatesForEditorialIntent,
   filterCandidatesForArchiveHistory,
+  filterCandidatesForCooldowns,
   filterCandidatesForWeeklyCaps,
   filterCandidatesForTemplateName,
+  getContentFormat,
+  getEditorialAudience,
   inferTopicFamily,
+  rankEditorialIntents,
   loadSavedDailyContext,
   parseArgs,
   planDay,
   renderDailyPlan,
+  scoreEditorialCritic,
+  selectCandidateShortlist,
+  summarizeScreenshotRotation,
   validatePlan,
 };

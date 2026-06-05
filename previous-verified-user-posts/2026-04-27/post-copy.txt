@@ -1,0 +1,34 @@
+Slot: verified-user-weekly
+Planned date: 2026-04-27
+Verified user: @downey
+User link: https://tips.hushline.app/to/downey
+Source: https://tips.hushline.app/directory/users.json
+Headline: Michael Downey
+Subtext: Open Source @ United Nations Development Programme (UNDP)
+
+Image alt text
+A social card featuring verified Hush Line user Michael Downey, their bio, their tip line URL, and a QR code that links to the same URL.
+
+Social post copy
+
+LinkedIn (170/3000)
+🤩 Verified Member Highlight!
+
+Michael is an open source @ united nations development programme (UNDP).
+
+To send Michael a tip, go to https://tips.hushline.app/to/downey.
+
+Mastodon (170/500)
+🤩 Verified Member Highlight!
+
+Michael is an open source @ united nations development programme (UNDP).
+
+To send Michael a tip, visit https://tips.hushline.app/to/downey.
+
+Bluesky (160/300)
+🤩 Verified Member Highlight!
+
+Michael is an open source @ united nations development programme (UNDP).
+
+Send Michael a tip: https://tips.hushline.app/to/downey
+

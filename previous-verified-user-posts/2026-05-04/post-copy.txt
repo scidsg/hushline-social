@@ -1,0 +1,34 @@
+Slot: verified-user-weekly
+Planned date: 2026-05-04
+Verified user: @tim_farmer
+User link: https://tips.hushline.app/to/tim_farmer
+Source: https://tips.hushline.app/directory/users.json
+Headline: Tim Farmer
+Subtext: I am an aspiring podcast host and journalist. I have a background in the U.S. government and military. If you would like to know more about me, my website is theosintoutput.com
+
+Image alt text
+A social card featuring verified Hush Line user Tim Farmer, their bio, their tip line URL, and a QR code that links to the same URL.
+
+Social post copy
+
+LinkedIn (255/3000)
+🤩 Verified Member Highlight!
+
+Tim is an aspiring podcast host and journalist with a background in the U.S. government and military. More about his work is available at theosintoutput.com.
+
+To send Tim a tip, go to https://tips.hushline.app/to/tim_farmer.
+
+Mastodon (199/500)
+🤩 Verified Member Highlight!
+
+Tim is an aspiring podcast host and journalist with a background in the U.S. government and military.
+
+To send Tim a tip, visit https://tips.hushline.app/to/tim_farmer.
+
+Bluesky (189/300)
+🤩 Verified Member Highlight!
+
+Tim is an aspiring podcast host and journalist with a background in the U.S. government and military.
+
+Send Tim a tip: https://tips.hushline.app/to/tim_farmer
+

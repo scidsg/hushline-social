@@ -1,0 +1,36 @@
+{
+  "date": "2026-05-13",
+  "post": {
+    "slot": "wednesday",
+    "planned_date": "2026-05-13",
+    "screenshot_file": "guest/guest-directory-verified-desktop-light-fold.png",
+    "content_key": "guest-directory-verified",
+    "headline": "Find a verified recipient before first contact",
+    "subtext": "The public directory helps sources review profile details and choose a trusted Hush Line recipient before sending a sensitive message.",
+    "image_alt_text": "A Hush Line daily social graphic showing a desktop screenshot of the public directory filtered to verified recipients, with profile cards for people and organizations who can receive secure tips.",
+    "social": {
+      "bluesky": "A source should be able to check who they are contacting before sending a sensitive message.\n\nHush Line's public directory lists verified recipients and direct tip line links for anonymous first contact.\n\nLearn more at https://hushline.app.",
+      "linkedin": "Before sending a sensitive message, a source needs to know they are reaching the right person.\n\nHush Line's public directory lets people review verified recipients, profile details, and direct tip line links before first contact. It supports anonymous, browser-based submissions without requiring the sender to create an account.\n\nLearn more at https://hushline.app.",
+      "mastodon": "Before sending a sensitive message, a source needs to know they are reaching the right person.\n\nHush Line's public directory helps people review verified recipients and direct tip line links before first contact, without creating a sender account.\n\nLearn more at https://hushline.app."
+    },
+    "rationale": "Selected the verified public directory screenshot because the other candidates would repeat more specific recent posts: Vision Assistant was used on 2026-05-11, and the Adam J. Levitt attorney listing was used on 2026-04-14. This post stays public-facing and focuses on sources checking verified recipients before first contact, which is distinct from recent directory angles about attorney records, filters, and onboarding.",
+    "source_pr_numbers": [],
+    "audience_scope": "public",
+    "concept_key": "directory-verified",
+    "copy_brief": "Write for sources and public users evaluating or using Hush Line.",
+    "matched_pull_requests": [
+      {
+        "merged_at": "2026-05-10T18:39:18Z",
+        "number": 1952,
+        "title": "Restore verified icons and info-only badges"
+      }
+    ],
+    "screen_key": "directory-index",
+    "template_name": "hushline-daily-desktop-template.html",
+    "theme": "light",
+    "title": "Directory - Verified",
+    "topic_family": "directory",
+    "viewport": "desktop"
+  },
+  "summary": "A public-facing post about using Hush Line's verified directory to find the right recipient before sending a sensitive message."
+}

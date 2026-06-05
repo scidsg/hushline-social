@@ -1,0 +1,33 @@
+Slot: monday
+Planned date: 2026-04-27
+Template: hushline-daily-desktop-template-2.html
+Screenshot: /Users/scidsg/hushline-screenshots/curated/newman/auth-newman-onboarding-notifications-desktop-light-fold.png
+Content key: auth-newman-onboarding-notifications
+Headline: Set tip alerts before your line goes public
+Subtext: The notification step helps recipients decide where new message alerts should go before sources start using the tip line.
+
+Image alt text
+A Hush Line social post showing the desktop onboarding notifications screen. The screenshot shows a setup step for choosing how a recipient account should handle new message notifications.
+
+Social post copy
+
+LinkedIn (332/3000)
+When a newsroom, law office, classroom, or security team opens a tip line, new-message alerts should reach the people who can review them.
+
+Hush Line includes notification setup during onboarding so recipients can decide how new tips are surfaced before they share a public address with sources.
+
+Learn more at https://hushline.app.
+
+Mastodon (288/500)
+When a newsroom, law office, classroom, or security team opens a tip line, new-message alerts should reach the people who can review them.
+
+Hush Line includes notification setup during onboarding, before recipients share a public address with sources.
+
+Learn more at https://hushline.app.
+
+Bluesky (214/300)
+New-message alerts should reach the people who can review them.
+
+Hush Line includes notification setup during onboarding, before recipients share a public tip line with sources.
+
+Learn more at https://hushline.app.

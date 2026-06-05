@@ -1,0 +1,36 @@
+{
+  "slot": "monday",
+  "planned_date": "2026-06-01",
+  "screenshot_file": "artvandelay/auth-artvandelay-settings-replies-desktop-light-fold.png",
+  "content_key": "auth-artvandelay-settings-replies",
+  "content_format": "recipient_playbook",
+  "headline": "Keep reply wording consistent across shifts",
+  "subtext": "Recipients can maintain the short note shown on the reply page so staff give the same signal while new intake is being triaged.",
+  "image_alt_text": "Social graphic showing the Hush Line desktop Message Statuses settings page for a recipient account. The Message Statuses tab is selected, with a text area for the waiting-state reply note and a button to update the reply text.",
+  "social": {
+    "bluesky": "Shared intake works better when staff use the same handoff language.\n\nHush Line lets recipients prepare the short reply-page note shown during triage, so teams are not rewriting it shift by shift.\n\nReview your team's wording: https://hushline.app.",
+    "linkedin": "A shared intake channel needs a house style for small moments, too.\n\nIn Hush Line, recipients can prepare the short reply-page note that appears while new intake is being triaged. For a newsroom, law office, school, nonprofit, or security team, that gives staff one agreed line to maintain instead of rewriting the handoff every time someone checks the queue.\n\nReview the wording your team wants people to see during triage at https://hushline.app.",
+    "mastodon": "A shared intake channel needs consistent handoffs.\n\nHush Line lets recipients prepare the short reply-page note shown while new intake is being triaged, so staff have one agreed line to maintain across shifts.\n\nReview your team's triage wording at https://hushline.app."
+  },
+  "rationale": "Used the required Message Statuses screenshot and recipient_playbook format, but changed the angle away from the recent post about setting expectations after a source sends a message. This version focuses on staff consistency across shared recipient workflows, matching documented Hush Line use cases for newsrooms, law offices, schools, nonprofits, security teams, and other role-based intake groups.",
+  "source_pr_numbers": [],
+  "audience_scope": "recipient-shared",
+  "concept_key": "settings-replies",
+  "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+  "editorial_intent": {
+    "audience_scope": "recipient-shared",
+    "content_format": "recipient_playbook",
+    "content_format_label": "Recipient playbook",
+    "label": "Recipients and staff",
+    "reader_need": "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+    "visual_role": "supporting_screenshot"
+  },
+  "matched_pull_requests": [],
+  "screen_key": "/settings/replies",
+  "template_name": "hushline-daily-desktop-template-2.html",
+  "theme": "light",
+  "title": "Settings - Message Statuses (artvandelay)",
+  "topic_family": "message-statuses",
+  "visual_selection_reason": "Selected screenshots only after choosing the Recipients and staff editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+  "viewport": "desktop"
+}

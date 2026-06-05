@@ -1,0 +1,36 @@
+{
+  "date": "2026-05-15",
+  "post": {
+    "slot": "friday",
+    "planned_date": "2026-05-15",
+    "screenshot_file": "newman/auth-newman-onboarding-notifications-mobile-light-fold.png",
+    "content_key": "auth-newman-onboarding-notifications",
+    "headline": "Decide how new tips should reach you",
+    "subtext": "The notifications step helps recipients choose whether email alerts fit their review workflow before they share a public tip line.",
+    "image_alt_text": "Hush Line social graphic showing a mobile onboarding notifications screen with settings for email alerts and encrypted message delivery.",
+    "social": {
+      "bluesky": "Before sharing a tip line, recipients need a clear alert plan.\n\nHush Line's onboarding notification step helps a newsroom, law office, classroom, or small intake team decide how new-message alerts fit their review workflow.\n\nSign up at https://hushline.app.",
+      "linkedin": "Before a public tip line is shared, the people receiving messages need to know how they will notice new intake.\n\nHush Line's onboarding notification step lets a recipient decide whether email alerts belong in their workflow while keeping the web inbox available for review. For a newsroom, law office, classroom, or small intake team, that decision is part of getting the channel ready before sources use it.\n\nSign up at https://hushline.app.",
+      "mastodon": "Before a tip line is shared, recipients need to know how they will notice new intake.\n\nHush Line's onboarding notification step helps a newsroom, law office, classroom, or small intake team decide whether email alerts fit the workflow while the web inbox stays available for review.\n\nSign up at https://hushline.app."
+    },
+    "rationale": "Chose the recipient-shared onboarding notifications screenshot because the directory candidate repeats a directory theme used two days earlier and several times in the prior 31 days. This post uses a narrower setup angle focused on deciding whether email alerts belong in the recipient workflow before publishing a tip line, while avoiding admin framing, dark mode, and PR-based recency claims.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "onboarding-notifications",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "matched_pull_requests": [
+      {
+        "merged_at": "2026-05-13T19:05:29Z",
+        "number": 1959,
+        "title": "Avoid per-recipient server-side encryption fallback for field notifications"
+      }
+    ],
+    "screen_key": "onboarding-notifications",
+    "template_name": "hushline-daily-mobile-template.html",
+    "theme": "light",
+    "title": "Onboarding - Step 3 Notifications (newman)",
+    "topic_family": "notifications",
+    "viewport": "mobile"
+  },
+  "summary": "One recipient-focused daily post for 2026-05-15 using the mobile onboarding notifications screenshot."
+}

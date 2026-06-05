@@ -1,0 +1,19 @@
+{
+  "date": "2026-05-18",
+  "display_name": "Sooraj Sathyanarayanan",
+  "headline": "Sooraj Sathyanarayanan",
+  "image_alt_text": "A social card featuring verified Hush Line user Sooraj Sathyanarayanan, their bio, their tip line URL, and a QR code that links to the same URL.",
+  "planned_date": "2026-05-18",
+  "primary_username": "ianonymous3000",
+  "qr_code_file": "verified-user-qr.png",
+  "social": {
+    "bluesky": "🤩 Verified Member Highlight!\n\nSooraj is a security & privacy researcher.\n\nSend Sooraj a tip: https://tips.hushline.app/to/ianonymous3000",
+    "linkedin": "🤩 Verified Member Highlight!\n\nSooraj is a security & privacy researcher.\n\nTo send Sooraj a tip, go to https://tips.hushline.app/to/ianonymous3000.",
+    "mastodon": "🤩 Verified Member Highlight!\n\nSooraj is a security & privacy researcher.\n\nTo send Sooraj a tip, visit https://tips.hushline.app/to/ianonymous3000."
+  },
+  "slot": "verified-user-weekly",
+  "source": "https://tips.hushline.app/directory/users.json",
+  "subtext": "Security & Privacy Researcher",
+  "user_link": "https://tips.hushline.app/to/ianonymous3000",
+  "user_url": "https://tips.hushline.app/to/ianonymous3000"
+}

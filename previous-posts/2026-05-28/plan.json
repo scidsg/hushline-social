@@ -1,0 +1,107 @@
+{
+  "date": "2026-05-28",
+  "post": {
+    "slot": "thursday",
+    "planned_date": "2026-05-28",
+    "screenshot_file": "guest/guest-directory-verified-desktop-dark-fold.png",
+    "content_key": "guest-directory-verified",
+    "content_format": "mistake_to_avoid",
+    "headline": "Do not trust a tip link on name alone",
+    "subtext": "The public directory gives sources a place to check verified profile details before opening an anonymous message path.",
+    "image_alt_text": "A dark-mode desktop social graphic showing the Hush Line verified directory, with profile cards for trusted recipients. The image supports guidance for sources to check the recipient before using a tip link.",
+    "social": {
+      "bluesky": "Do not start with the first tip link that looks close enough.\n\nHush Line's public directory helps sources review verified profiles before opening an anonymous message path.\n\nCheck the recipient first: https://hushline.app.",
+      "linkedin": "A common mistake is treating the first tip link you find as the right one. A familiar name is not enough when the message may include sensitive details.\n\nHush Line's public directory gives sources a place to review verified profiles and decide whether a recipient matches the person or organization they mean to contact. You can do that in the browser without creating a sender account.\n\nUse the directory to confirm the recipient first: https://hushline.app.",
+      "mastodon": "One mistake to avoid: starting with the first tip link that looks close enough.\n\nHush Line's public directory helps sources review verified profiles and confirm the recipient before opening an anonymous message path. No sender account is required.\n\nUse the directory to check first: https://hushline.app."
+    },
+    "rationale": "The only shortlisted screenshot is a public verified-directory screen. Because directory themes appeared recently, this plan uses the required mistake-to-avoid format with a fresh public-source angle: avoid trusting a plausible link on name recognition alone, then use the directory to confirm the recipient before first contact.",
+    "source_pr_numbers": [],
+    "audience_scope": "public",
+    "concept_key": "directory-verified",
+    "copy_brief": "Write for sources and public users evaluating or using Hush Line.",
+    "editorial_intent": {
+      "audience_scope": "public",
+      "content_format": "mistake_to_avoid",
+      "content_format_label": "Mistake to avoid",
+      "label": "Public sources and visitors",
+      "reader_need": "Help someone decide whether Hush Line is the right place to make safe first contact or find a trusted recipient.",
+      "visual_role": "supporting_screenshot"
+    },
+    "matched_pull_requests": [],
+    "screen_key": "directory-index",
+    "template_name": "hushline-daily-desktop-template-2.html",
+    "theme": "dark",
+    "title": "Directory - Verified",
+    "topic_family": "directory",
+    "visual_selection_reason": "Selected screenshots only after choosing the Public sources and visitors editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+    "viewport": "desktop"
+  },
+  "summary": "A public-source post using the verified directory screenshot to warn against trusting the first plausible tip link without checking the recipient.",
+  "critic": {
+    "blocked": false,
+    "criteria": [
+      {
+        "id": "topic_freshness",
+        "label": "Topic freshness",
+        "max_score": 2,
+        "rationale": "Topic family directory appeared recently but not in the last two posts.",
+        "score": 1
+      },
+      {
+        "id": "hook_freshness",
+        "label": "Hook freshness",
+        "max_score": 2,
+        "rationale": "Opening hook is distinct from recent archive hooks.",
+        "score": 2
+      },
+      {
+        "id": "format_novelty",
+        "label": "Format novelty",
+        "max_score": 2,
+        "rationale": "Format mistake_to_avoid is not overused in the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "audience_specificity",
+        "label": "Audience specificity",
+        "max_score": 2,
+        "rationale": "Copy contains 5 signal(s) for public.",
+        "score": 2
+      },
+      {
+        "id": "concrete_reader_value",
+        "label": "Concrete reader value",
+        "max_score": 2,
+        "rationale": "Copy gives 5 concrete action/value signal(s).",
+        "score": 2
+      },
+      {
+        "id": "hushline_relevance",
+        "label": "Hush Line relevance",
+        "max_score": 2,
+        "rationale": "Copy is tied to Hush Line or a concrete Hush Line surface.",
+        "score": 2
+      },
+      {
+        "id": "cta_freshness",
+        "label": "CTA freshness",
+        "max_score": 2,
+        "rationale": "CTA pattern is fresh against the configured CTA cooldown.",
+        "score": 2
+      },
+      {
+        "id": "safety_compliance",
+        "label": "Safety and compliance",
+        "max_score": 2,
+        "rationale": "Copy avoids unsupported safety, anonymity, and recency claims.",
+        "score": 2
+      }
+    ],
+    "failed_criteria": [],
+    "max_score": 16,
+    "passed": true,
+    "rationale": "Topic freshness: Topic family directory appeared recently but not in the last two posts. Hook freshness: Opening hook is distinct from recent archive hooks. Format novelty: Format mistake_to_avoid is not overused in the recent archive. Audience specificity: Copy contains 5 signal(s) for public. Concrete reader value: Copy gives 5 concrete action/value signal(s). Hush Line relevance: Copy is tied to Hush Line or a concrete Hush Line surface. CTA freshness: CTA pattern is fresh against the configured CTA cooldown. Safety and compliance: Copy avoids unsupported safety, anonymity, and recency claims.",
+    "score": 15,
+    "threshold": 12
+  }
+}

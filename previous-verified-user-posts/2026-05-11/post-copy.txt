@@ -1,0 +1,34 @@
+Slot: verified-user-weekly
+Planned date: 2026-05-11
+Verified user: @ryan
+User link: https://tips.hushline.app/to/ryan
+Source: https://tips.hushline.app/directory/users.json
+Headline: Ryan Gallagher
+Subtext: I'm an investigative reporter for Bloomberg News covering cybersecurity, technology, crime, surveillance & human rights. I have more than a decade's experience working with whistleblowers to produce impactful journalism & I always protect my sources.
+
+Image alt text
+A social card featuring verified Hush Line user Ryan Gallagher, their bio, their tip line URL, and a QR code that links to the same URL.
+
+Social post copy
+
+LinkedIn (312/3000)
+🤩 Verified Member Highlight!
+
+Ryan is an investigative reporter for Bloomberg News covering cybersecurity, technology, crime, surveillance, and human rights. He has more than a decade of experience working with whistleblowers and protecting sources.
+
+To send Ryan a tip, go to https://tips.hushline.app/to/ryan.
+
+Mastodon (289/500)
+🤩 Verified Member Highlight!
+
+Ryan is an investigative reporter for Bloomberg News covering cybersecurity, technology, crime, surveillance, and human rights. He has more than a decade of experience working with whistleblowers.
+
+To send Ryan a tip, visit https://tips.hushline.app/to/ryan.
+
+Bluesky (210/300)
+🤩 Verified Member Highlight!
+
+Ryan is an investigative reporter for Bloomberg News covering cybersecurity, technology, crime, surveillance, and human rights.
+
+Send Ryan a tip: https://tips.hushline.app/to/ryan
+

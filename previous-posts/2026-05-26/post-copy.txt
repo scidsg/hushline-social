@@ -1,0 +1,33 @@
+Slot: tuesday
+Planned date: 2026-05-26
+Template: hushline-daily-desktop-template-2.html
+Screenshot: /Users/scidsg/hushline-screenshots/curated/artvandelay/auth-artvandelay-tools-email-validation-status-valid-desktop-light-fold.png
+Content key: auth-artvandelay-tools-email-validation-status-valid
+Headline: Keep routing clues with intake notes
+Subtext: Recipients can use the mail-origin screen to turn technical email details into a saved file for follow-up or handoff.
+
+Image alt text
+A Hush Line daily social asset showing the desktop Email Validation tool. The screen includes a raw email headers field, Validate Headers and Download Report buttons, and a validation summary stating that the email appears to originate from the stated sender.
+
+Social post copy
+
+LinkedIn (484/3000)
+Forwarded email can carry useful routing clues, but staff need a consistent place to handle that context.
+
+Hush Line gives recipients a browser-based mail-origin screen where a header block can become a saved result for the matter file. For journalists, lawyers, educators, security teams, and other trusted recipients, that makes follow-up easier to manage when intake moves from one person to another.
+
+Use Hush Line to manage message context before follow-up: https://hushline.app.
+
+Mastodon (301/500)
+Forwarded email can carry useful routing clues, but staff need a consistent place to handle that context.
+
+Hush Line gives recipients a browser-based mail-origin screen where a header block can become a saved result for follow-up or handoff.
+
+Manage message context in Hush Line: https://hushline.app.
+
+Bluesky (230/300)
+Forwarded email can carry useful routing clues.
+
+Hush Line gives recipients a browser-based mail-origin screen where a header block can become a saved result for follow-up or handoff.
+
+Manage message context: https://hushline.app.

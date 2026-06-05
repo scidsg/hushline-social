@@ -1,0 +1,30 @@
+{
+  "date": "2026-05-18",
+  "post": {
+    "slot": "monday",
+    "planned_date": "2026-05-18",
+    "screenshot_file": "artvandelay/auth-artvandelay-settings-advanced-desktop-light-fold.png",
+    "content_key": "auth-artvandelay-settings-advanced",
+    "headline": "Keep access to your Hush Line records",
+    "subtext": "Advanced settings let recipients download a ZIP export with CSV records and encrypted PGP messages when they need their own copy.",
+    "image_alt_text": "A Hush Line daily social graphic showing the desktop Advanced settings page. The screen includes a Download My Data section with an option to encrypt the export with the recipient's PGP key, plus a separate Delete Account section below.",
+    "social": {
+      "bluesky": "Recipients should be able to keep their own records.\n\nHush Line's Advanced settings include a ZIP export for CSV records and encrypted PGP messages, with an option to encrypt the export with the recipient's own key.\n\nSign up at https://hushline.app.",
+      "linkedin": "Recipients need a clear way to keep their own records, especially when a tip line supports legal, newsroom, school, security, or organizing work.\n\nHush Line's Advanced settings include a data export for CSV records and encrypted PGP messages, with an option to encrypt the export with the recipient's own key.\n\nSign up at https://hushline.app.",
+      "mastodon": "Recipients need a clear way to keep their own records when a tip line supports legal, newsroom, school, security, or organizing work.\n\nHush Line's Advanced settings include a data export for CSV records and encrypted PGP messages, with an option to encrypt the export with the recipient's own key.\n\nSign up at https://hushline.app."
+    },
+    "rationale": "Selected the Advanced settings desktop screenshot because the other shortlisted topics, notifications and email validation, appeared more recently in the archive. The copy is written for message recipients and staff, matching the recipient-shared audience scope and focusing on data export and record access rather than account deletion.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "settings-advanced",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "matched_pull_requests": [],
+    "screen_key": "/settings/advanced",
+    "template_name": "hushline-daily-desktop-template-2.html",
+    "theme": "light",
+    "title": "Settings - Advanced (artvandelay)",
+    "topic_family": "settings-advanced",
+    "viewport": "desktop"
+  },
+  "summary": "A daily post for recipients about downloading their Hush Line data from Advanced settings."
+}

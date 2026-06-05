@@ -1,0 +1,30 @@
+{
+  "date": "2026-05-11",
+  "post": {
+    "slot": "monday",
+    "planned_date": "2026-05-11",
+    "screenshot_file": "artvandelay/auth-artvandelay-tools-vision-mobile-light-fold.png",
+    "content_key": "auth-artvandelay-tools-vision",
+    "headline": "Extract searchable text from image sets",
+    "subtext": "Vision Assistant helps recipients review photos in the browser and pull out text they can search, compare, and use during follow-up.",
+    "image_alt_text": "A mobile Hush Line social asset showing the Tools page with the Vision Assistant tab selected, a note about extracting searchable text from photos, and a Choose Files button for adding images.",
+    "social": {
+      "bluesky": "Photos can hold details that are hard to review by hand.\n\nHush Line's Vision Assistant helps recipients extract searchable text from image sets in the browser, without sending images to Hush Line servers.\n\nSign up at https://hushline.app.",
+      "linkedin": "Photos can hold names, dates, signs, forms, and other details that are hard to review by hand during intake or follow-up.\n\nHush Line's Vision Assistant helps recipients extract searchable text from a set of images in the browser. It gives journalists, lawyers, security teams, educators, and organizers a practical way to review source materials without sending the images to Hush Line servers.\n\nSign up at https://hushline.app.",
+      "mastodon": "Photos can hold names, dates, signs, forms, and other details that matter during review.\n\nHush Line's Vision Assistant helps recipients extract searchable text from image sets in the browser, without sending the images to Hush Line servers.\n\nSign up at https://hushline.app."
+    },
+    "rationale": "Selected the Vision Assistant screenshot because its topic family has no matches in the prior 31 days, while the directory candidate repeats a heavily used directory theme and the admin guidance candidate would add another admin settings post. The copy is written for recipients and staff using Hush Line day to day, grounded in review workflows for journalists, lawyers, security teams, educators, organizers, and other trusted recipients.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "tools-vision",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "matched_pull_requests": [],
+    "screen_key": "/vision",
+    "template_name": "hushline-daily-mobile-template-2.html",
+    "theme": "light",
+    "title": "Tools - Vision Assistant (artvandelay)",
+    "topic_family": "vision",
+    "viewport": "mobile"
+  },
+  "summary": "Daily Hush Line post for 2026-05-11 using the mobile Vision Assistant screenshot."
+}

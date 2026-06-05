@@ -1,0 +1,26 @@
+{
+  "slot": "thursday",
+  "planned_date": "2026-05-21",
+  "screenshot_file": "artvandelay/auth-artvandelay-settings-notifications-desktop-light-fold.png",
+  "content_key": "auth-artvandelay-settings-notifications",
+  "headline": "Keep tip alerts tied to your review workflow",
+  "subtext": "Notification settings help recipients decide where new-message alerts go and how much encrypted content belongs in email.",
+  "image_alt_text": "A desktop Hush Line social graphic showing the Notifications settings page, with controls for tip notifications, encrypted message content, full email-body encryption, email forwarding, and notification recipients.",
+  "social": {
+    "bluesky": "A shared tip line may need more than one person watching for new messages.\n\nHush Line notification settings help recipients choose alert delivery and email encryption for their review workflow.\n\nSign up at https://hushline.app.",
+    "linkedin": "A newsroom, law office, school, or nonprofit may need more than one person watching for new tips.\n\nHush Line notification settings let recipients decide how alerts should reach them, whether message content belongs in email, and how that email should be encrypted. The goal is a review workflow that fits the team without asking sources to create an account or install an app.\n\nSign up at https://hushline.app.",
+    "mastodon": "A shared tip line may need more than one person watching for new messages.\n\nHush Line notification settings let recipients choose how alerts arrive, whether message content belongs in email, and how that email should be encrypted.\n\nSign up at https://hushline.app."
+  },
+  "rationale": "Selected the desktop notification settings screenshot because the alternative directory candidate repeats yesterday's directory theme and a heavily used topic family. This plan uses the recipient-shared context from the Hush Line use cases: journalists, lawyers, educators, nonprofits, and other trusted recipients need manageable alert routing for incoming tips while keeping source submission low-friction.",
+  "source_pr_numbers": [],
+  "audience_scope": "recipient-shared",
+  "concept_key": "settings-notifications",
+  "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+  "matched_pull_requests": [],
+  "screen_key": "/settings/notifications",
+  "template_name": "hushline-daily-desktop-template.html",
+  "theme": "light",
+  "title": "Settings - Notifications (artvandelay)",
+  "topic_family": "notifications",
+  "viewport": "desktop"
+}

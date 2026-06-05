@@ -1,0 +1,33 @@
+Slot: friday
+Planned date: 2026-05-22
+Template: hushline-daily-desktop-template-2.html
+Screenshot: /Users/scidsg/hushline-screenshots/curated/newman/auth-newman-onboarding-directory-desktop-light-fold.png
+Content key: auth-newman-onboarding-directory
+Headline: List your tip line when it is ready for sources
+Subtext: The directory step lets recipients decide whether their public profile is ready to appear before they start sharing it.
+
+Image alt text
+A desktop Hush Line social graphic showing the final onboarding step, where a recipient can choose whether to be listed in the public directory before finishing setup.
+
+Social post copy
+
+LinkedIn (403/3000)
+A public tip line should be ready before people start relying on it.
+
+In Hush Line onboarding, journalists, lawyers, educators, organizers, and other recipients can choose whether their profile appears in the public directory. That decision belongs after the basics are in place: profile details, encryption, and a message workflow the recipient is prepared to monitor.
+
+Sign up at https://hushline.app.
+
+Mastodon (276/500)
+A public tip line should be ready before people start relying on it.
+
+Hush Line onboarding lets recipients decide whether their profile appears in the public directory after they have reviewed profile, encryption, and message workflow basics.
+
+Sign up at https://hushline.app.
+
+Bluesky (234/300)
+A public tip line should be ready before people start relying on it.
+
+Hush Line onboarding lets recipients choose whether their profile appears in the public directory after setup basics are in place.
+
+Sign up at https://hushline.app.

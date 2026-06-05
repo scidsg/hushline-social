@@ -1,0 +1,26 @@
+{
+  "slot": "thursday",
+  "planned_date": "2026-05-07",
+  "screenshot_file": "artvandelay/auth-artvandelay-settings-notifications-mobile-light-fold.png",
+  "content_key": "auth-artvandelay-settings-notifications",
+  "headline": "Choose how new tip alerts reach you",
+  "subtext": "Notification settings let recipients turn alerts on, include encrypted message content, and encrypt the full email body for compatible mail clients.",
+  "image_alt_text": "A Hush Line daily social image showing a mobile settings screen for notifications. The screen includes toggles for tip notifications, including message contents, encrypting the entire email body, an email forwarding address field, custom SMTP settings, and an update email forwarding button.",
+  "social": {
+    "bluesky": "Some tips need quick attention without turning the sender flow into chat.\n\nHush Line notification settings help recipients choose email alerts and encrypted message delivery for their review workflow.\n\nSign up at https://hushline.app.",
+    "linkedin": "Some tips need quick attention, but that does not mean every message should land in an ordinary inbox.\n\nHush Line notification settings let recipients decide when email alerts are sent and whether encrypted message content is included. That helps journalists, lawyers, educators, and other trusted recipients keep review work moving without asking sources to create an account.\n\nSign up at https://hushline.app.",
+    "mastodon": "Some tips need quick attention, but not every message belongs in a regular inbox.\n\nHush Line notification settings let recipients choose email alerts, encrypted message content, and full-body encryption for clients like Proton Mail or Thunderbird.\n\nSign up at https://hushline.app."
+  },
+  "rationale": "Selected the mobile notification settings screenshot because both encryption candidates repeat the encryption topic more recently, including the same settings feature earlier in the week. This post is grounded in the recipient workflow from the use-cases context: journalists, lawyers, educators, organizers, and other trusted recipients need a manageable way to review incoming tips while preserving a low-friction sender flow.",
+  "source_pr_numbers": [],
+  "audience_scope": "recipient-shared",
+  "concept_key": "settings-notifications",
+  "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+  "matched_pull_requests": [],
+  "screen_key": "/settings/notifications",
+  "template_name": "hushline-daily-mobile-template-2.html",
+  "theme": "light",
+  "title": "Settings - Notifications (artvandelay)",
+  "topic_family": "notifications",
+  "viewport": "mobile"
+}

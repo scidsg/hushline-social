@@ -1,0 +1,33 @@
+Slot: wednesday
+Planned date: 2026-05-20
+Template: hushline-daily-desktop-template-2.html
+Screenshot: /Users/scidsg/hushline-screenshots/curated/guest/guest-directory-verified-desktop-dark-fold.png
+Content key: guest-directory-verified
+Headline: Check the recipient before you send
+Subtext: The public directory lets sources review verified Hush Line profiles and choose the person or team they mean to contact before sending a message.
+
+Image alt text
+A dark-mode desktop social graphic showing the Hush Line public directory with verified recipient profile cards, a search field, and category filters for people looking for a trusted contact.
+
+Social post copy
+
+LinkedIn (413/3000)
+Before sharing a sensitive tip, it helps to confirm that the line belongs to the person or team you meant to reach.
+
+Hush Line's public directory gives sources a browser-based way to review verified profiles for journalists, lawyers, educators, organizers, developers, and other trusted recipients. You can start first contact without creating an account or installing an app.
+
+Learn more at https://hushline.app.
+
+Mastodon (310/500)
+Before sharing a sensitive tip, it helps to confirm that the line belongs to the person or team you meant to reach.
+
+Hush Line's public directory lets sources review verified profiles and start first contact in the browser, without creating an account or installing an app.
+
+Learn more at https://hushline.app.
+
+Bluesky (248/300)
+Before sharing a sensitive tip, confirm that the line belongs to the person or team you meant to reach.
+
+Hush Line's public directory lets sources review verified profiles and start first contact in the browser.
+
+Learn more at https://hushline.app.

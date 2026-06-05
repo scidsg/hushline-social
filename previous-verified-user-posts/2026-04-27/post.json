@@ -1,0 +1,19 @@
+{
+  "date": "2026-04-27",
+  "display_name": "Michael Downey",
+  "headline": "Michael Downey",
+  "image_alt_text": "A social card featuring verified Hush Line user Michael Downey, their bio, their tip line URL, and a QR code that links to the same URL.",
+  "planned_date": "2026-04-27",
+  "primary_username": "downey",
+  "qr_code_file": "verified-user-qr.png",
+  "social": {
+    "bluesky": "🤩 Verified Member Highlight!\n\nMichael is an open source @ united nations development programme (UNDP).\n\nSend Michael a tip: https://tips.hushline.app/to/downey",
+    "linkedin": "🤩 Verified Member Highlight!\n\nMichael is an open source @ united nations development programme (UNDP).\n\nTo send Michael a tip, go to https://tips.hushline.app/to/downey.",
+    "mastodon": "🤩 Verified Member Highlight!\n\nMichael is an open source @ united nations development programme (UNDP).\n\nTo send Michael a tip, visit https://tips.hushline.app/to/downey."
+  },
+  "slot": "verified-user-weekly",
+  "source": "https://tips.hushline.app/directory/users.json",
+  "subtext": "Open Source @ United Nations Development Programme (UNDP)",
+  "user_link": "https://tips.hushline.app/to/downey",
+  "user_url": "https://tips.hushline.app/to/downey"
+}

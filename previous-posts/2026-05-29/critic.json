@@ -1,0 +1,69 @@
+{
+  "blocked": false,
+  "criteria": [
+    {
+      "id": "topic_freshness",
+      "label": "Topic freshness",
+      "max_score": 2,
+      "rationale": "Topic family encryption appeared in the last two posts.",
+      "score": 0
+    },
+    {
+      "id": "hook_freshness",
+      "label": "Hook freshness",
+      "max_score": 2,
+      "rationale": "Opening hook is distinct from recent archive hooks.",
+      "score": 2
+    },
+    {
+      "id": "format_novelty",
+      "label": "Format novelty",
+      "max_score": 2,
+      "rationale": "Format myth_vs_reality is not overused in the recent archive.",
+      "score": 2
+    },
+    {
+      "id": "audience_specificity",
+      "label": "Audience specificity",
+      "max_score": 2,
+      "rationale": "Copy contains 2 signal(s) for recipient-shared.",
+      "score": 2
+    },
+    {
+      "id": "concrete_reader_value",
+      "label": "Concrete reader value",
+      "max_score": 2,
+      "rationale": "Copy gives 2 concrete action/value signal(s).",
+      "score": 2
+    },
+    {
+      "id": "hushline_relevance",
+      "label": "Hush Line relevance",
+      "max_score": 2,
+      "rationale": "Copy is tied to Hush Line or a concrete Hush Line surface.",
+      "score": 2
+    },
+    {
+      "id": "cta_freshness",
+      "label": "CTA freshness",
+      "max_score": 2,
+      "rationale": "CTA pattern is fresh against the configured CTA cooldown.",
+      "score": 2
+    },
+    {
+      "id": "safety_compliance",
+      "label": "Safety and compliance",
+      "max_score": 2,
+      "rationale": "Copy avoids unsupported safety, anonymity, and recency claims.",
+      "score": 2
+    }
+  ],
+  "failed_criteria": [
+    "topic_freshness"
+  ],
+  "max_score": 16,
+  "passed": true,
+  "rationale": "Topic freshness: Topic family encryption appeared in the last two posts. Hook freshness: Opening hook is distinct from recent archive hooks. Format novelty: Format myth_vs_reality is not overused in the recent archive. Audience specificity: Copy contains 2 signal(s) for recipient-shared. Concrete reader value: Copy gives 2 concrete action/value signal(s). Hush Line relevance: Copy is tied to Hush Line or a concrete Hush Line surface. CTA freshness: CTA pattern is fresh against the configured CTA cooldown. Safety and compliance: Copy avoids unsupported safety, anonymity, and recency claims.",
+  "score": 14,
+  "threshold": 12
+}

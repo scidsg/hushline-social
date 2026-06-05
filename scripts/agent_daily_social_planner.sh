@@ -23,6 +23,8 @@ EXCLUDED_SCREENSHOTS=()
 
 CODEX_MODEL="${CODEX_MODEL:-gpt-5.5}"
 CODEX_REASONING_EFFORT="${CODEX_REASONING_EFFORT:-high}"
+CODEX_MAX_ATTEMPTS="${HUSHLINE_SOCIAL_CODEX_MAX_ATTEMPTS:-3}"
+CODEX_RETRY_DELAY_SECONDS="${HUSHLINE_SOCIAL_CODEX_RETRY_DELAY_SECONDS:-30}"
 VERBOSE_CODEX_OUTPUT="${VERBOSE_CODEX_OUTPUT:-0}"
 
 PROMPT_FILE="$(mktemp)"
@@ -130,46 +132,96 @@ reset_day_plan_artifacts() {
   rm -f "$REPO_DIR/previous-posts/$archive_key/plan.json"
 }
 
-run_codex_from_prompt() {
-  local rc=0
-  : > "$CODEX_OUTPUT_FILE"
-  : > "$CODEX_TRANSCRIPT_FILE"
+codex_plan_path() {
+  local archive_key="${ARCHIVE_KEY:-$DATE}"
+  printf '%s\n' "$REPO_DIR/previous-posts/$archive_key/plan.json"
+}
 
-  if [[ "$VERBOSE_CODEX_OUTPUT" == "1" ]]; then
-    echo "Codex execution started; streaming transcript to console."
-  else
-    echo "Codex execution started; transcript captured to a temporary file."
-  fi
-
-  set +e
-  codex exec \
-    --model "$CODEX_MODEL" \
-    -c "model_reasoning_effort=\"$CODEX_REASONING_EFFORT\"" \
-    --full-auto \
-    --sandbox workspace-write \
-    -C "$REPO_DIR" \
-    -o "$CODEX_OUTPUT_FILE" \
-    - < "$PROMPT_FILE" 2>&1 | {
-      if [[ "$VERBOSE_CODEX_OUTPUT" == "1" ]]; then
-        tee "$CODEX_TRANSCRIPT_FILE"
-      else
-        cat > "$CODEX_TRANSCRIPT_FILE"
-      fi
-    }
-  rc=${PIPESTATUS[0]}
-  set -e
-
-  if (( rc != 0 )); then
-    echo "Codex execution failed (exit ${rc})." >&2
-    return "$rc"
-  fi
-
-  echo "Codex execution completed."
+print_codex_failure_context() {
   if [[ -s "$CODEX_OUTPUT_FILE" ]]; then
-    echo "Codex final message:"
-    sed -n '1,60p' "$CODEX_OUTPUT_FILE"
-    printf '\n'
+    echo "Codex final message before failure:" >&2
+    sed -n '1,60p' "$CODEX_OUTPUT_FILE" >&2
   fi
+
+  if [[ -s "$CODEX_TRANSCRIPT_FILE" ]]; then
+    echo "Codex transcript tail:" >&2
+    tail -80 "$CODEX_TRANSCRIPT_FILE" >&2
+  else
+    echo "Codex produced no transcript output." >&2
+  fi
+}
+
+run_codex_from_prompt() {
+  local attempt=1
+  local max_attempts="$CODEX_MAX_ATTEMPTS"
+  local plan_path=""
+  local rc=0
+
+  if [[ ! "$max_attempts" =~ ^[0-9]+$ ]] || (( max_attempts < 1 )); then
+    echo "HUSHLINE_SOCIAL_CODEX_MAX_ATTEMPTS must be an integer greater than zero." >&2
+    return 1
+  fi
+
+  if [[ ! "$CODEX_RETRY_DELAY_SECONDS" =~ ^[0-9]+$ ]]; then
+    echo "HUSHLINE_SOCIAL_CODEX_RETRY_DELAY_SECONDS must be a non-negative integer." >&2
+    return 1
+  fi
+
+  while (( attempt <= max_attempts )); do
+    : > "$CODEX_OUTPUT_FILE"
+    : > "$CODEX_TRANSCRIPT_FILE"
+    plan_path="$(codex_plan_path)"
+
+    if [[ "$VERBOSE_CODEX_OUTPUT" == "1" ]]; then
+      echo "Codex execution started (attempt ${attempt}/${max_attempts}); streaming transcript to console."
+    else
+      echo "Codex execution started (attempt ${attempt}/${max_attempts}); transcript captured to a temporary file."
+    fi
+
+    set +e
+    codex exec \
+      --model "$CODEX_MODEL" \
+      -c "model_reasoning_effort=\"$CODEX_REASONING_EFFORT\"" \
+      --full-auto \
+      --sandbox workspace-write \
+      -C "$REPO_DIR" \
+      -o "$CODEX_OUTPUT_FILE" \
+      - < "$PROMPT_FILE" 2>&1 | {
+        if [[ "$VERBOSE_CODEX_OUTPUT" == "1" ]]; then
+          tee "$CODEX_TRANSCRIPT_FILE"
+        else
+          cat > "$CODEX_TRANSCRIPT_FILE"
+        fi
+      }
+    rc=${PIPESTATUS[0]}
+    set -e
+
+    if (( rc == 0 )) && [[ ! -s "$plan_path" ]]; then
+      echo "Codex execution completed but did not write a plan: $plan_path" >&2
+      rc=1
+    fi
+
+    if (( rc == 0 )); then
+      echo "Codex execution completed."
+      if [[ -s "$CODEX_OUTPUT_FILE" ]]; then
+        echo "Codex final message:"
+        sed -n '1,60p' "$CODEX_OUTPUT_FILE"
+        printf '\n'
+      fi
+      return 0
+    fi
+
+    echo "Codex execution failed (exit ${rc}) on attempt ${attempt}/${max_attempts}." >&2
+    print_codex_failure_context
+
+    if (( attempt >= max_attempts )); then
+      return "$rc"
+    fi
+
+    echo "Retrying Codex execution in $CODEX_RETRY_DELAY_SECONDS seconds."
+    sleep "$CODEX_RETRY_DELAY_SECONDS"
+    attempt=$((attempt + 1))
+  done
 }
 
 validate_and_render() {
@@ -214,14 +266,76 @@ selected_screenshot_from_plan() {
   node -e 'const fs=require("fs"); const plan=JSON.parse(fs.readFileSync(process.argv[1],"utf8")); process.stdout.write(String(plan?.post?.screenshot_file || ""));' "$plan_path"
 }
 
+candidate_count_from_context() {
+  local archive_key="${ARCHIVE_KEY:-$DATE}"
+  local context_path="$REPO_DIR/previous-posts/$archive_key/context.json"
+
+  if [[ ! -f "$context_path" ]]; then
+    printf '%s\n' "0"
+    return
+  fi
+
+  node -e 'const fs=require("fs"); const context=JSON.parse(fs.readFileSync(process.argv[1],"utf8")); process.stdout.write(String(Array.isArray(context?.candidate_screenshots) ? context.candidate_screenshots.length : 0));' "$context_path"
+}
+
 is_retryable_validation_failure() {
   [[ "$LAST_VALIDATION_OUTPUT" == *"is too close to recent"* ]] ||
     [[ "$LAST_VALIDATION_OUTPUT" == *"overlaps too heavily with recent archive"* ]] ||
     [[ "$LAST_VALIDATION_OUTPUT" == *"duplicates recent archive headline"* ]] ||
     [[ "$LAST_VALIDATION_OUTPUT" == *"uses banned jargon"* ]] ||
     [[ "$LAST_VALIDATION_OUTPUT" == *"must directly describe notification"* ]] ||
+    [[ "$LAST_VALIDATION_OUTPUT" == *"Post opening hook"* ]] ||
+    [[ "$LAST_VALIDATION_OUTPUT" == *"Post CTA pattern"* ]] ||
     [[ "$LAST_VALIDATION_OUTPUT" == *"Weekly admin-only cap already reached"* ]] ||
-    [[ "$LAST_VALIDATION_OUTPUT" == *"Weekly dark-mode cap already reached"* ]]
+    [[ "$LAST_VALIDATION_OUTPUT" == *"Weekly dark-mode cap already reached"* ]] ||
+    [[ "$LAST_VALIDATION_OUTPUT" == *"Model returned content_format"* ]] ||
+    [[ "$LAST_VALIDATION_OUTPUT" == *"Unknown content format"* ]] ||
+    [[ "$LAST_VALIDATION_OUTPUT" == *"already reached the weekly cap"* ]]
+}
+
+is_message_overlap_validation_failure() {
+  [[ "$LAST_VALIDATION_OUTPUT" == *"is too close to recent"* ]] ||
+    [[ "$LAST_VALIDATION_OUTPUT" == *"overlaps too heavily with recent archive"* ]] ||
+    [[ "$LAST_VALIDATION_OUTPUT" == *"duplicates recent archive headline"* ]] ||
+    [[ "$LAST_VALIDATION_OUTPUT" == *"Post opening hook"* ]] ||
+    [[ "$LAST_VALIDATION_OUTPUT" == *"Post CTA pattern"* ]]
+}
+
+is_critic_validation_failure() {
+  [[ "$LAST_VALIDATION_OUTPUT" == *"Editorial critic score"* ]]
+}
+
+build_critic_rewrite_prompt() {
+  local archive_key="${ARCHIVE_KEY:-$DATE}"
+  local source_prompt="$REPO_DIR/previous-posts/$archive_key/prompt.txt"
+
+  {
+    cat "$source_prompt"
+    printf '\n'
+    printf '%s\n' "Rewrite request:"
+    printf '%s\n' "The previous draft failed the editorial critic gate. Rewrite the same daily plan before rendering."
+    printf '%s\n' "Keep the same JSON schema and continue to use one of the shortlisted screenshots."
+    printf '%s\n' "Address the critic rationale below with a fresher hook, clearer audience value, stronger Hush Line relevance, and a non-repetitive CTA."
+    printf '%s\n' "$LAST_VALIDATION_OUTPUT" | sed -n '1,30p'
+  } > "$PROMPT_FILE"
+}
+
+build_validation_rewrite_prompt() {
+  local archive_key="${ARCHIVE_KEY:-$DATE}"
+  local source_prompt="$REPO_DIR/previous-posts/$archive_key/prompt.txt"
+  local selected_screenshot="$1"
+
+  {
+    cat "$source_prompt"
+    printf '\n'
+    printf '%s\n' "Rewrite request:"
+    printf '%s\n' "The previous draft failed archive-overlap validation. Rewrite the same daily plan before rendering."
+    printf '%s\n' "Keep the same JSON schema and use the same screenshot: $selected_screenshot"
+    printf '%s\n' "Use a meaningfully different angle, headline, opening hook, value proposition, and CTA from the rejected recent archive."
+    printf '%s\n' "Do not reuse the rejected wording or merely swap synonyms; the validator compares shared message tokens."
+    printf '%s\n' "Validation rejection:"
+    printf '%s\n' "$LAST_VALIDATION_OUTPUT" | sed -n '1,40p'
+  } > "$PROMPT_FILE"
 }
 
 array_contains() {
@@ -241,6 +355,10 @@ array_contains() {
 run_with_validation_retries() {
   local retry_budget=""
   local selected_screenshot=""
+  local available_candidate_count=""
+  local critic_retry_used=0
+  local validation_rewrite_screenshot=""
+  local validation_rewrite_used=0
 
   retry_budget="$(validation_retry_budget)"
 
@@ -251,9 +369,45 @@ run_with_validation_retries() {
     cp "$REPO_DIR/previous-posts/$ARCHIVE_KEY/prompt.txt" "$PROMPT_FILE"
     run_codex_from_prompt
 
-    if validate_and_render; then
-      return 0
-    fi
+    while true; do
+      if validate_and_render; then
+        return 0
+      fi
+
+      if is_critic_validation_failure; then
+        if (( critic_retry_used == 1 )); then
+          echo "Editorial critic gate failed after one rewrite attempt; blocking daily planner before render/publish." >&2
+          return 1
+        fi
+
+        critic_retry_used=1
+        echo "Editorial critic gate requested a rewrite; retrying Codex once with critic feedback."
+        build_critic_rewrite_prompt
+        reset_day_plan_artifacts
+        run_codex_from_prompt
+        continue
+      fi
+
+      if is_message_overlap_validation_failure; then
+        selected_screenshot="$(selected_screenshot_from_plan || true)"
+        if [[ -z "$selected_screenshot" ]]; then
+          echo "Validation failed, but the selected screenshot could not be recovered for an automatic rewrite." >&2
+          return 1
+        fi
+
+        if (( validation_rewrite_used == 0 )); then
+          validation_rewrite_used=1
+          validation_rewrite_screenshot="$selected_screenshot"
+          echo "Archive-overlap validation requested a rewrite; retrying Codex once with validator feedback."
+          build_validation_rewrite_prompt "$selected_screenshot"
+          reset_day_plan_artifacts
+          run_codex_from_prompt
+          continue
+        fi
+      fi
+
+      break
+    done
 
     if ! is_retryable_validation_failure; then
       return 1
@@ -265,12 +419,21 @@ run_with_validation_retries() {
       return 1
     fi
 
+    available_candidate_count="$(candidate_count_from_context)"
+    if [[ "$available_candidate_count" =~ ^[0-9]+$ ]] && (( available_candidate_count <= 1 )); then
+      echo "Validation failed after rewrite, and no alternate shortlisted screenshots are available for $selected_screenshot." >&2
+      return 1
+    fi
+
     if (( ${#EXCLUDED_SCREENSHOTS[@]} > 0 )) && array_contains "$selected_screenshot" "${EXCLUDED_SCREENSHOTS[@]}"; then
       echo "Validation failed again for already-excluded screenshot $selected_screenshot." >&2
       return 1
     fi
 
     EXCLUDED_SCREENSHOTS+=("$selected_screenshot")
+    critic_retry_used=0
+    validation_rewrite_screenshot=""
+    validation_rewrite_used=0
     if (( ${#EXCLUDED_SCREENSHOTS[@]} >= retry_budget )); then
       echo "Daily planner exhausted its validation retry budget after excluding ${#EXCLUDED_SCREENSHOTS[@]} screenshots." >&2
       return 1
@@ -324,16 +487,16 @@ verify_screenshot_source() {
     freshness_status="fresh"
   fi
 
-  if [[ "$ALLOW_STALE_SCREENSHOTS" != "1" ]] && [[ "$freshness_status" != "fresh" ]]; then
-    echo "Latest screenshots manifest is older than ${SCREENSHOT_MAX_AGE_DAYS} days." >&2
-    echo "Set HUSHLINE_ALLOW_STALE_SCREENSHOTS=1 to override intentionally." >&2
-    exit 1
-  fi
-
   echo "Checking upstream latest screenshots manifest."
   remote_status="$(remote_manifest_status "$manifest_path")"
 
   if [[ "$remote_status" == "match" ]]; then
+    if [[ "$ALLOW_STALE_SCREENSHOTS" != "1" ]] && [[ "$freshness_status" != "fresh" ]]; then
+      echo "Latest screenshots manifest is older than ${SCREENSHOT_MAX_AGE_DAYS} days." >&2
+      echo "Set HUSHLINE_ALLOW_STALE_SCREENSHOTS=1 to override intentionally." >&2
+      exit 1
+    fi
+
     echo "Local latest screenshots manifest matches upstream."
     return
   fi
@@ -357,6 +520,22 @@ verify_screenshot_source() {
   if [[ "$SCREENSHOT_AUTO_SYNC" == "1" ]]; then
     echo "Local latest screenshots manifest is stale. Syncing upstream latest snapshot."
     node "$REPO_DIR/scripts/sync-latest-screenshots.js" --dest "$SCREENSHOTS_REPO_DIR/releases/latest"
+
+    local_release="$(node -e 'const fs=require("fs"); const m=JSON.parse(fs.readFileSync(process.argv[1],"utf8")); process.stdout.write(String(m.release || ""));' "$manifest_path")"
+    local_captured_at="$(node -e 'const fs=require("fs"); const m=JSON.parse(fs.readFileSync(process.argv[1],"utf8")); process.stdout.write(String(m.capturedAt || ""));' "$manifest_path")"
+    age_days="$(node -e 'const fs=require("fs"); const m=JSON.parse(fs.readFileSync(process.argv[1],"utf8")); const captured=new Date(m.capturedAt); const age=Math.floor((Date.now()-captured.getTime())/86400000); process.stdout.write(String(age));' "$manifest_path")"
+    freshness_status="stale"
+    if [[ "$age_days" =~ ^[0-9]+$ ]] && (( age_days <= SCREENSHOT_MAX_AGE_DAYS )); then
+      freshness_status="fresh"
+    fi
+
+    echo "Synced screenshots manifest: release=${local_release:-unknown} captured_at=${local_captured_at:-unknown} age_days=$age_days"
+
+    if [[ "$ALLOW_STALE_SCREENSHOTS" != "1" ]] && [[ "$freshness_status" != "fresh" ]]; then
+      echo "Latest screenshots manifest is older than ${SCREENSHOT_MAX_AGE_DAYS} days after sync." >&2
+      echo "Set HUSHLINE_ALLOW_STALE_SCREENSHOTS=1 to override intentionally." >&2
+      exit 1
+    fi
 
     remote_status="$(remote_manifest_status "$manifest_path")"
     if [[ "$remote_status" == "match" ]]; then
@@ -468,4 +647,6 @@ main() {
   push_archive
 }
 
-main "$@"
+if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
+  main "$@"
+fi

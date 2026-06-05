@@ -1,0 +1,113 @@
+{
+  "date": "2026-05-26",
+  "post": {
+    "slot": "tuesday",
+    "planned_date": "2026-05-26",
+    "screenshot_file": "artvandelay/auth-artvandelay-tools-email-validation-status-valid-desktop-light-fold.png",
+    "content_key": "auth-artvandelay-tools-email-validation-status-valid",
+    "content_format": "feature_benefit",
+    "headline": "Keep routing clues with intake notes",
+    "subtext": "Recipients can use the mail-origin screen to turn technical email details into a saved file for follow-up or handoff.",
+    "image_alt_text": "A Hush Line daily social asset showing the desktop Email Validation tool. The screen includes a raw email headers field, Validate Headers and Download Report buttons, and a validation summary stating that the email appears to originate from the stated sender.",
+    "social": {
+      "bluesky": "Forwarded email can carry useful routing clues.\n\nHush Line gives recipients a browser-based mail-origin screen where a header block can become a saved result for follow-up or handoff.\n\nManage message context: https://hushline.app.",
+      "linkedin": "Forwarded email can carry useful routing clues, but staff need a consistent place to handle that context.\n\nHush Line gives recipients a browser-based mail-origin screen where a header block can become a saved result for the matter file. For journalists, lawyers, educators, security teams, and other trusted recipients, that makes follow-up easier to manage when intake moves from one person to another.\n\nUse Hush Line to manage message context before follow-up: https://hushline.app.",
+      "mastodon": "Forwarded email can carry useful routing clues, but staff need a consistent place to handle that context.\n\nHush Line gives recipients a browser-based mail-origin screen where a header block can become a saved result for follow-up or handoff.\n\nManage message context in Hush Line: https://hushline.app."
+    },
+    "rationale": "Selected the recipient-shared Email Validation screenshot because it supports the requested feature-benefit format with a fresher angle than another encryption post. The copy focuses on mail-origin context as part of repeatable intake handoff for recipients and staff, while keeping alt text separate from social copy.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "tools-email-validation-status-valid",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "editorial_intent": {
+      "audience_scope": "recipient-shared",
+      "content_format": "feature_benefit",
+      "content_format_label": "Feature benefit",
+      "label": "Recipients and staff",
+      "reader_need": "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+      "visual_role": "supporting_screenshot"
+    },
+    "matched_pull_requests": [
+      {
+        "merged_at": "2026-05-25T17:45:07Z",
+        "number": 2011,
+        "title": "Throttle idle Codex status checks"
+      }
+    ],
+    "screen_key": "/email-headers",
+    "template_name": "hushline-daily-desktop-template-2.html",
+    "theme": "light",
+    "title": "Tools - Email Validation status: appears valid (artvandelay)",
+    "topic_family": "email-headers",
+    "visual_selection_reason": "Selected screenshots only after choosing the Recipients and staff editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+    "viewport": "desktop"
+  },
+  "summary": "Daily recipient-shared feature benefit post using the Email Validation desktop screenshot.",
+  "critic": {
+    "blocked": false,
+    "criteria": [
+      {
+        "id": "topic_freshness",
+        "label": "Topic freshness",
+        "max_score": 2,
+        "rationale": "Topic family email-headers is fresh against the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "hook_freshness",
+        "label": "Hook freshness",
+        "max_score": 2,
+        "rationale": "Opening hook is distinct from recent archive hooks.",
+        "score": 2
+      },
+      {
+        "id": "format_novelty",
+        "label": "Format novelty",
+        "max_score": 2,
+        "rationale": "Format feature_benefit is not overused in the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "audience_specificity",
+        "label": "Audience specificity",
+        "max_score": 2,
+        "rationale": "Copy contains 4 signal(s) for recipient-shared.",
+        "score": 2
+      },
+      {
+        "id": "concrete_reader_value",
+        "label": "Concrete reader value",
+        "max_score": 2,
+        "rationale": "Copy gives 3 concrete action/value signal(s).",
+        "score": 2
+      },
+      {
+        "id": "hushline_relevance",
+        "label": "Hush Line relevance",
+        "max_score": 2,
+        "rationale": "Copy is tied to Hush Line or a concrete Hush Line surface.",
+        "score": 2
+      },
+      {
+        "id": "cta_freshness",
+        "label": "CTA freshness",
+        "max_score": 2,
+        "rationale": "CTA pattern is fresh against the configured CTA cooldown.",
+        "score": 2
+      },
+      {
+        "id": "safety_compliance",
+        "label": "Safety and compliance",
+        "max_score": 2,
+        "rationale": "Copy avoids unsupported safety, anonymity, and recency claims.",
+        "score": 2
+      }
+    ],
+    "failed_criteria": [],
+    "max_score": 16,
+    "passed": true,
+    "rationale": "Topic freshness: Topic family email-headers is fresh against the recent archive. Hook freshness: Opening hook is distinct from recent archive hooks. Format novelty: Format feature_benefit is not overused in the recent archive. Audience specificity: Copy contains 4 signal(s) for recipient-shared. Concrete reader value: Copy gives 3 concrete action/value signal(s). Hush Line relevance: Copy is tied to Hush Line or a concrete Hush Line surface. CTA freshness: CTA pattern is fresh against the configured CTA cooldown. Safety and compliance: Copy avoids unsupported safety, anonymity, and recency claims.",
+    "score": 16,
+    "threshold": 12
+  }
+}

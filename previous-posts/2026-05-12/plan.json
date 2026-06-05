@@ -1,0 +1,36 @@
+{
+  "date": "2026-05-12",
+  "post": {
+    "slot": "tuesday",
+    "planned_date": "2026-05-12",
+    "screenshot_file": "admin/auth-admin-settings-guidance-mobile-light-fold.png",
+    "content_key": "auth-admin-settings-guidance",
+    "headline": "For admins: give visitors safety guidance before they submit",
+    "subtext": "User Guidance lets teams running Hush Line show practical instructions, Tor reminders, and an emergency exit option before a source sends a message.",
+    "image_alt_text": "A Hush Line social graphic built around a light-mode mobile screenshot of the admin User Guidance settings page. The screen shows the guidance toggle, a test button, and emergency exit settings for teams running Hush Line.",
+    "social": {
+      "bluesky": "For admins and teams running Hush Line, User Guidance settings help visitors see practical safety notes before they send a message, including Tor reminders and an emergency exit option.\n\nLearn more at https://hushline.app.",
+      "linkedin": "People may reach a tip line from a work device, a shared network, or another place where they need plain safety guidance before they decide what to send.\n\nFor admins and teams running Hush Line, User Guidance settings provide a place to show practical instructions before the message form. Teams can include reminders about Tor Browser, cautions for their community, and an emergency exit option for visitors who need to leave quickly.\n\nLearn more at https://hushline.app.",
+      "mastodon": "Sources may need clear safety guidance before they send anything.\n\nFor admins and teams running Hush Line, User Guidance settings can show practical instructions before the message form, including Tor reminders and an emergency exit option.\n\nLearn more at https://hushline.app."
+    },
+    "rationale": "Selected the admin User Guidance screenshot because directory posts appeared repeatedly in the prior 31 days and the dark admin settings screen would add dark-mode pressure. This light mobile admin screen supports a distinct deployment-focused message grounded in platform administrator needs: governance controls, visitor guidance, and safety information before disclosure.",
+    "source_pr_numbers": [],
+    "audience_scope": "admin-only",
+    "concept_key": "settings-guidance",
+    "copy_brief": "Write for admins or teams running a Hush Line deployment. Make the admin audience explicit.",
+    "matched_pull_requests": [
+      {
+        "merged_at": "2026-05-07T06:32:39Z",
+        "number": 1939,
+        "title": "Paginate admin username settings"
+      }
+    ],
+    "screen_key": "/settings/guidance",
+    "template_name": "hushline-daily-mobile-template.html",
+    "theme": "light",
+    "title": "Settings - User Guidance (admin)",
+    "topic_family": "guidance",
+    "viewport": "mobile"
+  },
+  "summary": "Daily Hush Line post for 2026-05-12 using the admin User Guidance settings screenshot."
+}

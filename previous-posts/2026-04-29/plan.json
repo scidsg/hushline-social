@@ -1,0 +1,30 @@
+{
+  "date": "2026-04-29",
+  "post": {
+    "slot": "wednesday",
+    "planned_date": "2026-04-29",
+    "screenshot_file": "artvandelay/auth-artvandelay-settings-advanced-desktop-dark-fold.png",
+    "content_key": "auth-artvandelay-settings-advanced",
+    "headline": "Export your records before a permanent change",
+    "subtext": "Advanced settings let recipients download their Hush Line data, including encrypted PGP messages, before deleting an account.",
+    "image_alt_text": "Dark desktop social image showing the Hush Line Advanced settings page, with controls to download a data export, encrypt the export with a PGP key, and delete the account.",
+    "social": {
+      "bluesky": "A tip line can hold records that matter to a newsroom, law office, school, nonprofit, or security team.\n\nHush Line lets recipients export their data, including encrypted PGP messages, before a permanent account change.\n\nLearn more at https://hushline.app.",
+      "linkedin": "A tip line can hold records that matter to a newsroom, law office, school, nonprofit, or security team.\n\nHush Line's Advanced settings let recipients download their data, including encrypted PGP messages, before making a permanent account change. The export can be encrypted with the recipient's PGP key.\n\nLearn more at https://hushline.app.",
+      "mastodon": "A tip line can hold records that matter to a newsroom, law office, school, nonprofit, or security team.\n\nHush Line's Advanced settings let recipients download their data, including encrypted PGP messages, before making a permanent account change.\n\nLearn more at https://hushline.app."
+    },
+    "rationale": "Selected the Advanced settings screenshot because the other candidates repeat more recent notification or vision posts. This recipient-shared screen supports a practical workflow for journalists, lawyers, educators, nonprofits, and other trusted recipients who need control over their records before deleting or changing an account.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "settings-advanced",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "matched_pull_requests": [],
+    "screen_key": "/settings/advanced",
+    "template_name": "hushline-daily-desktop-template-2.html",
+    "theme": "dark",
+    "title": "Settings - Advanced (artvandelay)",
+    "topic_family": "settings-advanced",
+    "viewport": "desktop"
+  },
+  "summary": "A daily recipient-facing post about using Advanced settings to export Hush Line records before making permanent account changes."
+}

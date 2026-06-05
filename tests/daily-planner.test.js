@@ -4,15 +4,28 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const {
+  CONTENT_FORMATS,
   DAILY_POSTS_ROOT,
+  EDITORIAL_AUDIENCES,
+  buildCooldownPolicy,
+  buildPromptPayload,
+  chooseSupportedEditorialIntent,
+  chooseContentFormat,
   chooseTemplateName,
+  contentFormatIds,
+  filterCandidatesForEditorialIntent,
   filterCandidatesForArchiveHistory,
+  filterCandidatesForCooldowns,
   filterCandidatesForWeeklyCaps,
   filterCandidatesForTemplateName,
   inferTopicFamily,
   loadSavedDailyContext,
   parseArgs,
   planDay,
+  rankEditorialIntents,
+  scoreEditorialCritic,
+  selectCandidateShortlist,
+  summarizeScreenshotRotation,
   validatePlan,
 } = require("../scripts/lib/daily-planner");
 const { assignVariantsToConcepts } = require("../scripts/lib/planning-context");
@@ -34,6 +47,28 @@ function buildContext(overrides = {}) {
       },
     ],
     date: "2026-03-20",
+    editorial_intent: {
+      audience_scope: "public",
+      content_format: "feature_benefit",
+      content_format_label: "Feature benefit",
+      label: "Public sources and visitors",
+      reader_need: "Help someone decide whether Hush Line is the right place to make safe first contact or find a trusted recipient.",
+      visual_role: "supporting_screenshot",
+    },
+    visual_selection_reason: "Selected screenshots only after choosing the Public sources and visitors editorial intent.",
+    content_format_selection: {
+      available_formats: CONTENT_FORMATS,
+      selected_format: CONTENT_FORMATS.find((format) => format.id === "feature_benefit"),
+      weekly_cap: 1,
+      weekly_usage: {
+        counts: {},
+        week: "2026-W12",
+      },
+    },
+    cooldown_policy: buildCooldownPolicy({
+      cta_posts: 0,
+      hook_posts: 0,
+    }),
     slot: {
       planned_date: "2026-03-20",
       slot: "friday",
@@ -57,6 +92,7 @@ function buildModelPlan(overrides = {}) {
     summary: "Public directory trust signals",
     post: {
       content_key: "guest-directory-verified",
+      content_format: "feature_benefit",
       headline: "Let sources verify a recipient before they send a tip",
       image_alt_text: "A social graphic showing the verified directory view.",
       planned_date: "2026-03-20",
@@ -103,6 +139,30 @@ test("parseArgs collects unique excluded screenshots", () => {
     "artvandelay/auth-artvandelay-settings-notifications-mobile-light-fold.png",
     "artvandelay/auth-artvandelay-tools-vision-mobile-light-fold.png",
   ]);
+});
+
+test("parseArgs accepts explicit cooldown windows and override", () => {
+  const args = parseArgs([
+    "--date",
+    "2026-03-20",
+    "--topic-family-cooldown-posts",
+    "7",
+    "--concept-key-cooldown-posts",
+    "30",
+    "--hook-cooldown-posts",
+    "14",
+    "--cta-cooldown-posts",
+    "2",
+    "--allow-cooldown-override",
+  ]);
+
+  assert.deepEqual(args.cooldownPolicy, {
+    allow_override: true,
+    concept_key_posts: 30,
+    cta_posts: 2,
+    hook_posts: 14,
+    topic_family_posts: 7,
+  });
 });
 
 test("parseArgs rejects archive keys outside the requested planned date", () => {
@@ -158,12 +218,397 @@ test("validatePlan trims social copy and enriches the selected candidate metadat
   const validated = validatePlan(buildModelPlan(), buildContext());
 
   assert.equal(validated.post.social.linkedin, "Sources can verify trust signals before sending a tip. Learn more at https://hushline.app/.");
+  assert.equal(validated.post.content_format, "feature_benefit");
   assert.equal(validated.post.screenshot_file, "guest/guest-directory-verified-desktop-light-fold.png");
   assert.equal(validated.post.audience_scope, "public");
   assert.equal(validated.post.concept_key, "directory-verified");
   assert.equal(validated.post.template_name, "hushline-daily-desktop-template.html");
   assert.equal(validated.post.topic_family, "directory");
+  assert.equal(
+    validated.post.visual_selection_reason,
+    "Selected screenshots only after choosing the Public sources and visitors editorial intent.",
+  );
+  assert.equal(validated.critic.passed, true);
+  assert.equal(validated.critic.threshold, 12);
   assert.deepEqual(validated.post.matched_pull_requests, [{ number: 1765, title: "Fix guest screenshot" }]);
+});
+
+test("scoreEditorialCritic passes fresh, specific drafts", () => {
+  const validated = validatePlan(buildModelPlan(), buildContext());
+  const critic = scoreEditorialCritic(validated, buildContext());
+
+  assert.equal(critic.passed, true);
+  assert.equal(critic.score >= critic.threshold, true);
+  assert.equal(critic.criteria.length, 8);
+});
+
+test("scoreEditorialCritic respects disabled hook and CTA cooldowns", () => {
+  const context = buildContext({
+    cooldown_policy: buildCooldownPolicy({
+      cta_posts: 0,
+      hook_posts: 0,
+    }),
+    recent_archive_history: [
+      {
+        archive_key: "2026-03-19",
+        cta_pattern: "learn_more",
+        hook_pattern: "sources can verify trust signals before sending a tip",
+        linkedin_copy: "Sources can verify trust signals before sending a tip. Learn more at https://hushline.app/.",
+      },
+    ],
+  });
+  const validated = validatePlan(buildModelPlan(), context);
+  const critic = scoreEditorialCritic(validated, context);
+  const hookCriterion = critic.criteria.find((criterion) => criterion.id === "hook_freshness");
+  const ctaCriterion = critic.criteria.find((criterion) => criterion.id === "cta_freshness");
+
+  assert.equal(hookCriterion.score, 2);
+  assert.match(hookCriterion.rationale, /disabled by cooldown policy/);
+  assert.equal(ctaCriterion.score, 2);
+  assert.match(ctaCriterion.rationale, /disabled by cooldown policy/);
+});
+
+test("validatePlan blocks drafts that still fail the editorial critic threshold", () => {
+  const staleContext = buildContext({
+    cooldown_policy: buildCooldownPolicy({
+      allow_override: true,
+      cta_posts: 0,
+      hook_posts: 0,
+    }),
+    recent_archive_history: [
+      {
+        archive_key: "2026-03-13",
+        content_format: "feature_benefit",
+        cta_pattern: "learn_more",
+        date: "2026-03-13",
+        hook_pattern: "different archived hook",
+        linkedin_copy: "Different archived hook. Learn more at https://hushline.app/.",
+        topic_family: "directory",
+      },
+    ],
+  });
+  const lowValuePlan = buildModelPlan({
+    post: {
+      ...buildModelPlan().post,
+      headline: "Better tools for better work",
+      image_alt_text: "A social graphic showing a product screen.",
+      social: {
+        bluesky: "Better tools make things easier. Learn more at https://hushline.app/.",
+        linkedin: "Better tools make things easier. Learn more at https://hushline.app/.",
+        mastodon: "Better tools make things easier. Learn more at https://hushline.app/.",
+      },
+      subtext: "A product screen shows a useful feature.",
+    },
+  });
+
+  assert.throws(
+    () => validatePlan(lowValuePlan, staleContext),
+    (error) => {
+      assert.match(error.message, /Editorial critic score .* is below threshold/);
+      assert.equal(error.critic.passed, false);
+      assert.equal(error.critic.rationale.includes("Topic freshness"), true);
+      return true;
+    },
+  );
+});
+
+test("contentFormatIds includes the required editorial format taxonomy", () => {
+  assert.deepEqual(contentFormatIds(), [
+    "source_safety_checklist",
+    "recipient_playbook",
+    "iso_37002_principle",
+    "mistake_to_avoid",
+    "myth_vs_reality",
+    "workflow_teardown",
+    "design_principle",
+    "feature_benefit",
+  ]);
+});
+
+test("rankEditorialIntents rotates toward less-used audiences before visual selection", () => {
+  assert.deepEqual(
+    EDITORIAL_AUDIENCES.map((audience) => audience.audience_scope),
+    ["public", "recipient-shared", "admin-only"],
+  );
+
+  const ranked = rankEditorialIntents(
+    [
+      { archive_key: "2026-05-18", audience_scope: "public", date: "2026-05-18" },
+      { archive_key: "2026-05-19", audience_scope: "public", date: "2026-05-19" },
+      { archive_key: "2026-05-20", audience_scope: "recipient-shared", date: "2026-05-20" },
+    ],
+    "2026-05-21",
+    {
+      selected_format: CONTENT_FORMATS.find((format) => format.id === "workflow_teardown"),
+    },
+  );
+
+  assert.equal(ranked[0].audience_scope, "admin-only");
+  assert.equal(ranked[0].content_format, "workflow_teardown");
+});
+
+test("filterCandidatesForEditorialIntent keeps only screenshots that support the planned audience", () => {
+  const filtered = filterCandidatesForEditorialIntent(
+    [
+      {
+        audience_scope: "public",
+        content_key: "guest-directory-verified",
+      },
+      {
+        audience_scope: "recipient-shared",
+        content_key: "auth-artvandelay-settings-notifications",
+      },
+    ],
+    {
+      audience_scope: "recipient-shared",
+    },
+  );
+
+  assert.deepEqual(
+    filtered.map((candidate) => candidate.content_key),
+    ["auth-artvandelay-settings-notifications"],
+  );
+});
+
+test("chooseSupportedEditorialIntent skips unsupported intents before selecting screenshots", () => {
+  const selection = chooseSupportedEditorialIntent(
+    [],
+    "2026-05-21",
+    {
+      selected_format: CONTENT_FORMATS.find((format) => format.id === "feature_benefit"),
+    },
+    [
+      {
+        audience_scope: "recipient-shared",
+        content_key: "auth-artvandelay-settings-notifications",
+      },
+    ],
+  );
+
+  assert.equal(selection.intent.audience_scope, "recipient-shared");
+  assert.equal(selection.supporting_candidates[0].content_key, "auth-artvandelay-settings-notifications");
+  assert.ok(selection.rejected_intents.some((intent) => intent.audience_scope === "admin-only"));
+});
+
+test("chooseSupportedEditorialIntent can fall through after excluded screenshots are removed", () => {
+  const excludedScreenshots = new Set(["admin-settings-branding-mobile-light-fold.png"]);
+  const candidates = [
+    {
+      audience_scope: "admin-only",
+      content_key: "auth-admin-settings-branding",
+      file: "admin-settings-branding-mobile-light-fold.png",
+    },
+    {
+      audience_scope: "recipient-shared",
+      content_key: "auth-artvandelay-settings-notifications",
+      file: "settings-notifications-mobile-light-fold.png",
+    },
+  ].filter((candidate) => !excludedScreenshots.has(candidate.file));
+  const selection = chooseSupportedEditorialIntent(
+    [],
+    "2026-05-21",
+    {
+      selected_format: CONTENT_FORMATS.find((format) => format.id === "feature_benefit"),
+    },
+    candidates,
+  );
+
+  assert.equal(selection.intent.audience_scope, "recipient-shared");
+  assert.ok(selection.rejected_intents.some((intent) => intent.audience_scope === "admin-only"));
+  assert.ok(selection.rejected_intents.some((intent) => intent.audience_scope === "public"));
+});
+
+test("selectCandidateShortlist preserves selected audience during cooldown fallback", () => {
+  const archiveHistory = [
+    { archive_key: "2026-05-18", audience_scope: "public", date: "2026-05-18" },
+    { archive_key: "2026-05-19", audience_scope: "public", date: "2026-05-19" },
+  ];
+  const fallbackCandidates = [
+    {
+      audience_scope: "public",
+      content_key: "guest-directory-verified",
+      cooldown_exhaustion_fallback: true,
+      cooldown_violations: [{ field: "concept_key" }],
+      file: "public-lowest-violation.png",
+      history_stats: { novelty_penalty: 0 },
+      rotation_sort_key: 0,
+      score: 100,
+      viewport: "desktop",
+    },
+    {
+      audience_scope: "recipient-shared",
+      content_key: "auth-inbox-detail",
+      cooldown_exhaustion_fallback: true,
+      cooldown_violations: [{ field: "topic_family" }, { field: "concept_key" }],
+      file: "recipient-supported-a.png",
+      history_stats: { novelty_penalty: 0 },
+      rotation_sort_key: 1,
+      score: 80,
+      viewport: "desktop",
+    },
+    {
+      audience_scope: "recipient-shared",
+      content_key: "auth-settings-notifications",
+      cooldown_exhaustion_fallback: true,
+      cooldown_violations: [{ field: "topic_family" }, { field: "concept_key" }],
+      file: "recipient-supported-b.png",
+      history_stats: { novelty_penalty: 0 },
+      rotation_sort_key: 2,
+      score: 70,
+      viewport: "desktop",
+    },
+  ];
+  const selection = chooseSupportedEditorialIntent(
+    archiveHistory,
+    "2026-05-21",
+    {
+      selected_format: CONTENT_FORMATS.find((format) => format.id === "feature_benefit"),
+    },
+    fallbackCandidates,
+  );
+
+  const shortlist = selectCandidateShortlist(
+    selection,
+    archiveHistory,
+    ["hushline-daily-desktop-template.html"],
+  );
+
+  assert.equal(selection.intent.audience_scope, "recipient-shared");
+  assert.deepEqual(
+    shortlist.map((candidate) => candidate.file),
+    ["recipient-supported-a.png", "recipient-supported-b.png"],
+  );
+  assert.ok(shortlist.every((candidate) => candidate.audience_scope === selection.intent.audience_scope));
+});
+
+test("chooseContentFormat rotates away from formats already used this week", () => {
+  const selection = chooseContentFormat(
+    [
+      {
+        archive_key: "2026-05-18",
+        content_format: "source_safety_checklist",
+        date: "2026-05-18",
+      },
+      {
+        archive_key: "2026-05-19",
+        content_format: "recipient_playbook",
+        date: "2026-05-19",
+      },
+    ],
+    "2026-05-20",
+  );
+
+  assert.equal(selection.weekly_usage.week, "2026-W21");
+  assert.notEqual(selection.selected_format.id, "source_safety_checklist");
+  assert.notEqual(selection.selected_format.id, "recipient_playbook");
+  assert.equal(selection.weekly_cap, 1);
+});
+
+test("chooseContentFormat fails when the weekly format rotation is exhausted", () => {
+  assert.throws(
+    () => chooseContentFormat(
+      CONTENT_FORMATS.map((format, index) => ({
+        archive_key: `2026-05-${18 + index}`,
+        content_format: format.id,
+        date: "2026-05-18",
+      })),
+      "2026-05-20",
+    ),
+    /No eligible content formats remain/,
+  );
+});
+
+test("buildPromptPayload includes selected editorial format guidance", () => {
+  const context = buildContext({
+    audience_docs: [],
+    content_format_selection: {
+      available_formats: CONTENT_FORMATS,
+      selected_format: CONTENT_FORMATS.find((format) => format.id === "mistake_to_avoid"),
+      weekly_cap: 1,
+      weekly_usage: {
+        counts: {},
+        week: "2026-W12",
+      },
+    },
+    hushline_agent_context: "",
+    hushline_app_voice_guidance: [],
+    recent_archive_history: [],
+    screenshot_captured_at: "2026-03-20T00:00:00Z",
+    screenshot_release: "test-release",
+    week: "2026-W12",
+  });
+  const payload = buildPromptPayload(context);
+
+  assert.match(payload.user, /Required content format: mistake_to_avoid/);
+  assert.match(payload.user, /Editorial intent:/);
+  assert.match(payload.user, /Treat screenshots as visual support/);
+  assert.match(payload.user, /Mistake to avoid \(mistake_to_avoid\)/);
+  assert.match(payload.user, /Use exactly the required content format/);
+});
+
+test("validatePlan rejects a missing or mismatched content format", () => {
+  assert.throws(
+    () => validatePlan(
+      buildModelPlan({
+        post: {
+          ...buildModelPlan().post,
+          content_format: "workflow_teardown",
+        },
+      }),
+      buildContext(),
+    ),
+    /expected feature_benefit/,
+  );
+
+  assert.throws(
+    () => validatePlan(
+      buildModelPlan({
+        post: {
+          ...buildModelPlan().post,
+          content_format: "unknown_format",
+        },
+      }),
+      buildContext({
+        content_format_selection: null,
+      }),
+    ),
+    /Unknown content format/,
+  );
+});
+
+test("validatePlan rejects a content format that already reached the weekly cap", () => {
+  const context = buildContext({
+    recent_archive_history: [
+      {
+        archive_key: "2026-03-19",
+        content_format: "feature_benefit",
+        date: "2026-03-19",
+      },
+    ],
+  });
+
+  assert.throws(
+    () => validatePlan(buildModelPlan(), context),
+    /already reached the weekly cap/,
+  );
+});
+
+test("validatePlan rejects a screenshot that does not support the editorial intent audience", () => {
+  const context = buildContext({
+    editorial_intent: {
+      audience_scope: "recipient-shared",
+      content_format: "feature_benefit",
+      content_format_label: "Feature benefit",
+      label: "Recipients and staff",
+      reader_need: "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+      visual_role: "supporting_screenshot",
+    },
+  });
+
+  assert.throws(
+    () => validatePlan(buildModelPlan(), context),
+    /does not support editorial intent audience recipient-shared/,
+  );
 });
 
 test("chooseTemplateName prefers the least-used daily template from the prior month", () => {
@@ -208,6 +653,14 @@ test("filterCandidatesForTemplateName narrows the shortlist to the chosen templa
 
 test("validatePlan rejects admin-only screenshots when the copy never says admin or team", () => {
   const context = buildContext({
+    editorial_intent: {
+      audience_scope: "admin-only",
+      content_format: "feature_benefit",
+      content_format_label: "Feature benefit",
+      label: "Admins and deployment teams",
+      reader_need: "Help an admin or deployment team run Hush Line responsibly without weakening safety or trust.",
+      visual_role: "supporting_screenshot",
+    },
     candidate_screenshots: [
       {
         audience_scope: "admin-only",
@@ -248,157 +701,127 @@ test("inferTopicFamily groups onboarding directory screenshots under the directo
   );
 });
 
-test("filterCandidatesForArchiveHistory ranks less-repetitive candidates ahead of recent archive themes", () => {
+test("filterCandidatesForArchiveHistory keeps unused screenshots in the current rotation", () => {
   const archiveHistory = [
     {
-      concept_key: "directory-verified",
+      archive_key: "2026-03-20",
       content_key: "guest-directory-verified",
       date: "2026-03-20",
-      screenshot_file: "guest/guest-directory-verified.png",
-      screen_key: "directory-index",
-      topic_family: "directory",
+      screenshot_file: "guest/guest-directory-verified-desktop-light-fold.png",
     },
   ];
 
   const candidates = [
     {
-      concept_key: "directory-all",
-      content_key: "guest-directory-all",
-      path: "/directory",
-    },
-    {
-      concept_key: "directory-securedrop",
-      content_key: "guest-directory-securedrop",
-      path: "/directory",
-    },
-    {
-      concept_key: "directory-attorney-adam-j-levitt",
-      content_key: "guest-directory-attorney-adam-j-levitt",
-      path: "/directory/public-records/public-record~adam-j-levitt",
-    },
-    {
-      concept_key: "encryption-settings",
-      content_key: "auth-artvandelay-settings-encryption",
-      path: "/settings/encryption",
-    },
-    {
-      concept_key: "notifications-settings",
-      content_key: "auth-artvandelay-settings-notifications",
-      path: "/settings/notifications",
-    },
-    {
-      concept_key: "admin-guidance",
-      content_key: "auth-admin-settings-guidance",
-      path: "/settings/guidance",
-    },
-  ];
-
-  const filtered = filterCandidatesForArchiveHistory(candidates, archiveHistory);
-
-  assert.equal(filtered.length, 6);
-  assert.deepEqual(
-    filtered.slice(0, 3).map((candidate) => candidate.content_key),
-    [
-      "auth-admin-settings-guidance",
-      "auth-artvandelay-settings-encryption",
-      "auth-artvandelay-settings-notifications",
-    ],
-  );
-});
-
-test("filterCandidatesForArchiveHistory broadens to non-exact repeats when only one fresh option remains", () => {
-  const archiveHistory = [
-    {
-      concept_key: "directory-all",
-      content_key: "guest-directory-all",
-      date: "2026-03-20",
-      screenshot_file: "guest/guest-directory-all.png",
-      screen_key: "directory-index",
-      topic_family: "directory",
-    },
-  ];
-
-  const candidates = [
-    {
-      concept_key: "directory-verified",
       content_key: "guest-directory-verified",
-      path: "/directory",
-      topic_family: "directory",
-    },
-    {
-      concept_key: "directory-all",
-      content_key: "guest-directory-all",
-      path: "/directory",
-      topic_family: "directory",
-    },
-  ];
-
-  const filtered = filterCandidatesForArchiveHistory(candidates, archiveHistory);
-
-  assert.equal(filtered.length, 2);
-  assert.deepEqual(
-    filtered.map((candidate) => candidate.content_key),
-    ["guest-directory-verified", "guest-directory-all"],
-  );
-});
-
-test("filterCandidatesForArchiveHistory broadens to non-exact repeats when the fresh pool is too small", () => {
-  const archiveHistory = [
-    {
-      archive_key: "2026-04-14",
-      content_key: "guest-directory-attorney-adam-j-levitt",
-      date: "2026-04-14",
-      screenshot_file: "guest/guest-directory-attorney-adam-j-levitt-mobile-light-fold.png",
-      screen_key: "directory-public-record",
-      topic_family: "directory",
-    },
-    {
-      archive_key: "2026-03-26-1",
-      content_key: "auth-newman-onboarding-notifications",
-      date: "2026-03-26",
-      screenshot_file: "newman/auth-newman-onboarding-notifications-desktop-light-fold.png",
-      screen_key: "/onboarding/notifications",
-      topic_family: "notifications",
-    },
-    {
-      archive_key: "2026-03-31",
-      content_key: "auth-artvandelay-settings-encryption",
-      date: "2026-03-31",
-      screenshot_file: "artvandelay/auth-artvandelay-settings-encryption-mobile-dark-fold.png",
-      screen_key: "/settings/encryption",
-      topic_family: "settings-encryption",
-    },
-  ];
-
-  const candidates = [
-    {
-      content_key: "auth-artvandelay-settings-notifications",
-      file: "artvandelay/auth-artvandelay-settings-notifications-mobile-light-fold.png",
-      screen_key: "/settings/notifications",
-      topic_family: "notifications",
+      file: "guest/guest-directory-verified-desktop-light-fold.png",
     },
     {
       content_key: "auth-artvandelay-settings-encryption",
       file: "artvandelay/auth-artvandelay-settings-encryption-desktop-light-fold.png",
-      screen_key: "/settings/encryption",
-      topic_family: "settings-encryption",
     },
     {
-      content_key: "guest-directory-attorney-adam-j-levitt",
-      file: "guest/guest-directory-attorney-adam-j-levitt-mobile-light-fold.png",
-      screen_key: "directory-public-record",
-      topic_family: "directory",
+      content_key: "auth-artvandelay-settings-notifications",
+      file: "artvandelay/auth-artvandelay-settings-notifications-desktop-light-fold.png",
     },
   ];
 
-  const filtered = filterCandidatesForArchiveHistory(candidates, archiveHistory);
+  const filtered = filterCandidatesForArchiveHistory(candidates, archiveHistory, {
+    currentArchiveKey: "2026-03-21",
+  });
+
+  assert.equal(filtered.length, 2);
+  assert.deepEqual(
+    new Set(filtered.map((candidate) => candidate.file)),
+    new Set([
+      "artvandelay/auth-artvandelay-settings-encryption-desktop-light-fold.png",
+      "artvandelay/auth-artvandelay-settings-notifications-desktop-light-fold.png",
+    ]),
+  );
+});
+
+test("filterCandidatesForArchiveHistory starts a new shuffled cycle after all screenshots are used", () => {
+  const archiveHistory = [
+    {
+      archive_key: "2026-03-20",
+      content_key: "guest-directory-verified",
+      date: "2026-03-20",
+      screenshot_file: "guest/guest-directory-verified-desktop-light-fold.png",
+    },
+    {
+      archive_key: "2026-03-21",
+      content_key: "auth-artvandelay-settings-encryption",
+      date: "2026-03-21",
+      screenshot_file: "artvandelay/auth-artvandelay-settings-encryption-desktop-light-fold.png",
+    },
+  ];
+
+  const candidates = [
+    {
+      concept_key: "directory-verified",
+      content_key: "guest-directory-verified",
+      file: "guest/guest-directory-verified-desktop-light-fold.png",
+    },
+    {
+      concept_key: "encryption-settings",
+      content_key: "auth-artvandelay-settings-encryption",
+      file: "artvandelay/auth-artvandelay-settings-encryption-desktop-light-fold.png",
+    },
+  ];
+
+  const rotation = summarizeScreenshotRotation(candidates, archiveHistory, "2026-03-22");
+  const filtered = filterCandidatesForArchiveHistory(candidates, archiveHistory, {
+    currentArchiveKey: "2026-03-22",
+  });
+
+  assert.equal(rotation.cycle_complete, true);
+  assert.equal(filtered.length, 2);
+  assert.deepEqual(
+    new Set(filtered.map((candidate) => candidate.content_key)),
+    new Set(["guest-directory-verified", "auth-artvandelay-settings-encryption"]),
+  );
+});
+
+test("filterCandidatesForArchiveHistory treats repeats before the current cycle as available later", () => {
+  const archiveHistory = [
+    {
+      archive_key: "2026-03-20",
+      content_key: "guest-directory-verified",
+      date: "2026-03-20",
+      screenshot_file: "guest/guest-directory-verified-desktop-light-fold.png",
+    },
+    {
+      archive_key: "2026-03-21",
+      content_key: "auth-artvandelay-settings-encryption",
+      date: "2026-03-21",
+      screenshot_file: "artvandelay/auth-artvandelay-settings-encryption-desktop-light-fold.png",
+    },
+    {
+      archive_key: "2026-03-22",
+      content_key: "guest-directory-verified",
+      date: "2026-03-22",
+      screenshot_file: "guest/guest-directory-verified-desktop-light-fold.png",
+    },
+  ];
+
+  const candidates = [
+    {
+      content_key: "guest-directory-verified",
+      file: "guest/guest-directory-verified-desktop-light-fold.png",
+    },
+    {
+      content_key: "auth-artvandelay-settings-encryption",
+      file: "artvandelay/auth-artvandelay-settings-encryption-desktop-light-fold.png",
+    },
+  ];
+
+  const filtered = filterCandidatesForArchiveHistory(candidates, archiveHistory, {
+    currentArchiveKey: "2026-03-23",
+  });
 
   assert.deepEqual(
     filtered.map((candidate) => candidate.content_key),
-    [
-      "auth-artvandelay-settings-notifications",
-      "auth-artvandelay-settings-encryption",
-    ],
+    ["auth-artvandelay-settings-encryption"],
   );
 });
 
@@ -451,8 +874,235 @@ test("filterCandidatesForWeeklyCaps blocks a second admin or dark post in the sa
   );
 });
 
+test("filterCandidatesForCooldowns blocks recent topic and concept repeats", () => {
+  const archiveHistory = [
+    {
+      archive_key: "2026-04-01",
+      concept_key: "settings-notifications",
+      topic_family: "notifications",
+    },
+    {
+      archive_key: "2026-04-02",
+      concept_key: "directory-verified",
+      topic_family: "directory",
+    },
+  ];
+  const candidates = [
+    {
+      concept_key: "directory-verified",
+      content_key: "guest-directory-verified",
+      file: "guest-directory-verified-desktop-light-fold.png",
+      topic_family: "directory",
+    },
+    {
+      concept_key: "settings-encryption",
+      content_key: "auth-artvandelay-settings-encryption",
+      file: "settings-encryption-desktop-light-fold.png",
+      topic_family: "encryption",
+    },
+  ];
+
+  const filtered = filterCandidatesForCooldowns(
+    candidates,
+    archiveHistory,
+    buildCooldownPolicy({
+      concept_key_posts: 20,
+      topic_family_posts: 5,
+    }),
+  );
+
+  assert.deepEqual(
+    filtered.map((candidate) => candidate.content_key),
+    ["auth-artvandelay-settings-encryption"],
+  );
+});
+
+test("filterCandidatesForCooldowns returns fallback candidates when every candidate violates cooldowns", () => {
+  const filtered = filterCandidatesForCooldowns(
+    [
+      {
+        concept_key: "directory-verified",
+        content_key: "guest-directory-verified",
+        file: "guest-directory-verified-desktop-light-fold.png",
+        topic_family: "directory",
+      },
+    ],
+    [
+      {
+        archive_key: "2026-04-02",
+        concept_key: "directory-verified",
+        topic_family: "directory",
+      },
+    ],
+    buildCooldownPolicy({
+      concept_key_posts: 20,
+      topic_family_posts: 5,
+    }),
+  );
+
+  assert.equal(filtered.length, 1);
+  assert.equal(filtered[0].cooldown_exhaustion_fallback, true);
+  assert.match(filtered[0].cooldown_exhaustion_reason, /All eligible screenshots violate cooldowns/);
+  assert.deepEqual(
+    filtered[0].cooldown_violations.map((violation) => violation.field),
+    ["topic_family", "concept_key"],
+  );
+});
+
+test("filterCandidatesForCooldowns preserves blocked candidates with an explicit override", () => {
+  const filtered = filterCandidatesForCooldowns(
+    [
+      {
+        concept_key: "directory-verified",
+        content_key: "guest-directory-verified",
+        file: "guest-directory-verified-desktop-light-fold.png",
+        topic_family: "directory",
+      },
+    ],
+    [
+      {
+        archive_key: "2026-04-02",
+        concept_key: "directory-verified",
+        topic_family: "directory",
+      },
+    ],
+    buildCooldownPolicy({
+      allow_override: true,
+      concept_key_posts: 20,
+      topic_family_posts: 5,
+    }),
+  );
+
+  assert.equal(filtered.length, 1);
+  assert.equal(filtered[0].cooldown_violations.length, 2);
+  assert.equal(filtered[0].cooldown_exhaustion_fallback, undefined);
+});
+
+test("validatePlan allows screenshot cooldown fallback candidates", () => {
+  const context = buildContext({
+    candidate_screenshots: [
+      {
+        audience_scope: "public",
+        concept_key: "directory-verified",
+        content_key: "guest-directory-verified",
+        copy_brief: "Write for sources and public users evaluating or using Hush Line.",
+        cooldown_exhaustion_fallback: true,
+        cooldown_violations: [
+          {
+            archive_key: "2026-03-19",
+            field: "topic_family",
+            value: "directory",
+            window_posts: 5,
+          },
+          {
+            archive_key: "2026-03-19",
+            field: "concept_key",
+            value: "directory-verified",
+            window_posts: 20,
+          },
+        ],
+        file: "guest/guest-directory-verified-desktop-light-fold.png",
+        matched_pull_requests: [],
+        topic_family: "directory",
+        theme: "light",
+        title: "Directory - Verified",
+        viewport: "desktop",
+      },
+    ],
+    recent_archive_history: [
+      {
+        archive_key: "2026-03-19",
+        concept_key: "directory-verified",
+        linkedin_copy: "People can find verified recipients before sending a tip. Learn more at https://hushline.app/.",
+        topic_family: "directory",
+      },
+    ],
+  });
+
+  const validated = validatePlan(
+    buildModelPlan({
+      post: {
+        ...buildModelPlan().post,
+        social: {
+          bluesky: "A verified directory gives sources one more check before first contact. Learn more at https://hushline.app/.",
+          linkedin: "A verified directory gives sources one more check before first contact.\n\nHush Line shows verified recipients before someone sends a sensitive message.\n\nLearn more at https://hushline.app/.",
+          mastodon: "A verified directory gives sources one more check before first contact. Learn more at https://hushline.app/.",
+        },
+      },
+    }),
+    context,
+  );
+
+  assert.equal(validated.post.screenshot_file, "guest/guest-directory-verified-desktop-light-fold.png");
+  assert.equal(validated.critic.passed, true);
+});
+
+test("validatePlan rejects repeated hooks and CTA patterns inside cooldown windows", () => {
+  const context = buildContext({
+    cooldown_policy: buildCooldownPolicy({
+      concept_key_posts: 0,
+      cta_posts: 2,
+      hook_posts: 5,
+      topic_family_posts: 0,
+    }),
+    recent_archive_history: [
+      {
+        archive_key: "2026-03-18",
+        cta_pattern: "learn_more",
+        hook_pattern: "sources can verify trust signals before sending a tip",
+        linkedin_copy: "Sources can verify trust signals before sending a tip. Learn more at https://hushline.app/.",
+      },
+    ],
+  });
+
+  assert.throws(
+    () => validatePlan(buildModelPlan(), context),
+    /repeats 2026-03-18 within the 5-post hook cooldown/,
+  );
+});
+
+test("validatePlan rejects a repeated CTA when the hook is fresh", () => {
+  const context = buildContext({
+    cooldown_policy: buildCooldownPolicy({
+      concept_key_posts: 0,
+      cta_posts: 2,
+      hook_posts: 5,
+      topic_family_posts: 0,
+    }),
+    recent_archive_history: [
+      {
+        archive_key: "2026-03-18",
+        cta_pattern: "learn_more",
+        hook_pattern: "different opening line",
+        linkedin_copy: "Different opening line. Learn more at https://hushline.app/.",
+      },
+    ],
+  });
+  const plan = buildModelPlan({
+    post: {
+      ...buildModelPlan().post,
+      social: {
+        bluesky: "Fresh public copy. Learn more at https://hushline.app/.",
+        linkedin: "Fresh public copy.\n\nLearn more at https://hushline.app/.",
+        mastodon: "Fresh public copy. Learn more at https://hushline.app/.",
+      },
+    },
+  });
+
+  assert.throws(
+    () => validatePlan(plan, context),
+    /repeats 2026-03-18 within the 2-post CTA cooldown/,
+  );
+});
+
 test("validatePlan rejects messaging that duplicates a recent archive angle", () => {
   const context = buildContext({
+    cooldown_policy: buildCooldownPolicy({
+      concept_key_posts: 0,
+      cta_posts: 0,
+      hook_posts: 0,
+      topic_family_posts: 0,
+    }),
     recent_archive_history: [
       {
         archive_key: "2026-03-19",
@@ -538,6 +1188,9 @@ test("validatePlan allows an older same-topic archive outside the recent-feature
 
 test("validatePlan allows a distinct directory message that only shares generic public-directory wording", () => {
   const context = buildContext({
+    cooldown_policy: buildCooldownPolicy({
+      allow_override: true,
+    }),
     candidate_screenshots: [
       {
         absolute_path: "/tmp/guest-directory-attorney-adam-j-levitt-mobile-light-fold.png",
@@ -590,6 +1243,7 @@ test("validatePlan allows a distinct directory message that only shares generic 
       planned_date: "2026-04-14",
       screenshot_file: "guest/guest-directory-attorney-adam-j-levitt-mobile-light-fold.png",
       content_key: "guest-directory-attorney-adam-j-levitt",
+      content_format: "feature_benefit",
       headline: "Review a whistleblower law listing before you reach out",
       subtext: "This public attorney listing shows bar-registration details, location, and firm links so a source can judge whether a law office fits the disclosure they need to make.",
       image_alt_text: "A portrait Hush Line social graphic built from a light-mode mobile public directory screen. It shows an attorney listing with a law firm name, location, practice description, and links to the lawyer's site and source record.",
@@ -730,6 +1384,14 @@ test("validatePlan rejects jargon that is not Hush Line user-facing language", (
         viewport: "desktop",
       },
     ],
+    editorial_intent: {
+      audience_scope: "recipient-shared",
+      content_format: "feature_benefit",
+      content_format_label: "Feature benefit",
+      label: "Recipients and staff",
+      reader_need: "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+      visual_role: "supporting_screenshot",
+    },
   });
   const plan = buildModelPlan({
     post: {
@@ -768,6 +1430,14 @@ test("validatePlan requires notification copy to name the notification choice", 
         viewport: "desktop",
       },
     ],
+    editorial_intent: {
+      audience_scope: "recipient-shared",
+      content_format: "feature_benefit",
+      content_format_label: "Feature benefit",
+      label: "Recipients and staff",
+      reader_need: "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+      visual_role: "supporting_screenshot",
+    },
   });
   const plan = buildModelPlan({
     post: {

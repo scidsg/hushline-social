@@ -1,0 +1,22 @@
+{
+  "date": "2026-05-25",
+  "display_name": "Paige St John",
+  "editorial_format_label": "Why follow this tip line",
+  "headline": "Paige St John",
+  "image_alt_text": "A social card featuring verified Hush Line user Paige St John, their bio, their tip line URL, and a QR code that links to the same URL.",
+  "opening_line": "Why follow Paige's Hush Line?",
+  "planned_date": "2026-05-25",
+  "primary_username": "Paige_St_John",
+  "qr_code_file": "verified-user-qr.png",
+  "social": {
+    "bluesky": "Why follow Paige's Hush Line?\n\nPaige is a Pulitzer-awarded investigative reporter at the Los Angeles Times pursuing California-based issues of import. Her Hush Line accepts messages and anonymous file.io…\n\nReview the verified link before sending a tip: https://tips.hushline.app/to/Paige_St_John",
+    "linkedin": "Why follow Paige's Hush Line?\n\nPaige is a Pulitzer-awarded investigative reporter at the Los Angeles Times pursuing California-based issues of import. Her Hush Line accepts messages only; people who need to share a document can upload it to file.io and send her the link anonymously.\n\nReview Paige's verified Hush Line link before sending a tip: https://tips.hushline.app/to/Paige_St_John.",
+    "mastodon": "Why follow Paige's Hush Line?\n\nPaige is a Pulitzer-awarded investigative reporter at the Los Angeles Times pursuing California-based issues of import. Her Hush Line accepts messages only, including anonymous file.io links for documents.\n\nReview Paige's verified Hush Line link before sending a tip: https://tips.hushline.app/to/Paige_St_John."
+  },
+  "slot": "verified-user-weekly",
+  "source": "https://tips.hushline.app/directory/users.json",
+  "subtext": "Pulitzer-awarded investigative reporter at the Los Angeles Times, pursuing California-based issues of import. Hush Line sends messages only but if you upload a document to file.io you can send the link to me here and remain anonymous.",
+  "user_link": "https://tips.hushline.app/to/Paige_St_John",
+  "user_url": "https://tips.hushline.app/to/Paige_St_John",
+  "verified_user_format": "why_follow_tip_line"
+}

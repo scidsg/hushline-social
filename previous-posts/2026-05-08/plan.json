@@ -1,0 +1,36 @@
+{
+  "date": "2026-05-08",
+  "post": {
+    "slot": "friday",
+    "planned_date": "2026-05-08",
+    "screenshot_file": "artvandelay/auth-artvandelay-tools-email-validation-status-valid-mobile-light-fold.png",
+    "content_key": "auth-artvandelay-tools-email-validation-status-valid",
+    "headline": "Check message headers during review",
+    "subtext": "Email Validation helps recipients inspect DKIM, SPF, DMARC, and signing-key records before follow-up or team handoff.",
+    "image_alt_text": "A mobile Hush Line social asset showing the Tools page with the Email Validation tab selected, a raw email headers field, and buttons to validate headers or download a report.",
+    "social": {
+      "bluesky": "Email headers can help a recipient understand how a message reached them.\n\nHush Line's Email Validation tool checks DKIM, SPF, DMARC, and signing-key records so teams have a clearer record during review.\n\nSign up at https://hushline.app.",
+      "linkedin": "When a tip comes in by email, the headers can help a recipient understand what path the message took.\n\nHush Line's Email Validation tool lets recipients paste raw headers and review DKIM, SPF, DMARC, and signing-key records from DNS. It gives journalists, lawyers, security teams, and other trusted recipients a clearer record for follow-up and team handoffs.\n\nSign up at https://hushline.app.",
+      "mastodon": "Email headers can help a recipient understand how a message reached them.\n\nHush Line's Email Validation tool lets journalists, lawyers, security teams, and other trusted recipients check DKIM, SPF, DMARC, and signing-key records during review.\n\nSign up at https://hushline.app."
+    },
+    "rationale": "Selected the mobile Email Validation screenshot because notifications and encryption appeared more recently in the archive, including this week. This recipient-shared tool is grounded in review workflows for journalists, lawyers, security teams, and other trusted recipients, and the copy avoids admin framing, release timing, and PR references.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "tools-email-validation-status-valid",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "matched_pull_requests": [
+      {
+        "merged_at": "2026-05-05T22:27:40Z",
+        "number": 1929,
+        "title": "#1918 Embeddable forms: add hosted iframe endpoint with dedicated frame headers"
+      }
+    ],
+    "screen_key": "/email-headers",
+    "template_name": "hushline-daily-mobile-template.html",
+    "theme": "light",
+    "title": "Tools - Email Validation status: appears valid (artvandelay)",
+    "topic_family": "email-headers",
+    "viewport": "mobile"
+  },
+  "summary": "Daily Hush Line post for 2026-05-08 using the mobile Email Validation tool screenshot."
+}

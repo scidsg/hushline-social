@@ -1,0 +1,113 @@
+{
+  "date": "2026-05-27",
+  "post": {
+    "content_key": "auth-newman-settings-encryption",
+    "content_format": "iso_37002_principle",
+    "headline": "Build confidentiality into intake",
+    "image_alt_text": "Social asset showing the Hush Line desktop Encryption settings page for a recipient account. The screen includes Proton key import, a Proton email search field, a Search Proton button, and a manual public PGP key entry area, illustrating how confidentiality of disclosures depends on a clear encryption setup.",
+    "planned_date": "2026-05-27",
+    "rationale": "The only available fallback candidate is a recipient-shared encryption settings screen. The post uses the required ISO 37002 principle format and frames confidentiality as a repeatable operational step for recipients and staff, while avoiding the recent encryption checklist and onboarding angles.",
+    "screenshot_file": "newman/auth-newman-settings-encryption-desktop-light-fold.png",
+    "slot": "wednesday",
+    "social": {
+      "bluesky": "When a source sends a disclosure, the receiving workflow should already be prepared.\n\nHush Line lets recipients and staff connect an account to OpenPGP from the account area, using Proton lookup or manual paste.\n\nSign up at https://hushline.app, then confirm encryption.",
+      "linkedin": "When a source sends a disclosure, the receiving workflow should already be prepared.\n\nConfidentiality is not only a policy word. In Hush Line, recipients and staff can connect their account to an OpenPGP setup from the account area, using Proton lookup or a manual paste. That turns encryption from a one-time launch task into routine upkeep for the intake channel.\n\nSign up at https://hushline.app, then confirm the account's encryption configuration.",
+      "mastodon": "When a source sends a disclosure, the receiving workflow should already be prepared.\n\nConfidentiality is practical upkeep. Hush Line lets recipients and staff connect their account to an OpenPGP setup from the account area, using Proton lookup or a manual paste.\n\nSign up at https://hushline.app, then confirm the account's encryption configuration."
+    },
+    "source_pr_numbers": [],
+    "subtext": "Recipients can confirm how the account handles encrypted submissions before publishing a tip line.",
+    "audience_scope": "recipient-shared",
+    "concept_key": "settings-encryption",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "editorial_intent": {
+      "audience_scope": "recipient-shared",
+      "content_format": "iso_37002_principle",
+      "content_format_label": "ISO 37002 principle",
+      "label": "Recipients and staff",
+      "reader_need": "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+      "visual_role": "supporting_screenshot"
+    },
+    "matched_pull_requests": [
+      {
+        "merged_at": "2026-05-26T05:37:31Z",
+        "number": 2029,
+        "title": "#2020 Crypto modernization phase 4: add dual-read single-write encryption rollout controls"
+      }
+    ],
+    "screen_key": "/settings/encryption",
+    "template_name": "hushline-daily-desktop-template.html",
+    "theme": "light",
+    "title": "Settings - Encryption (newman)",
+    "topic_family": "encryption",
+    "visual_selection_reason": "Selected screenshots only after choosing the Recipients and staff editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+    "viewport": "desktop"
+  },
+  "summary": "Daily recipient-shared post using the Newman desktop encryption settings screenshot to connect Hush Line account setup with confidentiality of disclosures.",
+  "critic": {
+    "blocked": false,
+    "criteria": [
+      {
+        "id": "topic_freshness",
+        "label": "Topic freshness",
+        "max_score": 2,
+        "rationale": "Topic family encryption is fresh against the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "hook_freshness",
+        "label": "Hook freshness",
+        "max_score": 2,
+        "rationale": "Opening hook is distinct from recent archive hooks.",
+        "score": 2
+      },
+      {
+        "id": "format_novelty",
+        "label": "Format novelty",
+        "max_score": 2,
+        "rationale": "Format iso_37002_principle is not overused in the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "audience_specificity",
+        "label": "Audience specificity",
+        "max_score": 2,
+        "rationale": "Copy contains 3 signal(s) for recipient-shared.",
+        "score": 2
+      },
+      {
+        "id": "concrete_reader_value",
+        "label": "Concrete reader value",
+        "max_score": 2,
+        "rationale": "Copy gives 1 concrete action/value signal(s).",
+        "score": 1
+      },
+      {
+        "id": "hushline_relevance",
+        "label": "Hush Line relevance",
+        "max_score": 2,
+        "rationale": "Copy is tied to Hush Line or a concrete Hush Line surface.",
+        "score": 2
+      },
+      {
+        "id": "cta_freshness",
+        "label": "CTA freshness",
+        "max_score": 2,
+        "rationale": "CTA pattern is fresh against the configured CTA cooldown.",
+        "score": 2
+      },
+      {
+        "id": "safety_compliance",
+        "label": "Safety and compliance",
+        "max_score": 2,
+        "rationale": "Copy avoids unsupported safety, anonymity, and recency claims.",
+        "score": 2
+      }
+    ],
+    "failed_criteria": [],
+    "max_score": 16,
+    "passed": true,
+    "rationale": "Topic freshness: Topic family encryption is fresh against the recent archive. Hook freshness: Opening hook is distinct from recent archive hooks. Format novelty: Format iso_37002_principle is not overused in the recent archive. Audience specificity: Copy contains 3 signal(s) for recipient-shared. Concrete reader value: Copy gives 1 concrete action/value signal(s). Hush Line relevance: Copy is tied to Hush Line or a concrete Hush Line surface. CTA freshness: CTA pattern is fresh against the configured CTA cooldown. Safety and compliance: Copy avoids unsupported safety, anonymity, and recency claims.",
+    "score": 15,
+    "threshold": 12
+  }
+}

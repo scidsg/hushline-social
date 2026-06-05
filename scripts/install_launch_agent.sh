@@ -168,6 +168,14 @@ main() {
         "$GUI_TARGET_DIR/com.hushline.social.linkedin.daily.plist" \
         "com.hushline.social.linkedin.daily"
       install_gui_unit \
+        "$REPO_DIR/deploy/launchd/com.hushline.social.weekly-article.plist" \
+        "$GUI_TARGET_DIR/com.hushline.social.weekly-article.plist" \
+        "com.hushline.social.weekly-article"
+      install_gui_unit \
+        "$REPO_DIR/deploy/launchd/com.hushline.social.linkedin.weekly-article.plist" \
+        "$GUI_TARGET_DIR/com.hushline.social.linkedin.weekly-article.plist" \
+        "com.hushline.social.linkedin.weekly-article"
+      install_gui_unit \
         "$REPO_DIR/deploy/launchd/com.hushline.social.verified-user.weekly.plist" \
         "$GUI_TARGET_DIR/com.hushline.social.verified-user.weekly.plist" \
         "com.hushline.social.verified-user.weekly"
@@ -182,6 +190,12 @@ main() {
         uninstall_daemon_unit \
           "$SYSTEM_TARGET_DIR/com.hushline.social.linkedin.daily.plist" \
           "com.hushline.social.linkedin.daily"
+        uninstall_daemon_unit \
+          "$SYSTEM_TARGET_DIR/com.hushline.social.weekly-article.plist" \
+          "com.hushline.social.weekly-article"
+        uninstall_daemon_unit \
+          "$SYSTEM_TARGET_DIR/com.hushline.social.linkedin.weekly-article.plist" \
+          "com.hushline.social.linkedin.weekly-article"
         uninstall_daemon_unit \
           "$SYSTEM_TARGET_DIR/com.hushline.social.verified-user.weekly.plist" \
           "com.hushline.social.verified-user.weekly"
@@ -205,6 +219,14 @@ main() {
         "$SYSTEM_TARGET_DIR/com.hushline.social.linkedin.daily.plist" \
         "com.hushline.social.linkedin.daily"
       install_daemon_unit \
+        "$REPO_DIR/deploy/launchd/com.hushline.social.weekly-article.daemon.plist" \
+        "$SYSTEM_TARGET_DIR/com.hushline.social.weekly-article.plist" \
+        "com.hushline.social.weekly-article"
+      install_daemon_unit \
+        "$REPO_DIR/deploy/launchd/com.hushline.social.linkedin.weekly-article.daemon.plist" \
+        "$SYSTEM_TARGET_DIR/com.hushline.social.linkedin.weekly-article.plist" \
+        "com.hushline.social.linkedin.weekly-article"
+      install_daemon_unit \
         "$REPO_DIR/deploy/launchd/com.hushline.social.verified-user.weekly.daemon.plist" \
         "$SYSTEM_TARGET_DIR/com.hushline.social.verified-user.weekly.plist" \
         "com.hushline.social.verified-user.weekly"
@@ -219,6 +241,12 @@ main() {
         "$GUI_TARGET_DIR/com.hushline.social.linkedin.daily.plist" \
         "com.hushline.social.linkedin.daily"
       uninstall_gui_unit \
+        "$GUI_TARGET_DIR/com.hushline.social.weekly-article.plist" \
+        "com.hushline.social.weekly-article"
+      uninstall_gui_unit \
+        "$GUI_TARGET_DIR/com.hushline.social.linkedin.weekly-article.plist" \
+        "com.hushline.social.linkedin.weekly-article"
+      uninstall_gui_unit \
         "$GUI_TARGET_DIR/com.hushline.social.verified-user.weekly.plist" \
         "com.hushline.social.verified-user.weekly"
       uninstall_gui_unit \
@@ -231,6 +259,8 @@ main() {
 Installed launchd jobs ($SCOPE):
 - ${SCOPE/daemon/system}/com.hushline.social.daily-planner
 - ${SCOPE/daemon/system}/com.hushline.social.linkedin.daily
+- ${SCOPE/daemon/system}/com.hushline.social.weekly-article
+- ${SCOPE/daemon/system}/com.hushline.social.linkedin.weekly-article
 - ${SCOPE/daemon/system}/com.hushline.social.verified-user.weekly
 - ${SCOPE/daemon/system}/com.hushline.social.linkedin.verified-user.weekly
 
@@ -239,6 +269,10 @@ Logs:
 - $REPO_DIR/logs/daily-planner.stderr.log
 - $REPO_DIR/logs/linkedin-daily.stdout.log
 - $REPO_DIR/logs/linkedin-daily.stderr.log
+- $REPO_DIR/logs/weekly-article.stdout.log
+- $REPO_DIR/logs/weekly-article.stderr.log
+- $REPO_DIR/logs/weekly-article-linkedin.stdout.log
+- $REPO_DIR/logs/weekly-article-linkedin.stderr.log
 - $REPO_DIR/logs/verified-user-weekly.stdout.log
 - $REPO_DIR/logs/verified-user-weekly.stderr.log
 - $REPO_DIR/logs/verified-user-weekly-linkedin.stdout.log
@@ -254,6 +288,8 @@ EOF
     cat <<EOF
 - test with: launchctl kickstart -k gui/$APP_UID/com.hushline.social.daily-planner
 - test with: launchctl kickstart -k gui/$APP_UID/com.hushline.social.linkedin.daily
+- test with: launchctl kickstart -k gui/$APP_UID/com.hushline.social.weekly-article
+- test with: launchctl kickstart -k gui/$APP_UID/com.hushline.social.linkedin.weekly-article
 - test with: launchctl kickstart -k gui/$APP_UID/com.hushline.social.verified-user.weekly
 - test with: launchctl kickstart -k gui/$APP_UID/com.hushline.social.linkedin.verified-user.weekly
 EOF
@@ -263,6 +299,8 @@ EOF
 - optional Codex defaults: CODEX_MODEL=gpt-5.5, CODEX_REASONING_EFFORT=high
 - test with: sudo launchctl kickstart -k system/com.hushline.social.daily-planner
 - test with: sudo launchctl kickstart -k system/com.hushline.social.linkedin.daily
+- test with: sudo launchctl kickstart -k system/com.hushline.social.weekly-article
+- test with: sudo launchctl kickstart -k system/com.hushline.social.linkedin.weekly-article
 - test with: sudo launchctl kickstart -k system/com.hushline.social.verified-user.weekly
 - test with: sudo launchctl kickstart -k system/com.hushline.social.linkedin.verified-user.weekly
 EOF

@@ -1,0 +1,30 @@
+{
+  "date": "2026-04-28",
+  "post": {
+    "slot": "tuesday",
+    "planned_date": "2026-04-28",
+    "screenshot_file": "artvandelay/auth-artvandelay-settings-replies-desktop-light-fold.png",
+    "content_key": "auth-artvandelay-settings-replies",
+    "headline": "Set clear status text for incoming messages",
+    "subtext": "Recipients can edit the update a sender sees after submitting a message, so sources know what to expect while the disclosure is reviewed.",
+    "image_alt_text": "Social graphic showing the Hush Line desktop settings page for Message Statuses, with the Message Statuses tab selected and editable status text for a waiting message. The graphic headline reads, \"Set clear status text for incoming messages.\"",
+    "social": {
+      "bluesky": "After someone sends a sensitive message, they should know what happens next.\n\nHush Line lets recipients set the status text a sender sees during review, without turning the disclosure flow into live chat.\n\nLearn more at https://hushline.app.",
+      "linkedin": "When someone sends a sensitive message, uncertainty can make the waiting period harder.\n\nHush Line lets recipients set the status text a sender sees after submitting. A newsroom, law office, nonprofit, or other intake team can explain what happens next without turning the disclosure flow into live chat.\n\nLearn more at https://hushline.app.",
+      "mastodon": "When someone sends a sensitive message, the waiting period should be clear.\n\nHush Line lets recipients set the status text a sender sees after submitting, so a newsroom, law office, or intake team can explain what happens next during review.\n\nLearn more at https://hushline.app."
+    },
+    "rationale": "Selected the message statuses screenshot because notifications and directory screens both repeated prior-month themes. This recipient-shared screen supports a distinct workflow: helping journalists, lawyers, nonprofits, and other trusted recipients set clear sender-facing updates during message review.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "settings-replies",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "matched_pull_requests": [],
+    "screen_key": "/settings/replies",
+    "template_name": "hushline-daily-desktop-template.html",
+    "theme": "light",
+    "title": "Settings - Message Statuses (artvandelay)",
+    "topic_family": "message-statuses",
+    "viewport": "desktop"
+  },
+  "summary": "One daily recipient-focused post for 2026-04-28 using the message statuses settings screenshot."
+}

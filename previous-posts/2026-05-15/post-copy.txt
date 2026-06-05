@@ -1,0 +1,33 @@
+Slot: friday
+Planned date: 2026-05-15
+Template: hushline-daily-mobile-template.html
+Screenshot: /Users/scidsg/hushline-screenshots/curated/newman/auth-newman-onboarding-notifications-mobile-light-fold.png
+Content key: auth-newman-onboarding-notifications
+Headline: Decide how new tips should reach you
+Subtext: The notifications step helps recipients choose whether email alerts fit their review workflow before they share a public tip line.
+
+Image alt text
+Hush Line social graphic showing a mobile onboarding notifications screen with settings for email alerts and encrypted message delivery.
+
+Social post copy
+
+LinkedIn (442/3000)
+Before a public tip line is shared, the people receiving messages need to know how they will notice new intake.
+
+Hush Line's onboarding notification step lets a recipient decide whether email alerts belong in their workflow while keeping the web inbox available for review. For a newsroom, law office, classroom, or small intake team, that decision is part of getting the channel ready before sources use it.
+
+Sign up at https://hushline.app.
+
+Mastodon (316/500)
+Before a tip line is shared, recipients need to know how they will notice new intake.
+
+Hush Line's onboarding notification step helps a newsroom, law office, classroom, or small intake team decide whether email alerts fit the workflow while the web inbox stays available for review.
+
+Sign up at https://hushline.app.
+
+Bluesky (257/300)
+Before sharing a tip line, recipients need a clear alert plan.
+
+Hush Line's onboarding notification step helps a newsroom, law office, classroom, or small intake team decide how new-message alerts fit their review workflow.
+
+Sign up at https://hushline.app.

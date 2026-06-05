@@ -7,6 +7,7 @@ const path = require("node:path");
 const {
   buildPost,
   buildVerifiedUserSocialParagraphs,
+  chooseVerifiedUserFormat,
   normalizeVerifiedUsers,
   parseArgs,
   prepareVerifiedUserRun,
@@ -150,11 +151,26 @@ test("prepareVerifiedUserRun selects the next user after archive history", async
 
   assert.equal(run.selectedUser.primary_username, "verified-user-b");
   assert.equal(run.post.user_link, "https://tips.hushline.app/to/verified-user-b");
+  assert.equal(run.post.verified_user_format, "source_safe_first_contact");
+  assert.equal(run.post.opening_line, "First contact should be source-safe.");
+});
+
+test("chooseVerifiedUserFormat rotates away from recent formats", () => {
+  const format = chooseVerifiedUserFormat([
+    { date: "2026-02-16", verified_user_format: "why_follow_tip_line" },
+    { date: "2026-02-23", verified_user_format: "what_this_recipient_covers" },
+    { date: "2026-03-02", verified_user_format: "before_you_contact_them" },
+    { date: "2026-03-09", verified_user_format: "how_to_verify_the_link" },
+    { date: "2026-03-16", verified_user_format: "source_safe_first_contact" },
+  ], "2026-03-30");
+
+  assert.equal(format.id, "from_the_directory");
 });
 
 test("renderHtml injects the selected user text and QR filename", () => {
   const post = buildPost({
     date: "2026-03-30",
+    format: "why_follow_tip_line",
     selectedUser: {
       bio: "Investigative editor focused on energy and utilities.",
       display_name: "Verified User B",
@@ -169,6 +185,9 @@ test("renderHtml injects the selected user text and QR filename", () => {
   assert.match(html, /Investigative editor focused on energy and utilities\./);
   assert.match(html, /https:\/\/tips\.hushline\.app\/to\/verified-user-b/);
   assert.match(html, /\.\/verified-user-qr\.png/);
+  assert.equal(post.verified_user_format, "why_follow_tip_line");
+  assert.match(post.social.linkedin, /^Why follow Verified's Hush Line\?/);
+  assert.doesNotMatch(post.social.linkedin, /🤩 Verified Member Highlight!/);
 });
 
 test("verified-user renderHtml embeds local fonts and strips remote Google Fonts links", () => {
@@ -203,6 +222,43 @@ test("validateVerifiedUserSocialParagraphs rejects capitalized first-person copy
     }),
     /must not use first-person language/,
   );
+});
+
+test("validateVerifiedUserSocialParagraphs rejects malformed punctuation before cleanup", () => {
+  assert.throws(
+    () => validateVerifiedUserSocialParagraphs({
+      bluesky: "Verified User B is an investigative editor..",
+      linkedin: "Verified User B is an investigative editor.",
+      mastodon: "Verified User B is an investigative editor.",
+    }, {
+      display_name: "Verified User B",
+      primary_username: "verified-user-b",
+      user_url: "https://tips.hushline.app/to/verified-user-b",
+    }),
+    /malformed punctuation/,
+  );
+});
+
+test("buildVerifiedUserSocialParagraphs falls back for empty bios", () => {
+  const paragraphs = buildVerifiedUserSocialParagraphs({
+    bio: "",
+    display_name: "Verified User B",
+    primary_username: "verified-user-b",
+    user_url: "https://tips.hushline.app/to/verified-user-b",
+  }, "from_the_directory");
+
+  assert.equal(paragraphs.linkedin, "Verified User B has a verified Hush Line profile.");
+});
+
+test("buildVerifiedUserSocialParagraphs cleans malformed terminal punctuation in bios", () => {
+  const paragraphs = buildVerifiedUserSocialParagraphs({
+    bio: "Investigative editor focused on energy and utilities..",
+    display_name: "Verified User B",
+    primary_username: "verified-user-b",
+    user_url: "https://tips.hushline.app/to/verified-user-b",
+  }, "from_the_directory");
+
+  assert.equal(paragraphs.linkedin, "Verified is an investigative editor focused on energy and utilities.");
 });
 
 test("buildVerifiedUserSocialParagraphs rewrites first-person bios into direct third-person copy", () => {

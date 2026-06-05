@@ -1,0 +1,33 @@
+Slot: thursday
+Planned date: 2026-05-21
+Template: hushline-daily-desktop-template.html
+Screenshot: /Users/scidsg/hushline-screenshots/curated/artvandelay/auth-artvandelay-settings-notifications-desktop-light-fold.png
+Content key: auth-artvandelay-settings-notifications
+Headline: Keep tip alerts tied to your review workflow
+Subtext: Notification settings help recipients decide where new-message alerts go and how much encrypted content belongs in email.
+
+Image alt text
+A desktop Hush Line social graphic showing the Notifications settings page, with controls for tip notifications, encrypted message content, full email-body encryption, email forwarding, and notification recipients.
+
+Social post copy
+
+LinkedIn (410/3000)
+A newsroom, law office, school, or nonprofit may need more than one person watching for new tips.
+
+Hush Line notification settings let recipients decide how alerts should reach them, whether message content belongs in email, and how that email should be encrypted. The goal is a review workflow that fits the team without asking sources to create an account or install an app.
+
+Sign up at https://hushline.app.
+
+Mastodon (264/500)
+A shared tip line may need more than one person watching for new messages.
+
+Hush Line notification settings let recipients choose how alerts arrive, whether message content belongs in email, and how that email should be encrypted.
+
+Sign up at https://hushline.app.
+
+Bluesky (227/300)
+A shared tip line may need more than one person watching for new messages.
+
+Hush Line notification settings help recipients choose alert delivery and email encryption for their review workflow.
+
+Sign up at https://hushline.app.

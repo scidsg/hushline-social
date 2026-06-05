@@ -1,0 +1,33 @@
+Slot: thursday
+Planned date: 2026-04-30
+Template: hushline-daily-mobile-template.html
+Screenshot: /Users/scidsg/hushline-screenshots/curated/admin/auth-admin-settings-branding-mobile-light-fold.png
+Content key: auth-admin-settings-branding
+Headline: For admins: make your deployment recognizable
+Subtext: Branding settings help teams set the public name, logo, colors, and directory text so visitors can confirm they reached the right deployment.
+
+Image alt text
+Mobile social graphic showing Hush Line's light-mode admin Branding settings page, with fields for the deployment title, directory intro text, logo, and color controls.
+
+Social post copy
+
+LinkedIn (429/3000)
+For admins and teams running a Hush Line deployment, a visitor should be able to recognize where they are before they choose a recipient or send a message.
+
+The branding settings let your team set the public name, logo, colors, and directory text for the deployment. That context matters when sources are trying to confirm they reached the right newsroom, law office, school, or organization.
+
+Learn more at https://hushline.app.
+
+Mastodon (325/500)
+For admins and teams running Hush Line, the public site should be recognizable before a source sends anything sensitive.
+
+Branding settings let your team set the public name, logo, colors, and directory text for the deployment, so visitors can confirm they reached the right organization.
+
+Learn more at https://hushline.app.
+
+Bluesky (247/300)
+For admins and teams running Hush Line, the public site should be recognizable before a source sends anything.
+
+Branding settings let your team set the name, logo, colors, and directory text for the deployment.
+
+Learn more at https://hushline.app.

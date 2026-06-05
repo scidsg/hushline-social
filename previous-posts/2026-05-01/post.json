@@ -1,0 +1,26 @@
+{
+  "slot": "friday",
+  "planned_date": "2026-05-01",
+  "screenshot_file": "newman/auth-newman-onboarding-directory-mobile-light-fold.png",
+  "content_key": "auth-newman-onboarding-directory",
+  "headline": "Choose when your tip line is ready to be found",
+  "subtext": "The directory step lets recipients decide whether their public Hush Line profile is ready for sources to use.",
+  "image_alt_text": "A Hush Line daily social graphic showing a mobile onboarding screen where a recipient can choose whether to list their profile in the public directory.",
+  "social": {
+    "bluesky": "A public tip line should be ready before people start relying on it.\n\nHush Line lets recipients choose during onboarding whether their profile appears in the public directory, after they review the setup.\n\nSign up at https://hushline.app.",
+    "linkedin": "A public tip line should be ready before people start relying on it.\n\nDuring onboarding, Hush Line lets recipients decide whether their profile should appear in the public directory. That gives journalists, lawyers, educators, organizers, and other trusted recipients time to review their public details, encryption setup, and message settings before sources use the link.\n\nSign up at https://hushline.app.",
+    "mastodon": "A public tip line should be ready before people start relying on it.\n\nHush Line onboarding lets recipients decide whether their profile should appear in the public directory, so they can review public details, encryption, and message settings first.\n\nSign up at https://hushline.app."
+  },
+  "rationale": "Selected the recipient-shared onboarding directory screenshot over the public attorney listing because recent archive history already includes public attorney and directory browsing angles. This post keeps the message focused on recipient readiness and setup decisions, matching the onboarding screen and USE-CASES guidance for message recipients who need a trustworthy intake channel.",
+  "source_pr_numbers": [],
+  "audience_scope": "recipient-shared",
+  "concept_key": "onboarding-directory",
+  "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+  "matched_pull_requests": [],
+  "screen_key": "onboarding-directory",
+  "template_name": "hushline-daily-mobile-template-2.html",
+  "theme": "light",
+  "title": "Onboarding - Step 4 Directory (newman)",
+  "topic_family": "directory",
+  "viewport": "mobile"
+}

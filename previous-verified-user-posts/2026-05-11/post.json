@@ -1,0 +1,19 @@
+{
+  "date": "2026-05-11",
+  "display_name": "Ryan Gallagher",
+  "headline": "Ryan Gallagher",
+  "image_alt_text": "A social card featuring verified Hush Line user Ryan Gallagher, their bio, their tip line URL, and a QR code that links to the same URL.",
+  "planned_date": "2026-05-11",
+  "primary_username": "ryan",
+  "qr_code_file": "verified-user-qr.png",
+  "social": {
+    "bluesky": "🤩 Verified Member Highlight!\n\nRyan is an investigative reporter for Bloomberg News covering cybersecurity, technology, crime, surveillance, and human rights.\n\nSend Ryan a tip: https://tips.hushline.app/to/ryan",
+    "linkedin": "🤩 Verified Member Highlight!\n\nRyan is an investigative reporter for Bloomberg News covering cybersecurity, technology, crime, surveillance, and human rights. He has more than a decade of experience working with whistleblowers and protecting sources.\n\nTo send Ryan a tip, go to https://tips.hushline.app/to/ryan.",
+    "mastodon": "🤩 Verified Member Highlight!\n\nRyan is an investigative reporter for Bloomberg News covering cybersecurity, technology, crime, surveillance, and human rights. He has more than a decade of experience working with whistleblowers.\n\nTo send Ryan a tip, visit https://tips.hushline.app/to/ryan."
+  },
+  "slot": "verified-user-weekly",
+  "source": "https://tips.hushline.app/directory/users.json",
+  "subtext": "I'm an investigative reporter for Bloomberg News covering cybersecurity, technology, crime, surveillance & human rights. I have more than a decade's experience working with whistleblowers to produce impactful journalism & I always protect my sources.",
+  "user_link": "https://tips.hushline.app/to/ryan",
+  "user_url": "https://tips.hushline.app/to/ryan"
+}

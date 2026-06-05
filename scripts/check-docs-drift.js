@@ -29,14 +29,24 @@ function assertWeekdayArray(plistText, label) {
   }
 }
 
+function assertSingleSchedule(plistText, label, { weekday, hour, minute }) {
+  assertIncludes(plistText, `<key>Weekday</key>\n    <integer>${weekday}</integer>`, label);
+  assertIncludes(plistText, `<key>Hour</key>\n    <integer>${hour}</integer>`, label);
+  assertIncludes(plistText, `<key>Minute</key>\n    <integer>${minute}</integer>`, label);
+}
+
 function main() {
   const readme = read("README.md");
   const agents = read("AGENTS.md");
   const packageJson = JSON.parse(read("package.json"));
   const plannerPlist = read("deploy/launchd/com.hushline.social.daily-planner.plist");
   const linkedinPlist = read("deploy/launchd/com.hushline.social.linkedin.daily.plist");
+  const articlePlist = read("deploy/launchd/com.hushline.social.weekly-article.plist");
+  const articleLinkedinPlist = read("deploy/launchd/com.hushline.social.linkedin.weekly-article.plist");
   const daemonPlannerPlist = read("deploy/launchd/com.hushline.social.daily-planner.daemon.plist");
   const daemonLinkedinPlist = read("deploy/launchd/com.hushline.social.linkedin.daily.daemon.plist");
+  const daemonArticlePlist = read("deploy/launchd/com.hushline.social.weekly-article.daemon.plist");
+  const daemonArticleLinkedinPlist = read("deploy/launchd/com.hushline.social.linkedin.weekly-article.daemon.plist");
 
   assertIncludes(readme, "Monday through Friday", "README.md");
   assertIncludes(readme, "Weekend dates are intentionally skipped", "README.md");
@@ -45,6 +55,8 @@ function main() {
 
   assertIncludes(agents, "06:00` local time, Monday through Friday", "AGENTS.md");
   assertIncludes(agents, "06:10` local time, Monday through Friday", "AGENTS.md");
+  assertIncludes(agents, "11:50` local time every Wednesday", "AGENTS.md");
+  assertIncludes(agents, "12:00` local time every Wednesday", "AGENTS.md");
   assertIncludes(agents, "Weekend dates are excluded from the daily planner and daily LinkedIn publisher.", "AGENTS.md");
   assertIncludes(agents, "sudo ./scripts/install_launch_agent.sh --scope daemon", "AGENTS.md");
 
@@ -56,6 +68,10 @@ function main() {
   assertWeekdayArray(linkedinPlist, "deploy/launchd/com.hushline.social.linkedin.daily.plist");
   assertWeekdayArray(daemonPlannerPlist, "deploy/launchd/com.hushline.social.daily-planner.daemon.plist");
   assertWeekdayArray(daemonLinkedinPlist, "deploy/launchd/com.hushline.social.linkedin.daily.daemon.plist");
+  assertSingleSchedule(articlePlist, "deploy/launchd/com.hushline.social.weekly-article.plist", { weekday: "3", hour: "11", minute: "50" });
+  assertSingleSchedule(articleLinkedinPlist, "deploy/launchd/com.hushline.social.linkedin.weekly-article.plist", { weekday: "3", hour: "12", minute: "0" });
+  assertSingleSchedule(daemonArticlePlist, "deploy/launchd/com.hushline.social.weekly-article.daemon.plist", { weekday: "3", hour: "11", minute: "50" });
+  assertSingleSchedule(daemonArticleLinkedinPlist, "deploy/launchd/com.hushline.social.linkedin.weekly-article.daemon.plist", { weekday: "3", hour: "12", minute: "0" });
 
   process.stdout.write("Docs and launchd schedule are in sync.\n");
 }

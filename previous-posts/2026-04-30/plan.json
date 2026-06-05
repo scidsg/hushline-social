@@ -1,0 +1,30 @@
+{
+  "date": "2026-04-30",
+  "post": {
+    "slot": "thursday",
+    "planned_date": "2026-04-30",
+    "screenshot_file": "admin/auth-admin-settings-branding-mobile-light-fold.png",
+    "content_key": "auth-admin-settings-branding",
+    "headline": "For admins: make your deployment recognizable",
+    "subtext": "Branding settings help teams set the public name, logo, colors, and directory text so visitors can confirm they reached the right deployment.",
+    "image_alt_text": "Mobile social graphic showing Hush Line's light-mode admin Branding settings page, with fields for the deployment title, directory intro text, logo, and color controls.",
+    "social": {
+      "bluesky": "For admins and teams running Hush Line, the public site should be recognizable before a source sends anything.\n\nBranding settings let your team set the name, logo, colors, and directory text for the deployment.\n\nLearn more at https://hushline.app.",
+      "linkedin": "For admins and teams running a Hush Line deployment, a visitor should be able to recognize where they are before they choose a recipient or send a message.\n\nThe branding settings let your team set the public name, logo, colors, and directory text for the deployment. That context matters when sources are trying to confirm they reached the right newsroom, law office, school, or organization.\n\nLearn more at https://hushline.app.",
+      "mastodon": "For admins and teams running Hush Line, the public site should be recognizable before a source sends anything sensitive.\n\nBranding settings let your team set the public name, logo, colors, and directory text for the deployment, so visitors can confirm they reached the right organization.\n\nLearn more at https://hushline.app."
+    },
+    "rationale": "Selected the admin branding screenshot because the other candidates repeated yesterday's message-status screen or the heavily used directory family from the prior month. This screen maps to the Platform Administrators use case in USE-CASES.md: teams running managed deployments need branding and public context so visitors can identify the deployment before using it.",
+    "source_pr_numbers": [],
+    "audience_scope": "admin-only",
+    "concept_key": "settings-branding",
+    "copy_brief": "Write for admins or teams running a Hush Line deployment. Make the admin audience explicit.",
+    "matched_pull_requests": [],
+    "screen_key": "/settings/branding",
+    "template_name": "hushline-daily-mobile-template.html",
+    "theme": "light",
+    "title": "Settings - Branding (admin)",
+    "topic_family": "branding",
+    "viewport": "mobile"
+  },
+  "summary": "Admin-only daily post for the light mobile branding settings screen, focused on helping teams make a Hush Line deployment recognizable before a source sends a message."
+}

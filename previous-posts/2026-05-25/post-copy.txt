@@ -1,0 +1,33 @@
+Slot: monday
+Planned date: 2026-05-25
+Template: hushline-daily-desktop-template.html
+Screenshot: /Users/scidsg/hushline-screenshots/curated/artvandelay/auth-artvandelay-settings-auth-desktop-light-fold.png
+Content key: auth-artvandelay-settings-auth
+Headline: Separate access checks from message review
+Subtext: Sign-in controls sit outside the inbox so recipients can handle routine upkeep without interrupting sensitive intake.
+
+Image alt text
+A Hush Line daily social graphic showing the desktop Authentication settings page. The screen places account access controls in a separate settings area, away from the inbox where recipients review sensitive messages.
+
+Social post copy
+
+LinkedIn (393/3000)
+Sensitive intake work is easier to manage when account upkeep is not mixed into the inbox.
+
+Hush Line keeps sign-in controls in their own account area, separate from message review. For journalists, lawyers, educators, organizers, and other recipients, that design keeps routine access checks from interrupting the work of reading and triaging disclosures.
+
+Learn more at https://hushline.app.
+
+Mastodon (263/500)
+Sensitive intake gets harder when account upkeep interrupts the inbox.
+
+Hush Line keeps sign-in controls outside message review, so recipients and staff can check access details without mixing that work into disclosure triage.
+
+Learn more at https://hushline.app.
+
+Bluesky (220/300)
+Keep account upkeep out of the inbox.
+
+Hush Line separates sign-in controls from message review so recipients and staff can check access details without interrupting sensitive intake.
+
+Learn more at https://hushline.app.

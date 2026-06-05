@@ -1,0 +1,33 @@
+Slot: tuesday
+Planned date: 2026-06-02
+Template: hushline-daily-desktop-template.html
+Screenshot: /Users/scidsg/hushline-screenshots/curated/artvandelay/auth-artvandelay-settings-auth-desktop-light-fold.png
+Content key: auth-artvandelay-settings-auth
+Headline: Check account access before inviting tips
+Subtext: Recipients and staff can confirm sign-in settings and 2FA before a public tip line becomes part of a sensitive first-contact workflow.
+
+Image alt text
+Social graphic showing the Hush Line desktop Authentication settings page for a recipient account. The screen shows account sign-in controls, password settings, and two-factor authentication options as part of a pre-launch source-safety checklist.
+
+Social post copy
+
+LinkedIn (452/3000)
+A source-safety checklist should include the recipient side of first contact.
+
+Before a newsroom, law office, school, nonprofit, or security team points people to a Hush Line address, staff can check the account that will receive those messages: confirm the username, keep the password current, and turn on two-factor authentication where it belongs.
+
+Make account access part of the pre-launch check before asking people to send sensitive information.
+
+Mastodon (275/500)
+A source-safety checklist includes the recipient account, too.
+
+Before staff share a Hush Line address, they can confirm the username, update the password, and enable 2FA so the intake account is ready for sensitive first contact.
+
+Add account access to the pre-launch check.
+
+Bluesky (237/300)
+Before sharing a Hush Line address, check the recipient account behind it.
+
+Confirm the username, keep the password current, and turn on 2FA before asking people to send sensitive information.
+
+Add account access to the pre-launch check.

@@ -1,0 +1,33 @@
+Slot: monday
+Planned date: 2026-05-18
+Template: hushline-daily-desktop-template-2.html
+Screenshot: /Users/scidsg/hushline-screenshots/curated/artvandelay/auth-artvandelay-settings-advanced-desktop-light-fold.png
+Content key: auth-artvandelay-settings-advanced
+Headline: Keep access to your Hush Line records
+Subtext: Advanced settings let recipients download a ZIP export with CSV records and encrypted PGP messages when they need their own copy.
+
+Image alt text
+A Hush Line daily social graphic showing the desktop Advanced settings page. The screen includes a Download My Data section with an option to encrypt the export with the recipient's PGP key, plus a separate Delete Account section below.
+
+Social post copy
+
+LinkedIn (343/3000)
+Recipients need a clear way to keep their own records, especially when a tip line supports legal, newsroom, school, security, or organizing work.
+
+Hush Line's Advanced settings include a data export for CSV records and encrypted PGP messages, with an option to encrypt the export with the recipient's own key.
+
+Sign up at https://hushline.app.
+
+Mastodon (331/500)
+Recipients need a clear way to keep their own records when a tip line supports legal, newsroom, school, security, or organizing work.
+
+Hush Line's Advanced settings include a data export for CSV records and encrypted PGP messages, with an option to encrypt the export with the recipient's own key.
+
+Sign up at https://hushline.app.
+
+Bluesky (249/300)
+Recipients should be able to keep their own records.
+
+Hush Line's Advanced settings include a ZIP export for CSV records and encrypted PGP messages, with an option to encrypt the export with the recipient's own key.
+
+Sign up at https://hushline.app.

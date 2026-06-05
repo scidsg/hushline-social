@@ -1,0 +1,19 @@
+{
+  "date": "2026-05-04",
+  "display_name": "Tim Farmer",
+  "headline": "Tim Farmer",
+  "image_alt_text": "A social card featuring verified Hush Line user Tim Farmer, their bio, their tip line URL, and a QR code that links to the same URL.",
+  "planned_date": "2026-05-04",
+  "primary_username": "tim_farmer",
+  "qr_code_file": "verified-user-qr.png",
+  "social": {
+    "bluesky": "🤩 Verified Member Highlight!\n\nTim is an aspiring podcast host and journalist with a background in the U.S. government and military.\n\nSend Tim a tip: https://tips.hushline.app/to/tim_farmer",
+    "linkedin": "🤩 Verified Member Highlight!\n\nTim is an aspiring podcast host and journalist with a background in the U.S. government and military. More about his work is available at theosintoutput.com.\n\nTo send Tim a tip, go to https://tips.hushline.app/to/tim_farmer.",
+    "mastodon": "🤩 Verified Member Highlight!\n\nTim is an aspiring podcast host and journalist with a background in the U.S. government and military.\n\nTo send Tim a tip, visit https://tips.hushline.app/to/tim_farmer."
+  },
+  "slot": "verified-user-weekly",
+  "source": "https://tips.hushline.app/directory/users.json",
+  "subtext": "I am an aspiring podcast host and journalist. I have a background in the U.S. government and military. If you would like to know more about me, my website is theosintoutput.com",
+  "user_link": "https://tips.hushline.app/to/tim_farmer",
+  "user_url": "https://tips.hushline.app/to/tim_farmer"
+}
