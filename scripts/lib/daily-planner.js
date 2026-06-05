@@ -153,6 +153,40 @@ const HUSHLINE_APP_VOICE_GUIDANCE = [
   "Keep the message grounded in the people Hush Line serves, such as sources, journalists, lawyers, educators, developers, organizers, and trusted recipients when the screenshot supports that audience.",
   "Prefer concrete platform framing from hushline.app like no app download or account required for sources, a public directory that helps people find the right recipient, and browser-based tools that support real review workflows.",
 ];
+const PLAIN_LANGUAGE_COPY_GUIDANCE = [
+  "Use words a Hush Line user would say out loud: tips, messages, email, inbox, notifications, settings, profile, directory, source, recipient, team, admin.",
+  "Name the visible choice or task in the screenshot before explaining why it matters.",
+  "Prefer direct headings such as `Choose the notifications that work for you` over abstract slogans.",
+  "Write complete sentences with a clear subject and verb. If a sentence needs product insider knowledge to understand, rewrite it.",
+  "Do not invent internal concepts or labels that are absent from Hush Line materials.",
+  "Avoid jargon and abstract business language such as pings, outside signal, surface, frictionless, case file, operationalize, leverage, unlock, or streamline.",
+];
+const TOPIC_COPY_GUIDANCE = {
+  notifications: [
+    "For notification screens, say directly that recipients can choose email notifications, Hush Line inbox notifications, and whether encrypted tip contents are included in email.",
+    "Do not describe notifications as pings, outside signals, or staff-return mechanisms.",
+  ],
+};
+const BANNED_COPY_PATTERNS = [
+  { pattern: /\bping(s|ed|ing)?\b/i, reason: "uses `ping`, which is business jargon" },
+  { pattern: /\bcase files?\b/i, reason: "uses `case file`, which is not Hush Line language" },
+  { pattern: /\bcase review\b/i, reason: "uses `case review`, which is not Hush Line language" },
+  { pattern: /\boutside signals?\b/i, reason: "uses `outside signal`, which is unclear jargon" },
+  { pattern: /\bminimum outside\b/i, reason: "uses `minimum outside`, which is unclear jargon" },
+  { pattern: /\bstaff back to\b/i, reason: "uses an indirect staff-return framing instead of naming the feature" },
+  { pattern: /\bsurface(s|d|ing)?\b/i, reason: "uses `surface` as product jargon" },
+  { pattern: /\bfrictionless\b/i, reason: "uses generic marketing jargon" },
+  { pattern: /\boperationalize(s|d|ing)?\b/i, reason: "uses abstract business jargon" },
+  { pattern: /\bleverage(s|d|ing)?\b/i, reason: "uses abstract business jargon" },
+  { pattern: /\bunlock(s|ed|ing)?\b/i, reason: "uses generic marketing jargon" },
+  { pattern: /\bstreamline(s|d|ing)?\b/i, reason: "uses generic business jargon" },
+];
+const NOTIFICATION_COPY_PATTERNS = [
+  /\bnotification(s)?\b/i,
+  /\bemail\b/i,
+  /\binbox\b/i,
+  /\bencrypted\b/i,
+];
 const AUDIENCE_SPECIFICITY_PATTERNS = {
   "admin-only": [
     /\badmin(s|istrator|istrators)?\b/i,
@@ -590,6 +624,40 @@ function buildMessageText(entry) {
   ]
     .filter(Boolean)
     .join(" ");
+}
+
+function buildPostCopyText(post) {
+  const social = post.social || {};
+
+  return [
+    post.headline,
+    post.subtext,
+    social.linkedin,
+    social.mastodon,
+    social.bluesky,
+  ]
+    .filter(Boolean)
+    .join(" ");
+}
+
+function validatePlainLanguageCopy(post, candidate, context) {
+  const copyText = buildPostCopyText(post);
+  const bannedMatch = BANNED_COPY_PATTERNS.find(({ pattern }) => pattern.test(copyText));
+
+  if (bannedMatch) {
+    throw new Error(
+      `Post copy for ${context.date} uses banned jargon: ${bannedMatch.reason}.`,
+    );
+  }
+
+  if (
+    (candidate.topic_family || inferTopicFamily(candidate)) === "notifications" &&
+    !NOTIFICATION_COPY_PATTERNS.some((pattern) => pattern.test(copyText))
+  ) {
+    throw new Error(
+      `Notification post copy for ${context.date} must directly describe notification, email, inbox, or encrypted-message choices.`,
+    );
+  }
 }
 
 function messageTokens(value) {
@@ -1705,6 +1773,14 @@ function buildPromptPayload(context) {
   const voiceGuidance = (context.hushline_app_voice_guidance || HUSHLINE_APP_VOICE_GUIDANCE)
     .map((line) => `- ${line}`)
     .join("\n");
+  const plainLanguageGuidance = PLAIN_LANGUAGE_COPY_GUIDANCE
+    .map((line) => `- ${line}`)
+    .join("\n");
+  const topicGuidance = Object.entries(TOPIC_COPY_GUIDANCE)
+    .map(([topic, lines]) => {
+      return [`${topic}:`, ...lines.map((line) => `- ${line}`)].join("\n");
+    })
+    .join("\n\n");
   const archiveHistory = context.recent_archive_history.length === 0
     ? "No prior archived daily posts were found."
     : context.recent_archive_history
@@ -1724,6 +1800,7 @@ function buildPromptPayload(context) {
       "You are writing one daily social post for Hush Line around a small ranked screenshot shortlist.",
       "Write in plain language. No marketing-speak, no hype, no filler.",
       "Social copy must be end-user-facing. Do not confuse post copy with alt text.",
+      "Use the visible feature's real words instead of abstract metaphors or internal shorthand.",
       "Avoid empty-state screens, duplicate content themes, and repeated scenes across mobile/desktop variants.",
       "If a screenshot is admin-only, the copy must explicitly say that it is for admins or teams running Hush Line.",
       "LinkedIn is the first automated publishing target, so LinkedIn copy should be especially ready for production use.",
@@ -1752,6 +1829,12 @@ function buildPromptPayload(context) {
       "",
       "Current hushline.app voice guidance:",
       voiceGuidance,
+      "",
+      "Plain-language copy standard:",
+      plainLanguageGuidance,
+      "",
+      "Topic-specific copy guidance:",
+      topicGuidance,
       "",
       "Audience and user-base context from docs:",
       docs,
@@ -1795,6 +1878,8 @@ function buildPromptPayload(context) {
       "- Match the copy to the candidate audience scope. Public screens should read public-facing. Recipient-shared screens should read like recipient workflows. Admin-only screens must clearly say admin or team context.",
       "- Tailor the message to real Hush Line users and use cases, not generic product copy.",
       "- Headline and subtext should be concise and straightforward.",
+      "- Do not use terms like pings, outside signal, minimum outside signal, case file, surface, frictionless, operationalize, leverage, unlock, or streamline.",
+      "- If you choose a notification screenshot, explain the user choice plainly: simple notifications, Hush Line inbox, email notifications, and/or encrypted tip contents in email.",
       "- Each network copy should say the same core thing in a native way, not copy-paste the same sentence three times.",
       "- The alt text should describe the final image asset, not just the raw UI screenshot.",
       "- Set `source_pr_numbers` to an empty array unless the prompt explicitly provides PR numbers to cite.",
@@ -2015,6 +2100,8 @@ function validatePlan(modelPlan, context) {
   if (!post.social || typeof post.social !== "object") {
     throw new Error("Post is missing a social copy object.");
   }
+
+  validatePlainLanguageCopy(post, candidate, context);
 
   for (const network of Object.keys(LIMITS)) {
     if (String(post.social[network] || "").length > LIMITS[network]) {
