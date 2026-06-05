@@ -218,6 +218,8 @@ is_retryable_validation_failure() {
   [[ "$LAST_VALIDATION_OUTPUT" == *"is too close to recent"* ]] ||
     [[ "$LAST_VALIDATION_OUTPUT" == *"overlaps too heavily with recent archive"* ]] ||
     [[ "$LAST_VALIDATION_OUTPUT" == *"duplicates recent archive headline"* ]] ||
+    [[ "$LAST_VALIDATION_OUTPUT" == *"uses banned jargon"* ]] ||
+    [[ "$LAST_VALIDATION_OUTPUT" == *"must directly describe notification"* ]] ||
     [[ "$LAST_VALIDATION_OUTPUT" == *"Weekly admin-only cap already reached"* ]] ||
     [[ "$LAST_VALIDATION_OUTPUT" == *"Weekly dark-mode cap already reached"* ]]
 }

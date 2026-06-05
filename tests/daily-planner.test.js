@@ -714,6 +714,82 @@ test("validatePlan rejects a second dark-mode post in the same ISO week", () => 
   );
 });
 
+test("validatePlan rejects jargon that is not Hush Line user-facing language", () => {
+  const context = buildContext({
+    candidate_screenshots: [
+      {
+        audience_scope: "recipient-shared",
+        concept_key: "settings-notifications",
+        content_key: "auth-artvandelay-settings-notifications",
+        copy_brief: "Write for recipients.",
+        file: "artvandelay/auth-artvandelay-settings-notifications-desktop-light-fold.png",
+        matched_pull_requests: [],
+        topic_family: "notifications",
+        theme: "light",
+        title: "Settings - Notifications",
+        viewport: "desktop",
+      },
+    ],
+  });
+  const plan = buildModelPlan({
+    post: {
+      ...buildModelPlan().post,
+      content_key: "auth-artvandelay-settings-notifications",
+      headline: "Keep pings separate from the case file",
+      screenshot_file: "artvandelay/auth-artvandelay-settings-notifications-desktop-light-fold.png",
+      social: {
+        bluesky: "Recipients can choose the minimum outside signal needed to bring staff back to Hush Line inbox. Learn more at https://hushline.app.",
+        linkedin: "Recipients can choose the minimum outside signal needed to bring staff back to Hush Line inbox. Learn more at https://hushline.app.",
+        mastodon: "Recipients can choose the minimum outside signal needed to bring staff back to Hush Line inbox. Learn more at https://hushline.app.",
+      },
+      subtext: "Recipients can choose the minimum outside signal needed to bring staff back to Hush Line inbox.",
+    },
+  });
+
+  assert.throws(
+    () => validatePlan(plan, context),
+    /uses banned jargon/,
+  );
+});
+
+test("validatePlan requires notification copy to name the notification choice", () => {
+  const context = buildContext({
+    candidate_screenshots: [
+      {
+        audience_scope: "recipient-shared",
+        concept_key: "settings-notifications",
+        content_key: "auth-artvandelay-settings-notifications",
+        copy_brief: "Write for recipients.",
+        file: "artvandelay/auth-artvandelay-settings-notifications-desktop-light-fold.png",
+        matched_pull_requests: [],
+        topic_family: "notifications",
+        theme: "light",
+        title: "Settings - Notifications",
+        viewport: "desktop",
+      },
+    ],
+  });
+  const plan = buildModelPlan({
+    post: {
+      ...buildModelPlan().post,
+      content_key: "auth-artvandelay-settings-notifications",
+      headline: "Choose what works for your day",
+      screenshot_file: "artvandelay/auth-artvandelay-settings-notifications-desktop-light-fold.png",
+      social: {
+        bluesky: "Recipients can decide how much detail to receive away from Hush Line. Learn more at https://hushline.app.",
+        linkedin: "Recipients can decide how much detail to receive away from Hush Line. Learn more at https://hushline.app.",
+        mastodon: "Recipients can decide how much detail to receive away from Hush Line. Learn more at https://hushline.app.",
+      },
+      subtext: "Recipients can decide how much detail to receive away from Hush Line.",
+    },
+  });
+
+  assert.throws(
+    () => validatePlan(plan, context),
+    /must directly describe notification, email, inbox, or encrypted-message choices/,
+  );
+});
+
 test("assignVariantsToConcepts preserves light candidates when the concept set is smaller than the target count", () => {
   const selectedConcepts = Array.from({ length: 17 }, (_, index) => ({
     variants: [

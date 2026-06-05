@@ -88,6 +88,18 @@ const RECIPIENT_SHARED_ROUTE_PATTERNS = [
   /^\/settings\/replies\b/i,
   /^\/settings\/advanced\b/i,
 ];
+const PLAIN_LANGUAGE_COPY_GUIDANCE = [
+  "Use words a Hush Line user would say out loud: tips, messages, email, inbox, notifications, settings, profile, directory, source, recipient, team, admin.",
+  "Name the visible choice or task in the screenshot before explaining why it matters.",
+  "Prefer direct headings such as `Choose the notifications that work for you` over abstract slogans.",
+  "Write complete sentences with a clear subject and verb. If a sentence needs product insider knowledge to understand, rewrite it.",
+  "Do not invent internal concepts or labels that are absent from Hush Line materials.",
+  "Avoid jargon and abstract business language such as pings, outside signal, surface, frictionless, case file, operationalize, leverage, unlock, or streamline.",
+];
+const TOPIC_COPY_GUIDANCE = [
+  "For notification screens, say directly that recipients can choose email notifications, Hush Line inbox notifications, and whether encrypted tip contents are included in email.",
+  "Do not describe notifications as pings, outside signals, or staff-return mechanisms.",
+];
 
 function parseIsoWeek(week) {
   const match = String(week).match(/^(\d{4})-W(\d{2})$/);
@@ -698,6 +710,12 @@ function buildPromptPayload(context) {
           return `${plan.week}: ${posts}`;
         })
         .join("\n");
+  const plainLanguageGuidance = PLAIN_LANGUAGE_COPY_GUIDANCE
+    .map((line) => `- ${line}`)
+    .join("\n");
+  const topicGuidance = TOPIC_COPY_GUIDANCE
+    .map((line) => `- ${line}`)
+    .join("\n");
 
   return {
     system: [
@@ -705,6 +723,7 @@ function buildPromptPayload(context) {
       "Choose screenshots that reflect Hush Line's documented user needs and vary the underlying screen from prior posts.",
       "Write in plain language. No marketing-speak, no hype, no filler.",
       "Social copy must be end-user-facing. Do not confuse post copy with alt text.",
+      "Use the visible feature's real words instead of abstract metaphors or internal shorthand.",
       "Avoid empty-state screens, duplicate content themes, and repeated scenes across mobile/desktop variants.",
       "Avoid profile screenshots unless the image visibly shows strong trust/authenticity signals such as a visible PGP key or clear verification cues.",
       "If a screenshot is admin-only, the copy must explicitly say that it is for admins or teams running Hush Line.",
@@ -731,6 +750,12 @@ function buildPromptPayload(context) {
       "Audience and user-base context from docs:",
       docs,
       "",
+      "Plain-language copy standard:",
+      plainLanguageGuidance,
+      "",
+      "Topic-specific copy guidance:",
+      topicGuidance,
+      "",
       "Recent plan history to avoid repeating:",
       history,
       "",
@@ -742,6 +767,8 @@ function buildPromptPayload(context) {
       "- Avoid repeating the same content theme or route within the week.",
       "- Match the copy to the candidate audience scope. Public screens should read public-facing. Recipient-shared screens should read like recipient workflows. Admin-only screens must clearly say admin or team context.",
       "- Headline and subtext should be concise and straightforward.",
+      "- Do not use terms like pings, outside signal, minimum outside signal, case file, surface, frictionless, operationalize, leverage, unlock, or streamline.",
+      "- If you choose a notification screenshot, explain the user choice plainly: simple notifications, Hush Line inbox, email notifications, and/or encrypted tip contents in email.",
       "- Each network copy should say the same core thing in a native way, not copy-paste the same sentence three times.",
       "- The alt text should describe the final image asset, not just the raw UI screenshot.",
       "",
