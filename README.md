@@ -4,6 +4,8 @@ Dynamic social-post automation for Hush Line.
 
 This repo plans one post per publish date from current local Hush Line context, renders the social asset from the approved template set, archives the result in-repo, and publishes LinkedIn first for the daily flow.
 
+Launchd wrappers, agent shell entrypoints, installer scripts, and runner operations docs now live in the public [`hushline-agents`](https://github.com/scidsg/hushline-agents) repository under `social/`. This repo remains the social content checkout: Node planners/publishers, templates, assets, and generated archives.
+
 ## What It Does
 
 - builds one fresh post per run from current docs and the latest screenshot set
@@ -39,37 +41,38 @@ Weekend dates are intentionally skipped by both the launchd wrappers and the dir
 ## Key Paths
 
 - social repo: `/Users/scidsg/hushline-social`
+- agent repo: `/Users/scidsg/hushline-agents`
 - upstream app repo: `../hushline`
 - screenshot source: `../hushline-screenshots/releases/latest`
 - daily archive root: `previous-posts`
 - verified-user archive root: `previous-verified-user-posts`
 - launchd env file: `.env.launchd`
-- combined live log: `logs/social-daily.log`
+- combined live log: `../hushline-agents/logs/social/social-daily.log`
 
 ## Manual Runs
 
 Use the launchd wrappers so env loading and lock handling match production:
 
 ```sh
-cd /Users/scidsg/hushline-social
-./scripts/run_daily_planner_launchd.sh
-./scripts/run_daily_linkedin_launchd.sh
-./scripts/run_weekly_article_launchd.sh
-./scripts/run_weekly_article_linkedin_launchd.sh
-./scripts/run_verified_user_weekly_launchd.sh
-./scripts/run_verified_user_weekly_linkedin_launchd.sh
+cd /Users/scidsg/hushline-agents
+./social/scripts/run_daily_planner_launchd.sh
+./social/scripts/run_daily_linkedin_launchd.sh
+./social/scripts/run_weekly_article_launchd.sh
+./social/scripts/run_weekly_article_linkedin_launchd.sh
+./social/scripts/run_verified_user_weekly_launchd.sh
+./social/scripts/run_verified_user_weekly_linkedin_launchd.sh
 ```
 
 For a specific weekday or Monday:
 
 ```sh
-cd /Users/scidsg/hushline-social
-./scripts/run_daily_planner_launchd.sh --date YYYY-MM-DD
-./scripts/run_daily_linkedin_launchd.sh --date YYYY-MM-DD
-./scripts/run_weekly_article_launchd.sh --date YYYY-MM-DD
-./scripts/run_weekly_article_linkedin_launchd.sh --date YYYY-MM-DD
-./scripts/run_verified_user_weekly_launchd.sh --date YYYY-MM-DD
-./scripts/run_verified_user_weekly_linkedin_launchd.sh --date YYYY-MM-DD
+cd /Users/scidsg/hushline-agents
+./social/scripts/run_daily_planner_launchd.sh --date YYYY-MM-DD
+./social/scripts/run_daily_linkedin_launchd.sh --date YYYY-MM-DD
+./social/scripts/run_weekly_article_launchd.sh --date YYYY-MM-DD
+./social/scripts/run_weekly_article_linkedin_launchd.sh --date YYYY-MM-DD
+./social/scripts/run_verified_user_weekly_launchd.sh --date YYYY-MM-DD
+./social/scripts/run_verified_user_weekly_linkedin_launchd.sh --date YYYY-MM-DD
 ```
 
 Weekly article posts are text-only LinkedIn posts that select one current whistleblower-related article from an approved source allowlist: The New York Times, The Atlantic, The Guardian, BBC News, Al Jazeera, ABC News, NBC News, CBS News, and CNN. The selector rejects blocked/fringe sources, requires whistleblower-related relevance, includes the article link, and ends with a Hush Line signup call to action.
@@ -122,8 +125,8 @@ Before rendering, the daily planner runs an editorial critic gate over the compl
 To monitor both launchd jobs from one terminal:
 
 ```sh
-cd /Users/scidsg/hushline-social
-tail -n 50 -f logs/social-daily.log
+cd /Users/scidsg/hushline-agents
+tail -n 50 -f logs/social/social-daily.log
 ```
 
 ## Launchd Install
@@ -131,15 +134,15 @@ tail -n 50 -f logs/social-daily.log
 GUI scope is acceptable for local testing but can miss scheduled runs when the user is logged out:
 
 ```sh
-cd /Users/scidsg/hushline-social
-./scripts/install_launch_agent.sh --scope gui
+cd /Users/scidsg/hushline-agents
+./social/scripts/install_launch_agent.sh --scope gui
 ```
 
 For an always-on server, use daemon scope instead:
 
 ```sh
-cd /Users/scidsg/hushline-social
-sudo ./scripts/install_launch_agent.sh --scope daemon
+cd /Users/scidsg/hushline-agents
+sudo ./social/scripts/install_launch_agent.sh --scope daemon
 ```
 
 ## Daemon Requirements
@@ -165,14 +168,15 @@ Optional verified-user source overrides:
 The repo includes a preflight check for this:
 
 ```sh
-cd /Users/scidsg/hushline-social
-./scripts/check_launchd_prereqs.sh --scope gui
-./scripts/check_launchd_prereqs.sh --scope daemon
+cd /Users/scidsg/hushline-agents
+./social/scripts/check_launchd_prereqs.sh --scope gui
+./social/scripts/check_launchd_prereqs.sh --scope daemon
 ```
 
 ## Notes
 
 - Regular daily templates are discovered dynamically from `templates/hushline-daily-*.html`. Adding a new file with that prefix makes it eligible for future daily runs without further code changes.
+- Change launchd schedules, wrapper behavior, agent shell entrypoints, install scripts, and runner operations docs in `../hushline-agents`.
 - The verified-user template is separate and does not participate in daily template selection.
 - The planner fails on stale screenshot data unless explicitly overridden.
 - The daily planner enforces hard weekly caps for the weekday run set: no more than one admin-targeted post and no more than one dark-mode screenshot in the same Monday-through-Friday week.
