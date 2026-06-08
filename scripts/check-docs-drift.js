@@ -50,18 +50,30 @@ function main() {
 
   assertIncludes(readme, "Monday through Friday", "README.md");
   assertIncludes(readme, "Weekend dates are intentionally skipped", "README.md");
-  assertIncludes(readme, "sudo ./scripts/install_launch_agent.sh --scope daemon", "README.md");
-  assertIncludes(readme, "./scripts/check_launchd_prereqs.sh --scope daemon", "README.md");
+  assertIncludes(readme, "sudo ./social/scripts/install_launch_agent.sh --scope daemon", "README.md");
+  assertIncludes(readme, "./social/scripts/check_launchd_prereqs.sh --scope daemon", "README.md");
 
   assertIncludes(agents, "06:00` local time, Monday through Friday", "AGENTS.md");
   assertIncludes(agents, "06:10` local time, Monday through Friday", "AGENTS.md");
   assertIncludes(agents, "11:50` local time every Wednesday", "AGENTS.md");
   assertIncludes(agents, "12:00` local time every Wednesday", "AGENTS.md");
   assertIncludes(agents, "Weekend dates are excluded from the daily planner and daily LinkedIn publisher.", "AGENTS.md");
-  assertIncludes(agents, "sudo ./scripts/install_launch_agent.sh --scope daemon", "AGENTS.md");
+  assertIncludes(agents, "sudo ./social/scripts/install_launch_agent.sh --scope daemon", "AGENTS.md");
 
   if (packageJson.scripts["check:docs-drift"] !== "node scripts/check-docs-drift.js") {
     throw new Error("package.json is missing the expected check:docs-drift script");
+  }
+
+  if (packageJson.scripts["install:launch-agent"] !== "../hushline-agents/social/scripts/install_launch_agent.sh") {
+    throw new Error("package.json install:launch-agent must use hushline-agents");
+  }
+
+  if (packageJson.scripts["install:launch-daemon"] !== "sudo ../hushline-agents/social/scripts/install_launch_agent.sh --scope daemon") {
+    throw new Error("package.json install:launch-daemon must use hushline-agents");
+  }
+
+  if (packageJson.scripts["check:launchd"] !== "../hushline-agents/social/scripts/check_launchd_prereqs.sh") {
+    throw new Error("package.json check:launchd must use hushline-agents");
   }
 
   assertWeekdayArray(plannerPlist, "deploy/launchd/com.hushline.social.daily-planner.plist");

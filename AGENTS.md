@@ -4,6 +4,13 @@
 
 This repo is a dynamic social post agent for Hush Line.
 
+Automation ownership is split across repositories:
+
+- `../hushline-agents` owns launchd schedules, runner wrappers, agent shell entrypoints,
+  install scripts, and runner operations docs.
+- This repo owns social content templates, Node planner/publisher code, assets, and
+  generated archives.
+
 The job is not to produce a static yearly batch with hard-coded copy. The job is to:
 
 - build a fresh daily social post
@@ -225,13 +232,13 @@ Publishing is daily, planning is daily.
 - LinkedIn is the first production publishing target
 - do not double-post; use the pushed dated archive folder as the cross-machine publication-state record
 - launchd is the intended scheduler on the server
-- launchd should call the wrapper script, not a raw `node` command
+- launchd should call the wrapper script from `../hushline-agents/social/scripts`, not a raw `node` command
 - secrets should come from `.env.launchd` or an explicitly configured env file on the server
 - archive pushes should use signed commits and push only the daily folder contents needed for audit
 - for daily posts, do not push the archive folder before LinkedIn publication succeeds; push the dated folder after publication so the repo reflects posted state
 - for verified-user weekly posts, do not push the archive folder before LinkedIn publication succeeds; push the dated folder after publication so the repo reflects posted state
 
-Current default launchd schedule in this repo:
+Current default launchd schedule in `../hushline-agents`:
 
 - `com.hushline.social.daily-planner`
   - `06:00` local time, Monday through Friday
@@ -253,8 +260,8 @@ Weekend dates are excluded from the daily planner and daily LinkedIn publisher. 
 For always-on servers, do not rely on GUI-only LaunchAgents. Install the background jobs with:
 
 ```sh
-cd /Users/scidsg/hushline-social
-sudo ./scripts/install_launch_agent.sh --scope daemon
+cd /Users/scidsg/hushline-agents
+sudo ./social/scripts/install_launch_agent.sh --scope daemon
 ```
 
 GUI scope is still acceptable for local desktop testing, but it can miss scheduled runs when the user is logged out.
@@ -273,25 +280,25 @@ By default, the daily planner wrapper performs `git pull --ff-only` before plann
 Use the launchd wrappers for manual runs so env loading and lock handling match production:
 
 ```sh
-cd /Users/scidsg/hushline-social
-./scripts/run_daily_planner_launchd.sh
-./scripts/run_daily_linkedin_launchd.sh
-./scripts/run_weekly_article_launchd.sh
-./scripts/run_weekly_article_linkedin_launchd.sh
-./scripts/run_verified_user_weekly_launchd.sh
-./scripts/run_verified_user_weekly_linkedin_launchd.sh
+cd /Users/scidsg/hushline-agents
+./social/scripts/run_daily_planner_launchd.sh
+./social/scripts/run_daily_linkedin_launchd.sh
+./social/scripts/run_weekly_article_launchd.sh
+./social/scripts/run_weekly_article_linkedin_launchd.sh
+./social/scripts/run_verified_user_weekly_launchd.sh
+./social/scripts/run_verified_user_weekly_linkedin_launchd.sh
 ```
 
 For a specific date:
 
 ```sh
-cd /Users/scidsg/hushline-social
-./scripts/run_daily_planner_launchd.sh --date YYYY-MM-DD
-./scripts/run_daily_linkedin_launchd.sh --date YYYY-MM-DD
-./scripts/run_weekly_article_launchd.sh --date YYYY-MM-DD
-./scripts/run_weekly_article_linkedin_launchd.sh --date YYYY-MM-DD
-./scripts/run_verified_user_weekly_launchd.sh --date YYYY-MM-DD
-./scripts/run_verified_user_weekly_linkedin_launchd.sh --date YYYY-MM-DD
+cd /Users/scidsg/hushline-agents
+./social/scripts/run_daily_planner_launchd.sh --date YYYY-MM-DD
+./social/scripts/run_daily_linkedin_launchd.sh --date YYYY-MM-DD
+./social/scripts/run_weekly_article_launchd.sh --date YYYY-MM-DD
+./social/scripts/run_weekly_article_linkedin_launchd.sh --date YYYY-MM-DD
+./social/scripts/run_verified_user_weekly_launchd.sh --date YYYY-MM-DD
+./social/scripts/run_verified_user_weekly_linkedin_launchd.sh --date YYYY-MM-DD
 ```
 
 Do not use the bare publisher script for routine live runs when `.env.launchd` or launchd-style locking matters.
@@ -313,8 +320,8 @@ Optional Codex overrides:
 
 ## Launchd Troubleshooting
 
-- if a scheduled time changes, reinstall the agents with `./scripts/install_launch_agent.sh`
-- if the host may be logged out at run time, reinstall with `sudo ./scripts/install_launch_agent.sh --scope daemon`
+- if a scheduled time changes, reinstall the agents with `../hushline-agents/social/scripts/install_launch_agent.sh`
+- if the host may be logged out at run time, reinstall with `sudo ../hushline-agents/social/scripts/install_launch_agent.sh --scope daemon`
 - if you need to stop scheduled runs temporarily, disable and boot out both launch agents rather than editing code paths
 - if a wrapper exits with an "already running" message, check for a stale lock directory under `.tmp/`
 - if the daily archive folder is missing, the publisher should not post until the planner recreates that date's archive
