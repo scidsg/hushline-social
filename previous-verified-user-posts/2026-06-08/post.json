@@ -1,0 +1,22 @@
+{
+  "date": "2026-06-08",
+  "display_name": "Waxwing",
+  "editorial_format_label": "Source-safe first contact",
+  "headline": "Waxwing",
+  "image_alt_text": "A social card featuring verified Hush Line user Waxwing, their bio, their tip line URL, and a QR code that links to the same URL.",
+  "opening_line": "First contact should be source-safe.",
+  "planned_date": "2026-06-08",
+  "primary_username": "wxwing",
+  "qr_code_file": "verified-user-qr.png",
+  "social": {
+    "bluesky": "First contact should be source-safe.\n\nWaxwing is a digital justice activist with decades of experience in social movement security.\n\nStart with Waxwing's verified Hush Line URL: https://tips.hushline.app/to/wxwing",
+    "linkedin": "First contact should be source-safe.\n\nWaxwing is a digital justice activist with decades of experience in social movement security. He is also a serial nonprofit founder, software developer, and organizer.\n\nStart with Waxwing's verified Hush Line URL: https://tips.hushline.app/to/wxwing.",
+    "mastodon": "First contact should be source-safe.\n\nWaxwing is a digital justice activist with decades of experience in social movement security. He is also a nonprofit founder, software developer, and organizer.\n\nStart with Waxwing's verified Hush Line URL: https://tips.hushline.app/to/wxwing."
+  },
+  "slot": "verified-user-weekly",
+  "source": "https://tips.hushline.app/directory/users.json",
+  "subtext": "Waxwing (he/him) is a digital justice activist with decades of experience in social movement security. Serial nonprofit founder, software developer, and organizer.",
+  "user_link": "https://tips.hushline.app/to/wxwing",
+  "user_url": "https://tips.hushline.app/to/wxwing",
+  "verified_user_format": "source_safe_first_contact"
+}

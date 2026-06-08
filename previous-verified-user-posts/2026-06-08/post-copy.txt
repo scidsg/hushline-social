@@ -1,0 +1,36 @@
+Slot: verified-user-weekly
+Planned date: 2026-06-08
+Verified user: @wxwing
+User link: https://tips.hushline.app/to/wxwing
+Source: https://tips.hushline.app/directory/users.json
+Editorial format: Source-safe first contact (source_safe_first_contact)
+Opening line: First contact should be source-safe.
+Headline: Waxwing
+Subtext: Waxwing (he/him) is a digital justice activist with decades of experience in social movement security. Serial nonprofit founder, software developer, and organizer.
+
+Image alt text
+A social card featuring verified Hush Line user Waxwing, their bio, their tip line URL, and a QR code that links to the same URL.
+
+Social post copy
+
+LinkedIn (288/3000)
+First contact should be source-safe.
+
+Waxwing is a digital justice activist with decades of experience in social movement security. He is also a serial nonprofit founder, software developer, and organizer.
+
+Start with Waxwing's verified Hush Line URL: https://tips.hushline.app/to/wxwing.
+
+Mastodon (281/500)
+First contact should be source-safe.
+
+Waxwing is a digital justice activist with decades of experience in social movement security. He is also a nonprofit founder, software developer, and organizer.
+
+Start with Waxwing's verified Hush Line URL: https://tips.hushline.app/to/wxwing.
+
+Bluesky (213/300)
+First contact should be source-safe.
+
+Waxwing is a digital justice activist with decades of experience in social movement security.
+
+Start with Waxwing's verified Hush Line URL: https://tips.hushline.app/to/wxwing
+
