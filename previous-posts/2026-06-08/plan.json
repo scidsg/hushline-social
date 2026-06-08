@@ -1,0 +1,107 @@
+{
+  "date": "2026-06-08",
+  "post": {
+    "slot": "monday",
+    "planned_date": "2026-06-08",
+    "screenshot_file": "artvandelay/auth-artvandelay-settings-advanced-desktop-light-fold.png",
+    "content_key": "auth-artvandelay-settings-advanced",
+    "content_format": "design_principle",
+    "headline": "Separate record export from account deletion",
+    "subtext": "Advanced settings keep Download My Data, PGP-encrypted export, and Delete Account as distinct choices for recipients and staff.",
+    "image_alt_text": "A Hush Line daily social post graphic showing the desktop Advanced settings page. The screen separates Download My Data, a checked option to encrypt the export with a PGP key, and a Delete Account section with a permanent-action warning.",
+    "social": {
+      "bluesky": "Saving records is separate from closing an account.\n\nAdvanced settings puts Download My Data, PGP-encrypted export, and Delete Account in distinct sections for recipients and staff.\n\nSign up at https://hushline.app, then review the export first.",
+      "linkedin": "In sensitive intake work, saving records and closing an account are two different decisions.\n\nHush Line keeps Download My Data above Delete Account, with a separate choice to encrypt the export with your PGP key. That design helps journalists, lawyers, educators, organizers, and shared intake teams collect their own records without putting account deletion in the same step.\n\nSign up at https://hushline.app, then use Advanced settings to save the records your team needs before making an account closure decision.",
+      "mastodon": "Saving intake records and deleting an account should not feel like the same decision.\n\nAdvanced settings separates Download My Data, PGP-encrypted export, and Delete Account. Recipients and staff can keep records first, then decide what happens to the account.\n\nSign up at https://hushline.app, then review Advanced settings before account closure."
+    },
+    "rationale": "Selected the recipient-shared Advanced settings screenshot because the required screenshot supports a fresh design-principle angle after a cooldown fallback. Instead of repeating the recent export-before-change message, the post focuses on the visible design choice that separates Download My Data, PGP-encrypted export, and Delete Account so recipients and staff can treat recordkeeping and account closure as different decisions.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "settings-advanced",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "editorial_intent": {
+      "audience_scope": "recipient-shared",
+      "content_format": "design_principle",
+      "content_format_label": "Design principle",
+      "label": "Recipients and staff",
+      "reader_need": "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+      "visual_role": "supporting_screenshot"
+    },
+    "matched_pull_requests": [],
+    "screen_key": "/settings/advanced",
+    "template_name": "hushline-daily-desktop-template.html",
+    "theme": "light",
+    "title": "Settings - Advanced (artvandelay)",
+    "topic_family": "settings-advanced",
+    "visual_selection_reason": "Selected screenshots only after choosing the Recipients and staff editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+    "viewport": "desktop"
+  },
+  "summary": "Daily design principle post for recipients and staff about keeping data export separate from account deletion in Advanced settings.",
+  "critic": {
+    "blocked": false,
+    "criteria": [
+      {
+        "id": "topic_freshness",
+        "label": "Topic freshness",
+        "max_score": 2,
+        "rationale": "Topic family settings-advanced is fresh against the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "hook_freshness",
+        "label": "Hook freshness",
+        "max_score": 2,
+        "rationale": "Opening hook is distinct from recent archive hooks.",
+        "score": 2
+      },
+      {
+        "id": "format_novelty",
+        "label": "Format novelty",
+        "max_score": 2,
+        "rationale": "Format design_principle is not overused in the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "audience_specificity",
+        "label": "Audience specificity",
+        "max_score": 2,
+        "rationale": "Copy contains 5 signal(s) for recipient-shared.",
+        "score": 2
+      },
+      {
+        "id": "concrete_reader_value",
+        "label": "Concrete reader value",
+        "max_score": 2,
+        "rationale": "Copy gives 4 concrete action/value signal(s).",
+        "score": 2
+      },
+      {
+        "id": "hushline_relevance",
+        "label": "Hush Line relevance",
+        "max_score": 2,
+        "rationale": "Copy is tied to Hush Line or a concrete Hush Line surface.",
+        "score": 2
+      },
+      {
+        "id": "cta_freshness",
+        "label": "CTA freshness",
+        "max_score": 2,
+        "rationale": "CTA pattern is fresh against the configured CTA cooldown.",
+        "score": 2
+      },
+      {
+        "id": "safety_compliance",
+        "label": "Safety and compliance",
+        "max_score": 2,
+        "rationale": "Copy avoids unsupported safety, anonymity, and recency claims.",
+        "score": 2
+      }
+    ],
+    "failed_criteria": [],
+    "max_score": 16,
+    "passed": true,
+    "rationale": "Topic freshness: Topic family settings-advanced is fresh against the recent archive. Hook freshness: Opening hook is distinct from recent archive hooks. Format novelty: Format design_principle is not overused in the recent archive. Audience specificity: Copy contains 5 signal(s) for recipient-shared. Concrete reader value: Copy gives 4 concrete action/value signal(s). Hush Line relevance: Copy is tied to Hush Line or a concrete Hush Line surface. CTA freshness: CTA pattern is fresh against the configured CTA cooldown. Safety and compliance: Copy avoids unsupported safety, anonymity, and recency claims.",
+    "score": 16,
+    "threshold": 12
+  }
+}

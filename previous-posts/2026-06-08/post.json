@@ -1,0 +1,36 @@
+{
+  "slot": "monday",
+  "planned_date": "2026-06-08",
+  "screenshot_file": "artvandelay/auth-artvandelay-settings-advanced-desktop-light-fold.png",
+  "content_key": "auth-artvandelay-settings-advanced",
+  "content_format": "design_principle",
+  "headline": "Separate record export from account deletion",
+  "subtext": "Advanced settings keep Download My Data, PGP-encrypted export, and Delete Account as distinct choices for recipients and staff.",
+  "image_alt_text": "A Hush Line daily social post graphic showing the desktop Advanced settings page. The screen separates Download My Data, a checked option to encrypt the export with a PGP key, and a Delete Account section with a permanent-action warning.",
+  "social": {
+    "bluesky": "Saving records is separate from closing an account.\n\nAdvanced settings puts Download My Data, PGP-encrypted export, and Delete Account in distinct sections for recipients and staff.\n\nSign up at https://hushline.app, then review the export first.",
+    "linkedin": "In sensitive intake work, saving records and closing an account are two different decisions.\n\nHush Line keeps Download My Data above Delete Account, with a separate choice to encrypt the export with your PGP key. That design helps journalists, lawyers, educators, organizers, and shared intake teams collect their own records without putting account deletion in the same step.\n\nSign up at https://hushline.app, then use Advanced settings to save the records your team needs before making an account closure decision.",
+    "mastodon": "Saving intake records and deleting an account should not feel like the same decision.\n\nAdvanced settings separates Download My Data, PGP-encrypted export, and Delete Account. Recipients and staff can keep records first, then decide what happens to the account.\n\nSign up at https://hushline.app, then review Advanced settings before account closure."
+  },
+  "rationale": "Selected the recipient-shared Advanced settings screenshot because the required screenshot supports a fresh design-principle angle after a cooldown fallback. Instead of repeating the recent export-before-change message, the post focuses on the visible design choice that separates Download My Data, PGP-encrypted export, and Delete Account so recipients and staff can treat recordkeeping and account closure as different decisions.",
+  "source_pr_numbers": [],
+  "audience_scope": "recipient-shared",
+  "concept_key": "settings-advanced",
+  "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+  "editorial_intent": {
+    "audience_scope": "recipient-shared",
+    "content_format": "design_principle",
+    "content_format_label": "Design principle",
+    "label": "Recipients and staff",
+    "reader_need": "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+    "visual_role": "supporting_screenshot"
+  },
+  "matched_pull_requests": [],
+  "screen_key": "/settings/advanced",
+  "template_name": "hushline-daily-desktop-template.html",
+  "theme": "light",
+  "title": "Settings - Advanced (artvandelay)",
+  "topic_family": "settings-advanced",
+  "visual_selection_reason": "Selected screenshots only after choosing the Recipients and staff editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+  "viewport": "desktop"
+}

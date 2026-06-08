@@ -1,0 +1,33 @@
+Slot: monday
+Planned date: 2026-06-08
+Template: hushline-daily-desktop-template.html
+Screenshot: /Users/scidsg/hushline-screenshots/curated/artvandelay/auth-artvandelay-settings-advanced-desktop-light-fold.png
+Content key: auth-artvandelay-settings-advanced
+Headline: Separate record export from account deletion
+Subtext: Advanced settings keep Download My Data, PGP-encrypted export, and Delete Account as distinct choices for recipients and staff.
+
+Image alt text
+A Hush Line daily social post graphic showing the desktop Advanced settings page. The screen separates Download My Data, a checked option to encrypt the export with a PGP key, and a Delete Account section with a permanent-action warning.
+
+Social post copy
+
+LinkedIn (516/3000)
+In sensitive intake work, saving records and closing an account are two different decisions.
+
+Hush Line keeps Download My Data above Delete Account, with a separate choice to encrypt the export with your PGP key. That design helps journalists, lawyers, educators, organizers, and shared intake teams collect their own records without putting account deletion in the same step.
+
+Sign up at https://hushline.app, then use Advanced settings to save the records your team needs before making an account closure decision.
+
+Mastodon (348/500)
+Saving intake records and deleting an account should not feel like the same decision.
+
+Advanced settings separates Download My Data, PGP-encrypted export, and Delete Account. Recipients and staff can keep records first, then decide what happens to the account.
+
+Sign up at https://hushline.app, then review Advanced settings before account closure.
+
+Bluesky (245/300)
+Saving records is separate from closing an account.
+
+Advanced settings puts Download My Data, PGP-encrypted export, and Delete Account in distinct sections for recipients and staff.
+
+Sign up at https://hushline.app, then review the export first.
