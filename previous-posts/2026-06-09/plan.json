@@ -1,0 +1,118 @@
+{
+  "date": "2026-06-09",
+  "post": {
+    "slot": "tuesday",
+    "planned_date": "2026-06-09",
+    "screenshot_file": "artvandelay/auth-artvandelay-tools-email-validation-status-valid-desktop-light-fold.png",
+    "content_key": "auth-artvandelay-tools-email-validation-status-valid",
+    "content_format": "feature_benefit",
+    "headline": "Decide how an email fits the review",
+    "subtext": "Email Validation gives recipients and staff a plain result they can read before an outside email shapes the next inbox decision.",
+    "image_alt_text": "A Hush Line daily social asset showing the desktop Email Validation screen. The graphic shows a raw email headers field, a Validate Headers button, a Download Report button, and a validation summary saying the email appears to originate from the stated sender.",
+    "social": {
+      "bluesky": "Some messages arrive in Hush Line. Others reach a recipient by ordinary email.\n\nEmail Validation shows whether Hush Line says an email appears to originate from the stated sender, so staff can decide how it fits the next inbox review.\n\nReview messages with Hush Line: https://hushline.app.",
+      "linkedin": "Some messages arrive in Hush Line. Others reach a recipient by ordinary email and still need a careful read.\n\nEmail Validation gives recipients and staff a place to paste the email's original metadata and see whether Hush Line says it appears to originate from the stated sender. That helps a newsroom, law office, educator, or security desk decide how the email fits the next inbox review.\n\nUse Hush Line to review sensitive messages with the context your team needs: https://hushline.app.",
+      "mastodon": "Some messages arrive in Hush Line. Others reach a recipient by ordinary email and still need a careful read.\n\nEmail Validation shows whether Hush Line says an email appears to originate from the stated sender, so recipients and staff can decide how it fits the next inbox review.\n\nReview sensitive messages with Hush Line: https://hushline.app."
+    },
+    "rationale": "Selected the required recipient-shared Email Validation desktop screenshot and shifted the angle away from earlier suspicious-header, report-download, and handoff language. The post focuses on helping recipients and staff decide how ordinary email should affect the next Hush Line inbox review.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "tools-email-validation-status-valid",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "editorial_intent": {
+      "audience_scope": "recipient-shared",
+      "content_format": "feature_benefit",
+      "content_format_label": "Feature benefit",
+      "label": "Recipients and staff",
+      "reader_need": "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+      "visual_role": "supporting_screenshot"
+    },
+    "matched_pull_requests": [
+      {
+        "merged_at": "2026-06-07T08:26:51Z",
+        "number": 2154,
+        "title": "Show active account in hourly Codex status"
+      },
+      {
+        "merged_at": "2026-06-07T08:46:17Z",
+        "number": 2153,
+        "title": "Show configured model in hourly Codex status"
+      }
+    ],
+    "screen_key": "/email-headers",
+    "template_name": "hushline-daily-desktop-template-2.html",
+    "theme": "light",
+    "title": "Tools - Email Validation status: appears valid (artvandelay)",
+    "topic_family": "email-headers",
+    "visual_selection_reason": "Selected screenshots only after choosing the Recipients and staff editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+    "viewport": "desktop"
+  },
+  "summary": "Daily recipient-shared feature benefit post using the desktop Email Validation screenshot.",
+  "critic": {
+    "blocked": false,
+    "criteria": [
+      {
+        "id": "topic_freshness",
+        "label": "Topic freshness",
+        "max_score": 2,
+        "rationale": "Topic family email-headers is fresh against the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "hook_freshness",
+        "label": "Hook freshness",
+        "max_score": 2,
+        "rationale": "Opening hook is distinct from recent archive hooks.",
+        "score": 2
+      },
+      {
+        "id": "format_novelty",
+        "label": "Format novelty",
+        "max_score": 2,
+        "rationale": "Format feature_benefit is not overused in the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "audience_specificity",
+        "label": "Audience specificity",
+        "max_score": 2,
+        "rationale": "Copy contains 5 signal(s) for recipient-shared.",
+        "score": 2
+      },
+      {
+        "id": "concrete_reader_value",
+        "label": "Concrete reader value",
+        "max_score": 2,
+        "rationale": "Copy gives 4 concrete action/value signal(s).",
+        "score": 2
+      },
+      {
+        "id": "hushline_relevance",
+        "label": "Hush Line relevance",
+        "max_score": 2,
+        "rationale": "Copy is tied to Hush Line or a concrete Hush Line surface.",
+        "score": 2
+      },
+      {
+        "id": "cta_freshness",
+        "label": "CTA freshness",
+        "max_score": 2,
+        "rationale": "CTA pattern is fresh against the configured CTA cooldown.",
+        "score": 2
+      },
+      {
+        "id": "safety_compliance",
+        "label": "Safety and compliance",
+        "max_score": 2,
+        "rationale": "Copy avoids unsupported safety, anonymity, and recency claims.",
+        "score": 2
+      }
+    ],
+    "failed_criteria": [],
+    "max_score": 16,
+    "passed": true,
+    "rationale": "Topic freshness: Topic family email-headers is fresh against the recent archive. Hook freshness: Opening hook is distinct from recent archive hooks. Format novelty: Format feature_benefit is not overused in the recent archive. Audience specificity: Copy contains 5 signal(s) for recipient-shared. Concrete reader value: Copy gives 4 concrete action/value signal(s). Hush Line relevance: Copy is tied to Hush Line or a concrete Hush Line surface. CTA freshness: CTA pattern is fresh against the configured CTA cooldown. Safety and compliance: Copy avoids unsupported safety, anonymity, and recency claims.",
+    "score": 16,
+    "threshold": 12
+  }
+}

@@ -1,0 +1,33 @@
+Slot: tuesday
+Planned date: 2026-06-09
+Template: hushline-daily-desktop-template-2.html
+Screenshot: /Users/scidsg/hushline-screenshots/curated/artvandelay/auth-artvandelay-tools-email-validation-status-valid-desktop-light-fold.png
+Content key: auth-artvandelay-tools-email-validation-status-valid
+Headline: Decide how an email fits the review
+Subtext: Email Validation gives recipients and staff a plain result they can read before an outside email shapes the next inbox decision.
+
+Image alt text
+A Hush Line daily social asset showing the desktop Email Validation screen. The graphic shows a raw email headers field, a Validate Headers button, a Download Report button, and a validation summary saying the email appears to originate from the stated sender.
+
+Social post copy
+
+LinkedIn (490/3000)
+Some messages arrive in Hush Line. Others reach a recipient by ordinary email and still need a careful read.
+
+Email Validation gives recipients and staff a place to paste the email's original metadata and see whether Hush Line says it appears to originate from the stated sender. That helps a newsroom, law office, educator, or security desk decide how the email fits the next inbox review.
+
+Use Hush Line to review sensitive messages with the context your team needs: https://hushline.app.
+
+Mastodon (344/500)
+Some messages arrive in Hush Line. Others reach a recipient by ordinary email and still need a careful read.
+
+Email Validation shows whether Hush Line says an email appears to originate from the stated sender, so recipients and staff can decide how it fits the next inbox review.
+
+Review sensitive messages with Hush Line: https://hushline.app.
+
+Bluesky (289/300)
+Some messages arrive in Hush Line. Others reach a recipient by ordinary email.
+
+Email Validation shows whether Hush Line says an email appears to originate from the stated sender, so staff can decide how it fits the next inbox review.
+
+Review messages with Hush Line: https://hushline.app.
