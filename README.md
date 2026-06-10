@@ -2,7 +2,7 @@
 
 Dynamic social-post automation for Hush Line.
 
-This repo plans one post per publish date from current local Hush Line context, renders the social asset from the approved template set, archives the result in-repo, and publishes LinkedIn first for the daily flow.
+This repo plans one post per publish date from current local Hush Line context, renders the social asset from the approved template set, archives the result in-repo, and publishes LinkedIn first. Mastodon can be enabled as the next publishing target with `HUSHLINE_SOCIAL_MASTODON_ENABLED=1`.
 
 Launchd wrappers, agent shell entrypoints, installer scripts, and runner operations docs now live in the public [`hushline-agents`](https://github.com/scidsg/hushline-agents) repository under `social/`. This repo remains the social content checkout: Node planners/publishers, templates, assets, and generated archives.
 
@@ -13,30 +13,29 @@ Launchd wrappers, agent shell entrypoints, installer scripts, and runner operati
 - selects screenshots only from `../hushline-screenshots/releases/latest`
 - writes network-specific copy plus separate image alt text
 - renders the final `@2x` PNG asset into `previous-posts/YYYY-MM-DD`
-- uses the pushed dated archive folder as the LinkedIn publication-state record across machines
+- writes network-specific publication records in the dated archive folder after a successful publish
 - discovers regular daily templates from any `templates/hushline-daily-*.html` file
 - picks one matching daily template at random for each run, then constrains the screenshot choice to that template type
 - enforces weekly daily-post caps of at most one admin-targeted screenshot and at most one dark-mode screenshot per Monday-through-Friday week
 - renders one weekly verified-user post archive from directory JSON into `previous-verified-user-posts/YYYY-MM-DD`
 - writes network-specific copy, alt text, and a `post-copy.txt` alongside the verified-user card assets
 - fills the verified-user template with display name, bio, direct `/to/...` URL, and a matching QR code
-- publishes the weekly verified-user archive to LinkedIn after rendering
-- pushes the weekly verified-user archive to git after successful LinkedIn publication so the pushed dated folder itself is the published-state record
+- publishes the weekly verified-user archive to LinkedIn after rendering, plus Mastodon when enabled
+- pushes the weekly verified-user archive to git after all enabled network publishers succeed
 - plans one weekly whistleblower-related news article from approved mainstream sources into `previous-article-posts/YYYY-MM-DD`
-- publishes the weekly article-share post to LinkedIn on Wednesdays at noon, then pushes the article archive after successful publication
+- publishes the weekly article-share post to LinkedIn, plus Mastodon when enabled, then pushes the article archive after successful publication
 
 ## Schedule
 
-Default launchd schedules are weekday-only:
+Default launchd schedules:
 
-- planner: `06:00` local time, Monday through Friday
-- LinkedIn publisher: `06:10` local time, Monday through Friday
-- weekly article planner: `11:50` local time every Wednesday
-- weekly article LinkedIn publisher: `12:00` local time every Wednesday
-- verified-user weekly runner: `12:00` local time every Monday
-- verified-user LinkedIn publisher: `12:10` local time every Monday
+- Hush Line feature post agent: daily at `04:00`, publishes at a random target between `04:00` and `09:00`
+- whistleblower news post agent: daily at `04:00`, publishes at a random target between `04:00` and `09:00`
+- verified-user post agent: Monday through Friday at `04:00`, selects one weekday per week, then publishes at a random target between `04:00` and `09:00`
 
 Weekend dates are intentionally skipped by both the launchd wrappers and the direct daily planner/publisher entrypoints.
+
+The current named post-agent launchd jobs publish all enabled networks in one run. LinkedIn is always enabled. Mastodon is opt-in and runs after LinkedIn when `HUSHLINE_SOCIAL_MASTODON_ENABLED=1`.
 
 ## Key Paths
 
@@ -55,27 +54,21 @@ Use the launchd wrappers so env loading and lock handling match production:
 
 ```sh
 cd /Users/scidsg/hushline-agents
-./social/scripts/run_daily_planner_launchd.sh
-./social/scripts/run_daily_linkedin_launchd.sh
-./social/scripts/run_weekly_article_launchd.sh
-./social/scripts/run_weekly_article_linkedin_launchd.sh
-./social/scripts/run_verified_user_weekly_launchd.sh
-./social/scripts/run_verified_user_weekly_linkedin_launchd.sh
+./social/scripts/run_hushline_feature_post_agent_launchd.sh
+./social/scripts/run_whistleblower_news_post_agent_launchd.sh
+./social/scripts/run_hushline_verified_user_post_agent_launchd.sh
 ```
 
 For a specific weekday or Monday:
 
 ```sh
 cd /Users/scidsg/hushline-agents
-./social/scripts/run_daily_planner_launchd.sh --date YYYY-MM-DD
-./social/scripts/run_daily_linkedin_launchd.sh --date YYYY-MM-DD
-./social/scripts/run_weekly_article_launchd.sh --date YYYY-MM-DD
-./social/scripts/run_weekly_article_linkedin_launchd.sh --date YYYY-MM-DD
-./social/scripts/run_verified_user_weekly_launchd.sh --date YYYY-MM-DD
-./social/scripts/run_verified_user_weekly_linkedin_launchd.sh --date YYYY-MM-DD
+./social/scripts/run_hushline_feature_post_agent_launchd.sh --date YYYY-MM-DD
+./social/scripts/run_whistleblower_news_post_agent_launchd.sh --date YYYY-MM-DD
+./social/scripts/run_hushline_verified_user_post_agent_launchd.sh --date YYYY-MM-DD
 ```
 
-Weekly article posts are text-only LinkedIn posts that select one current whistleblower-related article from an approved source allowlist: The New York Times, The Atlantic, The Guardian, BBC News, Al Jazeera, ABC News, NBC News, CBS News, and CNN. The selector rejects blocked/fringe sources, requires whistleblower-related relevance, includes the article link, and ends with a Hush Line signup call to action.
+Whistleblower news article posts are text-only posts that select one current whistleblower-related article from an approved source allowlist: The New York Times, The Atlantic, The Guardian, BBC News, Al Jazeera, ABC News, NBC News, CBS News, and CNN. The selector rejects blocked/fringe sources, requires whistleblower-related relevance, includes the article link, and ends with a Hush Line signup call to action.
 
 To inspect whether recent archived posts are becoming repetitive:
 
@@ -155,6 +148,13 @@ Daemon mode needs a fully non-interactive `.env.launchd` setup:
 - `LINKEDIN_ACCESS_TOKEN`
 - `LINKEDIN_AUTHOR_URN`
 
+Optional Mastodon publishing:
+
+- `HUSHLINE_SOCIAL_MASTODON_ENABLED=1`
+- `MASTODON_INSTANCE_URL` such as `https://mastodon.social`
+- `MASTODON_ACCESS_TOKEN` with `write:statuses` and `write:media`
+- `MASTODON_VISIBILITY` defaults to `public`; supported values are `public`, `unlisted`, `private`, and `direct`
+
 Optional Codex overrides:
 
 - `CODEX_MODEL` defaults to `gpt-5.5`
@@ -181,11 +181,12 @@ cd /Users/scidsg/hushline-agents
 - The planner fails on stale screenshot data unless explicitly overridden.
 - The daily planner enforces hard weekly caps for the weekday run set: no more than one admin-targeted post and no more than one dark-mode screenshot in the same Monday-through-Friday week.
 - The daily planner and manual daily post wrappers can reset tracked changes, remove untracked files, and run `git pull --ff-only` in both `hushline-social` and `../hushline-screenshots` before planning.
-- The daily planner keeps its archive local by default; the daily LinkedIn publisher pushes `previous-posts/YYYY-MM-DD` after successful publication, and the pushed dated folder is the publication-state signal across machines.
-- The weekly article planner keeps its archive local by default; the weekly article LinkedIn publisher pushes `previous-article-posts/YYYY-MM-DD` after successful publication, and the pushed dated folder is the publication-state signal across machines.
+- The daily planner keeps its archive local by default; the named post agent pushes `previous-posts/YYYY-MM-DD` after all enabled network publishers succeed.
+- The weekly article planner keeps its archive local by default; the named post agent pushes `previous-article-posts/YYYY-MM-DD` after all enabled network publishers succeed.
 - The verified-user weekly LaunchAgents are scheduled for Mondays, but the manual wrappers can be run for any date override.
-- The verified-user LinkedIn publisher posts from `previous-verified-user-posts/YYYY-MM-DD`.
-- The weekly verified-user render step keeps its archive local by default; the LinkedIn publish step pushes that dated folder after successful publication, and the pushed dated folder is the publication-state signal across machines.
+- The verified-user publisher posts from `previous-verified-user-posts/YYYY-MM-DD`.
+- The weekly verified-user render step keeps its archive local by default; the named post agent pushes that dated folder after all enabled network publishers succeed.
+- `linkedin-publication.json` and `mastodon-publication.json` record per-network publication state inside each archive folder. Older archives without `linkedin-publication.json` are still treated as already published to LinkedIn when their pushed `post.json` exists.
 - Weekly verified-user copy rotates across six grounded editorial formats: why follow this tip line, what this recipient covers, before you contact them, how to verify the link, source-safe first contact, and from the directory. Each archive records `verified_user_format` and `opening_line` in `post.json`.
 - Verified-user copy must stay grounded in the directory profile. The generator can rewrite first-person bios into third person and clean punctuation, but it must not invent beats, specialties, claims, solicitation categories, or audience fit beyond the profile text.
 - Do not use this repo to permanently patch upstream screenshot ownership issues; fix those in `../hushline`.
