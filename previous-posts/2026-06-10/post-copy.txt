@@ -1,0 +1,33 @@
+Slot: wednesday
+Planned date: 2026-06-10
+Template: hushline-daily-desktop-template.html
+Screenshot: /Users/scidsg/hushline-screenshots/curated/newman/auth-newman-onboarding-notifications-desktop-light-fold.png
+Content key: auth-newman-onboarding-notifications
+Headline: Make new tips visible to the right inbox
+Subtext: The onboarding step asks where Hush Line should send new tips so recipients can set email delivery before people rely on the tip line.
+
+Image alt text
+Hush Line daily social asset showing the desktop onboarding screen for notifications. The screen says "Where should we send new tips?" and includes an Email Address field, illustrating the plain principle that sensitive reports need a clear path to timely review.
+
+Social post copy
+
+LinkedIn (445/3000)
+A whistleblowing process needs a clear path from first message to review. For recipients and staff, that starts with deciding where new tips should go.
+
+The onboarding screen asks, "Where should we send new tips?" Recipients can set an email address for notifications while keeping the Hush Line inbox as the place for message review, including decisions about whether encrypted tip contents belong in email.
+
+Learn more at https://hushline.app.
+
+Mastodon (307/500)
+A whistleblowing process works better when new tips have a clear review path.
+
+In onboarding, Hush Line asks recipients, "Where should we send new tips?" Set email notifications while keeping the Hush Line inbox as the place staff review messages and encrypted contents.
+
+Learn more at https://hushline.app.
+
+Bluesky (218/300)
+New tips need a clear review path.
+
+Hush Line onboarding asks recipients, "Where should we send new tips?" Set email notifications before staff rely on the inbox for message review.
+
+Learn more at https://hushline.app.

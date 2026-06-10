@@ -1,0 +1,36 @@
+{
+  "slot": "wednesday",
+  "planned_date": "2026-06-10",
+  "screenshot_file": "newman/auth-newman-onboarding-notifications-desktop-light-fold.png",
+  "content_key": "auth-newman-onboarding-notifications",
+  "content_format": "iso_37002_principle",
+  "headline": "Make new tips visible to the right inbox",
+  "subtext": "The onboarding step asks where Hush Line should send new tips so recipients can set email delivery before people rely on the tip line.",
+  "image_alt_text": "Hush Line daily social asset showing the desktop onboarding screen for notifications. The screen says \"Where should we send new tips?\" and includes an Email Address field, illustrating the plain principle that sensitive reports need a clear path to timely review.",
+  "social": {
+    "bluesky": "New tips need a clear review path.\n\nHush Line onboarding asks recipients, \"Where should we send new tips?\" Set email notifications before staff rely on the inbox for message review.\n\nLearn more at https://hushline.app.",
+    "linkedin": "A whistleblowing process needs a clear path from first message to review. For recipients and staff, that starts with deciding where new tips should go.\n\nThe onboarding screen asks, \"Where should we send new tips?\" Recipients can set an email address for notifications while keeping the Hush Line inbox as the place for message review, including decisions about whether encrypted tip contents belong in email.\n\nLearn more at https://hushline.app.",
+    "mastodon": "A whistleblowing process works better when new tips have a clear review path.\n\nIn onboarding, Hush Line asks recipients, \"Where should we send new tips?\" Set email notifications while keeping the Hush Line inbox as the place staff review messages and encrypted contents.\n\nLearn more at https://hushline.app."
+  },
+  "rationale": "Selected the recipient-shared onboarding notifications screenshot because it supports the required ISO 37002 principle format through timely handling of reports. The archive recently used a settings notifications workflow teardown on 2026-06-05, so this draft avoids forwarding-rule language and focuses on the setup decision shown in the screenshot: choosing where new tips should be sent before a public tip line is used by sources.",
+  "source_pr_numbers": [],
+  "audience_scope": "recipient-shared",
+  "concept_key": "onboarding-notifications",
+  "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+  "editorial_intent": {
+    "audience_scope": "recipient-shared",
+    "content_format": "iso_37002_principle",
+    "content_format_label": "ISO 37002 principle",
+    "label": "Recipients and staff",
+    "reader_need": "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+    "visual_role": "supporting_screenshot"
+  },
+  "matched_pull_requests": [],
+  "screen_key": "onboarding-notifications",
+  "template_name": "hushline-daily-desktop-template.html",
+  "theme": "light",
+  "title": "Onboarding - Step 3 Notifications (newman)",
+  "topic_family": "notifications",
+  "visual_selection_reason": "Selected screenshots only after choosing the Recipients and staff editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+  "viewport": "desktop"
+}
