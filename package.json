@@ -7,6 +7,7 @@
     "plan:article:weekly": "node scripts/plan-weekly-article-post.js",
     "plan:verified-user:weekly": "../hushline-agents/social/scripts/agent_weekly_verified_user_runner.sh",
     "publish:linkedin:daily": "../hushline-agents/social/scripts/agent_daily_linkedin_publisher.sh",
+    "publish:mastodon:daily": "../hushline-agents/social/scripts/agent_daily_mastodon_publisher.sh",
     "render:verified-user": "node scripts/render-verified-user-post.js",
     "install:launch-agent": "../hushline-agents/social/scripts/install_launch_agent.sh",
     "install:launch-daemon": "sudo ../hushline-agents/social/scripts/install_launch_agent.sh --scope daemon",

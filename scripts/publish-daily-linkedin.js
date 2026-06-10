@@ -12,6 +12,7 @@ const {
   isValidArchiveKey,
   isWeekendDate,
   readJson,
+  writeJson,
 } = require("./lib/social-common");
 
 function todayString() {
@@ -202,6 +203,17 @@ function getRepoArchiveRootName(args) {
   return null;
 }
 
+function archiveKindLabel(args) {
+  const archiveRootName = path.basename(args.dateRoot);
+  if (archiveRootName === "previous-verified-user-posts") {
+    return "Verified-user archive";
+  }
+  if (archiveRootName === "previous-article-posts") {
+    return "Article-share archive";
+  }
+  return "Daily archive";
+}
+
 function remoteArchivePublished(args) {
   const archiveRootName = getRepoArchiveRootName(args);
 
@@ -211,7 +223,8 @@ function remoteArchivePublished(args) {
 
   const remote = process.env.HUSHLINE_SOCIAL_ARCHIVE_REMOTE || "origin";
   const branch = process.env.HUSHLINE_SOCIAL_ARCHIVE_BRANCH || "main";
-  const archivePath = `${archiveRootName}/${args.archiveKey}/post.json`;
+  const publicationRecordPath = `${archiveRootName}/${args.archiveKey}/linkedin-publication.json`;
+  const legacyArchivePath = `${archiveRootName}/${args.archiveKey}/post.json`;
   const remoteRef = `refs/remotes/${remote}/${branch}`;
 
   try {
@@ -219,14 +232,42 @@ function remoteArchivePublished(args) {
       cwd: REPO_ROOT,
       stdio: "ignore",
     });
-    execFileSync("git", ["cat-file", "-e", `${remote}/${branch}:${archivePath}`], {
+    execFileSync("git", ["cat-file", "-e", `${remote}/${branch}:${publicationRecordPath}`], {
       cwd: REPO_ROOT,
       stdio: "ignore",
     });
     return { archiveRootName, branch, published: true, remote };
   } catch {
-    return { archiveRootName, branch, published: false, remote };
+    try {
+      execFileSync("git", ["cat-file", "-e", `${remote}/${branch}:${legacyArchivePath}`], {
+        cwd: REPO_ROOT,
+        stdio: "ignore",
+      });
+      return { archiveRootName, branch, published: true, remote };
+    } catch {
+      return { archiveRootName, branch, published: false, remote };
+    }
   }
+}
+
+function publicationRecordPath(args) {
+  return path.join(getDailyPostDir(args), "linkedin-publication.json");
+}
+
+function localPublicationRecordExists(args) {
+  return fs.existsSync(publicationRecordPath(args));
+}
+
+function writePublicationRecord(args, { post, publication }) {
+  writeJson(publicationRecordPath(args), {
+    archive_key: args.archiveKey,
+    platform: "linkedin",
+    planned_date: args.date,
+    post_id: publication.postId || "",
+    published_at: new Date().toISOString(),
+    slot: post.slot || "",
+    status: publication.status || null,
+  });
 }
 
 function resolveArchivedDailyPost(args) {
@@ -416,10 +457,16 @@ async function main() {
     throw new Error(`Rendered image not found for ${post.slot}: ${imagePath}`);
   }
 
+  if (!args.force && localPublicationRecordExists(args)) {
+    const archiveLabel = archiveKindLabel(args);
+    process.stdout.write(
+      `${archiveLabel} container ${args.archiveKey} already has a local LinkedIn publication record; skipping publish.\n`,
+    );
+    return;
+  }
+
   if (remotePublished.published && !args.force) {
-    const archiveLabel = remotePublished.archiveRootName === "previous-verified-user-posts"
-      ? "Verified-user archive"
-      : "Daily archive";
+    const archiveLabel = archiveKindLabel(args);
     process.stdout.write(
       `${archiveLabel} container ${args.archiveKey} is already present on ${remotePublished.remote}/${remotePublished.branch}; assuming LinkedIn post already published.\n`,
     );
@@ -478,6 +525,7 @@ async function main() {
       });
     },
   });
+  writePublicationRecord(args, { post, publication: created });
 
   process.stdout.write(
     [
