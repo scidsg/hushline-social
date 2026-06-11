@@ -42,6 +42,7 @@ test("daily planner auto-syncs before rejecting a stale local screenshots manife
   const testScript = [
     "set -euo pipefail",
     `export HUSHLINE_SCREENSHOTS_REPO_DIR=${shellQuote(screenshotsRoot)}`,
+    `export HUSHLINE_CURRENT_SCREENSHOTS_DIR=${shellQuote(path.join(tempRoot, "missing-current"))}`,
     "export HUSHLINE_SCREENSHOT_MAX_AGE_DAYS=21",
     "export HUSHLINE_SCREENSHOT_AUTO_SYNC=1",
     "export HUSHLINE_ALLOW_STALE_SCREENSHOTS=0",
@@ -72,6 +73,42 @@ test("daily planner auto-syncs before rejecting a stale local screenshots manife
     const manifest = JSON.parse(fs.readFileSync(path.join(latestRoot, "manifest.json"), "utf8"));
     assert.equal(manifest.release, "fresh");
     assert.equal(fs.readFileSync(path.join(latestRoot, "guest", "fresh-fold.png"), "utf8"), "png");
+  } finally {
+    fs.rmSync(tempRoot, { force: true, recursive: true });
+  }
+});
+
+test("daily planner accepts fresh current screenshots before checking release manifest", () => {
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "daily-planner-current-"));
+  const screenshotsRoot = path.join(tempRoot, "hushline-screenshots");
+  const currentRoot = path.join(tempRoot, "current-screenshots");
+
+  fs.mkdirSync(path.join(screenshotsRoot, ".git"), { recursive: true });
+  fs.mkdirSync(path.join(currentRoot, "guest"), { recursive: true });
+  fs.writeFileSync(
+    path.join(currentRoot, "guest", "guest-directory-verified-desktop-light-fold.png"),
+    "png",
+  );
+
+  const testScript = [
+    "set -euo pipefail",
+    `export HUSHLINE_SCREENSHOTS_REPO_DIR=${shellQuote(screenshotsRoot)}`,
+    `export HUSHLINE_CURRENT_SCREENSHOTS_DIR=${shellQuote(currentRoot)}`,
+    "export HUSHLINE_SCREENSHOT_MAX_AGE_DAYS=21",
+    "export HUSHLINE_ALLOW_STALE_SCREENSHOTS=0",
+    `source ${shellQuote(plannerScriptPath)}`,
+    "verify_screenshot_source",
+    "",
+  ].join("\n");
+
+  try {
+    const output = execFileSync("bash", ["-c", testScript], {
+      cwd: REPO_ROOT,
+      encoding: "utf8",
+    });
+
+    assert.match(output, /Current screenshots folder:/);
+    assert.match(output, /fold_screenshots=1/);
   } finally {
     fs.rmSync(tempRoot, { force: true, recursive: true });
   }

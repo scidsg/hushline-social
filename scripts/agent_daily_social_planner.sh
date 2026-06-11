@@ -4,6 +4,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 SCREENSHOTS_REPO_DIR="${HUSHLINE_SCREENSHOTS_REPO_DIR:-$(cd "$REPO_DIR/.." && pwd)/hushline-screenshots}"
+CURRENT_SCREENSHOTS_DIR="${HUSHLINE_CURRENT_SCREENSHOTS_DIR:-${HUSHLINE_SCREENSHOTS_CURRENT_DIR:-$(cd "$REPO_DIR/.." && pwd)/hushline-website/src/assets/img/screenshots/current}}"
 SCREENSHOT_MAX_AGE_DAYS="${HUSHLINE_SCREENSHOT_MAX_AGE_DAYS:-21}"
 SCREENSHOT_AUTO_SYNC="${HUSHLINE_SCREENSHOT_AUTO_SYNC:-1}"
 SCREENSHOT_REMOTE_CHECK_ATTEMPTS="${HUSHLINE_SCREENSHOT_REMOTE_CHECK_ATTEMPTS:-3}"
@@ -461,6 +462,8 @@ push_archive() {
 
 verify_screenshot_source() {
   local manifest_path="$SCREENSHOTS_REPO_DIR/releases/latest/manifest.json"
+  local current_fold_count=""
+  local current_age_days=""
   local local_release=""
   local local_captured_at=""
   local age_days=""
@@ -470,6 +473,25 @@ verify_screenshot_source() {
   if [[ ! -d "$SCREENSHOTS_REPO_DIR/.git" ]]; then
     echo "Missing screenshots repo checkout: $SCREENSHOTS_REPO_DIR" >&2
     exit 1
+  fi
+
+  if [[ -d "$CURRENT_SCREENSHOTS_DIR" ]]; then
+    current_fold_count="$(find "$CURRENT_SCREENSHOTS_DIR" -type f -name '*-fold.png' | wc -l | tr -d ' ')"
+    if [[ "$current_fold_count" == "0" ]]; then
+      echo "Current screenshots folder contains no fold screenshots: $CURRENT_SCREENSHOTS_DIR" >&2
+      exit 1
+    fi
+
+    current_age_days="$(node -e 'const fs=require("fs"); const path=require("path"); const root=process.argv[1]; let latest=0; const walk=(dir)=>{for(const entry of fs.readdirSync(dir,{withFileTypes:true})){const full=path.join(dir,entry.name); if(entry.isDirectory()) walk(full); else if(entry.name.endsWith("-fold.png")) latest=Math.max(latest, fs.statSync(full).mtimeMs);}}; walk(root); const age=Math.floor((Date.now()-latest)/86400000); process.stdout.write(String(age));' "$CURRENT_SCREENSHOTS_DIR")"
+    echo "Current screenshots folder: path=$CURRENT_SCREENSHOTS_DIR fold_screenshots=$current_fold_count newest_age_days=$current_age_days"
+
+    if [[ "$ALLOW_STALE_SCREENSHOTS" != "1" ]] && [[ "$current_age_days" =~ ^[0-9]+$ ]] && (( current_age_days > SCREENSHOT_MAX_AGE_DAYS )); then
+      echo "Current screenshots are older than ${SCREENSHOT_MAX_AGE_DAYS} days." >&2
+      echo "Set HUSHLINE_ALLOW_STALE_SCREENSHOTS=1 to override intentionally." >&2
+      exit 1
+    fi
+
+    return
   fi
 
   if [[ ! -f "$manifest_path" ]]; then

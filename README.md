@@ -10,7 +10,7 @@ Launchd wrappers, agent shell entrypoints, installer scripts, and runner operati
 
 - builds one fresh post per run from current docs and the latest screenshot set
 - randomly picks one eligible screenshot per run after excluding recent repeats of the same screen
-- selects screenshots only from `../hushline-screenshots/releases/latest`
+- selects screenshots from `../hushline-website/src/assets/img/screenshots/current` when present, falling back to curated/release screenshots
 - writes network-specific copy plus separate image alt text
 - renders the final `@2x` PNG asset into `previous-posts/YYYY-MM-DD`
 - writes network-specific publication records in the dated archive folder after a successful publish
@@ -42,7 +42,7 @@ The current named post-agent launchd jobs publish all enabled networks in one ru
 - social repo: `/Users/scidsg/hushline-social`
 - agent repo: `/Users/scidsg/hushline-agents`
 - upstream app repo: `../hushline`
-- screenshot source: `../hushline-screenshots/releases/latest`
+- screenshot source: `../hushline-website/src/assets/img/screenshots/current`
 - daily archive root: `previous-posts`
 - verified-user archive root: `previous-verified-user-posts`
 - launchd env file: `.env.launchd`

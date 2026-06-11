@@ -8,12 +8,21 @@ const REPO_ROOT = path.resolve(__dirname, "..", "..");
 const SCREENSHOTS_REPO_ROOT = path.resolve(
   process.env.HUSHLINE_SCREENSHOTS_REPO_DIR || path.join(REPO_ROOT, "..", "hushline-screenshots"),
 );
+const CURRENT_SCREENSHOTS_ROOT = path.resolve(
+  process.env.HUSHLINE_CURRENT_SCREENSHOTS_DIR ||
+    process.env.HUSHLINE_SCREENSHOTS_CURRENT_DIR ||
+    path.join(REPO_ROOT, "..", "hushline-website", "src", "assets", "img", "screenshots", "current"),
+);
 const CURATED_SCREENSHOTS_ROOT = path.join(SCREENSHOTS_REPO_ROOT, "curated");
 const LATEST_SCREENSHOTS_ROOT = path.join(SCREENSHOTS_REPO_ROOT, "releases", "latest");
-const SCREENSHOTS_ROOT = fs.existsSync(CURATED_SCREENSHOTS_ROOT)
-  ? CURATED_SCREENSHOTS_ROOT
-  : LATEST_SCREENSHOTS_ROOT;
-const SCREENSHOT_MANIFEST = path.join(LATEST_SCREENSHOTS_ROOT, "manifest.json");
+const SCREENSHOTS_ROOT = [
+  CURRENT_SCREENSHOTS_ROOT,
+  CURATED_SCREENSHOTS_ROOT,
+  LATEST_SCREENSHOTS_ROOT,
+].find((candidate) => fs.existsSync(candidate)) || LATEST_SCREENSHOTS_ROOT;
+const SCREENSHOT_MANIFEST = fs.existsSync(path.join(SCREENSHOTS_ROOT, "manifest.json"))
+  ? path.join(SCREENSHOTS_ROOT, "manifest.json")
+  : path.join(LATEST_SCREENSHOTS_ROOT, "manifest.json");
 const HUSHLINE_ROOT = path.resolve(process.env.HUSHLINE_ROOT || path.join(REPO_ROOT, "..", "hushline"));
 const HUSHLINE_DOCS_ROOT = path.resolve(process.env.HUSHLINE_DOCS_ROOT || HUSHLINE_ROOT);
 const HUSHLINE_DOCS_DIRS = [...new Set([
@@ -272,7 +281,7 @@ function ensureLatestFoldScreenshot(screenshotPath) {
     !path.basename(resolved).endsWith("-fold.png")
   ) {
     throw new Error(
-      "Screenshot must come from the local `hushline-screenshots/releases/latest` folder and use an above-the-fold `-fold` capture.",
+      `Screenshot must come from the configured screenshots folder (${SCREENSHOTS_ROOT}) and use an above-the-fold \`-fold\` capture.`,
     );
   }
 
@@ -466,6 +475,7 @@ function execJson(command, args, options = {}) {
 module.exports = {
   ARCHIVE_KEY_PATTERN,
   CHROME_CANDIDATES,
+  CURRENT_SCREENSHOTS_ROOT,
   HUSHLINE_DOCS_DIRS,
   HUSHLINE_DOCS_ROOT,
   HUSHLINE_ROOT,

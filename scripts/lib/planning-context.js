@@ -9,6 +9,7 @@ const {
   LIMITS,
   REPO_ROOT,
   SCREENSHOT_MANIFEST,
+  SCREENSHOTS_ROOT,
   excerptText,
   inferScreenKey,
   listFilesRecursive,
@@ -123,6 +124,10 @@ function getIsoWeekStart(week) {
 }
 
 function loadScreenshotInventory() {
+  if (!SCREENSHOT_MANIFEST.startsWith(`${SCREENSHOTS_ROOT}${path.sep}`)) {
+    return loadScreenshotInventoryFromFiles();
+  }
+
   const manifest = readJson(SCREENSHOT_MANIFEST);
 
   return {
@@ -159,6 +164,111 @@ function loadScreenshotInventory() {
       })
       .filter(Boolean),
     release: manifest.release,
+  };
+}
+
+function screenshotContentKey(relativeFile) {
+  return path.basename(relativeFile, ".png")
+    .replace(/-(desktop|mobile)-(light|dark)-fold$/i, "");
+}
+
+function screenshotTitle(contentKey) {
+  return contentKey
+    .replace(/^(auth|guest)-(admin|artvandelay|newman)-/i, "")
+    .replace(/^guest-/i, "")
+    .replaceAll("-", " ")
+    .replace(/\b\w/g, (letter) => letter.toUpperCase());
+}
+
+function screenshotRoute(contentKey) {
+  const key = String(contentKey || "");
+
+  if (/\bdirectory\b/i.test(key)) {
+    return "/directory";
+  }
+  if (/\bregister\b/i.test(key)) {
+    return "/register";
+  }
+  if (/\bmessage-status\b/i.test(key)) {
+    return "/status";
+  }
+  if (/\binbox\b/i.test(key)) {
+    return "/inbox";
+  }
+  if (/\bsettings-auth\b/i.test(key)) {
+    return "/settings/auth";
+  }
+  if (/\bsettings-encryption\b/i.test(key)) {
+    return "/settings/encryption";
+  }
+  if (/\bsettings-notifications\b/i.test(key)) {
+    return "/settings/notifications";
+  }
+  if (/\bsettings-profile\b/i.test(key)) {
+    return "/settings/profile";
+  }
+  if (/\bsettings-advanced\b/i.test(key)) {
+    return "/settings/advanced";
+  }
+  if (/\btools\b/i.test(key)) {
+    return "/tools";
+  }
+  if (/\bonboarding\b/i.test(key)) {
+    return "/settings";
+  }
+  if (/\bprofile\b/i.test(key)) {
+    return "/to/example";
+  }
+
+  return "";
+}
+
+function loadScreenshotInventoryFromFiles() {
+  const files = listFilesRecursive(SCREENSHOTS_ROOT)
+    .filter((filePath) => path.basename(filePath).endsWith("-fold.png"))
+    .sort();
+  const capturedAt = files.reduce((latest, filePath) => {
+    const mtime = fs.statSync(filePath).mtime;
+    return !latest || mtime > latest ? mtime : latest;
+  }, null);
+
+  return {
+    captured_at: capturedAt ? capturedAt.toISOString() : null,
+    inventory: files
+      .map((filePath) => {
+        const relativeFile = path.relative(SCREENSHOTS_ROOT, filePath).split(path.sep).join("/");
+        const contentKey = screenshotContentKey(relativeFile);
+        const session = relativeFile.split("/")[0] || "";
+        const title = screenshotTitle(contentKey);
+        const route = screenshotRoute(contentKey);
+        const item = {
+          content_key: contentKey,
+          path: route,
+          session,
+          title,
+        };
+
+        let absolutePath = null;
+        try {
+          absolutePath = resolveScreenshotPath(relativeFile);
+        } catch (_error) {
+          return null;
+        }
+
+        return {
+          absolute_path: absolutePath,
+          ...inferCandidateContext(item),
+          content_key: contentKey,
+          file: relativeFile,
+          path: route,
+          session,
+          theme: /-dark-fold\.png$/i.test(relativeFile) ? "dark" : "light",
+          title,
+          viewport: /-mobile-(light|dark)-fold\.png$/i.test(relativeFile) ? "mobile" : "desktop",
+        };
+      })
+      .filter(Boolean),
+    release: "current",
   };
 }
 
