@@ -1,0 +1,33 @@
+Slot: thursday
+Planned date: 2026-06-11
+Template: hushline-daily-desktop-template-2.html
+Screenshot: /Users/scidsg/hushline-website/src/assets/img/screenshots/current/admin/auth-admin-tools-email-validation-status-forged-desktop-light-fold.png
+Content key: auth-admin-tools-email-validation-status-forged
+Headline: For admins: do not ignore a forged sender warning
+Subtext: The Tools page can show when an email likely did not originate from the stated sender, giving teams a clear stop point before anyone acts on it.
+
+Image alt text
+A Hush Line daily social asset built around a light-mode desktop admin screenshot of the Tools page. The Email Validation tab shows raw email headers, Validate Headers and Download Report buttons, and a Validation Summary warning that the email likely did not originate from the stated sender.
+
+Social post copy
+
+LinkedIn (568/3000)
+A common mistake for teams running Hush Line is treating a forged sender warning like routine background noise.
+
+For admins and deployment teams, the Tools page shows Email Validation with a Validation Summary that says when an email likely did not originate from the stated sender. Use that result as a stop point: slow down, keep the message out of ordinary staff action, and decide who should assess it before anyone replies.
+
+For admins: review how your team handles forged sender warnings before the tip line is in regular use. Learn more at https://hushline.app.
+
+Mastodon (318/500)
+A forged sender warning should not become routine background noise.
+
+For admins and teams running Hush Line, Email Validation can show when an email likely did not originate from the stated sender. Treat that result as a stop point before staff act or reply.
+
+Review your team's handling steps at https://hushline.app.
+
+Bluesky (255/300)
+For admins running Hush Line: do not treat a forged sender warning as routine.
+
+Email Validation can show when an email likely did not originate from the stated sender. Pause before staff act or reply.
+
+Review safer handling steps at https://hushline.app.

@@ -1,0 +1,47 @@
+{
+  "slot": "thursday",
+  "planned_date": "2026-06-11",
+  "screenshot_file": "admin/auth-admin-tools-email-validation-status-forged-desktop-light-fold.png",
+  "content_key": "auth-admin-tools-email-validation-status-forged",
+  "content_format": "mistake_to_avoid",
+  "headline": "For admins: do not ignore a forged sender warning",
+  "subtext": "The Tools page can show when an email likely did not originate from the stated sender, giving teams a clear stop point before anyone acts on it.",
+  "image_alt_text": "A Hush Line daily social asset built around a light-mode desktop admin screenshot of the Tools page. The Email Validation tab shows raw email headers, Validate Headers and Download Report buttons, and a Validation Summary warning that the email likely did not originate from the stated sender.",
+  "social": {
+    "bluesky": "For admins running Hush Line: do not treat a forged sender warning as routine.\n\nEmail Validation can show when an email likely did not originate from the stated sender. Pause before staff act or reply.\n\nReview safer handling steps at https://hushline.app.",
+    "linkedin": "A common mistake for teams running Hush Line is treating a forged sender warning like routine background noise.\n\nFor admins and deployment teams, the Tools page shows Email Validation with a Validation Summary that says when an email likely did not originate from the stated sender. Use that result as a stop point: slow down, keep the message out of ordinary staff action, and decide who should assess it before anyone replies.\n\nFor admins: review how your team handles forged sender warnings before the tip line is in regular use. Learn more at https://hushline.app.",
+    "mastodon": "A forged sender warning should not become routine background noise.\n\nFor admins and teams running Hush Line, Email Validation can show when an email likely did not originate from the stated sender. Treat that result as a stop point before staff act or reply.\n\nReview your team's handling steps at https://hushline.app."
+  },
+  "rationale": "Selected the admin-only forged Email Validation screenshot because it supports a distinct deployment-team mistake-to-avoid message. The copy explicitly addresses admins and teams running Hush Line, focuses on handling a forged sender warning as an operational stop point, and avoids the recent recipient-focused email header angle from 2026-05-08.",
+  "source_pr_numbers": [],
+  "audience_scope": "admin-only",
+  "concept_key": "tools-email-validation-status-forged",
+  "copy_brief": "Write for admins or teams running a Hush Line deployment. Make the admin audience explicit.",
+  "editorial_intent": {
+    "audience_scope": "admin-only",
+    "content_format": "mistake_to_avoid",
+    "content_format_label": "Mistake to avoid",
+    "label": "Admins and deployment teams",
+    "reader_need": "Help an admin or deployment team run Hush Line responsibly without weakening safety or trust.",
+    "visual_role": "supporting_screenshot"
+  },
+  "matched_pull_requests": [
+    {
+      "merged_at": "2026-06-07T08:26:51Z",
+      "number": 2154,
+      "title": "Show active account in hourly Codex status"
+    },
+    {
+      "merged_at": "2026-06-07T08:46:17Z",
+      "number": 2153,
+      "title": "Show configured model in hourly Codex status"
+    }
+  ],
+  "screen_key": "/tools",
+  "template_name": "hushline-daily-desktop-template-2.html",
+  "theme": "light",
+  "title": "Tools Email Validation Status Forged",
+  "topic_family": "tools-email-validation-status-forged",
+  "visual_selection_reason": "Selected screenshots only after choosing the Admins and deployment teams editorial intent.",
+  "viewport": "desktop"
+}
