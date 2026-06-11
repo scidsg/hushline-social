@@ -1,0 +1,117 @@
+{
+  "archive_root": "previous-verified-user-posts",
+  "date": "2026-06-11",
+  "eligible_verified_user_count": 71,
+  "recent_archive_history": [
+    {
+      "date": "2026-03-25",
+      "display_name": "Cory Smith",
+      "opening_line": "🤩 Verified Member Highlight!",
+      "primary_username": "coryjosmith",
+      "verified_user_format": "",
+      "user_url": "https://tips.hushline.app/to/coryjosmith"
+    },
+    {
+      "date": "2026-03-30",
+      "display_name": "Margie Ratliff",
+      "opening_line": "🤩 Verified Member Highlight!",
+      "primary_username": "IsaThing",
+      "verified_user_format": "",
+      "user_url": "https://tips.hushline.app/to/IsaThing"
+    },
+    {
+      "date": "2026-04-06",
+      "display_name": "Grace McNally",
+      "opening_line": "🤩 Verified Member Highlight!",
+      "primary_username": "gracermcnally",
+      "verified_user_format": "",
+      "user_url": "https://tips.hushline.app/to/gracermcnally"
+    },
+    {
+      "date": "2026-04-13",
+      "display_name": "Levi Kalish",
+      "opening_line": "🤩 Verified Member Highlight!",
+      "primary_username": "LKalish",
+      "verified_user_format": "",
+      "user_url": "https://tips.hushline.app/to/LKalish"
+    },
+    {
+      "date": "2026-04-20",
+      "display_name": "Yael Grauer",
+      "opening_line": "🤩 Verified Member Highlight!",
+      "primary_username": "yaelwrites",
+      "verified_user_format": "",
+      "user_url": "https://tips.hushline.app/to/yaelwrites"
+    },
+    {
+      "date": "2026-04-27",
+      "display_name": "Michael Downey",
+      "opening_line": "🤩 Verified Member Highlight!",
+      "primary_username": "downey",
+      "verified_user_format": "",
+      "user_url": "https://tips.hushline.app/to/downey"
+    },
+    {
+      "date": "2026-05-04",
+      "display_name": "Tim Farmer",
+      "opening_line": "🤩 Verified Member Highlight!",
+      "primary_username": "tim_farmer",
+      "verified_user_format": "",
+      "user_url": "https://tips.hushline.app/to/tim_farmer"
+    },
+    {
+      "date": "2026-05-11",
+      "display_name": "Ryan Gallagher",
+      "opening_line": "🤩 Verified Member Highlight!",
+      "primary_username": "ryan",
+      "verified_user_format": "",
+      "user_url": "https://tips.hushline.app/to/ryan"
+    },
+    {
+      "date": "2026-05-18",
+      "display_name": "Sooraj Sathyanarayanan",
+      "opening_line": "🤩 Verified Member Highlight!",
+      "primary_username": "ianonymous3000",
+      "verified_user_format": "",
+      "user_url": "https://tips.hushline.app/to/ianonymous3000"
+    },
+    {
+      "date": "2026-05-25",
+      "display_name": "Paige St John",
+      "opening_line": "Why follow Paige's Hush Line?",
+      "primary_username": "Paige_St_John",
+      "verified_user_format": "why_follow_tip_line",
+      "user_url": "https://tips.hushline.app/to/Paige_St_John"
+    },
+    {
+      "date": "2026-06-01",
+      "display_name": "Julia Lurie",
+      "opening_line": "What this recipient covers:",
+      "primary_username": "julialurie",
+      "verified_user_format": "what_this_recipient_covers",
+      "user_url": "https://tips.hushline.app/to/julialurie"
+    },
+    {
+      "date": "2026-06-08",
+      "display_name": "Waxwing",
+      "opening_line": "First contact should be source-safe.",
+      "primary_username": "wxwing",
+      "verified_user_format": "source_safe_first_contact",
+      "user_url": "https://tips.hushline.app/to/wxwing"
+    }
+  ],
+  "selected_format": {
+    "id": "from_the_directory",
+    "label": "From the directory",
+    "opening_line": "From the verified Hush Line directory: Stefanie Daehler."
+  },
+  "selected_user": {
+    "bio": "Stefanie is an educator and librarian and serves on the Board of Directors for Science & Design, Inc. as Secretary & Treasurer.",
+    "display_name": "Stefanie Daehler",
+    "is_admin": false,
+    "primary_username": "stef",
+    "profile_url": "/to/stef",
+    "user_url": "https://tips.hushline.app/to/stef"
+  },
+  "source": "https://tips.hushline.app/directory/users.json"
+}

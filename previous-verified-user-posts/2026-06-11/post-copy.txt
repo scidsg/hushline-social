@@ -1,0 +1,36 @@
+Slot: verified-user-weekly
+Planned date: 2026-06-11
+Verified user: @stef
+User link: https://tips.hushline.app/to/stef
+Source: https://tips.hushline.app/directory/users.json
+Editorial format: From the directory (from_the_directory)
+Opening line: From the verified Hush Line directory: Stefanie Daehler.
+Headline: Stefanie Daehler
+Subtext: Stefanie is an educator and librarian and serves on the Board of Directors for Science & Design, Inc. as Secretary & Treasurer.
+
+Image alt text
+A social card featuring verified Hush Line user Stefanie Daehler, their bio, their tip line URL, and a QR code that links to the same URL.
+
+Social post copy
+
+LinkedIn (240/3000)
+From the verified Hush Line directory: Stefanie Daehler.
+
+Stefanie is an educator and librarian. She serves on the Board of Directors for Science & Design, Inc. as Secretary & Treasurer.
+
+Open the profile: https://tips.hushline.app/to/stef.
+
+Mastodon (239/500)
+From the verified Hush Line directory: Stefanie Daehler.
+
+Stefanie is an educator and librarian who serves on the Board of Directors for Science & Design, Inc. as Secretary & Treasurer.
+
+Open the profile: https://tips.hushline.app/to/stef.
+
+Bluesky (228/300)
+From the verified Hush Line directory: Stefanie Daehler.
+
+Stefanie is an educator and librarian, and Secretary & Treasurer on the Board of Directors for Science & Design, Inc.
+
+Open the profile: https://tips.hushline.app/to/stef
+
