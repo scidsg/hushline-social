@@ -15,7 +15,7 @@ const {
 const ARTICLE_ARCHIVE_ROOT = path.join(REPO_ROOT, "previous-article-posts");
 const HUSHLINE_URL = "https://hushline.app";
 const DEFAULT_MAX_AGE_DAYS = 14;
-const MIN_RELEVANCE_SCORE = 12;
+const MIN_RELEVANCE_SCORE = 8;
 
 const ALLOWED_FEEDS = [
   { source: "The New York Times", url: "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml" },

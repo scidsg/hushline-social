@@ -48,6 +48,31 @@ test("selects a current whistleblower-related article from an approved source", 
   assert.ok(selected.relevanceScore >= MIN_RELEVANCE_SCORE);
 });
 
+test("selects a current accountability investigation when no direct whistleblower article is available", () => {
+  const selected = selectArticle(
+    [
+      sampleArticle({
+        description: "Officials announced routine budget updates.",
+        title: "Agency updates budget guidance",
+      }),
+      sampleArticle({
+        description: "Sources say investigators are reviewing alleged misconduct.",
+        link: "https://www.cbsnews.com/news/ohio-organizing-collaborative-fraud-investigation-fbi/",
+        publishedAt: new Date("2026-06-12T18:59:34Z"),
+        source: "CBS News",
+        title: "Ohio voting rights group facing criminal fraud investigation, sources say",
+      }),
+    ],
+    { date: "2026-06-12", usedUrls: new Set() },
+  );
+
+  assert.equal(
+    selected.title,
+    "Ohio voting rights group facing criminal fraud investigation, sources say",
+  );
+  assert.ok(selected.relevanceScore >= MIN_RELEVANCE_SCORE);
+});
+
 test("rejects blocked or previously used article sources and URLs", () => {
   const selected = selectArticle(
     [
