@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-06-12",
+  "weekday": "friday",
+  "publish_mode": "text",
+  "source": "CBS News",
+  "title": "Ohio voting rights group facing criminal fraud investigation, sources say",
+  "article_url": "https://www.cbsnews.com/news/ohio-organizing-collaborative-fraud-investigation-fbi/",
+  "article_published_at": "2026-06-12T18:59:34.000Z",
+  "relevance_score": 8,
+  "content_key": "weekly-news-cbs-news-ohio-voting-rights-group-facing-criminal-fraud-investigation-sources-say",
+  "headline": "Whistleblower-related news worth reading",
+  "subtext": "CBS News reports: Ohio voting rights group facing criminal fraud investigation, sources say",
+  "social": {
+    "bluesky": "CBS News: Ohio voting rights group facing criminal fraud investigation, sources say\nhttps://www.cbsnews.com/news/ohio-organizing-collaborative-fraud-investigation-fbi/\n\nSign up: https://hushline.app.",
+    "linkedin": "CBS News has a new accountability report worth reading: Ohio voting rights group facing criminal fraud investigation, sources say.\nhttps://www.cbsnews.com/news/ohio-organizing-collaborative-fraud-investigation-fbi/\n\nHush Line helps organizations give people a safer way to report wrongdoing. Sign up for Hush Line: https://hushline.app.",
+    "mastodon": "CBS News has a new accountability report worth reading: Ohio voting rights group facing criminal fraud investigation, sources say.\nhttps://www.cbsnews.com/news/ohio-organizing-collaborative-fraud-investigation-fbi/\n\nSign up for Hush Line: https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Professional article-share copy with article link and Hush Line signup CTA."
+}

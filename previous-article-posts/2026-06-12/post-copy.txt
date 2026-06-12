@@ -1,0 +1,28 @@
+Slot: weekly-news-article
+Planned date: 2026-06-12
+Publish mode: text
+Source: CBS News
+Article URL: https://www.cbsnews.com/news/ohio-organizing-collaborative-fraud-investigation-fbi/
+Content key: weekly-news-cbs-news-ohio-voting-rights-group-facing-criminal-fraud-investigation-sources-say
+Headline: Whistleblower-related news worth reading
+Subtext: CBS News reports: Ohio voting rights group facing criminal fraud investigation, sources say
+
+Social post copy
+
+LinkedIn (336/3000)
+CBS News has a new accountability report worth reading: Ohio voting rights group facing criminal fraud investigation, sources say.
+https://www.cbsnews.com/news/ohio-organizing-collaborative-fraud-investigation-fbi/
+
+Hush Line helps organizations give people a safer way to report wrongdoing. Sign up for Hush Line: https://hushline.app.
+
+Mastodon (260/500)
+CBS News has a new accountability report worth reading: Ohio voting rights group facing criminal fraud investigation, sources say.
+https://www.cbsnews.com/news/ohio-organizing-collaborative-fraud-investigation-fbi/
+
+Sign up for Hush Line: https://hushline.app.
+
+Bluesky (199/300)
+CBS News: Ohio voting rights group facing criminal fraud investigation, sources say
+https://www.cbsnews.com/news/ohio-organizing-collaborative-fraud-investigation-fbi/
+
+Sign up: https://hushline.app.
