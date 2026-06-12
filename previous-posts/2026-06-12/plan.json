@@ -1,0 +1,118 @@
+{
+  "date": "2026-06-12",
+  "post": {
+    "slot": "friday",
+    "planned_date": "2026-06-12",
+    "screenshot_file": "guest/guest-directory-verified-desktop-dark-fold.png",
+    "content_key": "guest-directory-verified",
+    "content_format": "myth_vs_reality",
+    "headline": "A verified listing is a starting point, not a shortcut",
+    "subtext": "The public directory gives sources a place to read recipient details before deciding whether to open a Hush Line tip line.",
+    "image_alt_text": "A Hush Line daily social asset showing a dark-mode desktop screenshot of the Whistleblower Support Directory. The Verified tab is selected, with search, profile cards, a verification note, and a Tor Browser reminder visible; the graphic supports a myth-versus-reality message that verification helps sources review a recipient, but does not replace reading the listing before first contact.",
+    "social": {
+      "bluesky": "Myth: Verified means the choice is done.\n\nReality: read the listing first. Hush Line's directory shows verified recipient cards, search, and a Tor Browser reminder before you open first contact.\n\nLearn more at https://hushline.app.",
+      "linkedin": "Myth: a verified directory tab means the decision is already made.\n\nReality: sources still need to read the listing, check the recipient's profile, and decide whether that person or organization fits the tip they need to send. Hush Line's Whistleblower Support Directory shows a Verified tab, profile cards, search, and a Tor Browser reminder so first contact starts with a careful check.\n\nLearn more at https://hushline.app.",
+      "mastodon": "Myth: the Verified tab makes the choice for you.\n\nReality: sources still need to read the listing and check whether the recipient fits the tip they need to send. Hush Line's public directory shows verified profile cards, search, and a Tor Browser reminder before first contact.\n\nLearn more at https://hushline.app."
+    },
+    "rationale": "Selected the required public verified-directory screenshot. The rewrite avoids the rejected CTA pattern and recent directory wording about simply confirming the right person by focusing on a different myth: verification helps with review, but sources still need to read the listing and judge fit before opening first contact.",
+    "source_pr_numbers": [],
+    "audience_scope": "public",
+    "concept_key": "directory-verified",
+    "copy_brief": "Write for sources and public users evaluating or using Hush Line.",
+    "editorial_intent": {
+      "audience_scope": "public",
+      "content_format": "myth_vs_reality",
+      "content_format_label": "Myth versus reality",
+      "label": "Public sources and visitors",
+      "reader_need": "Help someone decide whether Hush Line is the right place to make safe first contact or find a trusted recipient.",
+      "visual_role": "supporting_screenshot"
+    },
+    "matched_pull_requests": [
+      {
+        "merged_at": "2026-06-11T23:38:55Z",
+        "number": 2200,
+        "title": "Escape public directory report listing fields"
+      },
+      {
+        "merged_at": "2026-06-11T23:40:33Z",
+        "number": 2198,
+        "title": "Resolve directory 'Request a correction' links to verified admin profile"
+      }
+    ],
+    "screen_key": "directory-index",
+    "template_name": "hushline-daily-desktop-template.html",
+    "theme": "dark",
+    "title": "Directory Verified",
+    "topic_family": "directory",
+    "visual_selection_reason": "Selected screenshots only after choosing the Public sources and visitors editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+    "viewport": "desktop"
+  },
+  "summary": "Daily public post for 2026-06-12 using the dark-mode verified directory screenshot with a myth-versus-reality angle about reading recipient listings before first contact.",
+  "critic": {
+    "blocked": false,
+    "criteria": [
+      {
+        "id": "topic_freshness",
+        "label": "Topic freshness",
+        "max_score": 2,
+        "rationale": "Topic family directory is fresh against the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "hook_freshness",
+        "label": "Hook freshness",
+        "max_score": 2,
+        "rationale": "Opening hook is distinct from recent archive hooks.",
+        "score": 2
+      },
+      {
+        "id": "format_novelty",
+        "label": "Format novelty",
+        "max_score": 2,
+        "rationale": "Format myth_vs_reality is not overused in the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "audience_specificity",
+        "label": "Audience specificity",
+        "max_score": 2,
+        "rationale": "Copy contains 4 signal(s) for public.",
+        "score": 2
+      },
+      {
+        "id": "concrete_reader_value",
+        "label": "Concrete reader value",
+        "max_score": 2,
+        "rationale": "Copy gives 5 concrete action/value signal(s).",
+        "score": 2
+      },
+      {
+        "id": "hushline_relevance",
+        "label": "Hush Line relevance",
+        "max_score": 2,
+        "rationale": "Copy is tied to Hush Line or a concrete Hush Line surface.",
+        "score": 2
+      },
+      {
+        "id": "cta_freshness",
+        "label": "CTA freshness",
+        "max_score": 2,
+        "rationale": "CTA pattern is fresh against the configured CTA cooldown.",
+        "score": 2
+      },
+      {
+        "id": "safety_compliance",
+        "label": "Safety and compliance",
+        "max_score": 2,
+        "rationale": "Copy avoids unsupported safety, anonymity, and recency claims.",
+        "score": 2
+      }
+    ],
+    "failed_criteria": [],
+    "max_score": 16,
+    "passed": true,
+    "rationale": "Topic freshness: Topic family directory is fresh against the recent archive. Hook freshness: Opening hook is distinct from recent archive hooks. Format novelty: Format myth_vs_reality is not overused in the recent archive. Audience specificity: Copy contains 4 signal(s) for public. Concrete reader value: Copy gives 5 concrete action/value signal(s). Hush Line relevance: Copy is tied to Hush Line or a concrete Hush Line surface. CTA freshness: CTA pattern is fresh against the configured CTA cooldown. Safety and compliance: Copy avoids unsupported safety, anonymity, and recency claims.",
+    "score": 16,
+    "threshold": 12
+  }
+}

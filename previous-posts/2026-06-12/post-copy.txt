@@ -1,0 +1,33 @@
+Slot: friday
+Planned date: 2026-06-12
+Template: hushline-daily-desktop-template.html
+Screenshot: /Users/scidsg/hushline-website/src/assets/img/screenshots/current/guest/guest-directory-verified-desktop-dark-fold.png
+Content key: guest-directory-verified
+Headline: A verified listing is a starting point, not a shortcut
+Subtext: The public directory gives sources a place to read recipient details before deciding whether to open a Hush Line tip line.
+
+Image alt text
+A Hush Line daily social asset showing a dark-mode desktop screenshot of the Whistleblower Support Directory. The Verified tab is selected, with search, profile cards, a verification note, and a Tor Browser reminder visible; the graphic supports a myth-versus-reality message that verification helps sources review a recipient, but does not replace reading the listing before first contact.
+
+Social post copy
+
+LinkedIn (425/3000)
+Myth: a verified directory tab means the decision is already made.
+
+Reality: sources still need to read the listing, check the recipient's profile, and decide whether that person or organization fits the tip they need to send. Hush Line's Whistleblower Support Directory shows a Verified tab, profile cards, search, and a Tor Browser reminder so first contact starts with a careful check.
+
+Learn more at https://hushline.app.
+
+Mastodon (314/500)
+Myth: the Verified tab makes the choice for you.
+
+Reality: sources still need to read the listing and check whether the recipient fits the tip they need to send. Hush Line's public directory shows verified profile cards, search, and a Tor Browser reminder before first contact.
+
+Learn more at https://hushline.app.
+
+Bluesky (231/300)
+Myth: Verified means the choice is done.
+
+Reality: read the listing first. Hush Line's directory shows verified recipient cards, search, and a Tor Browser reminder before you open first contact.
+
+Learn more at https://hushline.app.
