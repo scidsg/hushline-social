@@ -1,0 +1,28 @@
+Slot: weekly-news-article
+Planned date: 2026-06-13
+Publish mode: text
+Source: The Guardian
+Article URL: https://www.theguardian.com/us-news/2026/jun/12/judge-extends-block-trump-anti-weaponization-fund
+Content key: weekly-news-the-guardian-judge-extends-block-on-trump-s-1-8bn-anti-weaponization-fund
+Headline: Whistleblower-related news worth reading
+Subtext: The Guardian reports: Judge extends block on Trump’s $1.8bn ‘anti-weaponization’ fund
+
+Social post copy
+
+LinkedIn (344/3000)
+The Guardian has a new accountability report worth reading: Judge extends block on Trump’s $1.8bn ‘anti-weaponization’ fund.
+https://www.theguardian.com/us-news/2026/jun/12/judge-extends-block-trump-anti-weaponization-fund
+
+Hush Line helps organizations give people a safer way to report wrongdoing. Sign up for Hush Line: https://hushline.app.
+
+Mastodon (268/500)
+The Guardian has a new accountability report worth reading: Judge extends block on Trump’s $1.8bn ‘anti-weaponization’ fund.
+https://www.theguardian.com/us-news/2026/jun/12/judge-extends-block-trump-anti-weaponization-fund
+
+Sign up for Hush Line: https://hushline.app.
+
+Bluesky (207/300)
+The Guardian: Judge extends block on Trump’s $1.8bn ‘anti-weaponization’ fund
+https://www.theguardian.com/us-news/2026/jun/12/judge-extends-block-trump-anti-weaponization-fund
+
+Sign up: https://hushline.app.
