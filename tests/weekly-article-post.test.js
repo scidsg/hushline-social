@@ -10,10 +10,13 @@ const scriptPath = path.join(REPO_ROOT, "scripts", "plan-weekly-article-post.js"
 const {
   MIN_RELEVANCE_SCORE,
   buildPost,
+  classifyArticleAngle,
   composeCopy,
   parseFeedItems,
   isStraightNewsArticle,
   scoreArticle,
+  titleAsNewsLead,
+  validateArticleCopy,
   selectArticle,
 } = require(scriptPath);
 
@@ -107,15 +110,86 @@ test("builds professional article copy with the article link and Hush Line signu
 
   assert.equal(post.publish_mode, "text");
   assert.equal(post.article_url, article.link);
-  assert.match(
-    post.social.linkedin,
-    /^The Guardian has a new report centered on a whistleblower allegation: Whistleblower says reporting fraud led to retaliation\./,
-  );
+  assert.equal(post.headline, "Whistleblower-related reporting from The Guardian");
+  assert.match(post.social.linkedin, /^A whistleblower says reporting fraud led to retaliation\./);
+  assert.match(post.social.linkedin, /Read the article from The Guardian\nhttps:\/\/www\.theguardian\.com\/world\/example-whistleblower/);
   assert.match(post.social.linkedin, /https:\/\/www\.theguardian\.com\/world\/example-whistleblower/);
-  assert.match(post.social.linkedin, /Sign up for Hush Line: https:\/\/hushline\.app\./);
-  assert.doesNotMatch(post.social.linkedin, /Whistleblower-related news is a reminder/);
-  assert.doesNotMatch(post.social.linkedin, /safe reporting channels are part of accountability/);
+  assert.match(post.social.linkedin, /https:\/\/hushline\.app\./);
   assert.ok(post.social.bluesky.length <= 300);
+});
+
+test("weekly article copy is story-led instead of source-template led", () => {
+  const guardianArticle = sampleArticle({
+    description: "A whistleblower alleged retaliation after reporting misconduct.",
+    link: "https://www.theguardian.com/world/example-retaliation",
+    source: "The Guardian",
+    title: "Whistleblower says reporting misconduct led to retaliation",
+  });
+  const cbsArticle = sampleArticle({
+    description: "An inspector general investigation found fraud after a protected disclosure.",
+    link: "https://www.cbsnews.com/news/example-inspector-general-fraud/",
+    source: "CBS News",
+    title: "Inspector general report details fraud allegations",
+  });
+  const guardianCopy = composeCopy(guardianArticle).linkedin;
+  const cbsCopy = composeCopy(cbsArticle).linkedin;
+
+  assert.notEqual(guardianCopy.split("\n\n")[0], cbsCopy.split("\n\n")[0]);
+  assert.match(guardianCopy, /^A whistleblower says reporting misconduct led to retaliation\./);
+  assert.match(cbsCopy, /^Inspector general report details fraud allegations\./);
+  assert.doesNotMatch(guardianCopy, /has a new accountability report worth reading/i);
+  assert.doesNotMatch(cbsCopy, /has a new accountability report worth reading/i);
+  assert.doesNotMatch(guardianCopy, /^The Guardian:/m);
+  assert.doesNotMatch(cbsCopy, /^CBS News:/m);
+  assert.doesNotMatch(guardianCopy, /^The Guardian has a new/m);
+  assert.doesNotMatch(cbsCopy, /^CBS News has a new/m);
+});
+
+test("classifies article angles from policy, development, and accountability terms", () => {
+  assert.equal(classifyArticleAngle(sampleArticle({
+    description: "A new whistleblower protection bill advanced after years of debate.",
+    title: "Lawmakers advance whistleblower protection bill",
+  })).key, "policy");
+  assert.equal(classifyArticleAngle(sampleArticle({
+    description: "A whistleblower received an award after reporting fraud.",
+    title: "Whistleblower wins fraud reporting award",
+  })).key, "win");
+  assert.equal(classifyArticleAngle(sampleArticle({
+    description: "An inspector general investigation found misconduct.",
+    title: "Inspector general finds misconduct after protected disclosure",
+  })).key, "enforcement");
+});
+
+test("normalizes headlines into direct news leads", () => {
+  assert.equal(
+    titleAsNewsLead("Whistleblower says reporting fraud led to retaliation"),
+    "A whistleblower says reporting fraud led to retaliation.",
+  );
+  assert.equal(
+    titleAsNewsLead("New whistleblower protection bill advances"),
+    "A new whistleblower protection bill advances.",
+  );
+});
+
+test("article copy quality gate rejects lazy automated templates", () => {
+  assert.throws(
+    () => validateArticleCopy({
+      linkedin: "The Guardian has a new accountability report worth reading.",
+    }),
+    /source-plus-announcement template/,
+  );
+  assert.throws(
+    () => validateArticleCopy({
+      linkedin: "CBS News: Inspector general report details fraud allegations.",
+    }),
+    /source-colon/,
+  );
+  assert.throws(
+    () => validateArticleCopy({
+      linkedin: "Accountability work depends on people having somewhere safer to take what they know.",
+    }),
+    /generic lead-in/,
+  );
 });
 
 test("parses RSS feeds and dry-runs a weekly article post from a fixture feed", () => {

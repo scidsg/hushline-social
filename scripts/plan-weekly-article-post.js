@@ -39,8 +39,22 @@ const EXCLUDED_URL_PATH_PATTERN = /\/(ideas|opinion|opinions|editorial|commentis
 
 const RELEVANCE_TERMS = [
   { pattern: /\bwhistle[-\s]?blow(?:er|ers|ing)?\b/i, weight: 14 },
+  { pattern: /\bwhistleblower protection(s)?\b/i, weight: 16 },
+  { pattern: /\bwhistleblower law(s)?\b/i, weight: 13 },
+  { pattern: /\bwhistleblower program(s)?\b/i, weight: 12 },
+  { pattern: /\bqui tam\b/i, weight: 12 },
+  { pattern: /\bfalse claims act\b/i, weight: 12 },
+  { pattern: /\bsource protection(s)?\b/i, weight: 10 },
+  { pattern: /\bshield law(s)?\b/i, weight: 9 },
   { pattern: /\bprotected disclosure(s)?\b/i, weight: 12 },
   { pattern: /\bretaliat(?:e|ed|ion|ory)\b/i, weight: 9 },
+  { pattern: /\bsettlement(s)?\b/i, weight: 7 },
+  { pattern: /\blawsuit(s)?\b/i, weight: 7 },
+  { pattern: /\breward(s)?\b/i, weight: 6 },
+  { pattern: /\baward(s|ed)?\b/i, weight: 5 },
+  { pattern: /\bSEC\b/i, weight: 6 },
+  { pattern: /\bCFTC\b/i, weight: 6 },
+  { pattern: /\bOSHA\b/i, weight: 6 },
   { pattern: /\b(leak|leaked|leaks|leaker)\b/i, weight: 8 },
   { pattern: /\bconfidential source(s)?\b/i, weight: 8 },
   { pattern: /\banonymous source(s)?\b/i, weight: 7 },
@@ -52,6 +66,9 @@ const RELEVANCE_TERMS = [
   { pattern: /\babuse of power\b/i, weight: 5 },
   { pattern: /\bethics complaint(s)?\b/i, weight: 5 },
   { pattern: /\binspector general\b/i, weight: 5 },
+  { pattern: /\bwatchdog\b/i, weight: 4 },
+  { pattern: /\boversight\b/i, weight: 4 },
+  { pattern: /\btransparency\b/i, weight: 3 },
   { pattern: /\binvestigat(?:e|ed|ion|ions|ive)\b/i, weight: 3 },
   { pattern: /\baccountability\b/i, weight: 3 },
 ];
@@ -64,6 +81,64 @@ const EXCLUSION_TERMS = [
   /\bweather\b/i,
   /\brecipe(s)?\b/i,
   /\btravel\b/i,
+];
+
+const ARTICLE_ANGLES = [
+  {
+    key: "policy",
+    pattern: /\b(whistleblower protection|whistleblower law|shield law|source protection|policy|legislation|bill|rule|rules|regulation)\b/i,
+    value: "Policy changes decide whether people can report harm before the stakes become personal.",
+    shortValue: "Policy changes decide whether people can report harm safely.",
+  },
+  {
+    key: "enforcement",
+    pattern: /\b(SEC|CFTC|OSHA|false claims act|qui tam|inspector general|watchdog|oversight|audit|investigation)\b/i,
+    value: "Oversight depends on people being able to bring evidence forward without losing control of their safety.",
+    shortValue: "Oversight depends on people being able to bring evidence forward safely.",
+  },
+  {
+    key: "retaliation",
+    pattern: /\bretaliat(?:e|ed|ion|ory)\b/i,
+    value: "Retaliation is exactly why people need a safer path before the first disclosure.",
+    shortValue: "Retaliation is why safer first contact matters.",
+  },
+  {
+    key: "win",
+    pattern: /\b(win|wins|won|victory|settlement|settles|award|awarded|reward|reinstated|protected)\b/i,
+    value: "Wins matter because they show reporting can lead to protection, accountability, or repair.",
+    shortValue: "Wins matter when reporting leads to protection or repair.",
+  },
+  {
+    key: "source-protection",
+    pattern: /\b(leak|leaked|leaks|leaker|confidential source|anonymous source|source protection)\b/i,
+    value: "Source protection starts before publication, when someone decides whether contact is safe enough.",
+    shortValue: "Source protection starts before publication.",
+  },
+  {
+    key: "accountability",
+    pattern: /\b(corruption|fraud|misconduct|abuse of power|ethics complaint|accountability)\b/i,
+    value: "Accountability reporting often begins with a person, a record, and a safe enough way to make contact.",
+    shortValue: "Accountability reporting needs a safe enough way to make contact.",
+  },
+];
+
+const BANNED_COPY_PATTERNS = [
+  {
+    pattern: /\bhas a new\b/i,
+    reason: "source-plus-announcement template",
+  },
+  {
+    pattern: /\bworth reading\b/i,
+    reason: "generic recommendation filler",
+  },
+  {
+    pattern: /^.+:\s/m,
+    reason: "source-colon or label-colon structure",
+  },
+  {
+    pattern: /\b(news|story|reporting|accountability work|retaliation cases|fraud reporting|whistleblower stories)\s+(is|are|depends|often)\b/i,
+    reason: "generic lead-in instead of story-specific news",
+  },
 ];
 
 function todayString() {
@@ -294,37 +369,119 @@ function contentKey(article) {
     .slice(0, 96);
 }
 
-function composeArticleIntro(article) {
-  const source = article.source.trim();
-  const title = article.title.replace(/\s+/g, " ").trim();
+function articleCopyText(article) {
+  return `${article.title} ${article.description}`;
+}
 
-  if (/\bwhistle[-\s]?blow(?:er|ers|ing)?\b/i.test(title)) {
-    return `${source} has a new report centered on a whistleblower allegation: ${title}.`;
+function cleanSentence(value) {
+  const cleaned = String(value || "")
+    .replaceAll(/\s+/g, " ")
+    .replaceAll(/\s+([,.;?!])/g, "$1")
+    .trim();
+
+  if (!cleaned) {
+    return "";
   }
 
-  if (/\bretaliat(?:e|ed|ion|ory)\b/i.test(title)) {
-    return `${source} has a new report on alleged retaliation after someone spoke up: ${title}.`;
+  return /[.!?]$/.test(cleaned) ? cleaned : `${cleaned}.`;
+}
+
+function titleAsNewsLead(title) {
+  const cleaned = cleanSentence(title)
+    .replace(/^breaking news[,:\s-]+/i, "")
+    .replace(/^exclusive[,:\s-]+/i, "")
+    .replace(/^analysis[,:\s-]+/i, "")
+    .replace(/^watch[,:\s-]+/i, "")
+    .trim();
+
+  if (!cleaned) {
+    return "";
   }
 
-  if (/\b(leak|leaked|leaks|leaker|confidential source|anonymous source)\b/i.test(title)) {
-    return `${source} has a new report on source-provided information and accountability: ${title}.`;
+  if (/^(whistleblower|source|official|watchdog|inspector general|auditor|judge|court|lawmakers|agency|company|workers|employees)\b/i.test(cleaned)) {
+    return cleaned.replace(/^whistleblower\b/i, "A whistleblower");
   }
 
-  return `${source} has a new accountability report worth reading: ${title}.`;
+  if (/^(new|proposed|federal|state|local)\b/i.test(cleaned)) {
+    return cleaned.replace(/^new\b/i, "A new");
+  }
+
+  return cleaned;
+}
+
+function articleDetailSentence(article) {
+  const description = cleanSentence(article.description);
+  if (!description || description.length < 40) {
+    return "";
+  }
+
+  if (description.toLowerCase().includes(article.title.toLowerCase().slice(0, 40))) {
+    return "";
+  }
+
+  return description.length <= 220
+    ? description
+    : `${description.slice(0, 217).replace(/\s+\S*$/, "")}...`;
+}
+
+function classifyArticleAngle(article) {
+  const text = articleCopyText(article);
+  return ARTICLE_ANGLES.find((angle) => angle.pattern.test(text)) || ARTICLE_ANGLES[ARTICLE_ANGLES.length - 1];
+}
+
+function articleReadLine(article) {
+  return `Read the article from ${article.source}\n${article.link}`;
+}
+
+function ctaLine({ short = false } = {}) {
+  return short
+    ? `Sign up for Hush Line at ${HUSHLINE_URL}.`
+    : `Give sources a safer way to make first contact. Sign up for Hush Line at ${HUSHLINE_URL}.`;
+}
+
+function validateArticleCopy(copyByNetwork) {
+  for (const [network, copy] of Object.entries(copyByNetwork)) {
+    if (!copy || typeof copy !== "string") {
+      throw new Error(`Missing ${network} article copy.`);
+    }
+
+    for (const { pattern, reason } of BANNED_COPY_PATTERNS) {
+      if (pattern.test(copy)) {
+        throw new Error(`${network} article copy failed quality gate for ${reason}.`);
+      }
+    }
+  }
 }
 
 function composeCopy(article) {
-  const intro = composeArticleIntro(article);
-  const cta = `Hush Line helps organizations give people a safer way to report wrongdoing. Sign up for Hush Line: ${HUSHLINE_URL}.`;
-  const linkedin = `${intro}\n${article.link}\n\n${cta}`;
-  const mastodon = `${intro}\n${article.link}\n\nSign up for Hush Line: ${HUSHLINE_URL}.`;
-  const bluesky = `${article.source}: ${article.title}\n${article.link}\n\nSign up: ${HUSHLINE_URL}.`;
-
-  return {
+  const angle = classifyArticleAngle(article);
+  const lead = titleAsNewsLead(article.title);
+  const detail = articleDetailSentence(article);
+  const linkedin = [
+    lead,
+    detail || angle.value,
+    articleReadLine(article),
+    ctaLine(),
+  ].join("\n\n");
+  const mastodon = [
+    lead,
+    angle.shortValue,
+    articleReadLine(article),
+    ctaLine({ short: true }),
+  ].join("\n\n");
+  const bluesky = [
+    lead,
+    articleReadLine(article),
+    ctaLine({ short: true }),
+  ].join("\n\n");
+  const social = {
     bluesky: clampText(bluesky, LIMITS.bluesky),
     linkedin: clampText(linkedin, LIMITS.linkedin),
     mastodon: clampText(mastodon, LIMITS.mastodon),
   };
+
+  validateArticleCopy(social);
+  return social;
 }
 
 function buildPost(article, args) {
@@ -340,13 +497,13 @@ function buildPost(article, args) {
     article_published_at: article.publishedAt ? article.publishedAt.toISOString() : null,
     relevance_score: article.relevanceScore,
     content_key: contentKey(article),
-    headline: "Whistleblower-related news worth reading",
+    headline: `Whistleblower-related reporting from ${article.source}`,
     subtext: `${article.source} reports: ${article.title}`,
     social,
     rationale: "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
     audience_scope: "whistleblower-news",
     concept_key: "weekly-whistleblower-news-article",
-    copy_brief: "Professional article-share copy with article link and Hush Line signup CTA.",
+    copy_brief: "Specific, story-led article-share copy with article link and Hush Line signup CTA.",
   };
 }
 
@@ -480,10 +637,13 @@ if (require.main === module) {
     BLOCKED_SOURCE_PATTERN,
     MIN_RELEVANCE_SCORE,
     buildPost,
+    classifyArticleAngle,
     collectArticles,
     composeCopy,
     parseFeedItems,
     scoreArticle,
+    titleAsNewsLead,
+    validateArticleCopy,
     selectArticle,
     isStraightNewsArticle,
   };
