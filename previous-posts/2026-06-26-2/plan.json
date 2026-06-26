@@ -1,0 +1,118 @@
+{
+  "date": "2026-06-26",
+  "post": {
+    "slot": "friday",
+    "planned_date": "2026-06-26",
+    "screenshot_file": "guest/guest-directory-verified-desktop-light-fold.png",
+    "content_key": "guest-directory-verified",
+    "content_format": "source_safety_checklist",
+    "headline": "Check three things before you send a tip",
+    "subtext": "The public Directory shows Verified listings, search, View Profile links, and a Tor Browser reminder so visitors can slow down before first contact.",
+    "image_alt_text": "Social image showing a light-mode desktop Hush Line Directory screen. The Verified tab, search field for verified users, Tor Browser reminder, verification note, and a recipient card with View Profile are visible, illustrating a source-safety checklist before first contact.",
+    "social": {
+      "bluesky": "Before first contact, check the public Hush Line Directory: use Tor Browser for greater anonymity, search verified users, open View Profile, and read the details before sending anything sensitive. An account is not required to send a message.",
+      "linkedin": "Before you contact someone through Hush Line, do a short source-safety check.\n\nOn the public Directory:\n1. Use Tor Browser for greater anonymity.\n2. Start with Verified or the category that fits your situation, such as Attorneys, Journalists, SecureDrop, or GlobaLeaks.\n3. Search verified users by name or organization.\n4. Open View Profile and read the details before you send anything sensitive.\n5. Remember: an account is not required to send a message.\n\nA verified listing helps you review who you are contacting. It does not decide for you. Read the profile, choose the recipient that fits your tip, then use the message path only when you are ready.",
+      "mastodon": "Before first contact, use the public Hush Line Directory as a short checklist:\n\n1. Use Tor Browser for greater anonymity.\n2. Search verified users.\n3. Open View Profile and read the recipient details.\n4. Choose the person or team that fits your tip.\n5. Send only when you are ready.\n\nAn account is not required to send a message."
+    },
+    "rationale": "Selected the sole public candidate screenshot. Because directory and verified-listing angles appeared recently, the copy uses the required source_safety_checklist format and centers on a fresh pre-contact checklist tied to visible words in the screenshot: Directory, Verified, Search verified users, View Profile, Tor Browser, and account not required.",
+    "source_pr_numbers": [],
+    "audience_scope": "public",
+    "concept_key": "directory-verified",
+    "copy_brief": "Write for sources and public users evaluating or using Hush Line.",
+    "editorial_intent": {
+      "audience_scope": "public",
+      "content_format": "source_safety_checklist",
+      "content_format_label": "Source safety checklist",
+      "label": "Public sources and visitors",
+      "reader_need": "Help someone decide whether Hush Line is the right place to make safe first contact or find a trusted recipient.",
+      "visual_role": "supporting_screenshot"
+    },
+    "matched_pull_requests": [
+      {
+        "merged_at": "2026-06-22T18:10:33Z",
+        "number": 2296,
+        "title": "Add Hush Line users directory filter"
+      },
+      {
+        "merged_at": "2026-06-20T21:37:45Z",
+        "number": 2294,
+        "title": "Add guest Art profile docs screenshot"
+      }
+    ],
+    "screen_key": "directory-index",
+    "template_name": "hushline-daily-desktop-template.html",
+    "theme": "light",
+    "title": "Directory Verified",
+    "topic_family": "directory",
+    "visual_selection_reason": "Selected screenshots only after choosing the Public sources and visitors editorial intent.",
+    "viewport": "desktop"
+  },
+  "summary": "Source safety checklist post using the public verified-directory screenshot to help visitors check the directory before first contact.",
+  "critic": {
+    "blocked": false,
+    "criteria": [
+      {
+        "id": "topic_freshness",
+        "label": "Topic freshness",
+        "max_score": 2,
+        "rationale": "Topic family directory appeared recently but not in the last two posts.",
+        "score": 1
+      },
+      {
+        "id": "hook_freshness",
+        "label": "Hook freshness",
+        "max_score": 2,
+        "rationale": "Opening hook is distinct from recent archive hooks.",
+        "score": 2
+      },
+      {
+        "id": "format_novelty",
+        "label": "Format novelty",
+        "max_score": 2,
+        "rationale": "Format source_safety_checklist is not overused in the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "audience_specificity",
+        "label": "Audience specificity",
+        "max_score": 2,
+        "rationale": "Copy contains 5 signal(s) for public.",
+        "score": 2
+      },
+      {
+        "id": "concrete_reader_value",
+        "label": "Concrete reader value",
+        "max_score": 2,
+        "rationale": "Copy gives 6 concrete action/value signal(s).",
+        "score": 2
+      },
+      {
+        "id": "hushline_relevance",
+        "label": "Hush Line relevance",
+        "max_score": 2,
+        "rationale": "Copy is tied to Hush Line or a concrete Hush Line surface.",
+        "score": 2
+      },
+      {
+        "id": "cta_freshness",
+        "label": "CTA freshness",
+        "max_score": 2,
+        "rationale": "CTA pattern is fresh against the configured CTA cooldown.",
+        "score": 2
+      },
+      {
+        "id": "safety_compliance",
+        "label": "Safety and compliance",
+        "max_score": 2,
+        "rationale": "Copy avoids unsupported safety, anonymity, and recency claims.",
+        "score": 2
+      }
+    ],
+    "failed_criteria": [],
+    "max_score": 16,
+    "passed": true,
+    "rationale": "Topic freshness: Topic family directory appeared recently but not in the last two posts. Hook freshness: Opening hook is distinct from recent archive hooks. Format novelty: Format source_safety_checklist is not overused in the recent archive. Audience specificity: Copy contains 5 signal(s) for public. Concrete reader value: Copy gives 6 concrete action/value signal(s). Hush Line relevance: Copy is tied to Hush Line or a concrete Hush Line surface. CTA freshness: CTA pattern is fresh against the configured CTA cooldown. Safety and compliance: Copy avoids unsupported safety, anonymity, and recency claims.",
+    "score": 15,
+    "threshold": 12
+  }
+}

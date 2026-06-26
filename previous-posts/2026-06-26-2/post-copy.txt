@@ -1,0 +1,38 @@
+Slot: friday
+Planned date: 2026-06-26
+Template: hushline-daily-desktop-template.html
+Screenshot: /Users/scidsg/hushline-website/src/assets/img/screenshots/current/guest/guest-directory-verified-desktop-light-fold.png
+Content key: guest-directory-verified
+Headline: Check three things before you send a tip
+Subtext: The public Directory shows Verified listings, search, View Profile links, and a Tor Browser reminder so visitors can slow down before first contact.
+
+Image alt text
+Social image showing a light-mode desktop Hush Line Directory screen. The Verified tab, search field for verified users, Tor Browser reminder, verification note, and a recipient card with View Profile are visible, illustrating a source-safety checklist before first contact.
+
+Social post copy
+
+LinkedIn (655/3000)
+Before you contact someone through Hush Line, do a short source-safety check.
+
+On the public Directory:
+1. Use Tor Browser for greater anonymity.
+2. Start with Verified or the category that fits your situation, such as Attorneys, Journalists, SecureDrop, or GlobaLeaks.
+3. Search verified users by name or organization.
+4. Open View Profile and read the details before you send anything sensitive.
+5. Remember: an account is not required to send a message.
+
+A verified listing helps you review who you are contacting. It does not decide for you. Read the profile, choose the recipient that fits your tip, then use the message path only when you are ready.
+
+Mastodon (329/500)
+Before first contact, use the public Hush Line Directory as a short checklist:
+
+1. Use Tor Browser for greater anonymity.
+2. Search verified users.
+3. Open View Profile and read the recipient details.
+4. Choose the person or team that fits your tip.
+5. Send only when you are ready.
+
+An account is not required to send a message.
+
+Bluesky (242/300)
+Before first contact, check the public Hush Line Directory: use Tor Browser for greater anonymity, search verified users, open View Profile, and read the details before sending anything sensitive. An account is not required to send a message.
