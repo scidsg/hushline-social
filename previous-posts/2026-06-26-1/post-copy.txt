@@ -1,0 +1,35 @@
+Slot: friday
+Planned date: 2026-06-26
+Template: hushline-daily-mobile-template-2.html
+Screenshot: /Users/scidsg/hushline-website/src/assets/img/screenshots/current/artvandelay/auth-artvandelay-conversation-thread-mobile-light-fold.png
+Content key: auth-artvandelay-conversation-thread
+Headline: Start each reply from the thread
+Subtext: Recipients and staff can read the earlier exchange, check End-to-end encrypted, write a focused reply in Message, and use Send from the same thread.
+
+Image alt text
+Social image showing the Hush Line conversation thread on mobile. The screen includes a Back to Inbox link, the not_newman conversation, dated message bubbles, an End-to-end encrypted label, a Message field, and a Send button for recipient follow-up.
+
+Social post copy
+
+LinkedIn (594/3000)
+Before replying to a source, start with the thread in front of you.
+
+In Hush Line, recipients and staff can use the conversation thread to read the earlier exchange, check the End-to-end encrypted label, write a focused reply in Message, and use Send from the same place.
+
+A small playbook for shared intake:
+1. Read the latest source message before drafting.
+2. Ask one clear follow-up question at a time.
+3. Keep the reply plain and limited to what you need next.
+4. Use Back to Inbox after the thread is handled.
+
+Review this reply habit with the people who help manage your recipient inbox.
+
+Mastodon (336/500)
+Before replying to a source, start with the thread in front of you.
+
+Recipients and staff can use the Hush Line conversation thread to read the earlier exchange, check End-to-end encrypted, write a focused reply in Message, and use Send from the same place.
+
+Review this reply habit with the people who help manage your recipient inbox.
+
+Bluesky (197/300)
+Before replying to a source, start with the Hush Line conversation thread. Read the earlier exchange, check End-to-end encrypted, write a focused reply in Message, and use Send from the same place.

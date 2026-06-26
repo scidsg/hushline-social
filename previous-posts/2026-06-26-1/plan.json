@@ -1,0 +1,118 @@
+{
+  "date": "2026-06-26",
+  "post": {
+    "slot": "friday",
+    "planned_date": "2026-06-26",
+    "screenshot_file": "artvandelay/auth-artvandelay-conversation-thread-mobile-light-fold.png",
+    "content_key": "auth-artvandelay-conversation-thread",
+    "content_format": "recipient_playbook",
+    "headline": "Start each reply from the thread",
+    "subtext": "Recipients and staff can read the earlier exchange, check End-to-end encrypted, write a focused reply in Message, and use Send from the same thread.",
+    "image_alt_text": "Social image showing the Hush Line conversation thread on mobile. The screen includes a Back to Inbox link, the not_newman conversation, dated message bubbles, an End-to-end encrypted label, a Message field, and a Send button for recipient follow-up.",
+    "social": {
+      "bluesky": "Before replying to a source, start with the Hush Line conversation thread. Read the earlier exchange, check End-to-end encrypted, write a focused reply in Message, and use Send from the same place.",
+      "linkedin": "Before replying to a source, start with the thread in front of you.\n\nIn Hush Line, recipients and staff can use the conversation thread to read the earlier exchange, check the End-to-end encrypted label, write a focused reply in Message, and use Send from the same place.\n\nA small playbook for shared intake:\n1. Read the latest source message before drafting.\n2. Ask one clear follow-up question at a time.\n3. Keep the reply plain and limited to what you need next.\n4. Use Back to Inbox after the thread is handled.\n\nReview this reply habit with the people who help manage your recipient inbox.",
+      "mastodon": "Before replying to a source, start with the thread in front of you.\n\nRecipients and staff can use the Hush Line conversation thread to read the earlier exchange, check End-to-end encrypted, write a focused reply in Message, and use Send from the same place.\n\nReview this reply habit with the people who help manage your recipient inbox."
+    },
+    "rationale": "Selected the mobile conversation thread because conversation-thread is fresh against the supplied recent archive and this variant avoids reusing the existing desktop plan in the workspace. The copy matches the recipient_playbook format by giving recipients and staff a repeatable reply habit tied to visible UI words: Back to Inbox, End-to-end encrypted, Message, and Send.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "conversation-thread",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "editorial_intent": {
+      "audience_scope": "recipient-shared",
+      "content_format": "recipient_playbook",
+      "content_format_label": "Recipient playbook",
+      "label": "Recipients and staff",
+      "reader_need": "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+      "visual_role": "supporting_screenshot"
+    },
+    "matched_pull_requests": [
+      {
+        "merged_at": "2026-06-22T18:27:28Z",
+        "number": 2297,
+        "title": "Align global header menus with conversation action menu"
+      },
+      {
+        "merged_at": "2026-06-21T00:26:02Z",
+        "number": 2295,
+        "title": "Update not_newman demo conversation"
+      }
+    ],
+    "screen_key": "auth-artvandelay-conversation-thread",
+    "template_name": "hushline-daily-mobile-template-2.html",
+    "theme": "light",
+    "title": "Conversation Thread",
+    "topic_family": "conversation-thread",
+    "visual_selection_reason": "Selected screenshots only after choosing the Recipients and staff editorial intent.",
+    "viewport": "mobile"
+  },
+  "summary": "Recipient playbook post using the mobile conversation thread screenshot to show careful follow-up from the same encrypted thread.",
+  "critic": {
+    "blocked": false,
+    "criteria": [
+      {
+        "id": "topic_freshness",
+        "label": "Topic freshness",
+        "max_score": 2,
+        "rationale": "Topic family conversation-thread is fresh against the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "hook_freshness",
+        "label": "Hook freshness",
+        "max_score": 2,
+        "rationale": "Opening hook is distinct from recent archive hooks.",
+        "score": 2
+      },
+      {
+        "id": "format_novelty",
+        "label": "Format novelty",
+        "max_score": 2,
+        "rationale": "Format recipient_playbook is not overused in the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "audience_specificity",
+        "label": "Audience specificity",
+        "max_score": 2,
+        "rationale": "Copy contains 6 signal(s) for recipient-shared.",
+        "score": 2
+      },
+      {
+        "id": "concrete_reader_value",
+        "label": "Concrete reader value",
+        "max_score": 2,
+        "rationale": "Copy gives 5 concrete action/value signal(s).",
+        "score": 2
+      },
+      {
+        "id": "hushline_relevance",
+        "label": "Hush Line relevance",
+        "max_score": 2,
+        "rationale": "Copy is tied to Hush Line or a concrete Hush Line surface.",
+        "score": 2
+      },
+      {
+        "id": "cta_freshness",
+        "label": "CTA freshness",
+        "max_score": 2,
+        "rationale": "CTA pattern is fresh against the configured CTA cooldown.",
+        "score": 2
+      },
+      {
+        "id": "safety_compliance",
+        "label": "Safety and compliance",
+        "max_score": 2,
+        "rationale": "Copy avoids unsupported safety, anonymity, and recency claims.",
+        "score": 2
+      }
+    ],
+    "failed_criteria": [],
+    "max_score": 16,
+    "passed": true,
+    "rationale": "Topic freshness: Topic family conversation-thread is fresh against the recent archive. Hook freshness: Opening hook is distinct from recent archive hooks. Format novelty: Format recipient_playbook is not overused in the recent archive. Audience specificity: Copy contains 6 signal(s) for recipient-shared. Concrete reader value: Copy gives 5 concrete action/value signal(s). Hush Line relevance: Copy is tied to Hush Line or a concrete Hush Line surface. CTA freshness: CTA pattern is fresh against the configured CTA cooldown. Safety and compliance: Copy avoids unsupported safety, anonymity, and recency claims.",
+    "score": 16,
+    "threshold": 12
+  }
+}
