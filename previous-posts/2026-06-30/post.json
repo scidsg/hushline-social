@@ -1,0 +1,36 @@
+{
+  "slot": "tuesday",
+  "planned_date": "2026-06-30",
+  "screenshot_file": "artvandelay/auth-artvandelay-settings-replies-desktop-light-fold.png",
+  "content_key": "auth-artvandelay-settings-replies",
+  "content_format": "workflow_teardown",
+  "headline": "Write the waiting message sources will see",
+  "subtext": "Message Statuses lets recipients and staff edit the Waiting status text shown on the temporary page a sender can check after submitting a message.",
+  "image_alt_text": "A Hush Line social post graphic showing the desktop Settings page. The left menu has Message Statuses selected. The main panel explains that senders get a temporary address to view message status, then shows a Waiting section, a Status Text box with a received-message note and 24-72 hour reply window, and an Update Reply Text button.",
+  "social": {
+    "bluesky": "After a source sends a message, the Waiting text tells them what to expect next.\n\nRecipients and staff can edit that note in Settings > Message Statuses, then use Update Reply Text when it matches the real review workflow.",
+    "linkedin": "When a source submits a message, the next question is simple: what should they see while they wait?\n\nIn Hush Line, recipients and staff can open Settings, choose Message Statuses, and edit the Waiting status text. The visible note can say that the message was received, give a realistic reply window, and remind the sender that they can check the same page for an update.\n\nReview this wording before the tip line is busy, then use Update Reply Text when the waiting message matches how your team actually handles intake.",
+    "mastodon": "After a source sends a message, they may return to the temporary page to check the status.\n\nIn Hush Line, recipients and staff can edit the Waiting status text under Message Statuses. Use it to confirm the message was received, set a realistic reply window, and say when to check back.\n\nReview the Waiting text before intake gets busy."
+  },
+  "rationale": "Selected the only provided recipient-shared screenshot and used the required workflow_teardown format. Because Message Statuses appeared recently, this copy avoids the earlier consistency and expectations angles and focuses on a specific workflow decision: reviewing the Waiting status text that a source sees on the temporary status page after submitting a message.",
+  "source_pr_numbers": [],
+  "audience_scope": "recipient-shared",
+  "concept_key": "settings-replies",
+  "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+  "editorial_intent": {
+    "audience_scope": "recipient-shared",
+    "content_format": "workflow_teardown",
+    "content_format_label": "Workflow teardown",
+    "label": "Recipients and staff",
+    "reader_need": "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+    "visual_role": "supporting_screenshot"
+  },
+  "matched_pull_requests": [],
+  "screen_key": "auth-artvandelay-settings-replies",
+  "template_name": "hushline-daily-desktop-template-2.html",
+  "theme": "light",
+  "title": "Settings Replies",
+  "topic_family": "message-statuses",
+  "visual_selection_reason": "Selected screenshots only after choosing the Recipients and staff editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+  "viewport": "desktop"
+}

@@ -1,0 +1,31 @@
+Slot: tuesday
+Planned date: 2026-06-30
+Template: hushline-daily-desktop-template.html
+Screenshot: /Users/scidsg/hushline-website/src/assets/img/screenshots/current/artvandelay/auth-artvandelay-settings-advanced-desktop-light-fold.png
+Content key: auth-artvandelay-settings-advanced
+Headline: Give risky controls a warning zone
+Subtext: The high-risk area is visually isolated from routine upkeep, giving recipient teams a pause point before permanent action.
+
+Image alt text
+A Hush Line daily social graphic showing a desktop settings page where routine controls appear above a separate warning area for permanent account actions.
+
+Social post copy
+
+LinkedIn (424/3000)
+Routine upkeep belongs far from a warning zone.
+
+In Hush Line, the high-risk area is visually isolated from everyday maintenance. For newsrooms, clinics, campus programs, and civic groups, that helps multiple collaborators notice they are near a serious action instead of another normal option.
+
+The rule: ordinary tasks stay easy to reach; risky controls get unmistakable boundaries.
+
+See Hush Line at https://hushline.app.
+
+Mastodon (281/500)
+Routine upkeep belongs far from a warning zone.
+
+Hush Line visually isolates high-risk controls from everyday maintenance. For newsrooms, clinics, campus programs, and civic groups, that gives collaborators a pause point near serious action.
+
+See Hush Line at https://hushline.app.
+
+Bluesky (218/300)
+Routine upkeep belongs far from a warning zone. Hush Line visually isolates high-risk controls from everyday maintenance, giving recipient teams a pause point near serious action. See Hush Line at https://hushline.app.

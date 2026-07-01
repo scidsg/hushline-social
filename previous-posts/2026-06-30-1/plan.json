@@ -1,0 +1,107 @@
+{
+  "date": "2026-06-30",
+  "post": {
+    "slot": "tuesday",
+    "planned_date": "2026-06-30",
+    "screenshot_file": "artvandelay/auth-artvandelay-settings-advanced-desktop-light-fold.png",
+    "content_key": "auth-artvandelay-settings-advanced",
+    "content_format": "design_principle",
+    "headline": "Give risky controls a warning zone",
+    "subtext": "The high-risk area is visually isolated from routine upkeep, giving recipient teams a pause point before permanent action.",
+    "image_alt_text": "A Hush Line daily social graphic showing a desktop settings page where routine controls appear above a separate warning area for permanent account actions.",
+    "social": {
+      "bluesky": "Routine upkeep belongs far from a warning zone. Hush Line visually isolates high-risk controls from everyday maintenance, giving recipient teams a pause point near serious action. See Hush Line at https://hushline.app.",
+      "linkedin": "Routine upkeep belongs far from a warning zone.\n\nIn Hush Line, the high-risk area is visually isolated from everyday maintenance. For newsrooms, clinics, campus programs, and civic groups, that helps multiple collaborators notice they are near a serious action instead of another normal option.\n\nThe rule: ordinary tasks stay easy to reach; risky controls get unmistakable boundaries.\n\nSee Hush Line at https://hushline.app.",
+      "mastodon": "Routine upkeep belongs far from a warning zone.\n\nHush Line visually isolates high-risk controls from everyday maintenance. For newsrooms, clinics, campus programs, and civic groups, that gives collaborators a pause point near serious action.\n\nSee Hush Line at https://hushline.app."
+    },
+    "rationale": "Uses the Advanced settings screenshot while choosing a fresh warning-zone angle instead of prior export, records, PGP, or account-deletion angles.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "settings-advanced",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "editorial_intent": {
+      "audience_scope": "recipient-shared",
+      "content_format": "design_principle",
+      "content_format_label": "Design principle",
+      "label": "Recipients and staff",
+      "reader_need": "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+      "visual_role": "supporting_screenshot"
+    },
+    "matched_pull_requests": [],
+    "screen_key": "/settings/advanced",
+    "template_name": "hushline-daily-desktop-template.html",
+    "theme": "light",
+    "title": "Settings Advanced",
+    "topic_family": "settings-advanced",
+    "visual_selection_reason": "Selected screenshots only after choosing the Recipients and staff editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+    "viewport": "desktop"
+  },
+  "summary": "Advanced settings design separates routine upkeep from high-risk controls.",
+  "critic": {
+    "blocked": false,
+    "criteria": [
+      {
+        "id": "topic_freshness",
+        "label": "Topic freshness",
+        "max_score": 2,
+        "rationale": "Topic family settings-advanced is fresh against the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "hook_freshness",
+        "label": "Hook freshness",
+        "max_score": 2,
+        "rationale": "Opening hook is distinct from recent archive hooks.",
+        "score": 2
+      },
+      {
+        "id": "format_novelty",
+        "label": "Format novelty",
+        "max_score": 2,
+        "rationale": "Format design_principle is not overused in the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "audience_specificity",
+        "label": "Audience specificity",
+        "max_score": 2,
+        "rationale": "Copy contains 1 signal(s) for recipient-shared.",
+        "score": 1
+      },
+      {
+        "id": "concrete_reader_value",
+        "label": "Concrete reader value",
+        "max_score": 2,
+        "rationale": "Copy gives 1 concrete action/value signal(s).",
+        "score": 1
+      },
+      {
+        "id": "hushline_relevance",
+        "label": "Hush Line relevance",
+        "max_score": 2,
+        "rationale": "Copy is tied to Hush Line or a concrete Hush Line surface.",
+        "score": 2
+      },
+      {
+        "id": "cta_freshness",
+        "label": "CTA freshness",
+        "max_score": 2,
+        "rationale": "CTA pattern is fresh against the configured CTA cooldown.",
+        "score": 2
+      },
+      {
+        "id": "safety_compliance",
+        "label": "Safety and compliance",
+        "max_score": 2,
+        "rationale": "Copy avoids unsupported safety, anonymity, and recency claims.",
+        "score": 2
+      }
+    ],
+    "failed_criteria": [],
+    "max_score": 16,
+    "passed": true,
+    "rationale": "Topic freshness: Topic family settings-advanced is fresh against the recent archive. Hook freshness: Opening hook is distinct from recent archive hooks. Format novelty: Format design_principle is not overused in the recent archive. Audience specificity: Copy contains 1 signal(s) for recipient-shared. Concrete reader value: Copy gives 1 concrete action/value signal(s). Hush Line relevance: Copy is tied to Hush Line or a concrete Hush Line surface. CTA freshness: CTA pattern is fresh against the configured CTA cooldown. Safety and compliance: Copy avoids unsupported safety, anonymity, and recency claims.",
+    "score": 14,
+    "threshold": 12
+  }
+}

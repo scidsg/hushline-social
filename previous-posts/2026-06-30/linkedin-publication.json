@@ -1,0 +1,14 @@
+{
+  "archive_key": "2026-06-30",
+  "platform": "linkedin",
+  "planned_date": "2026-06-30",
+  "post_id": "urn:li:share:7477684827127934976",
+  "published_at": "2026-06-30T11:29:51.775Z",
+  "slot": "tuesday",
+  "status": 201,
+  "publication_state": "deleted",
+  "deleted_at": "2026-06-30T23:06:27.229Z",
+  "deleted_reason": "Deleted because it repeated the recent Message Statuses waiting/status-text post angle.",
+  "delete_status": 204,
+  "delete_linkedin_version": "202606"
+}

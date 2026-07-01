@@ -1,0 +1,31 @@
+Slot: tuesday
+Planned date: 2026-06-30
+Template: hushline-daily-desktop-template-2.html
+Screenshot: /Users/scidsg/hushline-website/src/assets/img/screenshots/current/artvandelay/auth-artvandelay-settings-replies-desktop-light-fold.png
+Content key: auth-artvandelay-settings-replies
+Headline: Write the waiting message sources will see
+Subtext: Message Statuses lets recipients and staff edit the Waiting status text shown on the temporary page a sender can check after submitting a message.
+
+Image alt text
+A Hush Line social post graphic showing the desktop Settings page. The left menu has Message Statuses selected. The main panel explains that senders get a temporary address to view message status, then shows a Waiting section, a Status Text box with a received-message note and 24-72 hour reply window, and an Update Reply Text button.
+
+Social post copy
+
+LinkedIn (520/3000)
+When a source submits a message, the next question is simple: what should they see while they wait?
+
+In Hush Line, recipients and staff can open Settings, choose Message Statuses, and edit the Waiting status text. The visible note can say that the message was received, give a realistic reply window, and remind the sender that they can check the same page for an update.
+
+Review this wording before the tip line is busy, then use Update Reply Text when the waiting message matches how your team actually handles intake.
+
+Mastodon (335/500)
+After a source sends a message, they may return to the temporary page to check the status.
+
+In Hush Line, recipients and staff can edit the Waiting status text under Message Statuses. Use it to confirm the message was received, set a realistic reply window, and say when to check back.
+
+Review the Waiting text before intake gets busy.
+
+Bluesky (222/300)
+After a source sends a message, the Waiting text tells them what to expect next.
+
+Recipients and staff can edit that note in Settings > Message Statuses, then use Update Reply Text when it matches the real review workflow.
