@@ -1,0 +1,29 @@
+Slot: thursday
+Planned date: 2026-07-23
+Template: hushline-daily-desktop-template-2.html
+Screenshot: /Users/scidsg/hushline-website/src/assets/img/screenshots/current/guest/guest-directory-verified-desktop-light-fold.png
+Content key: guest-directory-verified
+Headline: Find a recipient by role
+Subtext: The public Directory supports visitors who begin with recipient type and continue to a profile that matches their concern.
+
+Image alt text
+Social image showing a light-mode desktop Hush Line Directory page with verified recipient listings, category tabs, a search field, and profile links. The asset shows how public visitors can find a recipient by role and profile context.
+
+Social post copy
+
+LinkedIn (395/3000)
+Sometimes the hard part is naming the best recipient type.
+
+The public Hush Line Directory supports visitors who need a clear place to find recipient roles and profile context. A source can narrow the choice to a journalist, lawyer, newsroom, project, or another trusted recipient without starting from a random link.
+
+Use the Directory to choose the role that matches the issue in front of you.
+
+Mastodon (254/500)
+Sometimes the hard part is naming the best recipient type.
+
+The public Hush Line Directory supports visitors who need a clear place to find recipient roles and profile context.
+
+Use the Directory to choose the role that matches the issue in front of you.
+
+Bluesky (175/300)
+Sometimes the hard part is naming the best recipient type. The public Hush Line Directory supports visitors who need a clear place to find recipient roles and profile context.

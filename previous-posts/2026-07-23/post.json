@@ -1,0 +1,36 @@
+{
+  "slot": "thursday",
+  "planned_date": "2026-07-23",
+  "screenshot_file": "guest/guest-directory-verified-desktop-light-fold.png",
+  "content_key": "guest-directory-verified",
+  "content_format": "feature_benefit",
+  "headline": "Find a recipient by role",
+  "subtext": "The public Directory supports visitors who begin with recipient type and continue to a profile that matches their concern.",
+  "image_alt_text": "Social image showing a light-mode desktop Hush Line Directory page with verified recipient listings, category tabs, a search field, and profile links. The asset shows how public visitors can find a recipient by role and profile context.",
+  "social": {
+    "bluesky": "Sometimes the hard part is naming the best recipient type. The public Hush Line Directory supports visitors who need a clear place to find recipient roles and profile context.",
+    "linkedin": "Sometimes the hard part is naming the best recipient type.\n\nThe public Hush Line Directory supports visitors who need a clear place to find recipient roles and profile context. A source can narrow the choice to a journalist, lawyer, newsroom, project, or another trusted recipient without starting from a random link.\n\nUse the Directory to choose the role that matches the issue in front of you.",
+    "mastodon": "Sometimes the hard part is naming the best recipient type.\n\nThe public Hush Line Directory supports visitors who need a clear place to find recipient roles and profile context.\n\nUse the Directory to choose the role that matches the issue in front of you."
+  },
+  "rationale": "Selected the required public directory screenshot. To avoid the rejected overlap, this feature-benefit angle avoids the recent checklist framing and centers on recipient type and profile context instead of checking verified listings before sending.",
+  "source_pr_numbers": [],
+  "audience_scope": "public",
+  "concept_key": "directory-verified",
+  "copy_brief": "Write for sources and public users evaluating or using Hush Line.",
+  "editorial_intent": {
+    "audience_scope": "public",
+    "content_format": "feature_benefit",
+    "content_format_label": "Feature benefit",
+    "label": "Public sources and visitors",
+    "reader_need": "Help someone decide whether Hush Line is the right place to make safe first contact or find a trusted recipient.",
+    "visual_role": "supporting_screenshot"
+  },
+  "matched_pull_requests": [],
+  "screen_key": "directory-index",
+  "template_name": "hushline-daily-desktop-template-2.html",
+  "theme": "light",
+  "title": "Directory Verified",
+  "topic_family": "directory",
+  "visual_selection_reason": "Selected screenshots only after choosing the Public sources and visitors editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+  "viewport": "desktop"
+}
