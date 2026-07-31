@@ -1,0 +1,33 @@
+Slot: friday
+Planned date: 2026-07-31
+Template: hushline-daily-desktop-template.html
+Screenshot: /Users/scidsg/hushline-website/src/assets/img/screenshots/current/artvandelay/auth-artvandelay-tools-email-validation-status-valid-desktop-light-fold.png
+Content key: auth-artvandelay-tools-email-validation-status-valid
+Headline: Check email headers before staff act
+Subtext: Email Validation gives recipients and staff a repeatable place to paste Raw Email Headers, Validate Headers, and Download Report before an email changes message review.
+
+Image alt text
+Social image showing a light-mode desktop Hush Line Tools page with the Email Validation tab open, a Raw Email Headers field, Validate Headers and Download Report buttons, and a validation summary saying the email appears to originate from the stated sender. The asset shows a repeatable check for proper report handling.
+
+Social post copy
+
+LinkedIn (694/3000)
+Good whistleblowing workflows do not rely on memory.
+
+When an email is part of a sensitive intake review, recipients and staff need a clear check before they reply, forward, or hand off the message.
+
+Hush Line's Email Validation tool lets staff paste Raw Email Headers, run Validate Headers, and Download Report. The result can show whether the email appears to originate from the stated sender.
+
+That supports a plain ISO 37002 principle: reports should be handled properly and in a timely way. A small repeatable check helps teams slow down at the right moment without turning every review into guesswork.
+
+Build the header check into the staff workflow before an email changes the next step.
+
+Mastodon (344/500)
+Good whistleblowing workflows do not rely on memory.
+
+For recipients and staff, Email Validation gives one place to paste Raw Email Headers, run Validate Headers, and Download Report.
+
+That supports a plain ISO 37002 principle: handle reports properly and on time. Make the header check part of the review before an email changes the next step.
+
+Bluesky (210/300)
+Good whistleblowing workflows do not rely on memory. Recipients and staff can use Email Validation to paste Raw Email Headers, Validate Headers, and Download Report before an email changes the next review step.

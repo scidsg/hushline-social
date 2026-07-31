@@ -1,0 +1,36 @@
+{
+  "slot": "friday",
+  "planned_date": "2026-07-31",
+  "screenshot_file": "artvandelay/auth-artvandelay-tools-email-validation-status-valid-desktop-light-fold.png",
+  "content_key": "auth-artvandelay-tools-email-validation-status-valid",
+  "content_format": "iso_37002_principle",
+  "headline": "Check email headers before staff act",
+  "subtext": "Email Validation gives recipients and staff a repeatable place to paste Raw Email Headers, Validate Headers, and Download Report before an email changes message review.",
+  "image_alt_text": "Social image showing a light-mode desktop Hush Line Tools page with the Email Validation tab open, a Raw Email Headers field, Validate Headers and Download Report buttons, and a validation summary saying the email appears to originate from the stated sender. The asset shows a repeatable check for proper report handling.",
+  "social": {
+    "bluesky": "Good whistleblowing workflows do not rely on memory. Recipients and staff can use Email Validation to paste Raw Email Headers, Validate Headers, and Download Report before an email changes the next review step.",
+    "linkedin": "Good whistleblowing workflows do not rely on memory.\n\nWhen an email is part of a sensitive intake review, recipients and staff need a clear check before they reply, forward, or hand off the message.\n\nHush Line's Email Validation tool lets staff paste Raw Email Headers, run Validate Headers, and Download Report. The result can show whether the email appears to originate from the stated sender.\n\nThat supports a plain ISO 37002 principle: reports should be handled properly and in a timely way. A small repeatable check helps teams slow down at the right moment without turning every review into guesswork.\n\nBuild the header check into the staff workflow before an email changes the next step.",
+    "mastodon": "Good whistleblowing workflows do not rely on memory.\n\nFor recipients and staff, Email Validation gives one place to paste Raw Email Headers, run Validate Headers, and Download Report.\n\nThat supports a plain ISO 37002 principle: handle reports properly and on time. Make the header check part of the review before an email changes the next step."
+  },
+  "rationale": "Selected the Email Validation screenshot because the notifications candidate had heavier recent topic use. The ISO 37002 angle focuses on proper and timely handling: recipients and staff can make header validation a repeatable review step before an email changes follow-up or handoff.",
+  "source_pr_numbers": [],
+  "audience_scope": "recipient-shared",
+  "concept_key": "tools-email-validation-status-valid",
+  "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+  "editorial_intent": {
+    "audience_scope": "recipient-shared",
+    "content_format": "iso_37002_principle",
+    "content_format_label": "ISO 37002 principle",
+    "label": "Recipients and staff",
+    "reader_need": "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+    "visual_role": "supporting_screenshot"
+  },
+  "matched_pull_requests": [],
+  "screen_key": "/tools",
+  "template_name": "hushline-daily-desktop-template.html",
+  "theme": "light",
+  "title": "Tools Email Validation Status Valid",
+  "topic_family": "tools-email-validation-status-valid",
+  "visual_selection_reason": "Selected screenshots only after choosing the Recipients and staff editorial intent. The strict rotation and preferred cooldowns had no eligible candidate, so selection expanded across older visuals while preserving hard recent-premise windows.",
+  "viewport": "desktop"
+}
