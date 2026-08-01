@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-08-01",
+  "weekday": "saturday",
+  "publish_mode": "text",
+  "source": "NBC News",
+  "title": "Decorated Army vet files $3M claim alleging National Guard assault",
+  "article_url": "https://www.nbcnews.com/news/us-news/army-veteran-anna-king-says-national-guard-assaulted-protest-signs-was-rcna590230",
+  "article_published_at": "2026-07-31T20:07:43.000Z",
+  "relevance_score": 9,
+  "content_key": "weekly-news-nbc-news-decorated-army-vet-files-3m-claim-alleging-national-guard-assault",
+  "headline": "Whistleblower-related reporting from NBC News",
+  "subtext": "NBC News reports: Decorated Army vet files $3M claim alleging National Guard assault",
+  "social": {
+    "bluesky": "Decorated Army vet files $3M claim alleging National Guard assault.\n\nRead the article from NBC News\nhttps://www.nbcnews.com/news/us-news/army-veteran-anna-king-says-national-guard-assaulted-protest-signs-was-rcna590230\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Decorated Army vet files $3M claim alleging National Guard assault.\n\nNational Guard members shoved a retired Army captain to the pavement in violent retaliation for her opposition to their deployment in Washington, D.C., the decorated soldier said in a multimillion-dollar...\n\nRead the article from NBC News\nhttps://www.nbcnews.com/news/us-news/army-veteran-anna-king-says-national-guard-assaulted-protest-signs-was-rcna590230\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Decorated Army vet files $3M claim alleging National Guard assault.\n\nRetaliation is why safer first contact matters.\n\nRead the article from NBC News\nhttps://www.nbcnews.com/news/us-news/army-veteran-anna-king-says-national-guard-assaulted-protest-signs-was-rcna590230\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}

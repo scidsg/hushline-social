@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-08-01
+Publish mode: text
+Source: NBC News
+Article URL: https://www.nbcnews.com/news/us-news/army-veteran-anna-king-says-national-guard-assaulted-protest-signs-was-rcna590230
+Content key: weekly-news-nbc-news-decorated-army-vet-files-3m-claim-alleging-national-guard-assault
+Headline: Whistleblower-related reporting from NBC News
+Subtext: NBC News reports: Decorated Army vet files $3M claim alleging National Guard assault
+
+Social post copy
+
+LinkedIn (522/3000)
+Decorated Army vet files $3M claim alleging National Guard assault.
+
+National Guard members shoved a retired Army captain to the pavement in violent retaliation for her opposition to their deployment in Washington, D.C., the decorated soldier said in a multimillion-dollar...
+
+Read the article from NBC News
+https://www.nbcnews.com/news/us-news/army-veteran-anna-king-says-national-guard-assaulted-protest-signs-was-rcna590230
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (315/500)
+Decorated Army vet files $3M claim alleging National Guard assault.
+
+Retaliation is why safer first contact matters.
+
+Read the article from NBC News
+https://www.nbcnews.com/news/us-news/army-veteran-anna-king-says-national-guard-assaulted-protest-signs-was-rcna590230
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (266/300)
+Decorated Army vet files $3M claim alleging National Guard assault.
+
+Read the article from NBC News
+https://www.nbcnews.com/news/us-news/army-veteran-anna-king-says-national-guard-assaulted-protest-signs-was-rcna590230
+
+Sign up for Hush Line at https://hushline.app.
