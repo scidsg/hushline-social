@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-08-02
+Publish mode: text
+Source: The New York Times
+Article URL: https://www.nytimes.com/2026/08/01/us/politics/times-subpoena-reporter-trump-north-korea.html
+Content key: weekly-news-the-new-york-times-justice-dept-subpoenas-times-freelancer-in-effort-to-identify-sou
+Headline: Whistleblower-related reporting from The New York Times
+Subtext: The New York Times reports: Justice Dept. Subpoenas Times Freelancer in Effort to Identify Sources
+
+Social post copy
+
+LinkedIn (485/3000)
+Justice Dept. Subpoenas Times Freelancer in Effort to Identify Sources.
+
+A previously undisclosed subpoena, involving reporting on a failed SEAL Team 6 mission in North Korea, reflects the government’s expanding campaign to investigate leaks of secrets.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/08/01/us/politics/times-subpoena-reporter-trump-north-korea.html
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (301/500)
+Justice Dept. Subpoenas Times Freelancer in Effort to Identify Sources.
+
+Source protection starts before publication.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/08/01/us/politics/times-subpoena-reporter-trump-north-korea.html
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (255/300)
+Justice Dept. Subpoenas Times Freelancer in Effort to Identify Sources.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/08/01/us/politics/times-subpoena-reporter-trump-north-korea.html
+
+Sign up for Hush Line at https://hushline.app.

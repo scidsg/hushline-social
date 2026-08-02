@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-08-02",
+  "weekday": "sunday",
+  "publish_mode": "text",
+  "source": "The New York Times",
+  "title": "Justice Dept. Subpoenas Times Freelancer in Effort to Identify Sources",
+  "article_url": "https://www.nytimes.com/2026/08/01/us/politics/times-subpoena-reporter-trump-north-korea.html",
+  "article_published_at": "2026-08-01T16:32:22.000Z",
+  "relevance_score": 11,
+  "content_key": "weekly-news-the-new-york-times-justice-dept-subpoenas-times-freelancer-in-effort-to-identify-sou",
+  "headline": "Whistleblower-related reporting from The New York Times",
+  "subtext": "The New York Times reports: Justice Dept. Subpoenas Times Freelancer in Effort to Identify Sources",
+  "social": {
+    "bluesky": "Justice Dept. Subpoenas Times Freelancer in Effort to Identify Sources.\n\nRead the article from The New York Times\nhttps://www.nytimes.com/2026/08/01/us/politics/times-subpoena-reporter-trump-north-korea.html\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Justice Dept. Subpoenas Times Freelancer in Effort to Identify Sources.\n\nA previously undisclosed subpoena, involving reporting on a failed SEAL Team 6 mission in North Korea, reflects the government’s expanding campaign to investigate leaks of secrets.\n\nRead the article from The New York Times\nhttps://www.nytimes.com/2026/08/01/us/politics/times-subpoena-reporter-trump-north-korea.html\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Justice Dept. Subpoenas Times Freelancer in Effort to Identify Sources.\n\nSource protection starts before publication.\n\nRead the article from The New York Times\nhttps://www.nytimes.com/2026/08/01/us/politics/times-subpoena-reporter-trump-north-korea.html\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
