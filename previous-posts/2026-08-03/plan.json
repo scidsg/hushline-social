@@ -1,0 +1,107 @@
+{
+  "date": "2026-08-03",
+  "post": {
+    "slot": "monday",
+    "planned_date": "2026-08-03",
+    "screenshot_file": "artvandelay/auth-artvandelay-settings-notifications-desktop-light-fold.png",
+    "content_key": "auth-artvandelay-settings-notifications",
+    "content_format": "myth_vs_reality",
+    "headline": "Notification addresses stay private",
+    "subtext": "Recipients and staff can use Notifications to choose Hush Line inbox notifications, email notifications, and whether encrypted tip contents are included in email.",
+    "image_alt_text": "Social image showing a light-mode desktop Hush Line Settings page on the Notifications tab. The screen shows Tip Notifications turned on, a Recipients section saying notification recipient addresses stay private and are never shown on the public tip line, enabled recipient addresses with PGP keys configured, and an Add Recipient button. The asset supports a myth-versus-reality message that staff alerts can stay private while recipients choose inbox and email notification settings.",
+    "social": {
+      "bluesky": "Myth: email notifications expose staff addresses.\n\nReality: Hush Line notification recipient addresses stay private. Recipients and staff can choose inbox notices, email notices, and whether encrypted tip contents are included in email.",
+      "linkedin": "Myth: adding email notifications means exposing staff addresses on your public tip line.\n\nReality: Hush Line notification recipient addresses stay private and are never shown on your public tip line.\n\nFor a shared recipient account, recipients and staff can choose Hush Line inbox notifications, email notifications, and whether encrypted tip contents are included in email. They can also add more than one notification recipient, each with its own delivery address and PGP key.\n\nUse Notifications to decide who gets alerts, what goes into email, and what stays in the Hush Line inbox.",
+      "mastodon": "Myth: adding email notifications means staff addresses appear on the public tip line.\n\nReality: Hush Line notification recipient addresses stay private.\n\nRecipients and staff can choose Hush Line inbox notifications, email notifications, and whether encrypted tip contents are included in email. Review Notifications before sharing the workflow."
+    },
+    "rationale": "Selected the only provided recipient-shared candidate. The notification topic has appeared before, so this post avoids older angles about quick alerts, forwarding, or setup timing and focuses on a different repeatable workflow decision: adding private notification recipients while choosing inbox notifications, email notifications, and encrypted tip content in email.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "settings-notifications",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "editorial_intent": {
+      "audience_scope": "recipient-shared",
+      "content_format": "myth_vs_reality",
+      "content_format_label": "Myth versus reality",
+      "label": "Recipients and staff",
+      "reader_need": "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+      "visual_role": "supporting_screenshot"
+    },
+    "matched_pull_requests": [],
+    "screen_key": "/settings/notifications",
+    "template_name": "hushline-daily-desktop-template-2.html",
+    "theme": "light",
+    "title": "Settings Notifications",
+    "topic_family": "notifications",
+    "visual_selection_reason": "Selected screenshots only after choosing the Recipients and staff editorial intent. The strict rotation and preferred cooldowns had no eligible candidate, so selection expanded across older visuals while preserving hard recent-premise windows.",
+    "viewport": "desktop"
+  },
+  "summary": "Myth-versus-reality post for recipients and staff using the Notifications settings screenshot, focused on private notification recipient addresses and clear choices for inbox and email alerts.",
+  "critic": {
+    "blocked": false,
+    "criteria": [
+      {
+        "id": "topic_freshness",
+        "label": "Topic freshness",
+        "max_score": 2,
+        "rationale": "Topic family notifications is fresh against the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "hook_freshness",
+        "label": "Hook freshness",
+        "max_score": 2,
+        "rationale": "Opening hook is distinct from recent archive hooks.",
+        "score": 2
+      },
+      {
+        "id": "format_novelty",
+        "label": "Format novelty",
+        "max_score": 2,
+        "rationale": "Format myth_vs_reality is not overused in the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "audience_specificity",
+        "label": "Audience specificity",
+        "max_score": 2,
+        "rationale": "Copy contains 5 signal(s) for recipient-shared.",
+        "score": 2
+      },
+      {
+        "id": "concrete_reader_value",
+        "label": "Concrete reader value",
+        "max_score": 2,
+        "rationale": "Copy gives 4 concrete action/value signal(s).",
+        "score": 2
+      },
+      {
+        "id": "hushline_relevance",
+        "label": "Hush Line relevance",
+        "max_score": 2,
+        "rationale": "Copy is tied to Hush Line or a concrete Hush Line surface.",
+        "score": 2
+      },
+      {
+        "id": "cta_freshness",
+        "label": "CTA freshness",
+        "max_score": 2,
+        "rationale": "CTA pattern is fresh against the configured CTA cooldown.",
+        "score": 2
+      },
+      {
+        "id": "safety_compliance",
+        "label": "Safety and compliance",
+        "max_score": 2,
+        "rationale": "Copy avoids unsupported safety, anonymity, and recency claims.",
+        "score": 2
+      }
+    ],
+    "failed_criteria": [],
+    "max_score": 16,
+    "passed": true,
+    "rationale": "Topic freshness: Topic family notifications is fresh against the recent archive. Hook freshness: Opening hook is distinct from recent archive hooks. Format novelty: Format myth_vs_reality is not overused in the recent archive. Audience specificity: Copy contains 5 signal(s) for recipient-shared. Concrete reader value: Copy gives 4 concrete action/value signal(s). Hush Line relevance: Copy is tied to Hush Line or a concrete Hush Line surface. CTA freshness: CTA pattern is fresh against the configured CTA cooldown. Safety and compliance: Copy avoids unsupported safety, anonymity, and recency claims.",
+    "score": 16,
+    "threshold": 12
+  }
+}
