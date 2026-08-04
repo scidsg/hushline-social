@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-08-04",
+  "weekday": "tuesday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "Daphne Caruana Galizia was investigating suspected corruption when killed, jury told",
+  "article_url": "https://www.theguardian.com/world/2026/aug/04/daphne-caruana-galizia-investigating-suspected-corruption-when-killed-jury-told",
+  "article_published_at": "2026-08-04T07:00:16.000Z",
+  "relevance_score": 13,
+  "content_key": "weekly-news-the-guardian-daphne-caruana-galizia-was-investigating-suspected-corruption-when-kill",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: Daphne Caruana Galizia was investigating suspected corruption when killed, jury told",
+  "social": {
+    "bluesky": "Daphne Caruana Galizia was investigating suspected corruption when killed, jury told.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/world/2026/aug/04/daphne-caruana-galizia-investigating-suspected-corruption-when-killed-jury-told\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Daphne Caruana Galizia was investigating suspected corruption when killed, jury told.\n\nSource protection starts before publication, when someone decides whether contact is safe enough.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/world/2026/aug/04/daphne-caruana-galizia-investigating-suspected-corruption-when-killed-jury-told\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Daphne Caruana Galizia was investigating suspected corruption when killed, jury told.\n\nSource protection starts before publication.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/world/2026/aug/04/daphne-caruana-galizia-investigating-suspected-corruption-when-killed-jury-told\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}

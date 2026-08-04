@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-08-04
+Publish mode: text
+Source: The Guardian
+Article URL: https://www.theguardian.com/world/2026/aug/04/daphne-caruana-galizia-investigating-suspected-corruption-when-killed-jury-told
+Content key: weekly-news-the-guardian-daphne-caruana-galizia-was-investigating-suspected-corruption-when-kill
+Headline: Whistleblower-related reporting from The Guardian
+Subtext: The Guardian reports: Daphne Caruana Galizia was investigating suspected corruption when killed, jury told
+
+Social post copy
+
+LinkedIn (442/3000)
+Daphne Caruana Galizia was investigating suspected corruption when killed, jury told.
+
+Source protection starts before publication, when someone decides whether contact is safe enough.
+
+Read the article from The Guardian
+https://www.theguardian.com/world/2026/aug/04/daphne-caruana-galizia-investigating-suspected-corruption-when-killed-jury-told
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (341/500)
+Daphne Caruana Galizia was investigating suspected corruption when killed, jury told.
+
+Source protection starts before publication.
+
+Read the article from The Guardian
+https://www.theguardian.com/world/2026/aug/04/daphne-caruana-galizia-investigating-suspected-corruption-when-killed-jury-told
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (295/300)
+Daphne Caruana Galizia was investigating suspected corruption when killed, jury told.
+
+Read the article from The Guardian
+https://www.theguardian.com/world/2026/aug/04/daphne-caruana-galizia-investigating-suspected-corruption-when-killed-jury-told
+
+Sign up for Hush Line at https://hushline.app.
