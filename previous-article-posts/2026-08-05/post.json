@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-08-05",
+  "weekday": "wednesday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "US revokes Brazil ambassador’s visa in escalation of diplomatic feud",
+  "article_url": "https://www.theguardian.com/us-news/2026/aug/04/us-revokes-brazil-ambassador-visa",
+  "article_published_at": "2026-08-05T01:41:07.000Z",
+  "relevance_score": 9,
+  "content_key": "weekly-news-the-guardian-us-revokes-brazil-ambassador-s-visa-in-escalation-of-diplomatic-feud",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: US revokes Brazil ambassador’s visa in escalation of diplomatic feud",
+  "social": {
+    "bluesky": "US revokes Brazil ambassador’s visa in escalation of diplomatic feud.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/aug/04/us-revokes-brazil-ambassador-visa\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "US revokes Brazil ambassador’s visa in escalation of diplomatic feud.\n\nMove is retaliation for Lula’s government refusal to approve Trump’s nominee for ambassador in Brasília Donald Trump’s administration has revoked the visa of Brazil’s ambassador to the US in a sharp escalation of a...\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/aug/04/us-revokes-brazil-ambassador-visa\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "US revokes Brazil ambassador’s visa in escalation of diplomatic feud.\n\nRetaliation is why safer first contact matters.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/aug/04/us-revokes-brazil-ambassador-visa\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
