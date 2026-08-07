@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-08-07",
+  "weekday": "friday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "Judge approves $106m settlement over deadly 2019 Hard Rock Hotel collapse",
+  "article_url": "https://www.theguardian.com/us-news/2026/aug/06/hard-rock-hotel-collapse-settlement",
+  "article_published_at": "2026-08-06T23:13:08.000Z",
+  "relevance_score": 14,
+  "content_key": "weekly-news-the-guardian-judge-approves-106m-settlement-over-deadly-2019-hard-rock-hotel-collaps",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: Judge approves $106m settlement over deadly 2019 Hard Rock Hotel collapse",
+  "social": {
+    "bluesky": "Judge approves $106m settlement over deadly 2019 Hard Rock Hotel collapse.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/aug/06/hard-rock-hotel-collapse-settlement\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Judge approves $106m settlement over deadly 2019 Hard Rock Hotel collapse.\n\nSettlement ends years-long legal battle over collapse of 18-story hotel that was under construction in New Orleans A judge approved a $106m settlement on Thursday that ends a years-long legal battle over the deadly...\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/aug/06/hard-rock-hotel-collapse-settlement\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Judge approves $106m settlement over deadly 2019 Hard Rock Hotel collapse.\n\nWins matter when reporting leads to protection or repair.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/aug/06/hard-rock-hotel-collapse-settlement\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
