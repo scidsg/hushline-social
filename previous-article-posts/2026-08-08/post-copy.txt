@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-08-08
+Publish mode: text
+Source: BBC News
+Article URL: https://www.bbc.co.uk/news/articles/cpvw7xyjz8eo?at_medium=RSS&at_campaign=rss
+Content key: weekly-news-bbc-news-farage-and-tice-sue-nca-over-alleged-leaks-of-financial-information
+Headline: Whistleblower-related reporting from BBC News
+Subtext: BBC News reports: Farage and Tice sue NCA over alleged leaks of financial information
+
+Social post copy
+
+LinkedIn (380/3000)
+Farage and Tice sue NCA over alleged leaks of financial information.
+
+The Reform leaders claim the National Crime Agency supplied details about party donations to the media.
+
+Read the article from BBC News
+https://www.bbc.co.uk/news/articles/cpvw7xyjz8eo?at_medium=RSS&at_campaign=rss
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (273/500)
+Farage and Tice sue NCA over alleged leaks of financial information.
+
+Source protection starts before publication.
+
+Read the article from BBC News
+https://www.bbc.co.uk/news/articles/cpvw7xyjz8eo?at_medium=RSS&at_campaign=rss
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (227/300)
+Farage and Tice sue NCA over alleged leaks of financial information.
+
+Read the article from BBC News
+https://www.bbc.co.uk/news/articles/cpvw7xyjz8eo?at_medium=RSS&at_campaign=rss
+
+Sign up for Hush Line at https://hushline.app.
