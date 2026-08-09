@@ -1,0 +1,35 @@
+Slot: sunday
+Planned date: 2026-08-09
+Template: hushline-daily-desktop-template.html
+Screenshot: /Users/scidsg/hushline-website/src/assets/img/screenshots/current/artvandelay/auth-artvandelay-settings-replies-desktop-light-fold.png
+Content key: auth-artvandelay-settings-replies
+Headline: Use plain words for sensitive moments
+Subtext: Recipients can make instructions easier to scan by using familiar terms, short sentences, and one clear action.
+
+Image alt text
+Social graphic titled “Use plain words for sensitive moments” above a light-mode desktop screenshot of Hush Line Settings. Message Statuses is selected, and the Waiting section shows a Status Text field and an Update Reply Text button for recipients and staff.
+
+Social post copy
+
+LinkedIn (509/3000)
+Sensitive disclosures are often read in stressful circumstances.
+
+The Waiting field in Hush Line can hold ordinary words instead of language that only your organization recognizes.
+
+A readability routine for recipients:
+1. Lead with the action a person needs to take.
+2. Use one idea per sentence.
+3. Remove abbreviations and internal labels.
+4. Ask a colleague outside your program to paraphrase the instructions.
+
+If their version changes the meaning, revise the field until the instruction is unmistakable.
+
+Mastodon (326/500)
+People reading a sensitive disclosure may be stressed. Keep the language easy to scan.
+
+In Hush Line’s Waiting field, recipients can lead with one action, use one idea per sentence, and remove abbreviations or internal labels.
+
+Ask a colleague outside your program to paraphrase the instructions. Revise anything they misread.
+
+Bluesky (268/300)
+Make sensitive disclosure instructions easy to scan. In Hush Line’s Waiting field, recipients can lead with one action, use short sentences, and remove internal labels. Ask someone outside your program to paraphrase the instructions, then revise anything they misread.

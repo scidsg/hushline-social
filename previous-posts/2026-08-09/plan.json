@@ -1,0 +1,123 @@
+{
+  "date": "2026-08-09",
+  "post": {
+    "slot": "sunday",
+    "planned_date": "2026-08-09",
+    "screenshot_file": "artvandelay/auth-artvandelay-settings-replies-desktop-light-fold.png",
+    "content_key": "auth-artvandelay-settings-replies",
+    "content_format": "recipient_playbook",
+    "headline": "Use plain words for sensitive moments",
+    "subtext": "Recipients can make instructions easier to scan by using familiar terms, short sentences, and one clear action.",
+    "image_alt_text": "Social graphic titled “Use plain words for sensitive moments” above a light-mode desktop screenshot of Hush Line Settings. Message Statuses is selected, and the Waiting section shows a Status Text field and an Update Reply Text button for recipients and staff.",
+    "social": {
+      "bluesky": "Make sensitive disclosure instructions easy to scan. In Hush Line’s Waiting field, recipients can lead with one action, use short sentences, and remove internal labels. Ask someone outside your program to paraphrase the instructions, then revise anything they misread.",
+      "linkedin": "Sensitive disclosures are often read in stressful circumstances.\n\nThe Waiting field in Hush Line can hold ordinary words instead of language that only your organization recognizes.\n\nA readability routine for recipients:\n1. Lead with the action a person needs to take.\n2. Use one idea per sentence.\n3. Remove abbreviations and internal labels.\n4. Ask a colleague outside your program to paraphrase the instructions.\n\nIf their version changes the meaning, revise the field until the instruction is unmistakable.",
+      "mastodon": "People reading a sensitive disclosure may be stressed. Keep the language easy to scan.\n\nIn Hush Line’s Waiting field, recipients can lead with one action, use one idea per sentence, and remove abbreviations or internal labels.\n\nAsk a colleague outside your program to paraphrase the instructions. Revise anything they misread."
+    },
+    "rationale": "The required cooldown-fallback screenshot supports a fresh recipient playbook about readability rather than repeating earlier angles about response windows, return visits, or consistency across shifts. The paraphrase exercise gives recipients a concrete way to find unclear instructions, while the image grounds that advice in the visible Message Statuses controls.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "settings-replies",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "editorial_intent": {
+      "audience_scope": "recipient-shared",
+      "content_format": "recipient_playbook",
+      "content_format_label": "Recipient playbook",
+      "label": "Recipients and staff",
+      "reader_need": "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+      "visual_role": "supporting_screenshot"
+    },
+    "matched_pull_requests": [
+      {
+        "merged_at": "2026-07-14T05:14:25Z",
+        "number": 2340,
+        "title": "Prevent rapid mobile submits from duplicating chat replies"
+      },
+      {
+        "merged_at": "2026-07-08T23:09:05Z",
+        "number": 2329,
+        "title": "Allow replies to legacy chat-key recipients"
+      },
+      {
+        "merged_at": "2026-07-07T18:25:17Z",
+        "number": 2327,
+        "title": "Upgrade legacy chat keys for replies"
+      }
+    ],
+    "screen_key": "auth-artvandelay-settings-replies",
+    "template_name": "hushline-daily-desktop-template.html",
+    "theme": "light",
+    "title": "Settings Replies",
+    "topic_family": "message-statuses",
+    "visual_selection_reason": "Selected screenshots only after choosing the Recipients and staff editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+    "viewport": "desktop"
+  },
+  "summary": "A recipient playbook for making sensitive disclosure instructions easy to scan and understand.",
+  "critic": {
+    "blocked": false,
+    "criteria": [
+      {
+        "id": "topic_freshness",
+        "label": "Topic freshness",
+        "max_score": 2,
+        "rationale": "Topic family message-statuses appeared recently but not in the last two posts.",
+        "score": 1
+      },
+      {
+        "id": "hook_freshness",
+        "label": "Hook freshness",
+        "max_score": 2,
+        "rationale": "Opening hook is distinct from recent archive hooks.",
+        "score": 2
+      },
+      {
+        "id": "format_novelty",
+        "label": "Format novelty",
+        "max_score": 2,
+        "rationale": "Format recipient_playbook is not overused in the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "audience_specificity",
+        "label": "Audience specificity",
+        "max_score": 2,
+        "rationale": "Copy contains 3 signal(s) for recipient-shared.",
+        "score": 2
+      },
+      {
+        "id": "concrete_reader_value",
+        "label": "Concrete reader value",
+        "max_score": 2,
+        "rationale": "Copy gives 1 concrete action/value signal(s).",
+        "score": 1
+      },
+      {
+        "id": "hushline_relevance",
+        "label": "Hush Line relevance",
+        "max_score": 2,
+        "rationale": "Copy is tied to Hush Line or a concrete Hush Line surface.",
+        "score": 2
+      },
+      {
+        "id": "cta_freshness",
+        "label": "CTA freshness",
+        "max_score": 2,
+        "rationale": "CTA pattern is fresh against the configured CTA cooldown.",
+        "score": 2
+      },
+      {
+        "id": "safety_compliance",
+        "label": "Safety and compliance",
+        "max_score": 2,
+        "rationale": "Copy avoids unsupported safety, anonymity, and recency claims.",
+        "score": 2
+      }
+    ],
+    "failed_criteria": [],
+    "max_score": 16,
+    "passed": true,
+    "rationale": "Topic freshness: Topic family message-statuses appeared recently but not in the last two posts. Hook freshness: Opening hook is distinct from recent archive hooks. Format novelty: Format recipient_playbook is not overused in the recent archive. Audience specificity: Copy contains 3 signal(s) for recipient-shared. Concrete reader value: Copy gives 1 concrete action/value signal(s). Hush Line relevance: Copy is tied to Hush Line or a concrete Hush Line surface. CTA freshness: CTA pattern is fresh against the configured CTA cooldown. Safety and compliance: Copy avoids unsupported safety, anonymity, and recency claims.",
+    "score": 14,
+    "threshold": 12
+  }
+}
