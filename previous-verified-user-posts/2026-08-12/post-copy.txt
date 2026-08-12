@@ -1,0 +1,36 @@
+Slot: verified-user-weekly
+Planned date: 2026-08-12
+Verified user: @sitpub
+User link: https://tips.hushline.app/to/sitpub
+Source: https://tips.hushline.app/directory/users.json
+Editorial format: Before you contact them (before_you_contact_them)
+Opening line: Before you contact The Register:
+Headline: The Register
+Subtext: Contact The Register securely and confidentially. Please consider giving us a way to contact you - email / Signal / etc. A good tip includes evidence. One way to send is via secure storage, eg file.io, and submitting the link in your Hush Line tip.
+
+Image alt text
+A social card featuring verified Hush Line user The Register, their bio, their tip line URL, and a QR code that links to the same URL.
+
+Social post copy
+
+LinkedIn (374/3000)
+Before you contact The Register:
+
+Contact The Register securely and confidentially. Please consider giving us a way to contact you - email / Signal / etc. A good tip includes evidence. One way to send is via secure storage, eg file.io, and submitting the link in your Hush Line tip.
+
+Use the verified URL when you are ready to reach out: https://tips.hushline.app/to/sitpub.
+
+Mastodon (332/500)
+Before you contact The Register:
+
+Contact The Register securely and confidentially. Please consider giving us a way to contact you - email / Signal / etc. A good tip includes evidence. One way to send is via secure storage, eg file.io, and…
+
+Use the verified URL when you are ready to reach out: https://tips.hushline.app/to/sitpub.
+
+Bluesky (287/300)
+Before you contact The Register:
+
+Contact The Register securely and confidentially. Please consider giving us a way to contact you - email / Signal / etc. A good tip includes evidence. One way to…
+
+Use the verified URL when you are ready to reach out: https://tips.hushline.app/to/sitpub
+

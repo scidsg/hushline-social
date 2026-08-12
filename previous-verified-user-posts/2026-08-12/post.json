@@ -1,0 +1,22 @@
+{
+  "date": "2026-08-12",
+  "display_name": "The Register",
+  "editorial_format_label": "Before you contact them",
+  "headline": "The Register",
+  "image_alt_text": "A social card featuring verified Hush Line user The Register, their bio, their tip line URL, and a QR code that links to the same URL.",
+  "opening_line": "Before you contact The Register:",
+  "planned_date": "2026-08-12",
+  "primary_username": "sitpub",
+  "qr_code_file": "verified-user-qr.png",
+  "social": {
+    "bluesky": "Before you contact The Register:\n\nContact The Register securely and confidentially. Please consider giving us a way to contact you - email / Signal / etc. A good tip includes evidence. One way to…\n\nUse the verified URL when you are ready to reach out: https://tips.hushline.app/to/sitpub",
+    "linkedin": "Before you contact The Register:\n\nContact The Register securely and confidentially. Please consider giving us a way to contact you - email / Signal / etc. A good tip includes evidence. One way to send is via secure storage, eg file.io, and submitting the link in your Hush Line tip.\n\nUse the verified URL when you are ready to reach out: https://tips.hushline.app/to/sitpub.",
+    "mastodon": "Before you contact The Register:\n\nContact The Register securely and confidentially. Please consider giving us a way to contact you - email / Signal / etc. A good tip includes evidence. One way to send is via secure storage, eg file.io, and…\n\nUse the verified URL when you are ready to reach out: https://tips.hushline.app/to/sitpub."
+  },
+  "slot": "verified-user-weekly",
+  "source": "https://tips.hushline.app/directory/users.json",
+  "subtext": "Contact The Register securely and confidentially. Please consider giving us a way to contact you - email / Signal / etc. A good tip includes evidence. One way to send is via secure storage, eg file.io, and submitting the link in your Hush Line tip.",
+  "user_link": "https://tips.hushline.app/to/sitpub",
+  "user_url": "https://tips.hushline.app/to/sitpub",
+  "verified_user_format": "before_you_contact_them"
+}
