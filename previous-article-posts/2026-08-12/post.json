@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-08-12",
+  "weekday": "wednesday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "In Venice, it’s not politics as usual as film-makers aim to recapture our attention",
+  "article_url": "https://www.theguardian.com/world/2026/aug/12/this-is-europe-venice-film-festival-politics-alex-gibney-sergei-loznitsa",
+  "article_published_at": "2026-08-12T14:15:57.000Z",
+  "relevance_score": 9,
+  "content_key": "weekly-news-the-guardian-in-venice-it-s-not-politics-as-usual-as-film-makers-aim-to-recapture-ou",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: In Venice, it’s not politics as usual as film-makers aim to recapture our attention",
+  "social": {
+    "bluesky": "In Venice, it’s not politics as usual as film-makers aim to recapture our attention.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/world/2026/aug/12/this-is-europe-venice-film-festival-politics-alex-gibney-sergei-loznitsa\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "In Venice, it’s not politics as usual as film-makers aim to recapture our attention.\n\nAs social media shrinks and distorts the EU’s crises, the Venice film festival is delivering politically forthright epics from directors such as Sergei Loznitsa and Alex Gibney • Don’t get This Is Europe delivered to...\n\nRead the article from The Guardian\nhttps://www.theguardian.com/world/2026/aug/12/this-is-europe-venice-film-festival-politics-alex-gibney-sergei-loznitsa\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "In Venice, it’s not politics as usual as film-makers aim to recapture our attention.\n\nRetaliation is why safer first contact matters.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/world/2026/aug/12/this-is-europe-venice-film-festival-politics-alex-gibney-sergei-loznitsa\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
