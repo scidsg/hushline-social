@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-08-13",
+  "weekday": "thursday",
+  "publish_mode": "text",
+  "source": "BBC News",
+  "title": "Australian army whistleblower released on parole after more than two years in jail",
+  "article_url": "https://www.bbc.co.uk/news/articles/c5yw7vdwjxyo?at_medium=RSS&at_campaign=rss",
+  "article_published_at": "2026-08-13T02:23:39.000Z",
+  "relevance_score": 14,
+  "content_key": "weekly-news-bbc-news-australian-army-whistleblower-released-on-parole-after-more-than-two-years-",
+  "headline": "Whistleblower-related reporting from BBC News",
+  "subtext": "BBC News reports: Australian army whistleblower released on parole after more than two years in jail",
+  "social": {
+    "bluesky": "Australian army whistleblower released on parole after more than two years in jail.\n\nRead the article from BBC News\nhttps://www.bbc.co.uk/news/articles/c5yw7vdwjxyo?at_medium=RSS&at_campaign=rss\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Australian army whistleblower released on parole after more than two years in jail.\n\nDavid McBride was jailed after pleading guilty to leaking military secrets about Afghanistan.\n\nRead the article from BBC News\nhttps://www.bbc.co.uk/news/articles/c5yw7vdwjxyo?at_medium=RSS&at_campaign=rss\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Australian army whistleblower released on parole after more than two years in jail.\n\nAccountability reporting needs a safe enough way to make contact.\n\nRead the article from BBC News\nhttps://www.bbc.co.uk/news/articles/c5yw7vdwjxyo?at_medium=RSS&at_campaign=rss\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}

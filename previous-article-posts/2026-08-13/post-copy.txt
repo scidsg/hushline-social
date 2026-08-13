@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-08-13
+Publish mode: text
+Source: BBC News
+Article URL: https://www.bbc.co.uk/news/articles/c5yw7vdwjxyo?at_medium=RSS&at_campaign=rss
+Content key: weekly-news-bbc-news-australian-army-whistleblower-released-on-parole-after-more-than-two-years-
+Headline: Whistleblower-related reporting from BBC News
+Subtext: BBC News reports: Australian army whistleblower released on parole after more than two years in jail
+
+Social post copy
+
+LinkedIn (385/3000)
+Australian army whistleblower released on parole after more than two years in jail.
+
+David McBride was jailed after pleading guilty to leaking military secrets about Afghanistan.
+
+Read the article from BBC News
+https://www.bbc.co.uk/news/articles/c5yw7vdwjxyo?at_medium=RSS&at_campaign=rss
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (309/500)
+Australian army whistleblower released on parole after more than two years in jail.
+
+Accountability reporting needs a safe enough way to make contact.
+
+Read the article from BBC News
+https://www.bbc.co.uk/news/articles/c5yw7vdwjxyo?at_medium=RSS&at_campaign=rss
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (242/300)
+Australian army whistleblower released on parole after more than two years in jail.
+
+Read the article from BBC News
+https://www.bbc.co.uk/news/articles/c5yw7vdwjxyo?at_medium=RSS&at_campaign=rss
+
+Sign up for Hush Line at https://hushline.app.
