@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-08-14",
+  "weekday": "friday",
+  "publish_mode": "text",
+  "source": "NBC News",
+  "title": "Selena Gomez and her mom accused of fraud over their mental health startup",
+  "article_url": "https://www.nbcnews.com/news/us-news/selena-gomez-mom-accused-fraud-mental-health-startup-rcna592411",
+  "article_published_at": "2026-08-14T00:37:54.000Z",
+  "relevance_score": 12,
+  "content_key": "weekly-news-nbc-news-selena-gomez-and-her-mom-accused-of-fraud-over-their-mental-health-startup",
+  "headline": "Whistleblower-related reporting from NBC News",
+  "subtext": "NBC News reports: Selena Gomez and her mom accused of fraud over their mental health startup",
+  "social": {
+    "bluesky": "Selena Gomez and her mom accused of fraud over their mental health startup.\n\nRead the article from NBC News\nhttps://www.nbcnews.com/news/us-news/selena-gomez-mom-accused-fraud-mental-health-startup-rcna592411\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Selena Gomez and her mom accused of fraud over their mental health startup.\n\nSuperstar Selena Gomez and her mother are accused of defrauding investors of their mental health startup, Wondermind, in a federal lawsuit filed Thursday.\n\nRead the article from NBC News\nhttps://www.nbcnews.com/news/us-news/selena-gomez-mom-accused-fraud-mental-health-startup-rcna592411\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Selena Gomez and her mom accused of fraud over their mental health startup.\n\nAccountability reporting needs a safe enough way to make contact.\n\nRead the article from NBC News\nhttps://www.nbcnews.com/news/us-news/selena-gomez-mom-accused-fraud-mental-health-startup-rcna592411\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}

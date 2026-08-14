@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-08-14
+Publish mode: text
+Source: NBC News
+Article URL: https://www.nbcnews.com/news/us-news/selena-gomez-mom-accused-fraud-mental-health-startup-rcna592411
+Content key: weekly-news-nbc-news-selena-gomez-and-her-mom-accused-of-fraud-over-their-mental-health-startup
+Headline: Whistleblower-related reporting from NBC News
+Subtext: NBC News reports: Selena Gomez and her mom accused of fraud over their mental health startup
+
+Social post copy
+
+LinkedIn (460/3000)
+Selena Gomez and her mom accused of fraud over their mental health startup.
+
+Superstar Selena Gomez and her mother are accused of defrauding investors of their mental health startup, Wondermind, in a federal lawsuit filed Thursday.
+
+Read the article from NBC News
+https://www.nbcnews.com/news/us-news/selena-gomez-mom-accused-fraud-mental-health-startup-rcna592411
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (323/500)
+Selena Gomez and her mom accused of fraud over their mental health startup.
+
+Accountability reporting needs a safe enough way to make contact.
+
+Read the article from NBC News
+https://www.nbcnews.com/news/us-news/selena-gomez-mom-accused-fraud-mental-health-startup-rcna592411
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (256/300)
+Selena Gomez and her mom accused of fraud over their mental health startup.
+
+Read the article from NBC News
+https://www.nbcnews.com/news/us-news/selena-gomez-mom-accused-fraud-mental-health-startup-rcna592411
+
+Sign up for Hush Line at https://hushline.app.
