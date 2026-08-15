@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-08-15",
+  "weekday": "saturday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "French ambassador to CAR investigated over claims he hosted dozens of women",
+  "article_url": "https://www.theguardian.com/world/2026/aug/13/france-ambassador-car-central-african-republic-investigation-bruno-foucher",
+  "article_published_at": "2026-08-13T14:21:52.000Z",
+  "relevance_score": 8,
+  "content_key": "weekly-news-the-guardian-french-ambassador-to-car-investigated-over-claims-he-hosted-dozens-of-w",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: French ambassador to CAR investigated over claims he hosted dozens of women",
+  "social": {
+    "bluesky": "French ambassador to CAR investigated over claims he hosted dozens of women.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/world/2026/aug/13/france-ambassador-car-central-african-republic-investigation-bruno-foucher\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "French ambassador to CAR investigated over claims he hosted dozens of women.\n\nDisciplinary proceedings under way after security concerns raised over reported visits to official residence France has opened disciplinary proceedings against its ambassador to Central African Republic over...\n\nRead the article from The Guardian\nhttps://www.theguardian.com/world/2026/aug/13/france-ambassador-car-central-african-republic-investigation-bruno-foucher\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "French ambassador to CAR investigated over claims he hosted dozens of women.\n\nOversight depends on people being able to bring evidence forward safely.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/world/2026/aug/13/france-ambassador-car-central-african-republic-investigation-bruno-foucher\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
