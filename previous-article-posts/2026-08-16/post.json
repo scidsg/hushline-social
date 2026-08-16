@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-08-16",
+  "weekday": "sunday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "Taliban threaten former Afghan police worker after MoD leak reveals identity",
+  "article_url": "https://www.theguardian.com/world/2026/aug/16/taliban-threaten-former-afghan-police-worker-after-mod-leak-reveals-identity",
+  "article_published_at": "2026-08-16T13:00:28.000Z",
+  "relevance_score": 8,
+  "content_key": "weekly-news-the-guardian-taliban-threaten-former-afghan-police-worker-after-mod-leak-reveals-ide",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: Taliban threaten former Afghan police worker after MoD leak reveals identity",
+  "social": {
+    "bluesky": "Taliban threaten former Afghan police worker after MoD leak reveals identity.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/world/2026/aug/16/taliban-threaten-former-afghan-police-worker-after-mod-leak-reveals-identity\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Taliban threaten former Afghan police worker after MoD leak reveals identity.\n\nUK has refused resettlement application despite ‘years of loyal service’ that have resulted in ‘constant fear’ of reprisals A man has received threats from the Taliban after his work for the Afghan police was...\n\nRead the article from The Guardian\nhttps://www.theguardian.com/world/2026/aug/16/taliban-threaten-former-afghan-police-worker-after-mod-leak-reveals-identity\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Taliban threaten former Afghan police worker after MoD leak reveals identity.\n\nSource protection starts before publication.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/world/2026/aug/16/taliban-threaten-former-afghan-police-worker-after-mod-leak-reveals-identity\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
