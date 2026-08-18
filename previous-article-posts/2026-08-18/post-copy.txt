@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-08-18
+Publish mode: text
+Source: The Guardian
+Article URL: https://www.theguardian.com/us-news/2026/aug/18/abc-sues-trump-federal-communications-commission
+Content key: weekly-news-the-guardian-abc-sues-trump-s-media-regulator-over-demand-for-tv-license-renewals
+Headline: Whistleblower-related reporting from The Guardian
+Subtext: The Guardian reports: ABC sues Trump’s media regulator over demand for TV license renewals
+
+Social post copy
+
+LinkedIn (514/3000)
+ABC sues Trump’s media regulator over demand for TV license renewals.
+
+Network alleges FCC is trying to send ‘chilling message’ in retaliation for content the administration disapproves of ABC has sued the Federal Communications Commission (FCC), arguing that it is being retaliated...
+
+Read the article from The Guardian
+https://www.theguardian.com/us-news/2026/aug/18/abc-sues-trump-federal-communications-commission
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (299/500)
+ABC sues Trump’s media regulator over demand for TV license renewals.
+
+Retaliation is why safer first contact matters.
+
+Read the article from The Guardian
+https://www.theguardian.com/us-news/2026/aug/18/abc-sues-trump-federal-communications-commission
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (250/300)
+ABC sues Trump’s media regulator over demand for TV license renewals.
+
+Read the article from The Guardian
+https://www.theguardian.com/us-news/2026/aug/18/abc-sues-trump-federal-communications-commission
+
+Sign up for Hush Line at https://hushline.app.

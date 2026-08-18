@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-08-18",
+  "weekday": "tuesday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "ABC sues Trump’s media regulator over demand for TV license renewals",
+  "article_url": "https://www.theguardian.com/us-news/2026/aug/18/abc-sues-trump-federal-communications-commission",
+  "article_published_at": "2026-08-18T13:38:23.000Z",
+  "relevance_score": 16,
+  "content_key": "weekly-news-the-guardian-abc-sues-trump-s-media-regulator-over-demand-for-tv-license-renewals",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: ABC sues Trump’s media regulator over demand for TV license renewals",
+  "social": {
+    "bluesky": "ABC sues Trump’s media regulator over demand for TV license renewals.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/aug/18/abc-sues-trump-federal-communications-commission\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "ABC sues Trump’s media regulator over demand for TV license renewals.\n\nNetwork alleges FCC is trying to send ‘chilling message’ in retaliation for content the administration disapproves of ABC has sued the Federal Communications Commission (FCC), arguing that it is being retaliated...\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/aug/18/abc-sues-trump-federal-communications-commission\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "ABC sues Trump’s media regulator over demand for TV license renewals.\n\nRetaliation is why safer first contact matters.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/aug/18/abc-sues-trump-federal-communications-commission\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
