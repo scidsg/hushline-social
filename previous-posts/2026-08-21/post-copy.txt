@@ -1,0 +1,44 @@
+Slot: friday
+Planned date: 2026-08-21
+Template: hushline-daily-desktop-template-2.html
+Screenshot: /Users/scidsg/hushline-website/src/assets/img/screenshots/current/artvandelay/auth-artvandelay-settings-advanced-desktop-light-fold.png
+Content key: auth-artvandelay-settings-advanced
+Headline: Check what to keep before closing an account
+Subtext: Before closing a recipient account, staff can check retention rules, make a PGP-encrypted export when needed, and leave Delete Account until last.
+
+Image alt text
+Social graphic titled “Check what to keep before closing an account.” A light-mode desktop view of Hush Line’s Advanced settings shows Download My Data, a selected “Encrypt export with my PGP key” checkbox, and the separate Delete Account section with a warning that deletion cannot be undone. The graphic presents these controls as a checklist for recipient account handoffs.
+
+Social post copy
+
+LinkedIn (620/3000)
+Before a recipient account is closed, make the review a checklist:
+
+1. Check what your team is allowed or required to retain.
+2. If a copy is needed, select “Encrypt export with my PGP key,” then use “Download My Data.”
+3. Store the ZIP only where authorized staff can access it.
+4. Treat “Delete Account” as the final step. It cannot be undone.
+
+For journalists, lawyers, educators, organizers, and other teams that receive sensitive tips, this turns an account handoff into a repeatable review instead of a last-minute decision.
+
+Add these checks to your staff handoff process before anyone closes a Hush Line account.
+
+Mastodon (383/500)
+Before closing a recipient account, use a short checklist:
+
+1. Check what your team may retain.
+2. If a copy is needed, select “Encrypt export with my PGP key” and use “Download My Data.”
+3. Store the ZIP where only authorized staff can access it.
+4. Use “Delete Account” last. It cannot be undone.
+
+Add these checks to your Hush Line handoff process before anyone closes an account.
+
+Bluesky (283/300)
+Before closing a recipient account:
+
+1. Check what your team may retain.
+2. If needed, select “Encrypt export with my PGP key,” then “Download My Data.”
+3. Limit ZIP access to authorized staff.
+4. Use “Delete Account” last. It cannot be undone.
+
+Put this check in your staff handoff.

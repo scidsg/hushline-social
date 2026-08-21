@@ -1,0 +1,36 @@
+{
+  "content_key": "auth-artvandelay-settings-advanced",
+  "content_format": "source_safety_checklist",
+  "headline": "Check what to keep before closing an account",
+  "image_alt_text": "Social graphic titled “Check what to keep before closing an account.” A light-mode desktop view of Hush Line’s Advanced settings shows Download My Data, a selected “Encrypt export with my PGP key” checkbox, and the separate Delete Account section with a warning that deletion cannot be undone. The graphic presents these controls as a checklist for recipient account handoffs.",
+  "planned_date": "2026-08-21",
+  "rationale": "The sole candidate is a required cooldown fallback, so this uses a fresh source-safety angle: a practical recipient account handoff checklist focused on retention rules, restricted access to an encrypted export, and leaving irreversible deletion until last. This differs from the earlier Advanced settings posts about separating controls and creating a visual warning zone. The copy names the visible controls, stays specific to recipients and staff, and does not imply that the screen is admin-only.",
+  "screenshot_file": "artvandelay/auth-artvandelay-settings-advanced-desktop-light-fold.png",
+  "slot": "friday",
+  "social": {
+    "bluesky": "Before closing a recipient account:\n\n1. Check what your team may retain.\n2. If needed, select “Encrypt export with my PGP key,” then “Download My Data.”\n3. Limit ZIP access to authorized staff.\n4. Use “Delete Account” last. It cannot be undone.\n\nPut this check in your staff handoff.",
+    "linkedin": "Before a recipient account is closed, make the review a checklist:\n\n1. Check what your team is allowed or required to retain.\n2. If a copy is needed, select “Encrypt export with my PGP key,” then use “Download My Data.”\n3. Store the ZIP only where authorized staff can access it.\n4. Treat “Delete Account” as the final step. It cannot be undone.\n\nFor journalists, lawyers, educators, organizers, and other teams that receive sensitive tips, this turns an account handoff into a repeatable review instead of a last-minute decision.\n\nAdd these checks to your staff handoff process before anyone closes a Hush Line account.",
+    "mastodon": "Before closing a recipient account, use a short checklist:\n\n1. Check what your team may retain.\n2. If a copy is needed, select “Encrypt export with my PGP key” and use “Download My Data.”\n3. Store the ZIP where only authorized staff can access it.\n4. Use “Delete Account” last. It cannot be undone.\n\nAdd these checks to your Hush Line handoff process before anyone closes an account."
+  },
+  "source_pr_numbers": [],
+  "subtext": "Before closing a recipient account, staff can check retention rules, make a PGP-encrypted export when needed, and leave Delete Account until last.",
+  "audience_scope": "recipient-shared",
+  "concept_key": "settings-advanced",
+  "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+  "editorial_intent": {
+    "audience_scope": "recipient-shared",
+    "content_format": "source_safety_checklist",
+    "content_format_label": "Source safety checklist",
+    "label": "Recipients and staff",
+    "reader_need": "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+    "visual_role": "supporting_screenshot"
+  },
+  "matched_pull_requests": [],
+  "screen_key": "/settings/advanced",
+  "template_name": "hushline-daily-desktop-template-2.html",
+  "theme": "light",
+  "title": "Settings Advanced",
+  "topic_family": "settings-advanced",
+  "visual_selection_reason": "Selected screenshots only after choosing the Recipients and staff editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+  "viewport": "desktop"
+}
