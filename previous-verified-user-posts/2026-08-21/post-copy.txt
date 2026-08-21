@@ -1,0 +1,36 @@
+Slot: verified-user-weekly
+Planned date: 2026-08-21
+Verified user: @jby_journalist
+User link: https://tips.hushline.app/to/jby_journalist
+Source: https://tips.hushline.app/directory/users.json
+Editorial format: How to verify the link (how_to_verify_the_link)
+Opening line: Verify the link before you send anything sensitive.
+Headline: jen by.
+Subtext: i am an investigative journalist and security advisor. i've reported on domestic conflict within the united states.
+
+Image alt text
+A social card featuring verified Hush Line user jen by., their bio, their tip line URL, and a QR code that links to the same URL.
+
+Social post copy
+
+LinkedIn (246/3000)
+Verify the link before you send anything sensitive.
+
+jen is an investigative journalist and security advisor. i've reported on domestic conflict within the united states.
+
+jen's verified Hush Line URL: https://tips.hushline.app/to/jby_journalist.
+
+Mastodon (246/500)
+Verify the link before you send anything sensitive.
+
+jen is an investigative journalist and security advisor. i've reported on domestic conflict within the united states.
+
+jen's verified Hush Line URL: https://tips.hushline.app/to/jby_journalist.
+
+Bluesky (245/300)
+Verify the link before you send anything sensitive.
+
+jen is an investigative journalist and security advisor. i've reported on domestic conflict within the united states.
+
+jen's verified Hush Line URL: https://tips.hushline.app/to/jby_journalist
+

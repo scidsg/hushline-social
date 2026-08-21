@@ -1,0 +1,22 @@
+{
+  "date": "2026-08-21",
+  "display_name": "jen by.",
+  "editorial_format_label": "How to verify the link",
+  "headline": "jen by.",
+  "image_alt_text": "A social card featuring verified Hush Line user jen by., their bio, their tip line URL, and a QR code that links to the same URL.",
+  "opening_line": "Verify the link before you send anything sensitive.",
+  "planned_date": "2026-08-21",
+  "primary_username": "jby_journalist",
+  "qr_code_file": "verified-user-qr.png",
+  "social": {
+    "bluesky": "Verify the link before you send anything sensitive.\n\njen is an investigative journalist and security advisor. i've reported on domestic conflict within the united states.\n\njen's verified Hush Line URL: https://tips.hushline.app/to/jby_journalist",
+    "linkedin": "Verify the link before you send anything sensitive.\n\njen is an investigative journalist and security advisor. i've reported on domestic conflict within the united states.\n\njen's verified Hush Line URL: https://tips.hushline.app/to/jby_journalist.",
+    "mastodon": "Verify the link before you send anything sensitive.\n\njen is an investigative journalist and security advisor. i've reported on domestic conflict within the united states.\n\njen's verified Hush Line URL: https://tips.hushline.app/to/jby_journalist."
+  },
+  "slot": "verified-user-weekly",
+  "source": "https://tips.hushline.app/directory/users.json",
+  "subtext": "i am an investigative journalist and security advisor. i've reported on domestic conflict within the united states.",
+  "user_link": "https://tips.hushline.app/to/jby_journalist",
+  "user_url": "https://tips.hushline.app/to/jby_journalist",
+  "verified_user_format": "how_to_verify_the_link"
+}
