@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-08-21",
+  "weekday": "friday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "JD Vance reportedly mocks Carney for trying to ‘out-tough’ Trump on trade",
+  "article_url": "https://www.theguardian.com/us-news/2026/aug/21/jd-vance-mark-carney-out-tough-trump-trade",
+  "article_published_at": "2026-08-21T15:22:48.000Z",
+  "relevance_score": 8,
+  "content_key": "weekly-news-the-guardian-jd-vance-reportedly-mocks-carney-for-trying-to-out-tough-trump-on-trade",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: JD Vance reportedly mocks Carney for trying to ‘out-tough’ Trump on trade",
+  "social": {
+    "bluesky": "JD Vance reportedly mocks Carney for trying to ‘out-tough’ Trump on trade.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/aug/21/jd-vance-mark-carney-out-tough-trump-trade\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "JD Vance reportedly mocks Carney for trying to ‘out-tough’ Trump on trade.\n\nAudio recording of US vice-president apparently made at New York fundraiser and shared with Canadian Press Leaked audio from a private event has reportedly captured the US vice-president, JD Vance, mocking Canada for...\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/aug/21/jd-vance-mark-carney-out-tough-trump-trade\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "JD Vance reportedly mocks Carney for trying to ‘out-tough’ Trump on trade.\n\nSource protection starts before publication.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/aug/21/jd-vance-mark-carney-out-tough-trump-trade\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
