@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-08-22",
+  "weekday": "saturday",
+  "publish_mode": "text",
+  "source": "BBC News",
+  "title": "TikTok to pay $400m to US in one of largest child privacy settlements",
+  "article_url": "https://www.bbc.co.uk/news/articles/cwyr0l45xjro?at_medium=RSS&at_campaign=rss",
+  "article_published_at": "2026-08-21T22:36:12.000Z",
+  "relevance_score": 14,
+  "content_key": "weekly-news-bbc-news-tiktok-to-pay-400m-to-us-in-one-of-largest-child-privacy-settlements",
+  "headline": "Whistleblower-related reporting from BBC News",
+  "subtext": "BBC News reports: TikTok to pay $400m to US in one of largest child privacy settlements",
+  "social": {
+    "bluesky": "TikTok to pay $400m to US in one of largest child privacy settlements.\n\nRead the article from BBC News\nhttps://www.bbc.co.uk/news/articles/cwyr0l45xjro?at_medium=RSS&at_campaign=rss\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "TikTok to pay $400m to US in one of largest child privacy settlements.\n\nThe deal stems from a 2024 lawsuit alleging TikTok and its parent company ByteDance collected \"vast amounts of data\" on millions of users under the age of 13.\n\nRead the article from BBC News\nhttps://www.bbc.co.uk/news/articles/cwyr0l45xjro?at_medium=RSS&at_campaign=rss\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "TikTok to pay $400m to US in one of largest child privacy settlements.\n\nAccountability reporting needs a safe enough way to make contact.\n\nRead the article from BBC News\nhttps://www.bbc.co.uk/news/articles/cwyr0l45xjro?at_medium=RSS&at_campaign=rss\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
