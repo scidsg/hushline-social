@@ -1,0 +1,107 @@
+{
+  "date": "2026-08-22",
+  "post": {
+    "slot": "saturday",
+    "planned_date": "2026-08-22",
+    "screenshot_file": "guest/guest-directory-verified-desktop-light-fold.png",
+    "content_key": "guest-directory-verified",
+    "content_format": "workflow_teardown",
+    "headline": "Review the recipient before first contact",
+    "subtext": "Search the public Directory, read what Verified means, then open View Profile to decide whether the recipient fits your tip.",
+    "image_alt_text": "A Hush Line social graphic titled “Review the recipient before first contact.” It shows the public Directory in light mode: a Tor Browser reminder, a Directory description, recipient tabs with Verified selected, a Search verified users field, a note explaining that Verified account owners confirmed their identities with Hush Line staff, and a recipient card with a View Profile link.",
+    "social": {
+      "bluesky": "Before writing a tip, decide who should receive it.\n\nUse Hush Line’s public Directory to search Verified listings or recipient categories, then open View Profile and read the recipient’s details. If the profile fits, you can make first contact without an account.\n\nhttps://tips.hushline.app/directory",
+      "linkedin": "The first step is not writing the tip. It is deciding who should receive it.\n\nIn Hush Line’s public Directory, a visitor can start with Verified listings or a recipient category, search by name, and read what the Verified label means. From there, View Profile opens the recipient’s public details so the visitor can decide whether that person fits the message.\n\nIf the profile is the right match, the visitor can continue to first contact without creating an account or downloading an app.\n\nStart with the Directory. Open the profile before you write the message: https://tips.hushline.app/directory",
+      "mastodon": "Before writing a tip, decide who should receive it.\n\nIn Hush Line’s public Directory, start with Verified listings or a recipient category, search by name, then read what the Verified label means. Open View Profile to review the recipient’s public details.\n\nIf the profile fits your message, you can make first contact without creating an account.\n\nOpen the Directory and review the profile first: https://tips.hushline.app/directory"
+    },
+    "rationale": "The Directory screenshot is the only eligible candidate after cooldown exhaustion and directly supports the public-source intent. The workflow angle is distinct from the recent role-based Directory post: it puts the recipient decision before drafting, explains the order of the visible controls, and ends with the no-account path to first contact. The hook and CTA are specific to this workflow, and the copy does not treat verification as a substitute for reading the profile.",
+    "source_pr_numbers": [],
+    "audience_scope": "public",
+    "concept_key": "directory-verified",
+    "copy_brief": "Write for sources and public users evaluating or using Hush Line.",
+    "editorial_intent": {
+      "audience_scope": "public",
+      "content_format": "workflow_teardown",
+      "content_format_label": "Workflow teardown",
+      "label": "Public sources and visitors",
+      "reader_need": "Help someone decide whether Hush Line is the right place to make safe first contact or find a trusted recipient.",
+      "visual_role": "supporting_screenshot"
+    },
+    "matched_pull_requests": [],
+    "screen_key": "directory-index",
+    "template_name": "hushline-daily-desktop-template.html",
+    "theme": "light",
+    "title": "Directory Verified",
+    "topic_family": "directory",
+    "visual_selection_reason": "Selected screenshots only after choosing the Public sources and visitors editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+    "viewport": "desktop"
+  },
+  "summary": "A public workflow teardown showing how a visitor can review a recipient before making first contact.",
+  "critic": {
+    "blocked": false,
+    "criteria": [
+      {
+        "id": "topic_freshness",
+        "label": "Topic freshness",
+        "max_score": 2,
+        "rationale": "Topic family directory appeared recently but not in the last two posts.",
+        "score": 1
+      },
+      {
+        "id": "hook_freshness",
+        "label": "Hook freshness",
+        "max_score": 2,
+        "rationale": "Opening hook is distinct from recent archive hooks.",
+        "score": 2
+      },
+      {
+        "id": "format_novelty",
+        "label": "Format novelty",
+        "max_score": 2,
+        "rationale": "Format workflow_teardown is not overused in the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "audience_specificity",
+        "label": "Audience specificity",
+        "max_score": 2,
+        "rationale": "Copy contains 5 signal(s) for public.",
+        "score": 2
+      },
+      {
+        "id": "concrete_reader_value",
+        "label": "Concrete reader value",
+        "max_score": 2,
+        "rationale": "Copy gives 3 concrete action/value signal(s).",
+        "score": 2
+      },
+      {
+        "id": "hushline_relevance",
+        "label": "Hush Line relevance",
+        "max_score": 2,
+        "rationale": "Copy is tied to Hush Line or a concrete Hush Line surface.",
+        "score": 2
+      },
+      {
+        "id": "cta_freshness",
+        "label": "CTA freshness",
+        "max_score": 2,
+        "rationale": "CTA pattern is fresh against the configured CTA cooldown.",
+        "score": 2
+      },
+      {
+        "id": "safety_compliance",
+        "label": "Safety and compliance",
+        "max_score": 2,
+        "rationale": "Copy avoids unsupported safety, anonymity, and recency claims.",
+        "score": 2
+      }
+    ],
+    "failed_criteria": [],
+    "max_score": 16,
+    "passed": true,
+    "rationale": "Topic freshness: Topic family directory appeared recently but not in the last two posts. Hook freshness: Opening hook is distinct from recent archive hooks. Format novelty: Format workflow_teardown is not overused in the recent archive. Audience specificity: Copy contains 5 signal(s) for public. Concrete reader value: Copy gives 3 concrete action/value signal(s). Hush Line relevance: Copy is tied to Hush Line or a concrete Hush Line surface. CTA freshness: CTA pattern is fresh against the configured CTA cooldown. Safety and compliance: Copy avoids unsupported safety, anonymity, and recency claims.",
+    "score": 15,
+    "threshold": 12
+  }
+}

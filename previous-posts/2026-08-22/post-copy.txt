@@ -1,0 +1,37 @@
+Slot: saturday
+Planned date: 2026-08-22
+Template: hushline-daily-desktop-template.html
+Screenshot: /Users/scidsg/hushline-website/src/assets/img/screenshots/current/guest/guest-directory-verified-desktop-light-fold.png
+Content key: guest-directory-verified
+Headline: Review the recipient before first contact
+Subtext: Search the public Directory, read what Verified means, then open View Profile to decide whether the recipient fits your tip.
+
+Image alt text
+A Hush Line social graphic titled “Review the recipient before first contact.” It shows the public Directory in light mode: a Tor Browser reminder, a Directory description, recipient tabs with Verified selected, a Search verified users field, a note explaining that Verified account owners confirmed their identities with Hush Line staff, and a recipient card with a View Profile link.
+
+Social post copy
+
+LinkedIn (599/3000)
+The first step is not writing the tip. It is deciding who should receive it.
+
+In Hush Line’s public Directory, a visitor can start with Verified listings or a recipient category, search by name, and read what the Verified label means. From there, View Profile opens the recipient’s public details so the visitor can decide whether that person fits the message.
+
+If the profile is the right match, the visitor can continue to first contact without creating an account or downloading an app.
+
+Start with the Directory. Open the profile before you write the message: https://tips.hushline.app/directory
+
+Mastodon (433/500)
+Before writing a tip, decide who should receive it.
+
+In Hush Line’s public Directory, start with Verified listings or a recipient category, search by name, then read what the Verified label means. Open View Profile to review the recipient’s public details.
+
+If the profile fits your message, you can make first contact without creating an account.
+
+Open the Directory and review the profile first: https://tips.hushline.app/directory
+
+Bluesky (300/300)
+Before writing a tip, decide who should receive it.
+
+Use Hush Line’s public Directory to search Verified listings or recipient categories, then open View Profile and read the recipient’s details. If the profile fits, you can make first contact without an account.
+
+https://tips.hushline.app/directory
