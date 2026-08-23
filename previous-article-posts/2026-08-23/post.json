@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-08-23",
+  "weekday": "sunday",
+  "publish_mode": "text",
+  "source": "The New York Times",
+  "title": "U.S.-Canada Trade War: What to Know About Tariffs and the Negotiations",
+  "article_url": "https://www.nytimes.com/2026/08/23/world/canada/canada-us-trade-war-trump-carney.html",
+  "article_published_at": "2026-08-23T09:47:28.000Z",
+  "relevance_score": 9,
+  "content_key": "weekly-news-the-new-york-times-u-s-canada-trade-war-what-to-know-about-tariffs-and-the-negotiati",
+  "headline": "Whistleblower-related reporting from The New York Times",
+  "subtext": "The New York Times reports: U.S.-Canada Trade War: What to Know About Tariffs and the Negotiations",
+  "social": {
+    "bluesky": "U.S.-Canada Trade War — What to Know About Tariffs and the Negotiations.\n\nRead the article from The New York Times\nhttps://www.nytimes.com/2026/08/23/world/canada/canada-us-trade-war-trump-carney.html\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "U.S.-Canada Trade War — What to Know About Tariffs and the Negotiations.\n\nCanada suspended trade negotiations, triggering President Trump’s 50 percent tariffs on a range of Canadian goods. Mark Carney said he would retaliate “dollar for dollar.”.\n\nRead the article from The New York Times\nhttps://www.nytimes.com/2026/08/23/world/canada/canada-us-trade-war-trump-carney.html\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "U.S.-Canada Trade War — What to Know About Tariffs and the Negotiations.\n\nRetaliation is why safer first contact matters.\n\nRead the article from The New York Times\nhttps://www.nytimes.com/2026/08/23/world/canada/canada-us-trade-war-trump-carney.html\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}

@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-08-23
+Publish mode: text
+Source: The New York Times
+Article URL: https://www.nytimes.com/2026/08/23/world/canada/canada-us-trade-war-trump-carney.html
+Content key: weekly-news-the-new-york-times-u-s-canada-trade-war-what-to-know-about-tariffs-and-the-negotiati
+Headline: Whistleblower-related reporting from The New York Times
+Subtext: The New York Times reports: U.S.-Canada Trade War: What to Know About Tariffs and the Negotiations
+
+Social post copy
+
+LinkedIn (470/3000)
+U.S.-Canada Trade War — What to Know About Tariffs and the Negotiations.
+
+Canada suspended trade negotiations, triggering President Trump’s 50 percent tariffs on a range of Canadian goods. Mark Carney said he would retaliate “dollar for dollar.”.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/08/23/world/canada/canada-us-trade-war-trump-carney.html
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (297/500)
+U.S.-Canada Trade War — What to Know About Tariffs and the Negotiations.
+
+Retaliation is why safer first contact matters.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/08/23/world/canada/canada-us-trade-war-trump-carney.html
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (248/300)
+U.S.-Canada Trade War — What to Know About Tariffs and the Negotiations.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/08/23/world/canada/canada-us-trade-war-trump-carney.html
+
+Sign up for Hush Line at https://hushline.app.
