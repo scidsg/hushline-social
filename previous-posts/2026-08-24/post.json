@@ -1,0 +1,36 @@
+{
+  "slot": "monday",
+  "planned_date": "2026-08-24",
+  "screenshot_file": "artvandelay/auth-artvandelay-tools-email-validation-status-valid-desktop-light-fold.png",
+  "content_key": "auth-artvandelay-tools-email-validation-status-valid",
+  "content_format": "design_principle",
+  "headline": "Pair technical evidence with a readable summary",
+  "subtext": "Email Validation pairs entered technical details with a short Validation Summary so recipient teams can scan the outcome while preserving the underlying evidence.",
+  "image_alt_text": "A light-mode Hush Line social graphic headed “Pair technical evidence with a readable summary.” It shows the desktop Tools page with the Email Validation tab selected, Raw Email Headers in a text field, Validate Headers and Download Report buttons, and a Validation Summary stating that the email appears to originate from the stated sender. The graphic shows how a readable conclusion is presented with the supporting technical details.",
+  "social": {
+    "bluesky": "Email Validation pairs technical details with a short Validation Summary. Recipient teams get a readable outcome while the evidence remains visible for closer examination. The design suits shared work and does not ask everyone to be an email specialist.",
+    "linkedin": "Email Validation is for more than email specialists.\n\nIn Hush Line, Email Validation places a short Validation Summary beneath Raw Email Headers. The detailed input stays visible, while the conclusion is simple for a recipient team to scan.\n\nThat design offers a newsroom, school, law office, or community group the same starting point for each person and keeps the technical evidence in view.\n\nStart with the summary for a quick overview. The detailed input remains available for closer examination.",
+    "mastodon": "Technical email details can have a readable conclusion.\n\nHush Line’s Email Validation leaves Raw Email Headers visible and places a short Validation Summary below them. A recipient team can scan the outcome and retain the evidence.\n\nStart with the summary, then examine the details as needed."
+  },
+  "rationale": "The required screenshot is a cooldown fallback, so this rewrite moves away from the July post’s pre-action checklist. It uses the design-principle format to focus on accessibility: a readable Validation Summary sits alongside the technical input, helping recipient teams share an understanding without removing the underlying evidence.",
+  "source_pr_numbers": [],
+  "audience_scope": "recipient-shared",
+  "concept_key": "tools-email-validation-status-valid",
+  "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+  "editorial_intent": {
+    "audience_scope": "recipient-shared",
+    "content_format": "design_principle",
+    "content_format_label": "Design principle",
+    "label": "Recipients and staff",
+    "reader_need": "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+    "visual_role": "supporting_screenshot"
+  },
+  "matched_pull_requests": [],
+  "screen_key": "/tools",
+  "template_name": "hushline-daily-desktop-template-2.html",
+  "theme": "light",
+  "title": "Tools Email Validation Status Valid",
+  "topic_family": "tools-email-validation-status-valid",
+  "visual_selection_reason": "Selected screenshots only after choosing the Recipients and staff editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+  "viewport": "desktop"
+}

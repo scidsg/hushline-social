@@ -1,0 +1,31 @@
+Slot: monday
+Planned date: 2026-08-24
+Template: hushline-daily-desktop-template-2.html
+Screenshot: /Users/scidsg/hushline-website/src/assets/img/screenshots/current/artvandelay/auth-artvandelay-tools-email-validation-status-valid-desktop-light-fold.png
+Content key: auth-artvandelay-tools-email-validation-status-valid
+Headline: Pair technical evidence with a readable summary
+Subtext: Email Validation pairs entered technical details with a short Validation Summary so recipient teams can scan the outcome while preserving the underlying evidence.
+
+Image alt text
+A light-mode Hush Line social graphic headed “Pair technical evidence with a readable summary.” It shows the desktop Tools page with the Email Validation tab selected, Raw Email Headers in a text field, Validate Headers and Download Report buttons, and a Validation Summary stating that the email appears to originate from the stated sender. The graphic shows how a readable conclusion is presented with the supporting technical details.
+
+Social post copy
+
+LinkedIn (500/3000)
+Email Validation is for more than email specialists.
+
+In Hush Line, Email Validation places a short Validation Summary beneath Raw Email Headers. The detailed input stays visible, while the conclusion is simple for a recipient team to scan.
+
+That design offers a newsroom, school, law office, or community group the same starting point for each person and keeps the technical evidence in view.
+
+Start with the summary for a quick overview. The detailed input remains available for closer examination.
+
+Mastodon (292/500)
+Technical email details can have a readable conclusion.
+
+Hush Line’s Email Validation leaves Raw Email Headers visible and places a short Validation Summary below them. A recipient team can scan the outcome and retain the evidence.
+
+Start with the summary, then examine the details as needed.
+
+Bluesky (253/300)
+Email Validation pairs technical details with a short Validation Summary. Recipient teams get a readable outcome while the evidence remains visible for closer examination. The design suits shared work and does not ask everyone to be an email specialist.
