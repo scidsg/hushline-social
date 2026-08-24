@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-08-24",
+  "weekday": "monday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "Two men charged and drugs, guns and cars linked to CFMEU seized as police investigate alleged corruption",
+  "article_url": "https://www.theguardian.com/australia-news/2026/aug/24/cfmeu-melbourne-headquarters-raided-five-arrested-alleged-corruption-ntwnfb",
+  "article_published_at": "2026-08-24T07:43:15.000Z",
+  "relevance_score": 13,
+  "content_key": "weekly-news-the-guardian-two-men-charged-and-drugs-guns-and-cars-linked-to-cfmeu-seized-as-polic",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: Two men charged and drugs, guns and cars linked to CFMEU seized as police investigate alleged corruption",
+  "social": {
+    "bluesky": "Two men charged and drugs, guns and cars linked to CFMEU seized as police investigate alleged corruption.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/australia-news/2026/aug/24/cfmeu-melbourne-headquarters-raided-five-arrested-alleged-corruption-ntwnfb\n\nSign up for Hush Line at…",
+    "linkedin": "Two men charged and drugs, guns and cars linked to CFMEU seized as police investigate alleged corruption.\n\nPolice arrest five men and search six properties including the union’s Victorian headquarters Get our breaking news email, free app or daily news podcast Two men have been charged and Victorian police have seized...\n\nRead the article from The Guardian\nhttps://www.theguardian.com/australia-news/2026/aug/24/cfmeu-melbourne-headquarters-raided-five-arrested-alleged-corruption-ntwnfb\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Two men charged and drugs, guns and cars linked to CFMEU seized as police investigate alleged corruption.\n\nOversight depends on people being able to bring evidence forward safely.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/australia-news/2026/aug/24/cfmeu-melbourne-headquarters-raided-five-arrested-alleged-corruption-ntwnfb\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
