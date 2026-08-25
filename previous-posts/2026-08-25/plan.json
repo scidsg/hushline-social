@@ -1,0 +1,107 @@
+{
+  "date": "2026-08-25",
+  "post": {
+    "slot": "tuesday",
+    "planned_date": "2026-08-25",
+    "screenshot_file": "artvandelay/auth-artvandelay-settings-notifications-desktop-light-fold.png",
+    "content_key": "auth-artvandelay-settings-notifications",
+    "content_format": "feature_benefit",
+    "headline": "Put every intake role on the notice list",
+    "subtext": "A recipient can name multiple contacts so newsroom duties do not depend on one person passing the word.",
+    "image_alt_text": "Light-mode social graphic headed “Put every intake role on the notice list,” beside Hush Line’s Notifications settings with Tip Notifications on, three recipient email addresses marked Enabled with PGP key configured, and an Add Recipient button.",
+    "social": {
+      "bluesky": "Incoming reports may involve an editor, standards lead, and board member. Hush Line’s Notifications page can name several contacts. The Tip Notifications switch turns this on, Add Recipient expands the roster, and a PGP key can be configured per contact. Compare the roster with current duties.",
+      "linkedin": "Responsibility for incoming reports rarely sits with one role.\n\nOn Hush Line’s Notifications page, a recipient can name several contacts, such as an editor, standards lead, and board member. The Tip Notifications switch turns this on, while Add Recipient expands the roster. A PGP key can be configured for every contact.\n\nThis gives a newsroom a visible way to cover several duties without depending on one person to relay the news.\n\nOpen Notifications and compare the roster with today’s duty list.",
+      "mastodon": "When incoming reports are divided across roles, one person should not have to relay every arrival.\n\nHush Line’s Notifications page can name several contacts. The Tip Notifications switch turns this on, Add Recipient expands the roster, and a PGP key can be configured for every contact.\n\nCheck the roster against current newsroom duties."
+    },
+    "rationale": "The sole eligible screenshot is a cooldown fallback, so this plan takes a distinct role-coverage angle instead of repeating the recent post about notification-address privacy. It shows recipient teams how separate email addresses and PGP keys can help the staff responsible for intake learn that a tip arrived while review stays in the Hush Line inbox. The hook names a concrete newsroom workflow, and the CTA asks teams to compare the recipient list with actual staff responsibilities.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "settings-notifications",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "editorial_intent": {
+      "audience_scope": "recipient-shared",
+      "content_format": "feature_benefit",
+      "content_format_label": "Feature benefit",
+      "label": "Recipients and staff",
+      "reader_need": "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+      "visual_role": "supporting_screenshot"
+    },
+    "matched_pull_requests": [],
+    "screen_key": "/settings/notifications",
+    "template_name": "hushline-daily-desktop-template.html",
+    "theme": "light",
+    "title": "Settings Notifications",
+    "topic_family": "notifications",
+    "visual_selection_reason": "Selected screenshots only after choosing the Recipients and staff editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+    "viewport": "desktop"
+  },
+  "summary": "A feature-benefit post for recipient teams about matching notification recipients to the staff responsible for new tips.",
+  "critic": {
+    "blocked": false,
+    "criteria": [
+      {
+        "id": "topic_freshness",
+        "label": "Topic freshness",
+        "max_score": 2,
+        "rationale": "Topic family notifications appeared recently but not in the last two posts.",
+        "score": 1
+      },
+      {
+        "id": "hook_freshness",
+        "label": "Hook freshness",
+        "max_score": 2,
+        "rationale": "Opening hook is distinct from recent archive hooks.",
+        "score": 2
+      },
+      {
+        "id": "format_novelty",
+        "label": "Format novelty",
+        "max_score": 2,
+        "rationale": "Format feature_benefit is not overused in the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "audience_specificity",
+        "label": "Audience specificity",
+        "max_score": 2,
+        "rationale": "Copy contains 5 signal(s) for recipient-shared.",
+        "score": 2
+      },
+      {
+        "id": "concrete_reader_value",
+        "label": "Concrete reader value",
+        "max_score": 2,
+        "rationale": "Copy gives 3 concrete action/value signal(s).",
+        "score": 2
+      },
+      {
+        "id": "hushline_relevance",
+        "label": "Hush Line relevance",
+        "max_score": 2,
+        "rationale": "Copy is tied to Hush Line or a concrete Hush Line surface.",
+        "score": 2
+      },
+      {
+        "id": "cta_freshness",
+        "label": "CTA freshness",
+        "max_score": 2,
+        "rationale": "CTA pattern is fresh against the configured CTA cooldown.",
+        "score": 2
+      },
+      {
+        "id": "safety_compliance",
+        "label": "Safety and compliance",
+        "max_score": 2,
+        "rationale": "Copy avoids unsupported safety, anonymity, and recency claims.",
+        "score": 2
+      }
+    ],
+    "failed_criteria": [],
+    "max_score": 16,
+    "passed": true,
+    "rationale": "Topic freshness: Topic family notifications appeared recently but not in the last two posts. Hook freshness: Opening hook is distinct from recent archive hooks. Format novelty: Format feature_benefit is not overused in the recent archive. Audience specificity: Copy contains 5 signal(s) for recipient-shared. Concrete reader value: Copy gives 3 concrete action/value signal(s). Hush Line relevance: Copy is tied to Hush Line or a concrete Hush Line surface. CTA freshness: CTA pattern is fresh against the configured CTA cooldown. Safety and compliance: Copy avoids unsupported safety, anonymity, and recency claims.",
+    "score": 15,
+    "threshold": 12
+  }
+}
