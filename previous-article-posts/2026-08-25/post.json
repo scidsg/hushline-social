@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-08-25",
+  "weekday": "tuesday",
+  "publish_mode": "text",
+  "source": "NBC News",
+  "title": "Canada to unveil retaliatory measures against Trump’s latest tariffs",
+  "article_url": "https://www.nbcnews.com/business/consumer/canada-retaliates-against-trump-tariffs-rcna594280",
+  "article_published_at": "2026-08-25T13:18:23.000Z",
+  "relevance_score": 9,
+  "content_key": "weekly-news-nbc-news-canada-to-unveil-retaliatory-measures-against-trump-s-latest-tariffs",
+  "headline": "Whistleblower-related reporting from NBC News",
+  "subtext": "NBC News reports: Canada to unveil retaliatory measures against Trump’s latest tariffs",
+  "social": {
+    "bluesky": "Canada to unveil retaliatory measures against Trump’s latest tariffs.\n\nRead the article from NBC News\nhttps://www.nbcnews.com/business/consumer/canada-retaliates-against-trump-tariffs-rcna594280\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Canada to unveil retaliatory measures against Trump’s latest tariffs.\n\nThe Canadian government will lay out a slate of retaliatory trade moves in response to President Donald Trump’s latest wave of tariffs.\n\nRead the article from NBC News\nhttps://www.nbcnews.com/business/consumer/canada-retaliates-against-trump-tariffs-rcna594280\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Canada to unveil retaliatory measures against Trump’s latest tariffs.\n\nRetaliation is why safer first contact matters.\n\nRead the article from NBC News\nhttps://www.nbcnews.com/business/consumer/canada-retaliates-against-trump-tariffs-rcna594280\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}

@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-08-25
+Publish mode: text
+Source: NBC News
+Article URL: https://www.nbcnews.com/business/consumer/canada-retaliates-against-trump-tariffs-rcna594280
+Content key: weekly-news-nbc-news-canada-to-unveil-retaliatory-measures-against-trump-s-latest-tariffs
+Headline: Whistleblower-related reporting from NBC News
+Subtext: NBC News reports: Canada to unveil retaliatory measures against Trump’s latest tariffs
+
+Social post copy
+
+LinkedIn (427/3000)
+Canada to unveil retaliatory measures against Trump’s latest tariffs.
+
+The Canadian government will lay out a slate of retaliatory trade moves in response to President Donald Trump’s latest wave of tariffs.
+
+Read the article from NBC News
+https://www.nbcnews.com/business/consumer/canada-retaliates-against-trump-tariffs-rcna594280
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (291/500)
+Canada to unveil retaliatory measures against Trump’s latest tariffs.
+
+Retaliation is why safer first contact matters.
+
+Read the article from NBC News
+https://www.nbcnews.com/business/consumer/canada-retaliates-against-trump-tariffs-rcna594280
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (242/300)
+Canada to unveil retaliatory measures against Trump’s latest tariffs.
+
+Read the article from NBC News
+https://www.nbcnews.com/business/consumer/canada-retaliates-against-trump-tariffs-rcna594280
+
+Sign up for Hush Line at https://hushline.app.
