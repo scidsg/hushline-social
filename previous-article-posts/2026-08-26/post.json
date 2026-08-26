@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-08-26",
+  "weekday": "wednesday",
+  "publish_mode": "text",
+  "source": "Al Jazeera",
+  "title": "Meta agrees to settlement, platform changes in youth addiction case",
+  "article_url": "https://www.aljazeera.com/economy/2026/8/26/meta-agrees-to-settlement-platform-changes-in-youth-addiction-case?traffic_source=rss",
+  "article_published_at": "2026-08-26T14:21:23.000Z",
+  "relevance_score": 14,
+  "content_key": "weekly-news-al-jazeera-meta-agrees-to-settlement-platform-changes-in-youth-addiction-case",
+  "headline": "Whistleblower-related reporting from Al Jazeera",
+  "subtext": "Al Jazeera reports: Meta agrees to settlement, platform changes in youth addiction case",
+  "social": {
+    "bluesky": "Meta agrees to settlement, platform changes in youth addiction case.\n\nRead the article from Al Jazeera\nhttps://www.aljazeera.com/economy/2026/8/26/meta-agrees-to-settlement-platform-changes-in-youth-addiction-case?traffic_source=rss\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Meta agrees to settlement, platform changes in youth addiction case.\n\nMeta settles $16.68bn lawsuit over child addiction claims, agreeing to major changes in Facebook and Instagram features.\n\nRead the article from Al Jazeera\nhttps://www.aljazeera.com/economy/2026/8/26/meta-agrees-to-settlement-platform-changes-in-youth-addiction-case?traffic_source=rss\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Meta agrees to settlement, platform changes in youth addiction case.\n\nWins matter when reporting leads to protection or repair.\n\nRead the article from Al Jazeera\nhttps://www.aljazeera.com/economy/2026/8/26/meta-agrees-to-settlement-platform-changes-in-youth-addiction-case?traffic_source=rss\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}

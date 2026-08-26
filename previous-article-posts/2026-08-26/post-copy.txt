@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-08-26
+Publish mode: text
+Source: Al Jazeera
+Article URL: https://www.aljazeera.com/economy/2026/8/26/meta-agrees-to-settlement-platform-changes-in-youth-addiction-case?traffic_source=rss
+Content key: weekly-news-al-jazeera-meta-agrees-to-settlement-platform-changes-in-youth-addiction-case
+Headline: Whistleblower-related reporting from Al Jazeera
+Subtext: Al Jazeera reports: Meta agrees to settlement, platform changes in youth addiction case
+
+Social post copy
+
+LinkedIn (450/3000)
+Meta agrees to settlement, platform changes in youth addiction case.
+
+Meta settles $16.68bn lawsuit over child addiction claims, agreeing to major changes in Facebook and Instagram features.
+
+Read the article from Al Jazeera
+https://www.aljazeera.com/economy/2026/8/26/meta-agrees-to-settlement-platform-changes-in-youth-addiction-case?traffic_source=rss
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (339/500)
+Meta agrees to settlement, platform changes in youth addiction case.
+
+Wins matter when reporting leads to protection or repair.
+
+Read the article from Al Jazeera
+https://www.aljazeera.com/economy/2026/8/26/meta-agrees-to-settlement-platform-changes-in-youth-addiction-case?traffic_source=rss
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (280/300)
+Meta agrees to settlement, platform changes in youth addiction case.
+
+Read the article from Al Jazeera
+https://www.aljazeera.com/economy/2026/8/26/meta-agrees-to-settlement-platform-changes-in-youth-addiction-case?traffic_source=rss
+
+Sign up for Hush Line at https://hushline.app.
