@@ -1,0 +1,36 @@
+Slot: verified-user-weekly
+Planned date: 2026-08-26
+Verified user: @gazzetta
+User link: https://tips.hushline.app/to/gazzetta
+Source: https://tips.hushline.app/directory/users.json
+Editorial format: Why follow this tip line (why_follow_tip_line)
+Opening line: Why follow Gazzetta's Hush Line?
+Headline: Gazzetta
+Subtext: We want to live in a world where civic media ventures thrive, even in the most challenging environments. That’s why we work on relevance and anti-autocratic resilience.
+
+Image alt text
+A social card featuring verified Hush Line user Gazzetta, their bio, their tip line URL, and a QR code that links to the same URL.
+
+Social post copy
+
+LinkedIn (281/3000)
+Why follow Gazzetta's Hush Line?
+
+Gazzetta works to help civic media ventures thrive, even in challenging environments, with a focus on relevance and anti-autocratic resilience.
+
+Review Gazzetta's verified Hush Line link before sending a tip: https://tips.hushline.app/to/gazzetta.
+
+Mastodon (266/500)
+Why follow Gazzetta's Hush Line?
+
+Gazzetta works to help civic media ventures thrive in challenging environments through relevance and anti-autocratic resilience.
+
+Review Gazzetta's verified Hush Line link before sending a tip: https://tips.hushline.app/to/gazzetta.
+
+Bluesky (232/300)
+Why follow Gazzetta's Hush Line?
+
+Gazzetta works on relevance and anti-autocratic resilience for civic media ventures in challenging environments.
+
+Review the verified link before sending a tip: https://tips.hushline.app/to/gazzetta
+

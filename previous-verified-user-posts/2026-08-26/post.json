@@ -1,0 +1,22 @@
+{
+  "date": "2026-08-26",
+  "display_name": "Gazzetta",
+  "editorial_format_label": "Why follow this tip line",
+  "headline": "Gazzetta",
+  "image_alt_text": "A social card featuring verified Hush Line user Gazzetta, their bio, their tip line URL, and a QR code that links to the same URL.",
+  "opening_line": "Why follow Gazzetta's Hush Line?",
+  "planned_date": "2026-08-26",
+  "primary_username": "gazzetta",
+  "qr_code_file": "verified-user-qr.png",
+  "social": {
+    "bluesky": "Why follow Gazzetta's Hush Line?\n\nGazzetta works on relevance and anti-autocratic resilience for civic media ventures in challenging environments.\n\nReview the verified link before sending a tip: https://tips.hushline.app/to/gazzetta",
+    "linkedin": "Why follow Gazzetta's Hush Line?\n\nGazzetta works to help civic media ventures thrive, even in challenging environments, with a focus on relevance and anti-autocratic resilience.\n\nReview Gazzetta's verified Hush Line link before sending a tip: https://tips.hushline.app/to/gazzetta.",
+    "mastodon": "Why follow Gazzetta's Hush Line?\n\nGazzetta works to help civic media ventures thrive in challenging environments through relevance and anti-autocratic resilience.\n\nReview Gazzetta's verified Hush Line link before sending a tip: https://tips.hushline.app/to/gazzetta."
+  },
+  "slot": "verified-user-weekly",
+  "source": "https://tips.hushline.app/directory/users.json",
+  "subtext": "We want to live in a world where civic media ventures thrive, even in the most challenging environments. That’s why we work on relevance and anti-autocratic resilience.",
+  "user_link": "https://tips.hushline.app/to/gazzetta",
+  "user_url": "https://tips.hushline.app/to/gazzetta",
+  "verified_user_format": "why_follow_tip_line"
+}
