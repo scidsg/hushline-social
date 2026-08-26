@@ -1,0 +1,107 @@
+{
+  "date": "2026-08-26",
+  "post": {
+    "slot": "wednesday",
+    "planned_date": "2026-08-26",
+    "screenshot_file": "guest/guest-directory-verified-desktop-light-fold.png",
+    "content_key": "guest-directory-verified",
+    "content_format": "iso_37002_principle",
+    "headline": "Give reporting a clear starting point",
+    "subtext": "The public Hush Line Directory gathers contact channels in one place, so visitors know where they can begin if they have a concern to report.",
+    "image_alt_text": "Light-mode social graphic headed “Give reporting a clear starting point” beside the Hush Line public Directory. The screen shows a Tor Browser reminder, the Verified tab, tabs for several kinds of recipients, a Search verified users field, a verification note, and a profile card. The graphic illustrates the principle that a whistleblowing system needs an available place to begin.",
+    "social": {
+      "bluesky": "Reporting needs a clear starting point. Hush Line’s public Directory gathers contact channels for lawyers, journalists, and people supporting whistleblowers. Use the tabs or Search verified users. Sending a message does not require registration.\n\nBookmark it: https://tips.hushline.app/directory",
+      "linkedin": "A whistleblowing system needs a clear starting point.\n\nOne plain ISO 37002 principle is this: reporting must be possible and easy to begin. Hush Line’s public Directory gathers contact channels for lawyers, journalists, and people supporting whistleblowers. Visitors can explore the tabs or use Search verified users.\n\nThey can send a message; no registration or app download is required.\n\nBookmark the Directory so you know where to find it later: https://tips.hushline.app/directory",
+      "mastodon": "A whistleblowing system needs a clear starting point.\n\nISO 37002 calls for reporting to be encouraged and facilitated. In plain terms, the path has to be available. Hush Line’s public Directory gathers contact channels for lawyers, journalists, and people supporting whistleblowers. Visitors can explore the tabs or use Search verified users.\n\nBookmark the Directory: https://tips.hushline.app/directory"
+    },
+    "rationale": "The required Directory screenshot is a cooldown fallback, so this plan avoids the recent recipient-review, verification, and role-selection angles. It uses the ISO 37002 principle of making reporting available and easy to begin, with a fresh hook about providing a starting point and a bookmark-for-later CTA. The copy stays public-facing and connects the visible Directory tabs and search field to a concrete benefit for someone who may need to report a concern.",
+    "source_pr_numbers": [],
+    "audience_scope": "public",
+    "concept_key": "directory-verified",
+    "copy_brief": "Write for sources and public users evaluating or using Hush Line.",
+    "editorial_intent": {
+      "audience_scope": "public",
+      "content_format": "iso_37002_principle",
+      "content_format_label": "ISO 37002 principle",
+      "label": "Public sources and visitors",
+      "reader_need": "Help someone decide whether Hush Line is the right place to make safe first contact or find a trusted recipient.",
+      "visual_role": "supporting_screenshot"
+    },
+    "matched_pull_requests": [],
+    "screen_key": "directory-index",
+    "template_name": "hushline-daily-desktop-template-2.html",
+    "theme": "light",
+    "title": "Directory Verified",
+    "topic_family": "directory",
+    "visual_selection_reason": "Selected screenshots only after choosing the Public sources and visitors editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+    "viewport": "desktop"
+  },
+  "summary": "An ISO 37002 principle post about giving the public a clear place where reporting can begin.",
+  "critic": {
+    "blocked": false,
+    "criteria": [
+      {
+        "id": "topic_freshness",
+        "label": "Topic freshness",
+        "max_score": 2,
+        "rationale": "Topic family directory appeared recently but not in the last two posts.",
+        "score": 1
+      },
+      {
+        "id": "hook_freshness",
+        "label": "Hook freshness",
+        "max_score": 2,
+        "rationale": "Opening hook is distinct from recent archive hooks.",
+        "score": 2
+      },
+      {
+        "id": "format_novelty",
+        "label": "Format novelty",
+        "max_score": 2,
+        "rationale": "Format iso_37002_principle is not overused in the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "audience_specificity",
+        "label": "Audience specificity",
+        "max_score": 2,
+        "rationale": "Copy contains 5 signal(s) for public.",
+        "score": 2
+      },
+      {
+        "id": "concrete_reader_value",
+        "label": "Concrete reader value",
+        "max_score": 2,
+        "rationale": "Copy gives 4 concrete action/value signal(s).",
+        "score": 2
+      },
+      {
+        "id": "hushline_relevance",
+        "label": "Hush Line relevance",
+        "max_score": 2,
+        "rationale": "Copy is tied to Hush Line or a concrete Hush Line surface.",
+        "score": 2
+      },
+      {
+        "id": "cta_freshness",
+        "label": "CTA freshness",
+        "max_score": 2,
+        "rationale": "CTA pattern is fresh against the configured CTA cooldown.",
+        "score": 2
+      },
+      {
+        "id": "safety_compliance",
+        "label": "Safety and compliance",
+        "max_score": 2,
+        "rationale": "Copy avoids unsupported safety, anonymity, and recency claims.",
+        "score": 2
+      }
+    ],
+    "failed_criteria": [],
+    "max_score": 16,
+    "passed": true,
+    "rationale": "Topic freshness: Topic family directory appeared recently but not in the last two posts. Hook freshness: Opening hook is distinct from recent archive hooks. Format novelty: Format iso_37002_principle is not overused in the recent archive. Audience specificity: Copy contains 5 signal(s) for public. Concrete reader value: Copy gives 4 concrete action/value signal(s). Hush Line relevance: Copy is tied to Hush Line or a concrete Hush Line surface. CTA freshness: CTA pattern is fresh against the configured CTA cooldown. Safety and compliance: Copy avoids unsupported safety, anonymity, and recency claims.",
+    "score": 15,
+    "threshold": 12
+  }
+}

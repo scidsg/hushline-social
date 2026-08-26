@@ -1,0 +1,33 @@
+Slot: wednesday
+Planned date: 2026-08-26
+Template: hushline-daily-desktop-template-2.html
+Screenshot: /Users/scidsg/hushline-website/src/assets/img/screenshots/current/guest/guest-directory-verified-desktop-light-fold.png
+Content key: guest-directory-verified
+Headline: Give reporting a clear starting point
+Subtext: The public Hush Line Directory gathers contact channels in one place, so visitors know where they can begin if they have a concern to report.
+
+Image alt text
+Light-mode social graphic headed “Give reporting a clear starting point” beside the Hush Line public Directory. The screen shows a Tor Browser reminder, the Verified tab, tabs for several kinds of recipients, a Search verified users field, a verification note, and a profile card. The graphic illustrates the principle that a whistleblowing system needs an available place to begin.
+
+Social post copy
+
+LinkedIn (484/3000)
+A whistleblowing system needs a clear starting point.
+
+One plain ISO 37002 principle is this: reporting must be possible and easy to begin. Hush Line’s public Directory gathers contact channels for lawyers, journalists, and people supporting whistleblowers. Visitors can explore the tabs or use Search verified users.
+
+They can send a message; no registration or app download is required.
+
+Bookmark the Directory so you know where to find it later: https://tips.hushline.app/directory
+
+Mastodon (403/500)
+A whistleblowing system needs a clear starting point.
+
+ISO 37002 calls for reporting to be encouraged and facilitated. In plain terms, the path has to be available. Hush Line’s public Directory gathers contact channels for lawyers, journalists, and people supporting whistleblowers. Visitors can explore the tabs or use Search verified users.
+
+Bookmark the Directory: https://tips.hushline.app/directory
+
+Bluesky (295/300)
+Reporting needs a clear starting point. Hush Line’s public Directory gathers contact channels for lawyers, journalists, and people supporting whistleblowers. Use the tabs or Search verified users. Sending a message does not require registration.
+
+Bookmark it: https://tips.hushline.app/directory
