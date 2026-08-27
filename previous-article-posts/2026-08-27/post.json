@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-08-27",
+  "weekday": "thursday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "Meta agrees to make sweeping changes to apps for teens | First Thing",
+  "article_url": "https://www.theguardian.com/us-news/2026/aug/27/first-thing-meta-changes-apps-instagram-facebook-teenagers-landmark-lawsuit",
+  "article_published_at": "2026-08-27T11:32:04.000Z",
+  "relevance_score": 28,
+  "content_key": "weekly-news-the-guardian-meta-agrees-to-make-sweeping-changes-to-apps-for-teens-first-thing",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: Meta agrees to make sweeping changes to apps for teens | First Thing",
+  "social": {
+    "bluesky": "Meta agrees to make sweeping changes to apps for teens | First Thing.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/aug/27/first-thing-meta-changes-apps-instagram-facebook-teenagers-landmark-lawsuit\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Meta agrees to make sweeping changes to apps for teens | First Thing.\n\nSafety features including usage limits and night-time blocks to be set by default. Plus changes to famous French cheeses Don’t already get First Thing in your inbox? Sign up here Good morning. Meta has agreed to...\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/aug/27/first-thing-meta-changes-apps-instagram-facebook-teenagers-landmark-lawsuit\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Meta agrees to make sweeping changes to apps for teens | First Thing.\n\nWins matter when reporting leads to protection or repair.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/aug/27/first-thing-meta-changes-apps-instagram-facebook-teenagers-landmark-lawsuit\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}

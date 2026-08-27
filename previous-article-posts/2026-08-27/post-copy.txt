@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-08-27
+Publish mode: text
+Source: The Guardian
+Article URL: https://www.theguardian.com/us-news/2026/aug/27/first-thing-meta-changes-apps-instagram-facebook-teenagers-landmark-lawsuit
+Content key: weekly-news-the-guardian-meta-agrees-to-make-sweeping-changes-to-apps-for-teens-first-thing
+Headline: Whistleblower-related reporting from The Guardian
+Subtext: The Guardian reports: Meta agrees to make sweeping changes to apps for teens | First Thing
+
+Social post copy
+
+LinkedIn (541/3000)
+Meta agrees to make sweeping changes to apps for teens | First Thing.
+
+Safety features including usage limits and night-time blocks to be set by default. Plus changes to famous French cheeses Don’t already get First Thing in your inbox? Sign up here Good morning. Meta has agreed to...
+
+Read the article from The Guardian
+https://www.theguardian.com/us-news/2026/aug/27/first-thing-meta-changes-apps-instagram-facebook-teenagers-landmark-lawsuit
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (336/500)
+Meta agrees to make sweeping changes to apps for teens | First Thing.
+
+Wins matter when reporting leads to protection or repair.
+
+Read the article from The Guardian
+https://www.theguardian.com/us-news/2026/aug/27/first-thing-meta-changes-apps-instagram-facebook-teenagers-landmark-lawsuit
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (277/300)
+Meta agrees to make sweeping changes to apps for teens | First Thing.
+
+Read the article from The Guardian
+https://www.theguardian.com/us-news/2026/aug/27/first-thing-meta-changes-apps-instagram-facebook-teenagers-landmark-lawsuit
+
+Sign up for Hush Line at https://hushline.app.
