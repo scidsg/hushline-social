@@ -1,0 +1,29 @@
+Slot: thursday
+Planned date: 2026-08-27
+Template: hushline-daily-desktop-template.html
+Screenshot: /Users/scidsg/hushline-website/src/assets/img/screenshots/current/artvandelay/auth-artvandelay-settings-replies-desktop-light-fold.png
+Content key: auth-artvandelay-settings-replies
+Headline: Do not promise a reply time you cannot keep
+Subtext: Recipients and staff can update the Waiting status text with a realistic timeframe and tell sources where to check for an update.
+
+Image alt text
+Light-mode Hush Line social graphic titled “Do not promise a reply time you cannot keep.” Beside it, the desktop Message Statuses screen shows Waiting, a Status Text field promising a reply in 24–72 hours, and the Update Reply Text button. The graphic presents reviewing that promise as the safer workflow for recipients and staff.
+
+Social post copy
+
+LinkedIn (463/3000)
+A common intake mistake is leaving a reply-time promise in place after staffing or schedules change.
+
+Hush Line’s Message Statuses settings let recipients and staff edit the Waiting status text shown on the temporary page a source can check after sending a message. Give a timeframe your team can meet, and tell the source to return to that page for an update.
+
+Before you share a tip line, compare the Waiting message with how your team actually handles replies.
+
+Mastodon (397/500)
+An outdated Waiting message can promise sources a reply time your team cannot meet.
+
+In Hush Line’s Message Statuses settings, recipients and staff can edit the text shown on the temporary page a source can check after sending a message. Use an honest timeframe and remind the source to return for updates.
+
+Before sharing the tip line, read the Waiting message against your current reply process.
+
+Bluesky (249/300)
+Mistake to avoid: leaving an old reply-time promise in place. Hush Line recipients and staff can edit the Waiting status text shown on a source’s temporary page. Use a timeframe your team can meet, then check the wording before sharing the tip line.

@@ -1,0 +1,123 @@
+{
+  "date": "2026-08-27",
+  "post": {
+    "slot": "thursday",
+    "planned_date": "2026-08-27",
+    "screenshot_file": "artvandelay/auth-artvandelay-settings-replies-desktop-light-fold.png",
+    "content_key": "auth-artvandelay-settings-replies",
+    "content_format": "mistake_to_avoid",
+    "headline": "Do not promise a reply time you cannot keep",
+    "subtext": "Recipients and staff can update the Waiting status text with a realistic timeframe and tell sources where to check for an update.",
+    "image_alt_text": "Light-mode Hush Line social graphic titled “Do not promise a reply time you cannot keep.” Beside it, the desktop Message Statuses screen shows Waiting, a Status Text field promising a reply in 24–72 hours, and the Update Reply Text button. The graphic presents reviewing that promise as the safer workflow for recipients and staff.",
+    "social": {
+      "bluesky": "Mistake to avoid: leaving an old reply-time promise in place. Hush Line recipients and staff can edit the Waiting status text shown on a source’s temporary page. Use a timeframe your team can meet, then check the wording before sharing the tip line.",
+      "linkedin": "A common intake mistake is leaving a reply-time promise in place after staffing or schedules change.\n\nHush Line’s Message Statuses settings let recipients and staff edit the Waiting status text shown on the temporary page a source can check after sending a message. Give a timeframe your team can meet, and tell the source to return to that page for an update.\n\nBefore you share a tip line, compare the Waiting message with how your team actually handles replies.",
+      "mastodon": "An outdated Waiting message can promise sources a reply time your team cannot meet.\n\nIn Hush Line’s Message Statuses settings, recipients and staff can edit the text shown on the temporary page a source can check after sending a message. Use an honest timeframe and remind the source to return for updates.\n\nBefore sharing the tip line, read the Waiting message against your current reply process."
+    },
+    "rationale": "All three candidates are cooldown fallbacks. Message Statuses is the least recently used topic in the shortlist, and this angle is distinct from prior posts about plain wording or simply explaining the Waiting page. It identifies a concrete operational mistake—an outdated reply-time promise—and gives recipients and staff a direct check they can repeat before sharing a tip line.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "settings-replies",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "editorial_intent": {
+      "audience_scope": "recipient-shared",
+      "content_format": "mistake_to_avoid",
+      "content_format_label": "Mistake to avoid",
+      "label": "Recipients and staff",
+      "reader_need": "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+      "visual_role": "supporting_screenshot"
+    },
+    "matched_pull_requests": [
+      {
+        "merged_at": "2026-07-14T05:14:25Z",
+        "number": 2340,
+        "title": "Prevent rapid mobile submits from duplicating chat replies"
+      },
+      {
+        "merged_at": "2026-07-08T23:09:05Z",
+        "number": 2329,
+        "title": "Allow replies to legacy chat-key recipients"
+      },
+      {
+        "merged_at": "2026-07-07T18:25:17Z",
+        "number": 2327,
+        "title": "Upgrade legacy chat keys for replies"
+      }
+    ],
+    "screen_key": "auth-artvandelay-settings-replies",
+    "template_name": "hushline-daily-desktop-template.html",
+    "theme": "light",
+    "title": "Settings Replies",
+    "topic_family": "message-statuses",
+    "visual_selection_reason": "Selected screenshots only after choosing the Recipients and staff editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+    "viewport": "desktop"
+  },
+  "summary": "A mistake-to-avoid post for recipients and staff about keeping the Waiting status text aligned with the reply time their team can meet.",
+  "critic": {
+    "blocked": false,
+    "criteria": [
+      {
+        "id": "topic_freshness",
+        "label": "Topic freshness",
+        "max_score": 2,
+        "rationale": "Topic family message-statuses is fresh against the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "hook_freshness",
+        "label": "Hook freshness",
+        "max_score": 2,
+        "rationale": "Opening hook is distinct from recent archive hooks.",
+        "score": 2
+      },
+      {
+        "id": "format_novelty",
+        "label": "Format novelty",
+        "max_score": 2,
+        "rationale": "Format mistake_to_avoid is not overused in the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "audience_specificity",
+        "label": "Audience specificity",
+        "max_score": 2,
+        "rationale": "Copy contains 4 signal(s) for recipient-shared.",
+        "score": 2
+      },
+      {
+        "id": "concrete_reader_value",
+        "label": "Concrete reader value",
+        "max_score": 2,
+        "rationale": "Copy gives 3 concrete action/value signal(s).",
+        "score": 2
+      },
+      {
+        "id": "hushline_relevance",
+        "label": "Hush Line relevance",
+        "max_score": 2,
+        "rationale": "Copy is tied to Hush Line or a concrete Hush Line surface.",
+        "score": 2
+      },
+      {
+        "id": "cta_freshness",
+        "label": "CTA freshness",
+        "max_score": 2,
+        "rationale": "CTA pattern is fresh against the configured CTA cooldown.",
+        "score": 2
+      },
+      {
+        "id": "safety_compliance",
+        "label": "Safety and compliance",
+        "max_score": 2,
+        "rationale": "Copy avoids unsupported safety, anonymity, and recency claims.",
+        "score": 2
+      }
+    ],
+    "failed_criteria": [],
+    "max_score": 16,
+    "passed": true,
+    "rationale": "Topic freshness: Topic family message-statuses is fresh against the recent archive. Hook freshness: Opening hook is distinct from recent archive hooks. Format novelty: Format mistake_to_avoid is not overused in the recent archive. Audience specificity: Copy contains 4 signal(s) for recipient-shared. Concrete reader value: Copy gives 3 concrete action/value signal(s). Hush Line relevance: Copy is tied to Hush Line or a concrete Hush Line surface. CTA freshness: CTA pattern is fresh against the configured CTA cooldown. Safety and compliance: Copy avoids unsupported safety, anonymity, and recency claims.",
+    "score": 16,
+    "threshold": 12
+  }
+}
