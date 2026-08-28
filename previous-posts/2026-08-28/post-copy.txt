@@ -1,0 +1,31 @@
+Slot: friday
+Planned date: 2026-08-28
+Template: hushline-daily-desktop-template-2.html
+Screenshot: /Users/scidsg/hushline-website/src/assets/img/screenshots/current/artvandelay/auth-artvandelay-tools-email-validation-status-valid-desktop-light-fold.png
+Content key: auth-artvandelay-tools-email-validation-status-valid
+Headline: A green result does not prove every claim
+Subtext: Email Validation can suggest where a message came from. Recipients must judge its claims separately.
+
+Image alt text
+A light-mode Hush Line social graphic headed “A green result does not prove every claim.” It shows the desktop Tools page with Email Validation selected, Raw Email Headers in a text box, buttons labeled Validate Headers and Download Report, and a green Validation Summary. The graphic supports the distinction between learning where an email likely came from and deciding whether its claims are accurate.
+
+Social post copy
+
+LinkedIn (565/3000)
+Myth: A green result means every claim in an email is true.
+
+Reality: Hush Line’s Email Validation answers a narrower question. It indicates where the email likely came from. It does not establish that the contents are accurate.
+
+That distinction matters for journalists, lawyers, educators, and other recipients handling tips. The result can inform their assessment, but it cannot replace reading the message, confirming important facts, and applying appropriate care to the lead.
+
+Open Tools to trace an email’s likely source. Judge its claims as a separate step.
+
+Mastodon (380/500)
+Myth: a green result proves an email’s claims.
+
+Reality: Hush Line’s Email Validation addresses a narrower question: where the email likely came from. It does not establish that the contents are accurate.
+
+For recipients handling tips, that distinction separates source information from claim assessment. Use the finding for context, and evaluate what the message says on its own.
+
+Bluesky (246/300)
+Myth: a green result proves an email’s claims. Reality: Email Validation only addresses where the email likely came from. Recipients should assess what it says separately. Use the source finding for context and continue your usual tip assessment.
