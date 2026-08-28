@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-08-28",
+  "weekday": "friday",
+  "publish_mode": "text",
+  "source": "BBC News",
+  "title": "'Not far enough' - US parents and teens on Meta's new limits for young users",
+  "article_url": "https://www.bbc.co.uk/news/articles/cx2zn9zj361o?at_medium=RSS&at_campaign=rss",
+  "article_published_at": "2026-08-28T09:32:14.000Z",
+  "relevance_score": 14,
+  "content_key": "weekly-news-bbc-news-not-far-enough-us-parents-and-teens-on-meta-s-new-limits-for-young-users",
+  "headline": "Whistleblower-related reporting from BBC News",
+  "subtext": "BBC News reports: 'Not far enough' - US parents and teens on Meta's new limits for young users",
+  "social": {
+    "bluesky": "'Not far enough' - US parents and teens on Meta's new limits for young users.\n\nRead the article from BBC News\nhttps://www.bbc.co.uk/news/articles/cx2zn9zj361o?at_medium=RSS&at_campaign=rss\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "'Not far enough' - US parents and teens on Meta's new limits for young users.\n\nAs part of an $18bn settlement in a child-safety lawsuit, Meta announced new restrictions on its apps. We asked families what they thought.\n\nRead the article from BBC News\nhttps://www.bbc.co.uk/news/articles/cx2zn9zj361o?at_medium=RSS&at_campaign=rss\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "'Not far enough' - US parents and teens on Meta's new limits for young users.\n\nWins matter when reporting leads to protection or repair.\n\nRead the article from BBC News\nhttps://www.bbc.co.uk/news/articles/cx2zn9zj361o?at_medium=RSS&at_campaign=rss\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
