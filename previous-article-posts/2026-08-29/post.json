@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-08-29",
+  "weekday": "saturday",
+  "publish_mode": "text",
+  "source": "NBC News",
+  "title": "Dolly Parton’s legacy revered and Trump renames another body of water: The news quiz",
+  "article_url": "https://www.nbcnews.com/news/news-quiz/dolly-partons-legacy-revered-trump-renames-another-body-water-news-qui-rcna594744",
+  "article_published_at": "2026-08-29T09:15:00.000Z",
+  "relevance_score": 14,
+  "content_key": "weekly-news-nbc-news-dolly-parton-s-legacy-revered-and-trump-renames-another-body-of-water-the-n",
+  "headline": "Whistleblower-related reporting from NBC News",
+  "subtext": "NBC News reports: Dolly Parton’s legacy revered and Trump renames another body of water: The news quiz",
+  "social": {
+    "bluesky": "Dolly Parton’s legacy revered and Trump renames another body of water — The news quiz.\n\nRead the article from NBC News\nhttps://www.nbcnews.com/news/news-quiz/dolly-partons-legacy-revered-trump-renames-another-body-water-news-qui-rcna594744\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Dolly Parton’s legacy revered and Trump renames another body of water — The news quiz.\n\nA tennis star returns to the U.S. Open, a trial is set for a man accused of being the 9/11 mastermind, and a social media lawsuit reaches a settlement.\n\nRead the article from NBC News\nhttps://www.nbcnews.com/news/news-quiz/dolly-partons-legacy-revered-trump-renames-another-body-water-news-qui-rcna594744\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Dolly Parton’s legacy revered and Trump renames another body of water — The news quiz.\n\nWins matter when reporting leads to protection or repair.\n\nRead the article from NBC News\nhttps://www.nbcnews.com/news/news-quiz/dolly-partons-legacy-revered-trump-renames-another-body-water-news-qui-rcna594744\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
