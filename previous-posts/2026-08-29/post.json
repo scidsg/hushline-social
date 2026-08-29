@@ -1,0 +1,36 @@
+{
+  "slot": "saturday",
+  "planned_date": "2026-08-29",
+  "screenshot_file": "artvandelay/auth-artvandelay-settings-advanced-desktop-light-fold.png",
+  "content_key": "auth-artvandelay-settings-advanced",
+  "content_format": "recipient_playbook",
+  "headline": "Test the encrypted export before you need it",
+  "subtext": "Recipients and staff can use Download My Data with Encrypt export with my PGP key, then check that the key opens the saved ZIP.",
+  "image_alt_text": "Social graphic titled “Test the encrypted export before you need it” with Hush Line’s Advanced settings page. The page shows Download My Data, a checked “Encrypt export with my PGP key” option, a purple Download My Data button, and a separate Delete Account warning and button. The graphic supports a regular export check for recipients and staff.",
+  "social": {
+    "bluesky": "Test an encrypted Hush Line export before you need it. In Advanced settings, select “Encrypt export with my PGP key,” use “Download My Data,” and confirm that the key opens the ZIP. Follow your team’s rules for the saved file, then schedule the next check.",
+    "linkedin": "An encrypted export should be checked before it is needed.\n\nFor recipients and staff who share responsibility for a Hush Line tip line:\n\n1. Choose who is responsible for account exports.\n2. Open Advanced settings and select “Encrypt export with my PGP key.”\n3. Use “Download My Data” to save the ZIP with CSV exports and encrypted PGP messages.\n4. Check that the PGP key opens the export.\n5. Store or delete the ZIP according to your team’s access and retention rules.\n\nPut the next export check on your team calendar.",
+    "mastodon": "An encrypted export should be checked before it is needed. In Hush Line’s Advanced settings, select “Encrypt export with my PGP key,” use “Download My Data,” and confirm that the key opens the saved ZIP. Handle the ZIP under your team’s access and retention rules. Put the next export check on the calendar."
+  },
+  "rationale": "The Advanced settings screenshot supports a recipient playbook about testing an encrypted export as a recurring team task. This scheduled-check angle is distinct from the recent account-closing post and from the more recently repeated notification-recipient theme. The copy names the visible controls, gives recipients and staff a concrete process, and closes with a fresh workflow-specific action.",
+  "source_pr_numbers": [],
+  "audience_scope": "recipient-shared",
+  "concept_key": "settings-advanced",
+  "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+  "editorial_intent": {
+    "audience_scope": "recipient-shared",
+    "content_format": "recipient_playbook",
+    "content_format_label": "Recipient playbook",
+    "label": "Recipients and staff",
+    "reader_need": "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+    "visual_role": "supporting_screenshot"
+  },
+  "matched_pull_requests": [],
+  "screen_key": "/settings/advanced",
+  "template_name": "hushline-daily-desktop-template.html",
+  "theme": "light",
+  "title": "Settings Advanced",
+  "topic_family": "settings-advanced",
+  "visual_selection_reason": "Selected screenshots only after choosing the Recipients and staff editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+  "viewport": "desktop"
+}
