@@ -1,0 +1,34 @@
+Slot: sunday
+Planned date: 2026-08-30
+Template: hushline-daily-desktop-template-2.html
+Screenshot: /Users/scidsg/hushline-website/src/assets/img/screenshots/current/artvandelay/auth-artvandelay-settings-notifications-desktop-light-fold.png
+Content key: auth-artvandelay-settings-notifications
+Headline: Choose what a tip email contains
+Subtext: A recipient can review messages in the Hush Line inbox, use email notifications as alerts, and include encrypted tip contents only if the workflow calls for them.
+
+Image alt text
+Social graphic titled “Choose what a tip email contains.” A light-mode desktop screenshot shows Hush Line Settings open to Notifications, with Tip Notifications turned on, three enabled delivery addresses, a PGP key configured for each address, and an Add Recipient button. The graphic supports a checklist for deciding whether staff need an arrival notice or encrypted tip contents in email.
+
+Social post copy
+
+LinkedIn (564/3000)
+Email can announce a new tip; its contents can stay in Hush Line.
+
+Before sharing a Hush Line tip line, answer these questions with recipients and staff:
+
+1. Choose Hush Line inbox notifications for the people who will review messages there.
+2. Decide which staff members also need email notifications.
+3. Select whether email includes encrypted tip contents or only an alert.
+4. Confirm delivery addresses and their PGP keys.
+
+Use the least email content that still supports reliable review. Write down the decision before asking anyone to send sensitive details.
+
+Mastodon (403/500)
+Email can announce a new tip; its contents can stay in Hush Line.
+
+Before sharing the tip line, choose Hush Line inbox notifications for staff who review messages there. Decide which staff members also need email notifications and whether those emails include encrypted tip contents. Confirm delivery addresses and their PGP keys.
+
+Write down the decision before asking anyone to send sensitive details.
+
+Bluesky (291/300)
+Email can announce a new tip; its contents can stay in Hush Line. Before sharing your tip line, choose Hush Line inbox notifications, decide which staff members need email notifications, and select whether those emails include encrypted tip contents. Confirm delivery addresses and PGP keys.

@@ -1,0 +1,107 @@
+{
+  "date": "2026-08-30",
+  "post": {
+    "slot": "sunday",
+    "planned_date": "2026-08-30",
+    "screenshot_file": "artvandelay/auth-artvandelay-settings-notifications-desktop-light-fold.png",
+    "content_key": "auth-artvandelay-settings-notifications",
+    "content_format": "source_safety_checklist",
+    "headline": "Choose what a tip email contains",
+    "subtext": "A recipient can review messages in the Hush Line inbox, use email notifications as alerts, and include encrypted tip contents only if the workflow calls for them.",
+    "image_alt_text": "Social graphic titled “Choose what a tip email contains.” A light-mode desktop screenshot shows Hush Line Settings open to Notifications, with Tip Notifications turned on, three enabled delivery addresses, a PGP key configured for each address, and an Add Recipient button. The graphic supports a checklist for deciding whether staff need an arrival notice or encrypted tip contents in email.",
+    "social": {
+      "bluesky": "Email can announce a new tip; its contents can stay in Hush Line. Before sharing your tip line, choose Hush Line inbox notifications, decide which staff members need email notifications, and select whether those emails include encrypted tip contents. Confirm delivery addresses and PGP keys.",
+      "linkedin": "Email can announce a new tip; its contents can stay in Hush Line.\n\nBefore sharing a Hush Line tip line, answer these questions with recipients and staff:\n\n1. Choose Hush Line inbox notifications for the people who will review messages there.\n2. Decide which staff members also need email notifications.\n3. Select whether email includes encrypted tip contents or only an alert.\n4. Confirm delivery addresses and their PGP keys.\n\nUse the least email content that still supports reliable review. Write down the decision before asking anyone to send sensitive details.",
+      "mastodon": "Email can announce a new tip; its contents can stay in Hush Line.\n\nBefore sharing the tip line, choose Hush Line inbox notifications for staff who review messages there. Decide which staff members also need email notifications and whether those emails include encrypted tip contents. Confirm delivery addresses and their PGP keys.\n\nWrite down the decision before asking anyone to send sensitive details."
+    },
+    "rationale": "The required screenshot is a cooldown fallback, so this plan uses a different source-safety angle from the recent posts about private notification addresses and staffing coverage. It asks recipients and staff to minimize what email carries before inviting sensitive tips, names the inbox, email, encrypted-content, address, and PGP-key choices shown or supported by the screen, and ends with a concrete documentation step.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "settings-notifications",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "editorial_intent": {
+      "audience_scope": "recipient-shared",
+      "content_format": "source_safety_checklist",
+      "content_format_label": "Source safety checklist",
+      "label": "Recipients and staff",
+      "reader_need": "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+      "visual_role": "supporting_screenshot"
+    },
+    "matched_pull_requests": [],
+    "screen_key": "/settings/notifications",
+    "template_name": "hushline-daily-desktop-template-2.html",
+    "theme": "light",
+    "title": "Settings Notifications",
+    "topic_family": "notifications",
+    "visual_selection_reason": "Selected screenshots only after choosing the Recipients and staff editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+    "viewport": "desktop"
+  },
+  "summary": "A source safety checklist for deciding how much information email notifications should carry.",
+  "critic": {
+    "blocked": false,
+    "criteria": [
+      {
+        "id": "topic_freshness",
+        "label": "Topic freshness",
+        "max_score": 2,
+        "rationale": "Topic family notifications appeared recently but not in the last two posts.",
+        "score": 1
+      },
+      {
+        "id": "hook_freshness",
+        "label": "Hook freshness",
+        "max_score": 2,
+        "rationale": "Opening hook is distinct from recent archive hooks.",
+        "score": 2
+      },
+      {
+        "id": "format_novelty",
+        "label": "Format novelty",
+        "max_score": 2,
+        "rationale": "Format source_safety_checklist is not overused in the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "audience_specificity",
+        "label": "Audience specificity",
+        "max_score": 2,
+        "rationale": "Copy contains 5 signal(s) for recipient-shared.",
+        "score": 2
+      },
+      {
+        "id": "concrete_reader_value",
+        "label": "Concrete reader value",
+        "max_score": 2,
+        "rationale": "Copy gives 5 concrete action/value signal(s).",
+        "score": 2
+      },
+      {
+        "id": "hushline_relevance",
+        "label": "Hush Line relevance",
+        "max_score": 2,
+        "rationale": "Copy is tied to Hush Line or a concrete Hush Line surface.",
+        "score": 2
+      },
+      {
+        "id": "cta_freshness",
+        "label": "CTA freshness",
+        "max_score": 2,
+        "rationale": "CTA pattern is fresh against the configured CTA cooldown.",
+        "score": 2
+      },
+      {
+        "id": "safety_compliance",
+        "label": "Safety and compliance",
+        "max_score": 2,
+        "rationale": "Copy avoids unsupported safety, anonymity, and recency claims.",
+        "score": 2
+      }
+    ],
+    "failed_criteria": [],
+    "max_score": 16,
+    "passed": true,
+    "rationale": "Topic freshness: Topic family notifications appeared recently but not in the last two posts. Hook freshness: Opening hook is distinct from recent archive hooks. Format novelty: Format source_safety_checklist is not overused in the recent archive. Audience specificity: Copy contains 5 signal(s) for recipient-shared. Concrete reader value: Copy gives 5 concrete action/value signal(s). Hush Line relevance: Copy is tied to Hush Line or a concrete Hush Line surface. CTA freshness: CTA pattern is fresh against the configured CTA cooldown. Safety and compliance: Copy avoids unsupported safety, anonymity, and recency claims.",
+    "score": 15,
+    "threshold": 12
+  }
+}
