@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-08-30
+Publish mode: text
+Source: The Guardian
+Article URL: https://www.theguardian.com/technology/2026/aug/28/meta-facebook-us-lawsuit-settlement-world-impact
+Content key: weekly-news-the-guardian-what-could-meta-s-us-settlement-mean-around-the-world-and-what-now-for-
+Headline: Whistleblower-related reporting from The Guardian
+Subtext: The Guardian reports: What could Meta’s US settlement mean around the world – and what now for other claims against firm?
+
+Social post copy
+
+LinkedIn (552/3000)
+What could Meta’s US settlement mean around the world – and what now for other claims against firm?
+
+Other governments could seek similar concessions, while separate legal action is pending in places ranging from Kenya to the Netherlands In October 2021, Abrham Meareg’s father, a professor of chemistry in Ethiopia’s...
+
+Read the article from The Guardian
+https://www.theguardian.com/technology/2026/aug/28/meta-facebook-us-lawsuit-settlement-world-impact
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (342/500)
+What could Meta’s US settlement mean around the world – and what now for other claims against firm?
+
+Wins matter when reporting leads to protection or repair.
+
+Read the article from The Guardian
+https://www.theguardian.com/technology/2026/aug/28/meta-facebook-us-lawsuit-settlement-world-impact
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (283/300)
+What could Meta’s US settlement mean around the world – and what now for other claims against firm?
+
+Read the article from The Guardian
+https://www.theguardian.com/technology/2026/aug/28/meta-facebook-us-lawsuit-settlement-world-impact
+
+Sign up for Hush Line at https://hushline.app.

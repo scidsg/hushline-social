@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-08-30",
+  "weekday": "sunday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "What could Meta’s US settlement mean around the world – and what now for other claims against firm?",
+  "article_url": "https://www.theguardian.com/technology/2026/aug/28/meta-facebook-us-lawsuit-settlement-world-impact",
+  "article_published_at": "2026-08-28T04:00:48.000Z",
+  "relevance_score": 14,
+  "content_key": "weekly-news-the-guardian-what-could-meta-s-us-settlement-mean-around-the-world-and-what-now-for-",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: What could Meta’s US settlement mean around the world – and what now for other claims against firm?",
+  "social": {
+    "bluesky": "What could Meta’s US settlement mean around the world – and what now for other claims against firm?\n\nRead the article from The Guardian\nhttps://www.theguardian.com/technology/2026/aug/28/meta-facebook-us-lawsuit-settlement-world-impact\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "What could Meta’s US settlement mean around the world – and what now for other claims against firm?\n\nOther governments could seek similar concessions, while separate legal action is pending in places ranging from Kenya to the Netherlands In October 2021, Abrham Meareg’s father, a professor of chemistry in Ethiopia’s...\n\nRead the article from The Guardian\nhttps://www.theguardian.com/technology/2026/aug/28/meta-facebook-us-lawsuit-settlement-world-impact\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "What could Meta’s US settlement mean around the world – and what now for other claims against firm?\n\nWins matter when reporting leads to protection or repair.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/technology/2026/aug/28/meta-facebook-us-lawsuit-settlement-world-impact\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
