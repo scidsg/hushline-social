@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-08-31",
+  "weekday": "monday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "First US military attacks on Iran in a month prompt retaliation",
+  "article_url": "https://www.theguardian.com/world/2026/aug/30/us-strikes-iranian-launchers-on-larak-island-amid-strait-of-hormuz-tensions",
+  "article_published_at": "2026-08-31T09:37:19.000Z",
+  "relevance_score": 9,
+  "content_key": "weekly-news-the-guardian-first-us-military-attacks-on-iran-in-a-month-prompt-retaliation",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: First US military attacks on Iran in a month prompt retaliation",
+  "social": {
+    "bluesky": "First US military attacks on Iran in a month prompt retaliation.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/world/2026/aug/30/us-strikes-iranian-launchers-on-larak-island-amid-strait-of-hormuz-tensions\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "First US military attacks on Iran in a month prompt retaliation.\n\nUS attacks Iranian rocket launchers on island in strait of Hormuz and Tehran targets US bases in Jordan and UAE The US has reverted to military attacks on Iran for the first time in a month, firing missiles and...\n\nRead the article from The Guardian\nhttps://www.theguardian.com/world/2026/aug/30/us-strikes-iranian-launchers-on-larak-island-amid-strait-of-hormuz-tensions\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "First US military attacks on Iran in a month prompt retaliation.\n\nRetaliation is why safer first contact matters.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/world/2026/aug/30/us-strikes-iranian-launchers-on-larak-island-amid-strait-of-hormuz-tensions\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
