@@ -1,0 +1,29 @@
+Slot: monday
+Planned date: 2026-08-31
+Template: hushline-daily-desktop-template.html
+Screenshot: /Users/scidsg/hushline-website/src/assets/img/screenshots/current/guest/guest-directory-verified-desktop-light-fold.png
+Content key: guest-directory-verified
+Headline: Choose your browser before typing a name
+Subtext: The Tor Browser link comes before recipient cards so visitors can make that privacy decision ahead of a Directory search.
+
+Image alt text
+A Hush Line social graphic headed ‘Choose your browser before typing a name.’ The supporting desktop screenshot shows the ‘Use Tor Browser for greater anonymity’ link above the public Directory, followed by recipient categories, the ‘Search verified users’ field, an explanation of Verified accounts, and a profile card with a ‘View Profile’ link.
+
+Social post copy
+
+LinkedIn (401/3000)
+Privacy starts with how you arrive.
+
+Above Hush Line’s public Directory, the “Use Tor Browser for greater anonymity” link appears before any recipient cards. A visitor can switch browsers, return to the page, and enter a name in Search verified users. From a matching profile, the source may submit a tip without creating an account.
+
+If Tor fits your situation, make that choice before typing a name.
+
+Mastodon (323/500)
+Your browser is the first choice in this workflow.
+
+The public Directory places “Use Tor Browser for greater anonymity” above the recipient cards. After switching, return to the page, enter a name, and open a matching profile. A source may submit a tip without creating an account.
+
+Pick the browser before typing the name.
+
+Bluesky (269/300)
+Make the browser choice before typing a name. The public Directory links to Tor Browser for greater anonymity above its recipient cards. After switching, return to Search verified users and open a matching profile. A source may submit a tip without creating an account.

@@ -1,0 +1,107 @@
+{
+  "date": "2026-08-31",
+  "post": {
+    "slot": "monday",
+    "planned_date": "2026-08-31",
+    "screenshot_file": "guest/guest-directory-verified-desktop-light-fold.png",
+    "content_key": "guest-directory-verified",
+    "content_format": "workflow_teardown",
+    "headline": "Choose your browser before typing a name",
+    "subtext": "The Tor Browser link comes before recipient cards so visitors can make that privacy decision ahead of a Directory search.",
+    "image_alt_text": "A Hush Line social graphic headed ‘Choose your browser before typing a name.’ The supporting desktop screenshot shows the ‘Use Tor Browser for greater anonymity’ link above the public Directory, followed by recipient categories, the ‘Search verified users’ field, an explanation of Verified accounts, and a profile card with a ‘View Profile’ link.",
+    "social": {
+      "bluesky": "Make the browser choice before typing a name. The public Directory links to Tor Browser for greater anonymity above its recipient cards. After switching, return to Search verified users and open a matching profile. A source may submit a tip without creating an account.",
+      "linkedin": "Privacy starts with how you arrive.\n\nAbove Hush Line’s public Directory, the “Use Tor Browser for greater anonymity” link appears before any recipient cards. A visitor can switch browsers, return to the page, and enter a name in Search verified users. From a matching profile, the source may submit a tip without creating an account.\n\nIf Tor fits your situation, make that choice before typing a name.",
+      "mastodon": "Your browser is the first choice in this workflow.\n\nThe public Directory places “Use Tor Browser for greater anonymity” above the recipient cards. After switching, return to the page, enter a name, and open a matching profile. A source may submit a tip without creating an account.\n\nPick the browser before typing the name."
+    },
+    "rationale": "The only eligible screenshot is a cooldown fallback, so this plan avoids the recent directory themes of a clear starting point, finding by role, and reviewing a recipient. Instead, it explains the earlier privacy decision shown in the asset: choose whether to use Tor Browser before searching. The copy then follows the visible public workflow through categories, search, and profiles, and ends with a specific action tied to that first step.",
+    "source_pr_numbers": [],
+    "audience_scope": "public",
+    "concept_key": "directory-verified",
+    "copy_brief": "Write for sources and public users evaluating or using Hush Line.",
+    "editorial_intent": {
+      "audience_scope": "public",
+      "content_format": "workflow_teardown",
+      "content_format_label": "Workflow teardown",
+      "label": "Public sources and visitors",
+      "reader_need": "Help someone decide whether Hush Line is the right place to make safe first contact or find a trusted recipient.",
+      "visual_role": "supporting_screenshot"
+    },
+    "matched_pull_requests": [],
+    "screen_key": "directory-index",
+    "template_name": "hushline-daily-desktop-template.html",
+    "theme": "light",
+    "title": "Directory Verified",
+    "topic_family": "directory",
+    "visual_selection_reason": "Selected screenshots only after choosing the Public sources and visitors editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+    "viewport": "desktop"
+  },
+  "summary": "A public workflow teardown about making the Tor Browser choice before typing a recipient’s name.",
+  "critic": {
+    "blocked": false,
+    "criteria": [
+      {
+        "id": "topic_freshness",
+        "label": "Topic freshness",
+        "max_score": 2,
+        "rationale": "Topic family directory appeared recently but not in the last two posts.",
+        "score": 1
+      },
+      {
+        "id": "hook_freshness",
+        "label": "Hook freshness",
+        "max_score": 2,
+        "rationale": "Opening hook is distinct from recent archive hooks.",
+        "score": 2
+      },
+      {
+        "id": "format_novelty",
+        "label": "Format novelty",
+        "max_score": 2,
+        "rationale": "Format workflow_teardown is not overused in the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "audience_specificity",
+        "label": "Audience specificity",
+        "max_score": 2,
+        "rationale": "Copy contains 5 signal(s) for public.",
+        "score": 2
+      },
+      {
+        "id": "concrete_reader_value",
+        "label": "Concrete reader value",
+        "max_score": 2,
+        "rationale": "Copy gives 2 concrete action/value signal(s).",
+        "score": 2
+      },
+      {
+        "id": "hushline_relevance",
+        "label": "Hush Line relevance",
+        "max_score": 2,
+        "rationale": "Copy is tied to Hush Line or a concrete Hush Line surface.",
+        "score": 2
+      },
+      {
+        "id": "cta_freshness",
+        "label": "CTA freshness",
+        "max_score": 2,
+        "rationale": "CTA pattern is fresh against the configured CTA cooldown.",
+        "score": 2
+      },
+      {
+        "id": "safety_compliance",
+        "label": "Safety and compliance",
+        "max_score": 2,
+        "rationale": "Copy avoids unsupported safety, anonymity, and recency claims.",
+        "score": 2
+      }
+    ],
+    "failed_criteria": [],
+    "max_score": 16,
+    "passed": true,
+    "rationale": "Topic freshness: Topic family directory appeared recently but not in the last two posts. Hook freshness: Opening hook is distinct from recent archive hooks. Format novelty: Format workflow_teardown is not overused in the recent archive. Audience specificity: Copy contains 5 signal(s) for public. Concrete reader value: Copy gives 2 concrete action/value signal(s). Hush Line relevance: Copy is tied to Hush Line or a concrete Hush Line surface. CTA freshness: CTA pattern is fresh against the configured CTA cooldown. Safety and compliance: Copy avoids unsupported safety, anonymity, and recency claims.",
+    "score": 15,
+    "threshold": 12
+  }
+}
