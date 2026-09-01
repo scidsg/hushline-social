@@ -1,0 +1,149 @@
+{
+  "archive_root": "previous-verified-user-posts",
+  "date": "2026-09-01",
+  "eligible_verified_user_count": 70,
+  "recent_archive_history": [
+    {
+      "date": "2026-03-25",
+      "display_name": "Cory Smith",
+      "opening_line": "🤩 Verified Member Highlight!",
+      "primary_username": "coryjosmith",
+      "verified_user_format": "",
+      "user_url": "https://tips.hushline.app/to/coryjosmith"
+    },
+    {
+      "date": "2026-03-30",
+      "display_name": "Margie Ratliff",
+      "opening_line": "🤩 Verified Member Highlight!",
+      "primary_username": "IsaThing",
+      "verified_user_format": "",
+      "user_url": "https://tips.hushline.app/to/IsaThing"
+    },
+    {
+      "date": "2026-04-06",
+      "display_name": "Grace McNally",
+      "opening_line": "🤩 Verified Member Highlight!",
+      "primary_username": "gracermcnally",
+      "verified_user_format": "",
+      "user_url": "https://tips.hushline.app/to/gracermcnally"
+    },
+    {
+      "date": "2026-04-13",
+      "display_name": "Levi Kalish",
+      "opening_line": "🤩 Verified Member Highlight!",
+      "primary_username": "LKalish",
+      "verified_user_format": "",
+      "user_url": "https://tips.hushline.app/to/LKalish"
+    },
+    {
+      "date": "2026-04-20",
+      "display_name": "Yael Grauer",
+      "opening_line": "🤩 Verified Member Highlight!",
+      "primary_username": "yaelwrites",
+      "verified_user_format": "",
+      "user_url": "https://tips.hushline.app/to/yaelwrites"
+    },
+    {
+      "date": "2026-04-27",
+      "display_name": "Michael Downey",
+      "opening_line": "🤩 Verified Member Highlight!",
+      "primary_username": "downey",
+      "verified_user_format": "",
+      "user_url": "https://tips.hushline.app/to/downey"
+    },
+    {
+      "date": "2026-05-04",
+      "display_name": "Tim Farmer",
+      "opening_line": "🤩 Verified Member Highlight!",
+      "primary_username": "tim_farmer",
+      "verified_user_format": "",
+      "user_url": "https://tips.hushline.app/to/tim_farmer"
+    },
+    {
+      "date": "2026-05-11",
+      "display_name": "Ryan Gallagher",
+      "opening_line": "🤩 Verified Member Highlight!",
+      "primary_username": "ryan",
+      "verified_user_format": "",
+      "user_url": "https://tips.hushline.app/to/ryan"
+    },
+    {
+      "date": "2026-05-18",
+      "display_name": "Sooraj Sathyanarayanan",
+      "opening_line": "🤩 Verified Member Highlight!",
+      "primary_username": "ianonymous3000",
+      "verified_user_format": "",
+      "user_url": "https://tips.hushline.app/to/ianonymous3000"
+    },
+    {
+      "date": "2026-05-25",
+      "display_name": "Paige St John",
+      "opening_line": "Why follow Paige's Hush Line?",
+      "primary_username": "Paige_St_John",
+      "verified_user_format": "why_follow_tip_line",
+      "user_url": "https://tips.hushline.app/to/Paige_St_John"
+    },
+    {
+      "date": "2026-06-01",
+      "display_name": "Julia Lurie",
+      "opening_line": "What this recipient covers:",
+      "primary_username": "julialurie",
+      "verified_user_format": "what_this_recipient_covers",
+      "user_url": "https://tips.hushline.app/to/julialurie"
+    },
+    {
+      "date": "2026-06-08",
+      "display_name": "Waxwing",
+      "opening_line": "First contact should be source-safe.",
+      "primary_username": "wxwing",
+      "verified_user_format": "source_safe_first_contact",
+      "user_url": "https://tips.hushline.app/to/wxwing"
+    },
+    {
+      "date": "2026-06-11",
+      "display_name": "Stefanie Daehler",
+      "opening_line": "From the verified Hush Line directory: Stefanie Daehler.",
+      "primary_username": "stef",
+      "verified_user_format": "from_the_directory",
+      "user_url": "https://tips.hushline.app/to/stef"
+    },
+    {
+      "date": "2026-08-12",
+      "display_name": "The Register",
+      "opening_line": "Before you contact The Register:",
+      "primary_username": "sitpub",
+      "verified_user_format": "before_you_contact_them",
+      "user_url": "https://tips.hushline.app/to/sitpub"
+    },
+    {
+      "date": "2026-08-21",
+      "display_name": "jen by.",
+      "opening_line": "Verify the link before you send anything sensitive.",
+      "primary_username": "jby_journalist",
+      "verified_user_format": "how_to_verify_the_link",
+      "user_url": "https://tips.hushline.app/to/jby_journalist"
+    },
+    {
+      "date": "2026-08-26",
+      "display_name": "Gazzetta",
+      "opening_line": "Why follow Gazzetta's Hush Line?",
+      "primary_username": "gazzetta",
+      "verified_user_format": "why_follow_tip_line",
+      "user_url": "https://tips.hushline.app/to/gazzetta"
+    }
+  ],
+  "selected_format": {
+    "id": "what_this_recipient_covers",
+    "label": "What this recipient covers",
+    "opening_line": "What this recipient covers:"
+  },
+  "selected_user": {
+    "bio": "Taller Technologies is committed to safeguarding the privacy of all Taller staff. Please feel free to share any questions or concerns about illegal or unsafe workplace situations, and they will be taken care of with utmost care and security.",
+    "display_name": "Taller",
+    "is_admin": false,
+    "primary_username": "Taller",
+    "profile_url": "/to/Taller",
+    "user_url": "https://tips.hushline.app/to/Taller"
+  },
+  "source": "https://tips.hushline.app/directory/users.json"
+}

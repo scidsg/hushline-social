@@ -1,0 +1,36 @@
+Slot: verified-user-weekly
+Planned date: 2026-09-01
+Verified user: @Taller
+User link: https://tips.hushline.app/to/Taller
+Source: https://tips.hushline.app/directory/users.json
+Editorial format: What this recipient covers (what_this_recipient_covers)
+Opening line: What this recipient covers:
+Headline: Taller
+Subtext: Taller Technologies is committed to safeguarding the privacy of all Taller staff. Please feel free to share any questions or concerns about illegal or unsafe workplace situations, and they will be taken care of with utmost care and security.
+
+Image alt text
+A social card featuring verified Hush Line user Taller, their bio, their tip line URL, and a QR code that links to the same URL.
+
+Social post copy
+
+LinkedIn (271/3000)
+What this recipient covers:
+
+Taller Technologies provides its staff with a way to share questions or concerns about illegal or unsafe workplace situations, with a commitment to privacy, care, and security.
+
+To send Taller a tip, go to https://tips.hushline.app/to/Taller.
+
+Mastodon (276/500)
+What this recipient covers:
+
+Taller Technologies accepts staff questions or concerns about illegal or unsafe workplace situations and commits to handling them with care, security, and respect for staff privacy.
+
+To send Taller a tip, visit https://tips.hushline.app/to/Taller.
+
+Bluesky (225/300)
+What this recipient covers:
+
+Taller Technologies accepts staff concerns about illegal or unsafe workplace situations and commits to handling them privately and securely.
+
+Send Taller a tip: https://tips.hushline.app/to/Taller
+

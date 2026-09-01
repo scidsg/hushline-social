@@ -1,0 +1,22 @@
+{
+  "date": "2026-09-01",
+  "display_name": "Taller",
+  "editorial_format_label": "What this recipient covers",
+  "headline": "Taller",
+  "image_alt_text": "A social card featuring verified Hush Line user Taller, their bio, their tip line URL, and a QR code that links to the same URL.",
+  "opening_line": "What this recipient covers:",
+  "planned_date": "2026-09-01",
+  "primary_username": "Taller",
+  "qr_code_file": "verified-user-qr.png",
+  "social": {
+    "bluesky": "What this recipient covers:\n\nTaller Technologies accepts staff concerns about illegal or unsafe workplace situations and commits to handling them privately and securely.\n\nSend Taller a tip: https://tips.hushline.app/to/Taller",
+    "linkedin": "What this recipient covers:\n\nTaller Technologies provides its staff with a way to share questions or concerns about illegal or unsafe workplace situations, with a commitment to privacy, care, and security.\n\nTo send Taller a tip, go to https://tips.hushline.app/to/Taller.",
+    "mastodon": "What this recipient covers:\n\nTaller Technologies accepts staff questions or concerns about illegal or unsafe workplace situations and commits to handling them with care, security, and respect for staff privacy.\n\nTo send Taller a tip, visit https://tips.hushline.app/to/Taller."
+  },
+  "slot": "verified-user-weekly",
+  "source": "https://tips.hushline.app/directory/users.json",
+  "subtext": "Taller Technologies is committed to safeguarding the privacy of all Taller staff. Please feel free to share any questions or concerns about illegal or unsafe workplace situations, and they will be taken care of with utmost care and security.",
+  "user_link": "https://tips.hushline.app/to/Taller",
+  "user_url": "https://tips.hushline.app/to/Taller",
+  "verified_user_format": "what_this_recipient_covers"
+}
