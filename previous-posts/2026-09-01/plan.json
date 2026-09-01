@@ -1,0 +1,109 @@
+{
+  "date": "2026-09-01",
+  "post": {
+    "slot": "tuesday",
+    "planned_date": "2026-09-01",
+    "screenshot_file": "artvandelay/auth-artvandelay-settings-notifications-desktop-light-fold.png",
+    "content_key": "auth-artvandelay-settings-notifications",
+    "content_format": "design_principle",
+    "headline": "Make the active state easy to scan",
+    "subtext": "Each entry carries an Enabled label so journalists and lawyers can read the roster without opening one card after another.",
+    "image_alt_text": "Social graphic titled “Make the active state easy to scan” beside a desktop view of Hush Line Notifications. The page shows Tip Notifications turned on, three entries with Enabled and PGP key configured beneath the email addresses, and an Add Recipient button.",
+    "social": {
+      "bluesky": "Can you find the active entries without opening every one? Hush Line places Enabled beneath each listed contact. Recipients can choose email notifications, inbox notifications, and whether encrypted tip contents are included in email. Scan the labels before using the roster.",
+      "linkedin": "Settings work better when their state is visible at a glance.\n\nOn the Hush Line Notifications page, every listed entry carries an Enabled label. That placement lets journalists, lawyers, and other recipients verify the roster without opening each entry.\n\nRecipients can choose email notifications, Hush Line inbox notifications, and whether encrypted tip contents are included in email.\n\nA quick scan makes the active state clear for a newsroom or law office. Open Notifications and look for Enabled beneath each entry.",
+      "mastodon": "A long roster should not require opening every entry to find the active ones.\n\nHush Line places Enabled beneath each listed contact. Recipients can also choose email notifications, Hush Line inbox notifications, and whether encrypted tip contents are included in email.\n\nScan the labels and resolve any unexpected state before the roster goes into use."
+    },
+    "rationale": "The required screenshot returns under the documented cooldown fallback, so the post avoids the recent themes of limiting email content, keeping addresses private, and assigning several intake roles. It instead explains a visible design choice: placing an Enabled label directly in every roster entry lets recipients verify the active state without opening each card. The hook, benefit, and closing action all center on scanning status labels rather than selecting a delivery channel.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "settings-notifications",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "editorial_intent": {
+      "audience_scope": "recipient-shared",
+      "content_format": "design_principle",
+      "content_format_label": "Design principle",
+      "label": "Recipients and staff",
+      "reader_need": "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+      "visual_role": "supporting_screenshot"
+    },
+    "matched_pull_requests": [],
+    "screen_key": "/settings/notifications",
+    "template_name": "hushline-daily-desktop-template-2.html",
+    "theme": "light",
+    "title": "Settings Notifications",
+    "topic_family": "notifications",
+    "visual_selection_reason": "Selected screenshots only after choosing the Recipients and staff editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+    "viewport": "desktop"
+  },
+  "summary": "A design-principle post about making the active state of each notification entry easy to scan.",
+  "critic": {
+    "blocked": false,
+    "criteria": [
+      {
+        "id": "topic_freshness",
+        "label": "Topic freshness",
+        "max_score": 2,
+        "rationale": "Topic family notifications appeared in the last two posts.",
+        "score": 0
+      },
+      {
+        "id": "hook_freshness",
+        "label": "Hook freshness",
+        "max_score": 2,
+        "rationale": "Opening hook is distinct from recent archive hooks.",
+        "score": 2
+      },
+      {
+        "id": "format_novelty",
+        "label": "Format novelty",
+        "max_score": 2,
+        "rationale": "Format design_principle is not overused in the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "audience_specificity",
+        "label": "Audience specificity",
+        "max_score": 2,
+        "rationale": "Copy contains 3 signal(s) for recipient-shared.",
+        "score": 2
+      },
+      {
+        "id": "concrete_reader_value",
+        "label": "Concrete reader value",
+        "max_score": 2,
+        "rationale": "Copy gives 4 concrete action/value signal(s).",
+        "score": 2
+      },
+      {
+        "id": "hushline_relevance",
+        "label": "Hush Line relevance",
+        "max_score": 2,
+        "rationale": "Copy is tied to Hush Line or a concrete Hush Line surface.",
+        "score": 2
+      },
+      {
+        "id": "cta_freshness",
+        "label": "CTA freshness",
+        "max_score": 2,
+        "rationale": "CTA pattern is fresh against the configured CTA cooldown.",
+        "score": 2
+      },
+      {
+        "id": "safety_compliance",
+        "label": "Safety and compliance",
+        "max_score": 2,
+        "rationale": "Copy avoids unsupported safety, anonymity, and recency claims.",
+        "score": 2
+      }
+    ],
+    "failed_criteria": [
+      "topic_freshness"
+    ],
+    "max_score": 16,
+    "passed": true,
+    "rationale": "Topic freshness: Topic family notifications appeared in the last two posts. Hook freshness: Opening hook is distinct from recent archive hooks. Format novelty: Format design_principle is not overused in the recent archive. Audience specificity: Copy contains 3 signal(s) for recipient-shared. Concrete reader value: Copy gives 4 concrete action/value signal(s). Hush Line relevance: Copy is tied to Hush Line or a concrete Hush Line surface. CTA freshness: CTA pattern is fresh against the configured CTA cooldown. Safety and compliance: Copy avoids unsupported safety, anonymity, and recency claims.",
+    "score": 14,
+    "threshold": 12
+  }
+}

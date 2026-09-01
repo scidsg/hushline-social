@@ -1,0 +1,31 @@
+Slot: tuesday
+Planned date: 2026-09-01
+Template: hushline-daily-desktop-template-2.html
+Screenshot: /Users/scidsg/hushline-website/src/assets/img/screenshots/current/artvandelay/auth-artvandelay-settings-notifications-desktop-light-fold.png
+Content key: auth-artvandelay-settings-notifications
+Headline: Make the active state easy to scan
+Subtext: Each entry carries an Enabled label so journalists and lawyers can read the roster without opening one card after another.
+
+Image alt text
+Social graphic titled “Make the active state easy to scan” beside a desktop view of Hush Line Notifications. The page shows Tip Notifications turned on, three entries with Enabled and PGP key configured beneath the email addresses, and an Add Recipient button.
+
+Social post copy
+
+LinkedIn (519/3000)
+Settings work better when their state is visible at a glance.
+
+On the Hush Line Notifications page, every listed entry carries an Enabled label. That placement lets journalists, lawyers, and other recipients verify the roster without opening each entry.
+
+Recipients can choose email notifications, Hush Line inbox notifications, and whether encrypted tip contents are included in email.
+
+A quick scan makes the active state clear for a newsroom or law office. Open Notifications and look for Enabled beneath each entry.
+
+Mastodon (352/500)
+A long roster should not require opening every entry to find the active ones.
+
+Hush Line places Enabled beneath each listed contact. Recipients can also choose email notifications, Hush Line inbox notifications, and whether encrypted tip contents are included in email.
+
+Scan the labels and resolve any unexpected state before the roster goes into use.
+
+Bluesky (275/300)
+Can you find the active entries without opening every one? Hush Line places Enabled beneath each listed contact. Recipients can choose email notifications, inbox notifications, and whether encrypted tip contents are included in email. Scan the labels before using the roster.
