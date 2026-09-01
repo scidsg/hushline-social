@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-09-01
+Publish mode: text
+Source: The New York Times
+Article URL: https://www.nytimes.com/2026/09/01/us/politics/whistle-blower-voting-by-mail.html
+Content key: weekly-news-the-new-york-times-whistle-blower-says-trump-officials-are-defying-court-orders-on-v
+Headline: Whistleblower-related reporting from The New York Times
+Subtext: The New York Times reports: Whistle-Blower Says Trump Officials Are Defying Court Orders on Voting by Mail
+
+Social post copy
+
+LinkedIn (473/3000)
+Whistle-Blower Says Trump Officials Are Defying Court Orders on Voting by Mail.
+
+A report detailed “grave concerns” that a new system being rushed into use by the U.S. Postal Service could imperil millions of mail ballots ahead of the midterm elections.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/09/01/us/politics/whistle-blower-voting-by-mail.html
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (318/500)
+Whistle-Blower Says Trump Officials Are Defying Court Orders on Voting by Mail.
+
+Accountability reporting needs a safe enough way to make contact.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/09/01/us/politics/whistle-blower-voting-by-mail.html
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (251/300)
+Whistle-Blower Says Trump Officials Are Defying Court Orders on Voting by Mail.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/09/01/us/politics/whistle-blower-voting-by-mail.html
+
+Sign up for Hush Line at https://hushline.app.
