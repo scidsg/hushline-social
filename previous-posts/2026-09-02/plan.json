@@ -1,0 +1,123 @@
+{
+  "date": "2026-09-02",
+  "post": {
+    "content_key": "auth-artvandelay-settings-replies",
+    "content_format": "feature_benefit",
+    "headline": "Give each tip a saved acknowledgement",
+    "image_alt_text": "Light-mode social graphic titled \"Give each tip a saved acknowledgement\" beside a desktop screenshot of Hush Line Settings. Message Statuses is selected. The Waiting section shows a Status Text field containing a receipt note and an Update Reply Text button.",
+    "planned_date": "2026-09-02",
+    "rationale": "The required screenshot is a cooldown fallback, so this post uses a distinct feature-benefit angle: a saved Waiting status reduces repeated first-response writing for recipient teams. It avoids the archived themes of setting reply expectations, simplifying language, and keeping time promises current. The hook begins with shared-inbox responsibility, and the CTA names the visible Update Reply Text action.",
+    "screenshot_file": "artvandelay/auth-artvandelay-settings-replies-desktop-light-fold.png",
+    "slot": "wednesday",
+    "social": {
+      "bluesky": "A personal answer may take time, but each tip can still be acknowledged. Hush Line’s Waiting status gives the sender a saved note while staff begin reading. Use Update Reply Text to set the acknowledgement your recipient team wants ready from the start.",
+      "linkedin": "Acknowledging a tip should not depend on who is watching the inbox at that moment.\n\nIn Hush Line, recipients can save the note attached to the Waiting status. When a submission arrives, the sender gets a temporary address where that note appears. A newsroom, law office, school, or community group can confirm receipt while staff begin reading, without drafting the same first response every time.\n\nOpen Message Statuses, choose the acknowledgement your team needs, and save it with Update Reply Text.",
+      "mastodon": "A newsroom or law office may not be able to answer every tip immediately. Hush Line’s Waiting status can still acknowledge receipt.\n\nRecipients save one note, and the sender sees it at the temporary address connected to the submission. Staff can begin reading without writing the same first response each time.\n\nUse Update Reply Text to set the acknowledgement your team wants ready from the start."
+    },
+    "source_pr_numbers": [],
+    "subtext": "The Waiting status confirms receipt while recipient teams begin reading, without someone writing the same first note every time.",
+    "audience_scope": "recipient-shared",
+    "concept_key": "settings-replies",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "editorial_intent": {
+      "audience_scope": "recipient-shared",
+      "content_format": "feature_benefit",
+      "content_format_label": "Feature benefit",
+      "label": "Recipients and staff",
+      "reader_need": "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+      "visual_role": "supporting_screenshot"
+    },
+    "matched_pull_requests": [
+      {
+        "merged_at": "2026-07-14T05:14:25Z",
+        "number": 2340,
+        "title": "Prevent rapid mobile submits from duplicating chat replies"
+      },
+      {
+        "merged_at": "2026-07-08T23:09:05Z",
+        "number": 2329,
+        "title": "Allow replies to legacy chat-key recipients"
+      },
+      {
+        "merged_at": "2026-07-07T18:25:17Z",
+        "number": 2327,
+        "title": "Upgrade legacy chat keys for replies"
+      }
+    ],
+    "screen_key": "auth-artvandelay-settings-replies",
+    "template_name": "hushline-daily-desktop-template.html",
+    "theme": "light",
+    "title": "Settings Replies",
+    "topic_family": "message-statuses",
+    "visual_selection_reason": "Selected screenshots only after choosing the Recipients and staff editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+    "viewport": "desktop"
+  },
+  "summary": "A feature-benefit post for recipients and staff about using a saved Waiting status to acknowledge each tip without rewriting the same first note.",
+  "critic": {
+    "blocked": false,
+    "criteria": [
+      {
+        "id": "topic_freshness",
+        "label": "Topic freshness",
+        "max_score": 2,
+        "rationale": "Topic family message-statuses is fresh against the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "hook_freshness",
+        "label": "Hook freshness",
+        "max_score": 2,
+        "rationale": "Opening hook is distinct from recent archive hooks.",
+        "score": 2
+      },
+      {
+        "id": "format_novelty",
+        "label": "Format novelty",
+        "max_score": 2,
+        "rationale": "Format feature_benefit is not overused in the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "audience_specificity",
+        "label": "Audience specificity",
+        "max_score": 2,
+        "rationale": "Copy contains 4 signal(s) for recipient-shared.",
+        "score": 2
+      },
+      {
+        "id": "concrete_reader_value",
+        "label": "Concrete reader value",
+        "max_score": 2,
+        "rationale": "Copy gives 1 concrete action/value signal(s).",
+        "score": 1
+      },
+      {
+        "id": "hushline_relevance",
+        "label": "Hush Line relevance",
+        "max_score": 2,
+        "rationale": "Copy is tied to Hush Line or a concrete Hush Line surface.",
+        "score": 2
+      },
+      {
+        "id": "cta_freshness",
+        "label": "CTA freshness",
+        "max_score": 2,
+        "rationale": "CTA pattern is fresh against the configured CTA cooldown.",
+        "score": 2
+      },
+      {
+        "id": "safety_compliance",
+        "label": "Safety and compliance",
+        "max_score": 2,
+        "rationale": "Copy avoids unsupported safety, anonymity, and recency claims.",
+        "score": 2
+      }
+    ],
+    "failed_criteria": [],
+    "max_score": 16,
+    "passed": true,
+    "rationale": "Topic freshness: Topic family message-statuses is fresh against the recent archive. Hook freshness: Opening hook is distinct from recent archive hooks. Format novelty: Format feature_benefit is not overused in the recent archive. Audience specificity: Copy contains 4 signal(s) for recipient-shared. Concrete reader value: Copy gives 1 concrete action/value signal(s). Hush Line relevance: Copy is tied to Hush Line or a concrete Hush Line surface. CTA freshness: CTA pattern is fresh against the configured CTA cooldown. Safety and compliance: Copy avoids unsupported safety, anonymity, and recency claims.",
+    "score": 15,
+    "threshold": 12
+  }
+}

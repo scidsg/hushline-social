@@ -1,0 +1,29 @@
+Slot: wednesday
+Planned date: 2026-09-02
+Template: hushline-daily-desktop-template.html
+Screenshot: /Users/scidsg/hushline-website/src/assets/img/screenshots/current/artvandelay/auth-artvandelay-settings-replies-desktop-light-fold.png
+Content key: auth-artvandelay-settings-replies
+Headline: Give each tip a saved acknowledgement
+Subtext: The Waiting status confirms receipt while recipient teams begin reading, without someone writing the same first note every time.
+
+Image alt text
+Light-mode social graphic titled "Give each tip a saved acknowledgement" beside a desktop screenshot of Hush Line Settings. Message Statuses is selected. The Waiting section shows a Status Text field containing a receipt note and an Update Reply Text button.
+
+Social post copy
+
+LinkedIn (501/3000)
+Acknowledging a tip should not depend on who is watching the inbox at that moment.
+
+In Hush Line, recipients can save the note attached to the Waiting status. When a submission arrives, the sender gets a temporary address where that note appears. A newsroom, law office, school, or community group can confirm receipt while staff begin reading, without drafting the same first response every time.
+
+Open Message Statuses, choose the acknowledgement your team needs, and save it with Update Reply Text.
+
+Mastodon (398/500)
+A newsroom or law office may not be able to answer every tip immediately. Hush Line’s Waiting status can still acknowledge receipt.
+
+Recipients save one note, and the sender sees it at the temporary address connected to the submission. Staff can begin reading without writing the same first response each time.
+
+Use Update Reply Text to set the acknowledgement your team wants ready from the start.
+
+Bluesky (253/300)
+A personal answer may take time, but each tip can still be acknowledged. Hush Line’s Waiting status gives the sender a saved note while staff begin reading. Use Update Reply Text to set the acknowledgement your recipient team wants ready from the start.
