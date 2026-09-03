@@ -1,0 +1,36 @@
+{
+  "slot": "thursday",
+  "planned_date": "2026-09-03",
+  "screenshot_file": "artvandelay/auth-artvandelay-tools-email-validation-status-valid-desktop-light-fold.png",
+  "content_key": "auth-artvandelay-tools-email-validation-status-valid",
+  "content_format": "iso_37002_principle",
+  "headline": "Keep the email check with the handoff",
+  "subtext": "Email Validation lets recipients and staff save a report of what was checked so the next authorized reviewer has the same context.",
+  "image_alt_text": "Social graphic titled “Keep the email check with the handoff.” A light-mode Hush Line Tools screenshot shows Raw Email Headers, Validate Headers, Download Report, and a Validation Summary stating that the email appears to originate from the stated sender. Supporting text explains that recipients and staff can save what was checked for the next authorized reviewer.",
+  "social": {
+    "bluesky": "An email review handoff needs context. Hush Line recipients and staff can use Email Validation, read the Validation Summary, and Download Report.\n\nBefore the next handoff, decide where authorized staff will store the report and who needs to read it.",
+    "linkedin": "When one staff member hands an email review to another, the next person needs more than a yes or no.\n\nA useful whistleblowing practice is to leave enough context for the next reviewer to understand what was checked. In Hush Line, recipients and staff can paste Raw Email Headers into Email Validation, read the Validation Summary, and Download Report.\n\nThat report can support a newsroom, law office, school, or community group during an internal handoff, without asking the next person to reconstruct the check from memory. It follows a plain ISO 37002 principle: handle reports properly and without avoidable delay.\n\nBefore the next email handoff, decide where authorized staff will store the downloaded report and who needs to read it.",
+    "mastodon": "An email review handoff needs more than a yes or no.\n\nHush Line recipients and staff can paste Raw Email Headers into Email Validation, read the Validation Summary, and Download Report. This gives the next authorized reviewer context about what was checked.\n\nThat supports a plain ISO 37002 principle: handle reports properly and without avoidable delay. Decide where authorized staff will store the report before the next handoff."
+  },
+  "rationale": "The shortlist required a cooldown fallback. Email Validation was selected because it has fewer cooldown violations than Advanced settings and supports a fresh recipient workflow angle. Earlier posts covered authenticity, claim verification, readable summaries, and running the header check; this post instead focuses on preserving review context across an authorized staff handoff. The copy ties that concrete task to proper, timely handling under ISO 37002 and avoids treating a valid result as proof that the email’s claims are true.",
+  "source_pr_numbers": [],
+  "audience_scope": "recipient-shared",
+  "concept_key": "tools-email-validation-status-valid",
+  "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+  "editorial_intent": {
+    "audience_scope": "recipient-shared",
+    "content_format": "iso_37002_principle",
+    "content_format_label": "ISO 37002 principle",
+    "label": "Recipients and staff",
+    "reader_need": "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+    "visual_role": "supporting_screenshot"
+  },
+  "matched_pull_requests": [],
+  "screen_key": "/tools",
+  "template_name": "hushline-daily-desktop-template-2.html",
+  "theme": "light",
+  "title": "Tools Email Validation Status Valid",
+  "topic_family": "tools-email-validation-status-valid",
+  "visual_selection_reason": "Selected screenshots only after choosing the Recipients and staff editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+  "viewport": "desktop"
+}

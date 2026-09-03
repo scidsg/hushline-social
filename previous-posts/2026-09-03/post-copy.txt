@@ -1,0 +1,33 @@
+Slot: thursday
+Planned date: 2026-09-03
+Template: hushline-daily-desktop-template-2.html
+Screenshot: /Users/scidsg/hushline-website/src/assets/img/screenshots/current/artvandelay/auth-artvandelay-tools-email-validation-status-valid-desktop-light-fold.png
+Content key: auth-artvandelay-tools-email-validation-status-valid
+Headline: Keep the email check with the handoff
+Subtext: Email Validation lets recipients and staff save a report of what was checked so the next authorized reviewer has the same context.
+
+Image alt text
+Social graphic titled “Keep the email check with the handoff.” A light-mode Hush Line Tools screenshot shows Raw Email Headers, Validate Headers, Download Report, and a Validation Summary stating that the email appears to originate from the stated sender. Supporting text explains that recipients and staff can save what was checked for the next authorized reviewer.
+
+Social post copy
+
+LinkedIn (738/3000)
+When one staff member hands an email review to another, the next person needs more than a yes or no.
+
+A useful whistleblowing practice is to leave enough context for the next reviewer to understand what was checked. In Hush Line, recipients and staff can paste Raw Email Headers into Email Validation, read the Validation Summary, and Download Report.
+
+That report can support a newsroom, law office, school, or community group during an internal handoff, without asking the next person to reconstruct the check from memory. It follows a plain ISO 37002 principle: handle reports properly and without avoidable delay.
+
+Before the next email handoff, decide where authorized staff will store the downloaded report and who needs to read it.
+
+Mastodon (431/500)
+An email review handoff needs more than a yes or no.
+
+Hush Line recipients and staff can paste Raw Email Headers into Email Validation, read the Validation Summary, and Download Report. This gives the next authorized reviewer context about what was checked.
+
+That supports a plain ISO 37002 principle: handle reports properly and without avoidable delay. Decide where authorized staff will store the report before the next handoff.
+
+Bluesky (249/300)
+An email review handoff needs context. Hush Line recipients and staff can use Email Validation, read the Validation Summary, and Download Report.
+
+Before the next handoff, decide where authorized staff will store the report and who needs to read it.
