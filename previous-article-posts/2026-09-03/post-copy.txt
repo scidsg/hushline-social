@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-09-03
+Publish mode: text
+Source: The New York Times
+Article URL: https://www.nytimes.com/2026/09/03/us/ice-recruits-national-security-risk-whistleblower.html
+Content key: weekly-news-the-new-york-times-ice-skipped-basic-checks-in-rush-for-recruits-whistle-blower-says
+Headline: Whistleblower-related reporting from The New York Times
+Subtext: The New York Times reports: ICE Skipped Basic Checks in Rush for Recruits, Whistle-Blower Says
+
+Social post copy
+
+LinkedIn (419/3000)
+ICE Skipped Basic Checks in Rush for Recruits, Whistle-Blower Says.
+
+An official who oversaw the vetting of ICE recruits cited an “unprecedented lowering of standards” amid a hiring surge.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/09/03/us/ice-recruits-national-security-risk-whistleblower.html
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (317/500)
+ICE Skipped Basic Checks in Rush for Recruits, Whistle-Blower Says.
+
+Accountability reporting needs a safe enough way to make contact.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/09/03/us/ice-recruits-national-security-risk-whistleblower.html
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (250/300)
+ICE Skipped Basic Checks in Rush for Recruits, Whistle-Blower Says.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/09/03/us/ice-recruits-national-security-risk-whistleblower.html
+
+Sign up for Hush Line at https://hushline.app.

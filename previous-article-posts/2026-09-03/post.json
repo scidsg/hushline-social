@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-09-03",
+  "weekday": "thursday",
+  "publish_mode": "text",
+  "source": "The New York Times",
+  "title": "ICE Skipped Basic Checks in Rush for Recruits, Whistle-Blower Says",
+  "article_url": "https://www.nytimes.com/2026/09/03/us/ice-recruits-national-security-risk-whistleblower.html",
+  "article_published_at": "2026-09-03T09:00:24.000Z",
+  "relevance_score": 14,
+  "content_key": "weekly-news-the-new-york-times-ice-skipped-basic-checks-in-rush-for-recruits-whistle-blower-says",
+  "headline": "Whistleblower-related reporting from The New York Times",
+  "subtext": "The New York Times reports: ICE Skipped Basic Checks in Rush for Recruits, Whistle-Blower Says",
+  "social": {
+    "bluesky": "ICE Skipped Basic Checks in Rush for Recruits, Whistle-Blower Says.\n\nRead the article from The New York Times\nhttps://www.nytimes.com/2026/09/03/us/ice-recruits-national-security-risk-whistleblower.html\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "ICE Skipped Basic Checks in Rush for Recruits, Whistle-Blower Says.\n\nAn official who oversaw the vetting of ICE recruits cited an “unprecedented lowering of standards” amid a hiring surge.\n\nRead the article from The New York Times\nhttps://www.nytimes.com/2026/09/03/us/ice-recruits-national-security-risk-whistleblower.html\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "ICE Skipped Basic Checks in Rush for Recruits, Whistle-Blower Says.\n\nAccountability reporting needs a safe enough way to make contact.\n\nRead the article from The New York Times\nhttps://www.nytimes.com/2026/09/03/us/ice-recruits-national-security-risk-whistleblower.html\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
