@@ -1,0 +1,107 @@
+{
+  "date": "2026-09-04",
+  "post": {
+    "slot": "friday",
+    "planned_date": "2026-09-04",
+    "screenshot_file": "artvandelay/auth-artvandelay-settings-advanced-desktop-light-fold.png",
+    "content_key": "auth-artvandelay-settings-advanced",
+    "content_format": "mistake_to_avoid",
+    "headline": "Do not export sensitive records to a shared computer",
+    "subtext": "Before using Download My Data, recipients and staff should choose a controlled device and storage location, even when the export is encrypted with a PGP key.",
+    "image_alt_text": "Social graphic titled “Do not export sensitive records to a shared computer.” A light-mode desktop view of Hush Line’s Advanced settings shows Download My Data, a checked “Encrypt export with my PGP key” option, and a separate Delete Account warning and button. The graphic presents choosing a controlled device and storage location before downloading as the safer workflow for recipients and staff.",
+    "social": {
+      "bluesky": "Do not download Hush Line records to a shared computer and plan to move them later.\n\nBefore using Download My Data, recipients and staff should choose a controlled device and storage location, select “Encrypt export with my PGP key,” and limit who can access the ZIP.",
+      "linkedin": "Do not download Hush Line records to a shared computer just because you plan to move the file later.\n\nIn Advanced settings, Download My Data creates a ZIP with CSV exports and encrypted PGP messages. Recipients and staff can select “Encrypt export with my PGP key” before downloading. The team still needs to control where the ZIP is saved and who can access it.\n\nBefore downloading, choose the device and storage location, limit access to authorized staff, and set a date to review whether the file still needs to be kept.",
+      "mastodon": "Saving a Hush Line export to a shared computer and moving it later creates an avoidable handling step.\n\nBefore recipients or staff use Download My Data, choose a controlled device and storage location, select “Encrypt export with my PGP key,” and limit access to authorized staff. Set a date to review whether the ZIP still needs to be kept."
+    },
+    "rationale": "The sole candidate is a required cooldown fallback, so the post uses a fresh mistake-to-avoid angle that was not the focus of the prior Advanced settings posts: choosing a controlled device and storage location before an export begins. It names the visible Download My Data and Encrypt export with my PGP key controls, gives recipients and staff a repeatable pre-download check, and avoids revisiting account closure, staff handoffs, or export testing as the main message.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "settings-advanced",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "editorial_intent": {
+      "audience_scope": "recipient-shared",
+      "content_format": "mistake_to_avoid",
+      "content_format_label": "Mistake to avoid",
+      "label": "Recipients and staff",
+      "reader_need": "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+      "visual_role": "supporting_screenshot"
+    },
+    "matched_pull_requests": [],
+    "screen_key": "/settings/advanced",
+    "template_name": "hushline-daily-desktop-template.html",
+    "theme": "light",
+    "title": "Settings Advanced",
+    "topic_family": "settings-advanced",
+    "visual_selection_reason": "Selected screenshots only after choosing the Recipients and staff editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+    "viewport": "desktop"
+  },
+  "summary": "A mistake-to-avoid post for recipients and staff about choosing a controlled device and storage location before exporting Hush Line records.",
+  "critic": {
+    "blocked": false,
+    "criteria": [
+      {
+        "id": "topic_freshness",
+        "label": "Topic freshness",
+        "max_score": 2,
+        "rationale": "Topic family settings-advanced is fresh against the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "hook_freshness",
+        "label": "Hook freshness",
+        "max_score": 2,
+        "rationale": "Opening hook is distinct from recent archive hooks.",
+        "score": 2
+      },
+      {
+        "id": "format_novelty",
+        "label": "Format novelty",
+        "max_score": 2,
+        "rationale": "Format mistake_to_avoid is not overused in the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "audience_specificity",
+        "label": "Audience specificity",
+        "max_score": 2,
+        "rationale": "Copy contains 4 signal(s) for recipient-shared.",
+        "score": 2
+      },
+      {
+        "id": "concrete_reader_value",
+        "label": "Concrete reader value",
+        "max_score": 2,
+        "rationale": "Copy gives 5 concrete action/value signal(s).",
+        "score": 2
+      },
+      {
+        "id": "hushline_relevance",
+        "label": "Hush Line relevance",
+        "max_score": 2,
+        "rationale": "Copy is tied to Hush Line or a concrete Hush Line surface.",
+        "score": 2
+      },
+      {
+        "id": "cta_freshness",
+        "label": "CTA freshness",
+        "max_score": 2,
+        "rationale": "CTA pattern is fresh against the configured CTA cooldown.",
+        "score": 2
+      },
+      {
+        "id": "safety_compliance",
+        "label": "Safety and compliance",
+        "max_score": 2,
+        "rationale": "Copy avoids unsupported safety, anonymity, and recency claims.",
+        "score": 2
+      }
+    ],
+    "failed_criteria": [],
+    "max_score": 16,
+    "passed": true,
+    "rationale": "Topic freshness: Topic family settings-advanced is fresh against the recent archive. Hook freshness: Opening hook is distinct from recent archive hooks. Format novelty: Format mistake_to_avoid is not overused in the recent archive. Audience specificity: Copy contains 4 signal(s) for recipient-shared. Concrete reader value: Copy gives 5 concrete action/value signal(s). Hush Line relevance: Copy is tied to Hush Line or a concrete Hush Line surface. CTA freshness: CTA pattern is fresh against the configured CTA cooldown. Safety and compliance: Copy avoids unsupported safety, anonymity, and recency claims.",
+    "score": 16,
+    "threshold": 12
+  }
+}

@@ -1,0 +1,29 @@
+Slot: friday
+Planned date: 2026-09-04
+Template: hushline-daily-desktop-template.html
+Screenshot: /Users/scidsg/hushline-website/src/assets/img/screenshots/current/artvandelay/auth-artvandelay-settings-advanced-desktop-light-fold.png
+Content key: auth-artvandelay-settings-advanced
+Headline: Do not export sensitive records to a shared computer
+Subtext: Before using Download My Data, recipients and staff should choose a controlled device and storage location, even when the export is encrypted with a PGP key.
+
+Image alt text
+Social graphic titled “Do not export sensitive records to a shared computer.” A light-mode desktop view of Hush Line’s Advanced settings shows Download My Data, a checked “Encrypt export with my PGP key” option, and a separate Delete Account warning and button. The graphic presents choosing a controlled device and storage location before downloading as the safer workflow for recipients and staff.
+
+Social post copy
+
+LinkedIn (523/3000)
+Do not download Hush Line records to a shared computer just because you plan to move the file later.
+
+In Advanced settings, Download My Data creates a ZIP with CSV exports and encrypted PGP messages. Recipients and staff can select “Encrypt export with my PGP key” before downloading. The team still needs to control where the ZIP is saved and who can access it.
+
+Before downloading, choose the device and storage location, limit access to authorized staff, and set a date to review whether the file still needs to be kept.
+
+Mastodon (341/500)
+Saving a Hush Line export to a shared computer and moving it later creates an avoidable handling step.
+
+Before recipients or staff use Download My Data, choose a controlled device and storage location, select “Encrypt export with my PGP key,” and limit access to authorized staff. Set a date to review whether the ZIP still needs to be kept.
+
+Bluesky (267/300)
+Do not download Hush Line records to a shared computer and plan to move them later.
+
+Before using Download My Data, recipients and staff should choose a controlled device and storage location, select “Encrypt export with my PGP key,” and limit who can access the ZIP.
