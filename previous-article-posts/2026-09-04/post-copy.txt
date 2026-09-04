@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-09-04
+Publish mode: text
+Source: ABC News
+Article URL: https://abcnews.com/US/wireStory/ice-whistleblower-warned-unprecedented-lowering-standards-hiring-spree-136189046
+Content key: weekly-news-abc-news-ice-whistleblower-warned-of-unprecedented-lowering-of-standards-during-hiri
+Headline: Whistleblower-related reporting from ABC News
+Subtext: ABC News reports: ICE whistleblower warned of 'unprecedented lowering of standards' during hiring spree
+
+Social post copy
+
+LinkedIn (547/3000)
+ICE whistleblower warned of 'unprecedented lowering of standards' during hiring spree.
+
+A supervisor overseeing background checks warned last year that Immigration and Customs Enforcement was hiring scores of new officers without basic vetting, violating federal rules and putting the agency at risk of...
+
+Read the article from ABC News
+https://abcnews.com/US/wireStory/ice-whistleblower-warned-unprecedented-lowering-standards-hiring-spree-136189046
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (342/500)
+ICE whistleblower warned of 'unprecedented lowering of standards' during hiring spree.
+
+Policy changes decide whether people can report harm safely.
+
+Read the article from ABC News
+https://abcnews.com/US/wireStory/ice-whistleblower-warned-unprecedented-lowering-standards-hiring-spree-136189046
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (280/300)
+ICE whistleblower warned of 'unprecedented lowering of standards' during hiring spree.
+
+Read the article from ABC News
+https://abcnews.com/US/wireStory/ice-whistleblower-warned-unprecedented-lowering-standards-hiring-spree-136189046
+
+Sign up for Hush Line at https://hushline.app.

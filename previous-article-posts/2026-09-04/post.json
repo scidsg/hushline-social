@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-09-04",
+  "weekday": "friday",
+  "publish_mode": "text",
+  "source": "ABC News",
+  "title": "ICE whistleblower warned of 'unprecedented lowering of standards' during hiring spree",
+  "article_url": "https://abcnews.com/US/wireStory/ice-whistleblower-warned-unprecedented-lowering-standards-hiring-spree-136189046",
+  "article_published_at": "2026-09-04T06:56:04.000Z",
+  "relevance_score": 19,
+  "content_key": "weekly-news-abc-news-ice-whistleblower-warned-of-unprecedented-lowering-of-standards-during-hiri",
+  "headline": "Whistleblower-related reporting from ABC News",
+  "subtext": "ABC News reports: ICE whistleblower warned of 'unprecedented lowering of standards' during hiring spree",
+  "social": {
+    "bluesky": "ICE whistleblower warned of 'unprecedented lowering of standards' during hiring spree.\n\nRead the article from ABC News\nhttps://abcnews.com/US/wireStory/ice-whistleblower-warned-unprecedented-lowering-standards-hiring-spree-136189046\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "ICE whistleblower warned of 'unprecedented lowering of standards' during hiring spree.\n\nA supervisor overseeing background checks warned last year that Immigration and Customs Enforcement was hiring scores of new officers without basic vetting, violating federal rules and putting the agency at risk of...\n\nRead the article from ABC News\nhttps://abcnews.com/US/wireStory/ice-whistleblower-warned-unprecedented-lowering-standards-hiring-spree-136189046\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "ICE whistleblower warned of 'unprecedented lowering of standards' during hiring spree.\n\nPolicy changes decide whether people can report harm safely.\n\nRead the article from ABC News\nhttps://abcnews.com/US/wireStory/ice-whistleblower-warned-unprecedented-lowering-standards-hiring-spree-136189046\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
