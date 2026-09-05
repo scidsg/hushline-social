@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-09-05
+Publish mode: text
+Source: The New York Times
+Article URL: https://www.nytimes.com/2026/09/04/us/politics/postal-service-internal-watchdog-inquiry.html
+Content key: weekly-news-the-new-york-times-postal-service-internal-watchdog-opens-inquiry-after-whistle-blow
+Headline: Whistleblower-related reporting from The New York Times
+Subtext: The New York Times reports: Postal Service Internal Watchdog Opens Inquiry After Whistle-Blower’s Complaint
+
+Social post copy
+
+LinkedIn (420/3000)
+Postal Service Internal Watchdog Opens Inquiry After Whistle-Blower’s Complaint.
+
+The Trump administration’s effort to screen mail-in ballots for the midterms is facing numerous challenges.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/09/04/us/politics/postal-service-internal-watchdog-inquiry.html
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (337/500)
+Postal Service Internal Watchdog Opens Inquiry After Whistle-Blower’s Complaint.
+
+Oversight depends on people being able to bring evidence forward safely.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/09/04/us/politics/postal-service-internal-watchdog-inquiry.html
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (263/300)
+Postal Service Internal Watchdog Opens Inquiry After Whistle-Blower’s Complaint.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/09/04/us/politics/postal-service-internal-watchdog-inquiry.html
+
+Sign up for Hush Line at https://hushline.app.
