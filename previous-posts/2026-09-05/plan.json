@@ -1,0 +1,107 @@
+{
+  "date": "2026-09-05",
+  "post": {
+    "slot": "saturday",
+    "planned_date": "2026-09-05",
+    "screenshot_file": "guest/guest-directory-verified-desktop-light-fold.png",
+    "content_key": "guest-directory-verified",
+    "content_format": "myth_vs_reality",
+    "headline": "The Verified label is about the recipient",
+    "subtext": "Hush Line staff check the identity of Verified account owners. Sources do not need an account to send them a message.",
+    "image_alt_text": "Social graphic titled “The Verified label is about the recipient” above a light-mode screenshot of the public Hush Line Directory. The page explains that Verified account owners have confirmed their identities with Hush Line staff and that no account is required to send a message.",
+    "social": {
+      "bluesky": "Myth: Sources must be verified to contact a Verified recipient.\n\nReality: Verified applies to the account owner, whose identity Hush Line staff have checked. Sources can send a message without an account.\n\nStart with Verified recipients: https://tips.hushline.app/directory",
+      "linkedin": "Myth: A source must complete verification before contacting a Verified recipient.\n\nReality: The Verified label applies to the account owner. It means that person has verified their identity with a member of Hush Line staff. A source can send a message without creating an account.\n\nUse the Verified tab when you want to begin with recipients whose identities Hush Line staff have checked: https://tips.hushline.app/directory",
+      "mastodon": "Myth: Sources must complete verification to contact a Verified recipient.\n\nReality: Verified describes the account owner, whose identity has been checked by Hush Line staff. A source can send a message without creating an account.\n\nVisit the Verified tab to begin with recipients whose identities staff have checked: https://tips.hushline.app/directory"
+    },
+    "rationale": "This public-facing myth-versus-reality angle separates recipient verification from the source’s ability to send without an account. It gives visitors a concrete way to understand the Verified label while avoiding recent Directory themes about browser choice, searching, profiles, categories, and deciding whether a listing fits a tip.",
+    "source_pr_numbers": [],
+    "audience_scope": "public",
+    "concept_key": "directory-verified",
+    "copy_brief": "Write for sources and public users evaluating or using Hush Line.",
+    "editorial_intent": {
+      "audience_scope": "public",
+      "content_format": "myth_vs_reality",
+      "content_format_label": "Myth versus reality",
+      "label": "Public sources and visitors",
+      "reader_need": "Help someone decide whether Hush Line is the right place to make safe first contact or find a trusted recipient.",
+      "visual_role": "supporting_screenshot"
+    },
+    "matched_pull_requests": [],
+    "screen_key": "directory-index",
+    "template_name": "hushline-daily-desktop-template-2.html",
+    "theme": "light",
+    "title": "Directory Verified",
+    "topic_family": "directory",
+    "visual_selection_reason": "Selected screenshots only after choosing the Public sources and visitors editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+    "viewport": "desktop"
+  },
+  "summary": "A myth-versus-reality post clarifying who the Verified label applies to in the public Hush Line Directory.",
+  "critic": {
+    "blocked": false,
+    "criteria": [
+      {
+        "id": "topic_freshness",
+        "label": "Topic freshness",
+        "max_score": 2,
+        "rationale": "Topic family directory appeared recently but not in the last two posts.",
+        "score": 1
+      },
+      {
+        "id": "hook_freshness",
+        "label": "Hook freshness",
+        "max_score": 2,
+        "rationale": "Opening hook is distinct from recent archive hooks.",
+        "score": 2
+      },
+      {
+        "id": "format_novelty",
+        "label": "Format novelty",
+        "max_score": 2,
+        "rationale": "Format myth_vs_reality is not overused in the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "audience_specificity",
+        "label": "Audience specificity",
+        "max_score": 2,
+        "rationale": "Copy contains 5 signal(s) for public.",
+        "score": 2
+      },
+      {
+        "id": "concrete_reader_value",
+        "label": "Concrete reader value",
+        "max_score": 2,
+        "rationale": "Copy gives 3 concrete action/value signal(s).",
+        "score": 2
+      },
+      {
+        "id": "hushline_relevance",
+        "label": "Hush Line relevance",
+        "max_score": 2,
+        "rationale": "Copy is tied to Hush Line or a concrete Hush Line surface.",
+        "score": 2
+      },
+      {
+        "id": "cta_freshness",
+        "label": "CTA freshness",
+        "max_score": 2,
+        "rationale": "CTA pattern is fresh against the configured CTA cooldown.",
+        "score": 2
+      },
+      {
+        "id": "safety_compliance",
+        "label": "Safety and compliance",
+        "max_score": 2,
+        "rationale": "Copy avoids unsupported safety, anonymity, and recency claims.",
+        "score": 2
+      }
+    ],
+    "failed_criteria": [],
+    "max_score": 16,
+    "passed": true,
+    "rationale": "Topic freshness: Topic family directory appeared recently but not in the last two posts. Hook freshness: Opening hook is distinct from recent archive hooks. Format novelty: Format myth_vs_reality is not overused in the recent archive. Audience specificity: Copy contains 5 signal(s) for public. Concrete reader value: Copy gives 3 concrete action/value signal(s). Hush Line relevance: Copy is tied to Hush Line or a concrete Hush Line surface. CTA freshness: CTA pattern is fresh against the configured CTA cooldown. Safety and compliance: Copy avoids unsupported safety, anonymity, and recency claims.",
+    "score": 15,
+    "threshold": 12
+  }
+}

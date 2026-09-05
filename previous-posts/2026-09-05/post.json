@@ -1,0 +1,36 @@
+{
+  "slot": "saturday",
+  "planned_date": "2026-09-05",
+  "screenshot_file": "guest/guest-directory-verified-desktop-light-fold.png",
+  "content_key": "guest-directory-verified",
+  "content_format": "myth_vs_reality",
+  "headline": "The Verified label is about the recipient",
+  "subtext": "Hush Line staff check the identity of Verified account owners. Sources do not need an account to send them a message.",
+  "image_alt_text": "Social graphic titled “The Verified label is about the recipient” above a light-mode screenshot of the public Hush Line Directory. The page explains that Verified account owners have confirmed their identities with Hush Line staff and that no account is required to send a message.",
+  "social": {
+    "bluesky": "Myth: Sources must be verified to contact a Verified recipient.\n\nReality: Verified applies to the account owner, whose identity Hush Line staff have checked. Sources can send a message without an account.\n\nStart with Verified recipients: https://tips.hushline.app/directory",
+    "linkedin": "Myth: A source must complete verification before contacting a Verified recipient.\n\nReality: The Verified label applies to the account owner. It means that person has verified their identity with a member of Hush Line staff. A source can send a message without creating an account.\n\nUse the Verified tab when you want to begin with recipients whose identities Hush Line staff have checked: https://tips.hushline.app/directory",
+    "mastodon": "Myth: Sources must complete verification to contact a Verified recipient.\n\nReality: Verified describes the account owner, whose identity has been checked by Hush Line staff. A source can send a message without creating an account.\n\nVisit the Verified tab to begin with recipients whose identities staff have checked: https://tips.hushline.app/directory"
+  },
+  "rationale": "This public-facing myth-versus-reality angle separates recipient verification from the source’s ability to send without an account. It gives visitors a concrete way to understand the Verified label while avoiding recent Directory themes about browser choice, searching, profiles, categories, and deciding whether a listing fits a tip.",
+  "source_pr_numbers": [],
+  "audience_scope": "public",
+  "concept_key": "directory-verified",
+  "copy_brief": "Write for sources and public users evaluating or using Hush Line.",
+  "editorial_intent": {
+    "audience_scope": "public",
+    "content_format": "myth_vs_reality",
+    "content_format_label": "Myth versus reality",
+    "label": "Public sources and visitors",
+    "reader_need": "Help someone decide whether Hush Line is the right place to make safe first contact or find a trusted recipient.",
+    "visual_role": "supporting_screenshot"
+  },
+  "matched_pull_requests": [],
+  "screen_key": "directory-index",
+  "template_name": "hushline-daily-desktop-template-2.html",
+  "theme": "light",
+  "title": "Directory Verified",
+  "topic_family": "directory",
+  "visual_selection_reason": "Selected screenshots only after choosing the Public sources and visitors editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+  "viewport": "desktop"
+}

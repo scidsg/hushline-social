@@ -1,0 +1,33 @@
+Slot: saturday
+Planned date: 2026-09-05
+Template: hushline-daily-desktop-template-2.html
+Screenshot: /Users/scidsg/hushline-website/src/assets/img/screenshots/current/guest/guest-directory-verified-desktop-light-fold.png
+Content key: guest-directory-verified
+Headline: The Verified label is about the recipient
+Subtext: Hush Line staff check the identity of Verified account owners. Sources do not need an account to send them a message.
+
+Image alt text
+Social graphic titled “The Verified label is about the recipient” above a light-mode screenshot of the public Hush Line Directory. The page explains that Verified account owners have confirmed their identities with Hush Line staff and that no account is required to send a message.
+
+Social post copy
+
+LinkedIn (424/3000)
+Myth: A source must complete verification before contacting a Verified recipient.
+
+Reality: The Verified label applies to the account owner. It means that person has verified their identity with a member of Hush Line staff. A source can send a message without creating an account.
+
+Use the Verified tab when you want to begin with recipients whose identities Hush Line staff have checked: https://tips.hushline.app/directory
+
+Mastodon (352/500)
+Myth: Sources must complete verification to contact a Verified recipient.
+
+Reality: Verified describes the account owner, whose identity has been checked by Hush Line staff. A source can send a message without creating an account.
+
+Visit the Verified tab to begin with recipients whose identities staff have checked: https://tips.hushline.app/directory
+
+Bluesky (273/300)
+Myth: Sources must be verified to contact a Verified recipient.
+
+Reality: Verified applies to the account owner, whose identity Hush Line staff have checked. Sources can send a message without an account.
+
+Start with Verified recipients: https://tips.hushline.app/directory
