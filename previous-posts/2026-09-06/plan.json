@@ -1,0 +1,107 @@
+{
+  "date": "2026-09-06",
+  "post": {
+    "slot": "sunday",
+    "planned_date": "2026-09-06",
+    "screenshot_file": "artvandelay/auth-artvandelay-settings-notifications-desktop-light-fold.png",
+    "content_key": "auth-artvandelay-settings-notifications",
+    "content_format": "recipient_playbook",
+    "headline": "Assign responsibility by notification address",
+    "subtext": "Recipients and staff can name the primary person, an absence backup, and the action attached to an incoming notice.",
+    "image_alt_text": "Social graphic titled “Assign responsibility by notification address.” A light-mode desktop Hush Line Notifications screen shows Tip Notifications turned on, three recipient address cards for editor, standards, and board, “Enabled · PGP key configured” under every address, and an Add Recipient button. The graphic supports a recipient playbook for assigning an owner and backup to notification addresses.",
+    "social": {
+      "bluesky": "More than one address can receive notices. For shared intake, name the person checking the Hush Line inbox and an absence backup. Choose email notifications and whether email includes encrypted tip contents. Confirm “PGP key configured,” then record the assignment.",
+      "linkedin": "An address under Recipients needs a named owner and a specific action.\n\nFor recipients and staff who share intake:\n\n1. Name the person who checks the Hush Line inbox.\n2. Name an absence backup.\n3. Choose email notifications for the appropriate role.\n4. Choose whether email includes encrypted tip contents.\n5. Confirm “PGP key configured” beside the delivery address.\n\nSeveral addresses can receive notices. Document the task attached to those addresses.\n\nAdd the responsibility note to your intake instructions today.",
+      "mastodon": "More than one address can receive notices. The job attached to an address still needs an owner.\n\nFor shared intake, record who checks the Hush Line inbox, the absence backup, the role using email notifications, and whether email includes encrypted tip contents. Match “PGP key configured” to the proper delivery address.\n\nPut these assignments in your intake instructions."
+    },
+    "rationale": "The screenshot is required by the rewrite request and comes from a cooldown-exhausted shortlist. The playbook takes a fresh responsibility angle: it tells recipients and staff to assign an owner, an absence backup, and a next action after notification delivery. This differs from recent posts about private addresses, broad role coverage, limiting email contents, and scanning Enabled labels while still naming the visible notification choices and PGP status.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "settings-notifications",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "editorial_intent": {
+      "audience_scope": "recipient-shared",
+      "content_format": "recipient_playbook",
+      "content_format_label": "Recipient playbook",
+      "label": "Recipients and staff",
+      "reader_need": "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+      "visual_role": "supporting_screenshot"
+    },
+    "matched_pull_requests": [],
+    "screen_key": "/settings/notifications",
+    "template_name": "hushline-daily-desktop-template.html",
+    "theme": "light",
+    "title": "Settings Notifications",
+    "topic_family": "notifications",
+    "visual_selection_reason": "Selected screenshots only after choosing the Recipients and staff editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+    "viewport": "desktop"
+  },
+  "summary": "Recipient playbook for assigning a clear owner, backup, and action by Hush Line notification address.",
+  "critic": {
+    "blocked": false,
+    "criteria": [
+      {
+        "id": "topic_freshness",
+        "label": "Topic freshness",
+        "max_score": 2,
+        "rationale": "Topic family notifications appeared recently but not in the last two posts.",
+        "score": 1
+      },
+      {
+        "id": "hook_freshness",
+        "label": "Hook freshness",
+        "max_score": 2,
+        "rationale": "Opening hook is distinct from recent archive hooks.",
+        "score": 2
+      },
+      {
+        "id": "format_novelty",
+        "label": "Format novelty",
+        "max_score": 2,
+        "rationale": "Format recipient_playbook is not overused in the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "audience_specificity",
+        "label": "Audience specificity",
+        "max_score": 2,
+        "rationale": "Copy contains 4 signal(s) for recipient-shared.",
+        "score": 2
+      },
+      {
+        "id": "concrete_reader_value",
+        "label": "Concrete reader value",
+        "max_score": 2,
+        "rationale": "Copy gives 1 concrete action/value signal(s).",
+        "score": 1
+      },
+      {
+        "id": "hushline_relevance",
+        "label": "Hush Line relevance",
+        "max_score": 2,
+        "rationale": "Copy is tied to Hush Line or a concrete Hush Line surface.",
+        "score": 2
+      },
+      {
+        "id": "cta_freshness",
+        "label": "CTA freshness",
+        "max_score": 2,
+        "rationale": "CTA pattern is fresh against the configured CTA cooldown.",
+        "score": 2
+      },
+      {
+        "id": "safety_compliance",
+        "label": "Safety and compliance",
+        "max_score": 2,
+        "rationale": "Copy avoids unsupported safety, anonymity, and recency claims.",
+        "score": 2
+      }
+    ],
+    "failed_criteria": [],
+    "max_score": 16,
+    "passed": true,
+    "rationale": "Topic freshness: Topic family notifications appeared recently but not in the last two posts. Hook freshness: Opening hook is distinct from recent archive hooks. Format novelty: Format recipient_playbook is not overused in the recent archive. Audience specificity: Copy contains 4 signal(s) for recipient-shared. Concrete reader value: Copy gives 1 concrete action/value signal(s). Hush Line relevance: Copy is tied to Hush Line or a concrete Hush Line surface. CTA freshness: CTA pattern is fresh against the configured CTA cooldown. Safety and compliance: Copy avoids unsupported safety, anonymity, and recency claims.",
+    "score": 14,
+    "threshold": 12
+  }
+}

@@ -1,0 +1,37 @@
+Slot: sunday
+Planned date: 2026-09-06
+Template: hushline-daily-desktop-template.html
+Screenshot: /Users/scidsg/hushline-website/src/assets/img/screenshots/current/artvandelay/auth-artvandelay-settings-notifications-desktop-light-fold.png
+Content key: auth-artvandelay-settings-notifications
+Headline: Assign responsibility by notification address
+Subtext: Recipients and staff can name the primary person, an absence backup, and the action attached to an incoming notice.
+
+Image alt text
+Social graphic titled “Assign responsibility by notification address.” A light-mode desktop Hush Line Notifications screen shows Tip Notifications turned on, three recipient address cards for editor, standards, and board, “Enabled · PGP key configured” under every address, and an Add Recipient button. The graphic supports a recipient playbook for assigning an owner and backup to notification addresses.
+
+Social post copy
+
+LinkedIn (518/3000)
+An address under Recipients needs a named owner and a specific action.
+
+For recipients and staff who share intake:
+
+1. Name the person who checks the Hush Line inbox.
+2. Name an absence backup.
+3. Choose email notifications for the appropriate role.
+4. Choose whether email includes encrypted tip contents.
+5. Confirm “PGP key configured” beside the delivery address.
+
+Several addresses can receive notices. Document the task attached to those addresses.
+
+Add the responsibility note to your intake instructions today.
+
+Mastodon (372/500)
+More than one address can receive notices. The job attached to an address still needs an owner.
+
+For shared intake, record who checks the Hush Line inbox, the absence backup, the role using email notifications, and whether email includes encrypted tip contents. Match “PGP key configured” to the proper delivery address.
+
+Put these assignments in your intake instructions.
+
+Bluesky (265/300)
+More than one address can receive notices. For shared intake, name the person checking the Hush Line inbox and an absence backup. Choose email notifications and whether email includes encrypted tip contents. Confirm “PGP key configured,” then record the assignment.
