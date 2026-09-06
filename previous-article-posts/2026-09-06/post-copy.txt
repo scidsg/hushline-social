@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-09-06
+Publish mode: text
+Source: ABC News
+Article URL: https://abcnews.com/US/ice-whistleblower-alleged-agency-shortcutting-vetting-process-new/story?id=136210462
+Content key: weekly-news-abc-news-ice-whistleblower-alleged-agency-was-shortcutting-vetting-process-for-new-h
+Headline: Whistleblower-related reporting from ABC News
+Subtext: ABC News reports: ICE whistleblower alleged agency was shortcutting vetting process for new hires
+
+Social post copy
+
+LinkedIn (483/3000)
+ICE whistleblower alleged agency was shortcutting vetting process for new hires.
+
+An official who oversaw the vetting of ICE recruits warned that the agency was shortcutting vetting procedures for new hires, according to a whistleblower complaint.
+
+Read the article from ABC News
+https://abcnews.com/US/ice-whistleblower-alleged-agency-shortcutting-vetting-process-new/story?id=136210462
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (335/500)
+ICE whistleblower alleged agency was shortcutting vetting process for new hires.
+
+Accountability reporting needs a safe enough way to make contact.
+
+Read the article from ABC News
+https://abcnews.com/US/ice-whistleblower-alleged-agency-shortcutting-vetting-process-new/story?id=136210462
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (268/300)
+ICE whistleblower alleged agency was shortcutting vetting process for new hires.
+
+Read the article from ABC News
+https://abcnews.com/US/ice-whistleblower-alleged-agency-shortcutting-vetting-process-new/story?id=136210462
+
+Sign up for Hush Line at https://hushline.app.

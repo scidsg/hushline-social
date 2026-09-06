@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-09-06",
+  "weekday": "sunday",
+  "publish_mode": "text",
+  "source": "ABC News",
+  "title": "ICE whistleblower alleged agency was shortcutting vetting process for new hires",
+  "article_url": "https://abcnews.com/US/ice-whistleblower-alleged-agency-shortcutting-vetting-process-new/story?id=136210462",
+  "article_published_at": "2026-09-05T12:27:46.000Z",
+  "relevance_score": 14,
+  "content_key": "weekly-news-abc-news-ice-whistleblower-alleged-agency-was-shortcutting-vetting-process-for-new-h",
+  "headline": "Whistleblower-related reporting from ABC News",
+  "subtext": "ABC News reports: ICE whistleblower alleged agency was shortcutting vetting process for new hires",
+  "social": {
+    "bluesky": "ICE whistleblower alleged agency was shortcutting vetting process for new hires.\n\nRead the article from ABC News\nhttps://abcnews.com/US/ice-whistleblower-alleged-agency-shortcutting-vetting-process-new/story?id=136210462\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "ICE whistleblower alleged agency was shortcutting vetting process for new hires.\n\nAn official who oversaw the vetting of ICE recruits warned that the agency was shortcutting vetting procedures for new hires, according to a whistleblower complaint.\n\nRead the article from ABC News\nhttps://abcnews.com/US/ice-whistleblower-alleged-agency-shortcutting-vetting-process-new/story?id=136210462\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "ICE whistleblower alleged agency was shortcutting vetting process for new hires.\n\nAccountability reporting needs a safe enough way to make contact.\n\nRead the article from ABC News\nhttps://abcnews.com/US/ice-whistleblower-alleged-agency-shortcutting-vetting-process-new/story?id=136210462\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
