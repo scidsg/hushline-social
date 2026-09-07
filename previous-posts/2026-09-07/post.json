@@ -1,0 +1,47 @@
+{
+  "content_key": "auth-artvandelay-settings-replies",
+  "content_format": "source_safety_checklist",
+  "headline": "Strip identifying details from Status Text",
+  "image_alt_text": "Light-mode Hush Line social graphic titled “Strip identifying details from Status Text” beside the desktop Message Statuses settings. The screen shows the Status Text field under Waiting and the Update Reply Text button, illustrating a checklist for keeping the reusable notice free of names and details copied from a disclosure.",
+  "planned_date": "2026-09-07",
+  "rationale": "The required screenshot is a cooldown fallback, so this post takes a different source-safety angle from archived Message Statuses posts about reply times, acknowledgements, readability, and staff consistency. It focuses on removing identifying information from reusable Status Text and gives recipient teams a concrete test-message check. The opening, value, and closing avoid the rejected promise-and-review framing.",
+  "screenshot_file": "artvandelay/auth-artvandelay-settings-replies-desktop-light-fold.png",
+  "slot": "monday",
+  "social": {
+    "bluesky": "Copied details do not belong in a reusable notice. Edit Status Text with four checks: remove names, organizations, dates, and wording taken from a real disclosure. Send a sample message through your public page, inspect the follow-up page, and ask a colleague to check it too.",
+    "linkedin": "A reusable notice must stay free of details copied from a disclosure.\n\nHush Line recipients can follow this source-safety checklist while editing Status Text:\n\n1. Write guidance suitable for any source.\n2. Remove names, workplaces, dates, and quoted material.\n3. Send a sample message through the public contact page.\n4. Inspect the follow-up page with an authorized colleague.\n5. Check that only general instructions remain.\n\nRepeat this privacy check after future Status Text edits.",
+    "mastodon": "Copied details do not belong in a reusable notice.\n\nEdit Status Text with this checklist:\n1. Write guidance suitable for any source.\n2. Remove names, organizations, dates, and quoted material.\n3. Send a sample message through your public page.\n4. Inspect the follow-up page with an authorized colleague.\n\nRepeat this privacy check after future edits."
+  },
+  "source_pr_numbers": [],
+  "subtext": "Recipients can keep the reusable wording general, remove information copied from a disclosure, and inspect the follow-up page with a test message.",
+  "audience_scope": "recipient-shared",
+  "concept_key": "settings-replies",
+  "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+  "editorial_intent": {
+    "audience_scope": "recipient-shared",
+    "content_format": "source_safety_checklist",
+    "content_format_label": "Source safety checklist",
+    "label": "Recipients and staff",
+    "reader_need": "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+    "visual_role": "supporting_screenshot"
+  },
+  "matched_pull_requests": [
+    {
+      "merged_at": "2026-07-14T05:14:25Z",
+      "number": 2340,
+      "title": "Prevent rapid mobile submits from duplicating chat replies"
+    },
+    {
+      "merged_at": "2026-07-08T23:09:05Z",
+      "number": 2329,
+      "title": "Allow replies to legacy chat-key recipients"
+    }
+  ],
+  "screen_key": "auth-artvandelay-settings-replies",
+  "template_name": "hushline-daily-desktop-template-2.html",
+  "theme": "light",
+  "title": "Settings Replies",
+  "topic_family": "message-statuses",
+  "visual_selection_reason": "Selected screenshots only after choosing the Recipients and staff editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+  "viewport": "desktop"
+}

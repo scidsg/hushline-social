@@ -1,0 +1,39 @@
+Slot: monday
+Planned date: 2026-09-07
+Template: hushline-daily-desktop-template-2.html
+Screenshot: /Users/scidsg/hushline-website/src/assets/img/screenshots/current/artvandelay/auth-artvandelay-settings-replies-desktop-light-fold.png
+Content key: auth-artvandelay-settings-replies
+Headline: Strip identifying details from Status Text
+Subtext: Recipients can keep the reusable wording general, remove information copied from a disclosure, and inspect the follow-up page with a test message.
+
+Image alt text
+Light-mode Hush Line social graphic titled “Strip identifying details from Status Text” beside the desktop Message Statuses settings. The screen shows the Status Text field under Waiting and the Update Reply Text button, illustrating a checklist for keeping the reusable notice free of names and details copied from a disclosure.
+
+Social post copy
+
+LinkedIn (484/3000)
+A reusable notice must stay free of details copied from a disclosure.
+
+Hush Line recipients can follow this source-safety checklist while editing Status Text:
+
+1. Write guidance suitable for any source.
+2. Remove names, workplaces, dates, and quoted material.
+3. Send a sample message through the public contact page.
+4. Inspect the follow-up page with an authorized colleague.
+5. Check that only general instructions remain.
+
+Repeat this privacy check after future Status Text edits.
+
+Mastodon (350/500)
+Copied details do not belong in a reusable notice.
+
+Edit Status Text with this checklist:
+1. Write guidance suitable for any source.
+2. Remove names, organizations, dates, and quoted material.
+3. Send a sample message through your public page.
+4. Inspect the follow-up page with an authorized colleague.
+
+Repeat this privacy check after future edits.
+
+Bluesky (276/300)
+Copied details do not belong in a reusable notice. Edit Status Text with four checks: remove names, organizations, dates, and wording taken from a real disclosure. Send a sample message through your public page, inspect the follow-up page, and ask a colleague to check it too.
