@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-09-07",
+  "weekday": "monday",
+  "publish_mode": "text",
+  "source": "CBS News",
+  "title": "Rep. Crow says Congress hasn&#039;t been briefed on Hegseth leak investigation",
+  "article_url": "https://www.cbsnews.com/news/jason-crow-pete-hegseth-leak-investigation-congress-briefing/",
+  "article_published_at": "2026-09-07T15:20:23.000Z",
+  "relevance_score": 11,
+  "content_key": "weekly-news-cbs-news-rep-crow-says-congress-hasn-039-t-been-briefed-on-hegseth-leak-investigatio",
+  "headline": "Whistleblower-related reporting from CBS News",
+  "subtext": "CBS News reports: Rep. Crow says Congress hasn&#039;t been briefed on Hegseth leak investigation",
+  "social": {
+    "bluesky": "Rep. Crow says Congress hasn&#039;t been briefed on Hegseth leak investigation.\n\nRead the article from CBS News\nhttps://www.cbsnews.com/news/jason-crow-pete-hegseth-leak-investigation-congress-briefing/\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Rep. Crow says Congress hasn&#039;t been briefed on Hegseth leak investigation.\n\nDemocratic Rep. Jason Crow said neither he nor his colleagues in Congress have received \"any information\" about Defense Secretary Pete Hegseth&#039;s sweeping leak investigation.\n\nRead the article from CBS News\nhttps://www.cbsnews.com/news/jason-crow-pete-hegseth-leak-investigation-congress-briefing/\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Rep. Crow says Congress hasn&#039;t been briefed on Hegseth leak investigation.\n\nOversight depends on people being able to bring evidence forward safely.\n\nRead the article from CBS News\nhttps://www.cbsnews.com/news/jason-crow-pete-hegseth-leak-investigation-congress-briefing/\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
