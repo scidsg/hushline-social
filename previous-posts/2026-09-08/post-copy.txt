@@ -1,0 +1,27 @@
+Slot: tuesday
+Planned date: 2026-09-08
+Template: hushline-daily-desktop-template.html
+Screenshot: /Users/scidsg/hushline-website/src/assets/img/screenshots/current/artvandelay/auth-artvandelay-tools-email-validation-status-valid-desktop-light-fold.png
+Content key: auth-artvandelay-tools-email-validation-status-valid
+Headline: Verify a request to use a new address
+Subtext: A sender changes the reply address. Your team inspects the routing details before moving the conversation.
+
+Image alt text
+A light-mode social graphic titled “Verify a request to use a new address.” The supporting Hush Line desktop screenshot shows the Tools page, the Email Validation tab, a Raw Email Headers field, the Validate Headers and Download Report buttons, and a Validation Summary that says the email appears to originate from the stated sender.
+
+Social post copy
+
+LinkedIn (476/3000)
+A familiar display name can still point toward an unfamiliar address.
+
+A contact asks you to continue somewhere new. Open Hush Line’s Email Validation, add the routing details, run the test, and consider the outcome.
+
+If the path does not match the claimed identity, confirm the request through a method your team already trusts. Recipients now have a defined decision point instead of relying on the name shown in the inbox.
+
+Make this checkpoint part of each address change.
+
+Mastodon (354/500)
+An address change can be part of a legitimate conversation—or a reason to pause. Recipient teams can open Hush Line’s Email Validation, add the routing details, run the test, and consider the outcome. If the path conflicts with the claimed identity, use a known contact method to confirm the request. Treat address changes as a defined intake checkpoint.
+
+Bluesky (266/300)
+Someone changes the address mid-conversation. Recipient teams can verify the request before following it: open Hush Line’s Email Validation, add the routing details, and run the test. A mismatch is a reason to confirm through a contact method the team already knows.
