@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-09-08",
+  "weekday": "tuesday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "Grindr pays £26m to settle UK lawsuit over allegedly sharing users’ HIV status",
+  "article_url": "https://www.theguardian.com/business/2026/sep/07/grindr-settle-uk-lawsuit-dating-app-ad",
+  "article_published_at": "2026-09-07T10:30:56.000Z",
+  "relevance_score": 14,
+  "content_key": "weekly-news-the-guardian-grindr-pays-26m-to-settle-uk-lawsuit-over-allegedly-sharing-users-hiv-s",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: Grindr pays £26m to settle UK lawsuit over allegedly sharing users’ HIV status",
+  "social": {
+    "bluesky": "Grindr pays £26m to settle UK lawsuit over allegedly sharing users’ HIV status.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/business/2026/sep/07/grindr-settle-uk-lawsuit-dating-app-ad\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Grindr pays £26m to settle UK lawsuit over allegedly sharing users’ HIV status.\n\nUS-owned dating app allegedly allowed ad firms access to private information in breach of UK law Grindr will pay £26m to settle a lawsuit brought by thousands of users in the UK who allege that the US dating app...\n\nRead the article from The Guardian\nhttps://www.theguardian.com/business/2026/sep/07/grindr-settle-uk-lawsuit-dating-app-ad\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Grindr pays £26m to settle UK lawsuit over allegedly sharing users’ HIV status.\n\nWins matter when reporting leads to protection or repair.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/business/2026/sep/07/grindr-settle-uk-lawsuit-dating-app-ad\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}

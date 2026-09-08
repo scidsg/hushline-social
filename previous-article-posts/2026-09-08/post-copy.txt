@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-09-08
+Publish mode: text
+Source: The Guardian
+Article URL: https://www.theguardian.com/business/2026/sep/07/grindr-settle-uk-lawsuit-dating-app-ad
+Content key: weekly-news-the-guardian-grindr-pays-26m-to-settle-uk-lawsuit-over-allegedly-sharing-users-hiv-s
+Headline: Whistleblower-related reporting from The Guardian
+Subtext: The Guardian reports: Grindr pays £26m to settle UK lawsuit over allegedly sharing users’ HIV status
+
+Social post copy
+
+LinkedIn (515/3000)
+Grindr pays £26m to settle UK lawsuit over allegedly sharing users’ HIV status.
+
+US-owned dating app allegedly allowed ad firms access to private information in breach of UK law Grindr will pay £26m to settle a lawsuit brought by thousands of users in the UK who allege that the US dating app...
+
+Read the article from The Guardian
+https://www.theguardian.com/business/2026/sep/07/grindr-settle-uk-lawsuit-dating-app-ad
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (310/500)
+Grindr pays £26m to settle UK lawsuit over allegedly sharing users’ HIV status.
+
+Wins matter when reporting leads to protection or repair.
+
+Read the article from The Guardian
+https://www.theguardian.com/business/2026/sep/07/grindr-settle-uk-lawsuit-dating-app-ad
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (251/300)
+Grindr pays £26m to settle UK lawsuit over allegedly sharing users’ HIV status.
+
+Read the article from The Guardian
+https://www.theguardian.com/business/2026/sep/07/grindr-settle-uk-lawsuit-dating-app-ad
+
+Sign up for Hush Line at https://hushline.app.
