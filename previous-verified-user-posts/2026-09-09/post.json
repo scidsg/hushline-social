@@ -1,0 +1,22 @@
+{
+  "date": "2026-09-09",
+  "display_name": "Emma Best",
+  "editorial_format_label": "Source-safe first contact",
+  "headline": "Emma Best",
+  "image_alt_text": "A social card featuring verified Hush Line user Emma Best, their bio, their tip line URL, and a QR code that links to the same URL.",
+  "opening_line": "First contact should be source-safe.",
+  "planned_date": "2026-09-09",
+  "primary_username": "mx_yzptlk",
+  "qr_code_file": "verified-user-qr.png",
+  "social": {
+    "bluesky": "First contact should be source-safe.\n\nEmma Best is an investigative journalist, transparency advocate, and cofounder of Distributed Denial of Secrets (DDoSecrets).\n\nStart with Emma's verified Hush Line URL: https://tips.hushline.app/to/mx_yzptlk",
+    "linkedin": "First contact should be source-safe.\n\nEmma Best is an investigative journalist, transparency advocate, former analyst, and cofounder of Distributed Denial of Secrets (DDoSecrets). She has filed thousands of Freedom of Information Act requests and published hundreds of articles.\n\nStart with Emma's verified Hush Line URL: https://tips.hushline.app/to/mx_yzptlk.",
+    "mastodon": "First contact should be source-safe.\n\nEmma Best is an investigative journalist, transparency advocate, and cofounder of Distributed Denial of Secrets (DDoSecrets). She has filed thousands of Freedom of Information Act requests and published hundreds of articles.\n\nStart with Emma's verified Hush Line URL: https://tips.hushline.app/to/mx_yzptlk."
+  },
+  "slot": "verified-user-weekly",
+  "source": "https://tips.hushline.app/directory/users.json",
+  "subtext": "Emma Best is an investigative journalist, transparency advocate, former analyst, and cofounder of Distributed Denial of Secrets (DDoSecrets). She has also filed thousands of Freedom of Information Act requests and published hundreds of articles.",
+  "user_link": "https://tips.hushline.app/to/mx_yzptlk",
+  "user_url": "https://tips.hushline.app/to/mx_yzptlk",
+  "verified_user_format": "source_safe_first_contact"
+}

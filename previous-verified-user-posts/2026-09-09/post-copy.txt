@@ -1,0 +1,36 @@
+Slot: verified-user-weekly
+Planned date: 2026-09-09
+Verified user: @mx_yzptlk
+User link: https://tips.hushline.app/to/mx_yzptlk
+Source: https://tips.hushline.app/directory/users.json
+Editorial format: Source-safe first contact (source_safe_first_contact)
+Opening line: First contact should be source-safe.
+Headline: Emma Best
+Subtext: Emma Best is an investigative journalist, transparency advocate, former analyst, and cofounder of Distributed Denial of Secrets (DDoSecrets). She has also filed thousands of Freedom of Information Act requests and published hundreds of articles.
+
+Image alt text
+A social card featuring verified Hush Line user Emma Best, their bio, their tip line URL, and a QR code that links to the same URL.
+
+Social post copy
+
+LinkedIn (361/3000)
+First contact should be source-safe.
+
+Emma Best is an investigative journalist, transparency advocate, former analyst, and cofounder of Distributed Denial of Secrets (DDoSecrets). She has filed thousands of Freedom of Information Act requests and published hundreds of articles.
+
+Start with Emma's verified Hush Line URL: https://tips.hushline.app/to/mx_yzptlk.
+
+Mastodon (345/500)
+First contact should be source-safe.
+
+Emma Best is an investigative journalist, transparency advocate, and cofounder of Distributed Denial of Secrets (DDoSecrets). She has filed thousands of Freedom of Information Act requests and published hundreds of articles.
+
+Start with Emma's verified Hush Line URL: https://tips.hushline.app/to/mx_yzptlk.
+
+Bluesky (245/300)
+First contact should be source-safe.
+
+Emma Best is an investigative journalist, transparency advocate, and cofounder of Distributed Denial of Secrets (DDoSecrets).
+
+Start with Emma's verified Hush Line URL: https://tips.hushline.app/to/mx_yzptlk
+
