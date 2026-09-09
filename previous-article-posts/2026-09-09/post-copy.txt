@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-09-09
+Publish mode: text
+Source: CBS News
+Article URL: https://www.cbsnews.com/live-updates/iran-war-us-tankers-attacks-strikes-strait-of-hormuz-oil-price/
+Content key: weekly-news-cbs-news-oil-hits-100-per-barrel-as-u-s-and-iran-launch-new-attacks
+Headline: Whistleblower-related reporting from CBS News
+Subtext: CBS News reports: Oil hits $100 per barrel as U.S. and Iran launch new attacks
+
+Social post copy
+
+LinkedIn (428/3000)
+Oil hits $100 per barrel as U.S. and Iran launch new attacks.
+
+The price of crude oil hit a 15-week high after the U.S. said it blew up 5 more Iranian oil tankers, triggering retaliation from Tehran.
+
+Read the article from CBS News
+https://www.cbsnews.com/live-updates/iran-war-us-tankers-attacks-strikes-strait-of-hormuz-oil-price/
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (291/500)
+Oil hits $100 per barrel as U.S. and Iran launch new attacks.
+
+Retaliation is why safer first contact matters.
+
+Read the article from CBS News
+https://www.cbsnews.com/live-updates/iran-war-us-tankers-attacks-strikes-strait-of-hormuz-oil-price/
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (242/300)
+Oil hits $100 per barrel as U.S. and Iran launch new attacks.
+
+Read the article from CBS News
+https://www.cbsnews.com/live-updates/iran-war-us-tankers-attacks-strikes-strait-of-hormuz-oil-price/
+
+Sign up for Hush Line at https://hushline.app.

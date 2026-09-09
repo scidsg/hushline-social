@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-09-09",
+  "weekday": "wednesday",
+  "publish_mode": "text",
+  "source": "CBS News",
+  "title": "Oil hits $100 per barrel as U.S. and Iran launch new attacks",
+  "article_url": "https://www.cbsnews.com/live-updates/iran-war-us-tankers-attacks-strikes-strait-of-hormuz-oil-price/",
+  "article_published_at": "2026-09-09T15:39:22.000Z",
+  "relevance_score": 9,
+  "content_key": "weekly-news-cbs-news-oil-hits-100-per-barrel-as-u-s-and-iran-launch-new-attacks",
+  "headline": "Whistleblower-related reporting from CBS News",
+  "subtext": "CBS News reports: Oil hits $100 per barrel as U.S. and Iran launch new attacks",
+  "social": {
+    "bluesky": "Oil hits $100 per barrel as U.S. and Iran launch new attacks.\n\nRead the article from CBS News\nhttps://www.cbsnews.com/live-updates/iran-war-us-tankers-attacks-strikes-strait-of-hormuz-oil-price/\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Oil hits $100 per barrel as U.S. and Iran launch new attacks.\n\nThe price of crude oil hit a 15-week high after the U.S. said it blew up 5 more Iranian oil tankers, triggering retaliation from Tehran.\n\nRead the article from CBS News\nhttps://www.cbsnews.com/live-updates/iran-war-us-tankers-attacks-strikes-strait-of-hormuz-oil-price/\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Oil hits $100 per barrel as U.S. and Iran launch new attacks.\n\nRetaliation is why safer first contact matters.\n\nRead the article from CBS News\nhttps://www.cbsnews.com/live-updates/iran-war-us-tankers-attacks-strikes-strait-of-hormuz-oil-price/\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
