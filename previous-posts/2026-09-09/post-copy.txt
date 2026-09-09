@@ -1,0 +1,27 @@
+Slot: wednesday
+Planned date: 2026-09-09
+Template: hushline-daily-desktop-template-2.html
+Screenshot: /Users/scidsg/hushline-website/src/assets/img/screenshots/current/artvandelay/auth-artvandelay-settings-advanced-desktop-light-fold.png
+Content key: auth-artvandelay-settings-advanced
+Headline: Name each action before it happens
+Subtext: “Download My Data” and “Delete Account” tell recipients what each button will do, while a plain warning marks deletion as permanent.
+
+Image alt text
+A Hush Line social graphic titled “Name each action before it happens.” It shows the light-mode Advanced settings page, where separate buttons read “Download My Data” and “Delete Account.” A warning says that deleting the account is permanent and cannot be undone.
+
+Social post copy
+
+LinkedIn (493/3000)
+“Continue” is a poor label for a permanent choice.
+
+Hush Line’s Settings page names each button for what it does: “Download My Data” and “Delete Account.” The delete section also states that the action cannot be undone.
+
+For journalists and lawyers sharing sensitive intake, exact labels reduce guesswork during account maintenance. A colleague can identify the intended task before selecting a button.
+
+During your next handoff, refer to the action by name so everyone knows what will happen.
+
+Mastodon (330/500)
+Buttons for serious choices should say exactly what they do. In Settings, Hush Line uses “Download My Data” and “Delete Account,” then warns that deletion cannot be undone. For journalists and lawyers sharing sensitive intake, that wording makes a handoff easier to verify. Refer to the action by name when a colleague takes over.
+
+Bluesky (268/300)
+Serious choices need specific labels. Hush Line’s Settings page says “Download My Data” and “Delete Account,” with a clear warning that deletion cannot be undone. That helps journalists and lawyers sharing sensitive intake confirm the intended action during a handoff.

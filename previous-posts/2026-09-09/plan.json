@@ -1,0 +1,107 @@
+{
+  "date": "2026-09-09",
+  "post": {
+    "slot": "wednesday",
+    "planned_date": "2026-09-09",
+    "screenshot_file": "artvandelay/auth-artvandelay-settings-advanced-desktop-light-fold.png",
+    "content_key": "auth-artvandelay-settings-advanced",
+    "content_format": "design_principle",
+    "headline": "Name each action before it happens",
+    "subtext": "“Download My Data” and “Delete Account” tell recipients what each button will do, while a plain warning marks deletion as permanent.",
+    "image_alt_text": "A Hush Line social graphic titled “Name each action before it happens.” It shows the light-mode Advanced settings page, where separate buttons read “Download My Data” and “Delete Account.” A warning says that deleting the account is permanent and cannot be undone.",
+    "social": {
+      "bluesky": "Serious choices need specific labels. Hush Line’s Settings page says “Download My Data” and “Delete Account,” with a clear warning that deletion cannot be undone. That helps journalists and lawyers sharing sensitive intake confirm the intended action during a handoff.",
+      "linkedin": "“Continue” is a poor label for a permanent choice.\n\nHush Line’s Settings page names each button for what it does: “Download My Data” and “Delete Account.” The delete section also states that the action cannot be undone.\n\nFor journalists and lawyers sharing sensitive intake, exact labels reduce guesswork during account maintenance. A colleague can identify the intended task before selecting a button.\n\nDuring your next handoff, refer to the action by name so everyone knows what will happen.",
+      "mastodon": "Buttons for serious choices should say exactly what they do. In Settings, Hush Line uses “Download My Data” and “Delete Account,” then warns that deletion cannot be undone. For journalists and lawyers sharing sensitive intake, that wording makes a handoff easier to verify. Refer to the action by name when a colleague takes over."
+    },
+    "rationale": "The only candidate is a documented cooldown fallback, so this plan avoids prior angles about export storage, retention, testing, and separating risky controls. It instead explains the visible use of specific action labels, giving recipient teams a concrete way to reduce ambiguity during handoffs.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "settings-advanced",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "editorial_intent": {
+      "audience_scope": "recipient-shared",
+      "content_format": "design_principle",
+      "content_format_label": "Design principle",
+      "label": "Recipients and staff",
+      "reader_need": "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+      "visual_role": "supporting_screenshot"
+    },
+    "matched_pull_requests": [],
+    "screen_key": "/settings/advanced",
+    "template_name": "hushline-daily-desktop-template-2.html",
+    "theme": "light",
+    "title": "Settings Advanced",
+    "topic_family": "settings-advanced",
+    "visual_selection_reason": "Selected screenshots only after choosing the Recipients and staff editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+    "viewport": "desktop"
+  },
+  "summary": "A design-principle post about naming sensitive account actions clearly so recipients can verify what a control will do.",
+  "critic": {
+    "blocked": false,
+    "criteria": [
+      {
+        "id": "topic_freshness",
+        "label": "Topic freshness",
+        "max_score": 2,
+        "rationale": "Topic family settings-advanced appeared recently but not in the last two posts.",
+        "score": 1
+      },
+      {
+        "id": "hook_freshness",
+        "label": "Hook freshness",
+        "max_score": 2,
+        "rationale": "Opening hook is distinct from recent archive hooks.",
+        "score": 2
+      },
+      {
+        "id": "format_novelty",
+        "label": "Format novelty",
+        "max_score": 2,
+        "rationale": "Format design_principle is not overused in the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "audience_specificity",
+        "label": "Audience specificity",
+        "max_score": 2,
+        "rationale": "Copy contains 2 signal(s) for recipient-shared.",
+        "score": 2
+      },
+      {
+        "id": "concrete_reader_value",
+        "label": "Concrete reader value",
+        "max_score": 2,
+        "rationale": "Copy gives 3 concrete action/value signal(s).",
+        "score": 2
+      },
+      {
+        "id": "hushline_relevance",
+        "label": "Hush Line relevance",
+        "max_score": 2,
+        "rationale": "Copy is tied to Hush Line or a concrete Hush Line surface.",
+        "score": 2
+      },
+      {
+        "id": "cta_freshness",
+        "label": "CTA freshness",
+        "max_score": 2,
+        "rationale": "CTA pattern is fresh against the configured CTA cooldown.",
+        "score": 2
+      },
+      {
+        "id": "safety_compliance",
+        "label": "Safety and compliance",
+        "max_score": 2,
+        "rationale": "Copy avoids unsupported safety, anonymity, and recency claims.",
+        "score": 2
+      }
+    ],
+    "failed_criteria": [],
+    "max_score": 16,
+    "passed": true,
+    "rationale": "Topic freshness: Topic family settings-advanced appeared recently but not in the last two posts. Hook freshness: Opening hook is distinct from recent archive hooks. Format novelty: Format design_principle is not overused in the recent archive. Audience specificity: Copy contains 2 signal(s) for recipient-shared. Concrete reader value: Copy gives 3 concrete action/value signal(s). Hush Line relevance: Copy is tied to Hush Line or a concrete Hush Line surface. CTA freshness: CTA pattern is fresh against the configured CTA cooldown. Safety and compliance: Copy avoids unsupported safety, anonymity, and recency claims.",
+    "score": 15,
+    "threshold": 12
+  }
+}
