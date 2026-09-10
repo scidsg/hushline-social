@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-09-10",
+  "weekday": "thursday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "Chemical companies reach $455m settlement with North Carolina over ‘forever chemicals’ claims",
+  "article_url": "https://www.theguardian.com/us-news/2026/sep/10/pfas-chemical-companies-north-carolina",
+  "article_published_at": "2026-09-10T12:50:32.000Z",
+  "relevance_score": 14,
+  "content_key": "weekly-news-the-guardian-chemical-companies-reach-455m-settlement-with-north-carolina-over-forev",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: Chemical companies reach $455m settlement with North Carolina over ‘forever chemicals’ claims",
+  "social": {
+    "bluesky": "Chemical companies reach $455m settlement with North Carolina over ‘forever chemicals’ claims.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/sep/10/pfas-chemical-companies-north-carolina\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Chemical companies reach $455m settlement with North Carolina over ‘forever chemicals’ claims.\n\nChemours, DuPont and Corteva reach settlement after lawsuits accuse companies of polluting drinking water Chemours, DuPont and Corteva on Thursday reached a $455m settlement with ⁠North Carolina and 11 local entities...\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/sep/10/pfas-chemical-companies-north-carolina\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Chemical companies reach $455m settlement with North Carolina over ‘forever chemicals’ claims.\n\nWins matter when reporting leads to protection or repair.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/sep/10/pfas-chemical-companies-north-carolina\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
