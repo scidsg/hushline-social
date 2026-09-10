@@ -1,0 +1,33 @@
+Slot: thursday
+Planned date: 2026-09-10
+Template: hushline-daily-desktop-template.html
+Screenshot: /Users/scidsg/hushline-website/src/assets/img/screenshots/current/guest/guest-directory-verified-desktop-light-fold.png
+Content key: guest-directory-verified
+Headline: Do not put tip details in Directory search
+Subtext: Choose a category or use Search verified users to find a recipient. Save sensitive details for that recipient’s Hush Line message form.
+
+Image alt text
+A light-mode Hush Line social graphic titled “Do not put tip details in Directory search.” The supporting screenshot shows the public Directory with recipient categories, the Search verified users box, an explanation of Verified accounts, and a View Profile link. The graphic illustrates finding a recipient without entering tip details into search.
+
+Social post copy
+
+LinkedIn (595/3000)
+Do not type the details of your tip into Directory search.
+
+Hush Line’s public Directory is for finding a recipient. Choose a category such as Attorneys or Journalists, or use Search verified users to look for a person you already have in mind. Then open View Profile and read the recipient’s details.
+
+Keep names, events, and document details from your tip out of the search box. Share them only after you have chosen the right recipient and opened that person’s Hush Line message form. You do not need an account to send a message.
+
+Search for the recipient. Save the tip for the message form.
+
+Mastodon (440/500)
+The Directory search box is not the place to describe your tip.
+
+Choose Attorneys, Journalists, or another category, or use Search verified users to find a person. Open View Profile before deciding.
+
+Keep names, events, and document details out of search. Once you choose a recipient, put sensitive information in that recipient’s Hush Line message form. No account is required.
+
+Search for the recipient. Save the tip for the message form.
+
+Bluesky (258/300)
+Do not type tip details into Directory search. Choose a category or use Search verified users to find a recipient, then open View Profile. Once you decide who fits, put sensitive information in that recipient’s Hush Line message form. No account is required.

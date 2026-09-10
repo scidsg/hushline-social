@@ -1,0 +1,36 @@
+{
+  "slot": "thursday",
+  "planned_date": "2026-09-10",
+  "screenshot_file": "guest/guest-directory-verified-desktop-light-fold.png",
+  "content_key": "guest-directory-verified",
+  "content_format": "mistake_to_avoid",
+  "headline": "Do not put tip details in Directory search",
+  "subtext": "Choose a category or use Search verified users to find a recipient. Save sensitive details for that recipient’s Hush Line message form.",
+  "image_alt_text": "A light-mode Hush Line social graphic titled “Do not put tip details in Directory search.” The supporting screenshot shows the public Directory with recipient categories, the Search verified users box, an explanation of Verified accounts, and a View Profile link. The graphic illustrates finding a recipient without entering tip details into search.",
+  "social": {
+    "bluesky": "Do not type tip details into Directory search. Choose a category or use Search verified users to find a recipient, then open View Profile. Once you decide who fits, put sensitive information in that recipient’s Hush Line message form. No account is required.",
+    "linkedin": "Do not type the details of your tip into Directory search.\n\nHush Line’s public Directory is for finding a recipient. Choose a category such as Attorneys or Journalists, or use Search verified users to look for a person you already have in mind. Then open View Profile and read the recipient’s details.\n\nKeep names, events, and document details from your tip out of the search box. Share them only after you have chosen the right recipient and opened that person’s Hush Line message form. You do not need an account to send a message.\n\nSearch for the recipient. Save the tip for the message form.",
+    "mastodon": "The Directory search box is not the place to describe your tip.\n\nChoose Attorneys, Journalists, or another category, or use Search verified users to find a person. Open View Profile before deciding.\n\nKeep names, events, and document details out of search. Once you choose a recipient, put sensitive information in that recipient’s Hush Line message form. No account is required.\n\nSearch for the recipient. Save the tip for the message form."
+  },
+  "rationale": "The only eligible screenshot is a cooldown fallback, so this post takes a fresh public-safety angle that does not repeat recent Directory posts about verification, browser choice, recipient roles, or reviewing profiles. It addresses a realistic source mistake by separating recipient search from the place where a source writes the tip, using the screen’s visible labels and ending with a specific safer action.",
+  "source_pr_numbers": [],
+  "audience_scope": "public",
+  "concept_key": "directory-verified",
+  "copy_brief": "Write for sources and public users evaluating or using Hush Line.",
+  "editorial_intent": {
+    "audience_scope": "public",
+    "content_format": "mistake_to_avoid",
+    "content_format_label": "Mistake to avoid",
+    "label": "Public sources and visitors",
+    "reader_need": "Help someone decide whether Hush Line is the right place to make safe first contact or find a trusted recipient.",
+    "visual_role": "supporting_screenshot"
+  },
+  "matched_pull_requests": [],
+  "screen_key": "directory-index",
+  "template_name": "hushline-daily-desktop-template.html",
+  "theme": "light",
+  "title": "Directory Verified",
+  "topic_family": "directory",
+  "visual_selection_reason": "Selected screenshots only after choosing the Public sources and visitors editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+  "viewport": "desktop"
+}
