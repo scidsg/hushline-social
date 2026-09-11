@@ -1,0 +1,118 @@
+{
+  "date": "2026-09-11",
+  "post": {
+    "slot": "friday",
+    "planned_date": "2026-09-11",
+    "screenshot_file": "artvandelay/auth-artvandelay-settings-replies-desktop-light-fold.png",
+    "content_key": "auth-artvandelay-settings-replies",
+    "content_format": "feature_benefit",
+    "headline": "Use Markdown to separate the next steps",
+    "subtext": "Recipients can add short paragraphs, bullet points, or a link so sender directions are easier to scan.",
+    "image_alt_text": "Light-mode Hush Line social graphic titled “Use Markdown to separate the next steps” beside a desktop screenshot of Settings with Message Statuses selected. The Waiting section shows a Status Text field, a note that rich text using Markdown is supported, and an Update Reply Text button.",
+    "social": {
+      "bluesky": "Hush Line’s Message Statuses support Markdown. Recipients can arrange sender directions with short paragraphs, bullet points, bold words, or a link. Send a sample tip and check that each action is easy to spot.",
+      "linkedin": "A source should not have to hunt through a paragraph for the next step.\n\nHush Line’s Message Statuses support Markdown. Journalists, lawyers, educators, and other recipients can arrange the sender-facing note with short paragraphs, bullet points, bold words, or a link to published intake information. Clear formatting keeps separate actions from running together.\n\nCheck the result at the temporary address after a sample tip, then shorten or rearrange anything that is difficult to scan.",
+      "mastodon": "Important directions can disappear inside a dense paragraph. Hush Line’s Message Statuses support Markdown, giving recipient teams short paragraphs, bullet points, bold words, and links for sender-facing notes. Check the result after a sample tip, then adjust anything that is difficult to scan."
+    },
+    "rationale": "This uses the required Message Statuses screenshot and feature-benefit format for recipients and staff. The angle centers on visible Markdown support and concrete formatting choices, avoiding the archived themes of acknowledgement, reply timing, plain wording, and removing identifying details. The hook and closing action focus on scanning a formatted result.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "settings-replies",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "editorial_intent": {
+      "audience_scope": "recipient-shared",
+      "content_format": "feature_benefit",
+      "content_format_label": "Feature benefit",
+      "label": "Recipients and staff",
+      "reader_need": "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+      "visual_role": "supporting_screenshot"
+    },
+    "matched_pull_requests": [
+      {
+        "merged_at": "2026-07-14T05:14:25Z",
+        "number": 2340,
+        "title": "Prevent rapid mobile submits from duplicating chat replies"
+      },
+      {
+        "merged_at": "2026-07-08T23:09:05Z",
+        "number": 2329,
+        "title": "Allow replies to legacy chat-key recipients"
+      }
+    ],
+    "screen_key": "auth-artvandelay-settings-replies",
+    "template_name": "hushline-daily-desktop-template-2.html",
+    "theme": "light",
+    "title": "Settings Replies",
+    "topic_family": "message-statuses",
+    "visual_selection_reason": "Selected screenshots only after choosing the Recipients and staff editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+    "viewport": "desktop"
+  },
+  "summary": "A recipient-focused feature benefit showing how Markdown can organize sender directions.",
+  "critic": {
+    "blocked": false,
+    "criteria": [
+      {
+        "id": "topic_freshness",
+        "label": "Topic freshness",
+        "max_score": 2,
+        "rationale": "Topic family message-statuses appeared recently but not in the last two posts.",
+        "score": 1
+      },
+      {
+        "id": "hook_freshness",
+        "label": "Hook freshness",
+        "max_score": 2,
+        "rationale": "Opening hook is distinct from recent archive hooks.",
+        "score": 2
+      },
+      {
+        "id": "format_novelty",
+        "label": "Format novelty",
+        "max_score": 2,
+        "rationale": "Format feature_benefit is not overused in the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "audience_specificity",
+        "label": "Audience specificity",
+        "max_score": 2,
+        "rationale": "Copy contains 4 signal(s) for recipient-shared.",
+        "score": 2
+      },
+      {
+        "id": "concrete_reader_value",
+        "label": "Concrete reader value",
+        "max_score": 2,
+        "rationale": "Copy gives 2 concrete action/value signal(s).",
+        "score": 2
+      },
+      {
+        "id": "hushline_relevance",
+        "label": "Hush Line relevance",
+        "max_score": 2,
+        "rationale": "Copy is tied to Hush Line or a concrete Hush Line surface.",
+        "score": 2
+      },
+      {
+        "id": "cta_freshness",
+        "label": "CTA freshness",
+        "max_score": 2,
+        "rationale": "CTA pattern is fresh against the configured CTA cooldown.",
+        "score": 2
+      },
+      {
+        "id": "safety_compliance",
+        "label": "Safety and compliance",
+        "max_score": 2,
+        "rationale": "Copy avoids unsupported safety, anonymity, and recency claims.",
+        "score": 2
+      }
+    ],
+    "failed_criteria": [],
+    "max_score": 16,
+    "passed": true,
+    "rationale": "Topic freshness: Topic family message-statuses appeared recently but not in the last two posts. Hook freshness: Opening hook is distinct from recent archive hooks. Format novelty: Format feature_benefit is not overused in the recent archive. Audience specificity: Copy contains 4 signal(s) for recipient-shared. Concrete reader value: Copy gives 2 concrete action/value signal(s). Hush Line relevance: Copy is tied to Hush Line or a concrete Hush Line surface. CTA freshness: CTA pattern is fresh against the configured CTA cooldown. Safety and compliance: Copy avoids unsupported safety, anonymity, and recency claims.",
+    "score": 15,
+    "threshold": 12
+  }
+}

@@ -1,0 +1,25 @@
+Slot: friday
+Planned date: 2026-09-11
+Template: hushline-daily-desktop-template-2.html
+Screenshot: /Users/scidsg/hushline-website/src/assets/img/screenshots/current/artvandelay/auth-artvandelay-settings-replies-desktop-light-fold.png
+Content key: auth-artvandelay-settings-replies
+Headline: Use Markdown to separate the next steps
+Subtext: Recipients can add short paragraphs, bullet points, or a link so sender directions are easier to scan.
+
+Image alt text
+Light-mode Hush Line social graphic titled “Use Markdown to separate the next steps” beside a desktop screenshot of Settings with Message Statuses selected. The Waiting section shows a Status Text field, a note that rich text using Markdown is supported, and an Update Reply Text button.
+
+Social post copy
+
+LinkedIn (489/3000)
+A source should not have to hunt through a paragraph for the next step.
+
+Hush Line’s Message Statuses support Markdown. Journalists, lawyers, educators, and other recipients can arrange the sender-facing note with short paragraphs, bullet points, bold words, or a link to published intake information. Clear formatting keeps separate actions from running together.
+
+Check the result at the temporary address after a sample tip, then shorten or rearrange anything that is difficult to scan.
+
+Mastodon (295/500)
+Important directions can disappear inside a dense paragraph. Hush Line’s Message Statuses support Markdown, giving recipient teams short paragraphs, bullet points, bold words, and links for sender-facing notes. Check the result after a sample tip, then adjust anything that is difficult to scan.
+
+Bluesky (210/300)
+Hush Line’s Message Statuses support Markdown. Recipients can arrange sender directions with short paragraphs, bullet points, bold words, or a link. Send a sample tip and check that each action is easy to spot.
