@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-09-11",
+  "weekday": "friday",
+  "publish_mode": "text",
+  "source": "CBS News",
+  "title": "Look back: 9/11, Osama bin Laden, and a safe haven in Afghanistan",
+  "article_url": "https://www.cbsnews.com/video/look-back-911-osama-bin-laden-and-a-safe-haven-in-afghanistan/",
+  "article_published_at": "2026-09-11T10:30:07.000Z",
+  "relevance_score": 9,
+  "content_key": "weekly-news-cbs-news-look-back-9-11-osama-bin-laden-and-a-safe-haven-in-afghanistan",
+  "headline": "Whistleblower-related reporting from CBS News",
+  "subtext": "CBS News reports: Look back: 9/11, Osama bin Laden, and a safe haven in Afghanistan",
+  "social": {
+    "bluesky": "Look back — 9/11, Osama bin Laden, and a safe haven in Afghanistan.\n\nRead the article from CBS News\nhttps://www.cbsnews.com/video/look-back-911-osama-bin-laden-and-a-safe-haven-in-afghanistan/\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Look back — 9/11, Osama bin Laden, and a safe haven in Afghanistan.\n\nAfter terrorists attacked the United States on Sept. 11, 2001, America&#039;s attention turned fully to the group&#039;s leader, Osama bin Laden, and his Al Qaeda network, which had found protection in Afghanistan....\n\nRead the article from CBS News\nhttps://www.cbsnews.com/video/look-back-911-osama-bin-laden-and-a-safe-haven-in-afghanistan/\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Look back — 9/11, Osama bin Laden, and a safe haven in Afghanistan.\n\nRetaliation is why safer first contact matters.\n\nRead the article from CBS News\nhttps://www.cbsnews.com/video/look-back-911-osama-bin-laden-and-a-safe-haven-in-afghanistan/\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}

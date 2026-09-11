@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-09-11
+Publish mode: text
+Source: CBS News
+Article URL: https://www.cbsnews.com/video/look-back-911-osama-bin-laden-and-a-safe-haven-in-afghanistan/
+Content key: weekly-news-cbs-news-look-back-9-11-osama-bin-laden-and-a-safe-haven-in-afghanistan
+Headline: Whistleblower-related reporting from CBS News
+Subtext: CBS News reports: Look back: 9/11, Osama bin Laden, and a safe haven in Afghanistan
+
+Social post copy
+
+LinkedIn (507/3000)
+Look back — 9/11, Osama bin Laden, and a safe haven in Afghanistan.
+
+After terrorists attacked the United States on Sept. 11, 2001, America&#039;s attention turned fully to the group&#039;s leader, Osama bin Laden, and his Al Qaeda network, which had found protection in Afghanistan....
+
+Read the article from CBS News
+https://www.cbsnews.com/video/look-back-911-osama-bin-laden-and-a-safe-haven-in-afghanistan/
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (289/500)
+Look back — 9/11, Osama bin Laden, and a safe haven in Afghanistan.
+
+Retaliation is why safer first contact matters.
+
+Read the article from CBS News
+https://www.cbsnews.com/video/look-back-911-osama-bin-laden-and-a-safe-haven-in-afghanistan/
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (240/300)
+Look back — 9/11, Osama bin Laden, and a safe haven in Afghanistan.
+
+Read the article from CBS News
+https://www.cbsnews.com/video/look-back-911-osama-bin-laden-and-a-safe-haven-in-afghanistan/
+
+Sign up for Hush Line at https://hushline.app.
