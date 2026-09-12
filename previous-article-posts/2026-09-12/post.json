@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-09-12",
+  "weekday": "saturday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "US rapper Lil Durk found not guilty of murder-for-hire scheme",
+  "article_url": "https://www.theguardian.com/us-news/2026/sep/11/lil-durk-not-guilty-murder-for-hire-scheme",
+  "article_published_at": "2026-09-12T02:00:58.000Z",
+  "relevance_score": 9,
+  "content_key": "weekly-news-the-guardian-us-rapper-lil-durk-found-not-guilty-of-murder-for-hire-scheme",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: US rapper Lil Durk found not guilty of murder-for-hire scheme",
+  "social": {
+    "bluesky": "US rapper Lil Durk found not guilty of murder-for-hire scheme.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/sep/11/lil-durk-not-guilty-murder-for-hire-scheme\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "US rapper Lil Durk found not guilty of murder-for-hire scheme.\n\nProsecutors accused musician, born Durk Banks, of putting bounty on fellow rapper in retaliation for friend’s killing Chicago rapper Lil Durk has been acquitted of all charges in a murder-for-hire scheme, in which a...\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/sep/11/lil-durk-not-guilty-murder-for-hire-scheme\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "US rapper Lil Durk found not guilty of murder-for-hire scheme.\n\nRetaliation is why safer first contact matters.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/sep/11/lil-durk-not-guilty-murder-for-hire-scheme\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
