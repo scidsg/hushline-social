@@ -1,0 +1,107 @@
+{
+  "date": "2026-09-13",
+  "post": {
+    "slot": "sunday",
+    "planned_date": "2026-09-13",
+    "screenshot_file": "artvandelay/auth-artvandelay-settings-notifications-desktop-light-fold.png",
+    "content_key": "auth-artvandelay-settings-notifications",
+    "content_format": "iso_37002_principle",
+    "headline": "Check who gets tip email after a role change",
+    "subtext": "After a role change, a recipient team can revise email notifications, use the Hush Line inbox for incoming reports, and ask if encrypted tip contents belong in email.",
+    "image_alt_text": "Light-mode Hush Line social graphic with the headline \"Check who gets tip email after a role change.\" It shows Settings > Notifications with Tip Notifications turned on and three private recipient email addresses—editor, standards, and board—each labeled Enabled and PGP key configured. The image supports the principle that a whistleblowing process should be reviewed when staff responsibilities change.",
+    "social": {
+      "bluesky": "Staff turnover changes who should receive tip email. Revisit Notifications: confirm the current delivery role, use the Hush Line inbox when it covers the workflow, and send encrypted tip contents by email only when required. Make this an offboarding task.",
+      "linkedin": "A staffing change should trigger a check of Notifications.\n\nISO 37002 calls for whistleblowing systems to be maintained and improved. In practice, recipients and staff can open Settings > Notifications whenever responsibilities change.\n\nConfirm the current role for email notifications. Set the Hush Line inbox as the review location when that is enough. Send encrypted tip contents by email only when the role requires them. This keeps reports moving without mailing sensitive material to someone whose work has changed.\n\nMake this check part of offboarding, and finish it while the handoff details are still current.",
+      "mastodon": "A departing colleague changes where incoming tips should go. Open Notifications during the handoff. Confirm the current role for email notifications, use the Hush Line inbox when it is enough, and send encrypted tip contents by email only when required.\n\nThat is one way to maintain a reporting process as responsibilities change. Make the check part of offboarding."
+    },
+    "rationale": "Uses the required notifications screenshot to connect ISO 37002's maintenance principle to staff transitions. The angle is a settings review after role changes, distinct from earlier posts about address privacy, general notification setup, and primary or backup owners. It gives recipient teams a concrete offboarding action while naming email notifications, the Hush Line inbox, and encrypted tip contents.",
+    "source_pr_numbers": [],
+    "audience_scope": "recipient-shared",
+    "concept_key": "settings-notifications",
+    "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+    "editorial_intent": {
+      "audience_scope": "recipient-shared",
+      "content_format": "iso_37002_principle",
+      "content_format_label": "ISO 37002 principle",
+      "label": "Recipients and staff",
+      "reader_need": "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+      "visual_role": "supporting_screenshot"
+    },
+    "matched_pull_requests": [],
+    "screen_key": "/settings/notifications",
+    "template_name": "hushline-daily-desktop-template.html",
+    "theme": "light",
+    "title": "Settings Notifications",
+    "topic_family": "notifications",
+    "visual_selection_reason": "Selected screenshots only after choosing the Recipients and staff editorial intent. Cooldown fallback was used because no fully fresh screenshot candidates remained.",
+    "viewport": "desktop"
+  },
+  "summary": "One ISO 37002 principle post for recipients and staff about reviewing notification settings after a role change.",
+  "critic": {
+    "blocked": false,
+    "criteria": [
+      {
+        "id": "topic_freshness",
+        "label": "Topic freshness",
+        "max_score": 2,
+        "rationale": "Topic family notifications is fresh against the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "hook_freshness",
+        "label": "Hook freshness",
+        "max_score": 2,
+        "rationale": "Opening hook is distinct from recent archive hooks.",
+        "score": 2
+      },
+      {
+        "id": "format_novelty",
+        "label": "Format novelty",
+        "max_score": 2,
+        "rationale": "Format iso_37002_principle is not overused in the recent archive.",
+        "score": 2
+      },
+      {
+        "id": "audience_specificity",
+        "label": "Audience specificity",
+        "max_score": 2,
+        "rationale": "Copy contains 4 signal(s) for recipient-shared.",
+        "score": 2
+      },
+      {
+        "id": "concrete_reader_value",
+        "label": "Concrete reader value",
+        "max_score": 2,
+        "rationale": "Copy gives 3 concrete action/value signal(s).",
+        "score": 2
+      },
+      {
+        "id": "hushline_relevance",
+        "label": "Hush Line relevance",
+        "max_score": 2,
+        "rationale": "Copy is tied to Hush Line or a concrete Hush Line surface.",
+        "score": 2
+      },
+      {
+        "id": "cta_freshness",
+        "label": "CTA freshness",
+        "max_score": 2,
+        "rationale": "CTA pattern is fresh against the configured CTA cooldown.",
+        "score": 2
+      },
+      {
+        "id": "safety_compliance",
+        "label": "Safety and compliance",
+        "max_score": 2,
+        "rationale": "Copy avoids unsupported safety, anonymity, and recency claims.",
+        "score": 2
+      }
+    ],
+    "failed_criteria": [],
+    "max_score": 16,
+    "passed": true,
+    "rationale": "Topic freshness: Topic family notifications is fresh against the recent archive. Hook freshness: Opening hook is distinct from recent archive hooks. Format novelty: Format iso_37002_principle is not overused in the recent archive. Audience specificity: Copy contains 4 signal(s) for recipient-shared. Concrete reader value: Copy gives 3 concrete action/value signal(s). Hush Line relevance: Copy is tied to Hush Line or a concrete Hush Line surface. CTA freshness: CTA pattern is fresh against the configured CTA cooldown. Safety and compliance: Copy avoids unsupported safety, anonymity, and recency claims.",
+    "score": 16,
+    "threshold": 12
+  }
+}
