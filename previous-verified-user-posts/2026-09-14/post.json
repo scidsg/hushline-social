@@ -1,0 +1,22 @@
+{
+  "date": "2026-09-14",
+  "display_name": "Nik Altenberg, Santa Cruz Local",
+  "editorial_format_label": "From the directory",
+  "headline": "Nik Altenberg, Santa Cruz Local",
+  "image_alt_text": "A social card featuring verified Hush Line user Nik Altenberg, Santa Cruz Local, their bio, their tip line URL, and a QR code that links to the same URL.",
+  "opening_line": "From the verified Hush Line directory: Nik Altenberg, Santa Cruz Local.",
+  "planned_date": "2026-09-14",
+  "primary_username": "nikaltenberg",
+  "qr_code_file": "verified-user-qr.png",
+  "social": {
+    "bluesky": "From the verified Hush Line directory: Nik Altenberg, Santa Cruz Local.\n\nNik Altenberg is a bilingual reporter at Santa Cruz Local.\n\nOpen the profile: https://tips.hushline.app/to/nikaltenberg",
+    "linkedin": "From the verified Hush Line directory: Nik Altenberg, Santa Cruz Local.\n\nNik Altenberg is a bilingual reporter at Santa Cruz Local.\n\nOpen the profile: https://tips.hushline.app/to/nikaltenberg.",
+    "mastodon": "From the verified Hush Line directory: Nik Altenberg, Santa Cruz Local.\n\nNik Altenberg is a bilingual reporter at Santa Cruz Local.\n\nOpen the profile: https://tips.hushline.app/to/nikaltenberg."
+  },
+  "slot": "verified-user-weekly",
+  "source": "https://tips.hushline.app/directory/users.json",
+  "subtext": "Bilingual reporter at Santa Cruz Local. Periodista bilingüe para Santa Cruz Local.",
+  "user_link": "https://tips.hushline.app/to/nikaltenberg",
+  "user_url": "https://tips.hushline.app/to/nikaltenberg",
+  "verified_user_format": "from_the_directory"
+}

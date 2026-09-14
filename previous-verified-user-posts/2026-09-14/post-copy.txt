@@ -1,0 +1,36 @@
+Slot: verified-user-weekly
+Planned date: 2026-09-14
+Verified user: @nikaltenberg
+User link: https://tips.hushline.app/to/nikaltenberg
+Source: https://tips.hushline.app/directory/users.json
+Editorial format: From the directory (from_the_directory)
+Opening line: From the verified Hush Line directory: Nik Altenberg, Santa Cruz Local.
+Headline: Nik Altenberg, Santa Cruz Local
+Subtext: Bilingual reporter at Santa Cruz Local. Periodista bilingüe para Santa Cruz Local.
+
+Image alt text
+A social card featuring verified Hush Line user Nik Altenberg, Santa Cruz Local, their bio, their tip line URL, and a QR code that links to the same URL.
+
+Social post copy
+
+LinkedIn (193/3000)
+From the verified Hush Line directory: Nik Altenberg, Santa Cruz Local.
+
+Nik Altenberg is a bilingual reporter at Santa Cruz Local.
+
+Open the profile: https://tips.hushline.app/to/nikaltenberg.
+
+Mastodon (193/500)
+From the verified Hush Line directory: Nik Altenberg, Santa Cruz Local.
+
+Nik Altenberg is a bilingual reporter at Santa Cruz Local.
+
+Open the profile: https://tips.hushline.app/to/nikaltenberg.
+
+Bluesky (192/300)
+From the verified Hush Line directory: Nik Altenberg, Santa Cruz Local.
+
+Nik Altenberg is a bilingual reporter at Santa Cruz Local.
+
+Open the profile: https://tips.hushline.app/to/nikaltenberg
+
