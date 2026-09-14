@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-09-14",
+  "weekday": "monday",
+  "publish_mode": "text",
+  "source": "Al Jazeera",
+  "title": "Ammonia gas leak in Jordan’s Aqaba industrial area injures 11 people",
+  "article_url": "https://www.aljazeera.com/news/2026/9/14/ammonia-gas-leak-in-jordans-aqaba-industrial-area-injures-11-people?traffic_source=rss",
+  "article_published_at": "2026-09-14T10:46:53.000Z",
+  "relevance_score": 8,
+  "content_key": "weekly-news-al-jazeera-ammonia-gas-leak-in-jordan-s-aqaba-industrial-area-injures-11-people",
+  "headline": "Whistleblower-related reporting from Al Jazeera",
+  "subtext": "Al Jazeera reports: Ammonia gas leak in Jordan’s Aqaba industrial area injures 11 people",
+  "social": {
+    "bluesky": "Ammonia gas leak in Jordan’s Aqaba industrial area injures 11 people.\n\nRead the article from Al Jazeera\nhttps://www.aljazeera.com/news/2026/9/14/ammonia-gas-leak-in-jordans-aqaba-industrial-area-injures-11-people?traffic_source=rss\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Ammonia gas leak in Jordan’s Aqaba industrial area injures 11 people.\n\nState news channel, Al-Mamlaka, says the southern port of Aqaba was evacuated as a precaution.\n\nRead the article from Al Jazeera\nhttps://www.aljazeera.com/news/2026/9/14/ammonia-gas-leak-in-jordans-aqaba-industrial-area-injures-11-people?traffic_source=rss\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Ammonia gas leak in Jordan’s Aqaba industrial area injures 11 people.\n\nSource protection starts before publication.\n\nRead the article from Al Jazeera\nhttps://www.aljazeera.com/news/2026/9/14/ammonia-gas-leak-in-jordans-aqaba-industrial-area-injures-11-people?traffic_source=rss\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}

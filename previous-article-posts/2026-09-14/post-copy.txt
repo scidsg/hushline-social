@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-09-14
+Publish mode: text
+Source: Al Jazeera
+Article URL: https://www.aljazeera.com/news/2026/9/14/ammonia-gas-leak-in-jordans-aqaba-industrial-area-injures-11-people?traffic_source=rss
+Content key: weekly-news-al-jazeera-ammonia-gas-leak-in-jordan-s-aqaba-industrial-area-injures-11-people
+Headline: Whistleblower-related reporting from Al Jazeera
+Subtext: Al Jazeera reports: Ammonia gas leak in Jordan’s Aqaba industrial area injures 11 people
+
+Social post copy
+
+LinkedIn (423/3000)
+Ammonia gas leak in Jordan’s Aqaba industrial area injures 11 people.
+
+State news channel, Al-Mamlaka, says the southern port of Aqaba was evacuated as a precaution.
+
+Read the article from Al Jazeera
+https://www.aljazeera.com/news/2026/9/14/ammonia-gas-leak-in-jordans-aqaba-industrial-area-injures-11-people?traffic_source=rss
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (325/500)
+Ammonia gas leak in Jordan’s Aqaba industrial area injures 11 people.
+
+Source protection starts before publication.
+
+Read the article from Al Jazeera
+https://www.aljazeera.com/news/2026/9/14/ammonia-gas-leak-in-jordans-aqaba-industrial-area-injures-11-people?traffic_source=rss
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (279/300)
+Ammonia gas leak in Jordan’s Aqaba industrial area injures 11 people.
+
+Read the article from Al Jazeera
+https://www.aljazeera.com/news/2026/9/14/ammonia-gas-leak-in-jordans-aqaba-industrial-area-injures-11-people?traffic_source=rss
+
+Sign up for Hush Line at https://hushline.app.
