@@ -1,0 +1,33 @@
+Slot: monday
+Planned date: 2026-09-14
+Template: hushline-daily-desktop-template-2.html
+Screenshot: /Users/scidsg/hushline-website/src/assets/img/screenshots/current/artvandelay/auth-artvandelay-tools-email-validation-status-valid-desktop-light-fold.png
+Content key: auth-artvandelay-tools-email-validation-status-valid
+Headline: Validate headers without copying the email body
+Subtext: Recipients can provide Raw Email Headers to Email Validation while the message text and files stay put.
+
+Image alt text
+Light-mode Hush Line social graphic titled “Validate headers without copying the email body.” A desktop Tools screenshot shows Email Validation with a Raw Email Headers field, Validate Headers, Download Report, and a Validation Summary saying the email appears to originate from the stated sender. The graphic contrasts the myth that the whole email is required with the reality that the tool uses its headers.
+
+Social post copy
+
+LinkedIn (572/3000)
+Myth: Authentication testing requires the entire email.
+
+Reality: Hush Line’s Email Validation works with Raw Email Headers. It inspects DKIM, SPF, and DMARC, then shows a Validation Summary. The body and attachments are not part of that input.
+
+For newsrooms, law offices, schools, and nonprofits, this sets a useful boundary around the task: supply what the tool requests and no more. Headers may reveal addresses and delivery paths, so protect that data too.
+
+The next time origin is uncertain, leave the contents where they are and bring just the headers to Hush Line.
+
+Mastodon (368/500)
+Myth: Email authentication needs the whole body and every attachment.
+
+Reality: Hush Line Email Validation works with Raw Email Headers. It inspects DKIM, SPF, and DMARC, then presents a Validation Summary. Recipient teams can leave the contents where they are.
+
+Headers may expose addresses and delivery paths. Protect that data, and submit just the requested fields.
+
+Bluesky (276/300)
+Myth: Email authentication needs the body and attachments.
+
+Reality: Hush Line Email Validation works with Raw Email Headers to inspect DKIM, SPF, and DMARC. Recipient teams can leave the contents in place. Headers may expose addresses and delivery paths, so protect them too.
