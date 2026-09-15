@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-09-15",
+  "weekday": "tuesday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "States given clearance for mail-in voting as US supreme court thwarts Trump | First Thing",
+  "article_url": "https://www.theguardian.com/us-news/2026/sep/15/first-thing-mail-in-voting-us-supreme-court-trump",
+  "article_published_at": "2026-09-15T10:38:11.000Z",
+  "relevance_score": 25,
+  "content_key": "weekly-news-the-guardian-states-given-clearance-for-mail-in-voting-as-us-supreme-court-thwarts-t",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: States given clearance for mail-in voting as US supreme court thwarts Trump | First Thing",
+  "social": {
+    "bluesky": "States given clearance for mail-in voting as US supreme court thwarts Trump | First Thing.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/sep/15/first-thing-mail-in-voting-us-supreme-court-trump\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "States given clearance for mail-in voting as US supreme court thwarts Trump | First Thing.\n\nCivil rights groups have praised verdict on administration’s last-ditch attempt to change midterm voting processes. Plus — all you need to know about last night’s Emmys Don’t already get First Thing in your inbox?...\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/sep/15/first-thing-mail-in-voting-us-supreme-court-trump\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "States given clearance for mail-in voting as US supreme court thwarts Trump | First Thing.\n\nPolicy changes decide whether people can report harm safely.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/sep/15/first-thing-mail-in-voting-us-supreme-court-trump\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
