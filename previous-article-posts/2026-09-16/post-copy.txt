@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-09-16
+Publish mode: text
+Source: ABC News
+Article URL: https://abcnews.com/Politics/dhs-agents-allegedly-directed-misrepresent-access-state-voter/story?id=136462724
+Content key: weekly-news-abc-news-dhs-agents-allegedly-told-to-misrepresent-themselves-to-access-state-voter-
+Headline: Whistleblower-related reporting from ABC News
+Subtext: ABC News reports: DHS agents allegedly told to 'misrepresent' themselves to access state voter rolls
+
+Social post copy
+
+LinkedIn (467/3000)
+DHS agents allegedly told to 'misrepresent' themselves to access state voter rolls.
+
+A whistleblower claims DHS has directed agents to "misrepresent" themselves and "violate state laws" in a voter probe, Democratic lawmakers say.
+
+Read the article from ABC News
+https://abcnews.com/Politics/dhs-agents-allegedly-directed-misrepresent-access-state-voter/story?id=136462724
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (340/500)
+DHS agents allegedly told to 'misrepresent' themselves to access state voter rolls.
+
+Accountability reporting needs a safe enough way to make contact.
+
+Read the article from ABC News
+https://abcnews.com/Politics/dhs-agents-allegedly-directed-misrepresent-access-state-voter/story?id=136462724
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (273/300)
+DHS agents allegedly told to 'misrepresent' themselves to access state voter rolls.
+
+Read the article from ABC News
+https://abcnews.com/Politics/dhs-agents-allegedly-directed-misrepresent-access-state-voter/story?id=136462724
+
+Sign up for Hush Line at https://hushline.app.

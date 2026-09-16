@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-09-16",
+  "weekday": "wednesday",
+  "publish_mode": "text",
+  "source": "ABC News",
+  "title": "DHS agents allegedly told to 'misrepresent' themselves to access state voter rolls",
+  "article_url": "https://abcnews.com/Politics/dhs-agents-allegedly-directed-misrepresent-access-state-voter/story?id=136462724",
+  "article_published_at": "2026-09-15T19:22:13.000Z",
+  "relevance_score": 14,
+  "content_key": "weekly-news-abc-news-dhs-agents-allegedly-told-to-misrepresent-themselves-to-access-state-voter-",
+  "headline": "Whistleblower-related reporting from ABC News",
+  "subtext": "ABC News reports: DHS agents allegedly told to 'misrepresent' themselves to access state voter rolls",
+  "social": {
+    "bluesky": "DHS agents allegedly told to 'misrepresent' themselves to access state voter rolls.\n\nRead the article from ABC News\nhttps://abcnews.com/Politics/dhs-agents-allegedly-directed-misrepresent-access-state-voter/story?id=136462724\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "DHS agents allegedly told to 'misrepresent' themselves to access state voter rolls.\n\nA whistleblower claims DHS has directed agents to \"misrepresent\" themselves and \"violate state laws\" in a voter probe, Democratic lawmakers say.\n\nRead the article from ABC News\nhttps://abcnews.com/Politics/dhs-agents-allegedly-directed-misrepresent-access-state-voter/story?id=136462724\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "DHS agents allegedly told to 'misrepresent' themselves to access state voter rolls.\n\nAccountability reporting needs a safe enough way to make contact.\n\nRead the article from ABC News\nhttps://abcnews.com/Politics/dhs-agents-allegedly-directed-misrepresent-access-state-voter/story?id=136462724\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
