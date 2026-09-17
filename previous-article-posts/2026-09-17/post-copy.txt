@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-09-17
+Publish mode: text
+Source: The Guardian
+Article URL: https://www.theguardian.com/us-news/2026/sep/16/los-angeles-homelessness-nonprofit-arrests
+Content key: weekly-news-the-guardian-la-homelessness-non-profit-workers-arrested-over-alleged-corruption-and
+Headline: Whistleblower-related reporting from The Guardian
+Subtext: The Guardian reports: LA homelessness non-profit workers arrested over alleged corruption and bribes
+
+Social post copy
+
+LinkedIn (517/3000)
+LA homelessness non-profit workers arrested over alleged corruption and bribes.
+
+Pair accused of misappropriating millions in taxpayer dollars as Trump officials target alleged fraud in blue states Federal law enforcement officers have arrested two employees of California-based homelessness...
+
+Read the article from The Guardian
+https://www.theguardian.com/us-news/2026/sep/16/los-angeles-homelessness-nonprofit-arrests
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (321/500)
+LA homelessness non-profit workers arrested over alleged corruption and bribes.
+
+Accountability reporting needs a safe enough way to make contact.
+
+Read the article from The Guardian
+https://www.theguardian.com/us-news/2026/sep/16/los-angeles-homelessness-nonprofit-arrests
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (254/300)
+LA homelessness non-profit workers arrested over alleged corruption and bribes.
+
+Read the article from The Guardian
+https://www.theguardian.com/us-news/2026/sep/16/los-angeles-homelessness-nonprofit-arrests
+
+Sign up for Hush Line at https://hushline.app.

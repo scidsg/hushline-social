@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-09-17",
+  "weekday": "thursday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "LA homelessness non-profit workers arrested over alleged corruption and bribes",
+  "article_url": "https://www.theguardian.com/us-news/2026/sep/16/los-angeles-homelessness-nonprofit-arrests",
+  "article_published_at": "2026-09-16T23:34:09.000Z",
+  "relevance_score": 10,
+  "content_key": "weekly-news-the-guardian-la-homelessness-non-profit-workers-arrested-over-alleged-corruption-and",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: LA homelessness non-profit workers arrested over alleged corruption and bribes",
+  "social": {
+    "bluesky": "LA homelessness non-profit workers arrested over alleged corruption and bribes.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/sep/16/los-angeles-homelessness-nonprofit-arrests\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "LA homelessness non-profit workers arrested over alleged corruption and bribes.\n\nPair accused of misappropriating millions in taxpayer dollars as Trump officials target alleged fraud in blue states Federal law enforcement officers have arrested two employees of California-based homelessness...\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/sep/16/los-angeles-homelessness-nonprofit-arrests\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "LA homelessness non-profit workers arrested over alleged corruption and bribes.\n\nAccountability reporting needs a safe enough way to make contact.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/sep/16/los-angeles-homelessness-nonprofit-arrests\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
