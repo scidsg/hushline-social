@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-09-18
+Publish mode: text
+Source: The New York Times
+Article URL: https://www.nytimes.com/2026/09/17/us/politics/virginia-attorney-general-voter-fraud.html
+Content key: weekly-news-the-new-york-times-virginia-attorney-general-d-h-s-likely-broke-state-law-in-voter-f
+Headline: Whistleblower-related reporting from The New York Times
+Subtext: The New York Times reports: Virginia Attorney General: D.H.S. Likely Broke State Law in Voter Fraud Investigation
+
+Social post copy
+
+LinkedIn (527/3000)
+Virginia Attorney General — D.H.S. Likely Broke State Law in Voter Fraud Investigation.
+
+The department has pulled hundreds of agents from their regular duties to find noncitizens on the voter rolls, despite decades of evidence that widespread voter fraud is exceptionally rare in the United States.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/09/17/us/politics/virginia-attorney-general-voter-fraud.html
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (341/500)
+Virginia Attorney General — D.H.S. Likely Broke State Law in Voter Fraud Investigation.
+
+Oversight depends on people being able to bring evidence forward safely.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/09/17/us/politics/virginia-attorney-general-voter-fraud.html
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (267/300)
+Virginia Attorney General — D.H.S. Likely Broke State Law in Voter Fraud Investigation.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/09/17/us/politics/virginia-attorney-general-voter-fraud.html
+
+Sign up for Hush Line at https://hushline.app.
