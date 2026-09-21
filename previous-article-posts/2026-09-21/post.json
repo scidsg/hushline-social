@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-09-21",
+  "weekday": "monday",
+  "publish_mode": "text",
+  "source": "Al Jazeera",
+  "title": "Iran’s military says US preparing to resume strikes",
+  "article_url": "https://www.aljazeera.com/news/2026/9/21/irans-military-says-us-preparing-to-resume-strikes?traffic_source=rss",
+  "article_published_at": "2026-09-21T05:21:41.000Z",
+  "relevance_score": 9,
+  "content_key": "weekly-news-al-jazeera-iran-s-military-says-us-preparing-to-resume-strikes",
+  "headline": "Whistleblower-related reporting from Al Jazeera",
+  "subtext": "Al Jazeera reports: Iran’s military says US preparing to resume strikes",
+  "social": {
+    "bluesky": "Iran’s military says US preparing to resume strikes.\n\nRead the article from Al Jazeera\nhttps://www.aljazeera.com/news/2026/9/21/irans-military-says-us-preparing-to-resume-strikes?traffic_source=rss\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Iran’s military says US preparing to resume strikes.\n\nTehran threatens retaliation as Trump weighs military action while Qatar pushes to revive talks.\n\nRead the article from Al Jazeera\nhttps://www.aljazeera.com/news/2026/9/21/irans-military-says-us-preparing-to-resume-strikes?traffic_source=rss\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Iran’s military says US preparing to resume strikes.\n\nRetaliation is why safer first contact matters.\n\nRead the article from Al Jazeera\nhttps://www.aljazeera.com/news/2026/9/21/irans-military-says-us-preparing-to-resume-strikes?traffic_source=rss\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}

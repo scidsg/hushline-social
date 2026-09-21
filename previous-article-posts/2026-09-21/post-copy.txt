@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-09-21
+Publish mode: text
+Source: Al Jazeera
+Article URL: https://www.aljazeera.com/news/2026/9/21/irans-military-says-us-preparing-to-resume-strikes?traffic_source=rss
+Content key: weekly-news-al-jazeera-iran-s-military-says-us-preparing-to-resume-strikes
+Headline: Whistleblower-related reporting from Al Jazeera
+Subtext: Al Jazeera reports: Iran’s military says US preparing to resume strikes
+
+Social post copy
+
+LinkedIn (391/3000)
+Iran’s military says US preparing to resume strikes.
+
+Tehran threatens retaliation as Trump weighs military action while Qatar pushes to revive talks.
+
+Read the article from Al Jazeera
+https://www.aljazeera.com/news/2026/9/21/irans-military-says-us-preparing-to-resume-strikes?traffic_source=rss
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (294/500)
+Iran’s military says US preparing to resume strikes.
+
+Retaliation is why safer first contact matters.
+
+Read the article from Al Jazeera
+https://www.aljazeera.com/news/2026/9/21/irans-military-says-us-preparing-to-resume-strikes?traffic_source=rss
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (245/300)
+Iran’s military says US preparing to resume strikes.
+
+Read the article from Al Jazeera
+https://www.aljazeera.com/news/2026/9/21/irans-military-says-us-preparing-to-resume-strikes?traffic_source=rss
+
+Sign up for Hush Line at https://hushline.app.
