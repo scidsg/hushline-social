@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-09-22
+Publish mode: text
+Source: The Guardian
+Article URL: https://www.theguardian.com/us-news/2026/sep/22/first-thing-news-outlets-suspend-coverage-trump-media-access-row
+Content key: weekly-news-the-guardian-first-thing-news-outlets-suspend-coverage-of-trump-in-escalating-media-
+Headline: Whistleblower-related reporting from The Guardian
+Subtext: The Guardian reports: First Thing: News outlets suspend coverage of Trump in escalating media access row
+
+Social post copy
+
+LinkedIn (550/3000)
+First Thing — News outlets suspend coverage of Trump in escalating media access row.
+
+President’s decision to ban three news organisations from White House prompts backlash. Plus, a new resource to help trace the history of enslaved people in the 19th century Good morning. The row over media access to...
+
+Read the article from The Guardian
+https://www.theguardian.com/us-news/2026/sep/22/first-thing-news-outlets-suspend-coverage-trump-media-access-row
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (340/500)
+First Thing — News outlets suspend coverage of Trump in escalating media access row.
+
+Wins matter when reporting leads to protection or repair.
+
+Read the article from The Guardian
+https://www.theguardian.com/us-news/2026/sep/22/first-thing-news-outlets-suspend-coverage-trump-media-access-row
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (281/300)
+First Thing — News outlets suspend coverage of Trump in escalating media access row.
+
+Read the article from The Guardian
+https://www.theguardian.com/us-news/2026/sep/22/first-thing-news-outlets-suspend-coverage-trump-media-access-row
+
+Sign up for Hush Line at https://hushline.app.

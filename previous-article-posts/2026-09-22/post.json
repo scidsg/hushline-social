@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-09-22",
+  "weekday": "tuesday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "First Thing: News outlets suspend coverage of Trump in escalating media access row",
+  "article_url": "https://www.theguardian.com/us-news/2026/sep/22/first-thing-news-outlets-suspend-coverage-trump-media-access-row",
+  "article_published_at": "2026-09-22T11:20:05.000Z",
+  "relevance_score": 14,
+  "content_key": "weekly-news-the-guardian-first-thing-news-outlets-suspend-coverage-of-trump-in-escalating-media-",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: First Thing: News outlets suspend coverage of Trump in escalating media access row",
+  "social": {
+    "bluesky": "First Thing — News outlets suspend coverage of Trump in escalating media access row.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/sep/22/first-thing-news-outlets-suspend-coverage-trump-media-access-row\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "First Thing — News outlets suspend coverage of Trump in escalating media access row.\n\nPresident’s decision to ban three news organisations from White House prompts backlash. Plus, a new resource to help trace the history of enslaved people in the 19th century Good morning. The row over media access to...\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/sep/22/first-thing-news-outlets-suspend-coverage-trump-media-access-row\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "First Thing — News outlets suspend coverage of Trump in escalating media access row.\n\nWins matter when reporting leads to protection or repair.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/sep/22/first-thing-news-outlets-suspend-coverage-trump-media-access-row\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
