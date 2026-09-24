@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-09-24",
+  "weekday": "thursday",
+  "publish_mode": "text",
+  "source": "Al Jazeera",
+  "title": "Why is Iran threatening regional airports, and what could be the impact?",
+  "article_url": "https://www.aljazeera.com/news/2026/9/24/why-is-iran-threatening-regional-airports-and-what-could-be-the-impact?traffic_source=rss",
+  "article_published_at": "2026-09-24T11:10:42.000Z",
+  "relevance_score": 9,
+  "content_key": "weekly-news-al-jazeera-why-is-iran-threatening-regional-airports-and-what-could-be-the-impact",
+  "headline": "Whistleblower-related reporting from Al Jazeera",
+  "subtext": "Al Jazeera reports: Why is Iran threatening regional airports, and what could be the impact?",
+  "social": {
+    "bluesky": "Why is Iran threatening regional airports, and what could be the impact?\n\nRead the article from Al Jazeera\nhttps://www.aljazeera.com/news/2026/9/24/why-is-iran-threatening-regional-airports-and-what-could-be-the-impact?traffic_source=rss\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Why is Iran threatening regional airports, and what could be the impact?\n\nTehran hints retaliation as Georgia and Azerbaijan suspend Iranian flights amid mounting US sanctions on airlines.\n\nRead the article from Al Jazeera\nhttps://www.aljazeera.com/news/2026/9/24/why-is-iran-threatening-regional-airports-and-what-could-be-the-impact?traffic_source=rss\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Why is Iran threatening regional airports, and what could be the impact?\n\nRetaliation is why safer first contact matters.\n\nRead the article from Al Jazeera\nhttps://www.aljazeera.com/news/2026/9/24/why-is-iran-threatening-regional-airports-and-what-could-be-the-impact?traffic_source=rss\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}

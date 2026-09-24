@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-09-24
+Publish mode: text
+Source: Al Jazeera
+Article URL: https://www.aljazeera.com/news/2026/9/24/why-is-iran-threatening-regional-airports-and-what-could-be-the-impact?traffic_source=rss
+Content key: weekly-news-al-jazeera-why-is-iran-threatening-regional-airports-and-what-could-be-the-impact
+Headline: Whistleblower-related reporting from Al Jazeera
+Subtext: Al Jazeera reports: Why is Iran threatening regional airports, and what could be the impact?
+
+Social post copy
+
+LinkedIn (449/3000)
+Why is Iran threatening regional airports, and what could be the impact?
+
+Tehran hints retaliation as Georgia and Azerbaijan suspend Iranian flights amid mounting US sanctions on airlines.
+
+Read the article from Al Jazeera
+https://www.aljazeera.com/news/2026/9/24/why-is-iran-threatening-regional-airports-and-what-could-be-the-impact?traffic_source=rss
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (334/500)
+Why is Iran threatening regional airports, and what could be the impact?
+
+Retaliation is why safer first contact matters.
+
+Read the article from Al Jazeera
+https://www.aljazeera.com/news/2026/9/24/why-is-iran-threatening-regional-airports-and-what-could-be-the-impact?traffic_source=rss
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (285/300)
+Why is Iran threatening regional airports, and what could be the impact?
+
+Read the article from Al Jazeera
+https://www.aljazeera.com/news/2026/9/24/why-is-iran-threatening-regional-airports-and-what-could-be-the-impact?traffic_source=rss
+
+Sign up for Hush Line at https://hushline.app.
