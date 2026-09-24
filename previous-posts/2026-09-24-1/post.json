@@ -1,0 +1,16 @@
+{
+  "slot": "product-release",
+  "planned_date": "2026-09-24",
+  "archive_key": "2026-09-24-1",
+  "publish_mode": "text",
+  "content_key": "v0.7.25-hybrid-post-quantum-openpgp",
+  "headline": "Hybrid post-quantum OpenPGP support is here",
+  "subtext": "Hush Line v0.7.25 supports tested ML-KEM-768+X25519 recipient keys.",
+  "social": {
+    "linkedin": "Sensitive disclosures can need protection for years. The encryption we use today has to account for tomorrow’s threats.\n\nHush Line v0.7.25 adds hybrid post-quantum OpenPGP recipient support, combining ML-KEM-768 with X25519 for supported recipient keys.\n\nWe verified three RFC 9980 key profiles across browser-side submission encryption and server-side encryption, with successful decryption between our JavaScript and Sequoia implementations. Our tests check that the hybrid algorithm was actually used, so a silent fallback to classical encryption cannot count as success.\n\nThis support applies to the tested OpenPGP recipient profiles. In-app chat remains classical, and existing classical recipient keys are not automatically upgraded.\n\nReview the supported keys and compatibility limits before changing your encryption setup:\nhttps://github.com/scidsg/hushline/blob/v0.7.25/docs/POST-QUANTUM-OPENPGP.md\n\nGive your sources a safer way to reach you. Create your Hush Line at https://hushline.app."
+  },
+  "source_pr_numbers": [
+    2364
+  ],
+  "rationale": "User-requested release announcement grounded in merged PR 2364, the v0.7.25 release, compatibility report, and browser/Python interoperability tests. Claims are limited to tested recipient profiles; no hosted end-to-end mail-client validation or post-quantum chat claim."
+}
