@@ -1,0 +1,41 @@
+Slot: thursday
+Planned date: 2026-09-24
+Template: hushline-daily-mobile-template.html
+Screenshot: /Users/hushline-agent/hushline-website/src/assets/img/screenshots/current/newman/auth-newman-conversation-thread-mobile-light-fold.png
+Content key: auth-newman-conversation-thread
+Headline: Separate statements from open questions
+Subtext: Before replying, recipients and staff can reread the conversation, list what the source has stated, and choose the one fact or document needed next.
+
+Image alt text
+Social graphic titled “Separate statements from open questions” beside a light-mode mobile screenshot of a Hush Line conversation with the demo account Art Vandelay. The thread shows dated messages about supporting documentation, a reply field, a Send button, and an end-to-end encrypted indicator. The footer says “Sign up at hushline.app!”
+
+Social post copy
+
+LinkedIn (692/3000)
+A sensitive thread can mix what a source has stated, what a recipient has concluded, and what still needs checking.
+
+Before a recipient or staff member replies in Hush Line:
+
+1. Read the full conversation.
+2. List what the source has stated. Do not treat it as verified unless your team has checked it.
+3. Mark the questions that remain open.
+4. Decide which one fact or document would help with the next review.
+5. Write a focused request, then remove anything you do not need the source to share.
+
+This keeps the next reply tied to the conversation without asking for extra sensitive details.
+
+Add this five-step check to the reply instructions for everyone who shares your Hush Line inbox.
+
+Mastodon (395/500)
+A sensitive thread can mix what a source has stated with conclusions and unanswered questions.
+
+Before replying in Hush Line, recipients and staff can:
+1. Read the full conversation.
+2. List the source's statements without treating them as verified.
+3. Note what remains open.
+4. Ask for the one fact or document needed next.
+
+Add this check to your team's reply routine before the next message.
+
+Bluesky (241/300)
+Before replying in a Hush Line conversation, separate what the source has stated from what your team has verified. Note the open questions, then ask for the one fact or document needed next. Make this check part of your shared inbox routine.

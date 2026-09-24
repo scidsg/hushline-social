@@ -1,0 +1,36 @@
+{
+  "slot": "thursday",
+  "planned_date": "2026-09-24",
+  "screenshot_file": "newman/auth-newman-conversation-thread-mobile-light-fold.png",
+  "content_key": "auth-newman-conversation-thread",
+  "content_format": "recipient_playbook",
+  "headline": "Separate statements from open questions",
+  "subtext": "Before replying, recipients and staff can reread the conversation, list what the source has stated, and choose the one fact or document needed next.",
+  "image_alt_text": "Social graphic titled “Separate statements from open questions” beside a light-mode mobile screenshot of a Hush Line conversation with the demo account Art Vandelay. The thread shows dated messages about supporting documentation, a reply field, a Send button, and an end-to-end encrypted indicator. The footer says “Sign up at hushline.app!”",
+  "social": {
+    "bluesky": "Before replying in a Hush Line conversation, separate what the source has stated from what your team has verified. Note the open questions, then ask for the one fact or document needed next. Make this check part of your shared inbox routine.",
+    "linkedin": "A sensitive thread can mix what a source has stated, what a recipient has concluded, and what still needs checking.\n\nBefore a recipient or staff member replies in Hush Line:\n\n1. Read the full conversation.\n2. List what the source has stated. Do not treat it as verified unless your team has checked it.\n3. Mark the questions that remain open.\n4. Decide which one fact or document would help with the next review.\n5. Write a focused request, then remove anything you do not need the source to share.\n\nThis keeps the next reply tied to the conversation without asking for extra sensitive details.\n\nAdd this five-step check to the reply instructions for everyone who shares your Hush Line inbox.",
+    "mastodon": "A sensitive thread can mix what a source has stated with conclusions and unanswered questions.\n\nBefore replying in Hush Line, recipients and staff can:\n1. Read the full conversation.\n2. List the source's statements without treating them as verified.\n3. Note what remains open.\n4. Ask for the one fact or document needed next.\n\nAdd this check to your team's reply routine before the next message."
+  },
+  "rationale": "The Newman mobile conversation is the only candidate without a prior exact screenshot or content-key match. The playbook uses the thread as support for a fresh review habit: distinguish a source's statements from verified information, identify open questions, and request only what is needed next. This differs from the earlier conversation-thread post about composing and sending a reply from the same screen.",
+  "source_pr_numbers": [],
+  "audience_scope": "recipient-shared",
+  "concept_key": "conversation-thread",
+  "copy_brief": "Write for recipients and staff using Hush Line day to day, not for platform admins.",
+  "editorial_intent": {
+    "audience_scope": "recipient-shared",
+    "content_format": "recipient_playbook",
+    "content_format_label": "Recipient playbook",
+    "label": "Recipients and staff",
+    "reader_need": "Help a recipient or staff member improve a repeatable sensitive-intake workflow.",
+    "visual_role": "supporting_screenshot"
+  },
+  "matched_pull_requests": [],
+  "screen_key": "auth-newman-conversation-thread",
+  "template_name": "hushline-daily-mobile-template.html",
+  "theme": "light",
+  "title": "Conversation Thread",
+  "topic_family": "conversation-thread",
+  "visual_selection_reason": "Selected screenshots only after choosing the Recipients and staff editorial intent.",
+  "viewport": "mobile"
+}
