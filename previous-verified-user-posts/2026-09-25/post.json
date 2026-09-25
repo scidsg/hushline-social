@@ -1,0 +1,22 @@
+{
+  "date": "2026-09-25",
+  "display_name": "Josh Universe",
+  "editorial_format_label": "Before you contact them",
+  "headline": "Josh Universe",
+  "image_alt_text": "A social card featuring verified Hush Line user Josh Universe, their bio, their tip line URL, and a QR code that links to the same URL.",
+  "opening_line": "Before you contact Josh:",
+  "planned_date": "2026-09-25",
+  "primary_username": "josh",
+  "qr_code_file": "verified-user-qr.png",
+  "social": {
+    "bluesky": "Before you contact Josh:\n\nFounder - International Biohacking Community, Astralife. CEO - Astrochain. Owner of Science.Social & Moderators.social social media networks. This is an anonymous…\n\nUse the verified URL when you are ready to reach out: https://tips.hushline.app/to/josh",
+    "linkedin": "Before you contact Josh:\n\nFounder - International Biohacking Community, Astralife. CEO - Astrochain. Owner of Science.Social & Moderators.social social media networks. This is an anonymous tip-line for whistleblowers, reports, security, etc. All messages are encrypted.\n\nUse the verified URL when you are ready to reach out: https://tips.hushline.app/to/josh.",
+    "mastodon": "Before you contact Josh:\n\nFounder - International Biohacking Community, Astralife. CEO - Astrochain. Owner of Science.Social & Moderators.social social media networks. This is an anonymous tip-line for whistleblowers, reports…\n\nUse the verified URL when you are ready to reach out: https://tips.hushline.app/to/josh."
+  },
+  "slot": "verified-user-weekly",
+  "source": "https://tips.hushline.app/directory/users.json",
+  "subtext": "Founder - International Biohacking Community, Astralife. CEO - Astrochain. Owner of Science.Social & Moderators.social social media networks. This is an anonymous tip-line for whistleblowers, reports, security, etc. All messages are encrypted.",
+  "user_link": "https://tips.hushline.app/to/josh",
+  "user_url": "https://tips.hushline.app/to/josh",
+  "verified_user_format": "before_you_contact_them"
+}

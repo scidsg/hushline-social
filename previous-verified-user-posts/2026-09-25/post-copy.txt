@@ -1,0 +1,36 @@
+Slot: verified-user-weekly
+Planned date: 2026-09-25
+Verified user: @josh
+User link: https://tips.hushline.app/to/josh
+Source: https://tips.hushline.app/directory/users.json
+Editorial format: Before you contact them (before_you_contact_them)
+Opening line: Before you contact Josh:
+Headline: Josh Universe
+Subtext: Founder - International Biohacking Community, Astralife. CEO - Astrochain. Owner of Science.Social & Moderators.social social media networks. This is an anonymous tip-line for whistleblowers, reports, security, etc. All messages are encrypted.
+
+Image alt text
+A social card featuring verified Hush Line user Josh Universe, their bio, their tip line URL, and a QR code that links to the same URL.
+
+Social post copy
+
+LinkedIn (359/3000)
+Before you contact Josh:
+
+Founder - International Biohacking Community, Astralife. CEO - Astrochain. Owner of Science.Social & Moderators.social social media networks. This is an anonymous tip-line for whistleblowers, reports, security, etc. All messages are encrypted.
+
+Use the verified URL when you are ready to reach out: https://tips.hushline.app/to/josh.
+
+Mastodon (316/500)
+Before you contact Josh:
+
+Founder - International Biohacking Community, Astralife. CEO - Astrochain. Owner of Science.Social & Moderators.social social media networks. This is an anonymous tip-line for whistleblowers, reports…
+
+Use the verified URL when you are ready to reach out: https://tips.hushline.app/to/josh.
+
+Bluesky (278/300)
+Before you contact Josh:
+
+Founder - International Biohacking Community, Astralife. CEO - Astrochain. Owner of Science.Social & Moderators.social social media networks. This is an anonymous…
+
+Use the verified URL when you are ready to reach out: https://tips.hushline.app/to/josh
+
