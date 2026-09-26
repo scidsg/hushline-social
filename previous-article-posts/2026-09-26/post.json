@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-09-26",
+  "weekday": "saturday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "Tim Tebow pauses ties with Christian wealth group amid predatory sales allegations",
+  "article_url": "https://www.theguardian.com/sport/2026/sep/26/tim-tebow-life-surge-christian-wealth-group-predatory-sales",
+  "article_published_at": "2026-09-26T14:05:23.000Z",
+  "relevance_score": 9,
+  "content_key": "weekly-news-the-guardian-tim-tebow-pauses-ties-with-christian-wealth-group-amid-predatory-sales-",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: Tim Tebow pauses ties with Christian wealth group amid predatory sales allegations",
+  "social": {
+    "bluesky": "Tim Tebow pauses ties with Christian wealth group amid predatory sales allegations.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/sport/2026/sep/26/tim-tebow-life-surge-christian-wealth-group-predatory-sales\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Tim Tebow pauses ties with Christian wealth group amid predatory sales allegations.\n\nFormer Heisman winner pauses ties with Life Surge Tebow calls allegations ‘extremely serious’ Group accused of pushing courses costing $40,000 Tim Tebow said Friday he is “pausing his relationship” with Life Surge, a...\n\nRead the article from The Guardian\nhttps://www.theguardian.com/sport/2026/sep/26/tim-tebow-life-surge-christian-wealth-group-predatory-sales\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Tim Tebow pauses ties with Christian wealth group amid predatory sales allegations.\n\nOversight depends on people being able to bring evidence forward safely.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/sport/2026/sep/26/tim-tebow-life-surge-christian-wealth-group-predatory-sales\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
