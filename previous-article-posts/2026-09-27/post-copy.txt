@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-09-27
+Publish mode: text
+Source: The Guardian
+Article URL: https://www.theguardian.com/world/2026/sep/27/mass-shootings-south-africa-johannesburg-cape-town
+Content key: weekly-news-the-guardian-at-least-27-dead-after-two-mass-shootings-in-south-africa-police-say
+Headline: Whistleblower-related reporting from The Guardian
+Subtext: The Guardian reports: At least 27 dead after two mass shootings in South Africa, police say
+
+Social post copy
+
+LinkedIn (516/3000)
+At least 27 dead after two mass shootings in South Africa, police say.
+
+Seventeen people killed near Johannesburg in suspected ‘illegal goldmining turf war’, as 10 killed in separate incident at barbecue venue near Cape Town Two separate mass shootings near South Africa’s two biggest...
+
+Read the article from The Guardian
+https://www.theguardian.com/world/2026/sep/27/mass-shootings-south-africa-johannesburg-cape-town
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (318/500)
+At least 27 dead after two mass shootings in South Africa, police say.
+
+Accountability reporting needs a safe enough way to make contact.
+
+Read the article from The Guardian
+https://www.theguardian.com/world/2026/sep/27/mass-shootings-south-africa-johannesburg-cape-town
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (251/300)
+At least 27 dead after two mass shootings in South Africa, police say.
+
+Read the article from The Guardian
+https://www.theguardian.com/world/2026/sep/27/mass-shootings-south-africa-johannesburg-cape-town
+
+Sign up for Hush Line at https://hushline.app.

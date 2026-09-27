@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-09-27",
+  "weekday": "sunday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "At least 27 dead after two mass shootings in South Africa, police say",
+  "article_url": "https://www.theguardian.com/world/2026/sep/27/mass-shootings-south-africa-johannesburg-cape-town",
+  "article_published_at": "2026-09-27T13:46:49.000Z",
+  "relevance_score": 8,
+  "content_key": "weekly-news-the-guardian-at-least-27-dead-after-two-mass-shootings-in-south-africa-police-say",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: At least 27 dead after two mass shootings in South Africa, police say",
+  "social": {
+    "bluesky": "At least 27 dead after two mass shootings in South Africa, police say.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/world/2026/sep/27/mass-shootings-south-africa-johannesburg-cape-town\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "At least 27 dead after two mass shootings in South Africa, police say.\n\nSeventeen people killed near Johannesburg in suspected ‘illegal goldmining turf war’, as 10 killed in separate incident at barbecue venue near Cape Town Two separate mass shootings near South Africa’s two biggest...\n\nRead the article from The Guardian\nhttps://www.theguardian.com/world/2026/sep/27/mass-shootings-south-africa-johannesburg-cape-town\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "At least 27 dead after two mass shootings in South Africa, police say.\n\nAccountability reporting needs a safe enough way to make contact.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/world/2026/sep/27/mass-shootings-south-africa-johannesburg-cape-town\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
