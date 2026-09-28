@@ -1,0 +1,22 @@
+{
+  "date": "2026-09-28",
+  "display_name": "Unredacted Inc",
+  "editorial_format_label": "How to verify the link",
+  "headline": "Unredacted Inc",
+  "image_alt_text": "A social card featuring verified Hush Line user Unredacted Inc, their bio, their tip line URL, and a QR code that links to the same URL.",
+  "opening_line": "Verify the link before you send anything sensitive.",
+  "planned_date": "2026-09-28",
+  "primary_username": "unredacted",
+  "qr_code_file": "verified-user-qr.png",
+  "social": {
+    "bluesky": "Verify the link before you send anything sensitive.\n\nUnredacted Inc is a 501(c)(3) nonprofit building internet infrastructure and services for open internet access and privacy.\n\nUnredacted Inc's verified Hush Line URL: https://tips.hushline.app/to/unredacted",
+    "linkedin": "Verify the link before you send anything sensitive.\n\nUnredacted Inc is a 501(c)(3) nonprofit that builds internet infrastructure and services to help people access the open internet and protect their right to privacy. It accepts encrypted, anonymous messages through Hush Line.\n\nUnredacted Inc's verified Hush Line URL: https://tips.hushline.app/to/unredacted.",
+    "mastodon": "Verify the link before you send anything sensitive.\n\nUnredacted Inc is a 501(c)(3) nonprofit that builds internet infrastructure and services for open internet access and privacy. It accepts encrypted, anonymous messages through Hush Line.\n\nUnredacted Inc's verified Hush Line URL: https://tips.hushline.app/to/unredacted."
+  },
+  "slot": "verified-user-weekly",
+  "source": "https://tips.hushline.app/directory/users.json",
+  "subtext": "A 501c3 non-profit organization that builds Internet infrastructure and services to help people access the open Internet & protect their right to privacy. Send us encrypted and anonymous messages via Hush Line, we'd love to hear from you.",
+  "user_link": "https://tips.hushline.app/to/unredacted",
+  "user_url": "https://tips.hushline.app/to/unredacted",
+  "verified_user_format": "how_to_verify_the_link"
+}

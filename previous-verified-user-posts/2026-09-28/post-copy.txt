@@ -1,0 +1,36 @@
+Slot: verified-user-weekly
+Planned date: 2026-09-28
+Verified user: @unredacted
+User link: https://tips.hushline.app/to/unredacted
+Source: https://tips.hushline.app/directory/users.json
+Editorial format: How to verify the link (how_to_verify_the_link)
+Opening line: Verify the link before you send anything sensitive.
+Headline: Unredacted Inc
+Subtext: A 501c3 non-profit organization that builds Internet infrastructure and services to help people access the open Internet & protect their right to privacy. Send us encrypted and anonymous messages via Hush Line, we'd love to hear from you.
+
+Image alt text
+A social card featuring verified Hush Line user Unredacted Inc, their bio, their tip line URL, and a QR code that links to the same URL.
+
+Social post copy
+
+LinkedIn (360/3000)
+Verify the link before you send anything sensitive.
+
+Unredacted Inc is a 501(c)(3) nonprofit that builds internet infrastructure and services to help people access the open internet and protect their right to privacy. It accepts encrypted, anonymous messages through Hush Line.
+
+Unredacted Inc's verified Hush Line URL: https://tips.hushline.app/to/unredacted.
+
+Mastodon (322/500)
+Verify the link before you send anything sensitive.
+
+Unredacted Inc is a 501(c)(3) nonprofit that builds internet infrastructure and services for open internet access and privacy. It accepts encrypted, anonymous messages through Hush Line.
+
+Unredacted Inc's verified Hush Line URL: https://tips.hushline.app/to/unredacted.
+
+Bluesky (258/300)
+Verify the link before you send anything sensitive.
+
+Unredacted Inc is a 501(c)(3) nonprofit building internet infrastructure and services for open internet access and privacy.
+
+Unredacted Inc's verified Hush Line URL: https://tips.hushline.app/to/unredacted
+
