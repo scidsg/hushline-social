@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-09-29",
+  "weekday": "tuesday",
+  "publish_mode": "text",
+  "source": "The Atlantic",
+  "title": "<em>The Atlantic </em>Announces Roles for Zachary Fryer-Biggs, Sophie Haigney, Jebediah Reed, Kevin Roose, Lindsey Sitz, Alex Stockton, and Robert F. Worth",
+  "article_url": "https://www.theatlantic.com/press-releases/2026/09/the-atlantic-is-announcing-seven-new-roles-in-the-newsroom/688820/?utm_source=feed",
+  "article_published_at": "2026-09-29T13:48:35.000Z",
+  "relevance_score": 11,
+  "content_key": "weekly-news-the-atlantic-em-the-atlantic-em-announces-roles-for-zachary-fryer-biggs-sophie-haign",
+  "headline": "Whistleblower-related reporting from The Atlantic",
+  "subtext": "The Atlantic reports: <em>The Atlantic </em>Announces Roles for Zachary Fryer-Biggs, Sophie Haigney, Jebediah Reed, Kevin Roose, Lindsey Sitz, Alex Stockton, and Robert F. Worth",
+  "social": {
+    "bluesky": "<em>The Atlantic </em>Announces Roles for Zachary Fryer-Biggs, Sophie Haigney, Jebediah Reed, Kevin Roose, Lindsey Sitz, Alex Stockton, and Robert F. Worth.\n\nRead the article from The Atlantic\nhttps://www.theatlantic.com/press-releases/2026/09/the-atlantic-is-announcing-seven-new-roles-in-the-newsr…",
+    "linkedin": "<em>The Atlantic </em>Announces Roles for Zachary Fryer-Biggs, Sophie Haigney, Jebediah Reed, Kevin Roose, Lindsey Sitz, Alex Stockton, and Robert F. Worth.\n\nToday The Atlantic is announcing seven new roles in the newsroom — Sophie Haigney and Robert F. Worth as staff writers; Zachary Fryer-Biggs, Jebediah Reed, and Alex Stockton as senior editors; Kevin Roose as a...\n\nRead the article from The Atlantic\nhttps://www.theatlantic.com/press-releases/2026/09/the-atlantic-is-announcing-seven-new-roles-in-the-newsroom/688820/?utm_source=feed\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "<em>The Atlantic </em>Announces Roles for Zachary Fryer-Biggs, Sophie Haigney, Jebediah Reed, Kevin Roose, Lindsey Sitz, Alex Stockton, and Robert F. Worth.\n\nOversight depends on people being able to bring evidence forward safely.\n\nRead the article from The Atlantic\nhttps://www.theatlantic.com/press-releases/2026/09/the-atlantic-is-announcing-seven-new-roles-in-the-newsroom/688820/?utm_source=feed\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}

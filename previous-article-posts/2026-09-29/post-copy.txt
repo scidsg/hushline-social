@@ -1,0 +1,36 @@
+Slot: weekly-news-article
+Planned date: 2026-09-29
+Publish mode: text
+Source: The Atlantic
+Article URL: https://www.theatlantic.com/press-releases/2026/09/the-atlantic-is-announcing-seven-new-roles-in-the-newsroom/688820/?utm_source=feed
+Content key: weekly-news-the-atlantic-em-the-atlantic-em-announces-roles-for-zachary-fryer-biggs-sophie-haign
+Headline: Whistleblower-related reporting from The Atlantic
+Subtext: The Atlantic reports: <em>The Atlantic </em>Announces Roles for Zachary Fryer-Biggs, Sophie Haigney, Jebediah Reed, Kevin Roose, Lindsey Sitz, Alex Stockton, and Robert F. Worth
+
+Social post copy
+
+LinkedIn (636/3000)
+<em>The Atlantic </em>Announces Roles for Zachary Fryer-Biggs, Sophie Haigney, Jebediah Reed, Kevin Roose, Lindsey Sitz, Alex Stockton, and Robert F. Worth.
+
+Today The Atlantic is announcing seven new roles in the newsroom — Sophie Haigney and Robert F. Worth as staff writers; Zachary Fryer-Biggs, Jebediah Reed, and Alex Stockton as senior editors; Kevin Roose as a...
+
+Read the article from The Atlantic
+https://www.theatlantic.com/press-releases/2026/09/the-atlantic-is-announcing-seven-new-roles-in-the-newsroom/688820/?utm_source=feed
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (448/500)
+<em>The Atlantic </em>Announces Roles for Zachary Fryer-Biggs, Sophie Haigney, Jebediah Reed, Kevin Roose, Lindsey Sitz, Alex Stockton, and Robert F. Worth.
+
+Oversight depends on people being able to bring evidence forward safely.
+
+Read the article from The Atlantic
+https://www.theatlantic.com/press-releases/2026/09/the-atlantic-is-announcing-seven-new-roles-in-the-newsroom/688820/?utm_source=feed
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (300/300)
+<em>The Atlantic </em>Announces Roles for Zachary Fryer-Biggs, Sophie Haigney, Jebediah Reed, Kevin Roose, Lindsey Sitz, Alex Stockton, and Robert F. Worth.
+
+Read the article from The Atlantic
+https://www.theatlantic.com/press-releases/2026/09/the-atlantic-is-announcing-seven-new-roles-in-the-newsr…
