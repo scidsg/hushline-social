@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-09-30",
+  "weekday": "wednesday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "Top Trump figures push to direct human rights funding to rightwing causes",
+  "article_url": "https://www.theguardian.com/us-news/2026/sep/30/trump-state-department-human-rights-fund",
+  "article_published_at": "2026-09-30T12:00:42.000Z",
+  "relevance_score": 11,
+  "content_key": "weekly-news-the-guardian-top-trump-figures-push-to-direct-human-rights-funding-to-rightwing-caus",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: Top Trump figures push to direct human rights funding to rightwing causes",
+  "social": {
+    "bluesky": "Top Trump figures push to direct human rights funding to rightwing causes.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/sep/30/trump-state-department-human-rights-fund\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Top Trump figures push to direct human rights funding to rightwing causes.\n\nSupport for white Afrikaners, anti-communism and others reveals how US redefining what qualifies as human rights With hours left before the funding expires, the Trump administration is pushing to direct more than...\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/sep/30/trump-state-department-human-rights-fund\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Top Trump figures push to direct human rights funding to rightwing causes.\n\nWins matter when reporting leads to protection or repair.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/sep/30/trump-state-department-human-rights-fund\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
