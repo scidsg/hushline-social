@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-10-01",
+  "weekday": "thursday",
+  "publish_mode": "text",
+  "source": "CBS News",
+  "title": "Trump heads to Texas to campaign despite leaked Ken Paxton audio",
+  "article_url": "https://www.cbsnews.com/video/trump-heads-to-texas-to-campaign-despite-leaked-ken-paxton-audio/",
+  "article_published_at": "2026-10-01T13:32:26.000Z",
+  "relevance_score": 8,
+  "content_key": "weekly-news-cbs-news-trump-heads-to-texas-to-campaign-despite-leaked-ken-paxton-audio",
+  "headline": "Whistleblower-related reporting from CBS News",
+  "subtext": "CBS News reports: Trump heads to Texas to campaign despite leaked Ken Paxton audio",
+  "social": {
+    "bluesky": "Trump heads to Texas to campaign despite leaked Ken Paxton audio.\n\nRead the article from CBS News\nhttps://www.cbsnews.com/video/trump-heads-to-texas-to-campaign-despite-leaked-ken-paxton-audio/\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Trump heads to Texas to campaign despite leaked Ken Paxton audio.\n\nPresident Trump will be in Texas on Thursday campaigning for Senate hopeful Ken Paxton, despite recently leaked audio where Paxton said he thinks Mr. Trump&#039;s GOP midterm convention may have hurt his chances. Ed...\n\nRead the article from CBS News\nhttps://www.cbsnews.com/video/trump-heads-to-texas-to-campaign-despite-leaked-ken-paxton-audio/\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Trump heads to Texas to campaign despite leaked Ken Paxton audio.\n\nSource protection starts before publication.\n\nRead the article from CBS News\nhttps://www.cbsnews.com/video/trump-heads-to-texas-to-campaign-despite-leaked-ken-paxton-audio/\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}

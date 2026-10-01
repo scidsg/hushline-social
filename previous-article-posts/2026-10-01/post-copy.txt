@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-10-01
+Publish mode: text
+Source: CBS News
+Article URL: https://www.cbsnews.com/video/trump-heads-to-texas-to-campaign-despite-leaked-ken-paxton-audio/
+Content key: weekly-news-cbs-news-trump-heads-to-texas-to-campaign-despite-leaked-ken-paxton-audio
+Headline: Whistleblower-related reporting from CBS News
+Subtext: CBS News reports: Trump heads to Texas to campaign despite leaked Ken Paxton audio
+
+Social post copy
+
+LinkedIn (509/3000)
+Trump heads to Texas to campaign despite leaked Ken Paxton audio.
+
+President Trump will be in Texas on Thursday campaigning for Senate hopeful Ken Paxton, despite recently leaked audio where Paxton said he thinks Mr. Trump&#039;s GOP midterm convention may have hurt his chances. Ed...
+
+Read the article from CBS News
+https://www.cbsnews.com/video/trump-heads-to-texas-to-campaign-despite-leaked-ken-paxton-audio/
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (287/500)
+Trump heads to Texas to campaign despite leaked Ken Paxton audio.
+
+Source protection starts before publication.
+
+Read the article from CBS News
+https://www.cbsnews.com/video/trump-heads-to-texas-to-campaign-despite-leaked-ken-paxton-audio/
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (241/300)
+Trump heads to Texas to campaign despite leaked Ken Paxton audio.
+
+Read the article from CBS News
+https://www.cbsnews.com/video/trump-heads-to-texas-to-campaign-despite-leaked-ken-paxton-audio/
+
+Sign up for Hush Line at https://hushline.app.
