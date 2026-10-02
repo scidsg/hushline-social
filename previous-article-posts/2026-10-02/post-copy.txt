@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-10-02
+Publish mode: text
+Source: The New York Times
+Article URL: https://www.nytimes.com/2026/10/01/us/politics/bill-pulte-trump-inspector-general.html
+Content key: weekly-news-the-new-york-times-housing-official-who-targeted-trump-foes-cuts-watchdog-office
+Headline: Whistleblower-related reporting from The New York Times
+Subtext: The New York Times reports: Housing Official, Who Targeted Trump Foes, Cuts Watchdog Office
+
+Social post copy
+
+LinkedIn (444/3000)
+Housing Official, Who Targeted Trump Foes, Cuts Watchdog Office.
+
+Bill Pulte, director of the Federal Housing Finance Agency, moved to slash his agency’s inspector general’s office. Democrats called for his resignation.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/10/01/us/politics/bill-pulte-trump-inspector-general.html
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (303/500)
+Housing Official, Who Targeted Trump Foes, Cuts Watchdog Office.
+
+Policy changes decide whether people can report harm safely.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/10/01/us/politics/bill-pulte-trump-inspector-general.html
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (241/300)
+Housing Official, Who Targeted Trump Foes, Cuts Watchdog Office.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/10/01/us/politics/bill-pulte-trump-inspector-general.html
+
+Sign up for Hush Line at https://hushline.app.

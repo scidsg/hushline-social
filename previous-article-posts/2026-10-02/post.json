@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-10-02",
+  "weekday": "friday",
+  "publish_mode": "text",
+  "source": "The New York Times",
+  "title": "Housing Official, Who Targeted Trump Foes, Cuts Watchdog Office",
+  "article_url": "https://www.nytimes.com/2026/10/01/us/politics/bill-pulte-trump-inspector-general.html",
+  "article_published_at": "2026-10-01T22:34:41.000Z",
+  "relevance_score": 9,
+  "content_key": "weekly-news-the-new-york-times-housing-official-who-targeted-trump-foes-cuts-watchdog-office",
+  "headline": "Whistleblower-related reporting from The New York Times",
+  "subtext": "The New York Times reports: Housing Official, Who Targeted Trump Foes, Cuts Watchdog Office",
+  "social": {
+    "bluesky": "Housing Official, Who Targeted Trump Foes, Cuts Watchdog Office.\n\nRead the article from The New York Times\nhttps://www.nytimes.com/2026/10/01/us/politics/bill-pulte-trump-inspector-general.html\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Housing Official, Who Targeted Trump Foes, Cuts Watchdog Office.\n\nBill Pulte, director of the Federal Housing Finance Agency, moved to slash his agency’s inspector general’s office. Democrats called for his resignation.\n\nRead the article from The New York Times\nhttps://www.nytimes.com/2026/10/01/us/politics/bill-pulte-trump-inspector-general.html\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Housing Official, Who Targeted Trump Foes, Cuts Watchdog Office.\n\nPolicy changes decide whether people can report harm safely.\n\nRead the article from The New York Times\nhttps://www.nytimes.com/2026/10/01/us/politics/bill-pulte-trump-inspector-general.html\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
