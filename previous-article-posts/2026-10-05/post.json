@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-10-05",
+  "weekday": "monday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "Monday briefing: You asked, we answered – how will the US midterms go?",
+  "article_url": "https://www.theguardian.com/world/2026/oct/05/monday-briefing-first-edition-us-midterms-donald-trump-washington",
+  "article_published_at": "2026-10-05T05:44:42.000Z",
+  "relevance_score": 12,
+  "content_key": "weekly-news-the-guardian-monday-briefing-you-asked-we-answered-how-will-the-us-midterms-go",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: Monday briefing: You asked, we answered – how will the US midterms go?",
+  "social": {
+    "bluesky": "Monday briefing — You asked, we answered – how will the US midterms go?\n\nRead the article from The Guardian\nhttps://www.theguardian.com/world/2026/oct/05/monday-briefing-first-edition-us-midterms-donald-trump-washington\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Monday briefing — You asked, we answered – how will the US midterms go?\n\nIn today’s newsletter — As Americans get ready to vote on whether the Republican party remains in control of Congress, our Washington editor talks about the disconnect between Trump and his supporters Good morning....\n\nRead the article from The Guardian\nhttps://www.theguardian.com/world/2026/oct/05/monday-briefing-first-edition-us-midterms-donald-trump-washington\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Monday briefing — You asked, we answered – how will the US midterms go?\n\nPolicy changes decide whether people can report harm safely.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/world/2026/oct/05/monday-briefing-first-edition-us-midterms-donald-trump-washington\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}

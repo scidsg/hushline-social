@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-10-05
+Publish mode: text
+Source: The Guardian
+Article URL: https://www.theguardian.com/world/2026/oct/05/monday-briefing-first-edition-us-midterms-donald-trump-washington
+Content key: weekly-news-the-guardian-monday-briefing-you-asked-we-answered-how-will-the-us-midterms-go
+Headline: Whistleblower-related reporting from The Guardian
+Subtext: The Guardian reports: Monday briefing: You asked, we answered – how will the US midterms go?
+
+Social post copy
+
+LinkedIn (534/3000)
+Monday briefing — You asked, we answered – how will the US midterms go?
+
+In today’s newsletter — As Americans get ready to vote on whether the Republican party remains in control of Congress, our Washington editor talks about the disconnect between Trump and his supporters Good morning....
+
+Read the article from The Guardian
+https://www.theguardian.com/world/2026/oct/05/monday-briefing-first-edition-us-midterms-donald-trump-washington
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (329/500)
+Monday briefing — You asked, we answered – how will the US midterms go?
+
+Policy changes decide whether people can report harm safely.
+
+Read the article from The Guardian
+https://www.theguardian.com/world/2026/oct/05/monday-briefing-first-edition-us-midterms-donald-trump-washington
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (267/300)
+Monday briefing — You asked, we answered – how will the US midterms go?
+
+Read the article from The Guardian
+https://www.theguardian.com/world/2026/oct/05/monday-briefing-first-edition-us-midterms-donald-trump-washington
+
+Sign up for Hush Line at https://hushline.app.
