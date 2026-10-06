@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-10-06",
+  "weekday": "tuesday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "UK regulator FCA to investigate how it handled Epstein whistleblower who took his own life",
+  "article_url": "https://www.theguardian.com/business/2026/oct/06/uk-regulator-epstein-whistleblower",
+  "article_published_at": "2026-10-06T05:00:03.000Z",
+  "relevance_score": 20,
+  "content_key": "weekly-news-the-guardian-uk-regulator-fca-to-investigate-how-it-handled-epstein-whistleblower-wh",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: UK regulator FCA to investigate how it handled Epstein whistleblower who took his own life",
+  "social": {
+    "bluesky": "UK regulator FCA to investigate how it handled Epstein whistleblower who took his own life.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/business/2026/oct/06/uk-regulator-epstein-whistleblower\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "UK regulator FCA to investigate how it handled Epstein whistleblower who took his own life.\n\nBritish banker Simon Andriesz helped to expose alleged ties between late sex offender Jeffrey Epstein and US commerce secretary Howard Lutnick A top UK regulator has launched an investigation into how it handled a...\n\nRead the article from The Guardian\nhttps://www.theguardian.com/business/2026/oct/06/uk-regulator-epstein-whistleblower\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "UK regulator FCA to investigate how it handled Epstein whistleblower who took his own life.\n\nOversight depends on people being able to bring evidence forward safely.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/business/2026/oct/06/uk-regulator-epstein-whistleblower\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
