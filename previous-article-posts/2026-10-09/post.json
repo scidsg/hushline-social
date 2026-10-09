@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-10-09",
+  "weekday": "friday",
+  "publish_mode": "text",
+  "source": "The New York Times",
+  "title": "As Putin Wages Shadow War, Europe Looks for a Way to Hit Back",
+  "article_url": "https://www.nytimes.com/2026/10/09/world/europe/putin-russia-ukraine-war-europe-nato.html",
+  "article_published_at": "2026-10-09T13:09:48.000Z",
+  "relevance_score": 9,
+  "content_key": "weekly-news-the-new-york-times-as-putin-wages-shadow-war-europe-looks-for-a-way-to-hit-back",
+  "headline": "Whistleblower-related reporting from The New York Times",
+  "subtext": "The New York Times reports: As Putin Wages Shadow War, Europe Looks for a Way to Hit Back",
+  "social": {
+    "bluesky": "As Putin Wages Shadow War, Europe Looks for a Way to Hit Back.\n\nRead the article from The New York Times\nhttps://www.nytimes.com/2026/10/09/world/europe/putin-russia-ukraine-war-europe-nato.html\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "As Putin Wages Shadow War, Europe Looks for a Way to Hit Back.\n\nMoscow has used tactics of fear and ambiguity to try to divide NATO and limit support for Ukraine. But how should Europe retaliate? And how hard?\n\nRead the article from The New York Times\nhttps://www.nytimes.com/2026/10/09/world/europe/putin-russia-ukraine-war-europe-nato.html\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "As Putin Wages Shadow War, Europe Looks for a Way to Hit Back.\n\nRetaliation is why safer first contact matters.\n\nRead the article from The New York Times\nhttps://www.nytimes.com/2026/10/09/world/europe/putin-russia-ukraine-war-europe-nato.html\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}

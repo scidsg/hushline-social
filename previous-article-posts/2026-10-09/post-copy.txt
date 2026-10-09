@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-10-09
+Publish mode: text
+Source: The New York Times
+Article URL: https://www.nytimes.com/2026/10/09/world/europe/putin-russia-ukraine-war-europe-nato.html
+Content key: weekly-news-the-new-york-times-as-putin-wages-shadow-war-europe-looks-for-a-way-to-hit-back
+Headline: Whistleblower-related reporting from The New York Times
+Subtext: The New York Times reports: As Putin Wages Shadow War, Europe Looks for a Way to Hit Back
+
+Social post copy
+
+LinkedIn (437/3000)
+As Putin Wages Shadow War, Europe Looks for a Way to Hit Back.
+
+Moscow has used tactics of fear and ambiguity to try to divide NATO and limit support for Ukraine. But how should Europe retaliate? And how hard?
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/10/09/world/europe/putin-russia-ukraine-war-europe-nato.html
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (291/500)
+As Putin Wages Shadow War, Europe Looks for a Way to Hit Back.
+
+Retaliation is why safer first contact matters.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/10/09/world/europe/putin-russia-ukraine-war-europe-nato.html
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (242/300)
+As Putin Wages Shadow War, Europe Looks for a Way to Hit Back.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/10/09/world/europe/putin-russia-ukraine-war-europe-nato.html
+
+Sign up for Hush Line at https://hushline.app.
