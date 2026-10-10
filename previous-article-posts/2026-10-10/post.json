@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-10-10",
+  "weekday": "saturday",
+  "publish_mode": "text",
+  "source": "Al Jazeera",
+  "title": "Manchester City whistleblower Rui Pinto to remain under police protection",
+  "article_url": "https://www.aljazeera.com/sports/2026/10/10/manchester-city-whistleblower-rui-pinto-to-stay-under-police-protection?traffic_source=rss",
+  "article_published_at": "2026-10-10T11:14:13.000Z",
+  "relevance_score": 14,
+  "content_key": "weekly-news-al-jazeera-manchester-city-whistleblower-rui-pinto-to-remain-under-police-protection",
+  "headline": "Whistleblower-related reporting from Al Jazeera",
+  "subtext": "Al Jazeera reports: Manchester City whistleblower Rui Pinto to remain under police protection",
+  "social": {
+    "bluesky": "Manchester City whistleblower Rui Pinto to remain under police protection.\n\nRead the article from Al Jazeera\nhttps://www.aljazeera.com/sports/2026/10/10/manchester-city-whistleblower-rui-pinto-to-stay-under-police-protection?traffic_source=rss\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Manchester City whistleblower Rui Pinto to remain under police protection.\n\nPinto&#039;s lawyers recently denounced irregularities in the proceedings, highlighting the real threats facing their client.\n\nRead the article from Al Jazeera\nhttps://www.aljazeera.com/sports/2026/10/10/manchester-city-whistleblower-rui-pinto-to-stay-under-police-protection?traffic_source=rss\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Manchester City whistleblower Rui Pinto to remain under police protection.\n\nAccountability reporting needs a safe enough way to make contact.\n\nRead the article from Al Jazeera\nhttps://www.aljazeera.com/sports/2026/10/10/manchester-city-whistleblower-rui-pinto-to-stay-under-police-protection?traffic_source=rss\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
