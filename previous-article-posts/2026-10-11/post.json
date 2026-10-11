@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-10-11",
+  "weekday": "sunday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "Trump establishes committee to investigate Fed governor Lisa Cook",
+  "article_url": "https://www.theguardian.com/business/2026/oct/09/trump-investigate-lisa-cook-fed-governor",
+  "article_published_at": "2026-10-09T18:05:12.000Z",
+  "relevance_score": 8,
+  "content_key": "weekly-news-the-guardian-trump-establishes-committee-to-investigate-fed-governor-lisa-cook",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: Trump establishes committee to investigate Fed governor Lisa Cook",
+  "social": {
+    "bluesky": "Trump establishes committee to investigate Fed governor Lisa Cook.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/business/2026/oct/09/trump-investigate-lisa-cook-fed-governor\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Trump establishes committee to investigate Fed governor Lisa Cook.\n\nUS president renews his efforts to oust Cook despite supreme court ruling that her firing was unconstitutional Donald Trump announced on Friday that he is establishing a committee to investigate Lisa Cook, the US...\n\nRead the article from The Guardian\nhttps://www.theguardian.com/business/2026/oct/09/trump-investigate-lisa-cook-fed-governor\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Trump establishes committee to investigate Fed governor Lisa Cook.\n\nAccountability reporting needs a safe enough way to make contact.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/business/2026/oct/09/trump-investigate-lisa-cook-fed-governor\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}

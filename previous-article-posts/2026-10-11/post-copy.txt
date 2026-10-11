@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-10-11
+Publish mode: text
+Source: The Guardian
+Article URL: https://www.theguardian.com/business/2026/oct/09/trump-investigate-lisa-cook-fed-governor
+Content key: weekly-news-the-guardian-trump-establishes-committee-to-investigate-fed-governor-lisa-cook
+Headline: Whistleblower-related reporting from The Guardian
+Subtext: The Guardian reports: Trump establishes committee to investigate Fed governor Lisa Cook
+
+Social post copy
+
+LinkedIn (505/3000)
+Trump establishes committee to investigate Fed governor Lisa Cook.
+
+US president renews his efforts to oust Cook despite supreme court ruling that her firing was unconstitutional Donald Trump announced on Friday that he is establishing a committee to investigate Lisa Cook, the US...
+
+Read the article from The Guardian
+https://www.theguardian.com/business/2026/oct/09/trump-investigate-lisa-cook-fed-governor
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (307/500)
+Trump establishes committee to investigate Fed governor Lisa Cook.
+
+Accountability reporting needs a safe enough way to make contact.
+
+Read the article from The Guardian
+https://www.theguardian.com/business/2026/oct/09/trump-investigate-lisa-cook-fed-governor
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (240/300)
+Trump establishes committee to investigate Fed governor Lisa Cook.
+
+Read the article from The Guardian
+https://www.theguardian.com/business/2026/oct/09/trump-investigate-lisa-cook-fed-governor
+
+Sign up for Hush Line at https://hushline.app.
