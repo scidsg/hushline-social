@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-10-12
+Publish mode: text
+Source: The Guardian
+Article URL: https://www.theguardian.com/us-news/2026/oct/12/fugitive-venezuela-bribery-case
+Content key: weekly-news-the-guardian-fugitive-businessman-taken-into-us-custody-in-venezuela-bribery-case
+Headline: Whistleblower-related reporting from The Guardian
+Subtext: The Guardian reports: Fugitive businessman taken into US custody in Venezuela bribery case
+
+Social post copy
+
+LinkedIn (500/3000)
+Fugitive businessman taken into US custody in Venezuela bribery case.
+
+A businessman wanted in the US for allegedly bribing top Venezuelan officials has been taken into custody A businessman wanted for years in the US for allegedly paying bribes to top Venezuelan officials in exchange...
+
+Read the article from The Guardian
+https://www.theguardian.com/us-news/2026/oct/12/fugitive-venezuela-bribery-case
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (307/500)
+Fugitive businessman taken into US custody in Venezuela bribery case.
+
+Oversight depends on people being able to bring evidence forward safely.
+
+Read the article from The Guardian
+https://www.theguardian.com/us-news/2026/oct/12/fugitive-venezuela-bribery-case
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (233/300)
+Fugitive businessman taken into US custody in Venezuela bribery case.
+
+Read the article from The Guardian
+https://www.theguardian.com/us-news/2026/oct/12/fugitive-venezuela-bribery-case
+
+Sign up for Hush Line at https://hushline.app.

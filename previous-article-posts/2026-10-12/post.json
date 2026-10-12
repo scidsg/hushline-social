@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-10-12",
+  "weekday": "monday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "Fugitive businessman taken into US custody in Venezuela bribery case",
+  "article_url": "https://www.theguardian.com/us-news/2026/oct/12/fugitive-venezuela-bribery-case",
+  "article_published_at": "2026-10-12T13:14:14.000Z",
+  "relevance_score": 9,
+  "content_key": "weekly-news-the-guardian-fugitive-businessman-taken-into-us-custody-in-venezuela-bribery-case",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: Fugitive businessman taken into US custody in Venezuela bribery case",
+  "social": {
+    "bluesky": "Fugitive businessman taken into US custody in Venezuela bribery case.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/oct/12/fugitive-venezuela-bribery-case\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Fugitive businessman taken into US custody in Venezuela bribery case.\n\nA businessman wanted in the US for allegedly bribing top Venezuelan officials has been taken into custody A businessman wanted for years in the US for allegedly paying bribes to top Venezuelan officials in exchange...\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/oct/12/fugitive-venezuela-bribery-case\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Fugitive businessman taken into US custody in Venezuela bribery case.\n\nOversight depends on people being able to bring evidence forward safely.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/oct/12/fugitive-venezuela-bribery-case\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
