@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-12",
+  "display_name": "UFO Files",
+  "editorial_format_label": "Why follow this tip line",
+  "headline": "UFO Files",
+  "image_alt_text": "A social card featuring verified Hush Line user UFO Files, their bio, their tip line URL, and a QR code that links to the same URL.",
+  "opening_line": "Why follow UFO's Hush Line?",
+  "planned_date": "2026-10-12",
+  "primary_username": "ufo-files",
+  "qr_code_file": "verified-user-qr.png",
+  "social": {
+    "bluesky": "Why follow UFO's Hush Line?\n\nUFO Files maintains the world’s largest collection of open-source UFO data and accepts contributions or corrections through encrypted messages with no contact information required.\n\nReview the verified link before sending a tip: https://tips.hushline.app/to/ufo-files",
+    "linkedin": "Why follow UFO's Hush Line?\n\nUFO Files maintains the world’s largest collection of open-source UFO data and welcomes contributions, corrections, and other suggestions for improving the project through encrypted messages that require no contact information.\n\nReview UFO's verified Hush Line link before sending a tip: https://tips.hushline.app/to/ufo-files.",
+    "mastodon": "Why follow UFO's Hush Line?\n\nUFO Files maintains the world’s largest collection of open-source UFO data and accepts contributions, corrections, and suggestions through encrypted messages with no contact information required.\n\nReview UFO's verified Hush Line link before sending a tip: https://tips.hushline.app/to/ufo-files."
+  },
+  "slot": "verified-user-weekly",
+  "source": "https://tips.hushline.app/directory/users.json",
+  "subtext": "The world’s largest collection of open-source UFO data. Have information to contribute, corrections to make, or another way to make the project better? Reach out here - messages are encrypted and no contact info is required.",
+  "user_link": "https://tips.hushline.app/to/ufo-files",
+  "user_url": "https://tips.hushline.app/to/ufo-files",
+  "verified_user_format": "why_follow_tip_line"
+}

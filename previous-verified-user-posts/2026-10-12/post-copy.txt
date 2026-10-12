@@ -1,0 +1,36 @@
+Slot: verified-user-weekly
+Planned date: 2026-10-12
+Verified user: @ufo-files
+User link: https://tips.hushline.app/to/ufo-files
+Source: https://tips.hushline.app/directory/users.json
+Editorial format: Why follow this tip line (why_follow_tip_line)
+Opening line: Why follow UFO's Hush Line?
+Headline: UFO Files
+Subtext: The world’s largest collection of open-source UFO data. Have information to contribute, corrections to make, or another way to make the project better? Reach out here - messages are encrypted and no contact info is required.
+
+Image alt text
+A social card featuring verified Hush Line user UFO Files, their bio, their tip line URL, and a QR code that links to the same URL.
+
+Social post copy
+
+LinkedIn (356/3000)
+Why follow UFO's Hush Line?
+
+UFO Files maintains the world’s largest collection of open-source UFO data and welcomes contributions, corrections, and other suggestions for improving the project through encrypted messages that require no contact information.
+
+Review UFO's verified Hush Line link before sending a tip: https://tips.hushline.app/to/ufo-files.
+
+Mastodon (324/500)
+Why follow UFO's Hush Line?
+
+UFO Files maintains the world’s largest collection of open-source UFO data and accepts contributions, corrections, and suggestions through encrypted messages with no contact information required.
+
+Review UFO's verified Hush Line link before sending a tip: https://tips.hushline.app/to/ufo-files.
+
+Bluesky (296/300)
+Why follow UFO's Hush Line?
+
+UFO Files maintains the world’s largest collection of open-source UFO data and accepts contributions or corrections through encrypted messages with no contact information required.
+
+Review the verified link before sending a tip: https://tips.hushline.app/to/ufo-files
+
