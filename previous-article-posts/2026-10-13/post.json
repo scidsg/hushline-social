@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-10-13",
+  "weekday": "tuesday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "Democratic leaders condemn federal raid on Ilhan Omar as she vows not to be silenced | First Thing",
+  "article_url": "https://www.theguardian.com/us-news/2026/oct/13/first-thing-democratic-leaders-condemn-federal-raid-ilhan-omar",
+  "article_published_at": "2026-10-13T10:55:22.000Z",
+  "relevance_score": 13,
+  "content_key": "weekly-news-the-guardian-democratic-leaders-condemn-federal-raid-on-ilhan-omar-as-she-vows-not-t",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: Democratic leaders condemn federal raid on Ilhan Omar as she vows not to be silenced | First Thing",
+  "social": {
+    "bluesky": "Democratic leaders condemn federal raid on Ilhan Omar as she vows not to be silenced | First Thing.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/oct/13/first-thing-democratic-leaders-condemn-federal-raid-ilhan-omar\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Democratic leaders condemn federal raid on Ilhan Omar as she vows not to be silenced | First Thing.\n\nMinnesota congresswoman criticized raid as attempt by Trump administration ‘to target political enemies and weaponize law enforcement’. Plus what is to be done about the world record in the women’s marathon? Don’t...\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/oct/13/first-thing-democratic-leaders-condemn-federal-raid-ilhan-omar\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Democratic leaders condemn federal raid on Ilhan Omar as she vows not to be silenced | First Thing.\n\nAccountability reporting needs a safe enough way to make contact.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/oct/13/first-thing-democratic-leaders-condemn-federal-raid-ilhan-omar\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
