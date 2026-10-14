@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-10-14",
+  "weekday": "wednesday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "NAZA: Netanyahu orders identification and prosecution of film’s interviewees",
+  "article_url": "https://www.theguardian.com/film/2026/oct/12/naza-netanyahu-orders-identification-prosecution-interviewees-documentary-film",
+  "article_published_at": "2026-10-12T12:59:56.000Z",
+  "relevance_score": 8,
+  "content_key": "weekly-news-the-guardian-naza-netanyahu-orders-identification-and-prosecution-of-film-s-intervie",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: NAZA: Netanyahu orders identification and prosecution of film’s interviewees",
+  "social": {
+    "bluesky": "NAZA — Netanyahu orders identification and prosecution of film’s interviewees.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/film/2026/oct/12/naza-netanyahu-orders-identification-prosecution-interviewees-documentary-film\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "NAZA — Netanyahu orders identification and prosecution of film’s interviewees.\n\nIsraeli PM calls for criminal investigation into soldiers and officers interviewed in Guardian-produced documentary The Israeli prime minister, Benjamin Netanyahu, has ordered the country’s attorney general and the...\n\nRead the article from The Guardian\nhttps://www.theguardian.com/film/2026/oct/12/naza-netanyahu-orders-identification-prosecution-interviewees-documentary-film\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "NAZA — Netanyahu orders identification and prosecution of film’s interviewees.\n\nOversight depends on people being able to bring evidence forward safely.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/film/2026/oct/12/naza-netanyahu-orders-identification-prosecution-interviewees-documentary-film\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
