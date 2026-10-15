@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-10-15
+Publish mode: text
+Source: The New York Times
+Article URL: https://www.nytimes.com/2026/10/14/us/politics/trump-media-leaks-shot-rally.html
+Content key: weekly-news-the-new-york-times-trump-says-those-who-leak-military-plans-should-be-shot
+Headline: Whistleblower-related reporting from The New York Times
+Subtext: The New York Times reports: Trump Says Those Who Leak Military Plans Should Be Shot
+
+Social post copy
+
+LinkedIn (407/3000)
+Trump Says Those Who Leak Military Plans Should Be Shot.
+
+At a rally in Arizona, the president dramatically escalated his attacks on news gathering and those willing to speak to the press.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/10/14/us/politics/trump-media-leaks-shot-rally.html
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (273/500)
+Trump Says Those Who Leak Military Plans Should Be Shot.
+
+Source protection starts before publication.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/10/14/us/politics/trump-media-leaks-shot-rally.html
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (227/300)
+Trump Says Those Who Leak Military Plans Should Be Shot.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/10/14/us/politics/trump-media-leaks-shot-rally.html
+
+Sign up for Hush Line at https://hushline.app.
