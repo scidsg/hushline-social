@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-10-16
+Publish mode: text
+Source: The New York Times
+Article URL: https://www.nytimes.com/2026/10/15/us/paxton-dubai-fugitive-fraud-allegations-texas.html
+Content key: weekly-news-the-new-york-times-paxton-partied-in-dubai-with-fugitives-charged-with-fraud-lawsuit
+Headline: Whistleblower-related reporting from The New York Times
+Subtext: The New York Times reports: Paxton Partied in Dubai With Fugitives Charged With Fraud, Lawsuit Says
+
+Social post copy
+
+LinkedIn (488/3000)
+Paxton Partied in Dubai With Fugitives Charged With Fraud, Lawsuit Says.
+
+Ken Paxton celebrated New Year’s Eve in 2024 with two men wanted on federal charges, one of whom donated at least $190,000 to his campaigns. The extent of his ties to the men was unclear.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/10/15/us/paxton-dubai-fugitive-fraud-allegations-texas.html
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (318/500)
+Paxton Partied in Dubai With Fugitives Charged With Fraud, Lawsuit Says.
+
+Accountability reporting needs a safe enough way to make contact.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/10/15/us/paxton-dubai-fugitive-fraud-allegations-texas.html
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (251/300)
+Paxton Partied in Dubai With Fugitives Charged With Fraud, Lawsuit Says.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/10/15/us/paxton-dubai-fugitive-fraud-allegations-texas.html
+
+Sign up for Hush Line at https://hushline.app.
