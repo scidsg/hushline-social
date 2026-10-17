@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-10-17",
+  "weekday": "saturday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "Elon Musk agrees to settle lawsuits over 2024 election lottery",
+  "article_url": "https://www.theguardian.com/technology/2026/oct/17/elon-musk-2024-million-dollar-promise-lawsuit",
+  "article_published_at": "2026-10-17T14:42:11.000Z",
+  "relevance_score": 14,
+  "content_key": "weekly-news-the-guardian-elon-musk-agrees-to-settle-lawsuits-over-2024-election-lottery",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: Elon Musk agrees to settle lawsuits over 2024 election lottery",
+  "social": {
+    "bluesky": "Elon Musk agrees to settle lawsuits over 2024 election lottery.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/technology/2026/oct/17/elon-musk-2024-million-dollar-promise-lawsuit\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Elon Musk agrees to settle lawsuits over 2024 election lottery.\n\nTrump-boosting billionaire was sued over promise to give away $1m per day to random signatories of petition Elon Musk and his ⁠America Pac political action committee said recently that they agreed to settle two...\n\nRead the article from The Guardian\nhttps://www.theguardian.com/technology/2026/oct/17/elon-musk-2024-million-dollar-promise-lawsuit\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Elon Musk agrees to settle lawsuits over 2024 election lottery.\n\nAccountability reporting needs a safe enough way to make contact.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/technology/2026/oct/17/elon-musk-2024-million-dollar-promise-lawsuit\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
