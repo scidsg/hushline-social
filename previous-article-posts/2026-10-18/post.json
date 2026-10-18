@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-10-18",
+  "weekday": "sunday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "How Trump’s justice department is testing separation of powers before the US midterms",
+  "article_url": "https://www.theguardian.com/us-news/ng-interactive/2026/oct/18/trump-justice-department-us-midterms",
+  "article_published_at": "2026-10-18T10:00:57.000Z",
+  "relevance_score": 12,
+  "content_key": "weekly-news-the-guardian-how-trump-s-justice-department-is-testing-separation-of-powers-before-t",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: How Trump’s justice department is testing separation of powers before the US midterms",
+  "social": {
+    "bluesky": "How Trump’s justice department is testing separation of powers before the US midterms.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/ng-interactive/2026/oct/18/trump-justice-department-us-midterms\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "How Trump’s justice department is testing separation of powers before the US midterms.\n\nFrom the attorney general stumping for Republican candidates to federal agents raiding the home of a Democratic congresswoman up for re-election, the department is violating long-standing norms Donald Trump’s justice...\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/ng-interactive/2026/oct/18/trump-justice-department-us-midterms\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "How Trump’s justice department is testing separation of powers before the US midterms.\n\nOversight depends on people being able to bring evidence forward safely.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/ng-interactive/2026/oct/18/trump-justice-department-us-midterms\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
