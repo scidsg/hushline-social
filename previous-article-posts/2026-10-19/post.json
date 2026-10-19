@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-10-19",
+  "weekday": "monday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "First Thing: US ambassador in rare diplomatic break with Israel over attack on US journalist",
+  "article_url": "https://www.theguardian.com/us-news/2026/oct/19/first-thing-us-ambassador-mike-huckabee-israel-heidi-levine-attack",
+  "article_published_at": "2026-10-19T11:23:24.000Z",
+  "relevance_score": 10,
+  "content_key": "weekly-news-the-guardian-first-thing-us-ambassador-in-rare-diplomatic-break-with-israel-over-att",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: First Thing: US ambassador in rare diplomatic break with Israel over attack on US journalist",
+  "social": {
+    "bluesky": "First Thing — US ambassador in rare diplomatic break with Israel over attack on US journalist.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/oct/19/first-thing-us-ambassador-mike-huckabee-israel-heidi-levine-attack\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "First Thing — US ambassador in rare diplomatic break with Israel over attack on US journalist.\n\nMike Huckabee condemns attack on Washington Post photojournalist that has drawn lukewarm response from Israeli authorities. Plus, Japan is attempting to boldly go where no space mission has gone before Good morning....\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/oct/19/first-thing-us-ambassador-mike-huckabee-israel-heidi-levine-attack\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "First Thing — US ambassador in rare diplomatic break with Israel over attack on US journalist.\n\nWins matter when reporting leads to protection or repair.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/oct/19/first-thing-us-ambassador-mike-huckabee-israel-heidi-levine-attack\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
