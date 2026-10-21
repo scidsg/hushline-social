@@ -1,0 +1,36 @@
+Slot: verified-user-weekly
+Planned date: 2026-10-21
+Verified user: @rpetras
+User link: https://tips.hushline.app/to/rpetras
+Source: https://tips.hushline.app/directory/users.json
+Editorial format: What this recipient covers (what_this_recipient_covers)
+Opening line: What this recipient covers:
+Headline: Rebecca Petras
+Subtext: Rebecca Petras is co-founder of Psst… Psst is a safe, smart new way for people to share information in the public interest. We make speaking out a collective, more supported (and often world-changing) act.
+
+Image alt text
+A social card featuring verified Hush Line user Rebecca Petras, their bio, their tip line URL, and a QR code that links to the same URL.
+
+Social post copy
+
+LinkedIn (261/3000)
+What this recipient covers:
+
+Rebecca Petras is co-founder of Psst, a platform designed to help people share information in the public interest and make speaking out a collective, supported act.
+
+To send Rebecca a tip, go to https://tips.hushline.app/to/rpetras.
+
+Mastodon (247/500)
+What this recipient covers:
+
+Rebecca Petras is co-founder of Psst, a platform for sharing information in the public interest and making speaking out more collective and supported.
+
+To send Rebecca a tip, visit https://tips.hushline.app/to/rpetras.
+
+Bluesky (183/300)
+What this recipient covers:
+
+Rebecca Petras is co-founder of Psst, a platform for sharing information in the public interest.
+
+Send Rebecca a tip: https://tips.hushline.app/to/rpetras
+

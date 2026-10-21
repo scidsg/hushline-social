@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-21",
+  "display_name": "Rebecca Petras",
+  "editorial_format_label": "What this recipient covers",
+  "headline": "Rebecca Petras",
+  "image_alt_text": "A social card featuring verified Hush Line user Rebecca Petras, their bio, their tip line URL, and a QR code that links to the same URL.",
+  "opening_line": "What this recipient covers:",
+  "planned_date": "2026-10-21",
+  "primary_username": "rpetras",
+  "qr_code_file": "verified-user-qr.png",
+  "social": {
+    "bluesky": "What this recipient covers:\n\nRebecca Petras is co-founder of Psst, a platform for sharing information in the public interest.\n\nSend Rebecca a tip: https://tips.hushline.app/to/rpetras",
+    "linkedin": "What this recipient covers:\n\nRebecca Petras is co-founder of Psst, a platform designed to help people share information in the public interest and make speaking out a collective, supported act.\n\nTo send Rebecca a tip, go to https://tips.hushline.app/to/rpetras.",
+    "mastodon": "What this recipient covers:\n\nRebecca Petras is co-founder of Psst, a platform for sharing information in the public interest and making speaking out more collective and supported.\n\nTo send Rebecca a tip, visit https://tips.hushline.app/to/rpetras."
+  },
+  "slot": "verified-user-weekly",
+  "source": "https://tips.hushline.app/directory/users.json",
+  "subtext": "Rebecca Petras is co-founder of Psst… Psst is a safe, smart new way for people to share information in the public interest. We make speaking out a collective, more supported (and often world-changing) act.",
+  "user_link": "https://tips.hushline.app/to/rpetras",
+  "user_url": "https://tips.hushline.app/to/rpetras",
+  "verified_user_format": "what_this_recipient_covers"
+}
