@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-10-21",
+  "weekday": "wednesday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "Trump suggests he could be ‘arbitrator’ in DoJ anti-fraud whistleblower scheme",
+  "article_url": "https://www.theguardian.com/us-news/2026/oct/20/trump-doj-anti-fraud-tip",
+  "article_published_at": "2026-10-20T20:36:20.000Z",
+  "relevance_score": 30,
+  "content_key": "weekly-news-the-guardian-trump-suggests-he-could-be-arbitrator-in-doj-anti-fraud-whistleblower-s",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: Trump suggests he could be ‘arbitrator’ in DoJ anti-fraud whistleblower scheme",
+  "social": {
+    "bluesky": "Trump suggests he could be ‘arbitrator’ in DoJ anti-fraud whistleblower scheme.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/oct/20/trump-doj-anti-fraud-tip\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Trump suggests he could be ‘arbitrator’ in DoJ anti-fraud whistleblower scheme.\n\nPresident makes suggestion while announcing new program to reward tipsters who submit fraud allegations Donald Trump suggested on Tuesday that he would serve as “the arbitrator” of decisions in the justice...\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/oct/20/trump-doj-anti-fraud-tip\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Trump suggests he could be ‘arbitrator’ in DoJ anti-fraud whistleblower scheme.\n\nWins matter when reporting leads to protection or repair.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/oct/20/trump-doj-anti-fraud-tip\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}

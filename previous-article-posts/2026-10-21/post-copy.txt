@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-10-21
+Publish mode: text
+Source: The Guardian
+Article URL: https://www.theguardian.com/us-news/2026/oct/20/trump-doj-anti-fraud-tip
+Content key: weekly-news-the-guardian-trump-suggests-he-could-be-arbitrator-in-doj-anti-fraud-whistleblower-s
+Headline: Whistleblower-related reporting from The Guardian
+Subtext: The Guardian reports: Trump suggests he could be ‘arbitrator’ in DoJ anti-fraud whistleblower scheme
+
+Social post copy
+
+LinkedIn (494/3000)
+Trump suggests he could be ‘arbitrator’ in DoJ anti-fraud whistleblower scheme.
+
+President makes suggestion while announcing new program to reward tipsters who submit fraud allegations Donald Trump suggested on Tuesday that he would serve as “the arbitrator” of decisions in the justice...
+
+Read the article from The Guardian
+https://www.theguardian.com/us-news/2026/oct/20/trump-doj-anti-fraud-tip
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (295/500)
+Trump suggests he could be ‘arbitrator’ in DoJ anti-fraud whistleblower scheme.
+
+Wins matter when reporting leads to protection or repair.
+
+Read the article from The Guardian
+https://www.theguardian.com/us-news/2026/oct/20/trump-doj-anti-fraud-tip
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (236/300)
+Trump suggests he could be ‘arbitrator’ in DoJ anti-fraud whistleblower scheme.
+
+Read the article from The Guardian
+https://www.theguardian.com/us-news/2026/oct/20/trump-doj-anti-fraud-tip
+
+Sign up for Hush Line at https://hushline.app.
