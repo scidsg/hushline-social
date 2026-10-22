@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-10-22
+Publish mode: text
+Source: The New York Times
+Article URL: https://www.nytimes.com/2026/10/21/us/politics/trump-whistle-blower.html
+Content key: weekly-news-the-new-york-times-trump-says-he-ll-decide-who-gets-rewards-from-fraud-whistle-blowe
+Headline: Whistleblower-related reporting from The New York Times
+Subtext: The New York Times reports: Trump Says He’ll Decide Who Gets Rewards From Fraud Whistle-Blower Program
+
+Social post copy
+
+LinkedIn (417/3000)
+Trump Says He’ll Decide Who Gets Rewards From Fraud Whistle-Blower Program.
+
+President Trump’s announcement raised concerns that he would use the program seeking information on fraud for political purposes.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/10/21/us/politics/trump-whistle-blower.html
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (305/500)
+Trump Says He’ll Decide Who Gets Rewards From Fraud Whistle-Blower Program.
+
+Accountability reporting needs a safe enough way to make contact.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/10/21/us/politics/trump-whistle-blower.html
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (238/300)
+Trump Says He’ll Decide Who Gets Rewards From Fraud Whistle-Blower Program.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/10/21/us/politics/trump-whistle-blower.html
+
+Sign up for Hush Line at https://hushline.app.
