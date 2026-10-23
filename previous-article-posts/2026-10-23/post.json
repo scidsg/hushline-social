@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-10-23",
+  "weekday": "friday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "Department of Justice opens criminal investigation into Corey Lewandowski",
+  "article_url": "https://www.theguardian.com/us-news/2026/oct/22/corey-lewandowski-trump-criminal-investigation",
+  "article_published_at": "2026-10-23T00:55:02.000Z",
+  "relevance_score": 12,
+  "content_key": "weekly-news-the-guardian-department-of-justice-opens-criminal-investigation-into-corey-lewandows",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: Department of Justice opens criminal investigation into Corey Lewandowski",
+  "social": {
+    "bluesky": "Department of Justice opens criminal investigation into Corey Lewandowski.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/oct/22/corey-lewandowski-trump-criminal-investigation\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Department of Justice opens criminal investigation into Corey Lewandowski.\n\nEx-Trump adviser and former top aide for homeland security alleged to have profited off government role Corey Lewandowski, a former political adviser to Donald Trump and ⁠top aide at the Department ⁠of Homeland...\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/oct/22/corey-lewandowski-trump-criminal-investigation\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Department of Justice opens criminal investigation into Corey Lewandowski.\n\nOversight depends on people being able to bring evidence forward safely.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/oct/22/corey-lewandowski-trump-criminal-investigation\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}

@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-10-23
+Publish mode: text
+Source: The Guardian
+Article URL: https://www.theguardian.com/us-news/2026/oct/22/corey-lewandowski-trump-criminal-investigation
+Content key: weekly-news-the-guardian-department-of-justice-opens-criminal-investigation-into-corey-lewandows
+Headline: Whistleblower-related reporting from The Guardian
+Subtext: The Guardian reports: Department of Justice opens criminal investigation into Corey Lewandowski
+
+Social post copy
+
+LinkedIn (516/3000)
+Department of Justice opens criminal investigation into Corey Lewandowski.
+
+Ex-Trump adviser and former top aide for homeland security alleged to have profited off government role Corey Lewandowski, a former political adviser to Donald Trump and ⁠top aide at the Department ⁠of Homeland...
+
+Read the article from The Guardian
+https://www.theguardian.com/us-news/2026/oct/22/corey-lewandowski-trump-criminal-investigation
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (327/500)
+Department of Justice opens criminal investigation into Corey Lewandowski.
+
+Oversight depends on people being able to bring evidence forward safely.
+
+Read the article from The Guardian
+https://www.theguardian.com/us-news/2026/oct/22/corey-lewandowski-trump-criminal-investigation
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (253/300)
+Department of Justice opens criminal investigation into Corey Lewandowski.
+
+Read the article from The Guardian
+https://www.theguardian.com/us-news/2026/oct/22/corey-lewandowski-trump-criminal-investigation
+
+Sign up for Hush Line at https://hushline.app.
