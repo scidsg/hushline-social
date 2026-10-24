@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-10-24",
+  "weekday": "saturday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "Israeli soldiers raze neighbourhood in Hebron, driving families from homes",
+  "article_url": "https://www.theguardian.com/world/2026/oct/24/israel-soldiers-raze-west-bank-neighbourhood-hebron-families-from-homes",
+  "article_published_at": "2026-10-24T12:37:31.000Z",
+  "relevance_score": 9,
+  "content_key": "weekly-news-the-guardian-israeli-soldiers-raze-neighbourhood-in-hebron-driving-families-from-hom",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: Israeli soldiers raze neighbourhood in Hebron, driving families from homes",
+  "social": {
+    "bluesky": "Israeli soldiers raze neighbourhood in Hebron, driving families from homes.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/world/2026/oct/24/israel-soldiers-raze-west-bank-neighbourhood-hebron-families-from-homes\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Israeli soldiers raze neighbourhood in Hebron, driving families from homes.\n\nPM Benjamin Netanyahu vows ‘to destroy this place’ in retaliation for militant attack on army checkpoint Israeli troops have levelled a neighbourhood in Hebron, driving out hundreds of families, in collective...\n\nRead the article from The Guardian\nhttps://www.theguardian.com/world/2026/oct/24/israel-soldiers-raze-west-bank-neighbourhood-hebron-families-from-homes\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Israeli soldiers raze neighbourhood in Hebron, driving families from homes.\n\nRetaliation is why safer first contact matters.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/world/2026/oct/24/israel-soldiers-raze-west-bank-neighbourhood-hebron-families-from-homes\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
