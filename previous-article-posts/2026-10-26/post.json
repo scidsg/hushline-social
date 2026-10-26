@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-10-26",
+  "weekday": "monday",
+  "publish_mode": "text",
+  "source": "NBC News",
+  "title": "Adam Schiff says Democrats should put 'overriding emphasis' on costs, not impeachment",
+  "article_url": "https://www.nbcnews.com/meet-the-press/video/adam-schiff-says-democrats-should-put-overriding-emphasis-on-costs-not-impeachment-272191557816",
+  "article_published_at": "2026-10-25T14:04:14.000Z",
+  "relevance_score": 9,
+  "content_key": "weekly-news-nbc-news-adam-schiff-says-democrats-should-put-overriding-emphasis-on-costs-not-impe",
+  "headline": "Whistleblower-related reporting from NBC News",
+  "subtext": "NBC News reports: Adam Schiff says Democrats should put 'overriding emphasis' on costs, not impeachment",
+  "social": {
+    "bluesky": "Adam Schiff says Democrats should put 'overriding emphasis' on costs, not impeachment.\n\nRead the article from NBC News\nhttps://www.nbcnews.com/meet-the-press/video/adam-schiff-says-democrats-should-put-overriding-emphasis-on-costs-not-impeachment-272191557816\n\nSign up for Hush Line at https://hushl…",
+    "linkedin": "Adam Schiff says Democrats should put 'overriding emphasis' on costs, not impeachment.\n\nIn an exclusive interview with Meet the Press, Sen. Adam Schiff (D-Calif.) says Democratic oversight should focus on bringing down costs and corruption, that could potentially lead to impeachment.\n\nRead the article from NBC News\nhttps://www.nbcnews.com/meet-the-press/video/adam-schiff-says-democrats-should-put-overriding-emphasis-on-costs-not-impeachment-272191557816\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Adam Schiff says Democrats should put 'overriding emphasis' on costs, not impeachment.\n\nOversight depends on people being able to bring evidence forward safely.\n\nRead the article from NBC News\nhttps://www.nbcnews.com/meet-the-press/video/adam-schiff-says-democrats-should-put-overriding-emphasis-on-costs-not-impeachment-272191557816\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
