@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-27",
+  "display_name": "Matthew Pellow",
+  "editorial_format_label": "Source-safe first contact",
+  "headline": "Matthew Pellow",
+  "image_alt_text": "A social card featuring verified Hush Line user Matthew Pellow, their bio, their tip line URL, and a QR code that links to the same URL.",
+  "opening_line": "First contact should be source-safe.",
+  "planned_date": "2026-10-27",
+  "primary_username": "mdpellow",
+  "qr_code_file": "verified-user-qr.png",
+  "social": {
+    "bluesky": "First contact should be source-safe.\n\nMatthew is a freelance journalist.\n\nStart with Matthew's verified Hush Line URL: https://tips.hushline.app/to/mdpellow",
+    "linkedin": "First contact should be source-safe.\n\nMatthew is a freelance journalist.\n\nStart with Matthew's verified Hush Line URL: https://tips.hushline.app/to/mdpellow.",
+    "mastodon": "First contact should be source-safe.\n\nMatthew is a freelance journalist.\n\nStart with Matthew's verified Hush Line URL: https://tips.hushline.app/to/mdpellow."
+  },
+  "slot": "verified-user-weekly",
+  "source": "https://tips.hushline.app/directory/users.json",
+  "subtext": "Freelance Journalist",
+  "user_link": "https://tips.hushline.app/to/mdpellow",
+  "user_url": "https://tips.hushline.app/to/mdpellow",
+  "verified_user_format": "source_safe_first_contact"
+}

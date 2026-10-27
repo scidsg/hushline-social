@@ -1,0 +1,36 @@
+Slot: verified-user-weekly
+Planned date: 2026-10-27
+Verified user: @mdpellow
+User link: https://tips.hushline.app/to/mdpellow
+Source: https://tips.hushline.app/directory/users.json
+Editorial format: Source-safe first contact (source_safe_first_contact)
+Opening line: First contact should be source-safe.
+Headline: Matthew Pellow
+Subtext: Freelance Journalist
+
+Image alt text
+A social card featuring verified Hush Line user Matthew Pellow, their bio, their tip line URL, and a QR code that links to the same URL.
+
+Social post copy
+
+LinkedIn (157/3000)
+First contact should be source-safe.
+
+Matthew is a freelance journalist.
+
+Start with Matthew's verified Hush Line URL: https://tips.hushline.app/to/mdpellow.
+
+Mastodon (157/500)
+First contact should be source-safe.
+
+Matthew is a freelance journalist.
+
+Start with Matthew's verified Hush Line URL: https://tips.hushline.app/to/mdpellow.
+
+Bluesky (156/300)
+First contact should be source-safe.
+
+Matthew is a freelance journalist.
+
+Start with Matthew's verified Hush Line URL: https://tips.hushline.app/to/mdpellow
+
