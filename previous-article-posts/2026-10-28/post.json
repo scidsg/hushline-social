@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-10-28",
+  "weekday": "wednesday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "Trump says government to ‘terminate’ Biden-era methane emissions rules",
+  "article_url": "https://www.theguardian.com/us-news/2026/oct/27/trump-biden-era-methane-emissions-rules-oil-gas",
+  "article_published_at": "2026-10-28T01:45:27.000Z",
+  "relevance_score": 8,
+  "content_key": "weekly-news-the-guardian-trump-says-government-to-terminate-biden-era-methane-emissions-rules",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: Trump says government to ‘terminate’ Biden-era methane emissions rules",
+  "social": {
+    "bluesky": "Trump says government to ‘terminate’ Biden-era methane emissions rules.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/oct/27/trump-biden-era-methane-emissions-rules-oil-gas\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Trump says government to ‘terminate’ Biden-era methane emissions rules.\n\nCritics warn of climate danger as president in Texas claims change will save companies and consumers billions Donald Trump announced his administration is “terminating” Biden-era regulations holding oil and gas...\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/oct/27/trump-biden-era-methane-emissions-rules-oil-gas\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Trump says government to ‘terminate’ Biden-era methane emissions rules.\n\nPolicy changes decide whether people can report harm safely.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/oct/27/trump-biden-era-methane-emissions-rules-oil-gas\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
