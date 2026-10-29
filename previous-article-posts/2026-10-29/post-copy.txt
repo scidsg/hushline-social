@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-10-29
+Publish mode: text
+Source: CBS News
+Article URL: https://www.cbsnews.com/news/dea-whistleblower-fentanyl-pills/
+Content key: weekly-news-cbs-news-whistleblower-says-dea-let-fentanyl-pills-hit-the-streets
+Headline: Whistleblower-related reporting from CBS News
+Subtext: CBS News reports: Whistleblower says DEA let fentanyl pills hit the streets
+
+Social post copy
+
+LinkedIn (408/3000)
+A whistleblower says DEA let fentanyl pills hit the streets.
+
+DEA Special Agent David Howell tells CBS News the agency tasked with enforcing federal drug laws has allowed millions of fentanyl pills to hit the streets.
+
+Read the article from CBS News
+https://www.cbsnews.com/news/dea-whistleblower-fentanyl-pills/
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (270/500)
+A whistleblower says DEA let fentanyl pills hit the streets.
+
+Accountability reporting needs a safe enough way to make contact.
+
+Read the article from CBS News
+https://www.cbsnews.com/news/dea-whistleblower-fentanyl-pills/
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (203/300)
+A whistleblower says DEA let fentanyl pills hit the streets.
+
+Read the article from CBS News
+https://www.cbsnews.com/news/dea-whistleblower-fentanyl-pills/
+
+Sign up for Hush Line at https://hushline.app.

@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-10-29",
+  "weekday": "thursday",
+  "publish_mode": "text",
+  "source": "CBS News",
+  "title": "Whistleblower says DEA let fentanyl pills hit the streets",
+  "article_url": "https://www.cbsnews.com/news/dea-whistleblower-fentanyl-pills/",
+  "article_published_at": "2026-10-29T12:03:00.000Z",
+  "relevance_score": 14,
+  "content_key": "weekly-news-cbs-news-whistleblower-says-dea-let-fentanyl-pills-hit-the-streets",
+  "headline": "Whistleblower-related reporting from CBS News",
+  "subtext": "CBS News reports: Whistleblower says DEA let fentanyl pills hit the streets",
+  "social": {
+    "bluesky": "A whistleblower says DEA let fentanyl pills hit the streets.\n\nRead the article from CBS News\nhttps://www.cbsnews.com/news/dea-whistleblower-fentanyl-pills/\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "A whistleblower says DEA let fentanyl pills hit the streets.\n\nDEA Special Agent David Howell tells CBS News the agency tasked with enforcing federal drug laws has allowed millions of fentanyl pills to hit the streets.\n\nRead the article from CBS News\nhttps://www.cbsnews.com/news/dea-whistleblower-fentanyl-pills/\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "A whistleblower says DEA let fentanyl pills hit the streets.\n\nAccountability reporting needs a safe enough way to make contact.\n\nRead the article from CBS News\nhttps://www.cbsnews.com/news/dea-whistleblower-fentanyl-pills/\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
