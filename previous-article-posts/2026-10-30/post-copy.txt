@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-10-30
+Publish mode: text
+Source: The New York Times
+Article URL: https://www.nytimes.com/2026/10/29/us/politics/homeland-security-hack.html
+Content key: weekly-news-the-new-york-times-homeland-security-leak-exposes-more-than-41-000-employees
+Headline: Whistleblower-related reporting from The New York Times
+Subtext: The New York Times reports: Homeland Security Leak Exposes More Than 41,000 Employees
+
+Social post copy
+
+LinkedIn (470/3000)
+Homeland Security Leak Exposes More Than 41,000 Employees.
+
+A nonprofit said it released the information to promote transparency about the Trump administration’s deportation campaign. Homeland security officials told workers they are reviewing the incident.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/10/29/us/politics/homeland-security-hack.html
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (269/500)
+Homeland Security Leak Exposes More Than 41,000 Employees.
+
+Source protection starts before publication.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/10/29/us/politics/homeland-security-hack.html
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (223/300)
+Homeland Security Leak Exposes More Than 41,000 Employees.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/10/29/us/politics/homeland-security-hack.html
+
+Sign up for Hush Line at https://hushline.app.
