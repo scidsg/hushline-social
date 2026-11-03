@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-11-03",
+  "weekday": "tuesday",
+  "publish_mode": "text",
+  "source": "The New York Times",
+  "title": "What to Expect on Election Night, and Trump’s $1 Million Voter Fraud Reward",
+  "article_url": "https://www.nytimes.com/2026/11/03/podcasts/the-headlines/midterm-election-trump-voter-fraud-reward.html",
+  "article_published_at": "2026-11-03T11:00:10.000Z",
+  "relevance_score": 11,
+  "content_key": "weekly-news-the-new-york-times-what-to-expect-on-election-night-and-trump-s-1-million-voter-frau",
+  "headline": "Whistleblower-related reporting from The New York Times",
+  "subtext": "The New York Times reports: What to Expect on Election Night, and Trump’s $1 Million Voter Fraud Reward",
+  "social": {
+    "bluesky": "What to Expect on Election Night, and Trump’s $1 Million Voter Fraud Reward.\n\nRead the article from The New York Times\nhttps://www.nytimes.com/2026/11/03/podcasts/the-headlines/midterm-election-trump-voter-fraud-reward.html\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "What to Expect on Election Night, and Trump’s $1 Million Voter Fraud Reward.\n\nPlus, “who’s going to believe me if I’m addicted to a wellness tonic?”.\n\nRead the article from The New York Times\nhttps://www.nytimes.com/2026/11/03/podcasts/the-headlines/midterm-election-trump-voter-fraud-reward.html\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "What to Expect on Election Night, and Trump’s $1 Million Voter Fraud Reward.\n\nWins matter when reporting leads to protection or repair.\n\nRead the article from The New York Times\nhttps://www.nytimes.com/2026/11/03/podcasts/the-headlines/midterm-election-trump-voter-fraud-reward.html\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
