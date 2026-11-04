@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-11-04
+Publish mode: text
+Source: The New York Times
+Article URL: https://www.nytimes.com/2026/11/03/us/politics/trump-administration-midterm-election-lawsuits.html
+Content key: weekly-news-the-new-york-times-what-judges-have-said-about-the-trump-administration-s-election-r
+Headline: Whistleblower-related reporting from The New York Times
+Subtext: The New York Times reports: What Judges Have Said About the Trump Administration’s Election-Related Lawsuits
+
+Social post copy
+
+LinkedIn (455/3000)
+What Judges Have Said About the Trump Administration’s Election-Related Lawsuits.
+
+The administration has ramped up its efforts in the courts to push claims of voter fraud but has been rejected by judges at all levels.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/11/03/us/politics/trump-administration-midterm-election-lawsuits.html
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (337/500)
+What Judges Have Said About the Trump Administration’s Election-Related Lawsuits.
+
+Accountability reporting needs a safe enough way to make contact.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/11/03/us/politics/trump-administration-midterm-election-lawsuits.html
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (270/300)
+What Judges Have Said About the Trump Administration’s Election-Related Lawsuits.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/11/03/us/politics/trump-administration-midterm-election-lawsuits.html
+
+Sign up for Hush Line at https://hushline.app.

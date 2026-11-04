@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-11-04",
+  "weekday": "wednesday",
+  "publish_mode": "text",
+  "source": "The New York Times",
+  "title": "What Judges Have Said About the Trump Administration’s Election-Related Lawsuits",
+  "article_url": "https://www.nytimes.com/2026/11/03/us/politics/trump-administration-midterm-election-lawsuits.html",
+  "article_published_at": "2026-11-03T20:24:45.000Z",
+  "relevance_score": 12,
+  "content_key": "weekly-news-the-new-york-times-what-judges-have-said-about-the-trump-administration-s-election-r",
+  "headline": "Whistleblower-related reporting from The New York Times",
+  "subtext": "The New York Times reports: What Judges Have Said About the Trump Administration’s Election-Related Lawsuits",
+  "social": {
+    "bluesky": "What Judges Have Said About the Trump Administration’s Election-Related Lawsuits.\n\nRead the article from The New York Times\nhttps://www.nytimes.com/2026/11/03/us/politics/trump-administration-midterm-election-lawsuits.html\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "What Judges Have Said About the Trump Administration’s Election-Related Lawsuits.\n\nThe administration has ramped up its efforts in the courts to push claims of voter fraud but has been rejected by judges at all levels.\n\nRead the article from The New York Times\nhttps://www.nytimes.com/2026/11/03/us/politics/trump-administration-midterm-election-lawsuits.html\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "What Judges Have Said About the Trump Administration’s Election-Related Lawsuits.\n\nAccountability reporting needs a safe enough way to make contact.\n\nRead the article from The New York Times\nhttps://www.nytimes.com/2026/11/03/us/politics/trump-administration-midterm-election-lawsuits.html\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
