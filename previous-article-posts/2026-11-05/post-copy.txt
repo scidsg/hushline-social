@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-11-05
+Publish mode: text
+Source: The New York Times
+Article URL: https://www.nytimes.com/2026/11/05/world/middleeast/israel-election-netanyahu-trump.html
+Content key: weekly-news-the-new-york-times-netanyahu-alleges-election-fraud-in-connection-with-arab-turnout
+Headline: Whistleblower-related reporting from The New York Times
+Subtext: The New York Times reports: Netanyahu Alleges Election Fraud in Connection With Arab Turnout
+
+Social post copy
+
+LinkedIn (495/3000)
+Netanyahu Alleges Election Fraud in Connection With Arab Turnout.
+
+The Israeli leader and his allies are alleging that Arab voters last month stole the election. Election officials say that while foul play was being investigated, it could not have affected the result.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/11/05/world/middleeast/israel-election-netanyahu-trump.html
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (311/500)
+Netanyahu Alleges Election Fraud in Connection With Arab Turnout.
+
+Accountability reporting needs a safe enough way to make contact.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/11/05/world/middleeast/israel-election-netanyahu-trump.html
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (244/300)
+Netanyahu Alleges Election Fraud in Connection With Arab Turnout.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/11/05/world/middleeast/israel-election-netanyahu-trump.html
+
+Sign up for Hush Line at https://hushline.app.
