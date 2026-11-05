@@ -1,0 +1,22 @@
+{
+  "date": "2026-11-05",
+  "display_name": "Jonah Aragon",
+  "editorial_format_label": "From the directory",
+  "headline": "Jonah Aragon",
+  "image_alt_text": "A social card featuring verified Hush Line user Jonah Aragon, their bio, their tip line URL, and a QR code that links to the same URL.",
+  "opening_line": "From the verified Hush Line directory: Jonah Aragon.",
+  "planned_date": "2026-11-05",
+  "primary_username": "jonah",
+  "qr_code_file": "verified-user-qr.png",
+  "social": {
+    "bluesky": "From the verified Hush Line directory: Jonah Aragon.\n\nJonah is the president of Triplebit, a US-based nonprofit transit ISP that operates public access privacy-related infrastructure. He also serves as the part-time…\n\nOpen the profile: https://tips.hushline.app/to/jonah",
+    "linkedin": "From the verified Hush Line directory: Jonah Aragon.\n\nJonah is the president of Triplebit, a US-based nonprofit transit ISP that operates public access privacy-related infrastructure. He also serves as the part-time Project Director of Privacy Guides.\n\nOpen the profile: https://tips.hushline.app/to/jonah.",
+    "mastodon": "From the verified Hush Line directory: Jonah Aragon.\n\nJonah is the president of Triplebit, a US-based nonprofit transit ISP that operates public access privacy-related infrastructure. He also serves as the part-time Project Director of Privacy Guides.\n\nOpen the profile: https://tips.hushline.app/to/jonah."
+  },
+  "slot": "verified-user-weekly",
+  "source": "https://tips.hushline.app/directory/users.json",
+  "subtext": "Jonah is the president of Triplebit, a US-based nonprofit transit ISP that operates public access privacy-related infrastructure. He also serves as the part-time Project Director of Privacy Guides.",
+  "user_link": "https://tips.hushline.app/to/jonah",
+  "user_url": "https://tips.hushline.app/to/jonah",
+  "verified_user_format": "from_the_directory"
+}
