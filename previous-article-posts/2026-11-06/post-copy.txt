@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-11-06
+Publish mode: text
+Source: The New York Times
+Article URL: https://www.nytimes.com/2026/11/05/us/politics/supreme-court-trump-abortion-leak-dobbs.html
+Content key: weekly-news-the-new-york-times-doj-steps-up-leak-investigation-on-supreme-court-decision-overtur
+Headline: Whistleblower-related reporting from The New York Times
+Subtext: The New York Times reports: DOJ Steps Up Leak Investigation on Supreme Court Decision Overturning Roe v. Wade
+
+Social post copy
+
+LinkedIn (480/3000)
+DOJ Steps Up Leak Investigation on Supreme Court Decision Overturning Roe v. Wade.
+
+Investigators, using subpoenas and other law enforcement powers, are accelerating an inquiry that takes the Trump administration into the inner workings of the court.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/11/05/us/politics/supreme-court-trump-abortion-leak-dobbs.html
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (338/500)
+DOJ Steps Up Leak Investigation on Supreme Court Decision Overturning Roe v. Wade.
+
+Oversight depends on people being able to bring evidence forward safely.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/11/05/us/politics/supreme-court-trump-abortion-leak-dobbs.html
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (264/300)
+DOJ Steps Up Leak Investigation on Supreme Court Decision Overturning Roe v. Wade.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/11/05/us/politics/supreme-court-trump-abortion-leak-dobbs.html
+
+Sign up for Hush Line at https://hushline.app.
