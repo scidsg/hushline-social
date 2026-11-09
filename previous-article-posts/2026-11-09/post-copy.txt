@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-11-09
+Publish mode: text
+Source: The New York Times
+Article URL: https://www.nytimes.com/2026/11/08/us/politics/justice-dept-new-york-times-comey-leak.html
+Content key: weekly-news-the-new-york-times-justice-dept-mulled-naming-the-times-as-conspirator-in-comey-leak
+Headline: Whistleblower-related reporting from The New York Times
+Subtext: The New York Times reports: Justice Dept. Mulled Naming The Times as Conspirator in Comey Leak Case
+
+Social post copy
+
+LinkedIn (469/3000)
+Justice Dept. Mulled Naming The Times as Conspirator in Comey Leak Case.
+
+It remains unclear how the Justice Department might proceed. The move would be a major escalation of the Trump administration’s recent attacks against the news media.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/11/08/us/politics/justice-dept-new-york-times-comey-leak.html
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (299/500)
+Justice Dept. Mulled Naming The Times as Conspirator in Comey Leak Case.
+
+Source protection starts before publication.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/11/08/us/politics/justice-dept-new-york-times-comey-leak.html
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (253/300)
+Justice Dept. Mulled Naming The Times as Conspirator in Comey Leak Case.
+
+Read the article from The New York Times
+https://www.nytimes.com/2026/11/08/us/politics/justice-dept-new-york-times-comey-leak.html
+
+Sign up for Hush Line at https://hushline.app.
