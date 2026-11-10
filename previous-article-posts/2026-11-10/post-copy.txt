@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-11-10
+Publish mode: text
+Source: NBC News
+Article URL: https://www.nbcnews.com/news/us-news/lawsuit-alleges-cornell-allowed-persistent-sexual-assaults-misconduct-rcna608356
+Content key: weekly-news-nbc-news-lawsuit-alleges-cornell-allowed-persistent-sexual-assaults-misconduct-by-ma
+Headline: Whistleblower-related reporting from NBC News
+Subtext: NBC News reports: Lawsuit alleges Cornell allowed persistent sexual assaults, misconduct by male former student
+
+Social post copy
+
+LinkedIn (521/3000)
+Lawsuit alleges Cornell allowed persistent sexual assaults, misconduct by male former student.
+
+The case comes as the Ivy League institution grapples with a high-profile scandal over a different civil case filed in September by a woman identified in court papers as Jane Doe.
+
+Read the article from NBC News
+https://www.nbcnews.com/news/us-news/lawsuit-alleges-cornell-allowed-persistent-sexual-assaults-misconduct-rcna608356
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (359/500)
+Lawsuit alleges Cornell allowed persistent sexual assaults, misconduct by male former student.
+
+Accountability reporting needs a safe enough way to make contact.
+
+Read the article from NBC News
+https://www.nbcnews.com/news/us-news/lawsuit-alleges-cornell-allowed-persistent-sexual-assaults-misconduct-rcna608356
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (292/300)
+Lawsuit alleges Cornell allowed persistent sexual assaults, misconduct by male former student.
+
+Read the article from NBC News
+https://www.nbcnews.com/news/us-news/lawsuit-alleges-cornell-allowed-persistent-sexual-assaults-misconduct-rcna608356
+
+Sign up for Hush Line at https://hushline.app.

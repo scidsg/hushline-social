@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-11-10",
+  "weekday": "tuesday",
+  "publish_mode": "text",
+  "source": "NBC News",
+  "title": "Lawsuit alleges Cornell allowed persistent sexual assaults, misconduct by male former student",
+  "article_url": "https://www.nbcnews.com/news/us-news/lawsuit-alleges-cornell-allowed-persistent-sexual-assaults-misconduct-rcna608356",
+  "article_published_at": "2026-11-09T21:31:21.000Z",
+  "relevance_score": 12,
+  "content_key": "weekly-news-nbc-news-lawsuit-alleges-cornell-allowed-persistent-sexual-assaults-misconduct-by-ma",
+  "headline": "Whistleblower-related reporting from NBC News",
+  "subtext": "NBC News reports: Lawsuit alleges Cornell allowed persistent sexual assaults, misconduct by male former student",
+  "social": {
+    "bluesky": "Lawsuit alleges Cornell allowed persistent sexual assaults, misconduct by male former student.\n\nRead the article from NBC News\nhttps://www.nbcnews.com/news/us-news/lawsuit-alleges-cornell-allowed-persistent-sexual-assaults-misconduct-rcna608356\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Lawsuit alleges Cornell allowed persistent sexual assaults, misconduct by male former student.\n\nThe case comes as the Ivy League institution grapples with a high-profile scandal over a different civil case filed in September by a woman identified in court papers as Jane Doe.\n\nRead the article from NBC News\nhttps://www.nbcnews.com/news/us-news/lawsuit-alleges-cornell-allowed-persistent-sexual-assaults-misconduct-rcna608356\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Lawsuit alleges Cornell allowed persistent sexual assaults, misconduct by male former student.\n\nAccountability reporting needs a safe enough way to make contact.\n\nRead the article from NBC News\nhttps://www.nbcnews.com/news/us-news/lawsuit-alleges-cornell-allowed-persistent-sexual-assaults-misconduct-rcna608356\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
