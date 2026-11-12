@@ -1,0 +1,36 @@
+Slot: verified-user-weekly
+Planned date: 2026-11-12
+Verified user: @isabela
+User link: https://tips.hushline.app/to/isabela
+Source: https://tips.hushline.app/directory/users.json
+Editorial format: Before you contact them (before_you_contact_them)
+Opening line: Before you contact Isabela:
+Headline: Isabela Fernandes
+Subtext: Isabela Fernandes has been serving as the Executive Director of the Tor Project since November 2018 and has contributed to the FOSS community and other digital and social movements for the democratization of information since the late 1990s.
+
+Image alt text
+A social card featuring verified Hush Line user Isabela Fernandes, their bio, their tip line URL, and a QR code that links to the same URL.
+
+Social post copy
+
+LinkedIn (346/3000)
+Before you contact Isabela:
+
+Isabela Fernandes has served as Executive Director of the Tor Project since November 2018. She has contributed to the FOSS community and digital and social movements focused on democratizing information since the late 1990s.
+
+Use the verified URL when you are ready to reach out: https://tips.hushline.app/to/isabela.
+
+Mastodon (314/500)
+Before you contact Isabela:
+
+Isabela Fernandes has served as Executive Director of the Tor Project since November 2018 and has contributed to FOSS and movements for the democratization of information since the late 1990s.
+
+Use the verified URL when you are ready to reach out: https://tips.hushline.app/to/isabela.
+
+Bluesky (260/300)
+Before you contact Isabela:
+
+Isabela Fernandes has served as Executive Director of the Tor Project since November 2018 and has contributed to FOSS since the late 1990s.
+
+Use the verified URL when you are ready to reach out: https://tips.hushline.app/to/isabela
+
