@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-11-12",
+  "weekday": "thursday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "Trump planning new military assault or tighter sanctions, say Iranian officials",
+  "article_url": "https://www.theguardian.com/world/2026/nov/11/trump-planning-military-assault-or-tighter-sanctions-iranian-officials",
+  "article_published_at": "2026-11-11T18:47:57.000Z",
+  "relevance_score": 9,
+  "content_key": "weekly-news-the-guardian-trump-planning-new-military-assault-or-tighter-sanctions-say-iranian-of",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: Trump planning new military assault or tighter sanctions, say Iranian officials",
+  "social": {
+    "bluesky": "Trump planning new military assault or tighter sanctions, say Iranian officials.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/world/2026/nov/11/trump-planning-military-assault-or-tighter-sanctions-iranian-officials\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Trump planning new military assault or tighter sanctions, say Iranian officials.\n\nRegime adviser says Tehran could be forced into pre-emptive strikes if stalemate continues Senior Iranian officials believe the US is planning either further military strikes or an ever-tightening economic...\n\nRead the article from The Guardian\nhttps://www.theguardian.com/world/2026/nov/11/trump-planning-military-assault-or-tighter-sanctions-iranian-officials\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Trump planning new military assault or tighter sanctions, say Iranian officials.\n\nRetaliation is why safer first contact matters.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/world/2026/nov/11/trump-planning-military-assault-or-tighter-sanctions-iranian-officials\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
