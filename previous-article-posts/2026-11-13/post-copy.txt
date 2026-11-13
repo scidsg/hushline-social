@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-11-13
+Publish mode: text
+Source: CBS News
+Article URL: https://www.cbsnews.com/live-updates/us-iran-war-trump-nuclear-material-no-deal/
+Content key: weekly-news-cbs-news-u-n-watchdog-agency-pushes-for-access-to-key-iran-nuclear-site
+Headline: Whistleblower-related reporting from CBS News
+Subtext: CBS News reports: U.N. watchdog agency pushes for access to key Iran nuclear site
+
+Social post copy
+
+LinkedIn (445/3000)
+U.N. watchdog agency pushes for access to key Iran nuclear site.
+
+As Trump signals he may let the Iran war fester, the U.N. nuclear agency is "increasingly concerned" about access to a key uranium facility, according to a leaked report.
+
+Read the article from CBS News
+https://www.cbsnews.com/live-updates/us-iran-war-trump-nuclear-material-no-deal/
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (299/500)
+U.N. watchdog agency pushes for access to key Iran nuclear site.
+
+Oversight depends on people being able to bring evidence forward safely.
+
+Read the article from CBS News
+https://www.cbsnews.com/live-updates/us-iran-war-trump-nuclear-material-no-deal/
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (225/300)
+U.N. watchdog agency pushes for access to key Iran nuclear site.
+
+Read the article from CBS News
+https://www.cbsnews.com/live-updates/us-iran-war-trump-nuclear-material-no-deal/
+
+Sign up for Hush Line at https://hushline.app.

@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-11-13",
+  "weekday": "friday",
+  "publish_mode": "text",
+  "source": "CBS News",
+  "title": "U.N. watchdog agency pushes for access to key Iran nuclear site",
+  "article_url": "https://www.cbsnews.com/live-updates/us-iran-war-trump-nuclear-material-no-deal/",
+  "article_published_at": "2026-11-13T14:56:32.000Z",
+  "relevance_score": 12,
+  "content_key": "weekly-news-cbs-news-u-n-watchdog-agency-pushes-for-access-to-key-iran-nuclear-site",
+  "headline": "Whistleblower-related reporting from CBS News",
+  "subtext": "CBS News reports: U.N. watchdog agency pushes for access to key Iran nuclear site",
+  "social": {
+    "bluesky": "U.N. watchdog agency pushes for access to key Iran nuclear site.\n\nRead the article from CBS News\nhttps://www.cbsnews.com/live-updates/us-iran-war-trump-nuclear-material-no-deal/\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "U.N. watchdog agency pushes for access to key Iran nuclear site.\n\nAs Trump signals he may let the Iran war fester, the U.N. nuclear agency is \"increasingly concerned\" about access to a key uranium facility, according to a leaked report.\n\nRead the article from CBS News\nhttps://www.cbsnews.com/live-updates/us-iran-war-trump-nuclear-material-no-deal/\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "U.N. watchdog agency pushes for access to key Iran nuclear site.\n\nOversight depends on people being able to bring evidence forward safely.\n\nRead the article from CBS News\nhttps://www.cbsnews.com/live-updates/us-iran-war-trump-nuclear-material-no-deal/\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
