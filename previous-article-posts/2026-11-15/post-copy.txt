@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-11-15
+Publish mode: text
+Source: Al Jazeera
+Article URL: https://www.aljazeera.com/video/newsfeed/2026/11/15/iran-targets-us-military-radar-in-bahrain-in-retaliatory-drone-strikes?traffic_source=rss
+Content key: weekly-news-al-jazeera-iran-targets-us-military-radar-in-bahrain-in-retaliatory-drone-strikes
+Headline: Whistleblower-related reporting from Al Jazeera
+Subtext: Al Jazeera reports: Iran targets US military radar in Bahrain in ‘retaliatory’ drone strikes
+
+Social post copy
+
+LinkedIn (442/3000)
+Iran targets US military radar in Bahrain in ‘retaliatory’ drone strikes.
+
+Iran’s IRGC says six drones were launched at a US radar installation at an air base in Bahrain.
+
+Read the article from Al Jazeera
+https://www.aljazeera.com/video/newsfeed/2026/11/15/iran-targets-us-military-radar-in-bahrain-in-retaliatory-drone-strikes?traffic_source=rss
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (346/500)
+Iran targets US military radar in Bahrain in ‘retaliatory’ drone strikes.
+
+Retaliation is why safer first contact matters.
+
+Read the article from Al Jazeera
+https://www.aljazeera.com/video/newsfeed/2026/11/15/iran-targets-us-military-radar-in-bahrain-in-retaliatory-drone-strikes?traffic_source=rss
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (297/300)
+Iran targets US military radar in Bahrain in ‘retaliatory’ drone strikes.
+
+Read the article from Al Jazeera
+https://www.aljazeera.com/video/newsfeed/2026/11/15/iran-targets-us-military-radar-in-bahrain-in-retaliatory-drone-strikes?traffic_source=rss
+
+Sign up for Hush Line at https://hushline.app.

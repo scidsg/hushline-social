@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-11-15",
+  "weekday": "sunday",
+  "publish_mode": "text",
+  "source": "Al Jazeera",
+  "title": "Iran targets US military radar in Bahrain in ‘retaliatory’ drone strikes",
+  "article_url": "https://www.aljazeera.com/video/newsfeed/2026/11/15/iran-targets-us-military-radar-in-bahrain-in-retaliatory-drone-strikes?traffic_source=rss",
+  "article_published_at": "2026-11-15T12:15:51.000Z",
+  "relevance_score": 9,
+  "content_key": "weekly-news-al-jazeera-iran-targets-us-military-radar-in-bahrain-in-retaliatory-drone-strikes",
+  "headline": "Whistleblower-related reporting from Al Jazeera",
+  "subtext": "Al Jazeera reports: Iran targets US military radar in Bahrain in ‘retaliatory’ drone strikes",
+  "social": {
+    "bluesky": "Iran targets US military radar in Bahrain in ‘retaliatory’ drone strikes.\n\nRead the article from Al Jazeera\nhttps://www.aljazeera.com/video/newsfeed/2026/11/15/iran-targets-us-military-radar-in-bahrain-in-retaliatory-drone-strikes?traffic_source=rss\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Iran targets US military radar in Bahrain in ‘retaliatory’ drone strikes.\n\nIran’s IRGC says six drones were launched at a US radar installation at an air base in Bahrain.\n\nRead the article from Al Jazeera\nhttps://www.aljazeera.com/video/newsfeed/2026/11/15/iran-targets-us-military-radar-in-bahrain-in-retaliatory-drone-strikes?traffic_source=rss\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Iran targets US military radar in Bahrain in ‘retaliatory’ drone strikes.\n\nRetaliation is why safer first contact matters.\n\nRead the article from Al Jazeera\nhttps://www.aljazeera.com/video/newsfeed/2026/11/15/iran-targets-us-military-radar-in-bahrain-in-retaliatory-drone-strikes?traffic_source=rss\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
