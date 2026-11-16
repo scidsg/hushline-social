@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-11-16",
+  "weekday": "monday",
+  "publish_mode": "text",
+  "source": "CBS News",
+  "title": "Army whistleblower alleges officials ignored warnings before Kuwait attack",
+  "article_url": "https://www.cbsnews.com/news/army-whistleblower-military-officials-kuwait-attack-iran-war/",
+  "article_published_at": "2026-11-15T16:11:00.000Z",
+  "relevance_score": 14,
+  "content_key": "weekly-news-cbs-news-army-whistleblower-alleges-officials-ignored-warnings-before-kuwait-attack",
+  "headline": "Whistleblower-related reporting from CBS News",
+  "subtext": "CBS News reports: Army whistleblower alleges officials ignored warnings before Kuwait attack",
+  "social": {
+    "bluesky": "Army whistleblower alleges officials ignored warnings before Kuwait attack.\n\nRead the article from CBS News\nhttps://www.cbsnews.com/news/army-whistleblower-military-officials-kuwait-attack-iran-war/\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Army whistleblower alleges officials ignored warnings before Kuwait attack.\n\nMaj. Stephen Ramsbottom filed a complaint with Congress on Friday, saying Army leaders dismissed concerns about a U.S. command post in Kuwait. He will appear on 60 Minutes tonight.\n\nRead the article from CBS News\nhttps://www.cbsnews.com/news/army-whistleblower-military-officials-kuwait-attack-iran-war/\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Army whistleblower alleges officials ignored warnings before Kuwait attack.\n\nAccountability reporting needs a safe enough way to make contact.\n\nRead the article from CBS News\nhttps://www.cbsnews.com/news/army-whistleblower-military-officials-kuwait-attack-iran-war/\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}

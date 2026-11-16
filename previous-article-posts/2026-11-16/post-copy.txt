@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-11-16
+Publish mode: text
+Source: CBS News
+Article URL: https://www.cbsnews.com/news/army-whistleblower-military-officials-kuwait-attack-iran-war/
+Content key: weekly-news-cbs-news-army-whistleblower-alleges-officials-ignored-warnings-before-kuwait-attack
+Headline: Whistleblower-related reporting from CBS News
+Subtext: CBS News reports: Army whistleblower alleges officials ignored warnings before Kuwait attack
+
+Social post copy
+
+LinkedIn (476/3000)
+Army whistleblower alleges officials ignored warnings before Kuwait attack.
+
+Maj. Stephen Ramsbottom filed a complaint with Congress on Friday, saying Army leaders dismissed concerns about a U.S. command post in Kuwait. He will appear on 60 Minutes tonight.
+
+Read the article from CBS News
+https://www.cbsnews.com/news/army-whistleblower-military-officials-kuwait-attack-iran-war/
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (313/500)
+Army whistleblower alleges officials ignored warnings before Kuwait attack.
+
+Accountability reporting needs a safe enough way to make contact.
+
+Read the article from CBS News
+https://www.cbsnews.com/news/army-whistleblower-military-officials-kuwait-attack-iran-war/
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (246/300)
+Army whistleblower alleges officials ignored warnings before Kuwait attack.
+
+Read the article from CBS News
+https://www.cbsnews.com/news/army-whistleblower-military-officials-kuwait-attack-iran-war/
+
+Sign up for Hush Line at https://hushline.app.
