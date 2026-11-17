@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-11-17
+Publish mode: text
+Source: The Guardian
+Article URL: https://www.theguardian.com/business/2026/nov/17/deutsche-bank-dimissed-warnings-risky-clients-reports-claim
+Content key: weekly-news-the-guardian-deutsche-bank-dismissed-warnings-about-dealings-with-risky-clients-repo
+Headline: Whistleblower-related reporting from The Guardian
+Subtext: The Guardian reports: Deutsche Bank dismissed warnings about dealings with risky clients, reports claim
+
+Social post copy
+
+LinkedIn (539/3000)
+Deutsche Bank dismissed warnings about dealings with risky clients, reports claim.
+
+International investigation using trove of leaked internal data allegedly shows German bank overlooked compliance concerns to safeguard profits Deutsche Bank reportedly dismissed warnings about its dealings with...
+
+Read the article from The Guardian
+https://www.theguardian.com/business/2026/nov/17/deutsche-bank-dimissed-warnings-risky-clients-reports-claim
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (349/500)
+Deutsche Bank dismissed warnings about dealings with risky clients, reports claim.
+
+Oversight depends on people being able to bring evidence forward safely.
+
+Read the article from The Guardian
+https://www.theguardian.com/business/2026/nov/17/deutsche-bank-dimissed-warnings-risky-clients-reports-claim
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (275/300)
+Deutsche Bank dismissed warnings about dealings with risky clients, reports claim.
+
+Read the article from The Guardian
+https://www.theguardian.com/business/2026/nov/17/deutsche-bank-dimissed-warnings-risky-clients-reports-claim
+
+Sign up for Hush Line at https://hushline.app.
