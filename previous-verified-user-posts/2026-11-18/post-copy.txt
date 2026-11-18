@@ -1,0 +1,36 @@
+Slot: verified-user-weekly
+Planned date: 2026-11-18
+Verified user: @jenniferpsst
+User link: https://tips.hushline.app/to/jenniferpsst
+Source: https://tips.hushline.app/directory/users.json
+Editorial format: How to verify the link (how_to_verify_the_link)
+Opening line: Verify the link before you send anything sensitive.
+Headline: Jennifer Gibson
+Subtext: Co-Founder and Legal Director, Psst.org
+
+Image alt text
+A social card featuring verified Hush Line user Jennifer Gibson, their bio, their tip line URL, and a QR code that links to the same URL.
+
+Social post copy
+
+LinkedIn (186/3000)
+Verify the link before you send anything sensitive.
+
+Jennifer is a Co-Founder and legal director, Psst.org.
+
+Jennifer's verified Hush Line URL: https://tips.hushline.app/to/jenniferpsst.
+
+Mastodon (186/500)
+Verify the link before you send anything sensitive.
+
+Jennifer is a Co-Founder and legal director, Psst.org.
+
+Jennifer's verified Hush Line URL: https://tips.hushline.app/to/jenniferpsst.
+
+Bluesky (185/300)
+Verify the link before you send anything sensitive.
+
+Jennifer is a Co-Founder and legal director, Psst.org.
+
+Jennifer's verified Hush Line URL: https://tips.hushline.app/to/jenniferpsst
+

@@ -1,0 +1,22 @@
+{
+  "date": "2026-11-18",
+  "display_name": "Jennifer Gibson",
+  "editorial_format_label": "How to verify the link",
+  "headline": "Jennifer Gibson",
+  "image_alt_text": "A social card featuring verified Hush Line user Jennifer Gibson, their bio, their tip line URL, and a QR code that links to the same URL.",
+  "opening_line": "Verify the link before you send anything sensitive.",
+  "planned_date": "2026-11-18",
+  "primary_username": "jenniferpsst",
+  "qr_code_file": "verified-user-qr.png",
+  "social": {
+    "bluesky": "Verify the link before you send anything sensitive.\n\nJennifer is a Co-Founder and legal director, Psst.org.\n\nJennifer's verified Hush Line URL: https://tips.hushline.app/to/jenniferpsst",
+    "linkedin": "Verify the link before you send anything sensitive.\n\nJennifer is a Co-Founder and legal director, Psst.org.\n\nJennifer's verified Hush Line URL: https://tips.hushline.app/to/jenniferpsst.",
+    "mastodon": "Verify the link before you send anything sensitive.\n\nJennifer is a Co-Founder and legal director, Psst.org.\n\nJennifer's verified Hush Line URL: https://tips.hushline.app/to/jenniferpsst."
+  },
+  "slot": "verified-user-weekly",
+  "source": "https://tips.hushline.app/directory/users.json",
+  "subtext": "Co-Founder and Legal Director, Psst.org",
+  "user_link": "https://tips.hushline.app/to/jenniferpsst",
+  "user_url": "https://tips.hushline.app/to/jenniferpsst",
+  "verified_user_format": "how_to_verify_the_link"
+}
