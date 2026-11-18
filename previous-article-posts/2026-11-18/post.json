@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-11-18",
+  "weekday": "wednesday",
+  "publish_mode": "text",
+  "source": "Al Jazeera",
+  "title": "What do Deutsche Bank leaks reveal about Trump, Epstein and Russia?",
+  "article_url": "https://www.aljazeera.com/news/2026/11/18/what-do-deutsche-bank-leaks-reveal-about-trump-epstein-and-russia?traffic_source=rss",
+  "article_published_at": "2026-11-18T09:42:26.000Z",
+  "relevance_score": 13,
+  "content_key": "weekly-news-al-jazeera-what-do-deutsche-bank-leaks-reveal-about-trump-epstein-and-russia",
+  "headline": "Whistleblower-related reporting from Al Jazeera",
+  "subtext": "Al Jazeera reports: What do Deutsche Bank leaks reveal about Trump, Epstein and Russia?",
+  "social": {
+    "bluesky": "What do Deutsche Bank leaks reveal about Trump, Epstein and Russia?\n\nRead the article from Al Jazeera\nhttps://www.aljazeera.com/news/2026/11/18/what-do-deutsche-bank-leaks-reveal-about-trump-epstein-and-russia?traffic_source=rss\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "What do Deutsche Bank leaks reveal about Trump, Epstein and Russia?\n\nDeutsche Bank leaks expose ties to Trump, Epstein, and global elites amid scrutiny over past financial misconduct.\n\nRead the article from Al Jazeera\nhttps://www.aljazeera.com/news/2026/11/18/what-do-deutsche-bank-leaks-reveal-about-trump-epstein-and-russia?traffic_source=rss\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "What do Deutsche Bank leaks reveal about Trump, Epstein and Russia?\n\nSource protection starts before publication.\n\nRead the article from Al Jazeera\nhttps://www.aljazeera.com/news/2026/11/18/what-do-deutsche-bank-leaks-reveal-about-trump-epstein-and-russia?traffic_source=rss\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
