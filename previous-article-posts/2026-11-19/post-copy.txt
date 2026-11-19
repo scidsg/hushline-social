@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-11-19
+Publish mode: text
+Source: The Guardian
+Article URL: https://www.theguardian.com/us-news/2026/nov/18/robert-garcia-trump-records-investigations
+Content key: weekly-news-the-guardian-trump-family-and-allies-told-to-preserve-records-as-democrats-prepare-s
+Headline: Whistleblower-related reporting from The Guardian
+Subtext: The Guardian reports: Trump family and allies told to preserve records as Democrats prepare sweeping investigations
+
+Social post copy
+
+LinkedIn (533/3000)
+Trump family and allies told to preserve records as Democrats prepare sweeping investigations.
+
+Robert Garcia plans searches into Trump family finances, alleged DHS misconduct and handling of Epstein files The incoming Democratic chair of the powerful oversight committee in the House of Representatives has...
+
+Read the article from The Guardian
+https://www.theguardian.com/us-news/2026/nov/18/robert-garcia-trump-records-investigations
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (343/500)
+Trump family and allies told to preserve records as Democrats prepare sweeping investigations.
+
+Oversight depends on people being able to bring evidence forward safely.
+
+Read the article from The Guardian
+https://www.theguardian.com/us-news/2026/nov/18/robert-garcia-trump-records-investigations
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (269/300)
+Trump family and allies told to preserve records as Democrats prepare sweeping investigations.
+
+Read the article from The Guardian
+https://www.theguardian.com/us-news/2026/nov/18/robert-garcia-trump-records-investigations
+
+Sign up for Hush Line at https://hushline.app.
