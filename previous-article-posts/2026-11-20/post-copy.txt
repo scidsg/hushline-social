@@ -1,0 +1,38 @@
+Slot: weekly-news-article
+Planned date: 2026-11-20
+Publish mode: text
+Source: NBC News
+Article URL: https://www.today.com/video/visa-mastercard-jp-morgan-chase-confirm-cyberattack-273882693910
+Content key: weekly-news-nbc-news-white-house-national-cyber-director-departs-amid-tech-outages
+Headline: Whistleblower-related reporting from NBC News
+Subtext: NBC News reports: White House National Cyber Director Departs Amid Tech Outages
+
+Social post copy
+
+LinkedIn (501/3000)
+White House National Cyber Director Departs Amid Tech Outages.
+
+As the NSA network outage enters its fourth day, JP Morgan Chase, Mastercard and Visa, three of the largest credit card companies in the world, say thousands of their customers’ names and email addresses have been...
+
+Read the article from NBC News
+https://www.today.com/video/visa-mastercard-jp-morgan-chase-confirm-cyberattack-273882693910
+
+Give sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.
+
+Mastodon (281/500)
+White House National Cyber Director Departs Amid Tech Outages.
+
+Source protection starts before publication.
+
+Read the article from NBC News
+https://www.today.com/video/visa-mastercard-jp-morgan-chase-confirm-cyberattack-273882693910
+
+Sign up for Hush Line at https://hushline.app.
+
+Bluesky (235/300)
+White House National Cyber Director Departs Amid Tech Outages.
+
+Read the article from NBC News
+https://www.today.com/video/visa-mastercard-jp-morgan-chase-confirm-cyberattack-273882693910
+
+Sign up for Hush Line at https://hushline.app.
