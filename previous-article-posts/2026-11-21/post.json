@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-11-21",
+  "weekday": "saturday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "‘Worth fighting for’: senators vow to restore financial watchdog agency after Guardian investigation",
+  "article_url": "https://www.theguardian.com/us-news/2026/nov/20/senators-consumer-financial-protection-bureau",
+  "article_published_at": "2026-11-20T18:51:16.000Z",
+  "relevance_score": 19,
+  "content_key": "weekly-news-the-guardian-worth-fighting-for-senators-vow-to-restore-financial-watchdog-agency-af",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: ‘Worth fighting for’: senators vow to restore financial watchdog agency after Guardian investigation",
+  "social": {
+    "bluesky": "‘Worth fighting for’ — senators vow to restore financial watchdog agency after Guardian investigation.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/nov/20/senators-consumer-financial-protection-bureau\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "‘Worth fighting for’ — senators vow to restore financial watchdog agency after Guardian investigation.\n\nDemocrats – including incoming banking chair and both majority leader candidates – said wealthy interests were prioritized over the needs of working Americans In response to a Guardian investigation, four US Senate...\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/nov/20/senators-consumer-financial-protection-bureau\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "‘Worth fighting for’ — senators vow to restore financial watchdog agency after Guardian investigation.\n\nOversight depends on people being able to bring evidence forward safely.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/us-news/2026/nov/20/senators-consumer-financial-protection-bureau\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
