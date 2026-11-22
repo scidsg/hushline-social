@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-11-22",
+  "weekday": "sunday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "Judge approves $7.25bn Bayer payout to settle claims that Roundup causes cancer",
+  "article_url": "https://www.theguardian.com/business/2026/nov/20/bayer-roundup-cancer-litigation",
+  "article_published_at": "2026-11-20T23:42:43.000Z",
+  "relevance_score": 14,
+  "content_key": "weekly-news-the-guardian-judge-approves-7-25bn-bayer-payout-to-settle-claims-that-roundup-causes",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: Judge approves $7.25bn Bayer payout to settle claims that Roundup causes cancer",
+  "social": {
+    "bluesky": "Judge approves $7.25bn Bayer payout to settle claims that Roundup causes cancer.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/business/2026/nov/20/bayer-roundup-cancer-litigation\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Judge approves $7.25bn Bayer payout to settle claims that Roundup causes cancer.\n\nGerman company faced 65,000 claims from people who said they developed cancer after using weedkiller A Missouri judge on Friday approved Bayer ’s $7.25bn settlement of lawsuits ⁠alleging that its weedkiller ​Roundup...\n\nRead the article from The Guardian\nhttps://www.theguardian.com/business/2026/nov/20/bayer-roundup-cancer-litigation\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Judge approves $7.25bn Bayer payout to settle claims that Roundup causes cancer.\n\nWins matter when reporting leads to protection or repair.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/business/2026/nov/20/bayer-roundup-cancer-litigation\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
