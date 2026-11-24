@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-11-24",
+  "weekday": "tuesday",
+  "publish_mode": "text",
+  "source": "The Guardian",
+  "title": "‘It was a cover-up’: HarperCollins accused of using lawyers to shut down concerns about David Walliams",
+  "article_url": "https://www.theguardian.com/tv-and-radio/2026/nov/24/it-was-a-cover-up-harpercollins-accused-of-using-lawyers-to-shut-down-concerns-about-david-walliams",
+  "article_published_at": "2026-11-24T12:00:45.000Z",
+  "relevance_score": 8,
+  "content_key": "weekly-news-the-guardian-it-was-a-cover-up-harpercollins-accused-of-using-lawyers-to-shut-down-c",
+  "headline": "Whistleblower-related reporting from The Guardian",
+  "subtext": "The Guardian reports: ‘It was a cover-up’: HarperCollins accused of using lawyers to shut down concerns about David Walliams",
+  "social": {
+    "bluesky": "‘It was a cover-up’ — HarperCollins accused of using lawyers to shut down concerns about David Walliams.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/tv-and-radio/2026/nov/24/it-was-a-cover-up-harpercollins-accused-of-using-lawyers-to-shut-down-concerns-about-david-walliams\n\nSign…",
+    "linkedin": "‘It was a cover-up’ — HarperCollins accused of using lawyers to shut down concerns about David Walliams.\n\nWomen who spoke to internal investigation about inappropriate behaviour by Walliams still too scared to speak out The publisher HarperCollins used a leading legal firm and a non-disclosure agreement to “cover up”...\n\nRead the article from The Guardian\nhttps://www.theguardian.com/tv-and-radio/2026/nov/24/it-was-a-cover-up-harpercollins-accused-of-using-lawyers-to-shut-down-concerns-about-david-walliams\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "‘It was a cover-up’ — HarperCollins accused of using lawyers to shut down concerns about David Walliams.\n\nOversight depends on people being able to bring evidence forward safely.\n\nRead the article from The Guardian\nhttps://www.theguardian.com/tv-and-radio/2026/nov/24/it-was-a-cover-up-harpercollins-accused-of-using-lawyers-to-shut-down-concerns-about-david-walliams\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
