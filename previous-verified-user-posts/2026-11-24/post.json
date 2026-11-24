@@ -1,0 +1,22 @@
+{
+  "date": "2026-11-24",
+  "display_name": "Michelle Backe",
+  "editorial_format_label": "Why follow this tip line",
+  "headline": "Michelle Backe",
+  "image_alt_text": "A social card featuring verified Hush Line user Michelle Backe, their bio, their tip line URL, and a QR code that links to the same URL.",
+  "opening_line": "Why follow Michelle's Hush Line?",
+  "planned_date": "2026-11-24",
+  "primary_username": "mswmichelle",
+  "qr_code_file": "verified-user-qr.png",
+  "social": {
+    "bluesky": "Why follow Michelle's Hush Line?\n\nMichelle is a Psychotherapist and a Mental Health Coordinator for Documentary Film/Narrative Film. Committed to safer, harassment free spaces in the entertainment…\n\nReview the verified link before sending a tip: https://tips.hushline.app/to/mswmichelle",
+    "linkedin": "Why follow Michelle's Hush Line?\n\nMichelle is a Psychotherapist and a Mental Health Coordinator for Documentary Film/Narrative Film. Committed to safer, harassment free spaces in the entertainment industry. Special Focus on Documentary Participant care as well as protection of minors.\n\nReview Michelle's verified Hush Line link before sending a tip: https://tips.hushline.app/to/mswmichelle.",
+    "mastodon": "Why follow Michelle's Hush Line?\n\nMichelle is a Psychotherapist and a Mental Health Coordinator for Documentary Film/Narrative Film. Committed to safer, harassment free spaces in the entertainment industry. Special Focus on Documentary…\n\nReview Michelle's verified Hush Line link before sending a tip: https://tips.hushline.app/to/mswmichelle."
+  },
+  "slot": "verified-user-weekly",
+  "source": "https://tips.hushline.app/directory/users.json",
+  "subtext": "Michelle is a Psychotherapist and a Mental Health Coordinator for Documentary Film/Narrative Film. Committed to safer, harassment free spaces in the entertainment industry. Special Focus on Documentary Participant care as well as protection of minors",
+  "user_link": "https://tips.hushline.app/to/mswmichelle",
+  "user_url": "https://tips.hushline.app/to/mswmichelle",
+  "verified_user_format": "why_follow_tip_line"
+}
