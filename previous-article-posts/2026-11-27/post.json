@@ -1,0 +1,23 @@
+{
+  "slot": "weekly-news-article",
+  "planned_date": "2026-11-27",
+  "weekday": "friday",
+  "publish_mode": "text",
+  "source": "BBC News",
+  "title": "Government to limit 'abusive lawsuits' aimed at silencing whistleblowers",
+  "article_url": "https://www.bbc.co.uk/news/articles/cw24ez2zvge0o?at_medium=RSS&at_campaign=rss",
+  "article_published_at": "2026-11-27T13:23:02.000Z",
+  "relevance_score": 21,
+  "content_key": "weekly-news-bbc-news-government-to-limit-abusive-lawsuits-aimed-at-silencing-whistleblowers",
+  "headline": "Whistleblower-related reporting from BBC News",
+  "subtext": "BBC News reports: Government to limit 'abusive lawsuits' aimed at silencing whistleblowers",
+  "social": {
+    "bluesky": "Government to limit 'abusive lawsuits' aimed at silencing whistleblowers.\n\nRead the article from BBC News\nhttps://www.bbc.co.uk/news/articles/cw24ez2zvge0o?at_medium=RSS&at_campaign=rss\n\nSign up for Hush Line at https://hushline.app.",
+    "linkedin": "Government to limit 'abusive lawsuits' aimed at silencing whistleblowers.\n\nAn MP cited former Harrods owner Mohamed Al Fayed as someone who used legal action to suppress his \"appalling abuse\".\n\nRead the article from BBC News\nhttps://www.bbc.co.uk/news/articles/cw24ez2zvge0o?at_medium=RSS&at_campaign=rss\n\nGive sources a safer way to make first contact. Sign up for Hush Line at https://hushline.app.",
+    "mastodon": "Government to limit 'abusive lawsuits' aimed at silencing whistleblowers.\n\nAccountability reporting needs a safe enough way to make contact.\n\nRead the article from BBC News\nhttps://www.bbc.co.uk/news/articles/cw24ez2zvge0o?at_medium=RSS&at_campaign=rss\n\nSign up for Hush Line at https://hushline.app."
+  },
+  "rationale": "Share one current, credible whistleblower-related news article and bring the call to action back to signing up for Hush Line.",
+  "audience_scope": "whistleblower-news",
+  "concept_key": "weekly-whistleblower-news-article",
+  "copy_brief": "Specific, story-led article-share copy with article link and Hush Line signup CTA."
+}
